@@ -1,0 +1,31 @@
+name: Connect Fantasy Live
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Connect live.js to index
+        run: |
+          grep -q 'src="./live.js"' index.html || sed -i 's#</body></html>#<script src="./live.js"></script></body></html>#' index.html
+
+      - name: Save change
+        run: |
+          git config user.name "eurofantasy-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "Already connected"
+          else
+            git commit -m "Connect Fantasy live data"
+            git push
+          fi
