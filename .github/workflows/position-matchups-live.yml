@@ -1,0 +1,1102 @@
+name: EuroFantasy Position Matchups
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 3 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  position-matchups:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build positional matchup model
+        run: |
+          python - <<'PY'
+          import json
+          import re
+          import time
+          import urllib.request
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          DATA = Path("data")
+          DATA.mkdir(exist_ok=True)
+
+          HEADERS = {
+              "Accept": "application/json",
+              "User-Agent": "EuroFantasy-AI/1.0"
+          }
+
+          def get_json(url, timeout=30):
+              last = None
+
+              for attempt in range(3):
+                  try:
+                      req = urllib.request.Request(
+                          url,
+                          headers=HEADERS
+                      )
+
+                      with urllib.request.urlopen(
+                          req,
+                          timeout=timeout
+                      ) as response:
+                          return json.loads(
+                              response.read().decode("utf-8")
+                          )
+
+                  except Exception as exc:
+                      last = exc
+
+                      if attempt < 2:
+                          time.sleep(1.5 * (attempt + 1))
+
+              raise last
+
+          def get_stats(season, game_code):
+              urls = [
+                  (
+                      "https://api-live.euroleague.net/"
+                      "v2/competitions/E/seasons/"
+                      f"{season}/games/{game_code}/stats"
+                  ),
+                  (
+                      "https://feeds.incrowdsports.com/"
+                      "provider/euroleague-feeds/v2/"
+                      "competitions/E/seasons/"
+                      f"{season}/games/{game_code}/stats"
+                  ),
+              ]
+
+              last = None
+
+              for url in urls:
+                  try:
+                      return get_json(url)
+                  except Exception as exc:
+                      last = exc
+
+              raise last
+
+          def norm(value):
+              return re.sub(
+                  r"[^a-z0-9]+",
+                  " ",
+                  str(value or "").lower()
+              ).strip()
+
+          def canon(name):
+              n = norm(name)
+
+              rules = [
+                  ("efes", "Anadolu Efes"),
+                  ("armani", "Milano"),
+                  ("milano", "Milano"),
+                  ("milan", "Milano"),
+                  ("besiktas", "Besiktas"),
+                  ("crvena", "Crvena Zvezda"),
+                  ("red star", "Crvena Zvezda"),
+                  ("dubai", "Dubai"),
+                  ("barcelona", "Barcelona"),
+                  ("bayern", "Bayern Munich"),
+                  ("fenerbahce", "Fenerbahce"),
+                  ("hapoel", "Hapoel Tel Aviv"),
+                  ("baskonia", "Baskonia"),
+                  ("asvel", "ASVEL"),
+                  ("maccabi", "Maccabi Tel Aviv"),
+                  ("olympiacos", "Olympiacos"),
+                  ("panathinaikos", "Panathinaikos"),
+                  ("paris", "Paris"),
+                  ("partizan", "Partizan"),
+                  ("real madrid", "Real Madrid"),
+                  ("valencia", "Valencia"),
+                  ("virtus", "Virtus Bologna"),
+                  ("zalgiris", "Zalgiris"),
+                  ("monaco", "Monaco"),
+              ]
+
+              for key, value in rules:
+                  if key in n:
+                      return value
+
+              return str(name or "").strip()
+
+          def club_name(side):
+              if not isinstance(side, dict):
+                  return ""
+
+              club = side.get("club") or {}
+
+              if isinstance(club, dict):
+                  for key in (
+                      "name",
+                      "clubName",
+                      "clubPermanentName",
+                      "abbreviatedName",
+                      "code",
+                  ):
+                      if club.get(key):
+                          return club[key]
+
+              for key in (
+                  "name",
+                  "clubName",
+                  "teamName",
+              ):
+                  if side.get(key):
+                      return side[key]
+
+              return ""
+
+          def position_code(value):
+              if isinstance(value, dict):
+                  for key in (
+                      "code",
+                      "name",
+                      "abbreviation",
+                      "description",
+                  ):
+                      if value.get(key):
+                          value = value[key]
+                          break
+
+              s = norm(value)
+
+              if not s:
+                  return None
+
+              exact = {
+                  "g": "G",
+                  "pg": "G",
+                  "sg": "G",
+                  "guard": "G",
+                  "point guard": "G",
+                  "shooting guard": "G",
+
+                  "f": "F",
+                  "sf": "F",
+                  "pf": "F",
+                  "forward": "F",
+                  "small forward": "F",
+                  "power forward": "F",
+
+                  "c": "C",
+                  "center": "C",
+                  "centre": "C",
+              }
+
+              if s in exact:
+                  return exact[s]
+
+              if "guard" in s:
+                  return "G"
+
+              if "center" in s or "centre" in s:
+                  return "C"
+
+              if "forward" in s:
+                  return "F"
+
+              first = s.split()[0]
+
+              if first in ("g", "pg", "sg"):
+                  return "G"
+
+              if first in ("f", "sf", "pf"):
+                  return "F"
+
+              if first == "c":
+                  return "C"
+
+              return None
+
+          def number(value):
+              if isinstance(value, (int, float)):
+                  return float(value)
+
+              try:
+                  return float(value)
+              except Exception:
+                  return None
+
+          # עונה קודמת + עונה נוכחית במשקל גדול יותר
+          SEASONS = [
+              ("E2025", 1.0),
+              ("E2026", 2.5),
+          ]
+
+          # שומר על מודל עדכני ולא מעמיס על ה-API
+          MAX_GAMES_PER_SEASON = 180
+
+          defense = {}
+
+          league = {
+              "G": {
+                  "pir": 0.0,
+                  "seconds": 0.0
+              },
+              "F": {
+                  "pir": 0.0,
+                  "seconds": 0.0
+              },
+              "C": {
+                  "pir": 0.0,
+                  "seconds": 0.0
+              },
+          }
+
+          def bucket(team, pos):
+              team_data = defense.setdefault(
+                  team,
+                  {
+                      "G": {
+                          "pir": 0.0,
+                          "seconds": 0.0,
+                          "games": 0
+                      },
+                      "F": {
+                          "pir": 0.0,
+                          "seconds": 0.0,
+                          "games": 0
+                      },
+                      "C": {
+                          "pir": 0.0,
+                          "seconds": 0.0,
+                          "games": 0
+                      },
+                  }
+              )
+
+              return team_data[pos]
+
+          def consume_offense(
+              offense_side,
+              defense_team,
+              weight
+          ):
+              if not isinstance(offense_side, dict):
+                  return
+
+              seen_positions = set()
+
+              for row in offense_side.get(
+                  "players",
+                  []
+              ):
+                  if not isinstance(row, dict):
+                      continue
+
+                  player = (
+                      row.get("player") or {}
+                  )
+
+                  stats = (
+                      row.get("stats") or {}
+                  )
+
+                  pos = position_code(
+                      player.get("position")
+                  )
+
+                  if pos not in ("G", "F", "C"):
+                      continue
+
+                  pir = number(
+                      stats.get("valuation")
+                  )
+
+                  seconds = number(
+                      stats.get("timePlayed")
+                  )
+
+                  if (
+                      pir is None
+                      or seconds is None
+                  ):
+                      continue
+
+                  # מסנן DNP ודקות זניחות
+                  if seconds < 120:
+                      continue
+
+                  b = bucket(
+                      defense_team,
+                      pos
+                  )
+
+                  b["pir"] += (
+                      pir * weight
+                  )
+
+                  b["seconds"] += (
+                      seconds * weight
+                  )
+
+                  league[pos]["pir"] += (
+                      pir * weight
+                  )
+
+                  league[pos]["seconds"] += (
+                      seconds * weight
+                  )
+
+                  seen_positions.add(pos)
+
+              for pos in seen_positions:
+                  bucket(
+                      defense_team,
+                      pos
+                  )["games"] += 1
+
+          used_games = 0
+          failed_boxscores = 0
+          season_counts = {}
+
+          for season, weight in SEASONS:
+
+              games_url = (
+                  "https://api-live.euroleague.net/"
+                  "v2/competitions/E/seasons/"
+                  f"{season}/games?limit=500"
+              )
+
+              try:
+                  payload = get_json(
+                      games_url
+                  )
+
+              except Exception as exc:
+                  print(
+                      "Season list warning:",
+                      season,
+                      exc
+                  )
+
+                  continue
+
+              rows = (
+                  payload.get("data", [])
+                  if isinstance(payload, dict)
+                  else []
+              )
+
+              played = [
+                  game
+                  for game in rows
+                  if game.get("played")
+                  and game.get("gameCode")
+                  is not None
+              ]
+
+              played.sort(
+                  key=lambda game: int(
+                      game.get("gameCode")
+                      or 0
+                  )
+              )
+
+              played = played[
+                  -MAX_GAMES_PER_SEASON:
+              ]
+
+              season_counts[season] = (
+                  len(played)
+              )
+
+              for index, game in enumerate(
+                  played,
+                  start=1
+              ):
+                  game_code = (
+                      game.get("gameCode")
+                  )
+
+                  home = canon(
+                      club_name(
+                          game.get("local")
+                          or {}
+                      )
+                  )
+
+                  away = canon(
+                      club_name(
+                          game.get("road")
+                          or {}
+                      )
+                  )
+
+                  if not home or not away:
+                      continue
+
+                  try:
+                      box = get_stats(
+                          season,
+                          game_code
+                      )
+
+                  except Exception as exc:
+                      failed_boxscores += 1
+
+                      print(
+                          "Boxscore warning:",
+                          season,
+                          game_code,
+                          exc
+                      )
+
+                      continue
+
+                  if not isinstance(
+                      box,
+                      dict
+                  ):
+                      continue
+
+                  local = (
+                      box.get("local")
+                      or {}
+                  )
+
+                  road = (
+                      box.get("road")
+                      or {}
+                  )
+
+                  # שחקני הבית משחקים מול
+                  # הגנת קבוצת החוץ
+                  consume_offense(
+                      local,
+                      away,
+                      weight
+                  )
+
+                  # שחקני החוץ משחקים מול
+                  # הגנת קבוצת הבית
+                  consume_offense(
+                      road,
+                      home,
+                      weight
+                  )
+
+                  used_games += 1
+
+                  if index % 25 == 0:
+                      print(
+                          season,
+                          index,
+                          "/",
+                          len(played)
+                      )
+
+          expected_games = sum(
+              season_counts.values()
+          )
+
+          # לא מחליפים נתונים טובים אם ה-API
+          # היה תקול ברוב הריצה
+          if (
+              expected_games
+              and used_games
+              < max(
+                  20,
+                  expected_games * 0.60
+              )
+          ):
+              raise RuntimeError(
+                  "Too many EuroLeague "
+                  "boxscores failed"
+              )
+
+          league_rates = {}
+
+          for pos in ("G", "F", "C"):
+              seconds = (
+                  league[pos]["seconds"]
+              )
+
+              pir = (
+                  league[pos]["pir"]
+              )
+
+              league_rates[pos] = (
+                  pir / seconds
+                  if seconds > 0
+                  else 0.0
+              )
+
+          output = {}
+
+          for team, positions in (
+              defense.items()
+          ):
+              output[team] = {}
+
+              for pos in ("G", "F", "C"):
+
+                  item = positions[pos]
+
+                  seconds = (
+                      item["seconds"]
+                  )
+
+                  pir = (
+                      item["pir"]
+                  )
+
+                  games = (
+                      item["games"]
+                  )
+
+                  league_rate = (
+                      league_rates[pos]
+                  )
+
+                  if (
+                      seconds <= 0
+                      or league_rate <= 0
+                  ):
+                      factor = 1.0
+                      raw_factor = 1.0
+                      allowed40 = None
+                      league40 = None
+
+                  else:
+                      team_rate = (
+                          pir / seconds
+                      )
+
+                      raw_factor = (
+                          team_rate
+                          / league_rate
+                      )
+
+                      # מדגם קטן מתקרב אוטומטית
+                      # לממוצע הליגה
+                      reliability = min(
+                          0.85,
+                          games / 12.0
+                      )
+
+                      factor = (
+                          1.0
+                          + (
+                              raw_factor - 1.0
+                          ) * reliability
+                      )
+
+                      # לא מאפשר למאצ'אפ לבדו
+                      # להשתלט על התחזית
+                      factor = max(
+                          0.88,
+                          min(
+                              1.12,
+                              factor
+                          )
+                      )
+
+                      allowed40 = (
+                          team_rate * 2400
+                      )
+
+                      league40 = (
+                          league_rate * 2400
+                      )
+
+                  output[team][pos] = {
+                      "factor": round(
+                          factor,
+                          5
+                      ),
+
+                      "pct": round(
+                          (
+                              factor - 1
+                          ) * 100,
+                          2
+                      ),
+
+                      "rawFactor": round(
+                          raw_factor,
+                          5
+                      ),
+
+                      "allowedPirPer40": (
+                          round(
+                              allowed40,
+                              2
+                          )
+                          if allowed40
+                          is not None
+                          else None
+                      ),
+
+                      "leaguePirPer40": (
+                          round(
+                              league40,
+                              2
+                          )
+                          if league40
+                          is not None
+                          else None
+                      ),
+
+                      "sampleGames":
+                          games,
+                  }
+
+          core = {
+              "defense": output,
+
+              "league": {
+                  pos: {
+                      "pirPer40": (
+                          round(
+                              league_rates[pos]
+                              * 2400,
+                              2
+                          )
+                          if league_rates[pos]
+                          > 0
+                          else None
+                      )
+                  }
+                  for pos
+                  in ("G", "F", "C")
+              },
+
+              "gamesUsed":
+                  used_games,
+
+              "failedBoxscores":
+                  failed_boxscores,
+
+              "seasonGameCounts":
+                  season_counts,
+
+              "source":
+                  "EuroLeague official game stats",
+
+              "method":
+                  (
+                      "Opponent PIR per "
+                      "player-minute by G/F/C, "
+                      "shrunk to league average"
+                  ),
+          }
+
+          target = (
+              DATA
+              / "position-matchups.json"
+          )
+
+          old_core = None
+
+          if target.exists():
+              try:
+                  old = json.loads(
+                      target.read_text(
+                          encoding="utf-8"
+                      )
+                  )
+
+                  old_core = {
+                      key: old.get(key)
+                      for key in core
+                  }
+
+              except Exception:
+                  pass
+
+          if old_core == core:
+              print(
+                  "No positional "
+                  "matchup changes"
+              )
+
+          else:
+              result = {
+                  **core,
+
+                  "updated_at":
+                      datetime.now(
+                          timezone.utc
+                      ).isoformat()
+              }
+
+              target.write_text(
+                  json.dumps(
+                      result,
+                      ensure_ascii=False,
+                      indent=2
+                  ),
+                  encoding="utf-8"
+              )
+
+              print(
+                  "Updated positional "
+                  "matchups:",
+                  len(output),
+                  "teams from",
+                  used_games,
+                  "games"
+              )
+          PY
+
+      - name: Create position matchup loader
+        run: |
+          cat > position-matchups.js <<'EOF'
+          (async () => {
+            try {
+              const response = await fetch(
+                "./data/position-matchups.json?t="
+                + Date.now(),
+                {
+                  cache: "no-store"
+                }
+              );
+
+              if (!response.ok) {
+                throw new Error(
+                  "position-matchups.json HTTP "
+                  + response.status
+                );
+              }
+
+              const data =
+                await response.json();
+
+              const defense =
+                data.defense || {};
+
+              if (
+                typeof model !== "function"
+                ||
+                typeof renderAll !== "function"
+              ) {
+                throw new Error(
+                  "EuroFantasy model "
+                  + "is not ready"
+                );
+              }
+
+              if (
+                window
+                  .__positionMatchupsPatched
+              ) {
+                return;
+              }
+
+              window
+                .__positionMatchupsPatched =
+                  true;
+
+              const originalModel =
+                model;
+
+              function teamKey(value) {
+                const n = String(
+                  value || ""
+                ).toLowerCase();
+
+                const rules = [
+                  [
+                    "efes",
+                    "Anadolu Efes"
+                  ],
+                  [
+                    "armani",
+                    "Milano"
+                  ],
+                  [
+                    "milano",
+                    "Milano"
+                  ],
+                  [
+                    "milan",
+                    "Milano"
+                  ],
+                  [
+                    "besiktas",
+                    "Besiktas"
+                  ],
+                  [
+                    "crvena",
+                    "Crvena Zvezda"
+                  ],
+                  [
+                    "red star",
+                    "Crvena Zvezda"
+                  ],
+                  [
+                    "dubai",
+                    "Dubai"
+                  ],
+                  [
+                    "barcelona",
+                    "Barcelona"
+                  ],
+                  [
+                    "bayern",
+                    "Bayern Munich"
+                  ],
+                  [
+                    "fenerbahce",
+                    "Fenerbahce"
+                  ],
+                  [
+                    "hapoel",
+                    "Hapoel Tel Aviv"
+                  ],
+                  [
+                    "baskonia",
+                    "Baskonia"
+                  ],
+                  [
+                    "asvel",
+                    "ASVEL"
+                  ],
+                  [
+                    "maccabi",
+                    "Maccabi Tel Aviv"
+                  ],
+                  [
+                    "olympiacos",
+                    "Olympiacos"
+                  ],
+                  [
+                    "panathinaikos",
+                    "Panathinaikos"
+                  ],
+                  [
+                    "paris",
+                    "Paris"
+                  ],
+                  [
+                    "partizan",
+                    "Partizan"
+                  ],
+                  [
+                    "real madrid",
+                    "Real Madrid"
+                  ],
+                  [
+                    "valencia",
+                    "Valencia"
+                  ],
+                  [
+                    "virtus",
+                    "Virtus Bologna"
+                  ],
+                  [
+                    "zalgiris",
+                    "Zalgiris"
+                  ],
+                  [
+                    "monaco",
+                    "Monaco"
+                  ]
+                ];
+
+                for (
+                  const [
+                    needle,
+                    canonical
+                  ]
+                  of rules
+                ) {
+                  if (
+                    n.includes(needle)
+                  ) {
+                    return canonical;
+                  }
+                }
+
+                return String(
+                  value || ""
+                );
+              }
+
+              model = function (p) {
+                const x =
+                  originalModel(p);
+
+                const pos =
+                  ["G", "F", "C"]
+                    .includes(p.pos)
+                    ? p.pos
+                    : null;
+
+                const opponent =
+                  teamKey(
+                    x.match?.opponent
+                    || p.opponent
+                  );
+
+                const row =
+                  pos
+                    ? defense?.[opponent]?.[
+                        pos
+                      ]
+                    : null;
+
+                const factor =
+                  Number(
+                    row?.factor || 1
+                  );
+
+                const teamMatchPct =
+                  Number(
+                    x.matchPct || 0
+                  );
+
+                x.teamMatchPct =
+                  teamMatchPct;
+
+                x.positionMatchPct =
+                  (
+                    factor - 1
+                  ) * 100;
+
+                x.positionMatchup =
+                  row || null;
+
+                if (
+                  p.status !== "out"
+                  &&
+                  Number.isFinite(factor)
+                  &&
+                  factor > 0
+                ) {
+                  x.expected *=
+                    factor;
+
+                  x.floor *=
+                    factor;
+
+                  x.ceiling *=
+                    factor;
+
+                  x.value =
+                    x.expected
+                    /
+                    Math.max(
+                      0.1,
+                      Number(p.price)
+                    );
+
+                  const teamFactor =
+                    1
+                    + teamMatchPct
+                    / 100;
+
+                  x.matchPct =
+                    (
+                      teamFactor
+                      * factor
+                      - 1
+                    ) * 100;
+                }
+
+                return x;
+              };
+
+              renderAll();
+
+              console.log(
+                "Position matchups loaded:",
+                Object.keys(
+                  defense
+                ).length,
+                "teams"
+              );
+
+            } catch (error) {
+              console.error(
+                "Position matchup error:",
+                error
+              );
+            }
+          })();
+          EOF
+
+      - name: Connect position matchups to site
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("index.html")
+
+          html = path.read_text(
+              encoding="utf-8"
+          )
+
+          script = (
+              '<script '
+              'src="./position-matchups.js">'
+              '</script>'
+          )
+
+          if script not in html:
+
+              marker = (
+                  '<script '
+                  'src="./matchup-live.js">'
+                  '</script>'
+              )
+
+              if marker in html:
+                  html = html.replace(
+                      marker,
+                      script + marker,
+                      1
+                  )
+
+              else:
+                  html = html.replace(
+                      "</body>",
+                      script + "</body>",
+                      1
+                  )
+
+              path.write_text(
+                  html,
+                  encoding="utf-8"
+              )
+
+              print(
+                  "Connected position "
+                  "matchup loader"
+              )
+
+          else:
+              print(
+                  "Position matchup loader "
+                  "already connected"
+              )
+          PY
+
+      - name: Save
+        run: |
+          git config user.name "eurofantasy-bot"
+          git config user.email "actions@users.noreply.github.com"
+
+          git add \
+            data/position-matchups.json \
+            position-matchups.js \
+            index.html
+
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m \
+              "Auto update position matchups"
+
+            git push
+          fi
