@@ -190,6 +190,96 @@
     body.appendChild(box);
   }
 
+
+  function enhanceTeamRecentStats() {
+    if (
+      typeof players === "undefined" ||
+      typeof model !== "function"
+    ) {
+      return;
+    }
+
+    document
+      .querySelectorAll(
+        "#teamCards .miniCard"
+      )
+      .forEach(card => {
+        const name =
+          card.querySelector(
+            ".sectionHead b"
+          )?.textContent?.trim();
+
+        if (!name) return;
+
+        const player =
+          players.find(
+            p => p.name === name
+          );
+
+        if (!player) return;
+
+        const x = model(player);
+        const recent = x.recentForm;
+
+        if (!recent) return;
+
+        const chips =
+          card.querySelector(".chips");
+
+        if (!chips) return;
+
+        let lastChip =
+          chips.querySelector(
+            ".recent-last-chip"
+          );
+
+        if (!lastChip) {
+          lastChip =
+            document.createElement(
+              "span"
+            );
+          lastChip.className =
+            "chip recent-last-chip";
+          chips.appendChild(lastChip);
+        }
+
+        let avg5Chip =
+          chips.querySelector(
+            ".recent-avg5-chip"
+          );
+
+        if (!avg5Chip) {
+          avg5Chip =
+            document.createElement(
+              "span"
+            );
+          avg5Chip.className =
+            "chip recent-avg5-chip";
+          chips.appendChild(avg5Chip);
+        }
+
+        const last =
+          Number(
+            recent.lastGame?.pir
+          );
+
+        const avg5 =
+          Number(
+            recent.last5?.avgPir
+          );
+
+        lastChip.textContent =
+          Number.isFinite(last)
+            ? `אחרון ${last.toFixed(1)} PIR`
+            : "אחרון —";
+
+        avg5Chip.textContent =
+          Number.isFinite(avg5)
+            ? `5 אחרונים ${avg5.toFixed(1)}`
+            : "5 אחרונים —";
+      });
+  }
+
   function restoreTab() {
     const saved =
       sessionStorage.getItem(
@@ -216,6 +306,7 @@
     addRefreshButton();
     enhanceMarketRows();
     enhanceModal();
+    enhanceTeamRecentStats();
 
     const rows =
       document.getElementById("rows");
@@ -228,6 +319,24 @@
       }).observe(
         rows,
         { childList: true }
+      );
+    }
+
+
+    const teamCards =
+      document.getElementById("teamCards");
+
+    if (teamCards) {
+      new MutationObserver(() => {
+        requestAnimationFrame(
+          enhanceTeamRecentStats
+        );
+      }).observe(
+        teamCards,
+        {
+          childList: true,
+          subtree: true
+        }
       );
     }
 
