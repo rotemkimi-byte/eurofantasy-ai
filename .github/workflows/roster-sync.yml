@@ -1,0 +1,39 @@
+name: EuroFantasy Roster Sync
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/30 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sync-roster:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Sync my Fantasy roster
+        env:
+          FANTASY_TOKEN: ${{ secrets.FANTASY_TOKEN }}
+        run: python roster_sync.py
+
+      - name: Save roster data
+        run: |
+          git config user.name "eurofantasy-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No roster changes"
+          else
+            git commit -m "Auto update Fantasy roster"
+            git push
+          fi
