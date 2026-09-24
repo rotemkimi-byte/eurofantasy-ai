@@ -1,0 +1,1527 @@
+name: EuroFantasy Backtest
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: eurofantasy-backtest
+  cancel-in-progress: true
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Snapshot predictions and grade completed games
+        run: |
+          python - <<'PY'
+          import json
+          import math
+          import re
+          import statistics
+          import time
+          import unicodedata
+          import urllib.error
+          import urllib.request
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          ROOT = Path(".")
+          DATA = ROOT / "data"
+          BACKTEST = DATA / "backtest"
+          CACHE = BACKTEST / "cache"
+
+          BACKTEST.mkdir(parents=True, exist_ok=True)
+          CACHE.mkdir(parents=True, exist_ok=True)
+
+          SEASON = "E2026"
+
+          def load_json(path, default=None):
+              path = Path(path)
+              if not path.exists():
+                  return default
+              with path.open(encoding="utf-8") as f:
+                  return json.load(f)
+
+          def save_json(path, value):
+              path = Path(path)
+              path.parent.mkdir(parents=True, exist_ok=True)
+              with path.open("w", encoding="utf-8") as f:
+                  json.dump(
+                      value,
+                      f,
+                      ensure_ascii=False,
+                      indent=2,
+                  )
+
+          def norm(value):
+              text = unicodedata.normalize(
+                  "NFKD",
+                  str(value or ""),
+              )
+              text = "".join(
+                  c for c in text
+                  if not unicodedata.combining(c)
+              )
+              return re.sub(
+                  r"[^a-z0-9]+",
+                  " ",
+                  text.lower(),
+              ).strip()
+
+          def fantasy_key(value):
+              raw = str(value or "").strip()
+              if "," in raw:
+                  last, first = raw.split(",", 1)
+                  raw = f"{first.strip()} {last.strip()}"
+              return norm(raw)
+
+          def clamp(x, low, high):
+              return max(low, min(high, x))
+
+          TEAM_RULES = [
+              ("efes", "Anadolu Efes"),
+              ("armani", "Milano"),
+              ("milano", "Milano"),
+              ("milan", "Milano"),
+              ("besiktas", "Besiktas"),
+              ("crvena", "Crvena Zvezda"),
+              ("red star", "Crvena Zvezda"),
+              ("dubai", "Dubai"),
+              ("barcelona", "Barcelona"),
+              ("bayern", "Bayern Munich"),
+              ("fenerbahce", "Fenerbahce"),
+              ("hapoel", "Hapoel Tel Aviv"),
+              ("baskonia", "Baskonia"),
+              ("asvel", "ASVEL"),
+              ("maccabi", "Maccabi Tel Aviv"),
+              ("olympiacos", "Olympiacos"),
+              ("panathinaikos", "Panathinaikos"),
+              ("paris", "Paris"),
+              ("partizan", "Partizan"),
+              ("real madrid", "Real Madrid"),
+              ("valencia", "Valencia"),
+              ("virtus", "Virtus Bologna"),
+              ("zalgiris", "Zalgiris"),
+              ("monaco", "Monaco"),
+          ]
+
+          def canon_team(value):
+              n = norm(value)
+              for needle, canonical in TEAM_RULES:
+                  if needle in n:
+                      return canonical
+              return str(value or "").strip()
+
+          def api_json(url, attempts=4):
+              headers = {
+                  "Accept": "application/json",
+                  "User-Agent": "EuroFantasy-AI/1.0",
+              }
+
+              last_error = None
+
+              for attempt in range(attempts):
+                  request = urllib.request.Request(
+                      url,
+                      headers=headers,
+                  )
+
+                  try:
+                      with urllib.request.urlopen(
+                          request,
+                          timeout=45,
+                      ) as response:
+                          return json.loads(
+                              response.read().decode("utf-8")
+                          )
+
+                  except urllib.error.HTTPError as exc:
+                      last_error = exc
+
+                      if exc.code == 429:
+                          retry_after = exc.headers.get(
+                              "Retry-After"
+                          )
+
+                          try:
+                              wait = float(retry_after)
+                          except (TypeError, ValueError):
+                              wait = 12 * (attempt + 1)
+
+                          print(
+                              "429 rate limit, sleeping",
+                              wait,
+                              "seconds",
+                          )
+                          time.sleep(wait)
+                          continue
+
+                      raise
+
+                  except Exception as exc:
+                      last_error = exc
+                      time.sleep(3 * (attempt + 1))
+
+              raise RuntimeError(
+                  f"API failed after retries: {last_error}"
+              )
+
+          players = load_json(
+              DATA / "players.json",
+              [],
+          )
+          meta = load_json(
+              DATA / "meta.json",
+              {},
+          )
+          recent_payload = load_json(
+              DATA / "recent-form.json",
+              {},
+          )
+          position_payload = load_json(
+              DATA / "position-matchups.json",
+              {},
+          )
+          matchup_payload = load_json(
+              DATA / "matchups.json",
+              {},
+          )
+
+          recent = recent_payload.get(
+              "players",
+              {},
+          )
+          position_defense = position_payload.get(
+              "defense",
+              {},
+          )
+          matchups = matchup_payload.get(
+              "matchups",
+              {},
+          )
+
+          if not players:
+              raise RuntimeError(
+                  "data/players.json is missing or empty"
+              )
+
+          round_number = int(
+              meta.get("matchday_number") or 0
+          )
+
+          if round_number <= 0:
+              raise RuntimeError(
+                  "Could not determine current fantasy round"
+              )
+
+          def days_since(date_string):
+              if not date_string:
+                  return 999.0
+
+              try:
+                  text = str(date_string).replace(
+                      "Z",
+                      "+00:00",
+                  )
+                  dt = datetime.fromisoformat(text)
+
+                  if dt.tzinfo is None:
+                      dt = dt.replace(
+                          tzinfo=timezone.utc
+                      )
+
+                  return max(
+                      0.0,
+                      (
+                          datetime.now(timezone.utc)
+                          - dt.astimezone(timezone.utc)
+                      ).total_seconds()
+                      / 86400.0,
+                  )
+              except Exception:
+                  return 999.0
+
+          def positive(value):
+              try:
+                  n = float(value)
+              except (TypeError, ValueError):
+                  return None
+
+              return n if math.isfinite(n) and n > 0 else None
+
+          def blend(parts):
+              usable = [
+                  (weight, value)
+                  for weight, value in parts
+                  if (
+                      weight > 0
+                      and value is not None
+                      and math.isfinite(value)
+                      and value > 0
+                  )
+              ]
+
+              total = sum(
+                  weight
+                  for weight, _ in usable
+              )
+
+              if total <= 0:
+                  return None
+
+              return sum(
+                  weight * value
+                  for weight, value in usable
+              ) / total
+
+          def dynamic_recent(record):
+              age_days = days_since(
+                  record.get(
+                      "lastGame",
+                      {},
+                  ).get("date")
+              )
+
+              decay = math.exp(
+                  -age_days / 30.0
+              )
+
+              w_last = (
+                  0.10 + 0.30 * decay
+              )
+              w_prev = (
+                  0.20 + 0.15 * decay
+              )
+              w_base = max(
+                  0.0,
+                  1.0 - w_last - w_prev,
+              )
+
+              last_rate = positive(
+                  record.get(
+                      "lastGame",
+                      {},
+                  ).get("pirPerMinute")
+              )
+              prev_rate = positive(
+                  record.get(
+                      "previous4",
+                      {},
+                  ).get("pirPerMinute")
+              )
+              base_rate = positive(
+                  record.get(
+                      "baseline",
+                      {},
+                  ).get("pirPerMinute")
+              )
+
+              rate = blend([
+                  (w_last, last_rate),
+                  (w_prev, prev_rate),
+                  (w_base, base_rate),
+              ])
+
+              if rate is None:
+                  return None
+
+              if base_rate:
+                  rate = clamp(
+                      rate,
+                      base_rate * 0.70,
+                      base_rate * 1.30,
+                  )
+
+              mw_last = (
+                  0.10 + 0.35 * decay
+              )
+              mw_prev = (
+                  0.15 + 0.20 * decay
+              )
+              mw_base = max(
+                  0.0,
+                  1.0 - mw_last - mw_prev,
+              )
+
+              minutes = blend([
+                  (
+                      mw_last,
+                      positive(
+                          record.get(
+                              "lastGame",
+                              {},
+                          ).get("minutes")
+                      ),
+                  ),
+                  (
+                      mw_prev,
+                      positive(
+                          record.get(
+                              "previous4",
+                              {},
+                          ).get("avgMinutes")
+                      ),
+                  ),
+                  (
+                      mw_base,
+                      positive(
+                          record.get(
+                              "baseline",
+                              {},
+                          ).get("avgMinutes")
+                      ),
+                  ),
+              ])
+
+              if minutes is None:
+                  return None
+
+              return {
+                  "ageDays": age_days,
+                  "rate": rate,
+                  "minutes": minutes,
+                  "weights": {
+                      "lastGame": w_last,
+                      "previous4": w_prev,
+                      "baseline": w_base,
+                  },
+              }
+
+          def injury_boost(player):
+              if player.get("status") != "active":
+                  return 0.0
+
+              same_position = [
+                  mate
+                  for mate in players
+                  if (
+                      mate.get("team") == player.get("team")
+                      and mate.get("pos") == player.get("pos")
+                      and mate.get("name") != player.get("name")
+                  )
+              ]
+
+              raw = 0.0
+
+              for mate in same_position:
+                  status = mate.get("status")
+
+                  if status == "out":
+                      raw += 1.7
+                  elif status == "questionable":
+                      raw += 0.6
+
+              active_prices = sorted(
+                  float(mate.get("price") or 0)
+                  for mate in players
+                  if (
+                      mate.get("team") == player.get("team")
+                      and mate.get("pos") == player.get("pos")
+                      and mate.get("status") == "active"
+                  )
+              )
+
+              price = float(
+                  player.get("price") or 0
+              )
+
+              median = (
+                  active_prices[
+                      len(active_prices) // 2
+                  ]
+                  if active_prices
+                  else price
+              )
+
+              raw *= (
+                  1.15
+                  if price >= median
+                  else 0.80
+              )
+
+              return clamp(
+                  raw,
+                  0.0,
+                  4.5,
+              )
+
+          def get_team_matchup(player):
+              canonical = canon_team(
+                  player.get("team")
+              )
+
+              row = matchups.get(canonical)
+
+              if row:
+                  return canonical, row
+
+              for key, value in matchups.items():
+                  if canon_team(key) == canonical:
+                      return canonical, value
+
+              return canonical, {}
+
+          def get_position_row(
+              player,
+              team_matchup,
+          ):
+              pos = player.get("pos")
+
+              if pos not in ("G", "F", "C"):
+                  return None
+
+              opponent = canon_team(
+                  team_matchup.get("opponent")
+                  or player.get("opponent")
+              )
+
+              return (
+                  position_defense
+                  .get(opponent, {})
+                  .get(pos)
+              )
+
+          def predict(player):
+              status = player.get(
+                  "status",
+                  "active",
+              )
+
+              if status == "out":
+                  return 0.0, 0.0, {
+                      "reason": "out",
+                  }
+
+              record = recent.get(
+                  fantasy_key(
+                      player.get("name")
+                  )
+              )
+
+              if not record:
+                  # Fallback only for players with no
+                  # EuroLeague history.
+                  price = float(
+                      player.get("price") or 0
+                  )
+                  expected = max(
+                      0.0,
+                      price * 0.93,
+                  )
+
+                  return expected, None, {
+                      "reason": "price-prior",
+                  }
+
+              dynamic = dynamic_recent(
+                  record
+              )
+
+              if not dynamic:
+                  price = float(
+                      player.get("price") or 0
+                  )
+                  expected = max(
+                      0.0,
+                      price * 0.93,
+                  )
+
+                  return expected, None, {
+                      "reason": "price-prior",
+                  }
+
+              base_minutes = positive(
+                  record.get(
+                      "baseline",
+                      {},
+                  ).get("avgMinutes")
+              ) or dynamic["minutes"]
+
+              model_minutes = (
+                  base_minutes
+                  + injury_boost(player)
+              )
+
+              if status == "questionable":
+                  model_minutes *= 0.82
+
+              _, team_match = get_team_matchup(
+                  player
+              )
+
+              margin = float(
+                  team_match.get("margin") or 0
+              )
+
+              price = float(
+                  player.get("price") or 0
+              )
+
+              if (
+                  margin >= 10
+                  and price >= 12
+              ):
+                  model_minutes *= 0.97
+
+              if (
+                  margin >= 10
+                  and price <= 7
+              ):
+                  model_minutes *= 1.05
+
+              model_minutes = clamp(
+                  model_minutes,
+                  0.0,
+                  36.0,
+              )
+
+              availability_factor = (
+                  clamp(
+                      model_minutes
+                      / base_minutes,
+                      0.0,
+                      1.25,
+                  )
+                  if base_minutes > 0
+                  else 1.0
+              )
+
+              predicted_minutes = (
+                  dynamic["minutes"] * 0.80
+                  + base_minutes * 0.20
+              ) * availability_factor
+
+              predicted_minutes = clamp(
+                  predicted_minutes,
+                  5.0,
+                  36.0,
+              )
+
+              team_points = float(
+                  team_match.get(
+                      "teamPoints",
+                      84,
+                  )
+              )
+
+              team_env = clamp(
+                  1.0
+                  + (
+                      team_points - 84.0
+                  ) * 0.006,
+                  0.92,
+                  1.08,
+              )
+
+              team_pct = (
+                  team_env - 1.0
+              ) * 100.0
+
+              position_row = get_position_row(
+                  player,
+                  team_match,
+              )
+
+              position_pct = (
+                  (
+                      float(
+                          position_row.get(
+                              "factor",
+                              1.0,
+                          )
+                      )
+                      - 1.0
+                  )
+                  * 100.0
+                  if position_row
+                  else 0.0
+              )
+
+              team_factor = (
+                  1.0
+                  + clamp(
+                      team_pct,
+                      -8.0,
+                      8.0,
+                  )
+                  / 100.0
+                  * 0.60
+              )
+
+              position_factor = (
+                  1.0
+                  + clamp(
+                      position_pct,
+                      -12.0,
+                      12.0,
+                  )
+                  / 100.0
+                  * 0.35
+              )
+
+              expected = max(
+                  0.0,
+                  dynamic["rate"]
+                  * predicted_minutes
+                  * team_factor
+                  * position_factor,
+              )
+
+              return (
+                  expected,
+                  predicted_minutes,
+                  {
+                      "reason":
+                          "recent-form-time-decay",
+                      "lastGameAgeDays":
+                          round(
+                              dynamic[
+                                  "ageDays"
+                              ],
+                              1,
+                          ),
+                      "lastGameWeight":
+                          round(
+                              dynamic[
+                                  "weights"
+                              ][
+                                  "lastGame"
+                              ],
+                              4,
+                          ),
+                      "teamMatchPct":
+                          round(
+                              team_pct,
+                              2,
+                          ),
+                      "positionMatchPct":
+                          round(
+                              position_pct,
+                              2,
+                          ),
+                  },
+              )
+
+          snapshot_path = (
+              BACKTEST
+              / f"predictions-round-{round_number:02d}.json"
+          )
+
+          if not snapshot_path.exists():
+              predictions = []
+
+              for player in players:
+                  expected, minutes, detail = predict(
+                      player
+                  )
+
+                  predictions.append({
+                      "name":
+                          player.get("name"),
+                      "key":
+                          fantasy_key(
+                              player.get("name")
+                          ),
+                      "team":
+                          canon_team(
+                              player.get("team")
+                          ),
+                      "opponent":
+                          canon_team(
+                              player.get("opponent")
+                          ),
+                      "pos":
+                          player.get("pos"),
+                      "price":
+                          float(
+                              player.get("price")
+                              or 0
+                          ),
+                      "status":
+                          player.get("status"),
+                      "expectedPir":
+                          round(
+                              expected,
+                              3,
+                          ),
+                      "expectedMinutes": (
+                          round(
+                              minutes,
+                              3,
+                          )
+                          if minutes
+                          is not None
+                          else None
+                      ),
+                      "detail":
+                          detail,
+                  })
+
+              snapshot = {
+                  "season":
+                      SEASON,
+                  "round":
+                      round_number,
+                  "created_at":
+                      datetime.now(
+                          timezone.utc
+                      ).isoformat(),
+                  "model":
+                      (
+                          "recent form + time decay + "
+                          "minutes + team matchup + "
+                          "position matchup"
+                      ),
+                  "playerCount":
+                      len(predictions),
+                  "predictions":
+                      predictions,
+              }
+
+              save_json(
+                  snapshot_path,
+                  snapshot,
+              )
+
+              print(
+                  "Created frozen prediction snapshot:",
+                  snapshot_path,
+              )
+
+          else:
+              print(
+                  "Prediction snapshot already exists:",
+                  snapshot_path,
+              )
+
+          def game_code(game):
+              for key in (
+                  "gameCode",
+                  "gamecode",
+                  "code",
+              ):
+                  value = game.get(key)
+
+                  try:
+                      if value is not None:
+                          return int(value)
+                  except (TypeError, ValueError):
+                      pass
+
+              return None
+
+          def is_played(game):
+              value = game.get("played")
+
+              if isinstance(value, bool):
+                  return value
+
+              if isinstance(value, (int, float)):
+                  return bool(value)
+
+              return str(
+                  value or ""
+              ).lower() in (
+                  "true",
+                  "1",
+                  "yes",
+              )
+
+          def person_name(obj):
+              if not isinstance(obj, dict):
+                  return ""
+
+              for key in (
+                  "name",
+                  "fullName",
+                  "playerName",
+                  "displayName",
+              ):
+                  if obj.get(key):
+                      return str(obj[key])
+
+              first = (
+                  obj.get("firstName")
+                  or obj.get("first_name")
+                  or ""
+              )
+              last = (
+                  obj.get("lastName")
+                  or obj.get("last_name")
+                  or ""
+              )
+
+              return (
+                  f"{first} {last}"
+                  .strip()
+              )
+
+          def first_numeric(obj, keys):
+              if not isinstance(obj, dict):
+                  return None
+
+              for key in keys:
+                  value = obj.get(key)
+
+                  if value in (
+                      None,
+                      "",
+                  ):
+                      continue
+
+                  try:
+                      return float(value)
+                  except (TypeError, ValueError):
+                      pass
+
+              return None
+
+          def parse_player_entry(entry):
+              if not isinstance(entry, dict):
+                  return None
+
+              player = (
+                  entry.get("player")
+                  or {}
+              )
+
+              person = (
+                  player.get("person")
+                  if isinstance(
+                      player,
+                      dict,
+                  )
+                  else {}
+              ) or entry.get("person") or {}
+
+              name = (
+                  person_name(person)
+                  or person_name(player)
+                  or person_name(entry)
+              )
+
+              stats = (
+                  entry.get("stats")
+                  or entry.get("statistics")
+                  or entry
+              )
+
+              valuation = first_numeric(
+                  stats,
+                  (
+                      "valuation",
+                      "Valuation",
+                      "pir",
+                      "PIR",
+                      "rating",
+                  ),
+              )
+
+              if valuation is None:
+                  valuation = first_numeric(
+                      entry,
+                      (
+                          "valuation",
+                          "Valuation",
+                          "pir",
+                          "PIR",
+                      ),
+                  )
+
+              if not name or valuation is None:
+                  return None
+
+              return {
+                  "name": name,
+                  "key": fantasy_key(name),
+                  "actualPir": valuation,
+              }
+
+          def extract_actuals(stats_payload):
+              rows = []
+
+              for side_name in (
+                  "local",
+                  "road",
+              ):
+                  side = stats_payload.get(
+                      side_name
+                  ) or {}
+
+                  entries = (
+                      side.get("players")
+                      if isinstance(
+                          side,
+                          dict,
+                      )
+                      else None
+                  )
+
+                  if not isinstance(entries, list):
+                      continue
+
+                  for entry in entries:
+                      parsed = parse_player_entry(
+                          entry
+                      )
+
+                      if parsed:
+                          rows.append(parsed)
+
+              return rows
+
+          prediction_files = sorted(
+              BACKTEST.glob(
+                  "predictions-round-*.json"
+              )
+          )
+
+          for prediction_file in prediction_files:
+              snapshot = load_json(
+                  prediction_file,
+                  {},
+              )
+
+              rnd = int(
+                  snapshot.get("round") or 0
+              )
+
+              if rnd <= 0:
+                  continue
+
+              report_path = (
+                  BACKTEST
+                  / f"report-round-{rnd:02d}.json"
+              )
+
+              previous_report = load_json(
+                  report_path,
+                  {},
+              )
+
+              if previous_report.get(
+                  "complete"
+              ) is True:
+                  continue
+
+              games_url = (
+                  "https://api-live.euroleague.net/"
+                  "v2/competitions/E/seasons/"
+                  f"{SEASON}/games"
+                  f"?roundNumber={rnd}&limit=50"
+              )
+
+              try:
+                  games_payload = api_json(
+                      games_url
+                  )
+              except Exception as exc:
+                  print(
+                      "Round",
+                      rnd,
+                      "schedule warning:",
+                      exc,
+                  )
+                  continue
+
+              games = (
+                  games_payload.get("data", [])
+                  if isinstance(
+                      games_payload,
+                      dict,
+                  )
+                  else []
+              )
+
+              if not games:
+                  print(
+                      "Round",
+                      rnd,
+                      "not available yet",
+                  )
+                  continue
+
+              played_games = [
+                  game
+                  for game in games
+                  if is_played(game)
+              ]
+
+              actual_by_key = {}
+              fetched_games = []
+
+              for game in played_games:
+                  code = game_code(game)
+
+                  if code is None:
+                      continue
+
+                  cache_path = (
+                      CACHE
+                      / f"{SEASON}-{code}-stats.json"
+                  )
+
+                  if cache_path.exists():
+                      stats_payload = load_json(
+                          cache_path,
+                          {},
+                      )
+                  else:
+                      stats_url = (
+                          "https://api-live.euroleague.net/"
+                          "v2/competitions/E/seasons/"
+                          f"{SEASON}/games/{code}/stats"
+                      )
+
+                      try:
+                          stats_payload = api_json(
+                              stats_url
+                          )
+                          save_json(
+                              cache_path,
+                              stats_payload,
+                          )
+                          time.sleep(1.5)
+
+                      except Exception as exc:
+                          print(
+                              "Game",
+                              code,
+                              "stats warning:",
+                              exc,
+                          )
+                          continue
+
+                  game_actuals = extract_actuals(
+                      stats_payload
+                  )
+
+                  if not game_actuals:
+                      print(
+                          "Game",
+                          code,
+                          "has no usable player PIR yet",
+                      )
+                      continue
+
+                  fetched_games.append(code)
+
+                  for row in game_actuals:
+                      actual_by_key[
+                          row["key"]
+                      ] = row
+
+              comparisons = []
+
+              for prediction in snapshot.get(
+                  "predictions",
+                  []
+              ):
+                  actual = actual_by_key.get(
+                      prediction.get("key")
+                  )
+
+                  if not actual:
+                      continue
+
+                  predicted = float(
+                      prediction.get(
+                          "expectedPir",
+                          0,
+                      )
+                  )
+                  observed = float(
+                      actual.get(
+                          "actualPir",
+                          0,
+                      )
+                  )
+
+                  error = (
+                      predicted - observed
+                  )
+
+                  comparisons.append({
+                      "name":
+                          prediction.get("name"),
+                      "team":
+                          prediction.get("team"),
+                      "pos":
+                          prediction.get("pos"),
+                      "price":
+                          prediction.get("price"),
+                      "predictedPir":
+                          round(
+                              predicted,
+                              3,
+                          ),
+                      "actualPir":
+                          round(
+                              observed,
+                              3,
+                          ),
+                      "error":
+                          round(
+                              error,
+                              3,
+                          ),
+                      "absoluteError":
+                          round(
+                              abs(error),
+                              3,
+                          ),
+                  })
+
+              n = len(comparisons)
+
+              if n:
+                  errors = [
+                      row["error"]
+                      for row in comparisons
+                  ]
+                  abs_errors = [
+                      abs(value)
+                      for value in errors
+                  ]
+
+                  mae = sum(abs_errors) / n
+                  rmse = math.sqrt(
+                      sum(
+                          value * value
+                          for value in errors
+                      ) / n
+                  )
+                  bias = sum(errors) / n
+
+                  within3 = (
+                      sum(
+                          value <= 3
+                          for value in abs_errors
+                      )
+                      / n
+                  )
+                  within5 = (
+                      sum(
+                          value <= 5
+                          for value in abs_errors
+                      )
+                      / n
+                  )
+
+                  pred_values = [
+                      row["predictedPir"]
+                      for row in comparisons
+                  ]
+                  actual_values = [
+                      row["actualPir"]
+                      for row in comparisons
+                  ]
+
+                  correlation = None
+
+                  if (
+                      n >= 3
+                      and statistics.pstdev(
+                          pred_values
+                      ) > 0
+                      and statistics.pstdev(
+                          actual_values
+                      ) > 0
+                  ):
+                      mean_p = statistics.mean(
+                          pred_values
+                      )
+                      mean_a = statistics.mean(
+                          actual_values
+                      )
+
+                      numerator = sum(
+                          (p - mean_p)
+                          * (a - mean_a)
+                          for p, a in zip(
+                              pred_values,
+                              actual_values,
+                          )
+                      )
+
+                      denominator = math.sqrt(
+                          sum(
+                              (p - mean_p) ** 2
+                              for p in pred_values
+                          )
+                          * sum(
+                              (a - mean_a) ** 2
+                              for a in actual_values
+                          )
+                      )
+
+                      if denominator > 0:
+                          correlation = (
+                              numerator
+                              / denominator
+                          )
+
+                  by_position = {}
+
+                  for pos in (
+                      "G",
+                      "F",
+                      "C",
+                  ):
+                      subset = [
+                          row
+                          for row in comparisons
+                          if row.get("pos") == pos
+                      ]
+
+                      if not subset:
+                          continue
+
+                      by_position[pos] = {
+                          "n": len(subset),
+                          "mae": round(
+                              sum(
+                                  row[
+                                      "absoluteError"
+                                  ]
+                                  for row in subset
+                              )
+                              / len(subset),
+                              3,
+                          ),
+                          "bias": round(
+                              sum(
+                                  row[
+                                      "error"
+                                  ]
+                                  for row in subset
+                              )
+                              / len(subset),
+                              3,
+                          ),
+                      }
+
+                  metrics = {
+                      "n": n,
+                      "mae": round(
+                          mae,
+                          3,
+                      ),
+                      "rmse": round(
+                          rmse,
+                          3,
+                      ),
+                      "bias": round(
+                          bias,
+                          3,
+                      ),
+                      "within3": round(
+                          within3,
+                          4,
+                      ),
+                      "within5": round(
+                          within5,
+                          4,
+                      ),
+                      "correlation": (
+                          round(
+                              correlation,
+                              4,
+                          )
+                          if correlation
+                          is not None
+                          else None
+                      ),
+                      "byPosition":
+                          by_position,
+                  }
+
+              else:
+                  metrics = {
+                      "n": 0,
+                  }
+
+              complete = (
+                  bool(games)
+                  and len(played_games)
+                  == len(games)
+                  and len(fetched_games)
+                  == len(played_games)
+              )
+
+              comparisons.sort(
+                  key=lambda row:
+                      row["absoluteError"],
+                  reverse=True,
+              )
+
+              report = {
+                  "season":
+                      SEASON,
+                  "round":
+                      rnd,
+                  "complete":
+                      complete,
+                  "scheduledGames":
+                      len(games),
+                  "playedGames":
+                      len(played_games),
+                  "gradedGames":
+                      len(
+                          set(fetched_games)
+                      ),
+                  "metrics":
+                      metrics,
+                  "largestMisses":
+                      comparisons[:15],
+                  "comparisons":
+                      comparisons,
+                  "updated_at":
+                      datetime.now(
+                          timezone.utc
+                      ).isoformat(),
+              }
+
+              save_json(
+                  report_path,
+                  report,
+              )
+
+              print(
+                  "Round",
+                  rnd,
+                  "backtest:",
+                  metrics,
+                  "complete=",
+                  complete,
+              )
+
+          completed_reports = []
+
+          for report_file in sorted(
+              BACKTEST.glob(
+                  "report-round-*.json"
+              )
+          ):
+              report = load_json(
+                  report_file,
+                  {},
+              )
+
+              if (
+                  report.get("complete")
+                  and report.get(
+                      "comparisons"
+                  )
+              ):
+                  completed_reports.append(
+                      report
+                  )
+
+          all_rows = [
+              row
+              for report in completed_reports
+              for row in report.get(
+                  "comparisons",
+                  []
+              )
+          ]
+
+          cumulative = {
+              "completedRounds":
+                  len(completed_reports),
+              "observations":
+                  len(all_rows),
+              "updated_at":
+                  datetime.now(
+                      timezone.utc
+                  ).isoformat(),
+          }
+
+          if all_rows:
+              errors = [
+                  float(row["error"])
+                  for row in all_rows
+              ]
+              abs_errors = [
+                  abs(value)
+                  for value in errors
+              ]
+              n = len(errors)
+
+              cumulative.update({
+                  "mae": round(
+                      sum(abs_errors) / n,
+                      3,
+                  ),
+                  "rmse": round(
+                      math.sqrt(
+                          sum(
+                              value * value
+                              for value in errors
+                          )
+                          / n
+                      ),
+                      3,
+                  ),
+                  "bias": round(
+                      sum(errors) / n,
+                      3,
+                  ),
+                  "within3": round(
+                      sum(
+                          value <= 3
+                          for value in abs_errors
+                      )
+                      / n,
+                      4,
+                  ),
+                  "within5": round(
+                      sum(
+                          value <= 5
+                          for value in abs_errors
+                      )
+                      / n,
+                      4,
+                  ),
+              })
+
+          save_json(
+              BACKTEST / "latest.json",
+              cumulative,
+          )
+
+          print(
+              "Cumulative backtest:",
+              cumulative,
+          )
+          PY
+
+      - name: Save backtest data
+        run: |
+          git config user.name "eurofantasy-bot"
+          git config user.email "actions@users.noreply.github.com"
+
+          git add data/backtest/
+
+          if git diff --cached --quiet; then
+            echo "No backtest changes"
+          else
+            git commit -m "Update EuroFantasy backtest"
+            git pull --rebase origin main
+            git push
+          fi
