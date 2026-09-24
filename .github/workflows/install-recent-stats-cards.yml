@@ -1,0 +1,72 @@
+name: Install Recent Stats On Cards
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Add recent PIR stats to team cards
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64
+
+          path = Path("ui-live.js")
+          text = path.read_text(encoding="utf-8")
+
+          helper = base64.b64decode("CiAgZnVuY3Rpb24gZW5oYW5jZVRlYW1SZWNlbnRTdGF0cygpIHsKICAgIGlmICgKICAgICAgdHlwZW9mIHBsYXllcnMgPT09ICJ1bmRlZmluZWQiIHx8CiAgICAgIHR5cGVvZiBtb2RlbCAhPT0gImZ1bmN0aW9uIgogICAgKSB7CiAgICAgIHJldHVybjsKICAgIH0KCiAgICBkb2N1bWVudAogICAgICAucXVlcnlTZWxlY3RvckFsbCgKICAgICAgICAiI3RlYW1DYXJkcyAubWluaUNhcmQiCiAgICAgICkKICAgICAgLmZvckVhY2goY2FyZCA9PiB7CiAgICAgICAgY29uc3QgbmFtZSA9CiAgICAgICAgICBjYXJkLnF1ZXJ5U2VsZWN0b3IoCiAgICAgICAgICAgICIuc2VjdGlvbkhlYWQgYiIKICAgICAgICAgICk/LnRleHRDb250ZW50Py50cmltKCk7CgogICAgICAgIGlmICghbmFtZSkgcmV0dXJuOwoKICAgICAgICBjb25zdCBwbGF5ZXIgPQogICAgICAgICAgcGxheWVycy5maW5kKAogICAgICAgICAgICBwID0+IHAubmFtZSA9PT0gbmFtZQogICAgICAgICAgKTsKCiAgICAgICAgaWYgKCFwbGF5ZXIpIHJldHVybjsKCiAgICAgICAgY29uc3QgeCA9IG1vZGVsKHBsYXllcik7CiAgICAgICAgY29uc3QgcmVjZW50ID0geC5yZWNlbnRGb3JtOwoKICAgICAgICBpZiAoIXJlY2VudCkgcmV0dXJuOwoKICAgICAgICBjb25zdCBjaGlwcyA9CiAgICAgICAgICBjYXJkLnF1ZXJ5U2VsZWN0b3IoIi5jaGlwcyIpOwoKICAgICAgICBpZiAoIWNoaXBzKSByZXR1cm47CgogICAgICAgIGxldCBsYXN0Q2hpcCA9CiAgICAgICAgICBjaGlwcy5xdWVyeVNlbGVjdG9yKAogICAgICAgICAgICAiLnJlY2VudC1sYXN0LWNoaXAiCiAgICAgICAgICApOwoKICAgICAgICBpZiAoIWxhc3RDaGlwKSB7CiAgICAgICAgICBsYXN0Q2hpcCA9CiAgICAgICAgICAgIGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoCiAgICAgICAgICAgICAgInNwYW4iCiAgICAgICAgICAgICk7CiAgICAgICAgICBsYXN0Q2hpcC5jbGFzc05hbWUgPQogICAgICAgICAgICAiY2hpcCByZWNlbnQtbGFzdC1jaGlwIjsKICAgICAgICAgIGNoaXBzLmFwcGVuZENoaWxkKGxhc3RDaGlwKTsKICAgICAgICB9CgogICAgICAgIGxldCBhdmc1Q2hpcCA9CiAgICAgICAgICBjaGlwcy5xdWVyeVNlbGVjdG9yKAogICAgICAgICAgICAiLnJlY2VudC1hdmc1LWNoaXAiCiAgICAgICAgICApOwoKICAgICAgICBpZiAoIWF2ZzVDaGlwKSB7CiAgICAgICAgICBhdmc1Q2hpcCA9CiAgICAgICAgICAgIGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoCiAgICAgICAgICAgICAgInNwYW4iCiAgICAgICAgICAgICk7CiAgICAgICAgICBhdmc1Q2hpcC5jbGFzc05hbWUgPQogICAgICAgICAgICAiY2hpcCByZWNlbnQtYXZnNS1jaGlwIjsKICAgICAgICAgIGNoaXBzLmFwcGVuZENoaWxkKGF2ZzVDaGlwKTsKICAgICAgICB9CgogICAgICAgIGNvbnN0IGxhc3QgPQogICAgICAgICAgTnVtYmVyKAogICAgICAgICAgICByZWNlbnQubGFzdEdhbWU/LnBpcgogICAgICAgICAgKTsKCiAgICAgICAgY29uc3QgYXZnNSA9CiAgICAgICAgICBOdW1iZXIoCiAgICAgICAgICAgIHJlY2VudC5sYXN0NT8uYXZnUGlyCiAgICAgICAgICApOwoKICAgICAgICBsYXN0Q2hpcC50ZXh0Q29udGVudCA9CiAgICAgICAgICBOdW1iZXIuaXNGaW5pdGUobGFzdCkKICAgICAgICAgICAgPyBg15DXl9eo15XXnyAke2xhc3QudG9GaXhlZCgxKX0gUElSYAogICAgICAgICAgICA6ICLXkNeX16jXldefIOKAlCI7CgogICAgICAgIGF2ZzVDaGlwLnRleHRDb250ZW50ID0KICAgICAgICAgIE51bWJlci5pc0Zpbml0ZShhdmc1KQogICAgICAgICAgICA/IGA1INeQ15fXqNeV16DXmdedICR7YXZnNS50b0ZpeGVkKDEpfWAKICAgICAgICAgICAgOiAiNSDXkNeX16jXldeg15nXnSDigJQiOwogICAgICB9KTsKICB9Cgo=").decode("utf-8")
+          observer = base64.b64decode("CiAgICBjb25zdCB0ZWFtQ2FyZHMgPQogICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgidGVhbUNhcmRzIik7CgogICAgaWYgKHRlYW1DYXJkcykgewogICAgICBuZXcgTXV0YXRpb25PYnNlcnZlcigoKSA9PiB7CiAgICAgICAgcmVxdWVzdEFuaW1hdGlvbkZyYW1lKAogICAgICAgICAgZW5oYW5jZVRlYW1SZWNlbnRTdGF0cwogICAgICAgICk7CiAgICAgIH0pLm9ic2VydmUoCiAgICAgICAgdGVhbUNhcmRzLAogICAgICAgIHsKICAgICAgICAgIGNoaWxkTGlzdDogdHJ1ZSwKICAgICAgICAgIHN1YnRyZWU6IHRydWUKICAgICAgICB9CiAgICAgICk7CiAgICB9Cgo=").decode("utf-8")
+
+          if "function enhanceTeamRecentStats()" not in text:
+              marker = "  function restoreTab() {"
+              if marker not in text:
+                  raise SystemExit("restoreTab marker not found")
+              text = text.replace(marker, helper + marker, 1)
+
+          if "    enhanceTeamRecentStats();" not in text:
+              marker = "    enhanceModal();\n"
+              if marker not in text:
+                  raise SystemExit("enhanceModal marker not found")
+              text = text.replace(
+                  marker,
+                  marker + "    enhanceTeamRecentStats();\n",
+                  1
+              )
+
+          if 'document.getElementById("teamCards")' not in text:
+              marker = (
+                  '    const modalBody =\n'
+                  '      document.getElementById("modalBody");\n'
+              )
+              if marker not in text:
+                  raise SystemExit("modalBody marker not found")
+              text = text.replace(
+                  marker,
+                  observer + marker,
+                  1
+              )
+
+          path.write_text(text, encoding="utf-8")
+          PY
+
+      - name: Save
+        run: |
+          git config user.name "eurofantasy-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add ui-live.js
+
+          if git diff --cached --quiet; then
+            echo "Already installed"
+          else
+            git commit -m "Show recent PIR on team cards"
+            git push
+          fi
