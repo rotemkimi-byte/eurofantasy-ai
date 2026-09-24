@@ -1,0 +1,584 @@
+name: Install Recent Form Time Decay
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Replace recent-form model with time decay
+        run: |
+          cat > recent-form.js <<'EOF'
+          (async () => {
+            try {
+              const response = await fetch(
+                "./data/recent-form.json?t=" + Date.now(),
+                { cache: "no-store" }
+              );
+
+              if (!response.ok) {
+                throw new Error(
+                  "recent-form.json HTTP " + response.status
+                );
+              }
+
+              const payload = await response.json();
+              const form = payload.players || {};
+
+              const sleep = ms =>
+                new Promise(resolve => setTimeout(resolve, ms));
+
+              for (
+                let i = 0;
+                i < 50 && !window.__positionMatchupsPatched;
+                i++
+              ) {
+                await sleep(100);
+              }
+
+              if (
+                typeof model !== "function" ||
+                typeof renderAll !== "function"
+              ) {
+                throw new Error(
+                  "EuroFantasy model is not ready"
+                );
+              }
+
+              if (window.__recentFormPatched) {
+                return;
+              }
+
+              window.__recentFormPatched = true;
+              window.__recentFormData = payload;
+
+              const originalModel = model;
+
+              const norm = value =>
+                String(value || "")
+                  .normalize("NFD")
+                  .replace(/[\u0300-\u036f]/g, "")
+                  .toLowerCase()
+                  .replace(/[^a-z0-9 ]/g, " ")
+                  .replace(/\s+/g, " ")
+                  .trim();
+
+              const clampValue = (x, min, max) =>
+                Math.max(min, Math.min(max, x));
+
+              const valid = value => {
+                const n = Number(value);
+                return Number.isFinite(n) && n > 0
+                  ? n
+                  : null;
+              };
+
+              function daysSince(dateString) {
+                const t = new Date(dateString).getTime();
+
+                if (!Number.isFinite(t)) {
+                  return 999;
+                }
+
+                return Math.max(
+                  0,
+                  (Date.now() - t) / 86400000
+                );
+              }
+
+              function normalizedBlend(parts) {
+                const usable = parts.filter(
+                  ([weight, value]) =>
+                    weight > 0 &&
+                    Number.isFinite(value) &&
+                    value > 0
+                );
+
+                const totalWeight = usable.reduce(
+                  (sum, [weight]) => sum + weight,
+                  0
+                );
+
+                if (totalWeight <= 0) {
+                  return null;
+                }
+
+                return usable.reduce(
+                  (sum, [weight, value]) =>
+                    sum + weight * value,
+                  0
+                ) / totalWeight;
+              }
+
+              function dynamicRecent(recent) {
+                const ageDays = daysSince(
+                  recent.lastGame?.date
+                );
+
+                /*
+                  At 0 days:
+                    last game 40%
+                    previous four 35%
+                    baseline 25%
+
+                  As the last game gets old, its impact fades.
+                  After ~120 days the weights are roughly:
+                    last game 10.5%
+                    previous four 20.3%
+                    baseline 69.2%
+                */
+                const decay = Math.exp(
+                  -ageDays / 30
+                );
+
+                const wLast =
+                  0.10 + 0.30 * decay;
+
+                const wPrev =
+                  0.20 + 0.15 * decay;
+
+                const wBase =
+                  Math.max(
+                    0,
+                    1 - wLast - wPrev
+                  );
+
+                const lastRate = valid(
+                  recent.lastGame
+                    ?.pirPerMinute
+                );
+
+                const prevRate = valid(
+                  recent.previous4
+                    ?.pirPerMinute
+                );
+
+                const baseRate = valid(
+                  recent.baseline
+                    ?.pirPerMinute
+                );
+
+                let rate = normalizedBlend([
+                  [wLast, lastRate],
+                  [wPrev, prevRate],
+                  [wBase, baseRate]
+                ]);
+
+                if (!rate) {
+                  return null;
+                }
+
+                /*
+                  Keep one unusual stretch from moving a
+                  player too far away from the long-term
+                  productivity rate.
+                */
+                if (baseRate) {
+                  rate = clampValue(
+                    rate,
+                    baseRate * 0.70,
+                    baseRate * 1.30
+                  );
+                }
+
+                /*
+                  Minutes decay too. When the last game is
+                  fresh, rotation gets a large weight. When
+                  it is months old, season baseline minutes
+                  dominate.
+                */
+                const mwLast =
+                  0.10 + 0.35 * decay;
+
+                const mwPrev =
+                  0.15 + 0.20 * decay;
+
+                const mwBase =
+                  Math.max(
+                    0,
+                    1 - mwLast - mwPrev
+                  );
+
+                const minutes = normalizedBlend([
+                  [
+                    mwLast,
+                    valid(
+                      recent.lastGame
+                        ?.minutes
+                    )
+                  ],
+                  [
+                    mwPrev,
+                    valid(
+                      recent.previous4
+                        ?.avgMinutes
+                    )
+                  ],
+                  [
+                    mwBase,
+                    valid(
+                      recent.baseline
+                        ?.avgMinutes
+                    )
+                  ]
+                ]);
+
+                if (!minutes) {
+                  return null;
+                }
+
+                return {
+                  ageDays,
+                  decay,
+                  rate,
+                  minutes,
+                  weights: {
+                    lastGame: wLast,
+                    previous4: wPrev,
+                    baseline: wBase
+                  },
+                  minuteWeights: {
+                    lastGame: mwLast,
+                    previous4: mwPrev,
+                    baseline: mwBase
+                  }
+                };
+              }
+
+              model = function (p) {
+                const x = originalModel(p);
+
+                const recent =
+                  form[norm(p.name)];
+
+                if (
+                  !recent ||
+                  p.status === "out"
+                ) {
+                  x.recentForm =
+                    recent || null;
+
+                  x.livePrice =
+                    Number(p.price);
+
+                  return x;
+                }
+
+                const dynamic =
+                  dynamicRecent(recent);
+
+                if (!dynamic) {
+                  x.recentForm = recent;
+                  x.livePrice =
+                    Number(p.price);
+
+                  return x;
+                }
+
+                const baseMinutes =
+                  Number(
+                    x.baseMin ||
+                    x.minutes ||
+                    dynamic.minutes
+                  );
+
+                /*
+                  The original model already knows about
+                  QUESTIONABLE/OUT, injuries, team absences
+                  and blowout minute effects.
+                */
+                const availabilityFactor =
+                  baseMinutes > 0
+                    ? clampValue(
+                        Number(x.minutes)
+                          / baseMinutes,
+                        0,
+                        1.25
+                      )
+                    : 1;
+
+                let predictedMinutes =
+                  (
+                    dynamic.minutes * 0.80
+                    + baseMinutes * 0.20
+                  )
+                  * availabilityFactor;
+
+                predictedMinutes =
+                  clampValue(
+                    predictedMinutes,
+                    5,
+                    36
+                  );
+
+                const teamPct =
+                  Number(
+                    x.teamMatchPct ??
+                    x.matchPct ??
+                    0
+                  );
+
+                const positionPct =
+                  Number(
+                    x.positionMatchPct ??
+                    0
+                  );
+
+                /*
+                  Matchup effects are intentionally damped:
+                  team environment = 60% of raw adjustment
+                  positional matchup = 35% of raw adjustment
+                */
+                const teamFactor =
+                  1
+                  + (
+                      clampValue(
+                        teamPct,
+                        -8,
+                        8
+                      ) / 100
+                    ) * 0.60;
+
+                const positionFactor =
+                  1
+                  + (
+                      clampValue(
+                        positionPct,
+                        -12,
+                        12
+                      ) / 100
+                    ) * 0.35;
+
+                const oldExpected =
+                  Math.max(
+                    0.01,
+                    Number(
+                      x.expected || 0.01
+                    )
+                  );
+
+                const newExpected =
+                  Math.max(
+                    0,
+                    dynamic.rate
+                    * predictedMinutes
+                    * teamFactor
+                    * positionFactor
+                  );
+
+                const floorRatio =
+                  Number(x.floor || 0)
+                  / oldExpected;
+
+                const ceilingRatio =
+                  Number(x.ceiling || 0)
+                  / oldExpected;
+
+                x.expected =
+                  newExpected;
+
+                x.minutes =
+                  predictedMinutes;
+
+                x.floor =
+                  Math.max(
+                    0,
+                    newExpected
+                    * clampValue(
+                        floorRatio,
+                        0.45,
+                        0.90
+                      )
+                  );
+
+                x.ceiling =
+                  newExpected
+                  * clampValue(
+                      ceilingRatio,
+                      1.15,
+                      1.75
+                    );
+
+                x.value =
+                  newExpected
+                  / Math.max(
+                      0.1,
+                      Number(p.price)
+                    );
+
+                x.source =
+                  "Recent form + time decay";
+
+                x.recentForm =
+                  recent;
+
+                x.recentDynamic =
+                  dynamic;
+
+                x.recentLastPir =
+                  recent.lastGame?.pir;
+
+                x.recentAvg5Pir =
+                  recent.last5?.avgPir;
+
+                x.recentAvg10Pir =
+                  recent.last10?.avgPir;
+
+                x.recentRate =
+                  dynamic.rate;
+
+                x.recentMinutes =
+                  dynamic.minutes;
+
+                x.livePrice =
+                  Number(p.price);
+
+                x.teamMatchPctApplied =
+                  (teamFactor - 1) * 100;
+
+                x.positionMatchPctApplied =
+                  (positionFactor - 1) * 100;
+
+                return x;
+              };
+
+              const addRecentToModal = () => {
+                const body =
+                  document.getElementById(
+                    "modalBody"
+                  );
+
+                if (
+                  !body ||
+                  body.querySelector(
+                    ".recent-form-box"
+                  )
+                ) {
+                  return;
+                }
+
+                if (
+                  typeof players === "undefined"
+                ) {
+                  return;
+                }
+
+                const p =
+                  players.find(
+                    player =>
+                      body.textContent
+                        .includes(
+                          player.name
+                        )
+                  );
+
+                if (!p) return;
+
+                const x = model(p);
+                const r = x.recentForm;
+                const d = x.recentDynamic;
+
+                if (!r || !d) return;
+
+                const box =
+                  document.createElement(
+                    "div"
+                  );
+
+                box.className =
+                  "notice recent-form-box";
+
+                box.style.marginTop =
+                  "10px";
+
+                const last =
+                  Number(
+                    r.lastGame?.pir
+                  );
+
+                const avg5 =
+                  Number(
+                    r.last5?.avgPir
+                  );
+
+                const avg10 =
+                  Number(
+                    r.last10?.avgPir
+                  );
+
+                const livePrice =
+                  Number(p.price);
+
+                const lastWeight =
+                  d.weights.lastGame
+                  * 100;
+
+                box.textContent =
+                  `כושר אחרון: ` +
+                  `משחק אחרון ${last.toFixed(1)} PIR` +
+                  ` • 5 אחרונים ${avg5.toFixed(1)}` +
+                  ` • 10 אחרונים ${avg10.toFixed(1)}` +
+                  ` • גיל המשחק ${Math.round(d.ageDays)} ימים` +
+                  ` • משקל נוכחי ${lastWeight.toFixed(1)}%` +
+                  ` • מחיר חי ${livePrice.toFixed(1)}`;
+
+                body.appendChild(box);
+              };
+
+              const modalBody =
+                document.getElementById(
+                  "modalBody"
+                );
+
+              if (modalBody) {
+                new MutationObserver(() => {
+                  requestAnimationFrame(
+                    addRecentToModal
+                  );
+                }).observe(
+                  modalBody,
+                  {
+                    childList: true
+                  }
+                );
+              }
+
+              renderAll();
+
+              console.log(
+                "Recent-form time decay active:",
+                Object.keys(form).length,
+                "players"
+              );
+
+            } catch (error) {
+              console.error(
+                "Recent-form time decay error:",
+                error
+              );
+            }
+          })();
+          EOF
+
+      - name: Save
+        run: |
+          git config user.name "eurofantasy-bot"
+          git config user.email "actions@users.noreply.github.com"
+
+          git add recent-form.js
+
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m \
+              "Add time decay to recent form model"
+            git push
+          fi
