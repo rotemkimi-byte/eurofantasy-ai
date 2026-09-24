@@ -1,0 +1,1240 @@
+name: EuroFantasy Recent Form Official Live
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/10 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: recent-form-official-live
+  cancel-in-progress: true
+
+jobs:
+  recent-form:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install DuckDB
+        run: python -m pip install --disable-pip-version-check duckdb
+
+      - name: Download historical EuroLeague snapshot
+        run: |
+          curl -L --fail --retry 3 --retry-delay 3 \
+            -o /tmp/euroleague.duckdb \
+            https://raw.githubusercontent.com/McNews11/euroleague-open-data/main/data/euroleague.duckdb
+
+      - name: Build official live recent form
+        run: |
+          python - <<'PY'
+          import json
+          import math
+          import re
+          import statistics
+          import time
+          import unicodedata
+          import urllib.error
+          import urllib.request
+          from collections import defaultdict
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          import duckdb
+
+          DATA = Path("data")
+          DATA.mkdir(exist_ok=True)
+
+          CURRENT_SEASON = "E2026"
+          HISTORICAL_SEASON = "E2025"
+          CACHE_PATH = DATA / "euroleague-live-E2026.json"
+
+          GAMES_URL = (
+              "https://api-live.euroleague.net/"
+              "v2/competitions/E/seasons/"
+              f"{CURRENT_SEASON}/games?limit=500"
+          )
+
+          STATS_URL = (
+              "https://api-live.euroleague.net/"
+              "v2/competitions/E/seasons/"
+              f"{CURRENT_SEASON}/games/{{game_code}}/stats"
+          )
+
+          MIRROR_STATS_URL = (
+              "https://feeds.incrowdsports.com/"
+              "provider/euroleague-feeds/v2/"
+              "competitions/E/seasons/"
+              f"{CURRENT_SEASON}/games/{{game_code}}/stats"
+          )
+
+          def norm(value):
+              text = unicodedata.normalize(
+                  "NFKD",
+                  str(value or "")
+              )
+              text = "".join(
+                  c for c in text
+                  if not unicodedata.combining(c)
+              )
+              return re.sub(
+                  r"[^a-z0-9]+",
+                  " ",
+                  text.lower()
+              ).strip()
+
+          def fantasy_key(name):
+              raw = str(name or "").strip()
+
+              if "," in raw:
+                  last, first = raw.split(",", 1)
+                  raw = (
+                      f"{first.strip()} "
+                      f"{last.strip()}"
+                  )
+
+              return norm(raw)
+
+          def load_json(path, default):
+              path = Path(path)
+
+              if not path.exists():
+                  return default
+
+              try:
+                  return json.loads(
+                      path.read_text(
+                          encoding="utf-8"
+                      )
+                  )
+              except Exception:
+                  return default
+
+          def save_json(path, value):
+              Path(path).write_text(
+                  json.dumps(
+                      value,
+                      ensure_ascii=False,
+                      indent=2
+                  ),
+                  encoding="utf-8"
+              )
+
+          def fetch_json(url, attempts=4):
+              last_error = None
+
+              for attempt in range(attempts):
+                  request = urllib.request.Request(
+                      url,
+                      headers={
+                          "Accept":
+                              "application/json",
+                          "User-Agent":
+                              "EuroFantasy-AI/1.0",
+                      }
+                  )
+
+                  try:
+                      with urllib.request.urlopen(
+                          request,
+                          timeout=45
+                      ) as response:
+                          return json.loads(
+                              response
+                              .read()
+                              .decode("utf-8")
+                          )
+
+                  except urllib.error.HTTPError as exc:
+                      last_error = exc
+
+                      if exc.code == 429:
+                          retry_after = (
+                              exc.headers.get(
+                                  "Retry-After"
+                              )
+                          )
+
+                          try:
+                              wait = float(
+                                  retry_after
+                              )
+                          except (
+                              TypeError,
+                              ValueError
+                          ):
+                              wait = min(
+                                  60,
+                                  12
+                                  * (attempt + 1)
+                              )
+
+                          print(
+                              "Rate limited; "
+                              f"sleeping {wait}s"
+                          )
+                          time.sleep(wait)
+                          continue
+
+                      if exc.code in (
+                          404,
+                          405
+                      ):
+                          raise
+
+                      time.sleep(
+                          4 * (attempt + 1)
+                      )
+
+                  except Exception as exc:
+                      last_error = exc
+                      time.sleep(
+                          4 * (attempt + 1)
+                      )
+
+              raise RuntimeError(
+                  f"Request failed: {url}: "
+                  f"{last_error}"
+              )
+
+          def fetch_stats(game_code):
+              primary = STATS_URL.format(
+                  game_code=game_code
+              )
+
+              try:
+                  return fetch_json(primary)
+              except Exception as primary_error:
+                  print(
+                      "Primary stats warning:",
+                      game_code,
+                      primary_error
+                  )
+
+              mirror = MIRROR_STATS_URL.format(
+                  game_code=game_code
+              )
+
+              return fetch_json(mirror)
+
+          def game_code(game):
+              for key in (
+                  "gameCode",
+                  "gamecode",
+                  "code",
+              ):
+                  value = game.get(key)
+
+                  if value is None:
+                      continue
+
+                  try:
+                      return int(value)
+                  except (
+                      TypeError,
+                      ValueError
+                  ):
+                      pass
+
+              return None
+
+          def game_date(game):
+              for key in (
+                  "date",
+                  "utcDate",
+                  "localDate",
+                  "startDate",
+                  "startDateTime",
+              ):
+                  value = game.get(key)
+
+                  if value:
+                      return str(value)
+
+              return None
+
+          def is_played(game):
+              value = game.get("played")
+
+              if isinstance(value, bool):
+                  return value
+
+              if isinstance(
+                  value,
+                  (int, float)
+              ):
+                  return bool(value)
+
+              return str(
+                  value or ""
+              ).lower() in (
+                  "1",
+                  "true",
+                  "yes",
+              )
+
+          def player_name(entry):
+              player = (
+                  entry.get("player")
+                  if isinstance(
+                      entry,
+                      dict
+                  )
+                  else {}
+              ) or {}
+
+              person = (
+                  player.get("person")
+                  if isinstance(
+                      player,
+                      dict
+                  )
+                  else {}
+              ) or {}
+
+              def from_obj(obj):
+                  if isinstance(obj, str):
+                      return obj.strip()
+
+                  if not isinstance(
+                      obj,
+                      dict
+                  ):
+                      return ""
+
+                  for key in (
+                      "name",
+                      "fullName",
+                      "playerName",
+                      "displayName",
+                      "alias",
+                  ):
+                      value = obj.get(key)
+
+                      if value:
+                          return str(
+                              value
+                          ).strip()
+
+                  first = (
+                      obj.get("firstName")
+                      or obj.get("first_name")
+                      or obj.get("first")
+                      or ""
+                  )
+                  last = (
+                      obj.get("lastName")
+                      or obj.get("last_name")
+                      or obj.get("last")
+                      or obj.get("surname")
+                      or ""
+                  )
+
+                  return (
+                      f"{first} {last}"
+                      .strip()
+                  )
+
+              return (
+                  from_obj(person)
+                  or from_obj(player)
+                  or from_obj(entry)
+              )
+
+          def extract_game_rows(
+              payload,
+              code,
+              date_string
+          ):
+              rows = []
+
+              if not isinstance(
+                  payload,
+                  dict
+              ):
+                  return rows
+
+              for side_name in (
+                  "local",
+                  "road",
+              ):
+                  side = (
+                      payload.get(side_name)
+                      or {}
+                  )
+
+                  players = (
+                      side.get("players")
+                      if isinstance(
+                          side,
+                          dict
+                      )
+                      else []
+                  )
+
+                  if not isinstance(
+                      players,
+                      list
+                  ):
+                      continue
+
+                  for entry in players:
+                      if not isinstance(
+                          entry,
+                          dict
+                      ):
+                          continue
+
+                      stats = (
+                          entry.get("stats")
+                          or {}
+                      )
+
+                      if not isinstance(
+                          stats,
+                          dict
+                      ):
+                          continue
+
+                      name = player_name(
+                          entry
+                      )
+
+                      try:
+                          seconds = float(
+                              stats.get(
+                                  "timePlayed"
+                              )
+                              or 0
+                          )
+                          pir = float(
+                              stats.get(
+                                  "valuation"
+                              )
+                          )
+                      except (
+                          TypeError,
+                          ValueError
+                      ):
+                          continue
+
+                      # Keep the same minimum used by
+                      # our historical model: 5 minutes.
+                      if (
+                          not name
+                          or seconds < 300
+                      ):
+                          continue
+
+                      rows.append({
+                          "season":
+                              CURRENT_SEASON,
+                          "gameCode":
+                              int(code),
+                          "date":
+                              date_string,
+                          "name":
+                              name,
+                          "minutes":
+                              seconds / 60.0,
+                          "pir":
+                              pir,
+                          "rate":
+                              (
+                                  pir
+                                  / (
+                                      seconds
+                                      / 60.0
+                                  )
+                              ),
+                      })
+
+              return rows
+
+          # Historical 2025/26 EuroLeague data is the
+          # stable baseline. Current 2026/27 games are
+          # pulled directly from the official API.
+          con = duckdb.connect(
+              "/tmp/euroleague.duckdb",
+              read_only=True
+          )
+
+          historical_rows = con.execute(
+              """
+              SELECT
+                  b.season_code,
+                  b.game_code,
+                  g.utc_date,
+                  p.name,
+                  b.seconds_played,
+                  b.valuation
+              FROM boxscores_player b
+              JOIN games g
+                ON g.season_code =
+                   b.season_code
+               AND g.game_code =
+                   b.game_code
+              LEFT JOIN players p
+                ON p.person_code =
+                   b.person_code
+              WHERE b.season_code = 'E2025'
+                AND g.played
+                AND p.name IS NOT NULL
+                AND b.seconds_played >= 300
+                AND b.valuation IS NOT NULL
+              ORDER BY
+                  p.name,
+                  g.utc_date,
+                  b.game_code
+              """
+          ).fetchall()
+
+          con.close()
+
+          games_payload = fetch_json(
+              GAMES_URL
+          )
+
+          games = (
+              games_payload.get(
+                  "data",
+                  []
+              )
+              if isinstance(
+                  games_payload,
+                  dict
+              )
+              else []
+          )
+
+          played_games = [
+              game
+              for game in games
+              if is_played(game)
+          ]
+
+          cache = load_json(
+              CACHE_PATH,
+              {
+                  "season":
+                      CURRENT_SEASON,
+                  "games": {},
+              }
+          )
+
+          if not isinstance(
+              cache.get("games"),
+              dict
+          ):
+              cache["games"] = {}
+
+          new_games = 0
+
+          for game in played_games:
+              code = game_code(game)
+
+              if code is None:
+                  continue
+
+              key = str(code)
+
+              if key in cache["games"]:
+                  continue
+
+              date_string = game_date(
+                  game
+              )
+
+              try:
+                  payload = fetch_stats(
+                      code
+                  )
+                  rows = extract_game_rows(
+                      payload,
+                      code,
+                      date_string
+                  )
+
+                  if not rows:
+                      print(
+                          "No usable player stats "
+                          f"yet for game {code}; "
+                          "will retry next run"
+                      )
+                      continue
+
+                  cache["games"][key] = {
+                      "gameCode":
+                          code,
+                      "date":
+                          date_string,
+                      "rows":
+                          rows,
+                      "cached_at":
+                          datetime.now(
+                              timezone.utc
+                          ).isoformat(),
+                  }
+
+                  new_games += 1
+
+                  print(
+                      "Cached official E2026 "
+                      f"game {code}: "
+                      f"{len(rows)} players"
+                  )
+
+                  # Stay comfortably below the
+                  # observed EuroLeague edge quota.
+                  time.sleep(7)
+
+              except Exception as exc:
+                  print(
+                      "Game stats warning:",
+                      code,
+                      exc
+                  )
+
+          cache["season"] = (
+              CURRENT_SEASON
+          )
+          cache["updated_at"] = (
+              datetime.now(
+                  timezone.utc
+              ).isoformat()
+          )
+          cache["playedGamesSeen"] = (
+              len(played_games)
+          )
+
+          save_json(
+              CACHE_PATH,
+              cache
+          )
+
+          grouped = defaultdict(list)
+
+          for (
+              season,
+              code,
+              utc_date,
+              name,
+              seconds,
+              valuation
+          ) in historical_rows:
+              try:
+                  minutes = (
+                      float(seconds)
+                      / 60.0
+                  )
+                  pir = float(
+                      valuation
+                  )
+              except (
+                  TypeError,
+                  ValueError
+              ):
+                  continue
+
+              if minutes < 5:
+                  continue
+
+              grouped[
+                  fantasy_key(name)
+              ].append({
+                  "season":
+                      str(season),
+                  "gameCode":
+                      int(code),
+                  "date":
+                      str(utc_date),
+                  "name":
+                      str(name),
+                  "minutes":
+                      minutes,
+                  "pir":
+                      pir,
+                  "rate":
+                      pir / minutes,
+              })
+
+          current_rows = []
+
+          for item in cache[
+              "games"
+          ].values():
+              for row in (
+                  item.get("rows")
+                  or []
+              ):
+                  current_rows.append(
+                      row
+                  )
+
+                  grouped[
+                      fantasy_key(
+                          row.get("name")
+                      )
+                  ].append(
+                      row
+                  )
+
+          def avg(sample, field):
+              if not sample:
+                  return None
+
+              return sum(
+                  float(g[field])
+                  for g in sample
+              ) / len(sample)
+
+          def total_rate(sample):
+              if not sample:
+                  return None
+
+              minutes = sum(
+                  float(g["minutes"])
+                  for g in sample
+              )
+
+              if minutes <= 0:
+                  return None
+
+              return (
+                  sum(
+                      float(g["pir"])
+                      for g in sample
+                  )
+                  / minutes
+              )
+
+          def sort_key(game):
+              date = str(
+                  game.get("date")
+                  or ""
+              )
+
+              return (
+                  date,
+                  int(
+                      game.get(
+                          "gameCode"
+                      )
+                      or 0
+                  ),
+              )
+
+          output = {}
+
+          for key, player_games in (
+              grouped.items()
+          ):
+              if (
+                  not key
+                  or not player_games
+              ):
+                  continue
+
+              player_games.sort(
+                  key=sort_key
+              )
+
+              latest = (
+                  player_games[-1]
+              )
+
+              previous4 = (
+                  player_games[-5:-1]
+              )
+              last5 = (
+                  player_games[-5:]
+              )
+              last10 = (
+                  player_games[-10:]
+              )
+
+              current_season_games = [
+                  g
+                  for g in player_games
+                  if (
+                      g["season"]
+                      == CURRENT_SEASON
+                  )
+              ]
+
+              historical_player_games = [
+                  g
+                  for g in player_games
+                  if (
+                      g["season"]
+                      == HISTORICAL_SEASON
+                  )
+              ]
+
+              if len(
+                  current_season_games
+              ) >= 3:
+                  baseline_games = (
+                      current_season_games
+                  )
+              else:
+                  # Early in the season retain the
+                  # prior EuroLeague baseline while
+                  # fresh E2026 games dominate via
+                  # last-game/previous-four weights.
+                  baseline_games = (
+                      historical_player_games
+                      + current_season_games
+                  )
+
+              if not baseline_games:
+                  baseline_games = (
+                      player_games
+                  )
+
+              latest_season = (
+                  latest["season"]
+              )
+
+              last_rate = (
+                  latest["rate"]
+              )
+              prev4_rate = (
+                  total_rate(
+                      previous4
+                  )
+              )
+              baseline_rate = (
+                  total_rate(
+                      baseline_games
+                  )
+              )
+
+              pieces = []
+
+              last_reliability = min(
+                  1.0,
+                  latest["minutes"]
+                  / 20.0
+              )
+
+              pieces.append((
+                  0.40
+                  * last_reliability,
+                  last_rate
+              ))
+
+              if prev4_rate is not None:
+                  pieces.append((
+                      0.35,
+                      prev4_rate
+                  ))
+
+              if (
+                  baseline_rate
+                  is not None
+              ):
+                  pieces.append((
+                      0.25,
+                      baseline_rate
+                  ))
+
+              weight_sum = sum(
+                  w for w, _ in pieces
+              )
+
+              form_rate = sum(
+                  w * rate
+                  for w, rate in pieces
+              ) / max(
+                  weight_sum,
+                  0.0001
+              )
+
+              if (
+                  baseline_rate
+                  is not None
+                  and baseline_rate > 0
+              ):
+                  form_rate = max(
+                      baseline_rate
+                      * 0.65,
+                      min(
+                          baseline_rate
+                          * 1.35,
+                          form_rate
+                      )
+                  )
+
+              prev4_minutes = avg(
+                  previous4,
+                  "minutes"
+              )
+
+              baseline_minutes = avg(
+                  baseline_games,
+                  "minutes"
+              )
+
+              minute_parts = [
+                  (
+                      0.45,
+                      latest["minutes"]
+                  )
+              ]
+
+              if (
+                  prev4_minutes
+                  is not None
+              ):
+                  minute_parts.append((
+                      0.35,
+                      prev4_minutes
+                  ))
+
+              if (
+                  baseline_minutes
+                  is not None
+              ):
+                  minute_parts.append((
+                      0.20,
+                      baseline_minutes
+                  ))
+
+              mw = sum(
+                  w
+                  for w, _ in minute_parts
+              )
+
+              recent_minutes = sum(
+                  w * minutes
+                  for w, minutes
+                  in minute_parts
+              ) / max(
+                  mw,
+                  0.0001
+              )
+
+              pir_values = [
+                  float(g["pir"])
+                  for g in last5
+              ]
+
+              sd = (
+                  statistics.pstdev(
+                      pir_values
+                  )
+                  if len(
+                      pir_values
+                  ) >= 2
+                  else 0.0
+              )
+
+              display_name = (
+                  latest["name"]
+              )
+
+              if "," in display_name:
+                  last, first = (
+                      display_name
+                      .split(",", 1)
+                  )
+                  display_name = (
+                      f"{first.strip()} "
+                      f"{last.strip()}"
+                  )
+
+              output[key] = {
+                  "name":
+                      display_name,
+                  "latestSeason":
+                      latest_season,
+                  "gamesAvailable":
+                      len(
+                          player_games
+                      ),
+                  "gamesLatestSeason":
+                      len(
+                          current_season_games
+                          if (
+                              latest_season
+                              == CURRENT_SEASON
+                          )
+                          else historical_player_games
+                      ),
+                  "currentSeasonGames":
+                      len(
+                          current_season_games
+                      ),
+                  "lastGame": {
+                      "season":
+                          latest["season"],
+                      "gameCode":
+                          latest[
+                              "gameCode"
+                          ],
+                      "date":
+                          latest["date"],
+                      "pir":
+                          round(
+                              latest["pir"],
+                              2
+                          ),
+                      "minutes":
+                          round(
+                              latest[
+                                  "minutes"
+                              ],
+                              2
+                          ),
+                      "pirPerMinute":
+                          round(
+                              latest[
+                                  "rate"
+                              ],
+                              5
+                          ),
+                  },
+                  "previous4": {
+                      "games":
+                          len(previous4),
+                      "avgPir": (
+                          round(
+                              avg(
+                                  previous4,
+                                  "pir"
+                              ),
+                              2
+                          )
+                          if previous4
+                          else None
+                      ),
+                      "avgMinutes": (
+                          round(
+                              prev4_minutes,
+                              2
+                          )
+                          if (
+                              prev4_minutes
+                              is not None
+                          )
+                          else None
+                      ),
+                      "pirPerMinute": (
+                          round(
+                              prev4_rate,
+                              5
+                          )
+                          if (
+                              prev4_rate
+                              is not None
+                          )
+                          else None
+                      ),
+                  },
+                  "last5": {
+                      "games":
+                          len(last5),
+                      "avgPir":
+                          round(
+                              avg(
+                                  last5,
+                                  "pir"
+                              ),
+                              2
+                          ),
+                      "avgMinutes":
+                          round(
+                              avg(
+                                  last5,
+                                  "minutes"
+                              ),
+                              2
+                          ),
+                      "sdPir":
+                          round(
+                              sd,
+                              2
+                          ),
+                  },
+                  "last10": {
+                      "games":
+                          len(last10),
+                      "avgPir":
+                          round(
+                              avg(
+                                  last10,
+                                  "pir"
+                              ),
+                              2
+                          ),
+                      "avgMinutes":
+                          round(
+                              avg(
+                                  last10,
+                                  "minutes"
+                              ),
+                              2
+                          ),
+                  },
+                  "baseline": {
+                      "games":
+                          len(
+                              baseline_games
+                          ),
+                      "avgPir":
+                          round(
+                              avg(
+                                  baseline_games,
+                                  "pir"
+                              ),
+                              2
+                          ),
+                      "avgMinutes":
+                          round(
+                              baseline_minutes,
+                              2
+                          ),
+                      "pirPerMinute":
+                          round(
+                              baseline_rate,
+                              5
+                          ),
+                  },
+                  "model": {
+                      "formPirPerMinute":
+                          round(
+                              form_rate,
+                              5
+                          ),
+                      "recentMinutes":
+                          round(
+                              recent_minutes,
+                              2
+                          ),
+                      "weights": {
+                          "lastGame":
+                              0.40,
+                          "previous4":
+                              0.35,
+                          "baseline":
+                              0.25,
+                      },
+                  },
+              }
+
+          if len(output) < 100:
+              raise RuntimeError(
+                  "Recent-form extraction "
+                  f"too small: {len(output)}"
+              )
+
+          now = datetime.now(
+              timezone.utc
+          ).isoformat()
+
+          result = {
+              "players":
+                  output,
+              "playerCount":
+                  len(output),
+              "source":
+                  (
+                      "Official EuroLeague E2026 "
+                      "game boxscores + E2025 "
+                      "historical baseline"
+                  ),
+              "currentSeason":
+                  CURRENT_SEASON,
+              "currentSeasonPlayedGames":
+                  len(played_games),
+              "currentSeasonCachedGames":
+                  len(
+                      cache["games"]
+                  ),
+              "currentSeasonPlayerRows":
+                  len(current_rows),
+              "newGamesThisRun":
+                  new_games,
+              "method":
+                  (
+                      "Official EuroLeague-only "
+                      "PIR/min; current season "
+                      "games update incrementally"
+                  ),
+              "updated_at":
+                  now,
+          }
+
+          save_json(
+              DATA
+              / "recent-form.json",
+              result
+          )
+
+          print(
+              "Recent form built:",
+              len(output),
+              "players | played E2026:",
+              len(played_games),
+              "| cached:",
+              len(cache["games"]),
+              "| new:",
+              new_games
+          )
+
+          live_players = [
+              value
+              for value in output.values()
+              if (
+                  value.get(
+                      "currentSeasonGames",
+                      0
+                  ) > 0
+              )
+          ]
+
+          print(
+              "Players with official "
+              "E2026 games:",
+              len(live_players)
+          )
+
+          if (
+              "sasha vezenkov"
+              in output
+          ):
+              print(
+                  "Sasha:",
+                  output[
+                      "sasha vezenkov"
+                  ]["lastGame"]
+              )
+          PY
+
+      - name: Save official live recent form
+        run: |
+          git config user.name "eurofantasy-bot"
+          git config user.email "actions@users.noreply.github.com"
+
+          git add \
+            data/recent-form.json \
+            data/euroleague-live-E2026.json
+
+          if git diff --cached --quiet; then
+            echo "No recent-form changes"
+          else
+            git commit -m \
+              "Update official EuroLeague recent form"
+            git pull --rebase origin main
+            git push
+          fi
