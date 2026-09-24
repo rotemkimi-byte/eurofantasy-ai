@@ -1,44 +1,32 @@
 (async () => {
   try {
     const response = await fetch(
-      "./data/recent-form.json?t="
-      + Date.now(),
+      "./data/recent-form.json?t=" + Date.now(),
       { cache: "no-store" }
     );
 
     if (!response.ok) {
       throw new Error(
-        "recent-form.json HTTP "
-        + response.status
+        "recent-form.json HTTP " + response.status
       );
     }
 
-    const payload =
-      await response.json();
-
-    const form =
-      payload.players || {};
+    const payload = await response.json();
+    const form = payload.players || {};
 
     const sleep = ms =>
-      new Promise(resolve =>
-        setTimeout(resolve, ms)
-      );
+      new Promise(resolve => setTimeout(resolve, ms));
 
-    // Position matchup is another model layer.
-    // Give it a moment to install first so this layer
-    // can use both team and positional matchup fields.
     for (
       let i = 0;
-      i < 50
-      && !window.__positionMatchupsPatched;
+      i < 50 && !window.__positionMatchupsPatched;
       i++
     ) {
       await sleep(100);
     }
 
     if (
-      typeof model !== "function"
-      ||
+      typeof model !== "function" ||
       typeof renderAll !== "function"
     ) {
       throw new Error(
@@ -46,9 +34,7 @@
       );
     }
 
-    if (
-      window.__recentFormPatched
-    ) {
+    if (window.__recentFormPatched) {
       return;
     }
 
@@ -60,83 +46,241 @@
     const norm = value =>
       String(value || "")
         .normalize("NFD")
-        .replace(
-          /[\u0300-\u036f]/g,
-          ""
-        )
+        .replace(/[\u0300-\u036f]/g, "")
         .toLowerCase()
-        .replace(
-          /[^a-z0-9 ]/g,
-          " "
-        )
+        .replace(/[^a-z0-9 ]/g, " ")
         .replace(/\s+/g, " ")
         .trim();
 
-    const clampValue = (
-      x,
-      min,
-      max
-    ) => Math.max(
-      min,
-      Math.min(max, x)
-    );
+    const clampValue = (x, min, max) =>
+      Math.max(min, Math.min(max, x));
+
+    const valid = value => {
+      const n = Number(value);
+      return Number.isFinite(n) && n > 0
+        ? n
+        : null;
+    };
+
+    function daysSince(dateString) {
+      const t = new Date(dateString).getTime();
+
+      if (!Number.isFinite(t)) {
+        return 999;
+      }
+
+      return Math.max(
+        0,
+        (Date.now() - t) / 86400000
+      );
+    }
+
+    function normalizedBlend(parts) {
+      const usable = parts.filter(
+        ([weight, value]) =>
+          weight > 0 &&
+          Number.isFinite(value) &&
+          value > 0
+      );
+
+      const totalWeight = usable.reduce(
+        (sum, [weight]) => sum + weight,
+        0
+      );
+
+      if (totalWeight <= 0) {
+        return null;
+      }
+
+      return usable.reduce(
+        (sum, [weight, value]) =>
+          sum + weight * value,
+        0
+      ) / totalWeight;
+    }
+
+    function dynamicRecent(recent) {
+      const ageDays = daysSince(
+        recent.lastGame?.date
+      );
+
+      /*
+        At 0 days:
+          last game 40%
+          previous four 35%
+          baseline 25%
+
+        As the last game gets old, its impact fades.
+        After ~120 days the weights are roughly:
+          last game 10.5%
+          previous four 20.3%
+          baseline 69.2%
+      */
+      const decay = Math.exp(
+        -ageDays / 30
+      );
+
+      const wLast =
+        0.10 + 0.30 * decay;
+
+      const wPrev =
+        0.20 + 0.15 * decay;
+
+      const wBase =
+        Math.max(
+          0,
+          1 - wLast - wPrev
+        );
+
+      const lastRate = valid(
+        recent.lastGame
+          ?.pirPerMinute
+      );
+
+      const prevRate = valid(
+        recent.previous4
+          ?.pirPerMinute
+      );
+
+      const baseRate = valid(
+        recent.baseline
+          ?.pirPerMinute
+      );
+
+      let rate = normalizedBlend([
+        [wLast, lastRate],
+        [wPrev, prevRate],
+        [wBase, baseRate]
+      ]);
+
+      if (!rate) {
+        return null;
+      }
+
+      /*
+        Keep one unusual stretch from moving a
+        player too far away from the long-term
+        productivity rate.
+      */
+      if (baseRate) {
+        rate = clampValue(
+          rate,
+          baseRate * 0.70,
+          baseRate * 1.30
+        );
+      }
+
+      /*
+        Minutes decay too. When the last game is
+        fresh, rotation gets a large weight. When
+        it is months old, season baseline minutes
+        dominate.
+      */
+      const mwLast =
+        0.10 + 0.35 * decay;
+
+      const mwPrev =
+        0.15 + 0.20 * decay;
+
+      const mwBase =
+        Math.max(
+          0,
+          1 - mwLast - mwPrev
+        );
+
+      const minutes = normalizedBlend([
+        [
+          mwLast,
+          valid(
+            recent.lastGame
+              ?.minutes
+          )
+        ],
+        [
+          mwPrev,
+          valid(
+            recent.previous4
+              ?.avgMinutes
+          )
+        ],
+        [
+          mwBase,
+          valid(
+            recent.baseline
+              ?.avgMinutes
+          )
+        ]
+      ]);
+
+      if (!minutes) {
+        return null;
+      }
+
+      return {
+        ageDays,
+        decay,
+        rate,
+        minutes,
+        weights: {
+          lastGame: wLast,
+          previous4: wPrev,
+          baseline: wBase
+        },
+        minuteWeights: {
+          lastGame: mwLast,
+          previous4: mwPrev,
+          baseline: mwBase
+        }
+      };
+    }
 
     model = function (p) {
-      const x =
-        originalModel(p);
+      const x = originalModel(p);
 
       const recent =
         form[norm(p.name)];
 
       if (
-        !recent
-        || p.status === "out"
+        !recent ||
+        p.status === "out"
       ) {
         x.recentForm =
           recent || null;
+
+        x.livePrice =
+          Number(p.price);
+
         return x;
       }
 
-      const rate = Number(
-        recent
-          .model
-          ?.formPirPerMinute
-      );
+      const dynamic =
+        dynamicRecent(recent);
 
-      const recentMinutes =
-        Number(
-          recent
-            .model
-            ?.recentMinutes
-        );
-
-      if (
-        !Number.isFinite(rate)
-        || rate <= 0
-        || !Number.isFinite(
-          recentMinutes
-        )
-        || recentMinutes <= 0
-      ) {
+      if (!dynamic) {
         x.recentForm = recent;
+        x.livePrice =
+          Number(p.price);
+
         return x;
       }
 
-      // Existing x.minutes already contains injury,
-      // availability and blowout logic. Blend it with
-      // the recent rotation instead of replacing it.
-      const modelBaseMinutes =
+      const baseMinutes =
         Number(
-          x.baseMin
-          || x.minutes
-          || recentMinutes
+          x.baseMin ||
+          x.minutes ||
+          dynamic.minutes
         );
 
+      /*
+        The original model already knows about
+        QUESTIONABLE/OUT, injuries, team absences
+        and blowout minute effects.
+      */
       const availabilityFactor =
-        modelBaseMinutes > 0
+        baseMinutes > 0
           ? clampValue(
               Number(x.minutes)
-              / modelBaseMinutes,
+                / baseMinutes,
               0,
               1.25
             )
@@ -144,8 +288,8 @@
 
       let predictedMinutes =
         (
-          recentMinutes * 0.70
-          + Number(x.minutes) * 0.30
+          dynamic.minutes * 0.80
+          + baseMinutes * 0.20
         )
         * availabilityFactor;
 
@@ -158,49 +302,54 @@
 
       const teamPct =
         Number(
-          x.teamMatchPct
-          ?? x.matchPct
-          ?? 0
+          x.teamMatchPct ??
+          x.matchPct ??
+          0
         );
 
       const positionPct =
         Number(
-          x.positionMatchPct
-          ?? 0
+          x.positionMatchPct ??
+          0
         );
 
-      // Matchups matter, but are deliberately damped
-      // so we don't double-count opponent effects.
+      /*
+        Matchup effects are intentionally damped:
+        team environment = 60% of raw adjustment
+        positional matchup = 35% of raw adjustment
+      */
       const teamFactor =
         1
-        + clampValue(
-            teamPct,
-            -8,
-            8
-          )
-          / 100
-          * 0.60;
+        + (
+            clampValue(
+              teamPct,
+              -8,
+              8
+            ) / 100
+          ) * 0.60;
 
       const positionFactor =
         1
-        + clampValue(
-            positionPct,
-            -12,
-            12
-          )
-          / 100
-          * 0.35;
+        + (
+            clampValue(
+              positionPct,
+              -12,
+              12
+            ) / 100
+          ) * 0.35;
 
       const oldExpected =
         Math.max(
           0.01,
-          Number(x.expected || 0.01)
+          Number(
+            x.expected || 0.01
+          )
         );
 
       const newExpected =
         Math.max(
           0,
-          rate
+          dynamic.rate
           * predictedMinutes
           * teamFactor
           * positionFactor
@@ -214,18 +363,22 @@
         Number(x.ceiling || 0)
         / oldExpected;
 
-      x.expected = newExpected;
-      x.minutes = predictedMinutes;
+      x.expected =
+        newExpected;
 
-      x.floor = Math.max(
-        0,
-        newExpected
-        * clampValue(
-            floorRatio,
-            0.45,
-            0.90
-          )
-      );
+      x.minutes =
+        predictedMinutes;
+
+      x.floor =
+        Math.max(
+          0,
+          newExpected
+          * clampValue(
+              floorRatio,
+              0.45,
+              0.90
+            )
+        );
 
       x.ceiling =
         newExpected
@@ -243,9 +396,14 @@
           );
 
       x.source =
-        "Recent form blend";
+        "Recent form + time decay";
 
-      x.recentForm = recent;
+      x.recentForm =
+        recent;
+
+      x.recentDynamic =
+        dynamic;
+
       x.recentLastPir =
         recent.lastGame?.pir;
 
@@ -255,17 +413,20 @@
       x.recentAvg10Pir =
         recent.last10?.avgPir;
 
-      x.recentRate = rate;
+      x.recentRate =
+        dynamic.rate;
+
       x.recentMinutes =
-        recentMinutes;
+        dynamic.minutes;
+
+      x.livePrice =
+        Number(p.price);
 
       x.teamMatchPctApplied =
         (teamFactor - 1) * 100;
 
       x.positionMatchPctApplied =
-        (
-          positionFactor - 1
-        ) * 100;
+        (positionFactor - 1) * 100;
 
       return x;
     };
@@ -277,8 +438,8 @@
         );
 
       if (
-        !body
-        || body.querySelector(
+        !body ||
+        body.querySelector(
           ".recent-form-box"
         )
       ) {
@@ -294,17 +455,19 @@
       const p =
         players.find(
           player =>
-            body.textContent.includes(
-              player.name
-            )
+            body.textContent
+              .includes(
+                player.name
+              )
         );
 
       if (!p) return;
 
       const x = model(p);
       const r = x.recentForm;
+      const d = x.recentDynamic;
 
-      if (!r) return;
+      if (!r || !d) return;
 
       const box =
         document.createElement(
@@ -332,12 +495,21 @@
           r.last10?.avgPir
         );
 
+      const livePrice =
+        Number(p.price);
+
+      const lastWeight =
+        d.weights.lastGame
+        * 100;
+
       box.textContent =
         `כושר אחרון: ` +
         `משחק אחרון ${last.toFixed(1)} PIR` +
         ` • 5 אחרונים ${avg5.toFixed(1)}` +
         ` • 10 אחרונים ${avg10.toFixed(1)}` +
-        ` • משקל המשחק האחרון 40%`;
+        ` • גיל המשחק ${Math.round(d.ageDays)} ימים` +
+        ` • משקל נוכחי ${lastWeight.toFixed(1)}%` +
+        ` • מחיר חי ${livePrice.toFixed(1)}`;
 
       body.appendChild(box);
     };
@@ -363,14 +535,14 @@
     renderAll();
 
     console.log(
-      "Recent-form model active:",
+      "Recent-form time decay active:",
       Object.keys(form).length,
       "players"
     );
 
   } catch (error) {
     console.error(
-      "Recent-form model error:",
+      "Recent-form time decay error:",
       error
     );
   }
