@@ -1,0 +1,259 @@
+(() => {
+  const pctText = value => {
+    const n = Number(value || 0);
+    return `${n >= 0 ? "+" : ""}${n.toFixed(1)}%`;
+  };
+
+  function addRefreshButton() {
+    if (document.getElementById("refreshAllBtn")) return;
+
+    const head = document.querySelector(".head");
+    if (!head) return;
+
+    const btn = document.createElement("button");
+    btn.id = "refreshAllBtn";
+    btn.className = "secondary";
+    btn.textContent = "↻ רענן הכול";
+    btn.style.fontSize = "12px";
+    btn.style.padding = "8px 10px";
+    btn.style.whiteSpace = "nowrap";
+
+    btn.onclick = async () => {
+      btn.disabled = true;
+      btn.textContent = "מרענן…";
+
+      const activeTab =
+        document.querySelector(".tabs button.active")?.dataset?.tab;
+
+      if (activeTab) {
+        sessionStorage.setItem(
+          "efa_active_tab",
+          activeTab
+        );
+      }
+
+      const badge =
+        document.getElementById("syncBadge");
+
+      if (badge) {
+        badge.textContent = "מרענן נתונים…";
+      }
+
+      try {
+        if (typeof syncOfficial === "function") {
+          await Promise.race([
+            syncOfficial(true),
+            new Promise(resolve =>
+              setTimeout(resolve, 4000)
+            )
+          ]);
+        }
+      } catch (error) {
+        console.log("Official refresh:", error);
+      }
+
+      const url = new URL(window.location.href);
+      url.searchParams.set("refresh", Date.now());
+      window.location.replace(url.toString());
+    };
+
+    const badge =
+      document.getElementById("syncBadge");
+
+    if (badge && badge.parentNode) {
+      badge.parentNode.insertBefore(btn, badge);
+    } else {
+      head.appendChild(btn);
+    }
+  }
+
+  function enhanceMarketRows() {
+    if (
+      typeof players === "undefined" ||
+      typeof model !== "function"
+    ) {
+      return;
+    }
+
+    const byName = new Map(
+      players.map(p => [p.name, p])
+    );
+
+    document
+      .querySelectorAll("#rows tr")
+      .forEach(tr => {
+        const name =
+          tr.querySelector("td.name b")
+            ?.textContent
+            ?.trim();
+
+        if (!name) return;
+
+        const player = byName.get(name);
+        if (!player) return;
+
+        const cell = tr.children[7];
+        if (!cell) return;
+
+        const x = model(player);
+        const value =
+          Number(x.positionMatchPct || 0);
+
+        let line =
+          cell.querySelector(
+            ".position-matchup-line"
+          );
+
+        if (!line) {
+          line = document.createElement("div");
+          line.className =
+            "position-matchup-line";
+          line.style.fontSize = "11px";
+          line.style.fontWeight = "700";
+          line.style.marginTop = "4px";
+          cell.appendChild(line);
+        }
+
+        const text =
+          `עמדה ${pctText(value)}`;
+
+        if (line.textContent !== text) {
+          line.textContent = text;
+        }
+
+        line.style.color =
+          value >= 3
+            ? "var(--accent)"
+            : value <= -3
+              ? "var(--bad)"
+              : "var(--muted)";
+
+        const games =
+          x.positionMatchup?.sampleGames;
+
+        line.title =
+          games
+            ? `מדגם: ${games} משחקים`
+            : "אין מדגם נפרד לעמדה";
+      });
+  }
+
+  function enhanceModal() {
+    if (
+      typeof players === "undefined" ||
+      typeof model !== "function"
+    ) {
+      return;
+    }
+
+    const body =
+      document.getElementById("modalBody");
+
+    if (!body || !body.textContent) return;
+
+    if (
+      body.querySelector(
+        ".position-matchup-modal"
+      )
+    ) {
+      return;
+    }
+
+    const player =
+      players.find(
+        p => body.textContent.includes(p.name)
+      );
+
+    if (!player) return;
+
+    const x = model(player);
+    const value =
+      Number(x.positionMatchPct || 0);
+
+    const box =
+      document.createElement("div");
+
+    box.className =
+      "notice position-matchup-modal";
+    box.style.marginTop = "10px";
+
+    const games =
+      x.positionMatchup?.sampleGames;
+
+    box.textContent =
+      `מאצ׳אפ לפי עמדה (${player.pos}): ` +
+      `${pctText(value)}` +
+      (games
+        ? ` • מדגם ${games} משחקים`
+        : "");
+
+    body.appendChild(box);
+  }
+
+  function restoreTab() {
+    const saved =
+      sessionStorage.getItem(
+        "efa_active_tab"
+      );
+
+    if (!saved) return;
+
+    sessionStorage.removeItem(
+      "efa_active_tab"
+    );
+
+    const button =
+      document.querySelector(
+        `.tabs button[data-tab="${saved}"]`
+      );
+
+    if (button) {
+      button.click();
+    }
+  }
+
+  function start() {
+    addRefreshButton();
+    enhanceMarketRows();
+    enhanceModal();
+
+    const rows =
+      document.getElementById("rows");
+
+    if (rows) {
+      new MutationObserver(() => {
+        requestAnimationFrame(
+          enhanceMarketRows
+        );
+      }).observe(
+        rows,
+        { childList: true }
+      );
+    }
+
+    const modalBody =
+      document.getElementById("modalBody");
+
+    if (modalBody) {
+      new MutationObserver(() => {
+        requestAnimationFrame(
+          enhanceModal
+        );
+      }).observe(
+        modalBody,
+        { childList: true }
+      );
+    }
+
+    setTimeout(restoreTab, 250);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      start
+    );
+  } else {
+    start();
+  }
+})();
