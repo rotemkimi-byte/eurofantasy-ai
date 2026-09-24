@@ -1,0 +1,517 @@
+name: EuroFantasy Recent Form
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "27 */6 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: recent-form
+  cancel-in-progress: true
+
+jobs:
+  recent-form:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install DuckDB
+        run: python -m pip install --disable-pip-version-check duckdb
+
+      - name: Download EuroLeague snapshot
+        run: |
+          curl -L --fail --retry 3 --retry-delay 3 \
+            -o /tmp/euroleague.duckdb \
+            https://raw.githubusercontent.com/McNews11/euroleague-open-data/main/data/euroleague.duckdb
+
+      - name: Build recent form
+        run: |
+          python - <<'PY'
+          import json
+          import re
+          import statistics
+          import unicodedata
+          from collections import defaultdict
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          import duckdb
+
+          DATA = Path("data")
+          DATA.mkdir(exist_ok=True)
+
+          def norm(value):
+              text = unicodedata.normalize(
+                  "NFKD",
+                  str(value or "")
+              )
+              text = "".join(
+                  c for c in text
+                  if not unicodedata.combining(c)
+              )
+              return re.sub(
+                  r"[^a-z0-9]+",
+                  " ",
+                  text.lower()
+              ).strip()
+
+          def fantasy_key(name):
+              raw = str(name or "").strip()
+
+              if "," in raw:
+                  last, first = raw.split(",", 1)
+                  raw = f"{first.strip()} {last.strip()}"
+
+              return norm(raw)
+
+          con = duckdb.connect(
+              "/tmp/euroleague.duckdb",
+              read_only=True
+          )
+
+          rows = con.execute(
+              """
+              SELECT
+                  b.season_code,
+                  b.game_code,
+                  g.utc_date,
+                  p.name,
+                  b.seconds_played,
+                  b.valuation
+              FROM boxscores_player b
+              JOIN games g
+                ON g.season_code = b.season_code
+               AND g.game_code = b.game_code
+              LEFT JOIN players p
+                ON p.person_code = b.person_code
+              WHERE b.season_code IN ('E2025','E2026')
+                AND g.played
+                AND p.name IS NOT NULL
+                AND b.seconds_played >= 300
+                AND b.valuation IS NOT NULL
+              ORDER BY p.name, g.utc_date, b.game_code
+              """
+          ).fetchall()
+
+          con.close()
+
+          grouped = defaultdict(list)
+
+          for (
+              season,
+              game_code,
+              utc_date,
+              name,
+              seconds,
+              valuation
+          ) in rows:
+              try:
+                  minutes = float(seconds) / 60.0
+                  pir = float(valuation)
+              except (TypeError, ValueError):
+                  continue
+
+              if minutes < 5:
+                  continue
+
+              grouped[
+                  fantasy_key(name)
+              ].append({
+                  "season": str(season),
+                  "gameCode": int(game_code),
+                  "date": str(utc_date),
+                  "name": str(name),
+                  "minutes": minutes,
+                  "pir": pir,
+                  "rate": pir / minutes,
+              })
+
+          def avg(sample, field):
+              if not sample:
+                  return None
+              return sum(
+                  g[field] for g in sample
+              ) / len(sample)
+
+          def total_rate(sample):
+              if not sample:
+                  return None
+
+              minutes = sum(
+                  g["minutes"] for g in sample
+              )
+
+              if minutes <= 0:
+                  return None
+
+              return sum(
+                  g["pir"] for g in sample
+              ) / minutes
+
+          output = {}
+
+          for key, games in grouped.items():
+              if not key or not games:
+                  continue
+
+              games.sort(
+                  key=lambda g: (
+                      g["date"],
+                      g["gameCode"]
+                  )
+              )
+
+              latest = games[-1]
+              previous4 = games[-5:-1]
+              last5 = games[-5:]
+              last10 = games[-10:]
+
+              latest_season = latest["season"]
+
+              season_games = [
+                  g for g in games
+                  if g["season"] == latest_season
+              ]
+
+              baseline_games = (
+                  season_games
+                  if len(season_games) >= 3
+                  else games
+              )
+
+              last_rate = latest["rate"]
+              prev4_rate = total_rate(
+                  previous4
+              )
+              baseline_rate = total_rate(
+                  baseline_games
+              )
+
+              pieces = []
+
+              last_reliability = min(
+                  1.0,
+                  latest["minutes"] / 20.0
+              )
+
+              pieces.append((
+                  0.40 * last_reliability,
+                  last_rate
+              ))
+
+              if prev4_rate is not None:
+                  pieces.append((
+                      0.35,
+                      prev4_rate
+                  ))
+
+              if baseline_rate is not None:
+                  pieces.append((
+                      0.25,
+                      baseline_rate
+                  ))
+
+              weight_sum = sum(
+                  w for w, _ in pieces
+              )
+
+              form_rate = sum(
+                  w * rate
+                  for w, rate in pieces
+              ) / weight_sum
+
+              if (
+                  baseline_rate is not None
+                  and baseline_rate > 0
+              ):
+                  form_rate = max(
+                      baseline_rate * 0.65,
+                      min(
+                          baseline_rate * 1.35,
+                          form_rate
+                      )
+                  )
+
+              prev4_minutes = avg(
+                  previous4,
+                  "minutes"
+              )
+
+              baseline_minutes = avg(
+                  baseline_games,
+                  "minutes"
+              )
+
+              minute_parts = [
+                  (0.45, latest["minutes"])
+              ]
+
+              if prev4_minutes is not None:
+                  minute_parts.append((
+                      0.35,
+                      prev4_minutes
+                  ))
+
+              if baseline_minutes is not None:
+                  minute_parts.append((
+                      0.20,
+                      baseline_minutes
+                  ))
+
+              mw = sum(
+                  w for w, _ in minute_parts
+              )
+
+              recent_minutes = sum(
+                  w * minutes
+                  for w, minutes in minute_parts
+              ) / mw
+
+              pir_values = [
+                  g["pir"] for g in last5
+              ]
+
+              sd = (
+                  statistics.pstdev(
+                      pir_values
+                  )
+                  if len(pir_values) >= 2
+                  else 0.0
+              )
+
+              display_name = latest["name"]
+
+              if "," in display_name:
+                  last, first = (
+                      display_name.split(",", 1)
+                  )
+                  display_name = (
+                      f"{first.strip()} "
+                      f"{last.strip()}"
+                  )
+
+              output[key] = {
+                  "name": display_name,
+                  "latestSeason":
+                      latest_season,
+                  "gamesAvailable":
+                      len(games),
+                  "gamesLatestSeason":
+                      len(season_games),
+                  "lastGame": {
+                      "date":
+                          latest["date"],
+                      "pir":
+                          round(
+                              latest["pir"],
+                              2
+                          ),
+                      "minutes":
+                          round(
+                              latest["minutes"],
+                              2
+                          ),
+                      "pirPerMinute":
+                          round(
+                              latest["rate"],
+                              5
+                          ),
+                  },
+                  "previous4": {
+                      "games":
+                          len(previous4),
+                      "avgPir": (
+                          round(
+                              avg(
+                                  previous4,
+                                  "pir"
+                              ),
+                              2
+                          )
+                          if previous4
+                          else None
+                      ),
+                      "avgMinutes": (
+                          round(
+                              prev4_minutes,
+                              2
+                          )
+                          if prev4_minutes
+                          is not None
+                          else None
+                      ),
+                      "pirPerMinute": (
+                          round(
+                              prev4_rate,
+                              5
+                          )
+                          if prev4_rate
+                          is not None
+                          else None
+                      ),
+                  },
+                  "last5": {
+                      "games":
+                          len(last5),
+                      "avgPir":
+                          round(
+                              avg(
+                                  last5,
+                                  "pir"
+                              ),
+                              2
+                          ),
+                      "avgMinutes":
+                          round(
+                              avg(
+                                  last5,
+                                  "minutes"
+                              ),
+                              2
+                          ),
+                      "sdPir":
+                          round(sd, 2),
+                  },
+                  "last10": {
+                      "games":
+                          len(last10),
+                      "avgPir":
+                          round(
+                              avg(
+                                  last10,
+                                  "pir"
+                              ),
+                              2
+                          ),
+                      "avgMinutes":
+                          round(
+                              avg(
+                                  last10,
+                                  "minutes"
+                              ),
+                              2
+                          ),
+                  },
+                  "baseline": {
+                      "games":
+                          len(
+                              baseline_games
+                          ),
+                      "avgPir":
+                          round(
+                              avg(
+                                  baseline_games,
+                                  "pir"
+                              ),
+                              2
+                          ),
+                      "avgMinutes":
+                          round(
+                              baseline_minutes,
+                              2
+                          ),
+                      "pirPerMinute":
+                          round(
+                              baseline_rate,
+                              5
+                          ),
+                  },
+                  "model": {
+                      "formPirPerMinute":
+                          round(
+                              form_rate,
+                              5
+                          ),
+                      "recentMinutes":
+                          round(
+                              recent_minutes,
+                              2
+                          ),
+                      "weights": {
+                          "lastGame":
+                              0.40,
+                          "previous4":
+                              0.35,
+                          "baseline":
+                              0.25,
+                      },
+                  },
+              }
+
+          if len(output) < 100:
+              raise RuntimeError(
+                  "Recent-form extraction "
+                  f"too small: {len(output)}"
+              )
+
+          result = {
+              "players": output,
+              "playerCount":
+                  len(output),
+              "source":
+                  (
+                      "EuroLeague official "
+                      "boxscores via "
+                      "euroleague-open-data "
+                      "snapshot"
+                  ),
+              "method":
+                  (
+                      "PIR/min: last game 40%, "
+                      "previous four 35%, "
+                      "baseline 25%"
+                  ),
+              "updated_at":
+                  datetime.now(
+                      timezone.utc
+                  ).isoformat(),
+          }
+
+          (DATA / "recent-form.json").write_text(
+              json.dumps(
+                  result,
+                  ensure_ascii=False,
+                  indent=2
+              ),
+              encoding="utf-8"
+          )
+
+          print(
+              "Recent form:",
+              len(output),
+              "players"
+          )
+
+          if "sasha vezenkov" in output:
+              print(
+                  "Sasha Vezenkov mapping OK:",
+                  output[
+                      "sasha vezenkov"
+                  ]["lastGame"]
+              )
+          PY
+
+      - name: Save
+        run: |
+          git config user.name "eurofantasy-bot"
+          git config user.email "actions@users.noreply.github.com"
+
+          git add data/recent-form.json
+
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m \
+              "Fix recent form player mapping"
+            git push
+          fi
