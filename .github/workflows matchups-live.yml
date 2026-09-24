@@ -1,0 +1,585 @@
+name: EuroFantasy Live Matchups
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/30 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  matchups:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build live matchup model
+        run: |
+          python - <<'PY'
+          import json
+          import math
+          import re
+          import urllib.request
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          DATA = Path("data")
+          DATA.mkdir(exist_ok=True)
+
+          def get_json(url):
+              req = urllib.request.Request(
+                  url,
+                  headers={
+                      "Accept": "application/json",
+                      "User-Agent": "EuroFantasy-AI/1.0"
+                  }
+              )
+              with urllib.request.urlopen(req, timeout=45) as r:
+                  return json.loads(
+                      r.read().decode("utf-8")
+                  )
+
+          def norm(value):
+              return re.sub(
+                  r"[^a-z0-9]+",
+                  " ",
+                  str(value or "").lower()
+              ).strip()
+
+          def canon(name):
+              n = norm(name)
+
+              rules = [
+                  ("efes", "Anadolu Efes"),
+                  ("armani", "Milano"),
+                  ("milano", "Milano"),
+                  ("milan", "Milano"),
+                  ("besiktas", "Besiktas"),
+                  ("crvena", "Crvena Zvezda"),
+                  ("red star", "Crvena Zvezda"),
+                  ("dubai", "Dubai"),
+                  ("barcelona", "Barcelona"),
+                  ("bayern", "Bayern Munich"),
+                  ("fenerbahce", "Fenerbahce"),
+                  ("hapoel", "Hapoel Tel Aviv"),
+                  ("baskonia", "Baskonia"),
+                  ("asvel", "ASVEL"),
+                  ("maccabi", "Maccabi Tel Aviv"),
+                  ("olympiacos", "Olympiacos"),
+                  ("panathinaikos", "Panathinaikos"),
+                  ("paris", "Paris"),
+                  ("partizan", "Partizan"),
+                  ("real madrid", "Real Madrid"),
+                  ("valencia", "Valencia"),
+                  ("virtus", "Virtus Bologna"),
+                  ("zalgiris", "Zalgiris"),
+              ]
+
+              for key, value in rules:
+                  if key in n:
+                      return value
+
+              return str(name or "").strip()
+
+          def club_name(side):
+              if not isinstance(side, dict):
+                  return ""
+
+              club = side.get("club") or {}
+
+              if isinstance(club, dict):
+                  for key in (
+                      "name",
+                      "clubName",
+                      "clubPermanentName",
+                      "abbreviatedName",
+                      "code",
+                  ):
+                      if club.get(key):
+                          return club[key]
+
+              for key in (
+                  "name",
+                  "clubName",
+                  "teamName",
+              ):
+                  if side.get(key):
+                      return side[key]
+
+              return ""
+
+          def side_score(side):
+              if not isinstance(side, dict):
+                  return None
+
+              for key in ("score", "points", "total"):
+                  value = side.get(key)
+
+                  if isinstance(value, (int, float)):
+                      return float(value)
+
+                  if isinstance(value, dict):
+                      for sub in (
+                          "score",
+                          "points",
+                          "total",
+                      ):
+                          x = value.get(sub)
+                          if isinstance(x, (int, float)):
+                              return float(x)
+
+              return None
+
+          # Weighted team history:
+          # prior season = 1x
+          # current season = 2.5x
+          stats = {}
+
+          def add(team, pf, pa, weight, current):
+              s = stats.setdefault(
+                  team,
+                  {
+                      "pf": 0.0,
+                      "pa": 0.0,
+                      "weight": 0.0,
+                      "games": 0,
+                      "current_games": 0
+                  }
+              )
+
+              s["pf"] += pf * weight
+              s["pa"] += pa * weight
+              s["weight"] += weight
+              s["games"] += 1
+
+              if current:
+                  s["current_games"] += 1
+
+          historical_games = 0
+
+          for season, weight in (
+              ("E2025", 1.0),
+              ("E2026", 2.5),
+          ):
+              try:
+                  payload = get_json(
+                      "https://api-live.euroleague.net/"
+                      "v2/competitions/E/seasons/"
+                      f"{season}/games?limit=500"
+                  )
+
+                  rows = (
+                      payload.get("data", [])
+                      if isinstance(payload, dict)
+                      else []
+                  )
+
+                  for game in rows:
+                      if not game.get("played"):
+                          continue
+
+                      local = game.get("local") or {}
+                      road = game.get("road") or {}
+
+                      hs = side_score(local)
+                      rs = side_score(road)
+
+                      if hs is None or rs is None:
+                          continue
+
+                      home = canon(club_name(local))
+                      away = canon(club_name(road))
+
+                      if not home or not away:
+                          continue
+
+                      current = season == "E2026"
+
+                      add(
+                          home,
+                          hs,
+                          rs,
+                          weight,
+                          current
+                      )
+
+                      add(
+                          away,
+                          rs,
+                          hs,
+                          weight,
+                          current
+                      )
+
+                      historical_games += 1
+
+              except Exception as e:
+                  print(
+                      "EuroLeague season warning:",
+                      season,
+                      e
+                  )
+
+          for team, s in stats.items():
+              w = max(s["weight"], 1)
+
+              s["pf"] /= w
+              s["pa"] /= w
+
+          values = [
+              s["pf"]
+              for s in stats.values()
+              if s["weight"] > 0
+          ]
+
+          league_avg = (
+              sum(values) / len(values)
+              if values
+              else 84.0
+          )
+
+          # Current Fantasy schedule already comes
+          # from the live Fantaking synchronization.
+          with open(
+              DATA / "players.json",
+              encoding="utf-8"
+          ) as f:
+              players = json.load(f)
+
+          schedule = {}
+
+          for p in players:
+              team = canon(p.get("team"))
+              opponent = canon(p.get("opponent"))
+
+              if not team or not opponent:
+                  continue
+
+              schedule[team] = {
+                  "opponent": opponent,
+                  "home": int(p.get("home") or 0)
+              }
+
+          def get_stats(team):
+              return stats.get(
+                  team,
+                  {
+                      "pf": league_avg,
+                      "pa": league_avg,
+                      "games": 0,
+                      "current_games": 0
+                  }
+              )
+
+          def normal_cdf(x, mean, sd=11.5):
+              z = (
+                  (x - mean) /
+                  (sd * math.sqrt(2))
+              )
+              return 0.5 * (
+                  1 + math.erf(z)
+              )
+
+          matchups = {}
+
+          for team, fixture in schedule.items():
+              opponent = fixture["opponent"]
+              home = fixture["home"] == 1
+
+              ts = get_stats(team)
+              os = get_stats(opponent)
+
+              home_edge = 1.6 if home else -1.6
+
+              team_points = (
+                  league_avg
+                  + 0.50 * (ts["pf"] - league_avg)
+                  + 0.50 * (os["pa"] - league_avg)
+                  + home_edge
+              )
+
+              opp_points = (
+                  league_avg
+                  + 0.50 * (os["pf"] - league_avg)
+                  + 0.50 * (ts["pa"] - league_avg)
+                  - home_edge
+              )
+
+              margin = team_points - opp_points
+              total = team_points + opp_points
+
+              win_prob = 1 / (
+                  1 + math.exp(-margin / 7.2)
+              )
+
+              matchups[team] = {
+                  "opponent": opponent,
+                  "home": home,
+                  "margin": round(margin, 2),
+                  "total": round(total, 2),
+                  "teamPoints": round(
+                      team_points,
+                      2
+                  ),
+                  "winProb": round(
+                      win_prob,
+                      5
+                  ),
+
+                  "p20": round(
+                      1 - normal_cdf(
+                          20,
+                          margin
+                      ),
+                      5
+                  ),
+
+                  "p11_20": round(
+                      normal_cdf(
+                          20,
+                          margin
+                      ) -
+                      normal_cdf(
+                          10,
+                          margin
+                      ),
+                      5
+                  ),
+
+                  "p1_10": round(
+                      normal_cdf(
+                          10,
+                          margin
+                      ) -
+                      normal_cdf(
+                          0,
+                          margin
+                      ),
+                      5
+                  ),
+
+                  "l1_10": round(
+                      normal_cdf(
+                          0,
+                          margin
+                      ) -
+                      normal_cdf(
+                          -10,
+                          margin
+                      ),
+                      5
+                  ),
+
+                  "l11_20": round(
+                      normal_cdf(
+                          -10,
+                          margin
+                      ) -
+                      normal_cdf(
+                          -20,
+                          margin
+                      ),
+                      5
+                  ),
+
+                  "l20": round(
+                      normal_cdf(
+                          -20,
+                          margin
+                      ),
+                      5
+                  ),
+
+                  "sampleGames":
+                      ts.get("games", 0),
+
+                  "currentSeasonGames":
+                      ts.get(
+                          "current_games",
+                          0
+                      ),
+
+                  "source":
+                      "EuroLeague model"
+              }
+
+          games = []
+          seen = set()
+
+          for team, m in matchups.items():
+              if not m["home"]:
+                  continue
+
+              opponent = m["opponent"]
+
+              key = tuple(
+                  sorted(
+                      (team, opponent)
+                  )
+              )
+
+              if key in seen:
+                  continue
+
+              seen.add(key)
+
+              games.append({
+                  "home": team,
+                  "away": opponent,
+                  "homeMargin":
+                      m["margin"],
+                  "total":
+                      m["total"],
+                  "homeWinProb":
+                      m["winProb"],
+                  "awayWinProb":
+                      round(
+                          1 - m["winProb"],
+                          5
+                      )
+              })
+
+          core = {
+              "matchups": matchups,
+              "games": games,
+              "historical_games":
+                  historical_games,
+              "source":
+                  "EuroLeague official API + Fantaking"
+          }
+
+          target = DATA / "matchups.json"
+
+          old_core = None
+
+          if target.exists():
+              try:
+                  old = json.loads(
+                      target.read_text(
+                          encoding="utf-8"
+                      )
+                  )
+
+                  old_core = {
+                      key: old.get(key)
+                      for key in core
+                  }
+
+              except Exception:
+                  pass
+
+          if old_core == core:
+              print(
+                  "No matchup changes"
+              )
+
+          else:
+              result = {
+                  **core,
+                  "updated_at":
+                      datetime.now(
+                          timezone.utc
+                      ).isoformat()
+              }
+
+              target.write_text(
+                  json.dumps(
+                      result,
+                      ensure_ascii=False,
+                      indent=2
+                  ),
+                  encoding="utf-8"
+              )
+
+              print(
+                  "Updated",
+                  len(matchups),
+                  "matchups"
+              )
+          PY
+
+      - name: Create matchup live loader
+        run: |
+          cat > matchup-live.js <<'EOF'
+          (async () => {
+            try {
+              const response = await fetch(
+                "./data/matchups.json?t=" +
+                Date.now(),
+                { cache: "no-store" }
+              );
+
+              if (!response.ok) {
+                throw new Error(
+                  "matchups.json HTTP " +
+                  response.status
+                );
+              }
+
+              const data =
+                await response.json();
+
+              const live =
+                data.matchups || {};
+
+              for (
+                const [team, value]
+                of Object.entries(live)
+              ) {
+                if (!MATCHUPS[team]) {
+                  MATCHUPS[team] = {};
+                }
+
+                Object.assign(
+                  MATCHUPS[team],
+                  value
+                );
+              }
+
+              if (
+                Array.isArray(data.games)
+                && Array.isArray(GAMES)
+              ) {
+                GAMES.splice(
+                  0,
+                  GAMES.length,
+                  ...data.games
+                );
+              }
+
+              renderAll();
+
+              console.log(
+                "Live matchups loaded:",
+                Object.keys(live).length
+              );
+
+            } catch (error) {
+              console.error(
+                "Live matchup error:",
+                error
+              );
+            }
+          })();
+          EOF
+
+      - name: Connect live matchups to site
+        run: |
+          grep -q 'src="./matchup-live.js"' index.html || sed -i 's#</body></html>#<script src="./matchup-live.js"></script></body></html>#' index.html
+
+      - name: Save
+        run: |
+          git config user.name "eurofantasy-bot"
+          git config user.email "actions@users.noreply.github.com"
+
+          git add data/ matchup-live.js index.html
+
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Auto update EuroLeague matchups"
+            git push
+          fi
