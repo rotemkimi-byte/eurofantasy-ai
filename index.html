@@ -79,7 +79,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
 <section id="data" class="tab">
 <div class="card"><div class="syncBox"><div><h3>סנכרון נתוני EuroLeague</h3><p class="muted">האתר מנסה לטעון אוטומטית סטטיסטיקות רשמיות של 2025/26 ו־2026/27. לפני משחקי המחזור הראשון הוא נשען בעיקר על העונה הקודמת ועל מחיר הפנטזי כ-prior.</p></div><button id="syncBtn">סנכרן עכשיו</button></div><div id="syncStatus" class="notice"></div></div>
 <div class="card"><h3>ייבוא CSV ידני</h3><p class="muted">נשאר כגיבוי למחירים/פציעות. קובץ חדש מחליף את רשימת השחקנים המקומית.</p><input id="csvFile" type="file" accept=".csv,text/csv"><button class="secondary" id="resetSeed" style="margin-top:10px">חזור לנתוני Round 1 המובנים</button></div>
-<div class="card"><h3>איך התחזית מחושבת?</h3><div class="notice">מחיר השחקן משמש נקודת מוצא; משחקי העונה מעדכנים אותה בהדרגה (משחק אחד מקבל משקל 20%). דקות, זמינות ומאצ׳אפ מתווספים לתחזית. *הטווח נגזר מאחוזוני שגיאות לפי עמדה במחזור שנבדק; הוא ראשוני ואינו הבטחה לדיוק עתידי. איכות הנתונים מתארת את גודל המדגם והזמינות, ולא הסתברות שהתחזית תצליח. אם בדיקת העבר אינה זמינה, הטווח הוא אומדן נוסחתי.</div><div id="forecastValidation" class="notice" style="margin-top:10px">טוען בדיקת תחזיות…</div></div>
+<div class="card"><h3>איך התחזית מחושבת?</h3><div class="notice">מחיר השחקן משמש נקודת מוצא; משחקי העונה מעדכנים אותה בהדרגה (משחק אחד מקבל משקל 20%). דקות, סטטוס השחקן, היעדרות כוכבים בקבוצתו, בית/חוץ בתוך תחזית נקודות הקבוצה, והגנת היריבה מול העמדה מתווספים לתחזית. היעדרות כוכבים היא התאמה שמרנית לפי מחיר ועמדה; אין נתוני שומר אישי מאומתים, ולכן אינו נכלל. *הטווח נגזר מאחוזוני שגיאות לפי עמדה במחזור שנבדק; הוא ראשוני ואינו הבטחה לדיוק עתידי. איכות הנתונים מתארת את גודל המדגם והזמינות, ולא הסתברות שהתחזית תצליח. אם בדיקת העבר אינה זמינה, הטווח הוא אומדן נוסחתי.</div><div id="forecastValidation" class="notice" style="margin-top:10px">טוען בדיקת תחזיות…</div></div>
 </section>
 </main>
 <footer>EuroFantasy AI v2 • נתוני שוק הם snapshot למחזור 1, 24.9.2026 • לא כלי הימורים</footer>
@@ -190,17 +190,42 @@ function officialFor(p){
   const c=official.current?.[k]||null, pr=official.prior?.[k]||null;
   return {c,pr};
 }
-function teammates(p){return players.filter(x=>x.team===p.team&&x.pos===p.pos&&x.name!==p.name)}
-function injuryMinuteBoost(p){
-  if(p.status!=="active")return 0;
-  const mates=teammates(p); let raw=0;
-  for(const m of mates){if(m.status==="out")raw+=1.7;else if(m.status==="questionable")raw+=0.6}
-  const same=players.filter(x=>x.team===p.team&&x.pos===p.pos&&x.status==="active").map(x=>+x.price).sort((a,b)=>a-b);
-  const med=same.length?same[Math.floor(same.length/2)]:+p.price;
-  raw*=+p.price>=med?1.15:.8;
-  return clamp(raw,0,4.5);
+function canonicalTeam(team){
+  const n=normName(team);
+  const names=[
+    ["efes","Anadolu Efes"],["armani","Milano"],["milan","Milano"],
+    ["besiktas","Besiktas"],["crvena","Crvena Zvezda"],
+    ["dubai","Dubai"],["barcelona","Barcelona"],["bayern","Bayern Munich"],
+    ["fenerbahce","Fenerbahce"],["hapoel","Hapoel Tel Aviv"],
+    ["baskonia","Baskonia"],["asvel","ASVEL"],["maccabi","Maccabi Tel Aviv"],
+    ["olympiacos","Olympiacos"],["panathinaikos","Panathinaikos"],
+    ["paris","Paris"],["partizan","Partizan"],["real madrid","Real Madrid"],
+    ["valencia","Valencia"],["virtus","Virtus Bologna"],["zalgiris","Zalgiris"]
+  ];
+  return names.find(([key])=>n.includes(key))?.[1]||team;
 }
-function matchup(p){return MATCHUPS[p.team]||{opponent:p.opponent,winProb:.5,margin:0,total:168,teamPoints:84,p20:.08,p11_20:.16,p1_10:.26,l1_10:.26,l11_20:.16,l20:.08}}
+function injuryOpportunity(p){
+  if(p.status!=="active")return {minutes:0,usagePct:0,missingStars:[]};
+  let minutes=0,usagePct=0;const missingStars=[];
+  for(const mate of players){
+    if(mate.team!==p.team||mate.name===p.name||!(mate.status==="out"||mate.status==="questionable"))continue;
+    // Fantasy price proxies for a teammate's role; uncertain absences count less.
+    const star=clamp((Number(mate.price)-8)/7,0,1);
+    if(star<=0)continue;
+    const absence=mate.status==="out"?1:clamp(1-Number(mate.probability_of_playing??.5),.2,.75);
+    const role=clamp((Number(p.price)-5)/8,.35,1);
+    const samePosition=mate.pos===p.pos;
+    minutes+=star*absence*role*(samePosition?2.2:.7);
+    usagePct+=star*absence*role*(samePosition?2.4:1.2);
+    if(star*absence>=.25)missingStars.push(mate.name);
+  }
+  return {minutes:clamp(minutes,0,4),usagePct:clamp(usagePct,0,6),missingStars};
+}
+function matchup(p){
+  const live=MATCHUPS[canonicalTeam(p.team)];
+  return live||{opponent:p.opponent,home:!!p.home,winProb:.5,margin:0,total:168,
+    teamPoints:p.home?85.5:82.5,p20:.08,p11_20:.16,p1_10:.26,l1_10:.26,l11_20:.16,l20:.08};
+}
 function model(p){
   const {c,pr}=officialFor(p);
   let source="price-prior", basePir=+p.price*.93, baseMin=+p.price>=14?27:+p.price>=10?23:+p.price>=7?19:14, gp=0;
@@ -212,7 +237,8 @@ function model(p){
     source="2026/27 blend";gp=c.games;
   }
   baseMin=clamp(baseMin||18,5,35);
-  let pmin=baseMin+injuryMinuteBoost(p);
+  const opportunity=injuryOpportunity(p);
+  let pmin=baseMin+opportunity.minutes;
   if(p.status==="questionable")pmin*=.82;
   if(p.status==="out")pmin=0;
   const m=matchup(p);
@@ -220,20 +246,20 @@ function model(p){
   if(m.margin>=10&&+p.price<=7)pmin*=1.05;
   pmin=clamp(pmin,0,36);
   const env=clamp(1+(m.teamPoints-84)*.006,.92,1.08);
-  const expected=p.status==="out"?0:Math.max(0,basePir*(pmin/baseMin)*env);
+  const expected=p.status==="out"?0:Math.max(0,basePir*(pmin/baseMin)*env*(1+opportunity.usagePct/100));
   let conf=source==="price-prior"?38:68;
   if(source==="2026/27 blend")conf+=Math.min(15,gp*2.5);
   if(pr?.games>=15)conf+=7;
   if(p.status==="questionable")conf-=22;
   if(p.status==="out")conf=95;
-  if(Math.abs(injuryMinuteBoost(p))>2)conf-=5;
+  if(opportunity.minutes>2)conf-=5;
   conf=clamp(conf,25,94);
   const u=1-conf/100;
   const floor=expected*(.76-.18*u);
   const ceiling=expected*(1.28+.30*u);
   const value=expected/Math.max(.1,+p.price);
   const matchPct=(env-1)*100;
-  return {expected,floor,ceiling,value,confidence:conf,minutes:pmin,basePir,baseMin,source,matchPct,match:m,injuryBoost:injuryMinuteBoost(p)};
+  return {expected,floor,ceiling,value,confidence:conf,minutes:pmin,basePir,baseMin,source,matchPct,match:m,injuryBoost:opportunity.minutes,injuryUsagePct:opportunity.usagePct,missingStars:opportunity.missingStars};
 }
 function isSelected(p){return myTeam.includes(p.name)}
 function toggle(name){myTeam=isSelected({name})?myTeam.filter(x=>x!==name):[...myTeam,name];save();renderAll()}
@@ -259,7 +285,7 @@ window.showPlayer=function(name){
   <div class="miniCard"><b>${pct(m.winProb)}</b><small> סיכוי קבוצתי לניצחון</small></div><div class="miniCard"><b>${pct(m.p20)}</b><small> סיכוי 20+ מודל</small></div>
   <div class="miniCard"><b>${x.matchPct>=0?"+":""}${x.matchPct.toFixed(1)}%</b><small> סביבת מאצ׳אפ</small></div><div class="miniCard"><b>${x.source}</b><small> מקור בסיס התחזית</small></div>
   </div>
-  <p class="notice" style="margin-top:12px">בסיס PIR: ${n1(x.basePir)} • בסיס דקות: ${n1(x.baseMin)} • השפעת חוסרים באותה עמדה: +${n1(x.injuryBoost)} דקות. קו קבוצה: ${m.margin>=0?"+":""}${n1(m.margin)}; טוטאל: ${n1(m.total)}. *${x.rangeSample?`טווח המבוסס על ${x.rangeSample} שגיאות בעמדה במחזור אחד; אינו טווח ביטחון מאומת.`:"טווח נוסחתי שטרם אומת."}</p>`;
+  <p class="notice" style="margin-top:12px">בסיס PIR: ${n1(x.basePir)} • בסיס דקות: ${n1(x.baseMin)} • חוסרים בקבוצה: +${n1(x.injuryBoost)} דקות, +${n1(x.injuryUsagePct||0)}% נפח משחק${x.missingStars?.length?` (${x.missingStars.map(esc).join(", ")})`:""}. ${m.home?"בית":"חוץ"} • צפי נקודות קבוצה: ${n1(m.teamPoints)} • הגנת היריבה מול העמדה: ${Number(x.positionMatchPct||0)>=0?"+":""}${n1(x.positionMatchPct||0)}%. קו קבוצה: ${m.margin>=0?"+":""}${n1(m.margin)}; טוטאל: ${n1(m.total)}. *${x.rangeSample?`טווח המבוסס על ${x.rangeSample} שגיאות בעמדה במחזור אחד; אינו טווח ביטחון מאומת.`:"טווח נוסחתי שטרם אומת."}</p>`;
   playerModal.showModal();
 }
 function renderTeam(){
@@ -453,13 +479,9 @@ if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
       );
 
     const valid = value => {
+      if (value === null || value === undefined || value === "") return null;
       const n = Number(value);
-
-      return (
-        Number.isFinite(n)
-        ? n
-        : null
-      );
+      return Number.isFinite(n) ? n : null;
     };
 
     function pricePriorMinutes(
@@ -686,6 +708,7 @@ if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
                 )
               * teamFactor
               * positionFactor
+              * (1 + Number(x.injuryUsagePct || 0) / 100)
             );
 
       return {
@@ -841,7 +864,8 @@ if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
         rate
         * minutes
         * prior.teamFactor
-        * prior.positionFactor;
+        * prior.positionFactor
+        * (1 + Number(x.injuryUsagePct || 0) / 100);
 
       const expected =
         prior.expected
