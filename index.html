@@ -19,13 +19,15 @@ main{max-width:1200px;margin:auto;padding:14px}.card{background:linear-gradient(
 dialog{width:min(620px,94vw);border:1px solid var(--line);border-radius:18px;background:#11151a;color:var(--text);padding:0}dialog::backdrop{background:#000a}.modal{padding:18px}.close{float:left;background:var(--card2);color:var(--text);border:1px solid var(--line)}.detailGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:12px}
 footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
 @media(max-width:780px){.hero{grid-template-columns:1fr}.filters{grid-template-columns:1fr 1fr}.grid2,.grid3{grid-template-columns:1fr}.metricRow{grid-template-columns:1fr 1fr}.tabs{top:72px}main{padding:10px}.card{border-radius:15px}}
+.sectionTitle{margin:8px 0 10px;font-size:15px;color:var(--accent)}.dataGroup{background:#10151b;border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:12px}.dataGroup.actual{border-color:#456086}.dataGroup.actual .sectionTitle{color:var(--blue)}.dataGroup .metricRow{margin-top:0}.marketHelp{margin:0 0 10px;font-size:12px}.marketTable th:nth-child(n+3):nth-child(-n+9){font-size:11px}
+@media(max-width:780px){header{position:relative;padding:12px}.head{flex-wrap:wrap}.head h1{font-size:21px}.badge{font-size:10px}.tabs{top:0}.hero h2{font-size:19px}.stats{gap:5px}.stat{padding:8px}.stat b{font-size:17px}.filters{grid-template-columns:1fr 1fr}.filters #search{grid-column:1/-1}.marketTable{min-width:0}.marketTable thead{display:none}.marketTable,.marketTable tbody,.marketTable tr,.marketTable td{display:block;width:100%}.marketTable tr{position:relative;background:var(--card2);border:1px solid var(--line);border-radius:14px;margin:0 0 10px;padding:11px}.marketTable td{border:0;padding:3px 0}.marketTable td.name{padding-left:90px}.marketTable td.name b{font-size:15px}.marketTable td:nth-child(2){position:absolute;top:12px;left:12px;color:var(--accent);font-weight:800}.marketTable td:nth-child(2)::after{content:' קרדיט';font-size:10px}.marketTable td:nth-child(4){font-size:19px;font-weight:800;margin-top:8px}.marketTable td:nth-child(4)::before{content:'תחזית PIR  ';display:block;font-size:11px;font-weight:400;color:var(--muted)}.marketTable td:nth-child(3),.marketTable td:nth-child(5),.marketTable td:nth-child(6),.marketTable td:nth-child(7),.marketTable td:nth-child(8){display:none}.marketTable td:nth-child(9){font-size:11px}.marketTable td:last-child{position:absolute;left:10px;bottom:10px}.marketTable td:last-child button{padding:7px 10px}.detailGrid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
 <header><div class="head"><div><div class="eyebrow">EUROLEAGUE FANTASY AGENT • V2</div><h1>EuroFantasy AI</h1></div><div class="badge" id="syncBadge">טוען נתונים…</div></div></header>
 <main>
 <section class="card hero">
-<div><h2>פציעות + מאצ׳אפים + Floor/Ceiling + Confidence</h2><p class="muted">המודל משלב מחיר פנטזי, נתוני EuroLeague רשמיים, דקות, זמינות, סביבת משחק והסתברויות שוק.</p></div>
+<div><h2>ההחלטות למחזור הקרוב</h2><p class="muted">בחר שחקן כדי לראות בנפרד את התוצאות שלו בעונת 2026/27 ואת התחזית למשחק הבא.</p></div>
 <div class="stats"><div class="stat"><b id="cntPlayers">0</b><span>שחקנים</span></div><div class="stat"><b id="teamCost">0.0</b><span>עלות הסגל</span></div><div class="stat"><b id="teamProj">0.0</b><span>PIR צפוי</span></div></div>
 </section>
 
@@ -41,7 +43,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
 <select id="statusFilter"><option value="">כל הסטטוסים</option><option value="active">פעיל</option><option value="questionable">בספק</option><option value="out">בחוץ</option></select>
 <select id="sort"><option value="projection">PIR צפוי</option><option value="value">Value</option><option value="confidence">Confidence</option><option value="minutes">דקות צפויות</option><option value="price">מחיר</option></select>
 </div>
-<div class="card tablewrap"><table><thead><tr><th>שחקן</th><th>מחיר</th><th>דק׳</th><th>Expected</th><th>Floor–Ceiling</th><th>Value</th><th>Confidence</th><th>מאצ׳אפ</th><th>סטטוס</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
+<p class="marketHelp muted">בשוק מוצגת תחזית למחזור הבא. לחץ על שחקן כדי לראות ביצועים בפועל, דקות והסבר לתחזית.</p><div class="card tablewrap"><table class="marketTable"><thead><tr><th>שחקן</th><th>מחיר</th><th>דק׳ צפויות</th><th>PIR צפוי</th><th>טווח תחזית</th><th>תמורה למחיר</th><th>ביטחון בתחזית</th><th>מאצ׳אפ</th><th>סטטוס</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
 </section>
 
 <section id="team" class="tab"><div class="card"><div class="sectionHead"><div><h3>הסגל שלי</h3><p class="muted">לחץ על שחקן בשוק כדי להוסיף. הנתונים נשמרים במכשיר.</p></div><button class="secondary" id="clearTeam">נקה</button></div><div id="teamCards" class="grid2"></div></div>
