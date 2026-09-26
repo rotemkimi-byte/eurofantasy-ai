@@ -170,6 +170,49 @@
     const value =
       Number(x.positionMatchPct || 0);
 
+    const grid = body.querySelector('.detailGrid');
+    if (grid && !body.querySelector('.actual-results')) {
+      const recent = x.recentForm;
+      const current = recent?.latestSeason === 'E2026' && Number(recent.currentSeasonGames) > 0;
+      const actual = document.createElement('section');
+      actual.className = 'dataGroup actual actual-results';
+      const heading = document.createElement('h3');
+      heading.className = 'sectionTitle';
+      heading.textContent = 'בפועל · עונת 2026/27';
+      actual.appendChild(heading);
+      const metrics = document.createElement('div');
+      metrics.className = 'metricRow';
+      const items = current ? [
+        ['משחק אחרון · PIR', recent.lastGame?.pir],
+        ['משחק אחרון · דקות', recent.lastGame?.minutes],
+        [`ממוצע ${recent.last5?.games || 0} אחרונים · PIR`, recent.last5?.avgPir],
+        ['משחקים העונה', recent.currentSeasonGames]
+      ] : [];
+      if (items.length) {
+        for (const [label, value] of items) {
+          const tile = document.createElement('div');
+          tile.className = 'metric';
+          const num = document.createElement('b');
+          num.textContent = value == null || !Number.isFinite(Number(value)) ? '—' : Number(value).toFixed(label === 'משחקים העונה' ? 0 : 1);
+          const caption = document.createElement('span');
+          caption.textContent = label;
+          tile.append(num, caption);
+          metrics.appendChild(tile);
+        }
+        actual.appendChild(metrics);
+      } else {
+        const empty = document.createElement('p');
+        empty.className = 'muted';
+        empty.textContent = 'אין עדיין נתוני משחק מאומתים לעונה הנוכחית.';
+        actual.appendChild(empty);
+      }
+      grid.before(actual);
+      const forecast = document.createElement('h3');
+      forecast.className = 'sectionTitle';
+      forecast.textContent = 'תחזית · המשחק הבא';
+      grid.before(forecast);
+    }
+
     const box =
       document.createElement("div");
 
@@ -223,13 +266,21 @@
 
         if (!recent) return;
 
-        const chips =
-          card.querySelector(".chips");
-
+        const chips = card.querySelector('.chips');
         if (!chips) return;
+        let actualGroup = card.querySelector('.team-actual');
+        if (!actualGroup) {
+          actualGroup = document.createElement('div');
+          actualGroup.className = 'dataGroup actual team-actual';
+          const title = document.createElement('div');
+          title.className = 'sectionTitle';
+          title.textContent = 'בפועל · 2026/27';
+          actualGroup.appendChild(title);
+          chips.after(actualGroup);
+        }
 
         let lastChip =
-          chips.querySelector(
+          actualGroup.querySelector(
             ".recent-last-chip"
           );
 
@@ -240,11 +291,11 @@
             );
           lastChip.className =
             "chip recent-last-chip";
-          chips.appendChild(lastChip);
+          actualGroup.appendChild(lastChip);
         }
 
         let avg5Chip =
-          chips.querySelector(
+          actualGroup.querySelector(
             ".recent-avg5-chip"
           );
 
@@ -255,26 +306,19 @@
             );
           avg5Chip.className =
             "chip recent-avg5-chip";
-          chips.appendChild(avg5Chip);
+          actualGroup.appendChild(avg5Chip);
         }
 
-        const last =
-          Number(
-            recent.lastGame?.pir
-          );
-
-        const avg5 =
-          Number(
-            recent.last5?.avgPir
-          );
+        const last = recent.lastGame?.pir == null ? NaN : Number(recent.lastGame.pir);
+        const avg5 = recent.last5?.avgPir == null ? NaN : Number(recent.last5.avgPir);
 
         lastChip.textContent =
-          Number.isFinite(last)
+          recent.latestSeason === 'E2026' && Number(recent.currentSeasonGames) > 0 && Number.isFinite(last)
             ? `אחרון ${last.toFixed(1)} PIR`
             : "אחרון —";
 
         avg5Chip.textContent =
-          Number.isFinite(avg5)
+          recent.latestSeason === 'E2026' && Number(recent.currentSeasonGames) > 0 && Number.isFinite(avg5)
             ? `5 אחרונים ${avg5.toFixed(1)}`
             : "5 אחרונים —";
       });
