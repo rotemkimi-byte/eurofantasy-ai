@@ -4,6 +4,13 @@
     return `${n >= 0 ? "+" : ""}${n.toFixed(1)}%`;
   };
 
+  function pirChange(recent) {
+    if (recent?.latestSeason !== 'E2026' || Number(recent.previous4?.games) < 1) return null;
+    const last = Number(recent.lastGame?.pir);
+    const previous = Number(recent.previous4?.avgPir);
+    return Number.isFinite(last) && Number.isFinite(previous) ? last - previous : null;
+  }
+
   function addRefreshButton() {
     if (document.getElementById("refreshAllBtn")) return;
 
@@ -186,6 +193,8 @@
         ['משחק אחרון · PIR', recent.lastGame?.pir],
         ['משחק אחרון · דקות', recent.lastGame?.minutes],
         [`ממוצע ${recent.last5?.games || 0} אחרונים · PIR`, recent.last5?.avgPir],
+        [`ממוצע ${recent.last5?.games || 0} אחרונים · דקות`, recent.last5?.avgMinutes],
+        [`שינוי PIR מול ${recent.previous4?.games || 0} קודמים`, pirChange(recent)],
         ['משחקים העונה', recent.currentSeasonGames]
       ] : [];
       if (items.length) {
@@ -193,7 +202,7 @@
           const tile = document.createElement('div');
           tile.className = 'metric';
           const num = document.createElement('b');
-          num.textContent = value == null || !Number.isFinite(Number(value)) ? '—' : Number(value).toFixed(label === 'משחקים העונה' ? 0 : 1);
+          num.textContent = value == null || !Number.isFinite(Number(value)) ? '—' : `${label.startsWith('שינוי') && Number(value) > 0 ? '+' : ''}${Number(value).toFixed(label === 'משחקים העונה' ? 0 : 1)}`;
           const caption = document.createElement('span');
           caption.textContent = label;
           tile.append(num, caption);
@@ -309,6 +318,20 @@
           actualGroup.appendChild(avg5Chip);
         }
 
+        let minutesChip = actualGroup.querySelector('.recent-minutes-chip');
+        if (!minutesChip) {
+          minutesChip = document.createElement('span');
+          minutesChip.className = 'chip recent-minutes-chip';
+          actualGroup.appendChild(minutesChip);
+        }
+
+        let changeChip = actualGroup.querySelector('.recent-change-chip');
+        if (!changeChip) {
+          changeChip = document.createElement('span');
+          changeChip.className = 'chip recent-change-chip';
+          actualGroup.appendChild(changeChip);
+        }
+
         const last = recent.lastGame?.pir == null ? NaN : Number(recent.lastGame.pir);
         const avg5 = recent.last5?.avgPir == null ? NaN : Number(recent.last5.avgPir);
 
@@ -321,6 +344,13 @@
           recent.latestSeason === 'E2026' && Number(recent.currentSeasonGames) > 0 && Number.isFinite(avg5)
             ? `5 אחרונים ${avg5.toFixed(1)}`
             : "5 אחרונים —";
+        const current = recent.latestSeason === 'E2026' && Number(recent.currentSeasonGames) > 0;
+        const lastMinutes = Number(recent.lastGame?.minutes);
+        minutesChip.textContent = current && recent.lastGame?.minutes != null && Number.isFinite(lastMinutes)
+          ? `דקות במשחק האחרון ${lastMinutes.toFixed(1)}` : 'דקות במשחק האחרון —';
+        const change = pirChange(recent);
+        changeChip.textContent = change == null ? 'שינוי PIR —' : `שינוי PIR ${change >= 0 ? '+' : ''}${change.toFixed(1)}`;
+        changeChip.title = change == null ? 'דרושים לפחות שני משחקים בעונה הנוכחית' : `לעומת ממוצע ${recent.previous4.games} המשחקים הקודמים בעונה הנוכחית`;
       });
   }
 
