@@ -66,7 +66,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
 <section id="team" class="tab"><div class="card"><div class="sectionHead"><div><h3>הסגל שלי</h3><p class="muted">לחץ על שחקן בשוק כדי להוסיף. הנתונים נשמרים במכשיר.</p></div><button class="secondary" id="clearTeam">נקה</button></div><div id="teamCards" class="grid2"></div></div>
 <div class="card"><h3>איפה הקרדיט הבא נותן הכי הרבה?</h3><div class="grid3"><label>קרדיט נוסף<input id="extraCredit" type="number" step=".1" value="0"></label><label>סף איכות נתונים פנימי<input id="minConf" type="number" value="45"></label><div style="align-self:end"><button id="findUpgrade">מצא שדרוג</button></div></div><div id="upgradeList" class="rank" style="margin-top:12px"></div></div></section>
 
-<section id="captain" class="tab"><div class="card"><h3>דירוג קפטן</h3><p class="muted">משקלל תחזית PIR, טווח עליון ואיכות נתונים.</p><div id="captainList" class="rank"></div></div></section>
+<section id="captain" class="tab"><div class="card"><h3>דירוג קפטן</h3><p class="muted">מדורג לפי תחזית PIR למשחק הקרוב. הגבול העליון מציג תרחיש אפשרי ואינו מגדיל את ציון הדירוג. מאמנים ושחקנים בחוץ אינם מועמדים.</p><div id="captainList" class="rank"></div></div></section>
 
 <section id="coach" class="tab"><div class="card"><div class="sectionHead"><div><h3>מאמנים — תוחלת לפי הפרש</h3><p class="muted">כולל נקודות שליליות בהפסדים. הסתברויות 11+/20+ הן מודל נורמלי סביב קו השוק.</p></div><label style="max-width:130px">תקציב מאמן<input id="coachBudget" type="number" step=".1" value="10"></label></div><div id="coachList" class="rank"></div></div></section>
 
@@ -294,7 +294,7 @@ function renderTeam(){
   document.getElementById("teamCost").textContent=n1(cost);document.getElementById("teamProj").textContent=n1(proj);
 }
 function renderCaptain(){
-  const arr=myTeam.map(n=>players.find(p=>p.name===n)).filter(Boolean).map(p=>{const x=model(p);const score=x.expected*.55+x.ceiling*.30+(x.confidence/100)*x.expected*.15;return {p,x,score}}).sort((a,b)=>b.score-a.score);
+  const arr=myTeam.map(n=>players.find(p=>p.name===n)).filter(p=>p&&["G","F","C"].includes(p.pos)&&p.status!=="out").map(p=>({p,x:model(p)})).sort((a,b)=>b.x.expected-a.x.expected);
   document.getElementById("captainList").innerHTML=arr.map((z,i)=>`<div class="rankItem"><div class="rankNo">${i+1}</div><div><b>${esc(z.p.name)}</b><br><small>${esc(z.p.team)} • ${n1(z.x.minutes)} דק׳ • ${dataQuality(z.p,z.x)}</small></div><div><b>${n1(z.x.expected)}</b><br><small>גבול עליון ${n1(z.x.ceiling)}</small></div></div>`).join("")||`<p class="muted">בחר סגל כדי לקבל דירוג.</p>`;
 }
 function coachExpected(team){
@@ -497,107 +497,39 @@ if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
     }
 
     function currentRate(recent) {
-      const last =
-        valid(
-          recent.lastGame
-            ?.pirPerMinute
-        );
-
-      const prev =
-        valid(
-          recent.previous4
-            ?.pirPerMinute
-        );
-
       const season =
         valid(
           recent.season
             ?.pirPerMinute
         );
-
-      const parts = [];
-
-      if (last !== null) {
-        parts.push([0.45, last]);
-      }
-
-      if (prev !== null) {
-        parts.push([0.35, prev]);
-      }
-
-      if (season !== null) {
-        parts.push([0.20, season]);
-      }
-
-      const total =
-        parts.reduce(
-          (sum, [w]) =>
-            sum + w,
-          0
-        );
-
-      if (!total) return null;
-
-      return (
-        parts.reduce(
-          (sum, [w, v]) =>
-            sum + w * v,
-          0
-        ) / total
-      );
+      if (season === null) return null;
+      const last5 = recent.last5;
+      const count = Number(last5?.games || 0);
+      const avgPir = valid(last5?.avgPir);
+      const avgMinutes = valid(last5?.avgMinutes);
+      // With fewer than five games, the season and recent samples overlap.
+      // Once there are more than five, give limited weight to recent form.
+      if (Number(recent.currentSeasonGames || 0) <= 5 ||
+          count < 5 || avgPir === null || avgMinutes === null ||
+          avgMinutes <= 0) return season;
+      return season * 0.7 + (avgPir / avgMinutes) * 0.3;
     }
 
     function currentMinutes(
       recent
     ) {
-      const last =
-        valid(
-          recent.lastGame
-            ?.minutes
-        );
-
-      const prev =
-        valid(
-          recent.previous4
-            ?.avgMinutes
-        );
-
       const season =
         valid(
           recent.season
             ?.avgMinutes
         );
-
-      const parts = [];
-
-      if (last !== null) {
-        parts.push([0.45, last]);
-      }
-
-      if (prev !== null) {
-        parts.push([0.30, prev]);
-      }
-
-      if (season !== null) {
-        parts.push([0.25, season]);
-      }
-
-      const total =
-        parts.reduce(
-          (sum, [w]) =>
-            sum + w,
-          0
-        );
-
-      if (!total) return null;
-
-      return (
-        parts.reduce(
-          (sum, [w, v]) =>
-            sum + w * v,
-          0
-        ) / total
-      );
+      if (season === null) return null;
+      const last5 = recent.last5;
+      const recentMinutes = valid(last5?.avgMinutes);
+      if (Number(recent.currentSeasonGames || 0) <= 5 ||
+          Number(last5?.games || 0) < 5 ||
+          recentMinutes === null) return season;
+      return season * 0.7 + recentMinutes * 0.3;
     }
 
     function freshSeasonPrior(
@@ -725,6 +657,11 @@ if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
       const x =
         originalModel(p);
 
+      if (!["G", "F", "C"].includes(p.pos)) {
+        return {...x, expected: 0, minutes: 0, floor: 0,
+          ceiling: 0, value: 0, confidence: 0, source: "coach"};
+      }
+
       const prior =
         freshSeasonPrior(
           p,
@@ -845,7 +782,7 @@ if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
       }
 
       const sampleWeight =
-        Math.min(0.75, games / (games + 4));
+        Math.min(0.75, games / (games + 8));
 
       let minutes =
         prior.minutes
