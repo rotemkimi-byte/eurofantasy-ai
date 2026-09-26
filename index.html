@@ -58,15 +58,15 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
 <select id="pos"><option value="">כל העמדות</option><option>G</option><option>F</option><option>C</option></select>
 <input id="maxPrice" type="number" step=".1" placeholder="מחיר מקס׳">
 <select id="statusFilter"><option value="">כל הסטטוסים</option><option value="active">פעיל</option><option value="questionable">בספק</option><option value="out">בחוץ</option></select>
-<select id="sort"><option value="projection">PIR צפוי</option><option value="value">Value</option><option value="confidence">Confidence</option><option value="minutes">דקות צפויות</option><option value="price">מחיר</option></select>
+<select id="sort"><option value="projection">PIR צפוי</option><option value="value">Value</option><option value="confidence">איכות נתונים</option><option value="minutes">דקות צפויות</option><option value="price">מחיר</option></select>
 </div>
-<p class="marketHelp muted">בשוק מוצגת תחזית למחזור הבא. לחץ על שחקן כדי לראות ביצועים בפועל, דקות והסבר לתחזית.</p><div class="card tablewrap"><table class="marketTable"><thead><tr><th>שחקן</th><th>מחיר</th><th>דק׳ צפויות</th><th>PIR צפוי</th><th>טווח תחזית</th><th>תמורה למחיר</th><th>ביטחון בתחזית</th><th>מאצ׳אפ</th><th>סטטוס</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
+<p class="marketHelp muted">בשוק מוצגת תחזית למחזור הבא. לחץ על שחקן כדי לראות ביצועים בפועל, דקות והסבר לתחזית.</p><div class="card tablewrap"><table class="marketTable"><thead><tr><th>שחקן</th><th>מחיר</th><th>דק׳ צפויות</th><th>PIR צפוי</th><th>טווח שגיאת עבר*</th><th>תמורה למחיר</th><th>איכות נתונים</th><th>מאצ׳אפ</th><th>סטטוס</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
 </section>
 
 <section id="team" class="tab"><div class="card"><div class="sectionHead"><div><h3>הסגל שלי</h3><p class="muted">לחץ על שחקן בשוק כדי להוסיף. הנתונים נשמרים במכשיר.</p></div><button class="secondary" id="clearTeam">נקה</button></div><div id="teamCards" class="grid2"></div></div>
-<div class="card"><h3>איפה הקרדיט הבא נותן הכי הרבה?</h3><div class="grid3"><label>קרדיט נוסף<input id="extraCredit" type="number" step=".1" value="0"></label><label>מינימום Confidence<input id="minConf" type="number" value="45"></label><div style="align-self:end"><button id="findUpgrade">מצא שדרוג</button></div></div><div id="upgradeList" class="rank" style="margin-top:12px"></div></div></section>
+<div class="card"><h3>איפה הקרדיט הבא נותן הכי הרבה?</h3><div class="grid3"><label>קרדיט נוסף<input id="extraCredit" type="number" step=".1" value="0"></label><label>סף איכות נתונים פנימי<input id="minConf" type="number" value="45"></label><div style="align-self:end"><button id="findUpgrade">מצא שדרוג</button></div></div><div id="upgradeList" class="rank" style="margin-top:12px"></div></div></section>
 
-<section id="captain" class="tab"><div class="card"><h3>דירוג קפטן</h3><p class="muted">משקלל Expected, תקרה, דקות וביטחון במודל.</p><div id="captainList" class="rank"></div></div></section>
+<section id="captain" class="tab"><div class="card"><h3>דירוג קפטן</h3><p class="muted">משקלל תחזית PIR, טווח עליון ואיכות נתונים.</p><div id="captainList" class="rank"></div></div></section>
 
 <section id="coach" class="tab"><div class="card"><div class="sectionHead"><div><h3>מאמנים — תוחלת לפי הפרש</h3><p class="muted">כולל נקודות שליליות בהפסדים. הסתברויות 11+/20+ הן מודל נורמלי סביב קו השוק.</p></div><label style="max-width:130px">תקציב מאמן<input id="coachBudget" type="number" step=".1" value="10"></label></div><div id="coachList" class="rank"></div></div></section>
 
@@ -74,12 +74,12 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
 
 <section id="injuries" class="tab"><div class="card"><h3>פציעות וזמינות</h3><p class="muted">המודל מוריד דקות לשחקן בספק ומעלה מעט דקות לחברים פעילים באותה עמדה כאשר חסרים שחקנים.</p><div id="injuryCards" class="grid2"></div></div></section>
 
-<section id="optimizer" class="tab"><div class="card"><h3>אופטימייזר סגל</h3><div class="grid3"><label>תקציב<input id="budget" type="number" value="91" step=".1"></label><label>מינימום Confidence<input id="optConf" type="number" value="35"></label><label>להחריג שחקנים בספק<select id="excludeQ"><option value="no">לא</option><option value="yes">כן</option></select></label></div><p class="muted">בונה 4 גארדים, 4 פורוורדים ו־2 סנטרים. תקציב ברירת המחדל 91 משאיר 9 למאמן.</p><button id="optBtn">Optimize</button><div id="optResult" style="margin-top:12px"></div></div></section>
+<section id="optimizer" class="tab"><div class="card"><h3>אופטימייזר סגל</h3><div class="grid3"><label>תקציב<input id="budget" type="number" value="91" step=".1"></label><label>סף איכות נתונים פנימי<input id="optConf" type="number" value="35"></label><label>להחריג שחקנים בספק<select id="excludeQ"><option value="no">לא</option><option value="yes">כן</option></select></label></div><p class="muted">בונה 4 גארדים, 4 פורוורדים ו־2 סנטרים. תקציב ברירת המחדל 91 משאיר 9 למאמן.</p><button id="optBtn">Optimize</button><div id="optResult" style="margin-top:12px"></div></div></section>
 
 <section id="data" class="tab">
 <div class="card"><div class="syncBox"><div><h3>סנכרון נתוני EuroLeague</h3><p class="muted">האתר מנסה לטעון אוטומטית סטטיסטיקות רשמיות של 2025/26 ו־2026/27. לפני משחקי המחזור הראשון הוא נשען בעיקר על העונה הקודמת ועל מחיר הפנטזי כ-prior.</p></div><button id="syncBtn">סנכרן עכשיו</button></div><div id="syncStatus" class="notice"></div></div>
 <div class="card"><h3>ייבוא CSV ידני</h3><p class="muted">נשאר כגיבוי למחירים/פציעות. קובץ חדש מחליף את רשימת השחקנים המקומית.</p><input id="csvFile" type="file" accept=".csv,text/csv"><button class="secondary" id="resetSeed" style="margin-top:10px">חזור לנתוני Round 1 המובנים</button></div>
-<div class="card"><h3>איך התחזית מחושבת?</h3><div class="notice">Base PIR → התאמת דקות → פציעות/חוסרים → סביבת ניקוד מה-total וה-spread → התאמת blowout → Floor/Ceiling לפי אי-ודאות. Confidence יורד כשאין נתוני עבר, כששחקן חדש או כשהוא בספק.</div></div>
+<div class="card"><h3>איך התחזית מחושבת?</h3><div class="notice">מחיר השחקן משמש נקודת מוצא; משחקי העונה מעדכנים אותה בהדרגה (משחק אחד מקבל משקל 20%). דקות, זמינות ומאצ׳אפ מתווספים לתחזית. *הטווח נגזר מאחוזוני שגיאות לפי עמדה במחזור שנבדק; הוא ראשוני ואינו הבטחה לדיוק עתידי. איכות הנתונים מתארת את גודל המדגם והזמינות, ולא הסתברות שהתחזית תצליח. אם בדיקת העבר אינה זמינה, הטווח הוא אומדן נוסחתי.</div><div id="forecastValidation" class="notice" style="margin-top:10px">טוען בדיקת תחזיות…</div></div>
 </section>
 </main>
 <footer>EuroFantasy AI v2 • נתוני שוק הם snapshot למחזור 1, 24.9.2026 • לא כלי הימורים</footer>
@@ -101,6 +101,12 @@ function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&l
 function clamp(x,a,b){return Math.max(a,Math.min(b,x))}
 function pct(x){return (100*(+x||0)).toFixed(0)+"%"}
 function n1(x){return (+x||0).toFixed(1)}
+function dataQuality(p,x){
+  if(p.status==="out")return "בחוץ";
+  if(p.status==="questionable")return "בספק";
+  const games=Number(x.currentSeasonGames??x.recentForm?.currentSeasonGames??0);
+  return games>=5?"מדגם מתרחב":games>=2?"מדגם קטן":games===1?"משחק אחד":"ללא משחקים";
+}
 function normName(s){
   return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase()
     .replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
@@ -241,29 +247,29 @@ function renderMarket(){
   arr.sort((a,b)=>{const A=model(a),B=model(b);if(sort==="value")return B.value-A.value;if(sort==="confidence")return B.confidence-A.confidence;if(sort==="minutes")return B.minutes-A.minutes;if(sort==="price")return +a.price-+b.price;return B.expected-A.expected});
   document.getElementById("rows").innerHTML=arr.map(p=>{const x=model(p);return `<tr>
   <td class="name" onclick='showPlayer(${JSON.stringify(p.name)})' style="cursor:pointer"><b>${esc(p.name)}</b><small>${esc(p.team)} • ${p.pos} • ${p.home==1?"בית":"חוץ"} מול ${esc(p.opponent)}</small></td>
-  <td>${n1(p.price)}</td><td>${n1(x.minutes)}</td><td><b>${n1(x.expected)}</b></td><td>${n1(x.floor)}–${n1(x.ceiling)}</td><td class="${x.value>=1.25?"good":x.value>=.95?"warn":"bad"}">${x.value.toFixed(2)}</td><td>${x.confidence.toFixed(0)}%</td><td class="${x.matchPct>=2?"good":x.matchPct<=-2?"bad":""}">${x.matchPct>=0?"+":""}${x.matchPct.toFixed(1)}%</td><td class="${statusClass(p.status)}">${statusText(p.status)}</td>
+  <td>${n1(p.price)}</td><td>${n1(x.minutes)}</td><td><b>${n1(x.expected)}</b></td><td>${n1(x.floor)}–${n1(x.ceiling)}</td><td class="${x.value>=1.25?"good":x.value>=.95?"warn":"bad"}">${x.value.toFixed(2)}</td><td>${dataQuality(p,x)}</td><td class="${x.matchPct>=2?"good":x.matchPct<=-2?"bad":""}">${x.matchPct>=0?"+":""}${x.matchPct.toFixed(1)}%</td><td class="${statusClass(p.status)}">${statusText(p.status)}</td>
   <td><button class="${isSelected(p)?"secondary":""}" onclick='event.stopPropagation();toggle(${JSON.stringify(p.name)})'>${isSelected(p)?"הסר":"הוסף"}</button></td></tr>`}).join("");
 }
 window.showPlayer=function(name){
   const p=players.find(x=>x.name===name);if(!p)return;const x=model(p),m=x.match;
   document.getElementById("modalBody").innerHTML=`<h2>${esc(p.name)}</h2><p class="muted">${esc(p.team)} • ${p.pos} • ${n1(p.price)} קרדיט • ${statusText(p.status)}</p>
   <div class="detailGrid">
-  <div class="miniCard"><b>${n1(x.expected)}</b><small> Expected PIR</small></div><div class="miniCard"><b>${n1(x.floor)}–${n1(x.ceiling)}</b><small> Floor–Ceiling</small></div>
-  <div class="miniCard"><b>${n1(x.minutes)}</b><small> דקות צפויות</small></div><div class="miniCard"><b>${x.confidence.toFixed(0)}%</b><small> Confidence</small></div>
+  <div class="miniCard"><b>${n1(x.expected)}</b><small> Expected PIR</small></div><div class="miniCard"><b>${n1(x.floor)}–${n1(x.ceiling)}</b><small> ${x.rangeSample?"טווח שגיאות עבר*":"טווח נוסחתי*"}</small></div>
+  <div class="miniCard"><b>${n1(x.minutes)}</b><small> דקות צפויות</small></div><div class="miniCard"><b>${dataQuality(p,x)}</b><small> איכות נתונים</small></div>
   <div class="miniCard"><b>${pct(m.winProb)}</b><small> סיכוי קבוצתי לניצחון</small></div><div class="miniCard"><b>${pct(m.p20)}</b><small> סיכוי 20+ מודל</small></div>
   <div class="miniCard"><b>${x.matchPct>=0?"+":""}${x.matchPct.toFixed(1)}%</b><small> סביבת מאצ׳אפ</small></div><div class="miniCard"><b>${x.source}</b><small> מקור בסיס התחזית</small></div>
   </div>
-  <p class="notice" style="margin-top:12px">בסיס PIR: ${n1(x.basePir)} • בסיס דקות: ${n1(x.baseMin)} • השפעת חוסרים באותה עמדה: +${n1(x.injuryBoost)} דקות. קו קבוצה: ${m.margin>=0?"+":""}${n1(m.margin)}; טוטאל: ${n1(m.total)}.</p>`;
+  <p class="notice" style="margin-top:12px">בסיס PIR: ${n1(x.basePir)} • בסיס דקות: ${n1(x.baseMin)} • השפעת חוסרים באותה עמדה: +${n1(x.injuryBoost)} דקות. קו קבוצה: ${m.margin>=0?"+":""}${n1(m.margin)}; טוטאל: ${n1(m.total)}. *${x.rangeSample?`טווח המבוסס על ${x.rangeSample} שגיאות בעמדה במחזור אחד; אינו טווח ביטחון מאומת.`:"טווח נוסחתי שטרם אומת."}</p>`;
   playerModal.showModal();
 }
 function renderTeam(){
   const sel=myTeam.map(n=>players.find(p=>p.name===n)).filter(Boolean);let cost=0,proj=0;
-  document.getElementById("teamCards").innerHTML=sel.length?sel.map(p=>{const x=model(p);cost+=+p.price;proj+=x.expected;return `<div class="miniCard"><div class="sectionHead"><div><b>${esc(p.name)}</b><br><small>${p.pos} • ${esc(p.team)} • ${n1(p.price)}</small></div><div><b>${n1(x.expected)}</b><br><small>PIR צפוי</small></div></div><div class="chips"><span class="chip">דק׳ ${n1(x.minutes)}</span><span class="chip">Floor ${n1(x.floor)}</span><span class="chip">Ceil ${n1(x.ceiling)}</span><span class="chip">Conf ${x.confidence.toFixed(0)}%</span></div></div>`}).join(""):`<p class="muted">עדיין לא בחרת שחקנים.</p>`;
+  document.getElementById("teamCards").innerHTML=sel.length?sel.map(p=>{const x=model(p);cost+=+p.price;proj+=x.expected;return `<div class="miniCard"><div class="sectionHead"><div><b>${esc(p.name)}</b><br><small>${p.pos} • ${esc(p.team)} • ${n1(p.price)}</small></div><div><b>${n1(x.expected)}</b><br><small>PIR צפוי</small></div></div><div class="chips"><span class="chip">דק׳ ${n1(x.minutes)}</span><span class="chip">טווח ${n1(x.floor)}–${n1(x.ceiling)}</span><span class="chip">${dataQuality(p,x)}</span></div></div>`}).join(""):`<p class="muted">עדיין לא בחרת שחקנים.</p>`;
   document.getElementById("teamCost").textContent=n1(cost);document.getElementById("teamProj").textContent=n1(proj);
 }
 function renderCaptain(){
   const arr=myTeam.map(n=>players.find(p=>p.name===n)).filter(Boolean).map(p=>{const x=model(p);const score=x.expected*.55+x.ceiling*.30+(x.confidence/100)*x.expected*.15;return {p,x,score}}).sort((a,b)=>b.score-a.score);
-  document.getElementById("captainList").innerHTML=arr.map((z,i)=>`<div class="rankItem"><div class="rankNo">${i+1}</div><div><b>${esc(z.p.name)}</b><br><small>${esc(z.p.team)} • ${n1(z.x.minutes)} דק׳ • Conf ${z.x.confidence.toFixed(0)}%</small></div><div><b>${n1(z.x.expected)}</b><br><small>Ceil ${n1(z.x.ceiling)}</small></div></div>`).join("")||`<p class="muted">בחר סגל כדי לקבל דירוג.</p>`;
+  document.getElementById("captainList").innerHTML=arr.map((z,i)=>`<div class="rankItem"><div class="rankNo">${i+1}</div><div><b>${esc(z.p.name)}</b><br><small>${esc(z.p.team)} • ${n1(z.x.minutes)} דק׳ • ${dataQuality(z.p,z.x)}</small></div><div><b>${n1(z.x.expected)}</b><br><small>גבול עליון ${n1(z.x.ceiling)}</small></div></div>`).join("")||`<p class="muted">בחר סגל כדי לקבל דירוג.</p>`;
 }
 function coachExpected(team){
   const m=MATCHUPS[team];if(!m)return 0;
@@ -287,7 +293,7 @@ function renderUpgrade(){
   const extra=+document.getElementById("extraCredit").value||0,min=+document.getElementById("minConf").value||0,sel=myTeam.map(n=>players.find(p=>p.name===n)).filter(Boolean);let ideas=[];
   for(const out of sel)for(const inn of players){if(inn.pos!==out.pos||myTeam.includes(inn.name)||inn.status==="out")continue;const xi=model(inn),xo=model(out);if(+inn.price<=+out.price+extra+1e-9&&xi.confidence>=min&&xi.expected>xo.expected)ideas.push({out,inn,gain:xi.expected-xo.expected,cost:+inn.price-(+out.price),conf:xi.confidence})}
   ideas.sort((a,b)=>b.gain-a.gain);
-  document.getElementById("upgradeList").innerHTML=ideas.slice(0,10).map((x,i)=>`<div class="rankItem"><div class="rankNo">${i+1}</div><div><b>${esc(x.out.name)} → ${esc(x.inn.name)}</b><br><small>תוספת ${n1(x.cost)} קרדיט • Conf ${x.conf.toFixed(0)}%</small></div><div class="good">+${n1(x.gain)} PIR</div></div>`).join("")||`<p class="muted">לא נמצא שדרוג במסגרת הזו.</p>`;
+  document.getElementById("upgradeList").innerHTML=ideas.slice(0,10).map((x,i)=>`<div class="rankItem"><div class="rankNo">${i+1}</div><div><b>${esc(x.out.name)} → ${esc(x.inn.name)}</b><br><small>תוספת ${n1(x.cost)} קרדיט • ${dataQuality(x.inn,model(x.inn))}</small></div><div class="good">+${n1(x.gain)} PIR</div></div>`).join("")||`<p class="muted">לא נמצא שדרוג במסגרת הזו.</p>`;
 }
 function optimize(){
   const B=Math.round((+document.getElementById("budget").value||0)*10),min=+document.getElementById("optConf").value||0,exq=document.getElementById("excludeQ").value==="yes",needs={G:4,F:4,C:2};
@@ -295,7 +301,7 @@ function optimize(){
   let states=new Map();states.set("0|0|0|0",{G:0,F:0,C:0,b:0,s:0,n:[]});
   for(const p of pool){const snap=[...states.values()];for(const st of snap){const ns={...st,n:[...st.n,p.name],b:st.b+Math.round(+p.price*10),s:st.s+model(p).expected};ns[p.pos]=(ns[p.pos]||0)+1;if(ns.G>4||ns.F>4||ns.C>2||ns.b>B)continue;const k=`${ns.G}|${ns.F}|${ns.C}|${ns.b}`,old=states.get(k);if(!old||ns.s>old.s)states.set(k,ns)}}
   let best=null;for(const s of states.values())if(s.G===4&&s.F===4&&s.C===2&&(!best||s.s>best.s))best=s;
-  const el=document.getElementById("optResult");if(!best){el.innerHTML='<p class="bad">לא נמצא סגל בתקציב/Confidence הזה.</p>';return}
+  const el=document.getElementById("optResult");if(!best){el.innerHTML='<p class="bad">לא נמצא סגל בתקציב ובסף איכות הנתונים הזה.</p>';return}
   el.innerHTML=`<div class="notice"><b>עלות ${(best.b/10).toFixed(1)} • Expected PIR ${n1(best.s)}</b></div><div class="grid2" style="margin-top:10px">${best.n.map(n=>{const p=players.find(x=>x.name===n),x=model(p);return `<div class="miniCard"><b>${esc(p.name)}</b><br><small>${p.pos} • ${esc(p.team)} • ${n1(p.price)} • PIR ${n1(x.expected)}</small></div>`}).join("")}</div>`;
 }
 function csvParse(t){
@@ -314,4 +320,620 @@ const last=localStorage.getItem(LS.sync);if(last){document.getElementById("syncB
 renderAll();
 if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
 </script>
-<script src="./live.js"></script><script src="./roster-live.js"></script><script src="./position-matchups.js"></script><script src="./recent-form.js"></script><script src="./matchup-live.js"></script><script src="./ui-live.js"></script></body></html>
+<script src="./live.js"></script><script src="./roster-live.js"></script><script src="./position-matchups.js"></script><script>
+(async () => {
+  try {
+    const response = await fetch(
+      "./data/recent-form.json?t="
+        + Date.now(),
+      { cache: "no-store" }
+    );
+
+    if (!response.ok) {
+      throw new Error(
+        "recent-form.json HTTP "
+        + response.status
+      );
+    }
+
+    const payload =
+      await response.json();
+
+    const form =
+      payload.players || {};
+
+    // These errors come from predictions saved before the games were played.
+    // One round offers an exploratory range, not a validated coverage claim.
+    let residuals = null;
+    let evaluation = null;
+    try {
+      const response = await fetch(
+        "./data/backtest/report-round-01.json?t=" + Date.now(),
+        { cache: "no-store" }
+      );
+      if (response.ok) {
+        const report = await response.json();
+        if (report.complete && report.comparisons?.length >= 100) {
+          residuals = {};
+          for (const row of report.comparisons) {
+            const error = Number(row.actualPir) - Number(row.predictedPir);
+            if (Number.isFinite(error)) (residuals[row.pos] ||= []).push(error);
+          }
+          for (const values of Object.values(residuals)) values.sort((a, b) => a - b);
+          evaluation = report.metrics;
+        }
+      }
+    } catch (error) {
+      console.warn("Backtest unavailable:", error);
+    }
+
+    function observedRange(expected, pos) {
+      const values = residuals?.[pos];
+      if (!values || values.length < 30) return null;
+      const quantile = q => {
+        const index = (values.length - 1) * q;
+        const low = Math.floor(index);
+        const fraction = index - low;
+        return values[low] * (1 - fraction) + values[Math.min(low + 1, values.length - 1)] * fraction;
+      };
+      return {
+        floor: Math.min(expected, expected + quantile(0.1)),
+        ceiling: Math.max(expected, expected + quantile(0.9)),
+        sample: values.length
+      };
+    }
+
+    window.__forecastEvaluation = evaluation;
+    const validationBox = document.getElementById("forecastValidation");
+    if (validationBox) {
+      validationBox.textContent = evaluation
+        ? `בדיקת מחזור 1: ${evaluation.n} תחזיות, סטייה מוחלטת ממוצעת ${evaluation.mae.toFixed(1)} PIR; ${Math.round(evaluation.within5 * 100)}% בטווח ±5 PIR. התחזיות נשמרו לפני המשחקים. המודל עודכן מאז, ולכן אלה תוצאות לגרסה הקודמת בלבד. נדרשים מחזורים נוספים לבדיקת הטווח החדש.`
+        : "עדיין אין בדיקת תחזיות זמינה. הטווחים המוצגים הם אומדן נוסחתי בלבד.";
+    }
+
+    const sleep = ms =>
+      new Promise(resolve =>
+        setTimeout(resolve, ms)
+      );
+
+    for (
+      let i = 0;
+      i < 50
+      && !window.__positionMatchupsPatched;
+      i++
+    ) {
+      await sleep(100);
+    }
+
+    if (
+      typeof model !== "function"
+      || typeof renderAll
+        !== "function"
+    ) {
+      throw new Error(
+        "EuroFantasy model not ready"
+      );
+    }
+
+    if (window.__recentFormPatched) {
+      return;
+    }
+
+    window.__recentFormPatched = true;
+    window.__recentFormData = payload;
+
+    const originalModel = model;
+
+    const norm = value =>
+      String(value || "")
+        .normalize("NFD")
+        .replace(
+          /[\u0300-\u036f]/g,
+          ""
+        )
+        .toLowerCase()
+        .replace(
+          /[^a-z0-9 ]/g,
+          " "
+        )
+        .replace(
+          /\s+/g,
+          " "
+        )
+        .trim();
+
+    const clampValue = (
+      x,
+      min,
+      max
+    ) =>
+      Math.max(
+        min,
+        Math.min(max, x)
+      );
+
+    const valid = value => {
+      const n = Number(value);
+
+      return (
+        Number.isFinite(n)
+        ? n
+        : null
+      );
+    };
+
+    function pricePriorMinutes(
+      price
+    ) {
+      const p =
+        Number(price || 0);
+
+      if (p >= 14) return 27;
+      if (p >= 10) return 23;
+      if (p >= 7) return 19;
+      return 14;
+    }
+
+    function currentRate(recent) {
+      const last =
+        valid(
+          recent.lastGame
+            ?.pirPerMinute
+        );
+
+      const prev =
+        valid(
+          recent.previous4
+            ?.pirPerMinute
+        );
+
+      const season =
+        valid(
+          recent.season
+            ?.pirPerMinute
+        );
+
+      const parts = [];
+
+      if (last !== null) {
+        parts.push([0.45, last]);
+      }
+
+      if (prev !== null) {
+        parts.push([0.35, prev]);
+      }
+
+      if (season !== null) {
+        parts.push([0.20, season]);
+      }
+
+      const total =
+        parts.reduce(
+          (sum, [w]) =>
+            sum + w,
+          0
+        );
+
+      if (!total) return null;
+
+      return (
+        parts.reduce(
+          (sum, [w, v]) =>
+            sum + w * v,
+          0
+        ) / total
+      );
+    }
+
+    function currentMinutes(
+      recent
+    ) {
+      const last =
+        valid(
+          recent.lastGame
+            ?.minutes
+        );
+
+      const prev =
+        valid(
+          recent.previous4
+            ?.avgMinutes
+        );
+
+      const season =
+        valid(
+          recent.season
+            ?.avgMinutes
+        );
+
+      const parts = [];
+
+      if (last !== null) {
+        parts.push([0.45, last]);
+      }
+
+      if (prev !== null) {
+        parts.push([0.30, prev]);
+      }
+
+      if (season !== null) {
+        parts.push([0.25, season]);
+      }
+
+      const total =
+        parts.reduce(
+          (sum, [w]) =>
+            sum + w,
+          0
+        );
+
+      if (!total) return null;
+
+      return (
+        parts.reduce(
+          (sum, [w, v]) =>
+            sum + w * v,
+          0
+        ) / total
+      );
+    }
+
+    function freshSeasonPrior(
+      p,
+      x
+    ) {
+      const price =
+        Number(p.price || 0);
+
+      const basePir =
+        price * 0.93;
+
+      const baseMin =
+        pricePriorMinutes(
+          price
+        );
+
+      let minutes =
+        baseMin
+        + Number(
+            x.injuryBoost || 0
+          );
+
+      if (
+        p.status
+        === "questionable"
+      ) {
+        minutes *= 0.82;
+      }
+
+      if (
+        p.status === "out"
+      ) {
+        minutes = 0;
+      }
+
+      const margin =
+        Number(
+          x.match?.margin || 0
+        );
+
+      if (
+        margin >= 10
+        && price >= 12
+      ) {
+        minutes *= 0.97;
+      }
+
+      if (
+        margin >= 10
+        && price <= 7
+      ) {
+        minutes *= 1.05;
+      }
+
+      minutes =
+        clampValue(
+          minutes,
+          0,
+          36
+        );
+
+      const teamPct =
+        Number(
+          x.teamMatchPct
+          ?? x.matchPct
+          ?? 0
+        );
+
+      const positionPct =
+        Number(
+          x.positionMatchPct
+          ?? 0
+        );
+
+      const teamFactor =
+        1
+        + (
+            clampValue(
+              teamPct,
+              -8,
+              8
+            ) / 100
+          ) * 0.60;
+
+      const positionFactor =
+        1
+        + (
+            clampValue(
+              positionPct,
+              -12,
+              12
+            ) / 100
+          ) * 0.35;
+
+      const expected =
+        p.status === "out"
+          ? 0
+          : Math.max(
+              0,
+              basePir
+              * (
+                  minutes
+                  / Math.max(
+                      baseMin,
+                      1
+                    )
+                )
+              * teamFactor
+              * positionFactor
+            );
+
+      return {
+        expected,
+        minutes,
+        basePir,
+        baseMin,
+        teamFactor,
+        positionFactor,
+      };
+    }
+
+    model = function (p) {
+      const x =
+        originalModel(p);
+
+      const prior =
+        freshSeasonPrior(
+          p,
+          x
+        );
+
+      const recent =
+        form[norm(p.name)];
+
+      const games =
+        Number(
+          recent
+            ?.currentSeasonGames
+          || 0
+        );
+
+      // No 2026/27 game yet:
+      // use price + current context only.
+      if (
+        !recent
+        || games <= 0
+      ) {
+        x.expected =
+          prior.expected;
+        x.minutes =
+          prior.minutes;
+        x.basePir =
+          prior.basePir;
+        x.baseMin =
+          prior.baseMin;
+        x.source =
+          "2026/27 price prior";
+        x.recentForm = null;
+        x.recentDynamic = null;
+        x.livePrice =
+          Number(p.price);
+
+        const conf =
+          p.status === "out"
+            ? 95
+            : p.status
+              === "questionable"
+              ? 30
+              : 40;
+
+        x.confidence = conf;
+
+        const u =
+          1 - conf / 100;
+
+        x.floor =
+          x.expected
+          * (
+              0.76
+              - 0.18 * u
+            );
+
+        x.ceiling =
+          x.expected
+          * (
+              1.28
+              + 0.30 * u
+            );
+
+        const range = observedRange(x.expected, p.pos);
+        if (range && p.status !== "out") {
+          x.floor = range.floor;
+          x.ceiling = range.ceiling;
+          x.rangeSample = range.sample;
+        }
+
+        x.value =
+          x.expected
+          / Math.max(
+              0.1,
+              Number(p.price)
+            );
+
+        return x;
+      }
+
+      if (
+        p.status === "out"
+      ) {
+        x.expected = 0;
+        x.minutes = 0;
+        x.floor = 0;
+        x.ceiling = 0;
+        x.value = 0;
+        x.confidence = 95;
+        x.source =
+          "2026/27 current season";
+        x.recentForm = recent;
+        x.livePrice =
+          Number(p.price);
+        return x;
+      }
+
+      const rate =
+        currentRate(recent);
+
+      const observedMinutes =
+        currentMinutes(recent);
+
+      if (
+        rate === null
+        || observedMinutes === null
+      ) {
+        x.expected =
+          prior.expected;
+        x.minutes =
+          prior.minutes;
+        x.source =
+          "2026/27 price prior";
+        x.recentForm =
+          recent;
+        return x;
+      }
+
+      const sampleWeight =
+        Math.min(0.75, games / (games + 4));
+
+      let minutes =
+        prior.minutes
+        * (1 - sampleWeight)
+        + observedMinutes
+          * sampleWeight;
+
+      minutes =
+        clampValue(
+          minutes,
+          5,
+          36
+        );
+
+      const currentExpected =
+        rate
+        * minutes
+        * prior.teamFactor
+        * prior.positionFactor;
+
+      const expected =
+        prior.expected
+        * (1 - sampleWeight)
+        + currentExpected
+          * sampleWeight;
+
+      const confidence =
+        clampValue(
+          40 + games * 8,
+          40,
+          84
+        )
+        - (
+            p.status
+            === "questionable"
+              ? 18
+              : 0
+          );
+
+      const conf =
+        clampValue(
+          confidence,
+          25,
+          94
+        );
+
+      const u =
+        1 - conf / 100;
+
+      x.expected =
+        Math.max(
+          0,
+          expected
+        );
+      x.minutes = minutes;
+      x.confidence = conf;
+      x.floor =
+        x.expected
+        * (
+            0.76
+            - 0.18 * u
+          );
+      x.ceiling =
+        x.expected
+        * (
+            1.28
+            + 0.30 * u
+          );
+      const range = observedRange(x.expected, p.pos);
+      if (range) {
+        x.floor = range.floor;
+        x.ceiling = range.ceiling;
+        x.rangeSample = range.sample;
+      }
+      x.value =
+        x.expected
+        / Math.max(
+            0.1,
+            Number(p.price)
+          );
+
+      x.source =
+        "2026/27 current season";
+      x.recentForm = recent;
+      x.recentRate = rate;
+      x.recentMinutes =
+        observedMinutes;
+      x.livePrice =
+        Number(p.price);
+      x.currentSeasonGames =
+        games;
+      x.currentSeasonWeight =
+        sampleWeight;
+
+      return x;
+    };
+
+    renderAll();
+
+    console.log(
+      "2026/27-only recent form active:",
+      Object.keys(form).length,
+      "players"
+    );
+
+  } catch (error) {
+    console.error(
+      "2026/27 recent-form error:",
+      error
+    );
+  }
+})();
+
+</script><script src="./matchup-live.js"></script><script src="./ui-live.js"></script></body></html>
