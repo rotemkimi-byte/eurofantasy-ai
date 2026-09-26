@@ -19,8 +19,8 @@ main{max-width:1200px;margin:auto;padding:14px}.card{background:linear-gradient(
 dialog{width:min(620px,94vw);border:1px solid var(--line);border-radius:18px;background:#11151a;color:var(--text);padding:0}dialog::backdrop{background:#000a}.modal{padding:18px}.close{float:left;background:var(--card2);color:var(--text);border:1px solid var(--line)}.detailGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:12px}
 footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
 @media(max-width:780px){.hero{grid-template-columns:1fr}.filters{grid-template-columns:1fr 1fr}.grid2,.grid3{grid-template-columns:1fr}.metricRow{grid-template-columns:1fr 1fr}.tabs{top:72px}main{padding:10px}.card{border-radius:15px}}
-.sectionTitle{margin:8px 0 10px;font-size:15px;color:var(--accent)}.dataGroup{background:#10151b;border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:12px}.dataGroup.actual{border-color:#456086}.dataGroup.actual .sectionTitle{color:var(--blue)}.dataGroup .metricRow{margin-top:0}.marketHelp{margin:0 0 10px;font-size:12px}.marketTable th:nth-child(n+3):nth-child(-n+9){font-size:11px}
-@media(max-width:780px){header{position:relative;padding:12px}.head{flex-wrap:wrap}.head h1{font-size:21px}.badge{font-size:10px}.tabs{top:0}.hero h2{font-size:19px}.stats{gap:5px}.stat{padding:8px}.stat b{font-size:17px}.filters{grid-template-columns:1fr 1fr}.filters #search{grid-column:1/-1}.marketTable{min-width:0}.marketTable thead{display:none}.marketTable,.marketTable tbody,.marketTable tr,.marketTable td{display:block;width:100%}.marketTable tr{position:relative;background:var(--card2);border:1px solid var(--line);border-radius:14px;margin:0 0 10px;padding:11px}.marketTable td{border:0;padding:3px 0}.marketTable td.name{padding-left:90px}.marketTable td.name b{font-size:15px}.marketTable td:nth-child(2){position:absolute;top:12px;left:12px;color:var(--accent);font-weight:800}.marketTable td:nth-child(2)::after{content:' קרדיט';font-size:10px}.marketTable td:nth-child(4){font-size:19px;font-weight:800;margin-top:8px}.marketTable td:nth-child(4)::before{content:'תחזית PIR  ';display:block;font-size:11px;font-weight:400;color:var(--muted)}.marketTable td:nth-child(3),.marketTable td:nth-child(5),.marketTable td:nth-child(6),.marketTable td:nth-child(7),.marketTable td:nth-child(8){display:none}.marketTable td:nth-child(9){font-size:11px}.marketTable td:last-child{position:absolute;left:10px;bottom:10px}.marketTable td:last-child button{padding:7px 10px}.detailGrid{grid-template-columns:1fr 1fr}}
+.sectionTitle{margin:8px 0 10px;font-size:15px;color:var(--accent)}.dataGroup{background:#10151b;border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:12px}.dataGroup.actual{border-color:#456086}.dataGroup.actual .sectionTitle{color:var(--blue)}.dataGroup .metricRow{margin-top:0}.marketHelp{margin:0 0 10px;font-size:12px}.marketTable th:nth-child(n+3):nth-child(-n+8){font-size:11px}
+@media(max-width:780px){header{position:relative;padding:12px}.head{flex-wrap:wrap}.head h1{font-size:21px}.badge{font-size:10px}.tabs{top:0}.hero h2{font-size:19px}.stats{gap:5px}.stat{padding:8px}.stat b{font-size:17px}.filters{grid-template-columns:1fr 1fr}.filters #search{grid-column:1/-1}.marketTable{min-width:0}.marketTable thead{display:none}.marketTable,.marketTable tbody,.marketTable tr,.marketTable td{display:block;width:100%}.marketTable tr{position:relative;background:var(--card2);border:1px solid var(--line);border-radius:14px;margin:0 0 10px;padding:11px}.marketTable td{border:0;padding:3px 0}.marketTable td.name{padding-left:90px}.marketTable td.name b{font-size:15px}.marketTable td:nth-child(2){position:absolute;top:12px;left:12px;color:var(--accent);font-weight:800}.marketTable td:nth-child(2)::after{content:' קרדיט';font-size:10px}.marketTable td:nth-child(4){font-size:19px;font-weight:800;margin-top:8px}.marketTable td:nth-child(4)::before{content:'תחזית PIR  ';display:block;font-size:11px;font-weight:400;color:var(--muted)}.marketTable td:nth-child(3),.marketTable td:nth-child(5),.marketTable td:nth-child(6),.marketTable td:nth-child(7){display:none}.marketTable td:nth-child(8){font-size:11px}.marketTable td:last-child{position:absolute;left:10px;bottom:10px}.marketTable td:last-child button{padding:7px 10px}.detailGrid{grid-template-columns:1fr 1fr}}
 /* Mobile cards use document flow so names, prices and actions never overlap. */
 @media(max-width:780px){
   .marketTable tr{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;row-gap:5px;align-items:start;position:static;overflow:hidden}
@@ -30,7 +30,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
   .marketTable td:nth-child(2){grid-column:2;grid-row:1;position:static;text-align:left;white-space:nowrap;direction:ltr}
   .marketTable td:nth-child(2)::after{content:' cr';font-size:10px}
   .marketTable td:nth-child(4){grid-column:1;grid-row:2;margin:7px 0 0}
-  .marketTable td:nth-child(9){grid-column:1;grid-row:3}
+  .marketTable td:nth-child(8){grid-column:1;grid-row:3}
   .marketTable td:last-child{grid-column:2;grid-row:2 / span 2;position:static;align-self:end;justify-self:end}
   .marketTable td:last-child button{white-space:nowrap}
   .team-actual{display:flex;flex-wrap:wrap;gap:6px;align-items:center;min-width:0}
@@ -58,9 +58,9 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
 <select id="pos"><option value="">כל העמדות</option><option>G</option><option>F</option><option>C</option></select>
 <input id="maxPrice" type="number" step=".1" placeholder="מחיר מקס׳">
 <select id="statusFilter"><option value="">כל הסטטוסים</option><option value="active">פעיל</option><option value="questionable">בספק</option><option value="out">בחוץ</option></select>
-<select id="sort"><option value="projection">PIR צפוי</option><option value="value">Value</option><option value="confidence">איכות נתונים</option><option value="minutes">דקות צפויות</option><option value="price">מחיר</option></select>
+<select id="sort"><option value="price" selected>מחיר: מהגבוה לנמוך</option><option value="projection">PIR צפוי</option><option value="confidence">איכות נתונים</option><option value="minutes">דקות צפויות</option></select>
 </div>
-<p class="marketHelp muted">בשוק מוצגת תחזית למחזור הבא. לחץ על שחקן כדי לראות ביצועים בפועל, דקות והסבר לתחזית.</p><div class="card tablewrap"><table class="marketTable"><thead><tr><th>שחקן</th><th>מחיר</th><th>דק׳ צפויות</th><th>PIR צפוי</th><th>טווח שגיאת עבר*</th><th>תמורה למחיר</th><th>איכות נתונים</th><th>מאצ׳אפ</th><th>סטטוס</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
+<p class="marketHelp muted">בשוק מוצגת תחזית למחזור הבא. לחץ על שחקן כדי לראות ביצועים בפועל, דקות והסבר לתחזית.</p><div class="card tablewrap"><table class="marketTable"><thead><tr><th>שחקן</th><th>מחיר</th><th>דק׳ צפויות</th><th>PIR צפוי</th><th>טווח שגיאת עבר*</th><th>איכות נתונים</th><th>מאצ׳אפ</th><th>סטטוס</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
 </section>
 
 <section id="team" class="tab"><div class="card"><div class="sectionHead"><div><h3>הסגל שלי</h3><p class="muted">לחץ על שחקן בשוק כדי להוסיף. הנתונים נשמרים במכשיר.</p></div><button class="secondary" id="clearTeam">נקה</button></div><div id="teamCards" class="grid2"></div></div>
@@ -244,10 +244,10 @@ function renderMarket(){
   const q=document.getElementById("search").value.toLowerCase(), pf=document.getElementById("pos").value, sf=document.getElementById("statusFilter").value;
   const mp=Number(document.getElementById("maxPrice").value||999), sort=document.getElementById("sort").value;
   let arr=players.filter(p=>(!q||(p.name+" "+p.team).toLowerCase().includes(q))&&(!pf||p.pos===pf)&&(!sf||p.status===sf)&&+p.price<=mp);
-  arr.sort((a,b)=>{const A=model(a),B=model(b);if(sort==="value")return B.value-A.value;if(sort==="confidence")return B.confidence-A.confidence;if(sort==="minutes")return B.minutes-A.minutes;if(sort==="price")return +a.price-+b.price;return B.expected-A.expected});
+  arr.sort((a,b)=>{const A=model(a),B=model(b);if(sort==="confidence")return B.confidence-A.confidence;if(sort==="minutes")return B.minutes-A.minutes;if(sort==="price")return +b.price-+a.price||a.name.localeCompare(b.name);return B.expected-A.expected});
   document.getElementById("rows").innerHTML=arr.map(p=>{const x=model(p);return `<tr>
   <td class="name" onclick='showPlayer(${JSON.stringify(p.name)})' style="cursor:pointer"><b>${esc(p.name)}</b><small>${esc(p.team)} • ${p.pos} • ${p.home==1?"בית":"חוץ"} מול ${esc(p.opponent)}</small></td>
-  <td>${n1(p.price)}</td><td>${n1(x.minutes)}</td><td><b>${n1(x.expected)}</b></td><td>${n1(x.floor)}–${n1(x.ceiling)}</td><td class="${x.value>=1.25?"good":x.value>=.95?"warn":"bad"}">${x.value.toFixed(2)}</td><td>${dataQuality(p,x)}</td><td class="${x.matchPct>=2?"good":x.matchPct<=-2?"bad":""}">${x.matchPct>=0?"+":""}${x.matchPct.toFixed(1)}%</td><td class="${statusClass(p.status)}">${statusText(p.status)}</td>
+  <td>${n1(p.price)}</td><td>${n1(x.minutes)}</td><td><b>${n1(x.expected)}</b></td><td>${n1(x.floor)}–${n1(x.ceiling)}</td><td>${dataQuality(p,x)}</td><td class="${x.matchPct>=2?"good":x.matchPct<=-2?"bad":""}">${x.matchPct>=0?"+":""}${x.matchPct.toFixed(1)}%</td><td class="${statusClass(p.status)}">${statusText(p.status)}</td>
   <td><button class="${isSelected(p)?"secondary":""}" onclick='event.stopPropagation();toggle(${JSON.stringify(p.name)})'>${isSelected(p)?"הסר":"הוסף"}</button></td></tr>`}).join("");
 }
 window.showPlayer=function(name){
@@ -1062,7 +1062,7 @@ if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
         const player = byName.get(name);
         if (!player) return;
 
-        const cell = tr.children[7];
+        const cell = tr.children[6];
         if (!cell) return;
 
         const x = model(player);
