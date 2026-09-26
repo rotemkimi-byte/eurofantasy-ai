@@ -1321,8 +1321,8 @@ if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
         const credit = Number(player.price);
         const hasCredit = current && Number.isFinite(credit) && credit > 0;
         const before = hasCredit ? previousPrice(recent, player) : null;
-        setChip(creditChip, hasCredit ? `קרדיט במשחק האחרון ${credit.toFixed(1)}` : 'קרדיט במשחק האחרון —');
-        creditChip.title = 'המחיר הנוכחי לאחר המשחק האחרון';
+        setChip(creditChip, before === null ? 'קרדיט במשחק האחרון (לפני שינוי) —' : `קרדיט במשחק האחרון (לפני שינוי) ${before.toFixed(1)}`);
+        creditChip.title = 'המחיר שנשמר לפני המשחק האחרון';
         const change = before === null ? null : credit - before;
         setChip(changeChip, change === null ? 'שינוי קרדיט במשחק האחרון —' : `שינוי קרדיט במשחק האחרון ${change >= 0 ? '+' : ''}${change.toFixed(1)}`);
         changeChip.title = change === null
