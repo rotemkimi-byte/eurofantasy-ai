@@ -936,4 +936,486 @@ if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
   }
 })();
 
-</script><script src="./matchup-live.js"></script><script src="./ui-live.js"></script></body></html>
+</script><script src="./matchup-live.js"></script><script>
+(() => {
+  const pctText = value => {
+    const n = Number(value || 0);
+    return `${n >= 0 ? "+" : ""}${n.toFixed(1)}%`;
+  };
+
+  const priceSnapshots = new Map();
+  const playerKey = name => String(name || "")
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase().replace(/[^a-z0-9 ]/g, " ")
+    .replace(/\s+/g, " ").trim();
+
+  function previousPrice(recent, player) {
+    const code = Number(recent?.lastGame?.gameCode);
+    if (recent?.latestSeason !== "E2026" || !Number.isInteger(code) || code < 1) return null;
+    const round = Math.ceil(code / 10); // Ten EuroLeague games per round.
+    let snapshot = priceSnapshots.get(round);
+    if (!snapshot) {
+      snapshot = { prices: null };
+      priceSnapshots.set(round, snapshot);
+      fetch(`./data/backtest/predictions-round-${String(round).padStart(2, "0")}.json`, { cache: "no-store" })
+        .then(response => response.ok ? response.json() : null)
+        .then(data => {
+          snapshot.prices = new Map((data?.predictions || [])
+            .filter(row => Number.isFinite(Number(row.price)) && Number(row.price) > 0)
+            .map(row => [playerKey(row.key || row.name), Number(row.price)]));
+          requestAnimationFrame(enhanceTeamRecentStats);
+        })
+        .catch(() => { snapshot.prices = new Map(); requestAnimationFrame(enhanceTeamRecentStats); });
+    }
+    return snapshot.prices?.get(playerKey(player.name)) ?? null;
+  }
+
+  function setChip(chip, value) {
+    if (chip.textContent !== value) chip.textContent = value;
+  }
+
+  function addRefreshButton() {
+    if (document.getElementById("refreshAllBtn")) return;
+
+    const head = document.querySelector(".head");
+    if (!head) return;
+
+    const btn = document.createElement("button");
+    btn.id = "refreshAllBtn";
+    btn.className = "secondary";
+    btn.textContent = "↻ רענן הכול";
+    btn.style.fontSize = "12px";
+    btn.style.padding = "8px 10px";
+    btn.style.whiteSpace = "nowrap";
+
+    btn.onclick = async () => {
+      btn.disabled = true;
+      btn.textContent = "מרענן…";
+
+      const activeTab =
+        document.querySelector(".tabs button.active")?.dataset?.tab;
+
+      if (activeTab) {
+        sessionStorage.setItem(
+          "efa_active_tab",
+          activeTab
+        );
+      }
+
+      const badge =
+        document.getElementById("syncBadge");
+
+      if (badge) {
+        badge.textContent = "מרענן נתונים…";
+      }
+
+      try {
+        if (typeof syncOfficial === "function") {
+          await Promise.race([
+            syncOfficial(true),
+            new Promise(resolve =>
+              setTimeout(resolve, 4000)
+            )
+          ]);
+        }
+      } catch (error) {
+        console.log("Official refresh:", error);
+      }
+
+      const url = new URL(window.location.href);
+      url.searchParams.set("refresh", Date.now());
+      window.location.replace(url.toString());
+    };
+
+    const badge =
+      document.getElementById("syncBadge");
+
+    if (badge && badge.parentNode) {
+      badge.parentNode.insertBefore(btn, badge);
+    } else {
+      head.appendChild(btn);
+    }
+  }
+
+  function enhanceMarketRows() {
+    if (
+      typeof players === "undefined" ||
+      typeof model !== "function"
+    ) {
+      return;
+    }
+
+    const byName = new Map(
+      players.map(p => [p.name, p])
+    );
+
+    document
+      .querySelectorAll("#rows tr")
+      .forEach(tr => {
+        const name =
+          tr.querySelector("td.name b")
+            ?.textContent
+            ?.trim();
+
+        if (!name) return;
+
+        const player = byName.get(name);
+        if (!player) return;
+
+        const cell = tr.children[7];
+        if (!cell) return;
+
+        const x = model(player);
+        const value =
+          Number(x.positionMatchPct || 0);
+
+        let line =
+          cell.querySelector(
+            ".position-matchup-line"
+          );
+
+        if (!line) {
+          line = document.createElement("div");
+          line.className =
+            "position-matchup-line";
+          line.style.fontSize = "11px";
+          line.style.fontWeight = "700";
+          line.style.marginTop = "4px";
+          cell.appendChild(line);
+        }
+
+        const text =
+          `עמדה ${pctText(value)}`;
+
+        if (line.textContent !== text) {
+          line.textContent = text;
+        }
+
+        line.style.color =
+          value >= 3
+            ? "var(--accent)"
+            : value <= -3
+              ? "var(--bad)"
+              : "var(--muted)";
+
+        const games =
+          x.positionMatchup?.sampleGames;
+
+        line.title =
+          games
+            ? `מדגם: ${games} משחקים`
+            : "אין מדגם נפרד לעמדה";
+      });
+  }
+
+  function enhanceModal() {
+    if (
+      typeof players === "undefined" ||
+      typeof model !== "function"
+    ) {
+      return;
+    }
+
+    const body =
+      document.getElementById("modalBody");
+
+    if (!body || !body.textContent) return;
+
+    if (
+      body.querySelector(
+        ".position-matchup-modal"
+      )
+    ) {
+      return;
+    }
+
+    const player =
+      players.find(
+        p => body.textContent.includes(p.name)
+      );
+
+    if (!player) return;
+
+    const x = model(player);
+    const value =
+      Number(x.positionMatchPct || 0);
+
+    const grid = body.querySelector('.detailGrid');
+    if (grid && !body.querySelector('.actual-results')) {
+      const recent = x.recentForm;
+      const current = recent?.latestSeason === 'E2026' && Number(recent.currentSeasonGames) > 0;
+      const actual = document.createElement('section');
+      actual.className = 'dataGroup actual actual-results';
+      const heading = document.createElement('h3');
+      heading.className = 'sectionTitle';
+      heading.textContent = 'בפועל · עונת 2026/27';
+      actual.appendChild(heading);
+      const metrics = document.createElement('div');
+      metrics.className = 'metricRow';
+      const items = current ? [
+        ['משחק אחרון · PIR', recent.lastGame?.pir],
+        ['משחק אחרון · דקות', recent.lastGame?.minutes],
+        [`ממוצע ${recent.last5?.games || 0} אחרונים · PIR`, recent.last5?.avgPir],
+        [`ממוצע ${recent.last5?.games || 0} אחרונים · דקות`, recent.last5?.avgMinutes],
+        [`שינוי PIR מול ${recent.previous4?.games || 0} קודמים`, pirChange(recent)],
+        ['משחקים העונה', recent.currentSeasonGames]
+      ] : [];
+      if (items.length) {
+        for (const [label, value] of items) {
+          const tile = document.createElement('div');
+          tile.className = 'metric';
+          const num = document.createElement('b');
+          num.textContent = value == null || !Number.isFinite(Number(value)) ? '—' : `${label.startsWith('שינוי') && Number(value) > 0 ? '+' : ''}${Number(value).toFixed(label === 'משחקים העונה' ? 0 : 1)}`;
+          const caption = document.createElement('span');
+          caption.textContent = label;
+          tile.append(num, caption);
+          metrics.appendChild(tile);
+        }
+        actual.appendChild(metrics);
+      } else {
+        const empty = document.createElement('p');
+        empty.className = 'muted';
+        empty.textContent = 'אין עדיין נתוני משחק מאומתים לעונה הנוכחית.';
+        actual.appendChild(empty);
+      }
+      grid.before(actual);
+      const forecast = document.createElement('h3');
+      forecast.className = 'sectionTitle';
+      forecast.textContent = 'תחזית · המשחק הבא';
+      grid.before(forecast);
+    }
+
+    const box =
+      document.createElement("div");
+
+    box.className =
+      "notice position-matchup-modal";
+    box.style.marginTop = "10px";
+
+    const games =
+      x.positionMatchup?.sampleGames;
+
+    box.textContent =
+      `מאצ׳אפ לפי עמדה (${player.pos}): ` +
+      `${pctText(value)}` +
+      (games
+        ? ` • מדגם ${games} משחקים`
+        : "");
+
+    body.appendChild(box);
+  }
+
+
+  function enhanceTeamRecentStats() {
+    if (
+      typeof players === "undefined" ||
+      typeof model !== "function"
+    ) {
+      return;
+    }
+
+    document
+      .querySelectorAll(
+        "#teamCards .miniCard"
+      )
+      .forEach(card => {
+        const name =
+          card.querySelector(
+            ".sectionHead b"
+          )?.textContent?.trim();
+
+        if (!name) return;
+
+        const player =
+          players.find(
+            p => p.name === name
+          );
+
+        if (!player) return;
+
+        const x = model(player);
+        const recent = x.recentForm;
+
+        if (!recent) return;
+
+        const chips = card.querySelector('.chips');
+        if (!chips) return;
+        let actualGroup = card.querySelector('.team-actual');
+        if (!actualGroup) {
+          actualGroup = document.createElement('div');
+          actualGroup.className = 'dataGroup actual team-actual';
+          const title = document.createElement('div');
+          title.className = 'sectionTitle';
+          title.textContent = 'בפועל · 2026/27';
+          actualGroup.appendChild(title);
+          chips.after(actualGroup);
+        }
+
+        let lastChip =
+          actualGroup.querySelector(
+            ".recent-last-chip"
+          );
+
+        if (!lastChip) {
+          lastChip =
+            document.createElement(
+              "span"
+            );
+          lastChip.className =
+            "chip recent-last-chip";
+          actualGroup.appendChild(lastChip);
+        }
+
+        let avg5Chip =
+          actualGroup.querySelector(
+            ".recent-avg5-chip"
+          );
+
+        if (!avg5Chip) {
+          avg5Chip =
+            document.createElement(
+              "span"
+            );
+          avg5Chip.className =
+            "chip recent-avg5-chip";
+          actualGroup.appendChild(avg5Chip);
+        }
+
+        let minutesChip = actualGroup.querySelector('.recent-minutes-chip');
+        if (!minutesChip) {
+          minutesChip = document.createElement('span');
+          minutesChip.className = 'chip recent-minutes-chip';
+          actualGroup.appendChild(minutesChip);
+        }
+
+        let changeChip = actualGroup.querySelector('.recent-change-chip');
+        if (!changeChip) {
+          changeChip = document.createElement('span');
+          changeChip.className = 'chip recent-change-chip';
+          actualGroup.appendChild(changeChip);
+        }
+
+        const last = recent.lastGame?.pir == null ? NaN : Number(recent.lastGame.pir);
+        const avg5 = recent.last5?.avgPir == null ? NaN : Number(recent.last5.avgPir);
+
+        setChip(lastChip,
+          recent.latestSeason === 'E2026' && Number(recent.currentSeasonGames) > 0 && Number.isFinite(last)
+            ? `PIR במשחק האחרון ${last.toFixed(1)}`
+            : "PIR במשחק האחרון —");
+
+        setChip(avg5Chip,
+          recent.latestSeason === 'E2026' && Number(recent.currentSeasonGames) > 0 && Number.isFinite(avg5)
+            ? `${Number(recent.last5?.games) || 1} משחקים אחרונים · PIR ${avg5.toFixed(1)}`
+            : "משחקים אחרונים · PIR —");
+        const current = recent.latestSeason === 'E2026' && Number(recent.currentSeasonGames) > 0;
+        const lastMinutes = Number(recent.lastGame?.minutes);
+        setChip(minutesChip, current && recent.lastGame?.minutes != null && Number.isFinite(lastMinutes)
+          ? `דקות במשחק האחרון ${lastMinutes.toFixed(1)}` : 'דקות במשחק האחרון —');
+
+        let creditChip = actualGroup.querySelector('.recent-credit-chip');
+        if (!creditChip) {
+          creditChip = document.createElement('span');
+          creditChip.className = 'chip recent-credit-chip';
+          actualGroup.appendChild(creditChip);
+        }
+        const credit = Number(player.price);
+        const hasCredit = current && Number.isFinite(credit) && credit > 0;
+        const before = hasCredit ? previousPrice(recent, player) : null;
+        setChip(creditChip, hasCredit ? `קרדיט במשחק האחרון ${credit.toFixed(1)}` : 'קרדיט במשחק האחרון —');
+        creditChip.title = 'המחיר הנוכחי לאחר המשחק האחרון';
+        const change = before === null ? null : credit - before;
+        setChip(changeChip, change === null ? 'שינוי קרדיט —' : `שינוי קרדיט ${change >= 0 ? '+' : ''}${change.toFixed(1)}`);
+        changeChip.title = change === null
+          ? 'אין מחיר שמור מלפני המשחק האחרון; שינוי לא מחושב'
+          : `מחיר לפני המשחק האחרון: ${before.toFixed(1)} קרדיט`;
+      });
+  }
+
+  function restoreTab() {
+    const saved =
+      sessionStorage.getItem(
+        "efa_active_tab"
+      );
+
+    if (!saved) return;
+
+    sessionStorage.removeItem(
+      "efa_active_tab"
+    );
+
+    const button =
+      document.querySelector(
+        `.tabs button[data-tab="${saved}"]`
+      );
+
+    if (button) {
+      button.click();
+    }
+  }
+
+  function start() {
+    addRefreshButton();
+    enhanceMarketRows();
+    enhanceModal();
+    enhanceTeamRecentStats();
+
+    const rows =
+      document.getElementById("rows");
+
+    if (rows) {
+      new MutationObserver(() => {
+        requestAnimationFrame(
+          enhanceMarketRows
+        );
+      }).observe(
+        rows,
+        { childList: true }
+      );
+    }
+
+
+    const teamCards =
+      document.getElementById("teamCards");
+
+    if (teamCards) {
+      new MutationObserver(() => {
+        requestAnimationFrame(
+          enhanceTeamRecentStats
+        );
+      }).observe(
+        teamCards,
+        {
+          childList: true,
+          subtree: true
+        }
+      );
+    }
+
+    const modalBody =
+      document.getElementById("modalBody");
+
+    if (modalBody) {
+      new MutationObserver(() => {
+        requestAnimationFrame(
+          enhanceModal
+        );
+      }).observe(
+        modalBody,
+        { childList: true }
+      );
+    }
+
+    setTimeout(restoreTab, 250);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      start
+    );
+  } else {
+    start();
+  }
+})();
+
+</script></body></html>
