@@ -1,0 +1,361 @@
+(async () => {
+  const sleep = ms =>
+    new Promise(resolve => setTimeout(resolve, ms));
+
+  for (
+    let i = 0;
+    i < 100 &&
+    (!window.__recentFormPatched || typeof model !== "function");
+    i++
+  ) {
+    await sleep(100);
+  }
+
+  if (typeof model !== "function") {
+    console.warn("Stability model: base model not ready");
+    return;
+  }
+
+  if (window.__stabilityModelPatched) {
+    return;
+  }
+
+  window.__stabilityModelPatched = true;
+
+  const baseModel = model;
+
+  const clamp = (value, min, max) =>
+    Math.max(min, Math.min(max, value));
+
+  const num = value => {
+    if (value === null || value === undefined || value === "") {
+      return null;
+    }
+
+    const n = Number(value);
+    return Number.isFinite(n) ? n : null;
+  };
+
+  function pricePriorMinutes(price) {
+    const p = Number(price || 0);
+
+    if (p >= 14) return 27;
+    if (p >= 10) return 23;
+    if (p >= 7) return 19;
+    return 14;
+  }
+
+  function priorProjection(p, x) {
+    const price = Number(p.price || 0);
+    const basePir = price * 0.93;
+    const baseMin = pricePriorMinutes(price);
+
+    let minutes =
+      baseMin + Number(x.injuryBoost || 0);
+
+    if (p.status === "questionable") {
+      minutes *= 0.82;
+    }
+
+    if (p.status === "out") {
+      minutes = 0;
+    }
+
+    const margin = Number(x.match?.margin || 0);
+
+    if (margin >= 10 && price >= 12) {
+      minutes *= 0.97;
+    }
+
+    if (margin >= 10 && price <= 7) {
+      minutes *= 1.05;
+    }
+
+    minutes = clamp(minutes, 0, 36);
+
+    const teamPct = Number(
+      x.teamMatchPct ?? x.matchPct ?? 0
+    );
+
+    const positionPct = Number(
+      x.positionMatchPct ?? 0
+    );
+
+    const teamFactor =
+      1 + (clamp(teamPct, -8, 8) / 100) * 0.60;
+
+    const positionFactor =
+      1 + (clamp(positionPct, -12, 12) / 100) * 0.35;
+
+    const usageFactor =
+      1 + Number(x.injuryUsagePct || 0) / 100;
+
+    const expected =
+      p.status === "out"
+        ? 0
+        : Math.max(
+            0,
+            basePir *
+              (minutes / Math.max(baseMin, 1)) *
+              teamFactor *
+              positionFactor *
+              usageFactor
+          );
+
+    return {
+      expected,
+      minutes,
+      basePir,
+      baseMin,
+    };
+  }
+
+  function confidenceCap(games) {
+    if (games <= 1) return 38;
+    if (games === 2) return 46;
+    if (games === 3) return 54;
+    if (games === 4) return 62;
+    if (games === 5) return 68;
+    if (games === 6) return 74;
+    if (games === 7) return 78;
+    return 82;
+  }
+
+  function riskMetrics(recent, priorExpected) {
+    const games = Number(recent?.currentSeasonGames || 0);
+
+    const lastPir = num(recent?.lastGame?.pir);
+    const lastMinutes = num(recent?.lastGame?.minutes);
+    const previousPir = num(recent?.previous4?.avgPir);
+    const previousMinutes = num(recent?.previous4?.avgMinutes);
+    const avgPir = num(
+      recent?.season?.avgPir ?? recent?.last5?.avgPir
+    );
+    const sdPir = num(recent?.last5?.sdPir);
+
+    const sampleRisk =
+      clamp(1 - games / 8, 0, 1);
+
+    let performanceVolatility;
+
+    if (
+      games >= 2 &&
+      sdPir !== null &&
+      avgPir !== null
+    ) {
+      performanceVolatility = clamp(
+        sdPir / Math.max(5, Math.abs(avgPir)),
+        0,
+        1.25
+      );
+    } else {
+      performanceVolatility = 0.65;
+    }
+
+    let roleVolatility;
+
+    if (
+      games >= 2 &&
+      lastMinutes !== null &&
+      previousMinutes !== null
+    ) {
+      roleVolatility = clamp(
+        Math.abs(lastMinutes - previousMinutes) /
+          Math.max(12, previousMinutes),
+        0,
+        1.25
+      );
+    } else {
+      roleVolatility = 0.50;
+    }
+
+    const referencePir =
+      previousPir ?? priorExpected ?? avgPir;
+
+    let outlierRisk = 0.50;
+
+    if (
+      lastPir !== null &&
+      referencePir !== null &&
+      Number.isFinite(referencePir)
+    ) {
+      outlierRisk = clamp(
+        Math.abs(lastPir - referencePir) /
+          Math.max(6, Math.abs(referencePir)),
+        0,
+        1.25
+      );
+    }
+
+    const risk = clamp(
+      0.45 * sampleRisk +
+        0.30 * Math.min(1, performanceVolatility) +
+        0.15 * Math.min(1, roleVolatility) +
+        0.10 * Math.min(1, outlierRisk),
+      0,
+      1
+    );
+
+    return {
+      games,
+      risk,
+      sampleRisk,
+      performanceVolatility,
+      roleVolatility,
+      outlierRisk,
+      lastPir,
+      avgPir,
+      sdPir,
+    };
+  }
+
+  model = function (p) {
+    const x = baseModel(p);
+
+    if (
+      !["G", "F", "C"].includes(p.pos) ||
+      p.status === "out" ||
+      !x.recentForm ||
+      x.recentForm.latestSeason !== "E2026"
+    ) {
+      return x;
+    }
+
+    const prior = priorProjection(p, x);
+    const metrics = riskMetrics(
+      x.recentForm,
+      prior.expected
+    );
+
+    if (metrics.games <= 0) {
+      return x;
+    }
+
+    const oldExpected = num(x.expected);
+
+    if (
+      oldExpected !== null &&
+      Number.isFinite(prior.expected)
+    ) {
+      const recentDelta =
+        oldExpected - prior.expected;
+
+      const retainRecentSignal =
+        1 - 0.55 * metrics.risk;
+
+      x.expected = Math.max(
+        0,
+        prior.expected +
+          recentDelta * retainRecentSignal
+      );
+    }
+
+    const cap = confidenceCap(metrics.games);
+    const currentConfidence =
+      num(x.confidence) ?? cap;
+
+    x.confidence = clamp(
+      Math.min(currentConfidence, cap) -
+        8 * metrics.risk -
+        (p.status === "questionable" ? 6 : 0),
+      25,
+      94
+    );
+
+    const riskFloorRatio = clamp(
+      0.60 - 0.48 * metrics.risk,
+      0.10,
+      0.60
+    );
+
+    const riskCeilingRatio = clamp(
+      1.30 + 0.55 * metrics.risk,
+      1.30,
+      1.85
+    );
+
+    const modelFloor = num(x.floor);
+    const modelCeiling = num(x.ceiling);
+
+    let saferFloor =
+      x.expected * riskFloorRatio;
+
+    let saferCeiling =
+      x.expected * riskCeilingRatio;
+
+    if (
+      metrics.games >= 2 &&
+      metrics.avgPir !== null &&
+      metrics.sdPir !== null
+    ) {
+      saferFloor = Math.min(
+        saferFloor,
+        Math.max(
+          0,
+          metrics.avgPir - 1.15 * metrics.sdPir
+        )
+      );
+
+      saferCeiling = Math.max(
+        saferCeiling,
+        metrics.avgPir + 1.15 * metrics.sdPir
+      );
+    }
+
+    if (
+      metrics.games === 1 &&
+      metrics.lastPir !== null
+    ) {
+      saferCeiling = Math.max(
+        saferCeiling,
+        metrics.lastPir * 0.90
+      );
+    }
+
+    x.floor =
+      modelFloor === null
+        ? saferFloor
+        : Math.min(modelFloor, saferFloor);
+
+    x.ceiling =
+      modelCeiling === null
+        ? saferCeiling
+        : Math.max(modelCeiling, saferCeiling);
+
+    x.value =
+      x.expected /
+      Math.max(0.1, Number(p.price || 0));
+
+    x.boomBustRisk =
+      Math.round(metrics.risk * 100);
+
+    x.riskLabel =
+      metrics.risk >= 0.68
+        ? "high"
+        : metrics.risk >= 0.45
+          ? "medium"
+          : "low";
+
+    x.roleStability = Math.round(
+      (1 - Math.min(1, metrics.roleVolatility)) * 100
+    );
+
+    x.performanceVolatility =
+      metrics.performanceVolatility;
+
+    x.sampleRisk = metrics.sampleRisk;
+    x.outlierRisk = metrics.outlierRisk;
+    x.source =
+      `${x.source || "model"} + early-season stability`;
+
+    return x;
+  };
+
+  if (typeof renderAll === "function") {
+    renderAll();
+  }
+
+  console.log(
+    "Early-season stability model active"
+  );
+})();
