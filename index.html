@@ -20,6 +20,7 @@ dialog{width:min(620px,94vw);border:1px solid var(--line);border-radius:18px;bac
 footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
 @media(max-width:780px){.hero{grid-template-columns:1fr}.filters{grid-template-columns:1fr 1fr}.grid2,.grid3{grid-template-columns:1fr}.metricRow{grid-template-columns:1fr 1fr}.tabs{top:72px}main{padding:10px}.card{border-radius:15px}}
 .sectionTitle{margin:8px 0 10px;font-size:15px;color:var(--accent)}.dataGroup{background:#10151b;border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:12px}.dataGroup.actual{border-color:#456086}.dataGroup.actual .sectionTitle{color:var(--blue)}.dataGroup .metricRow{margin-top:0}.marketHelp{margin:0 0 10px;font-size:12px}.marketTable th:nth-child(n+3):nth-child(-n+8){font-size:11px}
+.playerSection{margin-top:18px}.playerSection .sectionTitle{margin:0 0 5px}.playerSection .sectionNote{font-size:12px;margin:0 0 10px}.playerSection.actual-results .sectionTitle{color:var(--blue)}.playerSection .detailGrid{margin-top:0}.playerSection .miniCard{min-width:0}.playerSection .miniCard b{display:block;font-size:20px;line-height:1.3;overflow-wrap:anywhere}.playerSection .miniCard small{display:block;margin-top:5px;font-size:12px}.playerSection.forecast-results{border-top:1px solid var(--line);padding-top:16px}.playerSection .secondaryDetails{margin-top:12px}
 @media(max-width:780px){header{position:relative;padding:12px}.head{flex-wrap:wrap}.head h1{font-size:21px}.badge{font-size:10px}.tabs{top:0}.hero h2{font-size:19px}.stats{gap:5px}.stat{padding:8px}.stat b{font-size:17px}.filters{grid-template-columns:1fr 1fr}.filters #search{grid-column:1/-1}.marketTable{min-width:0}.marketTable thead{display:none}.marketTable,.marketTable tbody,.marketTable tr,.marketTable td{display:block;width:100%}.marketTable tr{position:relative;background:var(--card2);border:1px solid var(--line);border-radius:14px;margin:0 0 10px;padding:11px}.marketTable td{border:0;padding:3px 0}.marketTable td.name{padding-left:90px}.marketTable td.name b{font-size:15px}.marketTable td:nth-child(2){position:absolute;top:12px;left:12px;color:var(--accent);font-weight:800}.marketTable td:nth-child(2)::after{content:' קרדיט';font-size:10px}.marketTable td:nth-child(4){font-size:19px;font-weight:800;margin-top:8px}.marketTable td:nth-child(4)::before{content:'תחזית PIR  ';display:block;font-size:11px;font-weight:400;color:var(--muted)}.marketTable td:nth-child(3),.marketTable td:nth-child(5),.marketTable td:nth-child(6),.marketTable td:nth-child(7){display:none}.marketTable td:nth-child(8){font-size:11px}.marketTable td:last-child{position:absolute;left:10px;bottom:10px}.marketTable td:last-child button{padding:7px 10px}.detailGrid{grid-template-columns:1fr 1fr}}
 /* Mobile cards use document flow so names, prices and actions never overlap. */
 @media(max-width:780px){
@@ -278,14 +279,27 @@ function renderMarket(){
 }
 window.showPlayer=function(name){
   const p=players.find(x=>x.name===name);if(!p)return;const x=model(p),m=x.match;
+  const recent=x.recentForm;
+  const hasCurrent=recent?.latestSeason==="E2026" && Number(recent.currentSeasonGames)>0;
+  const actualMetric=(label,value,decimals=1)=>`<div class="miniCard"><b>${value==null||!Number.isFinite(Number(value))?"—":Number(value).toFixed(decimals)}</b><small>${label}</small></div>`;
+  const actualCards=hasCurrent?[
+    actualMetric("PIR במשחק האחרון",recent.lastGame?.pir),
+    actualMetric("דקות במשחק האחרון",recent.lastGame?.minutes),
+    actualMetric(`ממוצע PIR · ${recent.last5?.games||0} משחקים אחרונים`,recent.last5?.avgPir),
+    actualMetric(`ממוצע דקות · ${recent.last5?.games||0} משחקים אחרונים`,recent.last5?.avgMinutes),
+    actualMetric("משחקים בעונה",recent.currentSeasonGames,0)
+  ].join(""):'<p class="muted">אין עדיין נתוני משחק מאומתים לעונת 2026/27.</p>';
   document.getElementById("modalBody").innerHTML=`<h2>${esc(p.name)}</h2><p class="muted">${esc(p.team)} • ${p.pos} • ${n1(p.price)} קרדיט • ${statusText(p.status)}</p>
+  <section class="playerSection actual-results" aria-label="נתוני עבר"><h3 class="sectionTitle">בפועל · עונת 2026/27</h3><p class="muted sectionNote">תוצאות ממשחקים שכבר שוחקו</p><div class="detailGrid">${actualCards}</div></section>
+  <section class="playerSection forecast-results" aria-label="תחזית למשחק הבא"><h3 class="sectionTitle">תחזית · המשחק הבא</h3><p class="muted sectionNote">הערכות המודל, לא תוצאות בפועל</p>
   <div class="detailGrid">
-  <div class="miniCard"><b>${n1(x.expected)}</b><small> Expected PIR</small></div><div class="miniCard"><b>${n1(x.floor)}–${n1(x.ceiling)}</b><small> ${x.rangeSample?"טווח שגיאות עבר*":"טווח נוסחתי*"}</small></div>
-  <div class="miniCard"><b>${n1(x.minutes)}</b><small> דקות צפויות</small></div><div class="miniCard"><b>${dataQuality(p,x)}</b><small> איכות נתונים</small></div>
-  <div class="miniCard"><b>${pct(m.winProb)}</b><small> סיכוי קבוצתי לניצחון</small></div><div class="miniCard"><b>${pct(m.p20)}</b><small> סיכוי 20+ מודל</small></div>
-  <div class="miniCard"><b>${x.matchPct>=0?"+":""}${x.matchPct.toFixed(1)}%</b><small> סביבת מאצ׳אפ</small></div><div class="miniCard"><b>${x.source}</b><small> מקור בסיס התחזית</small></div>
+  <div class="miniCard"><b>${n1(x.expected)}</b><small>PIR צפוי</small></div><div class="miniCard"><b>${n1(x.minutes)}</b><small>דקות צפויות</small></div>
+  <div class="miniCard"><b>${n1(x.floor)}–${n1(x.ceiling)}</b><small>${x.rangeSample?"טווח שגיאות עבר*":"טווח נוסחתי*"}</small></div><div class="miniCard"><b>${x.matchPct>=0?"+":""}${x.matchPct.toFixed(1)}%</b><small>סביבת מאצ׳אפ</small></div>
   </div>
-  <p class="notice" style="margin-top:12px">בסיס PIR: ${n1(x.basePir)} • בסיס דקות: ${n1(x.baseMin)} • חוסרים בקבוצה: +${n1(x.injuryBoost)} דקות, +${n1(x.injuryUsagePct||0)}% נפח משחק${x.missingStars?.length?` (${x.missingStars.map(esc).join(", ")})`:""}. ${m.home?"בית":"חוץ"} • צפי נקודות קבוצה: ${n1(m.teamPoints)} • הגנת היריבה מול העמדה: ${Number(x.positionMatchPct||0)>=0?"+":""}${n1(x.positionMatchPct||0)}%. קו קבוצה: ${m.margin>=0?"+":""}${n1(m.margin)}; טוטאל: ${n1(m.total)}. *${x.rangeSample?`טווח המבוסס על ${x.rangeSample} שגיאות בעמדה במחזור אחד; אינו טווח ביטחון מאומת.`:"טווח נוסחתי שטרם אומת."}</p>`;
+  <details class="secondaryDetails"><summary>עוד נתונים והסבר לתחזית</summary><div class="detailGrid">
+  <div class="miniCard"><b>${dataQuality(p,x)}</b><small>איכות נתונים</small></div><div class="miniCard"><b>${esc(x.source)}</b><small>מקור בסיס התחזית</small></div>
+  <div class="miniCard"><b>${pct(m.winProb)}</b><small>סיכוי קבוצתי לניצחון</small></div><div class="miniCard"><b>${pct(m.p20)}</b><small>סיכוי קבוצתי לניצחון ב־20+ הפרש</small></div>
+  </div><p class="notice" style="margin-top:12px">בסיס PIR: ${n1(x.basePir)} • בסיס דקות: ${n1(x.baseMin)} • חוסרים בקבוצה: +${n1(x.injuryBoost)} דקות, +${n1(x.injuryUsagePct||0)}% נפח משחק${x.missingStars?.length?` (${x.missingStars.map(esc).join(", ")})`:""}. ${m.home?"בית":"חוץ"} • צפי נקודות קבוצה: ${n1(m.teamPoints)} • הגנת היריבה מול העמדה: ${Number(x.positionMatchPct||0)>=0?"+":""}${n1(x.positionMatchPct||0)}%. קו קבוצה: ${m.margin>=0?"+":""}${n1(m.margin)}; טוטאל: ${n1(m.total)}. *${x.rangeSample?`טווח המבוסס על ${x.rangeSample} שגיאות בעמדה במחזור אחד; אינו טווח ביטחון מאומת.`:"טווח נוסחתי שטרם אומת."}</p></details></section>`;
   playerModal.showModal();
 }
 function renderTeam(){
@@ -1163,7 +1177,7 @@ if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
         ? ` • מדגם ${games} משחקים`
         : "");
 
-    body.appendChild(box);
+    (body.querySelector('.forecast-results details') || body).appendChild(box);
   }
 
 
