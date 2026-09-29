@@ -3,12 +3,407 @@
   "round": 2,
   "complete": false,
   "scheduledGames": 10,
-  "playedGames": 0,
-  "gradedGames": 0,
+  "playedGames": 1,
+  "gradedGames": 1,
   "metrics": {
-    "n": 0
+    "n": 22,
+    "mae": 4.758,
+    "rmse": 6.807,
+    "bias": 1.457,
+    "within3": 0.4091,
+    "within5": 0.5909,
+    "correlation": 0.5968,
+    "byPosition": {
+      "G": {
+        "n": 11,
+        "mae": 5.818,
+        "bias": 2.813
+      },
+      "F": {
+        "n": 9,
+        "mae": 3.206,
+        "bias": 1.329
+      },
+      "C": {
+        "n": 2,
+        "mae": 5.918,
+        "bias": -5.428
+      }
+    }
   },
-  "largestMisses": [],
-  "comparisons": [],
-  "updated_at": "2026-09-29T12:37:23.828107+00:00"
+  "largestMisses": [
+    {
+      "name": "Dario Brizuela",
+      "team": "Barcelona",
+      "pos": "G",
+      "price": 6.8,
+      "predictedPir": 16.011,
+      "actualPir": -8.0,
+      "error": 24.011,
+      "absoluteError": 24.011
+    },
+    {
+      "name": "Mfiondu Kabengele",
+      "team": "Dubai",
+      "pos": "C",
+      "price": 14.5,
+      "predictedPir": 12.654,
+      "actualPir": 24.0,
+      "error": -11.346,
+      "absoluteError": 11.346
+    },
+    {
+      "name": "Dwayne Bacon",
+      "team": "Dubai",
+      "pos": "F",
+      "price": 13.5,
+      "predictedPir": 25.063,
+      "actualPir": 19.0,
+      "error": 6.063,
+      "absoluteError": 6.063
+    },
+    {
+      "name": "Stanley Umude",
+      "team": "Barcelona",
+      "pos": "G",
+      "price": 9.0,
+      "predictedPir": 6.005,
+      "actualPir": 12.0,
+      "error": -5.995,
+      "absoluteError": 5.995
+    },
+    {
+      "name": "Kevin Punter",
+      "team": "Barcelona",
+      "pos": "G",
+      "price": 14.0,
+      "predictedPir": 22.018,
+      "actualPir": 28.0,
+      "error": -5.982,
+      "absoluteError": 5.982
+    },
+    {
+      "name": "Jaron Blossomgame",
+      "team": "Dubai",
+      "pos": "F",
+      "price": 9.1,
+      "predictedPir": 3.294,
+      "actualPir": 9.0,
+      "error": -5.706,
+      "absoluteError": 5.706
+    },
+    {
+      "name": "Agustin Ubal",
+      "team": "Barcelona",
+      "pos": "G",
+      "price": 6.0,
+      "predictedPir": 5.58,
+      "actualPir": 0.0,
+      "error": 5.58,
+      "absoluteError": 5.58
+    },
+    {
+      "name": "Justin Minaya",
+      "team": "Barcelona",
+      "pos": "F",
+      "price": 7.4,
+      "predictedPir": 4.469,
+      "actualPir": -1.0,
+      "error": 5.469,
+      "absoluteError": 5.469
+    },
+    {
+      "name": "Justin Robinson",
+      "team": "Barcelona",
+      "pos": "G",
+      "price": 12.1,
+      "predictedPir": 10.007,
+      "actualPir": 5.0,
+      "error": 5.007,
+      "absoluteError": 5.007
+    },
+    {
+      "name": "Juan Nunez",
+      "team": "Barcelona",
+      "pos": "G",
+      "price": 4.5,
+      "predictedPir": 4.185,
+      "actualPir": 0.0,
+      "error": 4.185,
+      "absoluteError": 4.185
+    },
+    {
+      "name": "Kosta Kondic",
+      "team": "Dubai",
+      "pos": "G",
+      "price": 4.1,
+      "predictedPir": 3.813,
+      "actualPir": 0.0,
+      "error": 3.813,
+      "absoluteError": 3.813
+    },
+    {
+      "name": "Tyrese Martin",
+      "team": "Barcelona",
+      "pos": "F",
+      "price": 8.3,
+      "predictedPir": 7.719,
+      "actualPir": 4.0,
+      "error": 3.719,
+      "absoluteError": 3.719
+    },
+    {
+      "name": "Umoja Gibson",
+      "team": "Barcelona",
+      "pos": "G",
+      "price": 10.4,
+      "predictedPir": 15.016,
+      "actualPir": 12.0,
+      "error": 3.016,
+      "absoluteError": 3.016
+    },
+    {
+      "name": "Olivier Nkamhoua",
+      "team": "Barcelona",
+      "pos": "F",
+      "price": 7.7,
+      "predictedPir": 6.887,
+      "actualPir": 4.0,
+      "error": 2.887,
+      "absoluteError": 2.887
+    },
+    {
+      "name": "Thomas Walkup",
+      "team": "Dubai",
+      "pos": "G",
+      "price": 7.8,
+      "predictedPir": 7.254,
+      "actualPir": 10.0,
+      "error": -2.746,
+      "absoluteError": 2.746
+    }
+  ],
+  "comparisons": [
+    {
+      "name": "Dario Brizuela",
+      "team": "Barcelona",
+      "pos": "G",
+      "price": 6.8,
+      "predictedPir": 16.011,
+      "actualPir": -8.0,
+      "error": 24.011,
+      "absoluteError": 24.011
+    },
+    {
+      "name": "Mfiondu Kabengele",
+      "team": "Dubai",
+      "pos": "C",
+      "price": 14.5,
+      "predictedPir": 12.654,
+      "actualPir": 24.0,
+      "error": -11.346,
+      "absoluteError": 11.346
+    },
+    {
+      "name": "Dwayne Bacon",
+      "team": "Dubai",
+      "pos": "F",
+      "price": 13.5,
+      "predictedPir": 25.063,
+      "actualPir": 19.0,
+      "error": 6.063,
+      "absoluteError": 6.063
+    },
+    {
+      "name": "Stanley Umude",
+      "team": "Barcelona",
+      "pos": "G",
+      "price": 9.0,
+      "predictedPir": 6.005,
+      "actualPir": 12.0,
+      "error": -5.995,
+      "absoluteError": 5.995
+    },
+    {
+      "name": "Kevin Punter",
+      "team": "Barcelona",
+      "pos": "G",
+      "price": 14.0,
+      "predictedPir": 22.018,
+      "actualPir": 28.0,
+      "error": -5.982,
+      "absoluteError": 5.982
+    },
+    {
+      "name": "Jaron Blossomgame",
+      "team": "Dubai",
+      "pos": "F",
+      "price": 9.1,
+      "predictedPir": 3.294,
+      "actualPir": 9.0,
+      "error": -5.706,
+      "absoluteError": 5.706
+    },
+    {
+      "name": "Agustin Ubal",
+      "team": "Barcelona",
+      "pos": "G",
+      "price": 6.0,
+      "predictedPir": 5.58,
+      "actualPir": 0.0,
+      "error": 5.58,
+      "absoluteError": 5.58
+    },
+    {
+      "name": "Justin Minaya",
+      "team": "Barcelona",
+      "pos": "F",
+      "price": 7.4,
+      "predictedPir": 4.469,
+      "actualPir": -1.0,
+      "error": 5.469,
+      "absoluteError": 5.469
+    },
+    {
+      "name": "Justin Robinson",
+      "team": "Barcelona",
+      "pos": "G",
+      "price": 12.1,
+      "predictedPir": 10.007,
+      "actualPir": 5.0,
+      "error": 5.007,
+      "absoluteError": 5.007
+    },
+    {
+      "name": "Juan Nunez",
+      "team": "Barcelona",
+      "pos": "G",
+      "price": 4.5,
+      "predictedPir": 4.185,
+      "actualPir": 0.0,
+      "error": 4.185,
+      "absoluteError": 4.185
+    },
+    {
+      "name": "Kosta Kondic",
+      "team": "Dubai",
+      "pos": "G",
+      "price": 4.1,
+      "predictedPir": 3.813,
+      "actualPir": 0.0,
+      "error": 3.813,
+      "absoluteError": 3.813
+    },
+    {
+      "name": "Tyrese Martin",
+      "team": "Barcelona",
+      "pos": "F",
+      "price": 8.3,
+      "predictedPir": 7.719,
+      "actualPir": 4.0,
+      "error": 3.719,
+      "absoluteError": 3.719
+    },
+    {
+      "name": "Umoja Gibson",
+      "team": "Barcelona",
+      "pos": "G",
+      "price": 10.4,
+      "predictedPir": 15.016,
+      "actualPir": 12.0,
+      "error": 3.016,
+      "absoluteError": 3.016
+    },
+    {
+      "name": "Olivier Nkamhoua",
+      "team": "Barcelona",
+      "pos": "F",
+      "price": 7.7,
+      "predictedPir": 6.887,
+      "actualPir": 4.0,
+      "error": 2.887,
+      "absoluteError": 2.887
+    },
+    {
+      "name": "Thomas Walkup",
+      "team": "Dubai",
+      "pos": "G",
+      "price": 7.8,
+      "predictedPir": 7.254,
+      "actualPir": 10.0,
+      "error": -2.746,
+      "absoluteError": 2.746
+    },
+    {
+      "name": "Filip Petrusev",
+      "team": "Dubai",
+      "pos": "F",
+      "price": 12.5,
+      "predictedPir": 8.177,
+      "actualPir": 6.0,
+      "error": 2.177,
+      "absoluteError": 2.177
+    },
+    {
+      "name": "Davis Bertans",
+      "team": "Dubai",
+      "pos": "F",
+      "price": 5.3,
+      "predictedPir": 1.029,
+      "actualPir": 3.0,
+      "error": -1.971,
+      "absoluteError": 1.971
+    },
+    {
+      "name": "Davion Mintz",
+      "team": "Dubai",
+      "pos": "G",
+      "price": 6.3,
+      "predictedPir": 5.859,
+      "actualPir": 4.0,
+      "error": 1.859,
+      "absoluteError": 1.859
+    },
+    {
+      "name": "Elie Okobo",
+      "team": "Dubai",
+      "pos": "G",
+      "price": 12.2,
+      "predictedPir": 11.196,
+      "actualPir": 13.0,
+      "error": -1.804,
+      "absoluteError": 1.804
+    },
+    {
+      "name": "Joel Parra",
+      "team": "Barcelona",
+      "pos": "F",
+      "price": 6.7,
+      "predictedPir": 6.231,
+      "actualPir": 7.0,
+      "error": -0.769,
+      "absoluteError": 0.769
+    },
+    {
+      "name": "Mamadi Diakite",
+      "team": "Dubai",
+      "pos": "C",
+      "price": 10.0,
+      "predictedPir": 7.489,
+      "actualPir": 7.0,
+      "error": 0.489,
+      "absoluteError": 0.489
+    },
+    {
+      "name": "Tornike Shengelia",
+      "team": "Dubai",
+      "pos": "F",
+      "price": 13.3,
+      "predictedPir": 3.092,
+      "actualPir": 3.0,
+      "error": 0.092,
+      "absoluteError": 0.092
+    }
+  ],
+  "updated_at": "2026-09-29T18:35:05.324356+00:00"
 }
