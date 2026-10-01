@@ -3,12 +3,427 @@
   "round": 3,
   "complete": false,
   "scheduledGames": 10,
-  "playedGames": 0,
-  "gradedGames": 0,
+  "playedGames": 1,
+  "gradedGames": 1,
   "metrics": {
-    "n": 0
+    "n": 24,
+    "mae": 7.729,
+    "rmse": 9.857,
+    "bias": 0.648,
+    "within3": 0.2083,
+    "within5": 0.4167,
+    "correlation": 0.581,
+    "byPosition": {
+      "G": {
+        "n": 11,
+        "mae": 7.959,
+        "bias": -1.698
+      },
+      "F": {
+        "n": 8,
+        "mae": 6.23,
+        "bias": 3.447
+      },
+      "C": {
+        "n": 5,
+        "mae": 9.622,
+        "bias": 1.328
+      }
+    }
   },
-  "largestMisses": [],
-  "comparisons": [],
-  "updated_at": "2026-10-01T12:38:38.154942+00:00"
+  "largestMisses": [
+    {
+      "name": "Theo Maledon",
+      "team": "Real Madrid",
+      "pos": "G",
+      "price": 10.0,
+      "predictedPir": 13.794,
+      "actualPir": 40.0,
+      "error": -26.206,
+      "absoluteError": 26.206
+    },
+    {
+      "name": "Walter Tavares",
+      "team": "Real Madrid",
+      "pos": "C",
+      "price": 14.2,
+      "predictedPir": 10.291,
+      "actualPir": 27.0,
+      "error": -16.709,
+      "absoluteError": 16.709
+    },
+    {
+      "name": "Elijah Bryant",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "price": 16.0,
+      "predictedPir": 23.684,
+      "actualPir": 40.0,
+      "error": -16.316,
+      "absoluteError": 16.316
+    },
+    {
+      "name": "Andres Feliz",
+      "team": "Real Madrid",
+      "pos": "G",
+      "price": 6.6,
+      "predictedPir": 12.232,
+      "actualPir": -4.0,
+      "error": 16.232,
+      "absoluteError": 16.232
+    },
+    {
+      "name": "Dan Oturu",
+      "team": "Hapoel Tel Aviv",
+      "pos": "C",
+      "price": 14.6,
+      "predictedPir": 17.449,
+      "actualPir": 4.0,
+      "error": 13.449,
+      "absoluteError": 13.449
+    },
+    {
+      "name": "Jaime Pradilla",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 8.5,
+      "predictedPir": 8.002,
+      "actualPir": -2.0,
+      "error": 10.002,
+      "absoluteError": 10.002
+    },
+    {
+      "name": "Vasilije Micic",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "price": 11.4,
+      "predictedPir": 6.352,
+      "actualPir": 16.0,
+      "error": -9.648,
+      "absoluteError": 9.648
+    },
+    {
+      "name": "Chuma Okeke",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 9.1,
+      "predictedPir": 13.994,
+      "actualPir": 5.0,
+      "error": 8.994,
+      "absoluteError": 8.994
+    },
+    {
+      "name": "Timothé Luwawu-Cabarrot",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 11.5,
+      "predictedPir": 3.603,
+      "actualPir": 12.0,
+      "error": -8.397,
+      "absoluteError": 8.397
+    },
+    {
+      "name": "Damian Jones",
+      "team": "Real Madrid",
+      "pos": "C",
+      "price": 8.7,
+      "predictedPir": 10.05,
+      "actualPir": 2.0,
+      "error": 8.05,
+      "absoluteError": 8.05
+    },
+    {
+      "name": "Ish Wainright",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "price": 6.4,
+      "predictedPir": 6.129,
+      "actualPir": -1.0,
+      "error": 7.129,
+      "absoluteError": 7.129
+    },
+    {
+      "name": "Gabriel Deck",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 8.3,
+      "predictedPir": 2.674,
+      "actualPir": -4.0,
+      "error": 6.674,
+      "absoluteError": 6.674
+    },
+    {
+      "name": "Tai Odiase",
+      "team": "Hapoel Tel Aviv",
+      "pos": "C",
+      "price": 6.2,
+      "predictedPir": 3.877,
+      "actualPir": -2.0,
+      "error": 5.877,
+      "absoluteError": 5.877
+    },
+    {
+      "name": "Nick Smith Jr",
+      "team": "Real Madrid",
+      "pos": "G",
+      "price": 8.4,
+      "predictedPir": 10.004,
+      "actualPir": 5.0,
+      "error": 5.004,
+      "absoluteError": 5.004
+    },
+    {
+      "name": "Alberto Abalde",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 4.4,
+      "predictedPir": 6.558,
+      "actualPir": 2.0,
+      "error": 4.558,
+      "absoluteError": 4.558
+    }
+  ],
+  "comparisons": [
+    {
+      "name": "Theo Maledon",
+      "team": "Real Madrid",
+      "pos": "G",
+      "price": 10.0,
+      "predictedPir": 13.794,
+      "actualPir": 40.0,
+      "error": -26.206,
+      "absoluteError": 26.206
+    },
+    {
+      "name": "Walter Tavares",
+      "team": "Real Madrid",
+      "pos": "C",
+      "price": 14.2,
+      "predictedPir": 10.291,
+      "actualPir": 27.0,
+      "error": -16.709,
+      "absoluteError": 16.709
+    },
+    {
+      "name": "Elijah Bryant",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "price": 16.0,
+      "predictedPir": 23.684,
+      "actualPir": 40.0,
+      "error": -16.316,
+      "absoluteError": 16.316
+    },
+    {
+      "name": "Andres Feliz",
+      "team": "Real Madrid",
+      "pos": "G",
+      "price": 6.6,
+      "predictedPir": 12.232,
+      "actualPir": -4.0,
+      "error": 16.232,
+      "absoluteError": 16.232
+    },
+    {
+      "name": "Dan Oturu",
+      "team": "Hapoel Tel Aviv",
+      "pos": "C",
+      "price": 14.6,
+      "predictedPir": 17.449,
+      "actualPir": 4.0,
+      "error": 13.449,
+      "absoluteError": 13.449
+    },
+    {
+      "name": "Jaime Pradilla",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 8.5,
+      "predictedPir": 8.002,
+      "actualPir": -2.0,
+      "error": 10.002,
+      "absoluteError": 10.002
+    },
+    {
+      "name": "Vasilije Micic",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "price": 11.4,
+      "predictedPir": 6.352,
+      "actualPir": 16.0,
+      "error": -9.648,
+      "absoluteError": 9.648
+    },
+    {
+      "name": "Chuma Okeke",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 9.1,
+      "predictedPir": 13.994,
+      "actualPir": 5.0,
+      "error": 8.994,
+      "absoluteError": 8.994
+    },
+    {
+      "name": "Timothé Luwawu-Cabarrot",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 11.5,
+      "predictedPir": 3.603,
+      "actualPir": 12.0,
+      "error": -8.397,
+      "absoluteError": 8.397
+    },
+    {
+      "name": "Damian Jones",
+      "team": "Real Madrid",
+      "pos": "C",
+      "price": 8.7,
+      "predictedPir": 10.05,
+      "actualPir": 2.0,
+      "error": 8.05,
+      "absoluteError": 8.05
+    },
+    {
+      "name": "Ish Wainright",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "price": 6.4,
+      "predictedPir": 6.129,
+      "actualPir": -1.0,
+      "error": 7.129,
+      "absoluteError": 7.129
+    },
+    {
+      "name": "Gabriel Deck",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 8.3,
+      "predictedPir": 2.674,
+      "actualPir": -4.0,
+      "error": 6.674,
+      "absoluteError": 6.674
+    },
+    {
+      "name": "Tai Odiase",
+      "team": "Hapoel Tel Aviv",
+      "pos": "C",
+      "price": 6.2,
+      "predictedPir": 3.877,
+      "actualPir": -2.0,
+      "error": 5.877,
+      "absoluteError": 5.877
+    },
+    {
+      "name": "Nick Smith Jr",
+      "team": "Real Madrid",
+      "pos": "G",
+      "price": 8.4,
+      "predictedPir": 10.004,
+      "actualPir": 5.0,
+      "error": 5.004,
+      "absoluteError": 5.004
+    },
+    {
+      "name": "Alberto Abalde",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 4.4,
+      "predictedPir": 6.558,
+      "actualPir": 2.0,
+      "error": 4.558,
+      "absoluteError": 4.558
+    },
+    {
+      "name": "Bruno Caboclo",
+      "team": "Hapoel Tel Aviv",
+      "pos": "C",
+      "price": 7.5,
+      "predictedPir": 6.975,
+      "actualPir": 11.0,
+      "error": -4.025,
+      "absoluteError": 4.025
+    },
+    {
+      "name": "Bar Timor",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "price": 4.0,
+      "predictedPir": 3.72,
+      "actualPir": 0.0,
+      "error": 3.72,
+      "absoluteError": 3.72
+    },
+    {
+      "name": "Khadeen Carrington",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "price": 7.0,
+      "predictedPir": 6.51,
+      "actualPir": 3.0,
+      "error": 3.51,
+      "absoluteError": 3.51
+    },
+    {
+      "name": "Facundo Campazzo",
+      "team": "Real Madrid",
+      "pos": "G",
+      "price": 13.5,
+      "predictedPir": 11.468,
+      "actualPir": 8.0,
+      "error": 3.468,
+      "absoluteError": 3.468
+    },
+    {
+      "name": "Mikael Jantunen",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 6.0,
+      "predictedPir": 7.266,
+      "actualPir": 10.0,
+      "error": -2.734,
+      "absoluteError": 2.734
+    },
+    {
+      "name": "Eugene German",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "price": 7.5,
+      "predictedPir": 2.501,
+      "actualPir": 0.0,
+      "error": 2.501,
+      "absoluteError": 2.501
+    },
+    {
+      "name": "Zach Leday",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "price": 13.2,
+      "predictedPir": 17.354,
+      "actualPir": 16.0,
+      "error": 1.354,
+      "absoluteError": 1.354
+    },
+    {
+      "name": "Tomas Satoransky",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "price": 9.2,
+      "predictedPir": 8.394,
+      "actualPir": 9.0,
+      "error": -0.606,
+      "absoluteError": 0.606
+    },
+    {
+      "name": "Antonio Blakeney",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "price": 9.4,
+      "predictedPir": 8.663,
+      "actualPir": 9.0,
+      "error": -0.337,
+      "absoluteError": 0.337
+    }
+  ],
+  "updated_at": "2026-10-01T18:36:28.798150+00:00"
 }
