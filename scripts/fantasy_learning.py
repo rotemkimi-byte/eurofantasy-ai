@@ -76,7 +76,7 @@ def actuals(g):
             p=r.get('player',{});stats=r.get('stats',{})
             pir=num(stats.get('valuation'));seconds=num(stats.get('timePlayed'))
             if pir is None or seconds is None:continue
-            rows[key(p.get('person',{}).get('name'))]={'actualPir':pir,'actualMinutes':seconds/60,'fouls':num(stats.get('foulsCommited')),'team':canon(p.get('club',{}).get('name'))}
+            rows[key(p.get('person',{}).get('name'))]={'actualPir':pir,'actualMinutes':seconds/60,'fouls':num(stats.get('foulsCommited')),'team':canon(p.get('club',{}).get('name')),'actualStats':{k:num(stats.get(k)) for k in ['points','totalRebounds','assistances','turnovers','foulsCommited','fieldGoalsMadeTotal','fieldGoalsAttemptedTotal']}}
     return rows
 
 def diagnosis(row):
@@ -119,7 +119,7 @@ def collect(schedule):
             if a is None or a['team']!=canon(p['team']):continue
             pred=num(p.get('basePir',p.get('expectedPir')));minutes=num(p.get('baseMinutes',p.get('expectedMinutes')))
             if pred is None or minutes is None:continue
-            row={'name':p['name'],'key':key(p['name']),'team':canon(p['team']),'pos':p['pos'],'opponent':opponent,'gameCode':g['gameCode'],'round':g['round'],'start':g['start'],'basePir':pred,'baseMinutes':minutes,'servedPir':num(p.get('expectedPir')) or 0,'servedMinutes':num(p.get('expectedMinutes')) or 0,'status':p.get('status'),'modelId':snapshot.get('modelId') if live else 'legacy','eligible':bool(live and snapshot.get('schema')==VERSION),'snapshotAt':snapshot['created_at'],**a}
+            row={'name':p['name'],'key':key(p['name']),'team':canon(p['team']),'pos':p['pos'],'opponent':opponent,'gameCode':g['gameCode'],'round':g['round'],'start':g['start'],'basePir':pred,'baseMinutes':minutes,'servedPir':num(p.get('expectedPir')) or 0,'servedMinutes':num(p.get('expectedMinutes')) or 0,'status':p.get('status'),'modelId':snapshot.get('modelId') if live else 'legacy','eligible':bool(live and snapshot.get('schema')==VERSION),'snapshotAt':snapshot['created_at'],'home':canon(p['team'])==g['home'],'features':p.get('features') or p.get('detail') or {},**a}
             rows.append(diagnosis(row))
     return rows,warnings
 
@@ -144,7 +144,7 @@ def adjusted(row,coeff):
     return new_p,new_m
 
 def metrics(rows):
-    return {'n':len(rows),'mae':statistics.mean(abs(r['error']) for r in rows) if rows else None,'bias':statistics.mean(r['error'] for r in rows) if rows else None,'minutesMae':statistics.mean(abs(r['actualMinutes']-r['baseMinutes']) for r in rows) if rows else None}
+    return {'n':len(rows),'mae':statistics.mean(abs(r['error']) for r in rows) if rows else None,'bias':statistics.mean(r['error'] for r in rows) if rows else None,'minutesMae':statistics.mean(abs(r['actualMinutes']-r['baseMinutes']) for r in rows) if rows else None,'hits':sum(abs(r['error'])<=5 for r in rows),'hitRate':sum(abs(r['error'])<=5 for r in rows)/len(rows)*100 if rows else None,'over':sum(r['error'] < -5 for r in rows),'under':sum(r['error'] > 5 for r in rows)}
 
 def validate(rows):
     games=sorted(set((r['start'],r['gameCode']) for r in rows))
@@ -165,6 +165,28 @@ def validate(rows):
     active=heldout_games>=6 and len(scored)>=60 and after<before*.98
     return {'n':len(scored),'games':heldout_games,'baselineMae':before,'candidateMae':after,'improvementPct':(before-after)/max(before,.001)*100,'active':active,'reason':'validated' if active else 'not-yet-validated'}
 
+def group_metrics(rows, field):
+    groups=defaultdict(list)
+    for r in rows:groups[str(r.get(field,'unknown'))].append(r)
+    return [{'label':k,**metrics(v)} for k,v in sorted(groups.items())]
+
+def team_audit(schedule):
+    rows=[]
+    for g in schedule.values():
+        if not g['played']:continue
+        snap=load(OUT/f'team-snapshots/E2026-{g["gameCode"]}.json')
+        if not snap or not date(snap.get('created_at')) or date(snap['created_at'])>=date(g['start']):continue
+        if canon(snap.get('home'))!=g['home'] or canon(snap.get('away'))!=g['away']:continue
+        box=load(ROOT/f'data/backtest/cache/E2026-{g["gameCode"]}-stats.json')
+        if not box:continue
+        home=num((box.get('local') or {}).get('total',{}).get('points'));away=num((box.get('road') or {}).get('total',{}).get('points'))
+        pred=snap.get('forecast',{});margin=num(pred.get('margin'));total=num(pred.get('total'));prob=num(pred.get('winProb'))
+        if None in (home,away,margin,total,prob) or not 0<=prob<=1:continue
+        actual_margin=home-away
+        rows.append({**g,'forecast':pred,'homeScore':home,'awayScore':away,'actualMargin':actual_margin,'actualTotal':home+away,'marginError':actual_margin-margin,'totalError':home+away-total,'winnerHit':(prob>=.5)==(actual_margin>0),'brier':(prob-int(actual_margin>0))**2})
+    n=len(rows)
+    return {'games':sorted(rows,key=lambda r:r['start'],reverse=True),'n':n,'winnerAccuracy':sum(r['winnerHit'] for r in rows)/n*100 if n else None,'marginMae':statistics.mean(abs(r['marginError']) for r in rows) if n else None,'totalMae':statistics.mean(abs(r['totalError']) for r in rows) if n else None,'brier':statistics.mean(r['brier'] for r in rows) if n else None}
+
 def grade():
     schedule=load(OUT/'schedule.json',{})
     rows,warnings=collect(schedule)
@@ -177,6 +199,7 @@ def grade():
     players={k:{'name':v[-1]['name'],'n':len(v),'metrics':metrics(v),'games':sorted(v,key=lambda r:r['start'],reverse=True)[:5]} for k,v in groups.items()}
     now=datetime.now(timezone.utc).isoformat()
     payload={'schema':VERSION,'season':'E2026','modelId':ident,'updated_at':now,'metrics':metrics(rows),'eligibleMetrics':metrics(eligible),'legacyCount':len(rows)-len(eligible),'validation':validation,'coefficients':coeff,'active':validation['active'],'players':players,'largestMisses':sorted(rows,key=lambda r:abs(r['error']),reverse=True)[:20],'byPosition':{pos:metrics([r for r in rows if r['pos']==pos]) for pos in ['G','F','C']},'warnings':warnings}
+    payload.update({'rows':sorted(rows,key=lambda r:r['start'],reverse=True),'bestHits':sorted(rows,key=lambda r:abs(r['error']))[:20],'breakdowns':{'position':group_metrics(rows,'pos'),'team':group_metrics(rows,'team'),'round':group_metrics(rows,'round'),'home':group_metrics(rows,'home'),'reason':group_metrics(rows,'reason')},'teamAudit':team_audit(schedule),'reportVersion':2})
     save(OUT/'latest.json',payload)
     print(json.dumps({'diagnosticRows':len(rows),'eligibleRows':len(eligible),'validation':validation}))
 
