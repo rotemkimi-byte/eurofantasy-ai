@@ -46,7 +46,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
 .lastThreeCard{padding:10px!important;align-self:stretch}.playerSection .lastThreeCard h4{font-size:12px;margin:0 0 8px;color:var(--blue)}
 .lastThreeTable{width:100%;min-width:0;table-layout:fixed;border-collapse:collapse}.lastThreeTable th,.lastThreeTable td{padding:6px 3px;font-size:11px;border-bottom:1px solid var(--line);background:transparent;position:static}
 .lastThreeTable th:first-child{width:54%}.lastThreeTable th:not(:first-child),.lastThreeTable td:not(:first-child){text-align:center;direction:ltr;font-variant-numeric:tabular-nums}.lastThreeTable td:first-child{overflow-wrap:anywhere}.lastThreeTable tr:last-child td{border-bottom:0}.playerSection .lastThreeCard .gameDate{display:block;font-size:9px;margin-top:2px}.lastThreeCard .muted{font-size:11px;margin:0}
-</style></head>
+</style><link rel="stylesheet" href="./learning.css"></head>
 <body>
 <header><div class="head"><div><div class="eyebrow">EUROLEAGUE FANTASY AGENT • V2</div><h1>EuroFantasy AI</h1></div><div class="badge" id="syncBadge">טוען נתונים…</div></div></header>
 <main>
@@ -57,6 +57,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
 
 <nav class="tabs">
 <button class="active" data-tab="market">שוק שחקנים</button><button data-tab="clubMarket">שוק קבוצות</button><button data-tab="team">הסגל שלי</button><button data-tab="captain">קפטן</button><button data-tab="coach">מאמן</button><button data-tab="matchups">מאצ׳אפים</button><button data-tab="injuries">פציעות</button><button data-tab="optimizer">אופטימייזר</button><button data-tab="data">נתונים</button>
+<button data-tab="learning">למידה ובדיקת תחזיות</button>
 </nav>
 
 <section id="market" class="tab active">
@@ -89,6 +90,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
 <div class="card"><h3>ייבוא CSV ידני</h3><p class="muted">נשאר כגיבוי למחירים/פציעות. קובץ חדש מחליף את רשימת השחקנים המקומית.</p><input id="csvFile" type="file" accept=".csv,text/csv"><button class="secondary" id="resetSeed" style="margin-top:10px">חזור לנתוני Round 1 המובנים</button></div>
 <div class="card"><h3>איך התחזית מחושבת?</h3><div class="notice">מחיר השחקן משמש נקודת מוצא; משחקי העונה מעדכנים אותה בהדרגה (משחק אחד מקבל משקל 20%). דקות, סטטוס השחקן, היעדרות כוכבים בקבוצתו, בית/חוץ בתוך תחזית נקודות הקבוצה, והגנת היריבה מול העמדה מתווספים לתחזית. היעדרות כוכבים היא התאמה שמרנית לפי מחיר ועמדה; אין נתוני שומר אישי מאומתים, ולכן אינו נכלל. *הטווח נגזר מאחוזוני שגיאות לפי עמדה במחזור שנבדק; הוא ראשוני ואינו הבטחה לדיוק עתידי. איכות הנתונים מתארת את גודל המדגם והזמינות, ולא הסתברות שהתחזית תצליח. אם בדיקת העבר אינה זמינה, הטווח הוא אומדן נוסחתי.</div><div id="forecastValidation" class="notice" style="margin-top:10px">טוען בדיקת תחזיות…</div></div>
 </section>
+<section id="learning" class="tab"><div class="card"><h2>למידה ובדיקת תחזיות</h2><p class="muted">השוואה לתוצאות בפועל ותיקונים שעוברים בדיקה על משחקים מאוחרים יותר.</p><div id="learningReport"></div></div></section>
 </main>
 <footer>EuroFantasy AI v2 • נתוני שוק הם snapshot למחזור 1, 24.9.2026 • לא כלי הימורים</footer>
 
@@ -1460,4 +1462,4 @@ if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
   }
 })();
 
-</script><script src="./model-stability.js?v=2"></script></body></html>
+</script><script src="./model-stability.js?v=2"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script></body></html>
