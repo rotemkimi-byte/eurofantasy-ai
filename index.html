@@ -42,6 +42,10 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
 </style>
 <style>
 .clubCourt{position:relative;overflow:hidden;border-radius:18px;padding:24px 12px;background:repeating-linear-gradient(90deg,#dba868 0 42px,#e4b77e 42px 84px);border:3px solid #f9e4ba;isolation:isolate}.clubCourt:before{content:"";position:absolute;inset:12px;border:2px solid #fff9;border-radius:48% 48% 8px 8px;z-index:-1}.clubCourt:after{content:"";position:absolute;width:130px;height:120px;border:2px solid #fff9;top:10px;left:50%;transform:translateX(-50%);z-index:-1}.clubLine{display:flex;justify-content:space-evenly;gap:10px;margin:12px 0 22px}.clubPlayer{width:calc(50% - 12px);max-width:220px;text-align:center;cursor:pointer;padding:0;background:none;border:0;color:#150b38}.clubJersey{display:flex;align-items:center;justify-content:center;width:65px;height:72px;margin:auto;background:var(--jersey,#172659);color:white;clip-path:polygon(22% 0,38% 8%,62% 8%,78% 0,100% 24%,80% 38%,80% 100%,20% 100%,20% 38%,0 24%);font-size:25px;font-weight:900}.clubPlayerBox{background:white;border-radius:9px;overflow:hidden;box-shadow:0 4px 15px #0002}.clubPlayerName{display:block;background:#180e3f;color:white;padding:8px 4px;border-bottom:4px solid #00c783;font-size:13px}.clubMetrics{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;padding:10px 3px}.clubMetrics b{display:block;font-size:17px}.clubMetrics small{font-size:10px;color:#666}.clubBench{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;padding:20px 8px;background:#180e3f;border-radius:14px;margin-top:14px}.clubBench .clubPlayer{flex:0 0 calc(50% - 14px)}.clubList{width:100%;min-width:0}.clubList td,.clubList th{padding:12px 6px}.clubList .clubName{white-space:normal;font-size:13px}@media(min-width:700px){.clubBench .clubPlayer{flex-basis:calc(25% - 14px)}}
+</style><style>
+.lastThreeCard{padding:10px!important;align-self:stretch}.playerSection .lastThreeCard h4{font-size:12px;margin:0 0 8px;color:var(--blue)}
+.lastThreeTable{width:100%;min-width:0;table-layout:fixed;border-collapse:collapse}.lastThreeTable th,.lastThreeTable td{padding:6px 3px;font-size:11px;border-bottom:1px solid var(--line);background:transparent;position:static}
+.lastThreeTable th:first-child{width:54%}.lastThreeTable th:not(:first-child),.lastThreeTable td:not(:first-child){text-align:center;direction:ltr;font-variant-numeric:tabular-nums}.lastThreeTable td:first-child{overflow-wrap:anywhere}.lastThreeTable tr:last-child td{border-bottom:0}.playerSection .lastThreeCard .gameDate{display:block;font-size:9px;margin-top:2px}.lastThreeCard .muted{font-size:11px;margin:0}
 </style></head>
 <body>
 <header><div class="head"><div><div class="eyebrow">EUROLEAGUE FANTASY AGENT • V2</div><h1>EuroFantasy AI</h1></div><div class="badge" id="syncBadge">טוען נתונים…</div></div></header>
@@ -280,6 +284,38 @@ function renderMarket(){
   <td>${n1(p.price)}</td><td>${n1(x.minutes)}</td><td><b>${n1(x.expected)}</b></td><td>${n1(x.floor)}–${n1(x.ceiling)}</td><td>${dataQuality(p,x)}</td><td class="${x.matchPct>=2?"good":x.matchPct<=-2?"bad":""}">${x.matchPct>=0?"+":""}${x.matchPct.toFixed(1)}%</td><td class="${statusClass(p.status)}">${statusText(p.status)}</td>
   <td><button class="${isSelected(p)?"secondary":""}" onclick='event.stopPropagation();toggle(${JSON.stringify(p.name)})'>${isSelected(p)?"הסר":"הוסף"}</button></td></tr>`}).join("");
 }
+// Load individual games from the same current-season feed as the summary.
+const lastThreeRequests = new Map();
+function lastThreeFetch(path){
+  if(!lastThreeRequests.has(path)) lastThreeRequests.set(path,fetch(path).then(r=>{if(!r.ok)throw new Error("game data unavailable");return r.json()}).catch(e=>{lastThreeRequests.delete(path);throw e}));
+  return lastThreeRequests.get(path);
+}
+function lastThreeName(name){return normName(name).split(/\s+/).filter(Boolean).sort().join(" ")}
+async function fillLastThreeGames(name,card){
+  try{
+    const data=await lastThreeFetch('./data/euroleague-live-E2026.json');
+    if(data.season!=='E2026')throw new Error('wrong season');
+    const key=lastThreeName(name);
+    const games=Object.values(data.games||{}).flatMap(g=>(g.rows||[])
+      .filter(r=>r.season==='E2026'&&lastThreeName(r.name)===key&&Number(r.minutes)>0)
+      .map(r=>({...r,date:r.date||g.date,gameCode:r.gameCode||g.gameCode})))
+      .sort((a,b)=>String(b.date||'').localeCompare(String(a.date||''))||Number(b.gameCode)-Number(a.gameCode));
+    const unique=games.filter((g,i,a)=>a.findIndex(v=>v.gameCode===g.gameCode)===i).slice(0,3);
+    const rows=await Promise.all(unique.map(async g=>{
+      let opponent='—';
+      try{
+        const box=await lastThreeFetch(`./data/backtest/cache/E2026-${Number(g.gameCode)}-stats.json`);
+        const side=['local','road'].find(side=>(box[side]?.players||[]).some(r=>lastThreeName(r.player?.person?.name)===key));
+        if(side){const other=box[side==='local'?'road':'local'];const club=other?.players?.find(r=>r.player?.club)?.player.club;opponent=club?.abbreviatedName||club?.name||'—';}
+      }catch(e){console.warn('Opponent unavailable',g.gameCode)}
+      const date=String(g.date||'').slice(0,10).split('-').reverse().slice(0,2).join('/');
+      const value=v=>v==null||!Number.isFinite(Number(v))?'—':Number(v).toFixed(1);
+      return `<tr><td>${esc(opponent)}<small class="gameDate">${esc(date)}</small></td><td>${value(g.pir)}</td><td>${value(g.minutes)}</td></tr>`;
+    }));
+    if(!card.isConnected)return;
+    card.innerHTML='<h4>3 המשחקים האחרונים</h4>'+(rows.length?`<table class="lastThreeTable" aria-label="שלושת המשחקים האחרונים"><thead><tr><th>יריבה</th><th>PIR</th><th>דקות</th></tr></thead><tbody>${rows.join('')}</tbody></table>`:'<p class="muted">אין עדיין משחקים ששוחקו בעונת 2026/27.</p>');
+  }catch(e){if(card.isConnected)card.innerHTML='<h4>3 המשחקים האחרונים</h4><p class="muted">נתוני המשחקים לא זמינים כרגע. פתח שוב כדי לנסות מחדש.</p>';}
+}
 window.showPlayer=function(name){
   const p=players.find(x=>x.name===name);if(!p)return;const x=model(p),m=x.match;
   const recent=x.recentForm;
@@ -290,7 +326,8 @@ window.showPlayer=function(name){
     actualMetric("דקות במשחק האחרון",recent.lastGame?.minutes),
     actualMetric(`ממוצע PIR · ${recent.last5?.games||0} משחקים אחרונים`,recent.last5?.avgPir),
     actualMetric(`ממוצע דקות · ${recent.last5?.games||0} משחקים אחרונים`,recent.last5?.avgMinutes),
-    actualMetric("משחקים בעונה",recent.currentSeasonGames,0)
+    actualMetric("משחקים בעונה",recent.currentSeasonGames,0),
+    `<div class="miniCard lastThreeCard"><h4>3 המשחקים האחרונים</h4><p class="muted">טוען משחקים…</p></div>`
   ].join(""):'<p class="muted">אין עדיין נתוני משחק מאומתים לעונת 2026/27.</p>';
   document.getElementById("modalBody").innerHTML=`<h2>${esc(p.name)}</h2><p class="muted">${esc(p.team)} • ${p.pos} • ${n1(p.price)} קרדיט • ${statusText(p.status)}</p>
   <section class="playerSection actual-results" aria-label="נתוני עבר"><h3 class="sectionTitle">בפועל · עונת 2026/27</h3><p class="muted sectionNote">תוצאות ממשחקים שכבר שוחקו</p><div class="detailGrid">${actualCards}</div></section>
@@ -303,6 +340,8 @@ window.showPlayer=function(name){
   <div class="miniCard"><b>${dataQuality(p,x)}</b><small>איכות נתונים</small></div><div class="miniCard"><b>${esc(x.source)}</b><small>מקור בסיס התחזית</small></div>
   <div class="miniCard"><b>${pct(m.winProb)}</b><small>סיכוי קבוצתי לניצחון</small></div><div class="miniCard"><b>${pct(m.p20)}</b><small>סיכוי קבוצתי לניצחון ב־20+ הפרש</small></div>
   </div><p class="notice" style="margin-top:12px">בסיס PIR: ${n1(x.basePir)} • בסיס דקות: ${n1(x.baseMin)} • חוסרים בקבוצה: +${n1(x.injuryBoost)} דקות, +${n1(x.injuryUsagePct||0)}% נפח משחק${x.missingStars?.length?` (${x.missingStars.map(esc).join(", ")})`:""}. ${m.home?"בית":"חוץ"} • צפי נקודות קבוצה: ${n1(m.teamPoints)} • הגנת היריבה מול העמדה: ${Number(x.positionMatchPct||0)>=0?"+":""}${n1(x.positionMatchPct||0)}%. קו קבוצה: ${m.margin>=0?"+":""}${n1(m.margin)}; טוטאל: ${n1(m.total)}. *${x.rangeSample?`טווח המבוסס על ${x.rangeSample} שגיאות בעמדה במחזור אחד; אינו טווח ביטחון מאומת.`:"טווח נוסחתי שטרם אומת."}</p></details></section>`;
+  const lastThreeCard=document.querySelector("#modalBody .lastThreeCard");
+  if(lastThreeCard)void fillLastThreeGames(name,lastThreeCard);
   playerModal.showModal();
 }
 function renderTeam(){
