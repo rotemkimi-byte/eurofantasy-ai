@@ -12,7 +12,11 @@ class QuietHandler(SimpleHTTPRequestHandler):
 
 schedule=load(OUT/'schedule.json',{})
 now=datetime.now(timezone.utc)
-upcoming=[g for g in schedule.values() if not g['played'] and now+timedelta(minutes=10)<date(g['start'])<=now+timedelta(hours=24) and (not (OUT/f'snapshots/E2026-{g["gameCode"]}.json').exists() or not (OUT/f'team-snapshots/E2026-{g["gameCode"]}.json').exists())]
+def needs_snapshot(g):
+    old=load(OUT/f'snapshots/E2026-{g["gameCode"]}.json')
+    return not old or old.get('modelId')!=model_id() or not (OUT/f'team-snapshots/E2026-{g["gameCode"]}.json').exists()
+
+upcoming=[g for g in schedule.values() if not g['played'] and now+timedelta(minutes=10)<date(g['start'])<=now+timedelta(hours=24) and needs_snapshot(g)]
 if not upcoming:
     print('No new games within 24 hours; existing frozen forecasts preserved.')
     raise SystemExit(0)
@@ -29,7 +33,7 @@ try:
           const x=model(p),b=x.learning;
           return {name:p.name,team:p.team,pos:p.pos,opponent:x.match?.opponent,home:!!x.match?.home,status:p.status,price:p.price,
           expectedPir:x.expected,expectedMinutes:x.minutes,basePir:b?.basePir??x.expected,baseMinutes:b?.baseMinutes??x.minutes,
-          correctionActive:!!b?.applied,modelSource:x.source,features:{basePir:x.basePir,baseMin:x.baseMin,injuryBoost:x.injuryBoost,injuryUsagePct:x.injuryUsagePct,missingStars:x.missingStars,positionMatchPct:x.positionMatchPct,teamPoints:x.match?.teamPoints,margin:x.match?.margin,lastGameWeight:x.recentForm?.lastGameWeight}};
+          correctionActive:!!b?.applied,modelSource:x.source,features:{basePir:x.basePir,baseMin:x.baseMin,injuryBoost:x.injuryBoost,injuryUsagePct:x.injuryUsagePct,missingStars:x.missingStars,positionMatchPct:x.positionMatchPct,teamPoints:x.match?.teamPoints,margin:x.match?.margin,lastGameWeight:x.recentForm?.lastGameWeight,personalPrior:x.personalPrior,currentSeasonWeight:x.currentSeasonWeight}};
         })''')
         team_forecasts=page.evaluate('() => Object.fromEntries(Object.entries(MATCHUPS).map(([team,m])=>[team,{...m}]))')
         browser.close()
@@ -50,7 +54,11 @@ try:
         if not team_path.exists() and canon(tm.get('opponent'))==g['away'] and tm.get('home') is True:
             save(team_path,{'season':'E2026','created_at':created.isoformat(),'home':g['home'],'away':g['away'],'gameCode':g['gameCode'],'round':g['round'],'forecast':tm})
         player_path=OUT/f'snapshots/E2026-{g["gameCode"]}.json'
-        if player_path.exists():continue
+        old=load(player_path)
+        if old and old.get('modelId')==model_id():continue
+        if old:
+            archive=OUT/f'snapshots/archive/E2026-{g["gameCode"]}-{old.get("modelId","legacy")}.json'
+            if not archive.exists():save(archive,old)
         save(player_path,{'schema':VERSION,'season':'E2026','modelId':model_id(),'gameCode':g['gameCode'],'round':g['round'],'kickoff':g['start'],'created_at':created.isoformat(),'predictions':selected})
         print('Frozen live forecast',g['gameCode'],len(selected),'players')
 finally:server.shutdown()

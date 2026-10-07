@@ -1,11 +1,11 @@
 {
   "schema": "learning-v1",
   "season": "E2026",
-  "modelId": "c3412914f298e1d0fc57",
+  "modelId": "c9d03cdbf2c56829b3d4",
   "gameCode": 31,
   "round": 4,
   "kickoff": "2026-10-07T18:45:00Z",
-  "created_at": "2026-10-06T18:55:52.354903+00:00",
+  "created_at": "2026-10-07T17:27:15.004896+00:00",
   "predictions": [
     {
       "name": "Nadir Hifi",
@@ -15,22 +15,58 @@
       "home": true,
       "status": "active",
       "price": 14.4,
-      "expectedPir": 13.86644796828242,
-      "expectedMinutes": 26.874545454545455,
-      "basePir": 13.86644796828242,
-      "baseMinutes": 26.874545454545455,
+      "expectedPir": 16.386559758710025,
+      "expectedMinutes": 25.167403555555552,
+      "basePir": 16.386559758710025,
+      "baseMinutes": 25.167403555555552,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 14.950000000000001,
-        "baseMin": 24.403003003003,
+        "basePir": 17.027911274495015,
+        "baseMin": 23.108508888888885,
         "injuryBoost": 0,
         "injuryUsagePct": 0,
         "missingStars": [],
         "positionMatchPct": 8.426,
         "teamPoints": 89.47,
         "margin": 5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.8222222222222222,
+          "sameTeam": true,
+          "avgPir": 17.56756756756757,
+          "avgMinutes": 22.267105405405403,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 4,
+              "nextGameSamples": 7,
+              "nextGameAvgPir": 17.571428571428573,
+              "continuedRate": 0.42857142857142855
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 23,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855
       }
     },
     {
@@ -41,22 +77,36 @@
       "home": false,
       "status": "active",
       "price": 12.9,
-      "expectedPir": 13.724912461218874,
-      "expectedMinutes": 22.450038961038963,
-      "basePir": 13.724912461218874,
-      "baseMinutes": 22.450038961038963,
+      "expectedPir": 14.602188301901563,
+      "expectedMinutes": 21.631803571428573,
+      "basePir": 14.602188301901563,
+      "baseMinutes": 21.631803571428573,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "price prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 17.3,
-        "baseMin": 20.27777777777778,
+        "basePir": 11.997,
+        "baseMin": 23,
         "injuryBoost": 0.2638035714285714,
         "injuryUsagePct": 0.3554999999999999,
         "missingStars": [],
         "positionMatchPct": 3.909000000000007,
         "teamPoints": 83.65,
         "margin": -5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855
       }
     },
     {
@@ -67,22 +117,36 @@
       "home": true,
       "status": "active",
       "price": 11.1,
-      "expectedPir": 10.645078643859843,
-      "expectedMinutes": 21.729090909090907,
-      "basePir": 10.645078643859843,
-      "baseMinutes": 21.729090909090907,
+      "expectedPir": 9.661667533260099,
+      "expectedMinutes": 20.204,
+      "basePir": 9.661667533260099,
+      "baseMinutes": 20.204,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "price prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 9,
-        "baseMin": 18.33888888888889,
+        "basePir": 10.323,
+        "baseMin": 23,
         "injuryBoost": 0,
         "injuryUsagePct": 0,
         "missingStars": [],
         "positionMatchPct": 1.330000000000009,
         "teamPoints": 89.47,
         "margin": 5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855
       }
     },
     {
@@ -93,22 +157,36 @@
       "home": true,
       "status": "active",
       "price": 10.1,
-      "expectedPir": 8.95600934802105,
-      "expectedMinutes": 20.984545454545454,
-      "basePir": 8.95600934802105,
-      "baseMinutes": 20.984545454545454,
+      "expectedPir": 6.153453556717397,
+      "expectedMinutes": 18.566000000000003,
+      "basePir": 6.153453556717397,
+      "baseMinutes": 18.566000000000003,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "price prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 3,
-        "baseMin": 15.611111111111112,
+        "basePir": 9.393,
+        "baseMin": 23,
         "injuryBoost": 0,
         "injuryUsagePct": 0,
         "missingStars": [],
         "positionMatchPct": 8.426,
         "teamPoints": 89.47,
         "margin": 5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855
       }
     },
     {
@@ -119,22 +197,36 @@
       "home": false,
       "status": "active",
       "price": 9.9,
-      "expectedPir": 10.015972785535924,
-      "expectedMinutes": 20.245363636363635,
-      "basePir": 10.015972785535924,
-      "baseMinutes": 20.245363636363635,
+      "expectedPir": 11.588835887489987,
+      "expectedMinutes": 21.594375,
+      "basePir": 11.588835887489987,
+      "baseMinutes": 21.594375,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "price prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 13,
-        "baseMin": 22.916666666666668,
+        "basePir": 9.207,
+        "baseMin": 19,
         "injuryBoost": 0.24237499999999995,
         "injuryUsagePct": 0.2834999999999999,
         "missingStars": [],
         "positionMatchPct": 8.681000000000004,
         "teamPoints": 83.65,
         "margin": -5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855
       }
     },
     {
@@ -145,22 +237,58 @@
       "home": false,
       "status": "active",
       "price": 9.8,
-      "expectedPir": 8.74048256314653,
-      "expectedMinutes": 19.12709090909091,
-      "basePir": 8.74048256314653,
-      "baseMinutes": 19.12709090909091,
+      "expectedPir": 7.93672878154509,
+      "expectedMinutes": 18.56949339130435,
+      "basePir": 7.93672878154509,
+      "baseMinutes": 18.56949339130435,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 5.7,
-        "baseMin": 19.205555555555556,
+        "basePir": 8.619252053927093,
+        "baseMin": 17.36873347826087,
         "injuryBoost": 0.09599999999999997,
         "injuryUsagePct": 0.16457142857142854,
         "missingStars": [],
         "positionMatchPct": 12.00000000000001,
         "teamPoints": 83.65,
         "margin": -5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 15,
+          "historyWeight": 0.3586956521739131,
+          "sameTeam": false,
+          "avgPir": 7.6,
+          "avgMinutes": 14.452226666666666,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855
       }
     },
     {
@@ -171,22 +299,36 @@
       "home": true,
       "status": "active",
       "price": 9.5,
-      "expectedPir": 8.95502432526632,
-      "expectedMinutes": 18.366,
-      "basePir": 8.95502432526632,
-      "baseMinutes": 18.366,
+      "expectedPir": 8.159754935191462,
+      "expectedMinutes": 17.415,
+      "basePir": 8.159754935191462,
+      "baseMinutes": 17.415,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "price prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 7,
-        "baseMin": 15.833333333333334,
+        "basePir": 8.835,
+        "baseMin": 19,
         "injuryBoost": 0,
         "injuryUsagePct": 0,
         "missingStars": [],
         "positionMatchPct": 1.330000000000009,
         "teamPoints": 89.47,
         "margin": 5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.3333333333333333
       }
     },
     {
@@ -197,22 +339,36 @@
       "home": false,
       "status": "active",
       "price": 9.3,
-      "expectedPir": 8.144063260970539,
-      "expectedMinutes": 18.910792207792205,
-      "basePir": 8.144063260970539,
-      "baseMinutes": 18.910792207792205,
+      "expectedPir": 6.866178676445042,
+      "expectedMinutes": 18.717589285714283,
+      "basePir": 6.866178676445042,
+      "baseMinutes": 18.717589285714283,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "price prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 4.3,
-        "baseMin": 18.294444444444444,
+        "basePir": 8.649000000000001,
+        "baseMin": 19,
         "injuryBoost": 0.1435892857142857,
         "injuryUsagePct": 0.1935,
         "missingStars": [],
         "positionMatchPct": 3.909000000000007,
         "teamPoints": 83.65,
         "margin": -5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855
       }
     },
     {
@@ -223,22 +379,58 @@
       "home": true,
       "status": "active",
       "price": 9.2,
-      "expectedPir": 9.344916859046783,
-      "expectedMinutes": 19.28363636363636,
-      "basePir": 9.344916859046783,
-      "baseMinutes": 19.28363636363636,
+      "expectedPir": 9.660297720382799,
+      "expectedMinutes": 20.337528235294116,
+      "basePir": 9.660297720382799,
+      "baseMinutes": 20.337528235294116,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 9.35,
-        "baseMin": 20.688568376068375,
+        "basePir": 8.162430502241975,
+        "baseMin": 20.783820588235294,
         "injuryBoost": 0,
         "injuryUsagePct": 0,
         "missingStars": [],
         "positionMatchPct": 8.426,
         "teamPoints": 89.47,
         "margin": 5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 26,
+          "historyWeight": 0.7647058823529411,
+          "sameTeam": true,
+          "avgPir": 8,
+          "avgMinutes": 21.33268846153846,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855
       }
     },
     {
@@ -249,22 +441,36 @@
       "home": false,
       "status": "active",
       "price": 9.2,
-      "expectedPir": 9.573888262316897,
-      "expectedMinutes": 19.11290909090909,
-      "basePir": 9.573888262316897,
-      "baseMinutes": 19.11290909090909,
+      "expectedPir": 10.690398862098892,
+      "expectedMinutes": 19.16425,
+      "basePir": 10.690398862098892,
+      "baseMinutes": 19.16425,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "price prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 13,
-        "baseMin": 19.038888888888888,
+        "basePir": 8.556,
+        "baseMin": 19,
         "injuryBoost": 0.14024999999999996,
         "injuryUsagePct": 0.18899999999999992,
         "missingStars": [],
         "positionMatchPct": 3.909000000000007,
         "teamPoints": 83.65,
         "margin": -5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855
       }
     },
     {
@@ -280,7 +486,7 @@
       "basePir": 0,
       "baseMinutes": 0,
       "correctionActive": false,
-      "modelSource": "2026/27 price prior",
+      "modelSource": "price prior + 2026/27 form",
       "features": {
         "basePir": 8.463000000000001,
         "baseMin": 19,
@@ -290,7 +496,21 @@
         "positionMatchPct": 8.681000000000004,
         "teamPoints": 83.65,
         "margin": -5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0
       }
     },
     {
@@ -301,12 +521,12 @@
       "home": false,
       "status": "questionable",
       "price": 9,
-      "expectedPir": 6.948535407075055,
+      "expectedPir": 6.948535407075054,
       "expectedMinutes": 15.579999999999998,
-      "basePir": 6.948535407075055,
+      "basePir": 6.948535407075054,
       "baseMinutes": 15.579999999999998,
       "correctionActive": false,
-      "modelSource": "2026/27 price prior",
+      "modelSource": "price prior + 2026/27 form",
       "features": {
         "basePir": 8.370000000000001,
         "baseMin": 19,
@@ -316,7 +536,21 @@
         "positionMatchPct": 3.909000000000007,
         "teamPoints": 83.65,
         "margin": -5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0
       }
     },
     {
@@ -332,7 +566,7 @@
       "basePir": 8.574551636596203,
       "baseMinutes": 19,
       "correctionActive": false,
-      "modelSource": "2026/27 price prior",
+      "modelSource": "price prior + 2026/27 form",
       "features": {
         "basePir": 8.370000000000001,
         "baseMin": 19,
@@ -342,7 +576,21 @@
         "positionMatchPct": 1.330000000000009,
         "teamPoints": 89.47,
         "margin": 5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0
       }
     },
     {
@@ -353,22 +601,58 @@
       "home": true,
       "status": "active",
       "price": 8.1,
-      "expectedPir": 8.229672542440293,
-      "expectedMinutes": 19.507272727272728,
-      "basePir": 8.229672542440293,
-      "baseMinutes": 19.507272727272728,
+      "expectedPir": 9.821480229983454,
+      "expectedMinutes": 19.201079999999997,
+      "basePir": 9.821480229983454,
+      "baseMinutes": 19.201079999999997,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 8.95,
-        "baseMin": 18.51503267973856,
+        "basePir": 8.470438171621877,
+        "baseMin": 16.712699999999998,
         "injuryBoost": 0,
         "injuryUsagePct": 0,
         "missingStars": [],
         "positionMatchPct": 12.00000000000001,
         "teamPoints": 89.47,
         "margin": 5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.8095238095238095,
+          "sameTeam": true,
+          "avgPir": 8.617647058823529,
+          "avgMinutes": 16.174511764705883,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855
       }
     },
     {
@@ -379,22 +663,58 @@
       "home": false,
       "status": "active",
       "price": 7.7,
-      "expectedPir": 7.593536936112708,
-      "expectedMinutes": 19.538800000000002,
-      "basePir": 7.593536936112708,
-      "baseMinutes": 19.538800000000002,
+      "expectedPir": 6.620961577769162,
+      "expectedMinutes": 18.42056261904762,
+      "basePir": 6.620961577769162,
+      "baseMinutes": 18.42056261904762,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 6,
-        "baseMin": 15.205555555555556,
+        "basePir": 4.78478475277709,
+        "baseMin": 15.424125238095238,
         "injuryBoost": 0.13849999999999996,
         "injuryUsagePct": 0.16199999999999992,
         "missingStars": [],
         "positionMatchPct": 8.681000000000004,
         "teamPoints": 83.65,
         "margin": -5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 13,
+          "historyWeight": 0.3404761904761905,
+          "sameTeam": false,
+          "avgPir": 1.5384615384615385,
+          "avgMinutes": 8.49743076923077,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333
       }
     },
     {
@@ -405,22 +725,36 @@
       "home": false,
       "status": "active",
       "price": 7.7,
-      "expectedPir": 5.942170162161576,
-      "expectedMinutes": 18.35890909090909,
-      "basePir": 5.942170162161576,
-      "baseMinutes": 18.35890909090909,
+      "expectedPir": 4.044599274048014,
+      "expectedMinutes": 17.506500000000003,
+      "basePir": 4.044599274048014,
+      "baseMinutes": 17.506500000000003,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "price prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 0.3,
-        "baseMin": 16.283333333333335,
+        "basePir": 7.1610000000000005,
+        "baseMin": 19,
         "injuryBoost": 0.13849999999999996,
         "injuryUsagePct": 0.16199999999999992,
         "missingStars": [],
         "positionMatchPct": 8.681000000000004,
         "teamPoints": 83.65,
         "margin": -5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855
       }
     },
     {
@@ -431,22 +765,58 @@
       "home": true,
       "status": "active",
       "price": 7.2,
-      "expectedPir": 6.455084681502118,
-      "expectedMinutes": 18.005555555555556,
-      "basePir": 6.455084681502118,
-      "baseMinutes": 18.005555555555556,
+      "expectedPir": 3.1760567750131714,
+      "expectedMinutes": 15.304341041666667,
+      "basePir": 3.1760567750131714,
+      "baseMinutes": 15.304341041666667,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 3,
-        "baseMin": 16.534057971014494,
+        "basePir": 4.877120009767858,
+        "baseMin": 17.9315115625,
         "injuryBoost": 0,
         "injuryUsagePct": 0,
         "missingStars": [],
         "positionMatchPct": 8.426,
         "teamPoints": 89.47,
         "margin": 5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 24,
+          "historyWeight": 0.41250000000000003,
+          "sameTeam": false,
+          "avgPir": 2.5833333333333335,
+          "avgMinutes": 16.409724999999998,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.2
       }
     },
     {
@@ -457,22 +827,36 @@
       "home": false,
       "status": "active",
       "price": 6.9,
-      "expectedPir": 6.102910728849394,
-      "expectedMinutes": 12.799818181818182,
-      "basePir": 6.102910728849394,
-      "baseMinutes": 12.799818181818182,
+      "expectedPir": 4.303201079004488,
+      "expectedMinutes": 11.276500000000002,
+      "basePir": 4.303201079004488,
+      "baseMinutes": 11.276500000000002,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "price prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 2.3,
-        "baseMin": 9.233333333333333,
+        "basePir": 6.417000000000001,
+        "baseMin": 14,
         "injuryBoost": 0.13849999999999996,
         "injuryUsagePct": 0.16199999999999992,
         "missingStars": [],
         "positionMatchPct": 8.681000000000004,
         "teamPoints": 83.65,
         "margin": -5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855
       }
     },
     {
@@ -483,22 +867,58 @@
       "home": true,
       "status": "active",
       "price": 6.8,
-      "expectedPir": 6.643608289478859,
-      "expectedMinutes": 14.080000000000002,
-      "basePir": 6.643608289478859,
-      "baseMinutes": 14.080000000000002,
+      "expectedPir": 5.956509474605474,
+      "expectedMinutes": 12.77989625,
+      "basePir": 5.956509474605474,
+      "baseMinutes": 12.77989625,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 3.966666666666667,
-        "baseMin": 9.453819444444445,
+        "basePir": 4.913540827222984,
+        "baseMin": 11.1597925,
         "injuryBoost": 0,
         "injuryUsagePct": 0,
         "missingStars": [],
         "positionMatchPct": 8.426,
         "teamPoints": 89.47,
         "margin": 5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.45000000000000007,
+          "sameTeam": false,
+          "avgPir": 3.2777777777777777,
+          "avgMinutes": 7.688427777777777,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333
       }
     },
     {
@@ -509,22 +929,58 @@
       "home": false,
       "status": "active",
       "price": 6.5,
-      "expectedPir": 5.407870630562458,
-      "expectedMinutes": 14.223454545454548,
-      "basePir": 5.407870630562458,
-      "baseMinutes": 14.223454545454548,
+      "expectedPir": 3.856318392928947,
+      "expectedMinutes": 14.64458642857143,
+      "basePir": 3.856318392928947,
+      "baseMinutes": 14.64458642857143,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 2.8499999999999996,
-        "baseMin": 15.03308080808081,
+        "basePir": 4.85739432703383,
+        "baseMin": 14.522716071428572,
         "injuryBoost": 0.09349999999999997,
         "injuryUsagePct": 0.12599999999999995,
         "missingStars": [],
         "positionMatchPct": 3.909000000000007,
         "teamPoints": 83.65,
         "margin": -5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.44523809523809527,
+          "sameTeam": false,
+          "avgPir": 3.235294117647059,
+          "avgMinutes": 15.174014705882355,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855
       }
     },
     {
@@ -535,22 +991,58 @@
       "home": true,
       "status": "active",
       "price": 6.2,
-      "expectedPir": 5.281206678125561,
-      "expectedMinutes": 13.383636363636363,
-      "basePir": 5.281206678125561,
-      "baseMinutes": 13.383636363636363,
+      "expectedPir": 3.9467120460220175,
+      "expectedMinutes": 13.692839999999999,
+      "basePir": 3.9467120460220175,
+      "baseMinutes": 13.692839999999999,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 4.05,
-        "baseMin": 14.459283625730993,
+        "basePir": 6.829417951841477,
+        "baseMin": 16.622099999999996,
         "injuryBoost": 0,
         "injuryUsagePct": 0,
         "missingStars": [],
         "positionMatchPct": 12.00000000000001,
         "teamPoints": 89.47,
         "margin": 5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 7.052631578947368,
+          "avgMinutes": 17.174121052631577,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855
       }
     },
     {
@@ -561,22 +1053,58 @@
       "home": true,
       "status": "active",
       "price": 6.1,
-      "expectedPir": 5.811640553692981,
-      "expectedMinutes": 14,
-      "basePir": 5.811640553692981,
-      "baseMinutes": 14,
+      "expectedPir": 6.254366421455137,
+      "expectedMinutes": 16.6746,
+      "basePir": 6.254366421455137,
+      "baseMinutes": 16.6746,
       "correctionActive": false,
-      "modelSource": "2026/27 price prior",
+      "modelSource": "2025/26 personal prior + 2026/27 form",
       "features": {
-        "basePir": 5.673,
-        "baseMin": 14,
+        "basePir": 6.105164347504035,
+        "baseMin": 16.6746,
         "injuryBoost": 0,
         "injuryUsagePct": 0,
         "missingStars": [],
         "positionMatchPct": 1.330000000000009,
         "teamPoints": 89.47,
         "margin": 5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.8095238095238095,
+          "sameTeam": true,
+          "avgPir": 6.176470588235294,
+          "avgMinutes": 17.303917647058825,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0
       }
     },
     {
@@ -587,22 +1115,58 @@
       "home": true,
       "status": "active",
       "price": 5.7,
-      "expectedPir": 4.752427778217578,
-      "expectedMinutes": 13.779090909090908,
-      "basePir": 4.752427778217578,
-      "baseMinutes": 13.779090909090908,
+      "expectedPir": 3.3529756950996057,
+      "expectedMinutes": 13.393766896551725,
+      "basePir": 3.3529756950996057,
+      "baseMinutes": 13.393766896551725,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 3,
-        "baseMin": 13.38968253968254,
+        "basePir": 4.560555355065533,
+        "baseMin": 13.699417241379312,
         "injuryBoost": 0,
         "injuryUsagePct": 0,
         "missingStars": [],
         "positionMatchPct": 1.330000000000009,
         "teamPoints": 89.47,
         "margin": 5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 21,
+          "historyWeight": 0.7241379310344828,
+          "sameTeam": true,
+          "avgPir": 4.285714285714286,
+          "avgMinutes": 13.584909523809523,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855
       }
     },
     {
@@ -613,22 +1177,58 @@
       "home": false,
       "status": "active",
       "price": 5.7,
-      "expectedPir": 5.1110652820140325,
-      "expectedMinutes": 14.9108,
-      "basePir": 5.1110652820140325,
-      "baseMinutes": 14.9108,
+      "expectedPir": 4.274902329995252,
+      "expectedMinutes": 16.888102380952382,
+      "basePir": 4.274902329995252,
+      "baseMinutes": 16.888102380952382,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 3.0500000000000003,
-        "baseMin": 14.645424836601308,
+        "basePir": 4.6330737708766065,
+        "baseMin": 15.499204761904762,
         "injuryBoost": 0.13849999999999996,
         "injuryUsagePct": 0.16199999999999992,
         "missingStars": [],
         "positionMatchPct": 8.681000000000004,
         "teamPoints": 83.65,
         "margin": -5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.8095238095238095,
+          "sameTeam": true,
+          "avgPir": 4.4411764705882355,
+          "avgMinutes": 15.851958823529412,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333
       }
     },
     {
@@ -639,22 +1239,58 @@
       "home": true,
       "status": "active",
       "price": 5.6,
-      "expectedPir": 4.541497066250981,
-      "expectedMinutes": 13.421818181818182,
-      "basePir": 4.541497066250981,
-      "baseMinutes": 13.421818181818182,
+      "expectedPir": 3.0761329087243894,
+      "expectedMinutes": 13.916167000000002,
+      "basePir": 3.0761329087243894,
+      "baseMinutes": 13.916167000000002,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 3.25,
-        "baseMin": 14.795399305555556,
+        "basePir": 5.69369961002549,
+        "baseMin": 16.9704175,
         "injuryBoost": 0,
         "injuryUsagePct": 0,
         "missingStars": [],
         "positionMatchPct": 1.330000000000009,
         "teamPoints": 89.47,
         "margin": 5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 32,
+          "historyWeight": 0.8,
+          "sameTeam": true,
+          "avgPir": 5.78125,
+          "avgMinutes": 17.713021875,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855
       }
     },
     {
@@ -670,7 +1306,7 @@
       "basePir": 5.1447309819577205,
       "baseMinutes": 14,
       "correctionActive": false,
-      "modelSource": "2026/27 price prior",
+      "modelSource": "price prior + 2026/27 form",
       "features": {
         "basePir": 5.022,
         "baseMin": 14,
@@ -680,7 +1316,21 @@
         "positionMatchPct": 1.330000000000009,
         "teamPoints": 89.47,
         "margin": 5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0
       }
     },
     {
@@ -691,22 +1341,58 @@
       "home": false,
       "status": "active",
       "price": 5.3,
-      "expectedPir": 6.022911184926621,
-      "expectedMinutes": 14.5268,
-      "basePir": 6.022911184926621,
-      "baseMinutes": 14.5268,
+      "expectedPir": 6.980757016977271,
+      "expectedMinutes": 17.017323170731707,
+      "basePir": 6.980757016977271,
+      "baseMinutes": 17.017323170731707,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 6.3,
-        "baseMin": 15.229040404040404,
+        "basePir": 4.232896321979233,
+        "baseMin": 17.677646341463415,
         "injuryBoost": 0.13849999999999996,
         "injuryUsagePct": 0.16199999999999992,
         "missingStars": [],
         "positionMatchPct": 8.681000000000004,
         "teamPoints": 83.65,
         "margin": -5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 33,
+          "historyWeight": 0.8048780487804879,
+          "sameTeam": true,
+          "avgPir": 3.9393939393939394,
+          "avgMinutes": 18.56919696969697,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333
       }
     },
     {
@@ -717,22 +1403,58 @@
       "home": true,
       "status": "active",
       "price": 5.2,
-      "expectedPir": 5.123783722126253,
-      "expectedMinutes": 15.478181818181818,
-      "basePir": 5.123783722126253,
-      "baseMinutes": 15.478181818181818,
+      "expectedPir": 6.0243523216116595,
+      "expectedMinutes": 18.044426363636365,
+      "basePir": 6.0243523216116595,
+      "baseMinutes": 18.044426363636365,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 5.65,
-        "baseMin": 17.91898148148148,
+        "basePir": 4.984930324463502,
+        "baseMin": 15.98106590909091,
         "injuryBoost": 0,
         "injuryUsagePct": 0,
         "missingStars": [],
         "positionMatchPct": 8.426,
         "teamPoints": 89.47,
         "margin": 5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.8181818181818182,
+          "sameTeam": true,
+          "avgPir": 5,
+          "avgMinutes": 16.42130277777778,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855
       }
     },
     {
@@ -743,22 +1465,58 @@
       "home": true,
       "status": "active",
       "price": 5,
-      "expectedPir": 5.19055820895194,
-      "expectedMinutes": 14.253636363636364,
-      "basePir": 5.19055820895194,
-      "baseMinutes": 14.253636363636364,
+      "expectedPir": 5.779995826187613,
+      "expectedMinutes": 14.55406,
+      "basePir": 5.779995826187613,
+      "baseMinutes": 14.55406,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 5.8,
-        "baseMin": 14.460648148148147,
+        "basePir": 4.572715692753013,
+        "baseMin": 13.99015,
         "injuryBoost": 0,
         "injuryUsagePct": 0,
         "missingStars": [],
         "positionMatchPct": 1.330000000000009,
         "teamPoints": 89.47,
         "margin": 5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.8181818181818182,
+          "sameTeam": true,
+          "avgPir": 4.555555555555555,
+          "avgMinutes": 13.987961111111112,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855
       }
     },
     {
@@ -769,22 +1527,58 @@
       "home": true,
       "status": "active",
       "price": 4.9,
-      "expectedPir": 5.041342697186139,
-      "expectedMinutes": 13.757777777777775,
-      "basePir": 5.041342697186139,
-      "baseMinutes": 13.757777777777775,
+      "expectedPir": 4.279813499942481,
+      "expectedMinutes": 11.840530158730159,
+      "basePir": 4.279813499942481,
+      "baseMinutes": 11.840530158730159,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 4.557,
-        "baseMin": 14,
+        "basePir": 3.345537340338026,
+        "baseMin": 11.850795238095237,
         "injuryBoost": 0,
         "injuryUsagePct": 0,
         "missingStars": [],
         "positionMatchPct": 8.426,
         "teamPoints": 89.47,
         "margin": 5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 13,
+          "historyWeight": 0.6190476190476191,
+          "sameTeam": true,
+          "avgPir": 2.6923076923076925,
+          "avgMinutes": 10.528207692307692,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.2
       }
     },
     {
@@ -795,22 +1589,36 @@
       "home": false,
       "status": "active",
       "price": 4.9,
-      "expectedPir": 4.724563764758327,
-      "expectedMinutes": 15.60890909090909,
-      "basePir": 4.724563764758327,
-      "baseMinutes": 15.60890909090909,
+      "expectedPir": 5.744500431070477,
+      "expectedMinutes": 17.4835,
+      "basePir": 5.744500431070477,
+      "baseMinutes": 17.4835,
       "correctionActive": false,
-      "modelSource": "2026/27 current season + early-season stability",
+      "modelSource": "price prior + 2026/27 form + early-season stability",
       "features": {
-        "basePir": 6.3,
-        "baseMin": 19.650000000000002,
+        "basePir": 4.557,
+        "baseMin": 14,
         "injuryBoost": 0.09349999999999997,
         "injuryUsagePct": 0.12599999999999995,
         "missingStars": [],
         "positionMatchPct": 3.909000000000007,
         "teamPoints": 83.65,
         "margin": -5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855
       }
     },
     {
@@ -821,22 +1629,58 @@
       "home": false,
       "status": "active",
       "price": 4.3,
-      "expectedPir": 4.162756732337361,
-      "expectedMinutes": 14.1385,
-      "basePir": 4.162756732337361,
-      "baseMinutes": 14.1385,
+      "expectedPir": 4.380058509570795,
+      "expectedMinutes": 15.387351724137933,
+      "basePir": 4.380058509570795,
+      "baseMinutes": 15.387351724137933,
       "correctionActive": false,
-      "modelSource": "2026/27 price prior",
+      "modelSource": "2025/26 personal prior + 2026/27 form",
       "features": {
-        "basePir": 3.999,
-        "baseMin": 14,
+        "basePir": 4.211131906505898,
+        "baseMin": 15.248851724137932,
         "injuryBoost": 0.13849999999999996,
         "injuryUsagePct": 0.16199999999999992,
         "missingStars": [],
         "positionMatchPct": 8.681000000000004,
         "teamPoints": 83.65,
         "margin": -5.82,
-        "lastGameWeight": null
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 21,
+          "historyWeight": 0.7241379310344828,
+          "sameTeam": true,
+          "avgPir": 4.285714285714286,
+          "avgMinutes": 15.724604761904763,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0
       }
     }
   ]

@@ -20,6 +20,7 @@
 
     const defense =
       data.defense || {};
+    window.__positionDefense = defense;
 
     if (
       typeof model !== "function"
@@ -214,7 +215,7 @@
         row || null;
 
       if (
-        p.status !== "out"
+        p.status !== "out" && !x.personalModel
         &&
         Number.isFinite(factor)
         &&

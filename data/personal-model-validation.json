@@ -1,0 +1,100 @@
+{
+  "schema": "personal-model-validation-v1",
+  "sourceSeason": "E2025",
+  "method": "Chronological next-game replay. First eight played games seed a fixed personal prior and synthetic price. Subsequent results are visible only after prediction. Momentum coefficient selected before 2026-03-01 and checked on later games.",
+  "limitations": "Played-game replay only; not a test of injury/DNP prediction, matchup effects or live fantasy prices. These are reconstructed forecasts, not frozen live forecasts.",
+  "holdoutStart": "2026-03-01",
+  "trainingRows": 3831,
+  "holdout": {
+    "old": {
+      "n": 2317,
+      "mae": 5.807648236312837,
+      "biasActualMinusPrediction": -0.16709576948905144
+    },
+    "personal": {
+      "n": 2317,
+      "mae": 5.727789831106811,
+      "biasActualMinusPrediction": -0.13542857153883694
+    },
+    "oldMinutesMae": 4.724016139985953,
+    "personalMinutesMae": 4.560500313892718
+  },
+  "momentum": {
+    "active": false,
+    "trainingTrials": [
+      {
+        "coefficient": 0,
+        "n": 80,
+        "mae": 6.636037406696682,
+        "biasActualMinusPrediction": -1.498766505833118
+      },
+      {
+        "coefficient": 0.1,
+        "n": 80,
+        "mae": 6.800332192738478,
+        "biasActualMinusPrediction": -2.2392582776418624
+      },
+      {
+        "coefficient": 0.2,
+        "n": 80,
+        "mae": 6.998333097195507,
+        "biasActualMinusPrediction": -2.9797500494506055
+      },
+      {
+        "coefficient": 0.3,
+        "n": 80,
+        "mae": 7.273611090424843,
+        "biasActualMinusPrediction": -3.7202418212593487
+      }
+    ],
+    "holdoutUnboosted": {
+      "n": 43,
+      "mae": 6.637451769427768,
+      "biasActualMinusPrediction": -0.8379843905830389
+    },
+    "holdoutCandidate": {
+      "n": 43,
+      "mae": 6.637451769427768,
+      "biasActualMinusPrediction": -0.8379843905830389
+    },
+    "selectedCoefficient": 0
+  },
+  "byPosition": {
+    "G": {
+      "old": {
+        "n": 934,
+        "mae": 6.280153280922573,
+        "biasActualMinusPrediction": -0.20099235059865822
+      },
+      "personal": {
+        "n": 934,
+        "mae": 6.231846142010309,
+        "biasActualMinusPrediction": -0.257084648409435
+      }
+    },
+    "F": {
+      "old": {
+        "n": 867,
+        "mae": 5.386118539116794,
+        "biasActualMinusPrediction": 0.16002139225285444
+      },
+      "personal": {
+        "n": 867,
+        "mae": 5.327049866103004,
+        "biasActualMinusPrediction": 0.15370161565721016
+      }
+    },
+    "C": {
+      "old": {
+        "n": 516,
+        "mae": 5.660645398722687,
+        "biasActualMinusPrediction": -0.6553732355236621
+      },
+      "personal": {
+        "n": 516,
+        "mae": 5.4887451707860615,
+        "biasActualMinusPrediction": -0.40102759576719926
+      }
+    }
+  }
+}

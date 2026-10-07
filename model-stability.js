@@ -4,14 +4,14 @@
 
   for (
     let i = 0;
-    i < 100 &&
-    (!window.__recentFormPatched || typeof model !== "function");
+    i < 450 &&
+    (!window.__personalModelReady || !window.__recentFormPatched || typeof model !== "function");
     i++
   ) {
     await sleep(100);
   }
 
-  if (typeof model !== "function") {
+  if (!window.__personalModelReady || typeof model !== "function") {
     console.warn("Stability model: base model not ready");
     return;
   }
@@ -234,7 +234,7 @@
     const oldExpected = num(x.expected);
 
     if (
-      oldExpected !== null &&
+      !x.personalModel && oldExpected !== null &&
       Number.isFinite(prior.expected)
     ) {
       const recentDelta =

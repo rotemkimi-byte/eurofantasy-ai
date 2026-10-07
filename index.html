@@ -339,6 +339,7 @@ window.showPlayer=function(name){
   <div class="miniCard"><b>${n1(x.floor)}–${n1(x.ceiling)}</b><small>${x.rangeSample?"טווח שגיאות עבר*":"טווח נוסחתי*"}</small></div><div class="miniCard"><b>${x.matchPct>=0?"+":""}${x.matchPct.toFixed(1)}%</b><small>סביבת מאצ׳אפ</small></div>
   </div>
   <details class="secondaryDetails"><summary>עוד נתונים והסבר לתחזית</summary><div class="detailGrid">
+  ${x.personalPrior?.historicalGames?`<div class="miniCard"><b>${n1(x.personalPrior.avgPir)} PIR · ${n1(x.personalPrior.avgMinutes)} דק׳</b><small>בסיס אישי 2025/26 · ${x.personalPrior.historicalGames} משחקים</small></div><div class="miniCard"><b>${Math.round(x.personalPrior.currentSeasonWeight*100)}%</b><small>משקל העונה הנוכחית בביצועים לדקה</small></div><div class="miniCard"><b>${x.personalPrior.streaks.find(s=>s.threshold===30)?.longestRun??'—'}</b><small>הרצף הארוך של משחקי 30+ PIR · 2025/26</small></div><div class="miniCard"><b>${x.personalPrior.momentumEnabled?`+${n1(x.personalPrior.momentumPir)} PIR`:'לא פעיל'}</b><small>תיקון מומנטום · בדיקה היסטורית</small></div>`:''}
   <div class="miniCard"><b>${dataQuality(p,x)}</b><small>איכות נתונים</small></div><div class="miniCard"><b>${esc(x.source)}</b><small>מקור בסיס התחזית</small></div>
   <div class="miniCard"><b>${pct(m.winProb)}</b><small>סיכוי קבוצתי לניצחון</small></div><div class="miniCard"><b>${pct(m.p20)}</b><small>סיכוי קבוצתי לניצחון ב־20+ הפרש</small></div>
   </div><p class="notice" style="margin-top:12px">בסיס PIR: ${n1(x.basePir)} • בסיס דקות: ${n1(x.baseMin)} • חוסרים בקבוצה: +${n1(x.injuryBoost)} דקות, +${n1(x.injuryUsagePct||0)}% נפח משחק${x.missingStars?.length?` (${x.missingStars.map(esc).join(", ")})`:""}. ${m.home?"בית":"חוץ"} • צפי נקודות קבוצה: ${n1(m.teamPoints)} • הגנת היריבה מול העמדה: ${Number(x.positionMatchPct||0)>=0?"+":""}${n1(x.positionMatchPct||0)}%. קו קבוצה: ${m.margin>=0?"+":""}${n1(m.margin)}; טוטאל: ${n1(m.total)}. *${x.rangeSample?`טווח המבוסס על ${x.rangeSample} שגיאות בעמדה במחזור אחד; אינו טווח ביטחון מאומת.`:"טווח נוסחתי שטרם אומת."}</p></details></section>`;
@@ -1462,4 +1463,4 @@ if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
   }
 })();
 
-</script><script src="./model-stability.js?v=2"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script><script src="./optimizer.js"></script></body></html>
+</script><script src="./personal-model-core.js?v=1"></script><script src="./personal-model.js?v=1"></script><script src="./model-stability.js?v=3"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script><script src="./optimizer.js"></script></body></html>

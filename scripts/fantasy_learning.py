@@ -43,7 +43,7 @@ def api(path):
     with urllib.request.urlopen(req,timeout=40) as r: return json.load(r)
 
 def model_id():
-    files=['index.html','live.js','roster-live.js','position-matchups.js','matchup-live.js','model-stability.js']
+    files=['index.html','live.js','roster-live.js','position-matchups.js','matchup-live.js','model-stability.js','personal-model-core.js','personal-model.js','data/player-history.json']
     return hashlib.sha256(b''.join(n.encode()+ (ROOT/n).read_bytes() for n in files if (ROOT/n).exists())).hexdigest()[:20]
 
 def prepare():

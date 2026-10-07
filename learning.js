@@ -13,18 +13,8 @@
   const active=!!(data?.active&&data.modelId===window.__learningModelId&&data.validation?.active&&data.validation.n>=60&&data.validation.games>=6);
   const clip=(n,a,b)=>Math.max(a,Math.min(b,n));
   model=function(p){
-    const x=baseModel(p);const pir=Number(x.expected),minutes=Number(x.minutes);
-    x.learning={basePir:pir,baseMinutes:minutes,applied:false};
-    if(!active||p.status!=='active'||!['G','F','C'].includes(p.pos)||minutes<5||!Number.isFinite(pir)||!Number.isFinite(minutes))return x;
-    const c=data.coefficients?.[p.pos];if(!c||!Number.isFinite(c.minutes)||!Number.isFinite(c.efficiencyPir))return x;
-    const newMinutes=clip(minutes+clip(c.minutes,-2,2),5,36);
-    const expected=clip(pir/minutes*newMinutes+clip(c.efficiencyPir,-2,2),Math.max(0,pir-Math.max(1,pir*.25)),pir+Math.max(1,pir*.25));
-    const delta=expected-pir;
-    x.expected=expected;x.minutes=newMinutes;
-    x.floor=Math.min(expected,Math.max(0,Number(x.floor)+delta));x.ceiling=Math.max(expected,Number(x.ceiling)+delta);
-    x.value=expected/Math.max(.1,Number(p.price));
-    x.learning={basePir:pir,baseMinutes:minutes,applied:true,pirChange:delta,minutesChange:newMinutes-minutes,sample:c.n};
-    x.source+=' + validated calibration';return x;
+    const x=baseModel(p);
+    return PersonalForecast.calibrate(x,p,data,window.__learningModelId);
   };
   function gameRows(rows){return rows.map(r=>`<tr><td>${escape(r.name)}<small>${escape(r.opponent)} · מחזור ${escape(r.round)}</small></td><td>${num(r.basePir)}</td><td>${num(r.actualPir)}</td><td dir="ltr">${num(r.baseMinutes)} / ${num(r.actualMinutes)}</td><td>${escape(labels[r.reason]||'—')}<small>${r.eligible?'תחזית האתר':'מודל בדיקה ישן'}</small></td></tr>`).join('');}
   function stat(value,label){return `<div class="stat"><b>${value}</b><span>${label}</span></div>`;}
