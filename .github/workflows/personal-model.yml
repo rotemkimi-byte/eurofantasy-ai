@@ -1,0 +1,84 @@
+name: Personal player history and model verification
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'personal-model*.js'
+      - 'model-stability.js'
+      - 'scripts/build_player_history.py'
+      - 'scripts/validate_personal_model.cjs'
+      - 'scripts/test_personal_model.cjs'
+      - '.github/workflows/personal-model.yml'
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: personal-player-model
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build official personal history if absent
+        run: |
+          if [ ! -f data/player-history.json ]; then python scripts/build_player_history.py --cache /tmp/player-history-cache; fi
+      - name: Regression checks and chronological replay
+        run: |
+          node scripts/test_personal_model.cjs
+          node scripts/validate_personal_model.cjs
+          python - <<'PY'
+          import sys, json
+          from pathlib import Path
+          sys.path.insert(0, 'scripts')
+          from fantasy_learning import model_id
+          Path('learning-model-version.js').write_text('window.__learningModelId=' + json.dumps(model_id()) + ';\n')
+          PY
+          python scripts/fantasy_learning.py grade
+      - name: Install browser for integration verification
+        run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Verify site and freeze upcoming model predictions
+        run: |
+          python scripts/check_personal_site.py
+          python scripts/snapshot_live_model.py
+      - name: Save model audit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/player-history.json data/player-history-games.json.gz data/personal-model-validation.json learning-model-version.js data/learning
+          if ! git diff --cached --quiet; then
+            git commit -m 'Validate personal player priors and momentum'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload verified site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: '.'
+  deploy:
+    needs: verify
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy verified model
+        id: deployment
+        uses: actions/deploy-pages@v4

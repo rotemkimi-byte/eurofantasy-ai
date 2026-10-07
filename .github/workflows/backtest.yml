@@ -25,6 +25,10 @@ jobs:
         with:
           python-version: "3.12"
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
       - name: Snapshot predictions and grade completed games
         run: |
           python - <<'PY'
@@ -495,226 +499,18 @@ jobs:
                   .get(pos)
               )
 
+          # Execute the website's shared core once for the entire market.
+          import subprocess
+          shared_forecasts = json.loads(subprocess.check_output(
+              ['node', 'scripts/forecast_players.cjs'], text=True
+          ))
+          forecast_by_name = {p['name']: p for p in shared_forecasts['predictions']}
+
           def predict(player):
-              status = player.get(
-                  "status",
-                  "active",
-              )
-
-              if status == "out":
-                  return 0.0, 0.0, {
-                      "reason": "out",
-                  }
-
-              record = recent.get(
-                  fantasy_key(
-                      player.get("name")
-                  )
-              )
-
-              if not record:
-                  # Fallback only for players with no
-                  # EuroLeague history.
-                  price = float(
-                      player.get("price") or 0
-                  )
-                  expected = max(
-                      0.0,
-                      price * 0.93,
-                  )
-
-                  return expected, None, {
-                      "reason": "price-prior",
-                  }
-
-              dynamic = dynamic_recent(
-                  record
-              )
-
-              if not dynamic:
-                  price = float(
-                      player.get("price") or 0
-                  )
-                  expected = max(
-                      0.0,
-                      price * 0.93,
-                  )
-
-                  return expected, None, {
-                      "reason": "price-prior",
-                  }
-
-              base_minutes = positive(
-                  record.get(
-                      "baseline",
-                      {},
-                  ).get("avgMinutes")
-              ) or dynamic["minutes"]
-
-              model_minutes = (
-                  base_minutes
-                  + injury_boost(player)
-              )
-
-              if status == "questionable":
-                  model_minutes *= 0.82
-
-              _, team_match = get_team_matchup(
-                  player
-              )
-
-              margin = float(
-                  team_match.get("margin") or 0
-              )
-
-              price = float(
-                  player.get("price") or 0
-              )
-
-              if (
-                  margin >= 10
-                  and price >= 12
-              ):
-                  model_minutes *= 0.97
-
-              if (
-                  margin >= 10
-                  and price <= 7
-              ):
-                  model_minutes *= 1.05
-
-              model_minutes = clamp(
-                  model_minutes,
-                  0.0,
-                  36.0,
-              )
-
-              availability_factor = (
-                  clamp(
-                      model_minutes
-                      / base_minutes,
-                      0.0,
-                      1.25,
-                  )
-                  if base_minutes > 0
-                  else 1.0
-              )
-
-              predicted_minutes = (
-                  dynamic["minutes"] * 0.80
-                  + base_minutes * 0.20
-              ) * availability_factor
-
-              predicted_minutes = clamp(
-                  predicted_minutes,
-                  5.0,
-                  36.0,
-              )
-
-              team_points = float(
-                  team_match.get(
-                      "teamPoints",
-                      84,
-                  )
-              )
-
-              team_env = clamp(
-                  1.0
-                  + (
-                      team_points - 84.0
-                  ) * 0.006,
-                  0.92,
-                  1.08,
-              )
-
-              team_pct = (
-                  team_env - 1.0
-              ) * 100.0
-
-              position_row = get_position_row(
-                  player,
-                  team_match,
-              )
-
-              position_pct = (
-                  (
-                      float(
-                          position_row.get(
-                              "factor",
-                              1.0,
-                          )
-                      )
-                      - 1.0
-                  )
-                  * 100.0
-                  if position_row
-                  else 0.0
-              )
-
-              team_factor = (
-                  1.0
-                  + clamp(
-                      team_pct,
-                      -8.0,
-                      8.0,
-                  )
-                  / 100.0
-                  * 0.60
-              )
-
-              position_factor = (
-                  1.0
-                  + clamp(
-                      position_pct,
-                      -12.0,
-                      12.0,
-                  )
-                  / 100.0
-                  * 0.35
-              )
-
-              expected = max(
-                  0.0,
-                  dynamic["rate"]
-                  * predicted_minutes
-                  * team_factor
-                  * position_factor,
-              )
-
-              return (
-                  expected,
-                  predicted_minutes,
-                  {
-                      "reason":
-                          "recent-form-time-decay",
-                      "lastGameAgeDays":
-                          round(
-                              dynamic[
-                                  "ageDays"
-                              ],
-                              1,
-                          ),
-                      "lastGameWeight":
-                          round(
-                              dynamic[
-                                  "weights"
-                              ][
-                                  "lastGame"
-                              ],
-                              4,
-                          ),
-                      "teamMatchPct":
-                          round(
-                              team_pct,
-                              2,
-                          ),
-                      "positionMatchPct":
-                          round(
-                              position_pct,
-                              2,
-                          ),
-                  },
-              )
+              forecast = forecast_by_name.get(player.get('name'))
+              if forecast is None:
+                  return 0.0, 0.0, {'reason': 'not-a-player'}
+              return forecast['expectedPir'], forecast['expectedMinutes'], forecast['detail']
 
           snapshot_path = (
               BACKTEST
@@ -781,11 +577,7 @@ jobs:
                           timezone.utc
                       ).isoformat(),
                   "model":
-                      (
-                          "recent form + time decay + "
-                          "minutes + team matchup + "
-                          "position matchup"
-                      ),
+                      "shared-personal-model-v1",
                   "playerCount":
                       len(predictions),
                   "predictions":
