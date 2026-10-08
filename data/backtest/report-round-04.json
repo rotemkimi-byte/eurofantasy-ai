@@ -3,12 +3,427 @@
   "round": 4,
   "complete": false,
   "scheduledGames": 10,
-  "playedGames": 0,
-  "gradedGames": 0,
+  "playedGames": 1,
+  "gradedGames": 1,
   "metrics": {
-    "n": 0
+    "n": 24,
+    "mae": 5.984,
+    "rmse": 8.392,
+    "bias": -0.721,
+    "within3": 0.4167,
+    "within5": 0.5833,
+    "correlation": 0.266,
+    "byPosition": {
+      "G": {
+        "n": 10,
+        "mae": 6.622,
+        "bias": -1.838
+      },
+      "F": {
+        "n": 11,
+        "mae": 5.927,
+        "bias": 0.799
+      },
+      "C": {
+        "n": 3,
+        "mae": 4.065,
+        "bias": -2.568
+      }
+    }
   },
-  "largestMisses": [],
-  "comparisons": [],
-  "updated_at": "2026-10-07T18:37:03.039153+00:00"
+  "largestMisses": [
+    {
+      "name": "Both Gach",
+      "team": "ASVEL",
+      "pos": "F",
+      "price": 7.7,
+      "predictedPir": 0.662,
+      "actualPir": 25.0,
+      "error": -24.338,
+      "absoluteError": 24.338
+    },
+    {
+      "name": "Tremont Waters",
+      "team": "ASVEL",
+      "pos": "G",
+      "price": 9.3,
+      "predictedPir": 5.224,
+      "actualPir": 25.0,
+      "error": -19.776,
+      "absoluteError": 19.776
+    },
+    {
+      "name": "David Lighty",
+      "team": "ASVEL",
+      "pos": "F",
+      "price": 5.3,
+      "predictedPir": 12.87,
+      "actualPir": 1.0,
+      "error": 11.87,
+      "absoluteError": 11.87
+    },
+    {
+      "name": "Tyson Etienne",
+      "team": "Paris",
+      "pos": "G",
+      "price": 10.1,
+      "predictedPir": 5.951,
+      "actualPir": 17.0,
+      "error": -11.049,
+      "absoluteError": 11.049
+    },
+    {
+      "name": "Mouhamed Faye",
+      "team": "Paris",
+      "pos": "C",
+      "price": 6.2,
+      "predictedPir": 2.05,
+      "actualPir": 12.0,
+      "error": -9.95,
+      "absoluteError": 9.95
+    },
+    {
+      "name": "Nathan Sestina",
+      "team": "ASVEL",
+      "pos": "F",
+      "price": 7.7,
+      "predictedPir": 9.525,
+      "actualPir": 1.0,
+      "error": 8.525,
+      "absoluteError": 8.525
+    },
+    {
+      "name": "Alize Johnson",
+      "team": "Paris",
+      "pos": "F",
+      "price": 9.5,
+      "predictedPir": 7.217,
+      "actualPir": 0.0,
+      "error": 7.217,
+      "absoluteError": 7.217
+    },
+    {
+      "name": "Nadir Hifi",
+      "team": "Paris",
+      "pos": "G",
+      "price": 14.4,
+      "predictedPir": 14.029,
+      "actualPir": 21.0,
+      "error": -6.971,
+      "absoluteError": 6.971
+    },
+    {
+      "name": "Patty Mills",
+      "team": "ASVEL",
+      "pos": "G",
+      "price": 12.9,
+      "predictedPir": 20.205,
+      "actualPir": 14.0,
+      "error": 6.205,
+      "absoluteError": 6.205
+    },
+    {
+      "name": "Marc-owen Fodzo Dada",
+      "team": "ASVEL",
+      "pos": "G",
+      "price": 4.9,
+      "predictedPir": 5.177,
+      "actualPir": 0.0,
+      "error": 5.177,
+      "absoluteError": 5.177
+    },
+    {
+      "name": "Terry Tarpey",
+      "team": "Paris",
+      "pos": "G",
+      "price": 6.8,
+      "predictedPir": 6.989,
+      "actualPir": 2.0,
+      "error": 4.989,
+      "absoluteError": 4.989
+    },
+    {
+      "name": "Sebastian Herrera",
+      "team": "Paris",
+      "pos": "G",
+      "price": 5.2,
+      "predictedPir": 5.909,
+      "actualPir": 1.0,
+      "error": 4.909,
+      "absoluteError": 4.909
+    },
+    {
+      "name": "Hugo Besson",
+      "team": "ASVEL",
+      "pos": "G",
+      "price": 9.2,
+      "predictedPir": 16.146,
+      "actualPir": 20.0,
+      "error": -3.854,
+      "absoluteError": 3.854
+    },
+    {
+      "name": "Yves Pons",
+      "team": "ASVEL",
+      "pos": "F",
+      "price": 6.9,
+      "predictedPir": 3.835,
+      "actualPir": 0.0,
+      "error": 3.835,
+      "absoluteError": 3.835
+    },
+    {
+      "name": "Myles Cale",
+      "team": "ASVEL",
+      "pos": "G",
+      "price": 6.5,
+      "predictedPir": 2.639,
+      "actualPir": 0.0,
+      "error": 2.639,
+      "absoluteError": 2.639
+    }
+  ],
+  "comparisons": [
+    {
+      "name": "Both Gach",
+      "team": "ASVEL",
+      "pos": "F",
+      "price": 7.7,
+      "predictedPir": 0.662,
+      "actualPir": 25.0,
+      "error": -24.338,
+      "absoluteError": 24.338
+    },
+    {
+      "name": "Tremont Waters",
+      "team": "ASVEL",
+      "pos": "G",
+      "price": 9.3,
+      "predictedPir": 5.224,
+      "actualPir": 25.0,
+      "error": -19.776,
+      "absoluteError": 19.776
+    },
+    {
+      "name": "David Lighty",
+      "team": "ASVEL",
+      "pos": "F",
+      "price": 5.3,
+      "predictedPir": 12.87,
+      "actualPir": 1.0,
+      "error": 11.87,
+      "absoluteError": 11.87
+    },
+    {
+      "name": "Tyson Etienne",
+      "team": "Paris",
+      "pos": "G",
+      "price": 10.1,
+      "predictedPir": 5.951,
+      "actualPir": 17.0,
+      "error": -11.049,
+      "absoluteError": 11.049
+    },
+    {
+      "name": "Mouhamed Faye",
+      "team": "Paris",
+      "pos": "C",
+      "price": 6.2,
+      "predictedPir": 2.05,
+      "actualPir": 12.0,
+      "error": -9.95,
+      "absoluteError": 9.95
+    },
+    {
+      "name": "Nathan Sestina",
+      "team": "ASVEL",
+      "pos": "F",
+      "price": 7.7,
+      "predictedPir": 9.525,
+      "actualPir": 1.0,
+      "error": 8.525,
+      "absoluteError": 8.525
+    },
+    {
+      "name": "Alize Johnson",
+      "team": "Paris",
+      "pos": "F",
+      "price": 9.5,
+      "predictedPir": 7.217,
+      "actualPir": 0.0,
+      "error": 7.217,
+      "absoluteError": 7.217
+    },
+    {
+      "name": "Nadir Hifi",
+      "team": "Paris",
+      "pos": "G",
+      "price": 14.4,
+      "predictedPir": 14.029,
+      "actualPir": 21.0,
+      "error": -6.971,
+      "absoluteError": 6.971
+    },
+    {
+      "name": "Patty Mills",
+      "team": "ASVEL",
+      "pos": "G",
+      "price": 12.9,
+      "predictedPir": 20.205,
+      "actualPir": 14.0,
+      "error": 6.205,
+      "absoluteError": 6.205
+    },
+    {
+      "name": "Marc-owen Fodzo Dada",
+      "team": "ASVEL",
+      "pos": "G",
+      "price": 4.9,
+      "predictedPir": 5.177,
+      "actualPir": 0.0,
+      "error": 5.177,
+      "absoluteError": 5.177
+    },
+    {
+      "name": "Terry Tarpey",
+      "team": "Paris",
+      "pos": "G",
+      "price": 6.8,
+      "predictedPir": 6.989,
+      "actualPir": 2.0,
+      "error": 4.989,
+      "absoluteError": 4.989
+    },
+    {
+      "name": "Sebastian Herrera",
+      "team": "Paris",
+      "pos": "G",
+      "price": 5.2,
+      "predictedPir": 5.909,
+      "actualPir": 1.0,
+      "error": 4.909,
+      "absoluteError": 4.909
+    },
+    {
+      "name": "Hugo Besson",
+      "team": "ASVEL",
+      "pos": "G",
+      "price": 9.2,
+      "predictedPir": 16.146,
+      "actualPir": 20.0,
+      "error": -3.854,
+      "absoluteError": 3.854
+    },
+    {
+      "name": "Yves Pons",
+      "team": "ASVEL",
+      "pos": "F",
+      "price": 6.9,
+      "predictedPir": 3.835,
+      "actualPir": 0.0,
+      "error": 3.835,
+      "absoluteError": 3.835
+    },
+    {
+      "name": "Myles Cale",
+      "team": "ASVEL",
+      "pos": "G",
+      "price": 6.5,
+      "predictedPir": 2.639,
+      "actualPir": 0.0,
+      "error": 2.639,
+      "absoluteError": 2.639
+    },
+    {
+      "name": "Bodian Massa",
+      "team": "ASVEL",
+      "pos": "F",
+      "price": 5.7,
+      "predictedPir": 5.635,
+      "actualPir": 8.0,
+      "error": -2.365,
+      "absoluteError": 2.365
+    },
+    {
+      "name": "Joel Bolomboy",
+      "team": "ASVEL",
+      "pos": "C",
+      "price": 9.8,
+      "predictedPir": 6.088,
+      "actualPir": 4.0,
+      "error": 2.088,
+      "absoluteError": 2.088
+    },
+    {
+      "name": "Jeremy Morgan",
+      "team": "Paris",
+      "pos": "F",
+      "price": 5.6,
+      "predictedPir": 1.738,
+      "actualPir": 0.0,
+      "error": 1.738,
+      "absoluteError": 1.738
+    },
+    {
+      "name": "Tj Warren",
+      "team": "Paris",
+      "pos": "F",
+      "price": 11.1,
+      "predictedPir": 8.496,
+      "actualPir": 10.0,
+      "error": -1.504,
+      "absoluteError": 1.504
+    },
+    {
+      "name": "Daulton Hommes",
+      "team": "Paris",
+      "pos": "F",
+      "price": 5.7,
+      "predictedPir": 4.421,
+      "actualPir": 3.0,
+      "error": 1.421,
+      "absoluteError": 1.421
+    },
+    {
+      "name": "Jae Crowder",
+      "team": "ASVEL",
+      "pos": "F",
+      "price": 9.9,
+      "predictedPir": 15.323,
+      "actualPir": 14.0,
+      "error": 1.323,
+      "absoluteError": 1.323
+    },
+    {
+      "name": "Leopold Cavaliere",
+      "team": "Paris",
+      "pos": "F",
+      "price": 5.0,
+      "predictedPir": 8.066,
+      "actualPir": 7.0,
+      "error": 1.066,
+      "absoluteError": 1.066
+    },
+    {
+      "name": "Joel Ayayi",
+      "team": "Paris",
+      "pos": "G",
+      "price": 4.9,
+      "predictedPir": 7.35,
+      "actualPir": 8.0,
+      "error": -0.65,
+      "absoluteError": 0.65
+    },
+    {
+      "name": "Allan Dokossi",
+      "team": "Paris",
+      "pos": "C",
+      "price": 8.1,
+      "predictedPir": 12.158,
+      "actualPir": 12.0,
+      "error": 0.158,
+      "absoluteError": 0.158
+    }
+  ],
+  "updated_at": "2026-10-08T00:42:19.516879+00:00"
 }
