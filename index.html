@@ -52,7 +52,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
 .squadLower{background:var(--squad-purple);display:grid;grid-template-columns:2fr 1fr;direction:ltr;gap:12px;padding:22px 12px;align-items:start}.squadReserve,.squadSixth{direction:rtl;min-width:0}.squadReserve{background:#2c224b;border-radius:12px;padding:10px}.squadLower h4{color:#ccc4df;text-align:center;font-size:13px;margin:0 0 13px}.squadLower h4 small{font-size:10px;font-weight:400;white-space:nowrap}.squadBenchGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 10px;direction:ltr}.squadBenchGrid .squadPlayer{direction:rtl}.squadLower .squadJersey{width:68px;height:83px}.squadLower .squadName{font-size:11px;padding:6px 3px;min-height:35px}.squadLower .squadInfo{padding:6px 4px}.squadLower .squadTop b{font-size:17px}.squadLower .squadTop small{font-size:8px}.squadLower .squadInfo .team-actual span,.squadLower .squadForecast,.squadLower .squadDataTitle{font-size:9px}.squadSixth>h4:not(:first-child){margin-top:22px}.squadSixth>select{font-size:11px;margin-bottom:13px;padding:7px 3px;background:#2c224b;color:#fff;border-color:#53476f}.squadCoach .squadInfo>span{display:block;font-size:10px;margin-top:5px}.squadCoachEmpty{color:#aaa0c5;font-size:11px;text-align:center}.squadFootnote{margin:0;background:var(--squad-purple);padding:0 14px 16px;color:#aca2c5;font-size:10px;line-height:1.6}.squadPlayer [hidden]{display:none!important}
 @media(max-width:400px){.squadCourt{padding:18px 9px}.squadCourtRow{gap:14px}.squadCenter>.squadPlayer,.squadCenter>.squadEmpty{width:calc(50% - 7px)}.squadLower{padding:16px 6px;gap:7px}.squadReserve{padding:9px 5px}.squadBenchGrid{gap:16px 6px}.squadLower .squadTop b{font-size:15px}.squadLower .squadName{font-size:10px}.squadLower h4{font-size:11px}.squadLower .squadRemove,.squadLower .squadCaptain{left:0}.squadLower .squadInfo .team-actual span,.squadLower .squadForecast{font-size:9px}}
 </style><style>.squadPlayer{cursor:pointer}.upgradeTeam{font-size:12px;color:var(--blue);margin:6px 0;overflow-wrap:anywhere}</style><style>.squadPlayerTop{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:5px;align-items:center;margin-bottom:6px;min-height:139px}.squadPlayerTop>.squadOpen{align-self:center}.squadPlayerTop>.squadOpen .squadJersey{width:67px;height:87px;max-width:100%}.squadRival{min-width:0;border-radius:8px;padding:6px 3px;background:#ffffffc9;color:#201040;text-align:center;line-height:1.25}.squadNextLabel{font-size:8px;color:#5c4869;margin-bottom:3px}.squadNextTeam{font-size:10px;display:block;overflow-wrap:anywhere}.squadRivalOpen{display:block;background:transparent;color:#241240;width:100%;padding:3px 0;border-radius:0}.squadRivalOpen .squadJersey{width:36px!important;height:45px!important;margin:0 auto 3px}.squadRivalName{font-size:9px;display:block;overflow-wrap:anywhere;font-weight:800}.squadRivalMinutes{font-size:10px;font-weight:800;display:block;color:#125937;margin:3px 0}.squadRivalMinutes span{font-size:7px;font-weight:400;display:block;color:#605266;margin-top:2px}.squadRivalBasis{font-size:7px;color:#655671;display:block}.squadRivalMissing{font-size:9px;display:block;color:#71667d;margin-top:9px}.squadLower .squadPlayerTop{grid-template-columns:1fr;gap:6px;min-height:0}.squadLower .squadPlayerTop>.squadOpen .squadJersey{width:62px;height:77px}.squadLower .squadRival{display:block;min-height:140px}.squadPlayerTop+.squadOpen .squadName{min-height:37px}.squadLower .squadPlayerTop+.squadOpen .squadName{min-height:35px}.squadRivalOpen:focus-visible{outline:2px solid #187352;outline-offset:2px}
-</style></head>
+</style><style>.squadVenue{display:block;background:#11082f;color:white;border-radius:4px;padding:4px 2px;font-size:9px;margin:5px 0;font-weight:800}.squadRivalPir{display:block;font-size:11px;font-weight:800;color:#281746;margin:5px 0}.squadRivalPir span{display:block;font-size:7px;font-weight:400;color:#605266;margin-top:2px}</style></head>
 <body>
 <header><div class="head"><div><div class="eyebrow">EUROLEAGUE FANTASY AGENT • V2</div><h1>EuroFantasy AI</h1></div><div class="badge" id="syncBadge">טוען נתונים…</div></div></header>
 <main>
@@ -386,7 +386,17 @@ function squadOpponentFor(p,match){
 }
 function squadOpponentCard(p,match){
  const info=squadOpponentFor(p,match);
- return `<aside class="squadRival" aria-label="הקבוצה הבאה והיריב בעמדה"><div class="squadNextLabel">הקבוצה הבאה</div><b class="squadNextTeam">${esc(info.team||'טרם נקבעה')}</b>${info.rival?`<button class="squadRivalOpen" data-details="${esc(info.rival.name)}" aria-label="פרטי יריב: ${esc(info.rival.name)}">${squadJersey(info.rival)}<span class="squadRivalName">${esc(info.rival.name)}</span></button><small class="squadRivalMinutes">${clubNumber(info.minutes)} דק׳<span>${info.basis}</span></small><span class="squadRivalBasis">מוביל בדקות בעמדה ${esc(p.pos)}</span>`:'<span class="squadRivalMissing">אין נתוני דקות ליריב בעמדה</span>'}</aside>`;
+ const home=match?.home??p.home;
+ const venue=home===true||home===1||home==='1'?'בית':home===false||home===0||home==='0'?'חוץ':'טרם נקבע';
+ const recent=info.rival?model(info.rival).recentForm:null;
+ const valid=v=>v!=null&&v!==''&&Number.isFinite(Number(v));
+ let pir=null,pirLabel='PIR ממוצע בעונה';
+ if(recent?.latestSeason==='E2026'&&Number(recent.currentSeasonGames)>0){
+  if(valid(recent.season?.avgPir))pir=Number(recent.season.avgPir);
+  else if(valid(recent.last5?.avgPir)){pir=Number(recent.last5.avgPir);pirLabel='PIR ממוצע באחרונים'}
+  else if(valid(recent.lastGame?.pir)){pir=Number(recent.lastGame.pir);pirLabel='PIR במשחק האחרון'}
+ }
+ return `<aside class="squadRival" aria-label="הקבוצה הבאה והיריב בעמדה"><div class="squadNextLabel">הקבוצה הבאה</div><b class="squadNextTeam">${esc(info.team||'טרם נקבעה')}</b><span class="squadVenue">המשחק שלך: ${venue}</span>${info.rival?`<button class="squadRivalOpen" data-details="${esc(info.rival.name)}" aria-label="פרטי יריב: ${esc(info.rival.name)}">${squadJersey(info.rival)}<span class="squadRivalName">${esc(info.rival.name)}</span></button><small class="squadRivalMinutes">${clubNumber(info.minutes)} דק׳<span>${info.basis}</span></small><small class="squadRivalPir">${clubNumber(pir)} PIR<span>${pirLabel}</span></small><span class="squadRivalBasis">מוביל בדקות בעמדה ${esc(p.pos)}</span>`:'<span class="squadRivalMissing">אין נתוני דקות ליריב בעמדה</span>'}</aside>`;
 }
 
 function renderTeam(){
@@ -1433,6 +1443,7 @@ if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
 })();
 
 </script><script src="./personal-model-core.js?v=1"></script><script src="./personal-model.js?v=1"></script><script src="./model-stability.js?v=3"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script><script src="./optimizer.js"></script></body></html>
+
 
 
 
