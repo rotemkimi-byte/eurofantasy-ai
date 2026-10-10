@@ -1,0 +1,97 @@
+name: Install rolling historical learning
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/install-rolling-learning.yml'
+  schedule:
+    - cron: '23,53 * * * *'
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: eurofantasy-matchup-context
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install rolling replay and complete-input capture
+        run: |
+          python - <<'PYINSTALL'
+          import zlib,base64
+          source=zlib.decompress(base64.b64decode('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')).decode('utf-8')
+          exec(compile(source,'install_rolling.py','exec'),{'__name__':'__main__'})
+          PYINSTALL
+      - name: Verify replay and prevent look-ahead learning
+        run: |
+          python -m unittest discover -s tests -p 'test_rolling_learning.py'
+          node --check rolling-learning.js
+          node tests/test_replay.cjs
+          node tests/test_capture.cjs
+      - name: Refresh completed results and replay the current projection
+        run: |
+          python scripts/fantasy_learning.py prepare
+          python scripts/fantasy_learning.py grade
+          python scripts/rolling_learning.py
+      - name: Check whether upcoming games need input snapshots
+        id: capture
+        run: |
+          python - <<'PYCHECK'
+          import os
+          from datetime import datetime,timezone,timedelta
+          import sys
+          sys.path.insert(0,'scripts')
+          from rolling_learning import OUT,engine_id
+          from fantasy_learning import load,date
+          now=datetime.now(timezone.utc);ident=engine_id()
+          needed=any(not g['played'] and now+timedelta(minutes=10)<date(g['start'])<=now+timedelta(hours=24) and load(OUT/f'input-snapshots/E2026-{g["gameCode"]}.json',{}).get('engineId')!=ident for g in load(OUT/'schedule.json',{}).values())
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('needed='+str(needed).lower()+'\n')
+          PYCHECK
+      - name: Capture immutable inputs for upcoming games
+        if: steps.capture.outputs.needed == 'true'
+        run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+          python scripts/snapshot_replay.py
+      - name: Save tested replay and frozen inputs
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html rolling-learning.js rolling-model-version.js learning-model-version.js scripts/rolling_learning.py scripts/replay-engine.cjs scripts/snapshot_replay.py tests/test_rolling_learning.py tests/test_replay.cjs tests/test_capture.cjs data/learning data/backtest/cache
+          if ! git diff --cached --quiet; then
+            git commit -m 'Add chronological replay diagnostics complete-input capture and guarded calibration'
+            for attempt in 1 2 3; do
+              git pull --rebase origin "${{ github.ref_name }}"
+              if git push origin "HEAD:${{ github.ref_name }}"; then pushed=yes; break; fi
+            done
+            if [ "${pushed:-no}" != yes ]; then exit 1; fi
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: '.'
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish rolling learning
+        id: deployment
+        uses: actions/deploy-pages@v4
