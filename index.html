@@ -86,7 +86,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
 
 <section id="coach" class="tab"><div class="card"><div class="sectionHead"><div><h3>מאמנים — תוחלת לפי הפרש</h3><p class="muted">כולל נקודות שליליות בהפסדים. הסתברויות 11+/20+ הן מודל נורמלי סביב קו השוק.</p></div><label style="max-width:130px">תקציב מאמן<input id="coachBudget" type="number" step=".1" value="10"></label></div><div id="coachList" class="rank"></div></div></section>
 
-<section id="matchups" class="tab"><div class="card"><h3>מאצ׳אפ קבוצה מול קבוצה</h3><p class="muted">Win% ללא מרווח סוכנות מה-moneyline. 11+/20+ הם אומדן מודל מה-spread, לא הסתברות רשמית.</p><div id="gameCards" class="grid2"></div></div></section>
+<section id="matchups" class="tab"><div class="card"><h3>מאצ׳אפ קבוצה מול קבוצה</h3><p class="muted">הסתברויות מודל לפי תוצאות, ביתיות, סגל זמין וחוזק יריבות. כיול מופעל רק אחרי בדיקה כרונולוגית; האחוזים אינם יחסי סוכנויות.</p><div id="gameCards" class="grid2"></div></div></section>
 
 <section id="playerMatchups" class="tab"><div class="card"><h3>מאצ׳אפ שחקנים</h3><div class="filters pmControls"><label>קבוצה<select id="pmTeam"></select></label><label>קבוצה להשוואה<select id="pmOpponent"><option value="">היריבה במשחק הבא</option></select></label><button class="secondary" id="pmReload">רענן נתונים</button></div><p id="pmSummary" class="pmSummary"></p><p class="muted pmHelp">שתי חמישיות במבנה סנטר, שני פורוורדים ושני גארדים, לפי ממוצע הדקות בעונה. יריבים באותה עמדה מוצמדים לפי דירוג הדקות שלהם. זו השוואה לפי עמדה, ולא שיוך של שומר אישי או חמישייה פותחת מאומתת. שחקנים שמסומנים בחוץ אינם נכללים. כשאין נתוני דקות, הסדר זמני לפי מחיר. הנתונים בטבלה הם ממוצעים בפועל; PIR צפוי מופיע בשורה נפרדת. לחץ על גופייה לפרטים.</p><p id="pmStatus" class="muted pmHelp"></p><div id="pmCourts"></div></div></section>
 <section id="injuries" class="tab"><div class="card"><h3>פציעות וזמינות</h3><p class="muted">המודל מוריד דקות לשחקן בספק ומעלה מעט דקות לחברים פעילים באותה עמדה כאשר חסרים שחקנים.</p><div id="injuryCards" class="grid2"></div></div></section>
@@ -1560,7 +1560,7 @@ if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
   }
 })();
 
-</script><script src="./personal-model-core.js?v=1"></script><script src="./personal-model.js?v=1"></script><script src="./model-stability.js?v=3"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script><script src="./optimizer.js"></script></body></html>
+</script><script src="./personal-model-core.js?v=1"></script><script src="./personal-model.js?v=1"></script><script src="./model-stability.js?v=3"></script><script>window.__matchupContextEnabled=true;</script><script src="./matchup-context-core.js?v=1"></script><script src="./matchup-context.js?v=1"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script><script src="./optimizer.js"></script></body></html>
 
 
 

@@ -27,13 +27,13 @@ try:
         browser=pw.chromium.launch(headless=True)
         page=browser.new_page()
         page.goto(f'http://127.0.0.1:{server.server_port}/index.html',wait_until='networkidle',timeout=60000)
-        page.wait_for_function('window.__stabilityModelPatched && window.__learningReady && window.__recentFormPatched',timeout=45000)
+        page.wait_for_function('window.__stabilityModelPatched && window.__learningReady && window.__recentFormPatched && (!window.__matchupContextEnabled || window.__matchupContextReady)',timeout=45000)
         if page.evaluate('window.__learningModelId')!=model_id(): raise RuntimeError('Browser model version does not match source')
         forecasts=page.evaluate('''() => players.filter(p=>['G','F','C'].includes(p.pos)).map(p=>{
           const x=model(p),b=x.learning;
           return {name:p.name,team:p.team,pos:p.pos,opponent:x.match?.opponent,home:!!x.match?.home,status:p.status,price:p.price,
           expectedPir:x.expected,expectedMinutes:x.minutes,basePir:b?.basePir??x.expected,baseMinutes:b?.baseMinutes??x.minutes,
-          correctionActive:!!b?.applied,modelSource:x.source,features:{basePir:x.basePir,baseMin:x.baseMin,injuryBoost:x.injuryBoost,injuryUsagePct:x.injuryUsagePct,missingStars:x.missingStars,positionMatchPct:x.positionMatchPct,teamPoints:x.match?.teamPoints,margin:x.match?.margin,lastGameWeight:x.recentForm?.lastGameWeight,personalPrior:x.personalPrior,currentSeasonWeight:x.currentSeasonWeight}};
+          correctionActive:!!b?.applied,modelSource:x.source,features:{basePir:x.basePir,baseMin:x.baseMin,injuryBoost:x.injuryBoost,injuryUsagePct:x.injuryUsagePct,missingStars:x.missingStars,positionMatchPct:x.positionMatchPct,teamPoints:x.match?.teamPoints,margin:x.match?.margin,lastGameWeight:x.recentForm?.lastGameWeight,personalPrior:x.personalPrior,currentSeasonWeight:x.currentSeasonWeight,context:x.context?{involvementFactor:x.context.involvementFactor,defenseFactor:x.context.defenseFactor,defenseSample:x.context.defenseSample,rival:x.context.rival?.name,scenarios:x.context.scenarios,minutesCorrectionActive:x.context.minutesCorrectionActive}:null}};
         })''')
         team_forecasts=page.evaluate('() => Object.fromEntries(Object.entries(MATCHUPS).map(([team,m])=>[team,{...m}]))')
         browser.close()

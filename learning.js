@@ -7,7 +7,7 @@
   try{const r=await fetch('./data/learning/latest.json?t='+Date.now(),{cache:'no-store'});if(r.ok)data=await r.json();}catch(e){console.warn('Learning report unavailable',e);}
   if(data?.season!=='E2026'||data?.schema!=='learning-v1')data=null;
   window.__learningReport=data;
-  for(let i=0;i<450&&!window.__stabilityModelPatched;i++)await new Promise(r=>setTimeout(r,100));
+  for(let i=0;i<450&&(!window.__stabilityModelPatched || (window.__matchupContextEnabled && !window.__matchupContextReady));i++)await new Promise(r=>setTimeout(r,100));
   if(!window.__stabilityModelPatched||typeof model!=='function'){window.__learningReady=false;return;}
   const baseModel=model;
   const active=!!(data?.active&&data.modelId===window.__learningModelId&&data.validation?.active&&data.validation.n>=60&&data.validation.games>=6);
