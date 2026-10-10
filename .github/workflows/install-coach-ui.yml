@@ -1,0 +1,67 @@
+name: Install clear coach cards
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/install-coach-ui.yml'
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: eurofantasy-coach-ui
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install coach presentation
+        run: |
+          python - <<'PYINSTALL'
+          import base64,zlib
+          source=zlib.decompress(base64.b64decode('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')).decode('utf-8')
+          exec(compile(source,'install_coaches.py','exec'),{'__name__':'__main__'})
+          PYINSTALL
+      - name: Check coach sorting and observed results
+        run: |
+          node --check coaches-ui.js
+          node tests/test_coaches_ui.cjs
+      - name: Save coach presentation
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html coaches-ui.js coaches-ui.css tests/test_coaches_ui.cjs
+          if ! git diff --cached --quiet; then
+            git commit -m 'Show coaches by price with venue form and clear win probabilities'
+            for attempt in 1 2 3; do
+              git pull --rebase origin "${{ github.ref_name }}"
+              if git push origin "HEAD:${{ github.ref_name }}"; then pushed=yes; break; fi
+            done
+            if [ "${pushed:-no}" != yes ]; then exit 1; fi
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: '.'
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish coach cards
+        id: deployment
+        uses: actions/deploy-pages@v4
