@@ -51,7 +51,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
 .squadPlayer{position:relative;min-width:0;text-align:center}.squadOpen{padding:0;display:block;width:100%;background:transparent;color:white;border-radius:0;cursor:pointer}.squadJersey{display:block;width:80px;height:96px;margin:0 auto -1px;filter:drop-shadow(0 3px 2px #0004)}.squadName{display:block;background:var(--squad-purple);color:#fff;border-bottom:4px solid #00c783;border-radius:7px 7px 0 0;padding:7px 4px;font-size:13px;font-weight:800;line-height:1.2;overflow-wrap:anywhere}.squadName small{font-size:10px;color:#c5bfda}.squadInfo{display:block;background:#fff;color:#1a0b40;border-radius:0 0 7px 7px;overflow:hidden;padding:7px 6px;box-shadow:0 3px 10px #0001;font-size:11px}.squadTop{display:grid;grid-template-columns:1fr 1fr;gap:4px}.squadTop b{font-size:20px;font-weight:800;direction:ltr;min-width:0}.squadTop small{display:block;font-size:9px;color:#777;direction:rtl;font-weight:500;margin-top:2px}.squadOpponent{color:#777;font-size:10px;line-height:1.5;margin-top:5px;overflow-wrap:anywhere}.squadStatus{font-size:10px;margin-top:4px}.squadStatus.good{color:#087e51}.squadStatus.warn{color:#946000}.squadStatus.bad{color:#ca153e}.squadDataTitle{font-size:10px;font-weight:800;margin:0 0 5px;color:#286097}.squadInfo .team-actual{display:grid;grid-template-columns:1fr;gap:4px;border-top:1px solid #dedbe4;margin-top:7px;padding-top:7px;text-align:right;min-width:0}.squadInfo .team-actual span{font-size:10px;line-height:1.35;overflow-wrap:anywhere}.squadInfo .team-actual .chip{padding:0;border:0;border-radius:0;background:transparent;color:#3e3459;white-space:normal}.squadForecast{display:grid;gap:4px;text-align:right;border-top:1px solid #dedbe4;padding-top:7px;margin-top:7px;color:#4d4265;font-size:10px}.squadForecast .squadDataTitle{color:#08764f}.squadRemove{position:absolute;left:5px;top:0;background:white;color:#252525;border-radius:50%;width:24px;height:24px;padding:0;font-size:20px;line-height:24px;z-index:2;box-shadow:0 1px 2px #0002}.squadCaptain{position:absolute;left:5px;top:28px;display:grid;place-items:center;background:#caff00;color:#100628;border-radius:50%;width:24px;height:24px;font-size:14px;font-weight:900}.squadActions{margin-top:7px;font-size:10px;text-align:right;color:#44375b}.squadActions summary{cursor:pointer}.squadActions label{font-size:10px;color:#44375b;display:block;margin-top:5px}.squadActions select{font-size:12px;background:#f4f1f9;color:#1a0b40;padding:5px;border-color:#ccc;margin-top:3px}.squadCaptainAction,.squadDetails{background:#efebf7;color:#1a0b40;padding:6px 4px;font-size:10px;margin-top:6px;width:100%;border:1px solid #d8d0e6;line-height:1.3}.squadDetails{background:#11082f;color:white}.squadEmpty{height:140px;border:1px dashed #fff9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:#ffffff24;border-radius:8px;color:#372148;font-size:13px}.squadEmpty small{color:#4d345e;font-size:10px}
 .squadLower{background:var(--squad-purple);display:grid;grid-template-columns:2fr 1fr;direction:ltr;gap:12px;padding:22px 12px;align-items:start}.squadReserve,.squadSixth{direction:rtl;min-width:0}.squadReserve{background:#2c224b;border-radius:12px;padding:10px}.squadLower h4{color:#ccc4df;text-align:center;font-size:13px;margin:0 0 13px}.squadLower h4 small{font-size:10px;font-weight:400;white-space:nowrap}.squadBenchGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 10px;direction:ltr}.squadBenchGrid .squadPlayer{direction:rtl}.squadLower .squadJersey{width:68px;height:83px}.squadLower .squadName{font-size:11px;padding:6px 3px;min-height:35px}.squadLower .squadInfo{padding:6px 4px}.squadLower .squadTop b{font-size:17px}.squadLower .squadTop small{font-size:8px}.squadLower .squadInfo .team-actual span,.squadLower .squadForecast,.squadLower .squadDataTitle{font-size:9px}.squadSixth>h4:not(:first-child){margin-top:22px}.squadSixth>select{font-size:11px;margin-bottom:13px;padding:7px 3px;background:#2c224b;color:#fff;border-color:#53476f}.squadCoach .squadInfo>span{display:block;font-size:10px;margin-top:5px}.squadCoachEmpty{color:#aaa0c5;font-size:11px;text-align:center}.squadFootnote{margin:0;background:var(--squad-purple);padding:0 14px 16px;color:#aca2c5;font-size:10px;line-height:1.6}.squadPlayer [hidden]{display:none!important}
 @media(max-width:400px){.squadCourt{padding:18px 9px}.squadCourtRow{gap:14px}.squadCenter>.squadPlayer,.squadCenter>.squadEmpty{width:calc(50% - 7px)}.squadLower{padding:16px 6px;gap:7px}.squadReserve{padding:9px 5px}.squadBenchGrid{gap:16px 6px}.squadLower .squadTop b{font-size:15px}.squadLower .squadName{font-size:10px}.squadLower h4{font-size:11px}.squadLower .squadRemove,.squadLower .squadCaptain{left:0}.squadLower .squadInfo .team-actual span,.squadLower .squadForecast{font-size:9px}}
-</style></head>
+</style><style>.squadPlayer{cursor:pointer}.upgradeTeam{font-size:12px;color:var(--blue);margin:6px 0;overflow-wrap:anywhere}</style></head>
 <body>
 <header><div class="head"><div><div class="eyebrow">EUROLEAGUE FANTASY AGENT • V2</div><h1>EuroFantasy AI</h1></div><div class="badge" id="syncBadge">טוען נתונים…</div></div></header>
 <main>
@@ -333,6 +333,9 @@ window.showPlayer=function(name){
     actualMetric("דקות במשחק האחרון",recent.lastGame?.minutes),
     actualMetric(`ממוצע PIR · ${recent.last5?.games||0} משחקים אחרונים`,recent.last5?.avgPir),
     actualMetric(`ממוצע דקות · ${recent.last5?.games||0} משחקים אחרונים`,recent.last5?.avgMinutes),
+    actualMetric("שינוי PIR מול המשחקים הקודמים",recent.previous4?.avgPir!=null&&recent.lastGame?.pir!=null?Number(recent.lastGame.pir)-Number(recent.previous4.avgPir):null),
+    `<div class="miniCard" data-recent-player="${esc(p.name)}"><b class="recent-credit-value">—</b><small>קרדיט במשחק האחרון · לפני שינוי</small></div>`,
+    `<div class="miniCard" data-recent-player="${esc(p.name)}"><b class="recent-change-value">—</b><small>שינוי קרדיט במשחק האחרון</small></div>`,
     actualMetric("משחקים בעונה",recent.currentSeasonGames,0),
     `<div class="miniCard lastThreeCard"><h4>3 המשחקים האחרונים</h4><p class="muted">טוען משחקים…</p></div>`
   ].join(""):'<p class="muted">אין עדיין נתוני משחק מאומתים לעונת 2026/27.</p>';
@@ -379,7 +382,7 @@ function renderTeam(){
  const card=(p,slot)=>{
   if(!p)return `<div class="squadEmpty"><span>${slot<5?SQUAD_SLOTS[slot][1]:'שחקן שישי'}</span><small>הוסף שחקן מהשוק</small></div>`;
   const x=model(p),r=x.recentForm,current=r?.latestSeason==='E2026'&&Number(r.currentSeasonGames)>0,m=x.match||{},isCaptain=captain?.name===p.name;
-  return `<article class="squadPlayer" data-player="${esc(p.name)}"><button class="squadRemove" data-remove="${esc(p.name)}" aria-label="הסר את ${esc(p.name)}">×</button>${isCaptain?'<span class="squadCaptain" title="קפטן">C</span>':''}<button class="squadOpen" data-details="${esc(p.name)}" aria-label="פרטים מלאים: ${esc(p.name)}">${squadJersey(p)}<span class="squadName">${esc(p.name)} <small>${esc(p.pos)}</small></span></button><div class="squadInfo"><div class="squadTop"><b>${clubNumber(p.price)}<small>קרדיט כעת</small></b><b>${clubNumber(x.expected)}<small>PIR צפוי</small></b></div><div class="squadOpponent">${m.home?'נגד':'@'} ${esc(m.opponent||p.opponent||'—')} · ${m.home?'בית':'חוץ'}</div><div class="squadStatus ${statusClass(p.status)}">${statusText(p.status)}</div><div class="sectionHead" hidden><b>${esc(p.name)}</b></div><div class="team-actual"><div class="squadDataTitle">בפועל · 2026/27</div><span class="recent-last-chip">PIR אחרון ${clubNumber(current?r.lastGame?.pir:null)}</span><span class="recent-minutes-chip">דקות אחרון ${clubNumber(current?r.lastGame?.minutes:null)}</span><span class="recent-avg5-chip">ממוצע PIR ${clubNumber(current?r.last5?.avgPir:null)}</span><span>ממוצע דקות ${clubNumber(current?r.last5?.avgMinutes:null)}</span><span class="recent-credit-chip">קרדיט לפני שינוי —</span><span class="recent-change-chip">שינוי קרדיט —</span><span>שינוי PIR ${signed(current&&r.previous4?.avgPir!=null&&r.lastGame?.pir!=null?Number(r.lastGame.pir)-Number(r.previous4.avgPir):null)}</span></div><div class="squadForecast"><div class="squadDataTitle">תחזית · המשחק הבא</div><span>דקות צפויות ${clubNumber(x.minutes)}</span><span>טווח PIR ${clubNumber(x.floor)}–${clubNumber(x.ceiling)}</span><span>איכות נתונים ${esc(dataQuality(p,x))}</span><span>מאצ׳אפ עמדה ${signed(x.positionMatchPct)}%</span></div><details class="squadActions"><summary>הרכב וקפטן</summary><label>תפקיד<select data-role="${esc(p.name)}">${SQUAD_SLOTS.map(([pos,label],i)=>(pos==='*'||p.pos===pos)?`<option value="${i}" ${slot===i?'selected':''}>${label}</option>`:'').join('')}<option value="bench" ${slot==='bench'?'selected':''}>ספסל</option></select></label><button class="squadCaptainAction" data-captain="${esc(p.name)}">${isCaptain?'קפטן נבחר':'בחר כקפטן'}</button></details><button class="squadDetails" data-details="${esc(p.name)}">כל הנתונים ו־3 משחקים אחרונים</button></div></article>`;
+  return `<article class="squadPlayer" data-player="${esc(p.name)}"><button class="squadRemove" data-remove="${esc(p.name)}" aria-label="הסר את ${esc(p.name)}">×</button>${isCaptain?'<span class="squadCaptain" title="קפטן">C</span>':''}<button class="squadOpen" data-details="${esc(p.name)}" aria-label="פרטים מלאים: ${esc(p.name)}">${squadJersey(p)}<span class="squadName">${esc(p.name)} <small>${esc(p.pos)}</small></span></button><div class="squadInfo"><div class="squadTop"><b>${clubNumber(p.price)}<small>קרדיט כעת</small></b><b>${clubNumber(x.expected)}<small>PIR צפוי</small></b></div><div class="squadOpponent">${m.home?'נגד':'@'} ${esc(m.opponent||p.opponent||'—')} · ${m.home?'בית':'חוץ'}</div><div class="squadStatus ${statusClass(p.status)}">${statusText(p.status)}</div><details class="squadActions"><summary>הרכב וקפטן</summary><label>תפקיד<select data-role="${esc(p.name)}">${SQUAD_SLOTS.map(([pos,label],i)=>(pos==='*'||p.pos===pos)?`<option value="${i}" ${slot===i?'selected':''}>${label}</option>`:'').join('')}<option value="bench" ${slot==='bench'?'selected':''}>ספסל</option></select></label><button class="squadCaptainAction" data-captain="${esc(p.name)}">${isCaptain?'קפטן נבחר':'בחר כקפטן'}</button></details><button class="squadDetails" data-details="${esc(p.name)}">פרטי שחקן</button></div></article>`;
  };
  const coach=COACHES.find(c=>c.name===squadPreferences.coach);
  const coachHtml=coach?`<div class="squadCoach">${squadJersey({...coach,pos:'מאמן'},true)}<div class="squadName">${esc(coach.name)}</div><div class="squadInfo"><div class="squadTop"><b>${clubNumber(coach.price)}<small>קרדיט</small></b><b>${clubNumber(coachExpected(coach.team))}<small>נק׳ צפויות</small></b></div><span>${esc(coach.team)}</span><span>מול ${esc(MATCHUPS[coach.team]?.opponent||'—')}</span><span>ניצחון ${pct(MATCHUPS[coach.team]?.winProb)}</span></div></div>`:'<p class="squadCoachEmpty">בחר מאמן</p>';
@@ -387,7 +390,8 @@ function renderTeam(){
  root.onclick=e=>{
   const remove=e.target.closest('[data-remove]');if(remove){toggle(remove.dataset.remove);return}
   const detail=e.target.closest('[data-details]');if(detail){showPlayer(detail.dataset.details);return}
-  const cap=e.target.closest('[data-captain]');if(cap){squadPreferences.captain=cap.dataset.captain;squadSave();renderTeam()}
+  const cap=e.target.closest('[data-captain]');if(cap){squadPreferences.captain=cap.dataset.captain;squadSave();renderTeam();return}
+  if(!e.target.closest('button,select,summary,details,label')){const player=e.target.closest('.squadPlayer');if(player)showPlayer(player.dataset.player)}
  };
  root.onchange=e=>{
   if(e.target.id==='squadCoachSelect'){squadPreferences.coach=e.target.value;squadSave();renderTeam();return}
@@ -429,7 +433,7 @@ function renderUpgrade(){
   const extra=+document.getElementById("extraCredit").value||0,min=+document.getElementById("minConf").value||0,sel=myTeam.map(n=>players.find(p=>p.name===n)).filter(Boolean);let ideas=[];
   for(const out of sel)for(const inn of players){if(inn.pos!==out.pos||myTeam.includes(inn.name)||inn.status==="out")continue;const xi=model(inn),xo=model(out);if(+inn.price<=+out.price+extra+1e-9&&xi.confidence>=min&&xi.expected>xo.expected)ideas.push({out,inn,gain:xi.expected-xo.expected,cost:+inn.price-(+out.price),conf:xi.confidence})}
   ideas.sort((a,b)=>b.gain-a.gain);
-  document.getElementById("upgradeList").innerHTML=ideas.slice(0,10).map((x,i)=>`<div class="rankItem"><div class="rankNo">${i+1}</div><div><b>${esc(x.out.name)} → ${esc(x.inn.name)}</b><br><small>תוספת ${n1(x.cost)} קרדיט • ${dataQuality(x.inn,model(x.inn))}</small></div><div class="good">+${n1(x.gain)} PIR</div></div>`).join("")||`<p class="muted">לא נמצא שדרוג במסגרת הזו.</p>`;
+  document.getElementById("upgradeList").innerHTML=ideas.slice(0,10).map((x,i)=>`<div class="rankItem"><div class="rankNo">${i+1}</div><div><b>${esc(x.out.name)} → ${esc(x.inn.name)}</b><div class="upgradeTeam">קבוצת השחקן המוצע: <strong>${esc(x.inn.team||"—")}</strong></div><small>תוספת ${n1(x.cost)} קרדיט • ${dataQuality(x.inn,model(x.inn))}</small></div><div class="good">+${n1(x.gain)} PIR</div></div>`).join("")||`<p class="muted">לא נמצא שדרוג במסגרת הזו.</p>`;
 }
 function optimize(){
   const B=Math.round((+document.getElementById("budget").value||0)*10),min=+document.getElementById("optConf").value||0,exq=document.getElementById("excludeQ").value==="yes",needs={G:4,F:4,C:2};
@@ -1210,6 +1214,7 @@ if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
   }
 
   function enhanceModal() {
+    enhanceTeamRecentStats();
     if (
       typeof players === "undefined" ||
       typeof model !== "function"
@@ -1308,128 +1313,18 @@ if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
 
 
   function enhanceTeamRecentStats() {
-    if (
-      typeof players === "undefined" ||
-      typeof model !== "function"
-    ) {
-      return;
-    }
-
-    document
-      .querySelectorAll(
-        "#teamCards .squadPlayer"
-      )
-      .forEach(card => {
-        const name =
-          card.querySelector(
-            ".sectionHead b"
-          )?.textContent?.trim();
-
-        if (!name) return;
-
-        const player =
-          players.find(
-            p => p.name === name
-          );
-
-        if (!player) return;
-
-        const x = model(player);
-        const recent = x.recentForm;
-
-        if (!recent) return;
-
-        const header = card.querySelector('.sectionHead');
-        if (!header) return;
-        let actualGroup = card.querySelector('.team-actual');
-        if (!actualGroup) {
-          actualGroup = document.createElement('div');
-          actualGroup.className = 'dataGroup actual team-actual';
-          const title = document.createElement('div');
-          title.className = 'sectionTitle';
-          title.textContent = 'בפועל · 2026/27';
-          actualGroup.appendChild(title);
-          header.after(actualGroup);
-        }
-
-        let lastChip =
-          actualGroup.querySelector(
-            ".recent-last-chip"
-          );
-
-        if (!lastChip) {
-          lastChip =
-            document.createElement(
-              "span"
-            );
-          lastChip.className =
-            "chip recent-last-chip";
-          actualGroup.appendChild(lastChip);
-        }
-
-        let avg5Chip =
-          actualGroup.querySelector(
-            ".recent-avg5-chip"
-          );
-
-        if (!avg5Chip) {
-          avg5Chip =
-            document.createElement(
-              "span"
-            );
-          avg5Chip.className =
-            "chip recent-avg5-chip";
-          actualGroup.appendChild(avg5Chip);
-        }
-
-        let minutesChip = actualGroup.querySelector('.recent-minutes-chip');
-        if (!minutesChip) {
-          minutesChip = document.createElement('span');
-          minutesChip.className = 'chip recent-minutes-chip';
-          actualGroup.appendChild(minutesChip);
-        }
-
-        let changeChip = actualGroup.querySelector('.recent-change-chip');
-        if (!changeChip) {
-          changeChip = document.createElement('span');
-          changeChip.className = 'chip recent-change-chip';
-          actualGroup.appendChild(changeChip);
-        }
-
-        const last = recent.lastGame?.pir == null ? NaN : Number(recent.lastGame.pir);
-        const avg5 = recent.last5?.avgPir == null ? NaN : Number(recent.last5.avgPir);
-
-        setChip(lastChip,
-          recent.latestSeason === 'E2026' && Number(recent.currentSeasonGames) > 0 && Number.isFinite(last)
-            ? `PIR במשחק האחרון ${last.toFixed(1)}`
-            : "PIR במשחק האחרון —");
-
-        setChip(avg5Chip,
-          recent.latestSeason === 'E2026' && Number(recent.currentSeasonGames) > 0 && Number.isFinite(avg5)
-            ? `ממוצע PIR · 5 משחקים אחרונים ${avg5.toFixed(1)} (${Math.min(5, Number(recent.last5?.games) || 1)}/5 זמינים)`
-            : "ממוצע PIR · 5 משחקים אחרונים —");
-        const current = recent.latestSeason === 'E2026' && Number(recent.currentSeasonGames) > 0;
-        const lastMinutes = Number(recent.lastGame?.minutes);
-        setChip(minutesChip, current && recent.lastGame?.minutes != null && Number.isFinite(lastMinutes)
-          ? `דקות במשחק האחרון ${lastMinutes.toFixed(1)}` : 'דקות במשחק האחרון —');
-
-        let creditChip = actualGroup.querySelector('.recent-credit-chip');
-        if (!creditChip) {
-          creditChip = document.createElement('span');
-          creditChip.className = 'chip recent-credit-chip';
-          actualGroup.appendChild(creditChip);
-        }
-        const credit = Number(player.price);
-        const hasCredit = current && Number.isFinite(credit) && credit > 0;
-        const before = hasCredit ? previousPrice(recent, player) : null;
-        setChip(creditChip, before === null ? 'קרדיט במשחק האחרון (לפני שינוי) —' : `קרדיט במשחק האחרון (לפני שינוי) ${before.toFixed(1)}`);
-        creditChip.title = 'המחיר שנשמר לפני המשחק האחרון';
-        const change = before === null ? null : credit - before;
-        setChip(changeChip, change === null ? 'שינוי קרדיט במשחק האחרון —' : `שינוי קרדיט במשחק האחרון ${change >= 0 ? '+' : ''}${change.toFixed(1)}`);
-        changeChip.title = change === null
-          ? 'אין מחיר שמור מלפני המשחק האחרון; שינוי לא מחושב'
-          : `מחיר לפני המשחק האחרון: ${before.toFixed(1)} קרדיט`;
-      });
+    if(typeof players === 'undefined' || typeof model !== 'function')return;
+    document.querySelectorAll('#modalBody [data-recent-player]').forEach(card=>{
+      const player=players.find(p=>p.name===card.dataset.recentPlayer);if(!player)return;
+      const recent=model(player).recentForm;
+      const current=recent?.latestSeason==='E2026'&&Number(recent.currentSeasonGames)>0;
+      const credit=Number(player.price);
+      const before=current&&Number.isFinite(credit)&&credit>0?previousPrice(recent,player):null;
+      const beforeValue=card.querySelector('.recent-credit-value');
+      const changeValue=card.querySelector('.recent-change-value');
+      if(beforeValue)setChip(beforeValue,before===null?'—':before.toFixed(1));
+      if(changeValue){const change=before===null?null:credit-before;setChip(changeValue,change===null?'—':`${change>=0?'+':''}${change.toFixed(1)}`)}
+    });
   }
 
   function restoreTab() {
@@ -1520,5 +1415,6 @@ if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
 })();
 
 </script><script src="./personal-model-core.js?v=1"></script><script src="./personal-model.js?v=1"></script><script src="./model-stability.js?v=3"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script><script src="./optimizer.js"></script></body></html>
+
 
 
