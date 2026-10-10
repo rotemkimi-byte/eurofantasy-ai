@@ -1,0 +1,67 @@
+name: Install compact forecast audit
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/install-audit-ui.yml'
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: eurofantasy-audit-ui
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install compact audit presentation
+        run: |
+          python - <<'PYINSTALL'
+          import base64,zlib
+          source=zlib.decompress(base64.b64decode('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')).decode('utf-8')
+          exec(compile(source,'install_audit.py','exec'),{'__name__':'__main__'})
+          PYINSTALL
+      - name: Check audit model separation and pagination
+        run: |
+          node --check audit-compact.js
+          node tests/test_audit_compact.cjs
+      - name: Save audit presentation
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html audit-compact.js audit-compact.css tests/test_audit_compact.cjs
+          if ! git diff --cached --quiet; then
+            git commit -m 'Separate current forecast audit from archive and paginate compact results'
+            for attempt in 1 2 3; do
+              git pull --rebase origin "${{ github.ref_name }}"
+              if git push origin "HEAD:${{ github.ref_name }}"; then pushed=yes; break; fi
+            done
+            if [ "${pushed:-no}" != yes ]; then exit 1; fi
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: '.'
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish compact forecast audit
+        id: deployment
+        uses: actions/deploy-pages@v4
