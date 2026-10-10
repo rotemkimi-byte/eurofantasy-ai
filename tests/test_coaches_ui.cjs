@@ -1,0 +1,18 @@
+const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict');
+let removed=false,html='',order='asc',budget='10';
+const target={set innerHTML(x){html=x;},get innerHTML(){return html;}},budgetInput={get value(){return budget;},removeEventListener(){removed=true;},addEventListener(){}};
+const elements={coachList:target,coachBudget:budgetInput,coachPriceOrder:{get value(){return order;},addEventListener(){}},coach:{querySelector(){return null;}}};
+const sandbox={window:{},document:{getElementById:id=>elements[id]},console,Date,AbortSignal,fetch:async()=>({ok:false}),COACHES:[{name:'Expensive',team:'A',price:10},{name:'Cheap',team:'B',price:5},{name:'Middle',team:'C',price:8}],MATCHUPS:{A:{opponent:'B',home:true,winProb:.7,p11_20:.2,p20:.1},B:{opponent:'A',home:false,winProb:.3,p11_20:.07,p20:.03}},coachExpected:()=>8.7,canonicalTeam:t=>t,renderCoaches:()=>{}};
+vm.createContext(sandbox);vm.runInContext(fs.readFileSync('coaches-ui.js','utf8'),sandbox);
+const ui=sandbox.window.CoachesUI;
+assert(html.indexOf('Cheap')<html.indexOf('Middle'));assert(html.indexOf('Middle')<html.indexOf('Expensive'));
+assert(html.includes('בית'));assert(html.includes('חוץ'));assert(html.includes('70%'));assert(html.includes('30%'));assert(!html.includes('EV'));assert(!html.includes('undefined'));
+order='desc';ui.render();assert(html.indexOf('Expensive')<html.indexOf('Middle'));
+budget='0';ui.render();assert(html.includes('אין מאמנים'));
+const game=(code,date,home,away,hs,as,played=true)=>({gameCode:code,utcDate:date,played,local:{club:{name:home},score:hs},road:{club:{name:away},score:as}});
+const games=[game(3,'2026-10-03T10:00:00Z','A','B',80,90),game(1,'2026-10-01T10:00:00Z','B','A',70,80),game(2,'2026-10-02T10:00:00Z','A','B',90,80),game(4,'2026-10-12T10:00:00Z','A','B',99,50),game(5,'2026-10-04T10:00:00Z','A','B',0,0,false)];
+games.push(games[0]);const histories=ui.buildHistories({data:games},Date.parse('2026-10-10'));
+assert.equal(histories.A.length,3);assert.equal(histories.B.length,3);assert.equal(histories.A[0].home,false);assert.equal(histories.A[2].score,80);assert.equal(ui.streak(histories.A,true),'1 הפסדים ברצף');
+assert.equal(ui.streak(histories.A.slice(0,2),false),'2+ ניצחונות ברצף');
+sandbox.window.__matchupContextData={teams:{A:{recentHistory:histories.A}}};budget='10';ui.render();assert(html.includes('שלושת המשחקים האחרונים'));assert(html.includes('80–90'));assert.equal((html.match(/class="coach-result /g)||[]).length,3);
+console.log('PASS: price sorting, budget, probabilities, home/away, chronological latest results, deduplication, future exclusion and streak bounds');
