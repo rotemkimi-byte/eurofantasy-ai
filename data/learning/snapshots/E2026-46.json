@@ -1,0 +1,2555 @@
+{
+  "schema": "learning-v1",
+  "season": "E2026",
+  "modelId": "b3fc6df40846537dcb24",
+  "gameCode": 46,
+  "round": 5,
+  "kickoff": "2026-10-13T17:45:00Z",
+  "created_at": "2026-10-12T18:00:29.432990+00:00",
+  "predictions": [
+    {
+      "name": "Jonas Valanciunas",
+      "team": "Zalgiris",
+      "pos": "C",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 16.1,
+      "expectedPir": 17.698624407879365,
+      "expectedMinutes": 23.259999999999998,
+      "basePir": 17.698624407879365,
+      "baseMinutes": 23.259999999999998,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 14.973000000000004,
+        "baseMin": 27,
+        "injuryBoost": 0.07999999999999997,
+        "injuryUsagePct": 0.1371428571428571,
+        "missingStars": [],
+        "positionMatchPct": 4.109000000000007,
+        "teamPoints": 81.5402,
+        "margin": -2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0034435621058062,
+          "defenseSample": 4,
+          "rival": "Marcus Bingham",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.63486375585244,
+              "weight": 0.7969428650343017,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.30886375585244,
+              "weight": 0.06340803769173205,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.00666375585244,
+              "weight": 0.1396490972739662,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Wade Baldwin",
+      "team": "Fenerbahce",
+      "pos": "G",
+      "opponent": "Zalgiris",
+      "home": true,
+      "status": "active",
+      "price": 14.3,
+      "expectedPir": 13.295999967629399,
+      "expectedMinutes": 27.80142857142857,
+      "basePir": 13.295999967629399,
+      "baseMinutes": 27.80142857142857,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 13.299000000000001,
+        "baseMin": 27,
+        "injuryBoost": 0.8014285714285715,
+        "injuryUsagePct": 0.8742857142857142,
+        "missingStars": [
+          "Shane Larkin"
+        ],
+        "positionMatchPct": -10.802,
+        "teamPoints": 84.09979999999999,
+        "margin": 2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Nigel Williams-Goss",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 28.510656139051484,
+              "weight": 0.7969428650343018,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 24.75746328190863,
+              "weight": 0.1396490972739662,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 25.59150613905149,
+              "weight": 0.06340803769173199,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Shane Larkin",
+      "team": "Fenerbahce",
+      "pos": "G",
+      "opponent": "Zalgiris",
+      "home": true,
+      "status": "questionable",
+      "price": 13.1,
+      "expectedPir": 10.413323469632246,
+      "expectedMinutes": 20.850039754999994,
+      "basePir": 10.413323469632246,
+      "baseMinutes": 20.850039754999994,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 13.193417580499064,
+        "baseMin": 25.426877749999996,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -10.802,
+        "teamPoints": 84.09979999999999,
+        "margin": 2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 12,
+          "historyWeight": 0.33,
+          "sameTeam": false,
+          "avgPir": 15.083333333333334,
+          "avgMinutes": 30.354174999999998,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Nigel Williams-Goss",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.381934112237328,
+              "weight": 0.7969428650343018,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.567178745312333,
+              "weight": 0.1396490972739662,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.192679937962332,
+              "weight": 0.06340803769173199,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Talen Horton-Tucker",
+      "team": "Fenerbahce",
+      "pos": "G",
+      "opponent": "Zalgiris",
+      "home": true,
+      "status": "active",
+      "price": 12.8,
+      "expectedPir": 13.769240590698386,
+      "expectedMinutes": 22.61472551020408,
+      "basePir": 13.769240590698386,
+      "baseMinutes": 22.61472551020408,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 14.096229450523392,
+        "baseMin": 23.699997959183673,
+        "injuryBoost": 0.7813928571428572,
+        "injuryUsagePct": 0.8524285714285714,
+        "missingStars": [
+          "Shane Larkin"
+        ],
+        "positionMatchPct": -10.802,
+        "teamPoints": 84.09979999999999,
+        "margin": 2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 41,
+          "historyWeight": 0.8367346938775511,
+          "sameTeam": true,
+          "avgPir": 14.536585365853659,
+          "avgMinutes": 23.83658292682927,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 5,
+              "nextGameAvgPir": 16.8,
+              "continuedRate": 0.4
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 12,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9920328933032033,
+          "defenseSample": 4,
+          "rival": "Nigel Williams-Goss",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.695012668530943,
+              "weight": 0.7969428650343018,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.21516587260793,
+              "weight": 0.1396490972739662,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.485623024414238,
+              "weight": 0.06340803769173199,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Azuolas Tubelis",
+      "team": "Zalgiris",
+      "pos": "F",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 12.4,
+      "expectedPir": 15.94870198105255,
+      "expectedMinutes": 24.334888666666668,
+      "basePir": 15.94870198105255,
+      "baseMinutes": 24.334888666666668,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.547586918313545,
+        "baseMin": 22.742665999999996,
+        "injuryBoost": 0.07399999999999998,
+        "injuryUsagePct": 0.12685714285714284,
+        "missingStars": [],
+        "positionMatchPct": -7.926,
+        "teamPoints": 81.5402,
+        "margin": -2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.84,
+          "sameTeam": true,
+          "avgPir": 12.738095238095237,
+          "avgMinutes": 22.693649999999998,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 10.5,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 11,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0055064925558324,
+          "defenseSample": 4,
+          "rival": "Braxton Key",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 24.727075586866054,
+              "weight": 0.7969428650343017,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.293586720199386,
+              "weight": 0.06340803769173205,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 23.02363338019939,
+              "weight": 0.1396490972739662,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Shavon Shields",
+      "team": "Fenerbahce",
+      "pos": "F",
+      "opponent": "Zalgiris",
+      "home": true,
+      "status": "active",
+      "price": 11.6,
+      "expectedPir": 9.340528302771766,
+      "expectedMinutes": 23.258592480620155,
+      "basePir": 9.340528302771766,
+      "baseMinutes": 23.258592480620155,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.682126473021874,
+        "baseMin": 24.744652441860467,
+        "injuryBoost": 0.21037499999999995,
+        "injuryUsagePct": 0.3606428571428571,
+        "missingStars": [
+          "Shane Larkin"
+        ],
+        "positionMatchPct": -1.768000000000003,
+        "teamPoints": 84.09979999999999,
+        "margin": 2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 35,
+          "historyWeight": 0.4476744186046512,
+          "sameTeam": false,
+          "avgPir": 12.8,
+          "avgMinutes": 26.897145714285713,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9938885057353721,
+          "defenseSample": 4,
+          "rival": "Azuolas Tubelis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.255391971031294,
+              "weight": 0.7969428650343018,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.699537220806263,
+              "weight": 0.1396490972739662,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 24.530074591966184,
+              "weight": 0.06340803769173199,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Carsen Edwards",
+      "team": "Zalgiris",
+      "pos": "G",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 11.6,
+      "expectedPir": 11.178933256371018,
+      "expectedMinutes": 24.197707321428574,
+      "basePir": 11.178933256371018,
+      "baseMinutes": 24.197707321428574,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.893383723649643,
+        "baseMin": 24.090836250000002,
+        "injuryBoost": 0.20742857142857138,
+        "injuryUsagePct": 0.2262857142857142,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 81.5402,
+        "margin": -2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.45000000000000007,
+          "sameTeam": false,
+          "avgPir": 10.972222222222221,
+          "avgMinutes": 25.424080555555555,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 14,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 14,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9756068459949756,
+          "defenseSample": 4,
+          "rival": "Talen Horton-Tucker",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 24.587683394065238,
+              "weight": 0.7969428650343017,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.16791266192238,
+              "weight": 0.06340803769173205,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.89384388156524,
+              "weight": 0.1396490972739662,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Will Clyburn",
+      "team": "Fenerbahce",
+      "pos": "F",
+      "opponent": "Zalgiris",
+      "home": true,
+      "status": "active",
+      "price": 11.5,
+      "expectedPir": 9.23209008459163,
+      "expectedMinutes": 21.805405955284552,
+      "basePir": 9.23209008459163,
+      "baseMinutes": 21.805405955284552,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.397089067683023,
+        "baseMin": 24.13465536585366,
+        "injuryBoost": 0.2071875,
+        "injuryUsagePct": 0.3551785714285714,
+        "missingStars": [
+          "Shane Larkin"
+        ],
+        "positionMatchPct": -1.768000000000003,
+        "teamPoints": 84.09979999999999,
+        "margin": 2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 33,
+          "historyWeight": 0.44268292682926835,
+          "sameTeam": false,
+          "avgPir": 14.696969696969697,
+          "avgMinutes": 25.563133333333333,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 5,
+              "nextGameAvgPir": 18.6,
+              "continuedRate": 0.4
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 17,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 12,
+              "continuedRate": 0
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9892756305722578,
+          "defenseSample": 4,
+          "rival": "Azuolas Tubelis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.93560232344913,
+              "weight": 0.7969428650343018,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.182796641659547,
+              "weight": 0.1396490972739662,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.540262313057656,
+              "weight": 0.06340803769173199,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Marcus Bingham",
+      "team": "Fenerbahce",
+      "pos": "C",
+      "opponent": "Zalgiris",
+      "home": true,
+      "status": "active",
+      "price": 11.5,
+      "expectedPir": 11.816350402213839,
+      "expectedMinutes": 20.2071875,
+      "basePir": 11.816350402213839,
+      "baseMinutes": 20.2071875,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.695,
+        "baseMin": 23,
+        "injuryBoost": 0.2071875,
+        "injuryUsagePct": 0.3551785714285714,
+        "missingStars": [
+          "Shane Larkin"
+        ],
+        "positionMatchPct": 2.451000000000003,
+        "teamPoints": 84.09979999999999,
+        "margin": 2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.990315609138793,
+          "defenseSample": 4,
+          "rival": "Jonas Valanciunas",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.440254246985273,
+              "weight": 0.7969428650343018,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.258383249685888,
+              "weight": 0.1396490972739662,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.36752700933095,
+              "weight": 0.06340803769173199,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Sterling Brown",
+      "team": "Zalgiris",
+      "pos": "G",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 10.4,
+      "expectedPir": 9.401902029769362,
+      "expectedMinutes": 21.07678232275132,
+      "basePir": 9.401902029769362,
+      "baseMinutes": 21.07678232275132,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.321086902118651,
+        "baseMin": 25.321204111111108,
+        "injuryBoost": 0.16971428571428568,
+        "injuryUsagePct": 0.18514285714285708,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 81.5402,
+        "margin": -2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.45222222222222225,
+          "sameTeam": false,
+          "avgPir": 11.027027027027026,
+          "avgMinutes": 28.132883783783782,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 6.666666666666667,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 5,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9811667336521591,
+          "defenseSample": 4,
+          "rival": "Talen Horton-Tucker",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.416460817282314,
+              "weight": 0.7969428650343017,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.308782585007183,
+              "weight": 0.06340803769173205,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.941086054689723,
+              "weight": 0.1396490972739662,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Johnny Juzang",
+      "team": "Fenerbahce",
+      "pos": "F",
+      "opponent": "Zalgiris",
+      "home": true,
+      "status": "active",
+      "price": 9.7,
+      "expectedPir": 9.140546805369834,
+      "expectedMinutes": 15.084812499999998,
+      "basePir": 9.140546805369834,
+      "baseMinutes": 15.084812499999998,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.020999999999999,
+        "baseMin": 19,
+        "injuryBoost": 0.14981249999999996,
+        "injuryUsagePct": 0.2568214285714285,
+        "missingStars": [
+          "Shane Larkin"
+        ],
+        "positionMatchPct": -1.768000000000003,
+        "teamPoints": 84.09979999999999,
+        "margin": 2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Azuolas Tubelis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.149685948261274,
+              "weight": 0.7969428650343018,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.176986682540416,
+              "weight": 0.1396490972739662,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.066448338982134,
+              "weight": 0.06340803769173199,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nigel Williams-Goss",
+      "team": "Zalgiris",
+      "pos": "G",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "questionable",
+      "price": 9.6,
+      "expectedPir": 8.845365099333156,
+      "expectedMinutes": 19.509948820512818,
+      "basePir": 8.845365099333156,
+      "baseMinutes": 19.509948820512818,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.560963449243154,
+        "baseMin": 23.02393076923077,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 81.5402,
+        "margin": -2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 31,
+          "historyWeight": 0.7948717948717948,
+          "sameTeam": true,
+          "avgPir": 10.96774193548387,
+          "avgMinutes": 24.062364516129033,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Talen Horton-Tucker",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.824375849375514,
+              "weight": 0.7969428650343017,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.873380967324234,
+              "weight": 0.06340803769173205,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.45867943193962,
+              "weight": 0.1396490972739662,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Trent Forrest",
+      "team": "Fenerbahce",
+      "pos": "G",
+      "opponent": "Zalgiris",
+      "home": true,
+      "status": "active",
+      "price": 9.5,
+      "expectedPir": 7.167359994841393,
+      "expectedMinutes": 20.206455761904763,
+      "basePir": 7.167359994841393,
+      "baseMinutes": 20.206455761904763,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.07604094082066,
+        "baseMin": 21.06695657142857,
+        "injuryBoost": 0.45080357142857147,
+        "injuryUsagePct": 0.49178571428571427,
+        "missingStars": [
+          "Shane Larkin"
+        ],
+        "positionMatchPct": -10.802,
+        "teamPoints": 84.09979999999999,
+        "margin": 2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 27,
+          "historyWeight": 0.4242857142857143,
+          "sameTeam": false,
+          "avgPir": 14.518518518518519,
+          "avgMinutes": 23.871614814814816,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 21,
+              "continuedRate": 0.3333333333333333
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 18,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9976082886051403,
+          "defenseSample": 4,
+          "rival": "Nigel Williams-Goss",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.37377696901758,
+              "weight": 0.7969428650343018,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.731462556241997,
+              "weight": 0.1396490972739662,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.14960126466882,
+              "weight": 0.06340803769173199,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Braxton Key",
+      "team": "Fenerbahce",
+      "pos": "F",
+      "opponent": "Zalgiris",
+      "home": true,
+      "status": "active",
+      "price": 8.7,
+      "expectedPir": 10.55809839195402,
+      "expectedMinutes": 22.90445880952381,
+      "basePir": 10.55809839195402,
+      "baseMinutes": 22.90445880952381,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.416893908696678,
+        "baseMin": 18.11956392857143,
+        "injuryBoost": 0.11793749999999997,
+        "injuryUsagePct": 0.2021785714285714,
+        "missingStars": [
+          "Shane Larkin"
+        ],
+        "positionMatchPct": -1.768000000000003,
+        "teamPoints": 84.09979999999999,
+        "margin": 2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.44523809523809527,
+          "sameTeam": false,
+          "avgPir": 6.617647058823529,
+          "avgMinutes": 17.02255,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9986194501832817,
+          "defenseSample": 4,
+          "rival": "Azuolas Tubelis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.95956831885771,
+              "weight": 0.7969428650343018,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.333914658412766,
+              "weight": 0.1396490972739662,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 23.468375415368726,
+              "weight": 0.06340803769173199,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nicolo Melli",
+      "team": "Fenerbahce",
+      "pos": "F",
+      "opponent": "Zalgiris",
+      "home": true,
+      "status": "active",
+      "price": 8.3,
+      "expectedPir": 8.648184756694242,
+      "expectedMinutes": 20.3798363372093,
+      "basePir": 8.648184756694242,
+      "baseMinutes": 20.3798363372093,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.654523211722607,
+        "baseMin": 22.863946511627905,
+        "injuryBoost": 0.10518750000000002,
+        "injuryUsagePct": 0.1803214285714286,
+        "missingStars": [
+          "Shane Larkin"
+        ],
+        "positionMatchPct": -1.768000000000003,
+        "teamPoints": 84.09979999999999,
+        "margin": 2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 35,
+          "historyWeight": 0.813953488372093,
+          "sameTeam": true,
+          "avgPir": 10.114285714285714,
+          "avgMinutes": 23.747134285714285,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9942844789640761,
+          "defenseSample": 4,
+          "rival": "Azuolas Tubelis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.645745138760933,
+              "weight": 0.7969428650343018,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.631590746716483,
+              "weight": 0.1396490972739662,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.68569305813323,
+              "weight": 0.06340803769173199,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Marek Blazevic",
+      "team": "Zalgiris",
+      "pos": "C",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 8.2,
+      "expectedPir": 5.105462286705067,
+      "expectedMinutes": 16.732,
+      "basePir": 5.105462286705067,
+      "baseMinutes": 16.732,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.6259999999999994,
+        "baseMin": 19,
+        "injuryBoost": 0.03199999999999999,
+        "injuryUsagePct": 0.054857142857142834,
+        "missingStars": [],
+        "positionMatchPct": 4.109000000000007,
+        "teamPoints": 81.5402,
+        "margin": -2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0033887440243372,
+          "defenseSample": 4,
+          "rival": "Marcus Bingham",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.001656937356966,
+              "weight": 0.7969428650343017,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.328456937356966,
+              "weight": 0.06340803769173205,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.830416937356967,
+              "weight": 0.1396490972739662,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Saben Lee",
+      "team": "Zalgiris",
+      "pos": "G",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 7.8,
+      "expectedPir": 5.631849951656328,
+      "expectedMinutes": 19.200827142857143,
+      "basePir": 5.631849951656328,
+      "baseMinutes": 19.200827142857143,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.605001513164369,
+        "baseMin": 18.059240714285714,
+        "injuryBoost": 0.08799999999999998,
+        "injuryUsagePct": 0.09599999999999996,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 81.5402,
+        "margin": -2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 27,
+          "historyWeight": 0.4242857142857143,
+          "sameTeam": false,
+          "avgPir": 7.962962962962963,
+          "avgMinutes": 16.782722222222223,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 6,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Talen Horton-Tucker",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.51027229239476,
+              "weight": 0.7969428650343017,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.590189578109047,
+              "weight": 0.06340803769173205,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.16621439239476,
+              "weight": 0.1396490972739662,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Arnas Butkevicius",
+      "team": "Zalgiris",
+      "pos": "F",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 6.8,
+      "expectedPir": 6.332902878032704,
+      "expectedMinutes": 18.171840579710146,
+      "basePir": 6.332902878032704,
+      "baseMinutes": 18.171840579710146,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.39979948310938,
+        "baseMin": 17.331521739130437,
+        "injuryBoost": 0.02799999999999999,
+        "injuryUsagePct": 0.04799999999999998,
+        "missingStars": [],
+        "positionMatchPct": -7.926,
+        "teamPoints": 81.5402,
+        "margin": -2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 7.605263157894737,
+          "avgMinutes": 18.032894736842106,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9992962279666011,
+          "defenseSample": 4,
+          "rival": "Braxton Key",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.464702334244194,
+              "weight": 0.7969428650343017,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.64751827627318,
+              "weight": 0.06340803769173205,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.192673493664486,
+              "weight": 0.1396490972739662,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Chris Silva",
+      "team": "Fenerbahce",
+      "pos": "C",
+      "opponent": "Zalgiris",
+      "home": true,
+      "status": "active",
+      "price": 6.8,
+      "expectedPir": 1.8589713976818862,
+      "expectedMinutes": 8.632471666666667,
+      "basePir": 1.8589713976818862,
+      "baseMinutes": 8.632471666666667,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.984510932001976,
+        "baseMin": 10.468054166666668,
+        "injuryBoost": 0.08924999999999998,
+        "injuryUsagePct": 0.15299999999999997,
+        "missingStars": [
+          "Shane Larkin"
+        ],
+        "positionMatchPct": 2.451000000000003,
+        "teamPoints": 84.09979999999999,
+        "margin": 2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 16,
+          "historyWeight": 0.6666666666666666,
+          "sameTeam": true,
+          "avgPir": 4.25,
+          "avgMinutes": 8.70208125,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.000414265887202,
+          "defenseSample": 4,
+          "rival": "Jonas Valanciunas",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 8.571467358259204,
+              "weight": 0.7969428650343018,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 8.997803056957519,
+              "weight": 0.1396490972739662,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 8.594601853537407,
+              "weight": 0.06340803769173199,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Marius Grigonis",
+      "team": "Zalgiris",
+      "pos": "F",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 6.6,
+      "expectedPir": 5.700101506809678,
+      "expectedMinutes": 15.77959487654321,
+      "basePir": 5.700101506809678,
+      "baseMinutes": 15.77959487654321,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.2529338662203764,
+        "baseMin": 10.83478462962963,
+        "injuryBoost": 0.02799999999999999,
+        "injuryUsagePct": 0.04799999999999998,
+        "missingStars": [],
+        "positionMatchPct": -7.926,
+        "teamPoints": 81.5402,
+        "margin": -2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 19,
+          "historyWeight": 0.38703703703703707,
+          "sameTeam": false,
+          "avgPir": 0.47368421052631576,
+          "avgMinutes": 5.8219315789473685,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9770742175944229,
+          "defenseSample": 4,
+          "rival": "Braxton Key",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.033902623802497,
+              "weight": 0.7969428650343017,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.455943136148175,
+              "weight": 0.06340803769173205,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.92933098244447,
+              "weight": 0.1396490972739662,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Edgaras Ulanovas",
+      "team": "Zalgiris",
+      "pos": "F",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 6.4,
+      "expectedPir": 6.425154134931859,
+      "expectedMinutes": 16.389332666666665,
+      "basePir": 6.425154134931859,
+      "baseMinutes": 16.389332666666665,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.573364202128136,
+        "baseMin": 17.823997999999996,
+        "injuryBoost": 0.02799999999999999,
+        "injuryUsagePct": 0.04799999999999998,
+        "missingStars": [],
+        "positionMatchPct": -7.926,
+        "teamPoints": 81.5402,
+        "margin": -2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.84,
+          "sameTeam": true,
+          "avgPir": 6.642857142857143,
+          "avgMinutes": 18.55237857142857,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9959567661364954,
+          "defenseSample": 4,
+          "rival": "Braxton Key",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.65346709484129,
+              "weight": 0.7969428650343017,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.014533828174624,
+              "weight": 0.06340803769173205,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.506213808174623,
+              "weight": 0.1396490972739662,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Dustin Sleva",
+      "team": "Zalgiris",
+      "pos": "F",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 6.3,
+      "expectedPir": 5.370391566812817,
+      "expectedMinutes": 15.883333333333335,
+      "basePir": 5.370391566812817,
+      "baseMinutes": 15.883333333333335,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.049439507770701,
+        "baseMin": 17.625999999999998,
+        "injuryBoost": 0.02799999999999999,
+        "injuryUsagePct": 0.04799999999999998,
+        "missingStars": [],
+        "positionMatchPct": -7.926,
+        "teamPoints": 81.5402,
+        "margin": -2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.84,
+          "sameTeam": true,
+          "avgPir": 6.023809523809524,
+          "avgMinutes": 18.316666666666666,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9870679619876241,
+          "defenseSample": 4,
+          "rival": "Braxton Key",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.139312954519475,
+              "weight": 0.7969428650343017,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.550979621186142,
+              "weight": 0.06340803769173205,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.027479621186142,
+              "weight": 0.1396490972739662,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kaodirichi Akobundu-Ehiogu",
+      "team": "Zalgiris",
+      "pos": "C",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 6.3,
+      "expectedPir": 5.905246388668919,
+      "expectedMinutes": 14.028,
+      "basePir": 5.905246388668919,
+      "baseMinutes": 14.028,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.859,
+        "baseMin": 14,
+        "injuryBoost": 0.02799999999999999,
+        "injuryUsagePct": 0.04799999999999998,
+        "missingStars": [],
+        "positionMatchPct": 4.109000000000007,
+        "teamPoints": 81.5402,
+        "margin": -2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Marcus Bingham",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.353775614958565,
+              "weight": 0.7969428650343017,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.459995614958567,
+              "weight": 0.06340803769173205,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.880835614958567,
+              "weight": 0.1396490972739662,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Maodo Lo",
+      "team": "Zalgiris",
+      "pos": "G",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 6.2,
+      "expectedPir": 3.360689651749565,
+      "expectedMinutes": 15.389768707482991,
+      "basePir": 3.360689651749565,
+      "baseMinutes": 15.389768707482991,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.831075068237257,
+        "baseMin": 17.365306122448978,
+        "injuryBoost": 0.08799999999999998,
+        "injuryUsagePct": 0.09599999999999996,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 81.5402,
+        "margin": -2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 41,
+          "historyWeight": 0.8367346938775511,
+          "sameTeam": true,
+          "avgPir": 7.024390243902439,
+          "avgMinutes": 18.021951219512193,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9915370051591755,
+          "defenseSample": 4,
+          "rival": "Talen Horton-Tucker",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.637793922417965,
+              "weight": 0.7969428650343017,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.098817051669666,
+              "weight": 0.06340803769173205,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.560510112894155,
+              "weight": 0.1396490972739662,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Ignas Sargiunas",
+      "team": "Fenerbahce",
+      "pos": "G",
+      "opponent": "Zalgiris",
+      "home": true,
+      "status": "active",
+      "price": 6.2,
+      "expectedPir": 5.776972893232033,
+      "expectedMinutes": 14.413833333333333,
+      "basePir": 5.776972893232033,
+      "baseMinutes": 14.413833333333333,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.766000000000001,
+        "baseMin": 14,
+        "injuryBoost": 0.28049999999999997,
+        "injuryUsagePct": 0.30599999999999994,
+        "missingStars": [
+          "Shane Larkin"
+        ],
+        "positionMatchPct": -10.802,
+        "teamPoints": 84.09979999999999,
+        "margin": 2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9951775712574225,
+          "defenseSample": 4,
+          "rival": "Nigel Williams-Goss",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.537861185949321,
+              "weight": 0.7969428650343018,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.316486257538532,
+              "weight": 0.1396490972739662,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.069387360012376,
+              "weight": 0.06340803769173199,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Onuralp Bitim",
+      "team": "Fenerbahce",
+      "pos": "F",
+      "opponent": "Zalgiris",
+      "home": true,
+      "status": "active",
+      "price": 4.6,
+      "expectedPir": 2.781786683858731,
+      "expectedMinutes": 11.429336486486488,
+      "basePir": 2.781786683858731,
+      "baseMinutes": 11.429336486486488,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.7720111151250464,
+        "baseMin": 11.340086486486488,
+        "injuryBoost": 0.08924999999999998,
+        "injuryUsagePct": 0.15299999999999997,
+        "missingStars": [
+          "Shane Larkin"
+        ],
+        "positionMatchPct": -1.768000000000003,
+        "teamPoints": 84.09979999999999,
+        "margin": 2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 29,
+          "historyWeight": 0.7837837837837838,
+          "sameTeam": true,
+          "avgPir": 2.413793103448276,
+          "avgMinutes": 10.60631724137931,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Azuolas Tubelis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.720904255927845,
+              "weight": 0.7969428650343018,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 10.17794383025217,
+              "weight": 0.1396490972739662,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.520823924846765,
+              "weight": 0.06340803769173199,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Deividas Sirvydis",
+      "team": "Zalgiris",
+      "pos": "G",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 4.5,
+      "expectedPir": 3.5095753924235704,
+      "expectedMinutes": 12.753245714285713,
+      "basePir": 3.5095753924235704,
+      "baseMinutes": 12.753245714285713,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.6671457003347103,
+        "baseMin": 12.665245714285714,
+        "injuryBoost": 0.08799999999999998,
+        "injuryUsagePct": 0.09599999999999996,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 81.5402,
+        "margin": -2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 27,
+          "historyWeight": 0.7714285714285715,
+          "sameTeam": true,
+          "avgPir": 3.5185185185185186,
+          "avgMinutes": 12.269762962962963,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Talen Horton-Tucker",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.958780090371963,
+              "weight": 0.7969428650343017,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.683455518943392,
+              "weight": 0.06340803769173205,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.066052890371964,
+              "weight": 0.1396490972739662,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Sertac Sanli",
+      "team": "Fenerbahce",
+      "pos": "C",
+      "opponent": "Zalgiris",
+      "home": true,
+      "status": "active",
+      "price": 4.1,
+      "expectedPir": 2.674247637258224,
+      "expectedMinutes": 12.108936,
+      "basePir": 2.674247637258224,
+      "baseMinutes": 12.108936,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.0950522134624245,
+        "baseMin": 12.419058,
+        "injuryBoost": 0.08924999999999998,
+        "injuryUsagePct": 0.15299999999999997,
+        "missingStars": [
+          "Shane Larkin"
+        ],
+        "positionMatchPct": 2.451000000000003,
+        "teamPoints": 84.09979999999999,
+        "margin": 2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 7,
+          "historyWeight": 0.2566666666666667,
+          "sameTeam": false,
+          "avgPir": 1.4285714285714286,
+          "avgMinutes": 7.840485714285714,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9942844789640761,
+          "defenseSample": 4,
+          "rival": "Jonas Valanciunas",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.06085521299512,
+              "weight": 0.7969428650343018,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.492300612148858,
+              "weight": 0.1396490972739662,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.86892097322079,
+              "weight": 0.06340803769173199,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Dovydas Giedraitis",
+      "team": "Zalgiris",
+      "pos": "G",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 1.211450811648047,
+      "expectedMinutes": 14.51133214285714,
+      "basePir": 1.211450811648047,
+      "baseMinutes": 14.51133214285714,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.3109573963484444,
+        "baseMin": 12.916664285714285,
+        "injuryBoost": 0.08799999999999998,
+        "injuryUsagePct": 0.09599999999999996,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 81.5402,
+        "margin": -2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 20,
+          "historyWeight": 0.7142857142857143,
+          "sameTeam": true,
+          "avgPir": 1.8,
+          "avgMinutes": 12.483329999999999,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9995308186444007,
+          "defenseSample": 4,
+          "rival": "Talen Horton-Tucker",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.745200262783783,
+              "weight": 0.7969428650343017,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.29406704849807,
+              "weight": 0.06340803769173205,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.729407012783783,
+              "weight": 0.1396490972739662,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Melih Mahmutoglu",
+      "team": "Fenerbahce",
+      "pos": "G",
+      "opponent": "Zalgiris",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 1.5546939506576267,
+      "expectedMinutes": 10.532720000000001,
+      "basePir": 1.5546939506576267,
+      "baseMinutes": 10.532720000000001,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 1.5673903777275522,
+        "baseMin": 10.252220000000001,
+        "injuryBoost": 0.28049999999999997,
+        "injuryUsagePct": 0.30599999999999994,
+        "missingStars": [
+          "Shane Larkin"
+        ],
+        "positionMatchPct": -10.802,
+        "teamPoints": 84.09979999999999,
+        "margin": 2.5596,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 7,
+          "historyWeight": 0.4666666666666667,
+          "sameTeam": true,
+          "avgPir": 0.14285714285714285,
+          "avgMinutes": 5.969042857142857,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Nigel Williams-Goss",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 10.801414659587754,
+              "weight": 0.7969428650343018,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 9.379497459587755,
+              "weight": 0.1396490972739662,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 9.695479059587756,
+              "weight": 0.06340803769173199,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    }
+  ]
+}
