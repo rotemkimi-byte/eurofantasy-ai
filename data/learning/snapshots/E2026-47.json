@@ -1,0 +1,2864 @@
+{
+  "schema": "learning-v1",
+  "season": "E2026",
+  "modelId": "b3fc6df40846537dcb24",
+  "gameCode": 47,
+  "round": 5,
+  "kickoff": "2026-10-13T18:30:00Z",
+  "created_at": "2026-10-12T18:41:46.768154+00:00",
+  "predictions": [
+    {
+      "name": "Mathias Lessort",
+      "team": "Panathinaikos",
+      "pos": "C",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 15.8,
+      "expectedPir": 18.926911388822614,
+      "expectedMinutes": 22.844545454545457,
+      "basePir": 18.926911388822614,
+      "baseMinutes": 22.844545454545457,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 13.062143660981187,
+        "baseMin": 24.238636363636363,
+        "injuryBoost": 0.425,
+        "injuryUsagePct": 0.7285714285714285,
+        "missingStars": [
+          "Kendrick Nunn"
+        ],
+        "positionMatchPct": 8.899999999999997,
+        "teamPoints": 84.80499999999999,
+        "margin": 0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 14,
+          "historyWeight": 0.6363636363636364,
+          "sameTeam": true,
+          "avgPir": 12.142857142857142,
+          "avgMinutes": 22.660714285714285,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9963049707955526,
+          "defenseSample": 4,
+          "rival": "Tonye Jekiri",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.147126750804734,
+              "weight": 0.8078175858002359,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.347567659895645,
+              "weight": 0.09905602644042967,
+              "observedGames": 4
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.748449478077465,
+              "weight": 0.09312638775933445,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Carlik Jones",
+      "team": "Partizan",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": true,
+      "status": "active",
+      "price": 15.3,
+      "expectedPir": 20.409087959614105,
+      "expectedMinutes": 26.611398550724637,
+      "basePir": 20.409087959614105,
+      "baseMinutes": 26.611398550724637,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 15.845540540750932,
+        "baseMin": 27.694195652173914,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 84.605,
+        "margin": -0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 15,
+          "historyWeight": 0.6521739130434783,
+          "sameTeam": true,
+          "avgPir": 16.733333333333334,
+          "avgMinutes": 28.064433333333334,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 17,
+              "continuedRate": 0.3333333333333333
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9847047784816676,
+          "defenseSample": 4,
+          "rival": "Sylvain Francisco",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 26.839885438439808,
+              "weight": 0.8078175858002358,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 26.680522408570074,
+              "weight": 0.09312638775933452,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 24.68306578719423,
+              "weight": 0.09905602644042973,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Sylvain Francisco",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 15.2,
+      "expectedPir": 18.35295929319502,
+      "expectedMinutes": 25.135248352380952,
+      "basePir": 18.35295929319502,
+      "baseMinutes": 25.135248352380952,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 16.438883248200852,
+        "baseMin": 27.358602200000004,
+        "injuryBoost": 1.3357142857142859,
+        "injuryUsagePct": 1.457142857142857,
+        "missingStars": [
+          "Kendrick Nunn"
+        ],
+        "positionMatchPct": 1.7409999999999926,
+        "teamPoints": 84.80499999999999,
+        "margin": 0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.462,
+          "sameTeam": false,
+          "avgPir": 19.19047619047619,
+          "avgMinutes": 27.77619523809524,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 5,
+              "nextGameSamples": 9,
+              "nextGameAvgPir": 20.555555555555557,
+              "continuedRate": 0.5555555555555556
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 13,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 15,
+              "continuedRate": 0
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0058057110861252,
+          "defenseSample": 4,
+          "rival": "Carlik Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 25.46817053914081,
+              "weight": 0.8078175858002359,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 24.58843684680748,
+              "weight": 0.09905602644042967,
+              "observedGames": 4
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.828969462140815,
+              "weight": 0.09312638775933445,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kendrick Nunn",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "questionable",
+      "price": 14.2,
+      "expectedPir": 12.575907265978977,
+      "expectedMinutes": 23.981045777777776,
+      "basePir": 12.575907265978977,
+      "baseMinutes": 23.981045777777776,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 15.199537228528273,
+        "baseMin": 29.245177777777776,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 1.7409999999999926,
+        "teamPoints": 84.80499999999999,
+        "margin": 0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.8222222222222222,
+          "sameTeam": true,
+          "avgPir": 15.64864864864865,
+          "avgMinutes": 29.73062162162162,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 2.5,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 9,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Carlik Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 24.536226994540637,
+              "weight": 0.8078175858002359,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.29878581454064,
+              "weight": 0.09905602644042967,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.018217187873972,
+              "weight": 0.09312638775933445,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Guerschon Yabusele",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 14,
+      "expectedPir": 12.975271173126046,
+      "expectedMinutes": 23.005000000000003,
+      "basePir": 12.975271173126046,
+      "baseMinutes": 23.005000000000003,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 13.020000000000001,
+        "baseMin": 27,
+        "injuryBoost": 0.425,
+        "injuryUsagePct": 0.7285714285714285,
+        "missingStars": [
+          "Kendrick Nunn"
+        ],
+        "positionMatchPct": 4.760999999999993,
+        "teamPoints": 84.80499999999999,
+        "margin": 0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0021621181787979,
+          "defenseSample": 4,
+          "rival": "Lamar Stevens",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.309706553881544,
+              "weight": 0.8078175858002359,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.504531553881545,
+              "weight": 0.09905602644042967,
+              "observedGames": 4
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.894181553881545,
+              "weight": 0.09312638775933445,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nigel Hayes-davis",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 13.5,
+      "expectedPir": 14.8172507767628,
+      "expectedMinutes": 26.506039583333337,
+      "basePir": 14.8172507767628,
+      "baseMinutes": 26.506039583333337,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.885511049285071,
+        "baseMin": 26.702079166666667,
+        "injuryBoost": 0.425,
+        "injuryUsagePct": 0.7285714285714285,
+        "missingStars": [
+          "Kendrick Nunn"
+        ],
+        "positionMatchPct": 4.760999999999993,
+        "teamPoints": 84.80499999999999,
+        "margin": 0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 16,
+          "historyWeight": 0.6666666666666666,
+          "sameTeam": true,
+          "avgPir": 12.875,
+          "avgMinutes": 28.55311875,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Lamar Stevens",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 26.857118217477442,
+              "weight": 0.8078175858002359,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 25.929406832060778,
+              "weight": 0.09905602644042967,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 24.073984061227446,
+              "weight": 0.09312638775933445,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Juancho Hernangomez",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 11.2,
+      "expectedPir": 12.513233432606425,
+      "expectedMinutes": 23.278133974358976,
+      "basePir": 12.513233432606425,
+      "baseMinutes": 23.278133974358976,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.015886966521895,
+        "baseMin": 24.238138461538465,
+        "injuryBoost": 0.329375,
+        "injuryUsagePct": 0.564642857142857,
+        "missingStars": [
+          "Kendrick Nunn"
+        ],
+        "positionMatchPct": 4.760999999999993,
+        "teamPoints": 84.80499999999999,
+        "margin": 0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 44,
+          "historyWeight": 0.8461538461538461,
+          "sameTeam": true,
+          "avgPir": 12.318181818181818,
+          "avgMinutes": 24.463254545454546,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 9,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Lamar Stevens",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.586458250999694,
+              "weight": 0.8078175858002359,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.771723561897133,
+              "weight": 0.09905602644042967,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.142254183692007,
+              "weight": 0.09312638775933445,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kostas Sloukas",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "questionable",
+      "price": 10.3,
+      "expectedPir": 9.992190375397092,
+      "expectedMinutes": 17.727749347826087,
+      "basePir": 9.992190375397092,
+      "baseMinutes": 17.727749347826087,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.076796241671962,
+        "baseMin": 21.61920652173913,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 1.7409999999999926,
+        "teamPoints": 84.80499999999999,
+        "margin": 0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 12.552631578947368,
+          "avgMinutes": 21.328513157894736,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 13.333333333333334,
+              "continuedRate": 0.3333333333333333
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 3,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Carlik Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.138161535209232,
+              "weight": 0.8078175858002359,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.744915373252711,
+              "weight": 0.09905602644042967,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.276747853687496,
+              "weight": 0.09312638775933445,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Isaac Bonga",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 10,
+      "expectedPir": 6.331385321487239,
+      "expectedMinutes": 20.850057898550723,
+      "basePir": 6.331385321487239,
+      "baseMinutes": 20.850057898550723,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.44737987232259,
+        "baseMin": 25.17329869565218,
+        "injuryBoost": 0.265625,
+        "injuryUsagePct": 0.4553571428571428,
+        "missingStars": [
+          "Kendrick Nunn"
+        ],
+        "positionMatchPct": 4.760999999999993,
+        "teamPoints": 84.80499999999999,
+        "margin": 0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.45434782608695656,
+          "sameTeam": false,
+          "avgPir": 14.31578947368421,
+          "avgMinutes": 27.783336842105268,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0025226211027347,
+          "defenseSample": 4,
+          "rival": "Lamar Stevens",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.126221745127463,
+              "weight": 0.8078175858002359,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.396469718678187,
+              "weight": 0.09905602644042967,
+              "observedGames": 4
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.936965665779642,
+              "weight": 0.09312638775933445,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tonye Jekiri",
+      "team": "Partizan",
+      "pos": "C",
+      "opponent": "Panathinaikos",
+      "home": true,
+      "status": "active",
+      "price": 9.6,
+      "expectedPir": 12.436700005724168,
+      "expectedMinutes": 19.566572463768118,
+      "basePir": 12.436700005724168,
+      "baseMinutes": 19.566572463768118,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.537549755597716,
+        "baseMin": 19.17971739130435,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.759000000000005,
+        "teamPoints": 84.605,
+        "margin": -0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 15,
+          "historyWeight": 0.6521739130434783,
+          "sameTeam": true,
+          "avgPir": 9.866666666666667,
+          "avgMinutes": 19.27556666666667,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9881261591680706,
+          "defenseSample": 4,
+          "rival": "Mathias Lessort",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.632145628441396,
+              "weight": 0.8078175858002358,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.04261873831804,
+              "weight": 0.09312638775933452,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.584263471257813,
+              "weight": 0.09905602644042973,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kyle Allman",
+      "team": "Partizan",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": true,
+      "status": "active",
+      "price": 9.4,
+      "expectedPir": 7.8662683855959274,
+      "expectedMinutes": 20.24666666666667,
+      "basePir": 7.8662683855959274,
+      "baseMinutes": 20.24666666666667,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.742,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 84.605,
+        "margin": -0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9835572328715626,
+          "defenseSample": 4,
+          "rival": "Sylvain Francisco",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.467160590552126,
+              "weight": 0.8078175858002358,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.658587640605372,
+              "weight": 0.09312638775933452,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.001379546888653,
+              "weight": 0.09905602644042973,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Ethan Thompson",
+      "team": "Partizan",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": true,
+      "status": "active",
+      "price": 9.2,
+      "expectedPir": 6.18326577437303,
+      "expectedMinutes": 16.333333333333336,
+      "basePir": 6.18326577437303,
+      "baseMinutes": 16.333333333333336,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.556,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 84.605,
+        "margin": -0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9855498447794288,
+          "defenseSample": 4,
+          "rival": "Sylvain Francisco",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.76363843711674,
+              "weight": 0.8078175858002358,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.795860659338961,
+              "weight": 0.09312638775933452,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.269564363042667,
+              "weight": 0.09905602644042973,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jerian Grant",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 8.9,
+      "expectedPir": 9.124040537709849,
+      "expectedMinutes": 18.45305138095238,
+      "basePir": 9.124040537709849,
+      "baseMinutes": 18.45305138095238,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.356982022485989,
+        "baseMin": 22.905672,
+        "injuryBoost": 0.6511607142857144,
+        "injuryUsagePct": 0.7103571428571429,
+        "missingStars": [
+          "Kendrick Nunn"
+        ],
+        "positionMatchPct": 1.7409999999999926,
+        "teamPoints": 84.80499999999999,
+        "margin": 0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.84,
+          "sameTeam": true,
+          "avgPir": 8.30952380952381,
+          "avgMinutes": 23.649609523809524,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 2,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.001798024853195,
+          "defenseSample": 4,
+          "rival": "Carlik Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.697466320960594,
+              "weight": 0.8078175858002359,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.051609522627263,
+              "weight": 0.09905602644042967,
+              "observedGames": 4
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.7598959259606,
+              "weight": 0.09312638775933445,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Luca Vildoza",
+      "team": "Partizan",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": true,
+      "status": "active",
+      "price": 8.3,
+      "expectedPir": 9.945198389493596,
+      "expectedMinutes": 19.53203688034188,
+      "basePir": 9.945198389493596,
+      "baseMinutes": 19.53203688034188,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.640739079067764,
+        "baseMin": 19.99611064102564,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 84.605,
+        "margin": -0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 31,
+          "historyWeight": 0.4371794871794872,
+          "sameTeam": false,
+          "avgPir": 9.903225806451612,
+          "avgMinutes": 21.278493548387097,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 11,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9799904217577728,
+          "defenseSample": 4,
+          "rival": "Sylvain Francisco",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.7256262505297,
+              "weight": 0.8078175858002358,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.24592265288571,
+              "weight": 0.09312638775933452,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.222271913642064,
+              "weight": 0.09905602644042973,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Joffrey Lauvergne",
+      "team": "Partizan",
+      "pos": "C",
+      "opponent": "Panathinaikos",
+      "home": true,
+      "status": "active",
+      "price": 8.3,
+      "expectedPir": 6.128242057457089,
+      "expectedMinutes": 14.523333333333335,
+      "basePir": 6.128242057457089,
+      "baseMinutes": 14.523333333333335,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.719000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.759000000000005,
+        "teamPoints": 84.605,
+        "margin": -0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Mathias Lessort",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.759287548836031,
+              "weight": 0.8078175858002358,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.306954215502698,
+              "weight": 0.09312638775933452,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.742654215502698,
+              "weight": 0.09905602644042973,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Lamar Stevens",
+      "team": "Partizan",
+      "pos": "F",
+      "opponent": "Panathinaikos",
+      "home": true,
+      "status": "active",
+      "price": 8.2,
+      "expectedPir": 9.199615618306892,
+      "expectedMinutes": 20.235752983870967,
+      "basePir": 9.199615618306892,
+      "baseMinutes": 20.235752983870967,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.761507680931184,
+        "baseMin": 19.391505967741935,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -1.878000000000002,
+        "teamPoints": 84.605,
+        "margin": -0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 23,
+          "historyWeight": 0.4080645161290323,
+          "sameTeam": false,
+          "avgPir": 7.956521739130435,
+          "avgMinutes": 19.959421739130434,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Nigel Hayes-davis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.475294678473624,
+              "weight": 0.8078175858002358,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.16311678101782,
+              "weight": 0.09312638775933452,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.350540615167176,
+              "weight": 0.09905602644042973,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nikola Tanaskovic",
+      "team": "Partizan",
+      "pos": "C",
+      "opponent": "Panathinaikos",
+      "home": true,
+      "status": "active",
+      "price": 8.1,
+      "expectedPir": 7.930758040213746,
+      "expectedMinutes": 18.560000000000002,
+      "basePir": 7.930758040213746,
+      "baseMinutes": 18.560000000000002,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.5329999999999995,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.759000000000005,
+        "teamPoints": 84.605,
+        "margin": -0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9879188605864261,
+          "defenseSample": 4,
+          "rival": "Mathias Lessort",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.46278695250244,
+              "weight": 0.8078175858002358,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.046555143714397,
+              "weight": 0.09312638775933452,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.95522002290852,
+              "weight": 0.09905602644042973,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Alessandro Pajola",
+      "team": "Partizan",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": true,
+      "status": "active",
+      "price": 7.9,
+      "expectedPir": 9.382527680218356,
+      "expectedMinutes": 21.05831578125,
+      "basePir": 9.382527680218356,
+      "baseMinutes": 21.05831578125,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.152843026898101,
+        "baseMin": 19.034947343749998,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 84.605,
+        "margin": -0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 24,
+          "historyWeight": 0.41250000000000003,
+          "sameTeam": false,
+          "avgPir": 6.875,
+          "avgMinutes": 19.084720833333332,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9827454099786535,
+          "defenseSample": 4,
+          "rival": "Sylvain Francisco",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.32379441993604,
+              "weight": 0.8078175858002358,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.575119943250467,
+              "weight": 0.09312638775933452,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.347566459869142,
+              "weight": 0.09905602644042973,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Brancou Badio",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 7.8,
+      "expectedPir": 6.815492287223388,
+      "expectedMinutes": 19.44269586805556,
+      "basePir": 6.815492287223388,
+      "baseMinutes": 19.44269586805556,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.28608540593288,
+        "baseMin": 19.685587604166663,
+        "injuryBoost": 0.4675,
+        "injuryUsagePct": 0.51,
+        "missingStars": [
+          "Kendrick Nunn"
+        ],
+        "positionMatchPct": 1.7409999999999926,
+        "teamPoints": 84.80499999999999,
+        "margin": 0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.45833333333333337,
+          "sameTeam": false,
+          "avgPir": 9.575,
+          "avgMinutes": 20.495827499999997,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.00278260207458,
+          "defenseSample": 4,
+          "rival": "Carlik Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.700218878536848,
+              "weight": 0.8078175858002359,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.019724523154906,
+              "weight": 0.09905602644042967,
+              "observedGames": 4
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.65873581239102,
+              "weight": 0.09312638775933445,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Derek Willis",
+      "team": "Partizan",
+      "pos": "F",
+      "opponent": "Panathinaikos",
+      "home": true,
+      "status": "out",
+      "price": 7.7,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 7.582276220106531,
+        "baseMin": 17.810877083333335,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -1.878000000000002,
+        "teamPoints": 84.605,
+        "margin": -0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 28,
+          "historyWeight": 0.4277777777777778,
+          "sameTeam": false,
+          "avgPir": 7.964285714285714,
+          "avgMinutes": 16.220232142857142,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Moustapha Fall",
+      "team": "Panathinaikos",
+      "pos": "C",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 7.6,
+      "expectedPir": 7.385297961813001,
+      "expectedMinutes": 19.14875,
+      "basePir": 7.385297961813001,
+      "baseMinutes": 19.14875,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.068,
+        "baseMin": 19,
+        "injuryBoost": 0.14875,
+        "injuryUsagePct": 0.255,
+        "missingStars": [
+          "Kendrick Nunn"
+        ],
+        "positionMatchPct": 8.899999999999997,
+        "teamPoints": 84.80499999999999,
+        "margin": 0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Tonye Jekiri",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.40237962936923,
+              "weight": 0.8078175858002359,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.73217337936923,
+              "weight": 0.09905602644042967,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.39176087936923,
+              "weight": 0.09312638775933445,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kevarrius Hayes",
+      "team": "Partizan",
+      "pos": "C",
+      "opponent": "Panathinaikos",
+      "home": true,
+      "status": "active",
+      "price": 7,
+      "expectedPir": 5.984317737157603,
+      "expectedMinutes": 16.953153298611113,
+      "basePir": 5.984317737157603,
+      "baseMinutes": 16.953153298611113,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.877801555501753,
+        "baseMin": 18.279459895833334,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.759000000000005,
+        "teamPoints": 84.605,
+        "margin": -0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.45833333333333337,
+          "sameTeam": false,
+          "avgPir": 7.25,
+          "avgMinutes": 17.427912499999998,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9930258583224685,
+          "defenseSample": 4,
+          "rival": "Mathias Lessort",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.099946183949534,
+              "weight": 0.8078175858002358,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.978336059812623,
+              "weight": 0.09312638775933452,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.732358782853318,
+              "weight": 0.09905602644042973,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Konstantinos Mitoglou",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 6.4,
+      "expectedPir": 8.485170583971655,
+      "expectedMinutes": 15.968404700854698,
+      "basePir": 8.485170583971655,
+      "baseMinutes": 15.968404700854698,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.4753694117265415,
+        "baseMin": 13.158964102564102,
+        "injuryBoost": 0.14875,
+        "injuryUsagePct": 0.255,
+        "missingStars": [
+          "Kendrick Nunn"
+        ],
+        "positionMatchPct": 4.760999999999993,
+        "teamPoints": 84.80499999999999,
+        "margin": 0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 31,
+          "historyWeight": 0.7948717948717948,
+          "sameTeam": true,
+          "avgPir": 5.354838709677419,
+          "avgMinutes": 12.94192258064516,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9967309406980029,
+          "defenseSample": 4,
+          "rival": "Lamar Stevens",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.1799099200411,
+              "weight": 0.8078175858002359,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.621015755511188,
+              "weight": 0.09905602644042967,
+              "observedGames": 4
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.50322742645136,
+              "weight": 0.09312638775933445,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nikos Rogkavopoulos",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 5.3,
+      "expectedPir": 5.092005849333555,
+      "expectedMinutes": 14.14875,
+      "basePir": 5.092005849333555,
+      "baseMinutes": 14.14875,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.929,
+        "baseMin": 14,
+        "injuryBoost": 0.14875,
+        "injuryUsagePct": 0.255,
+        "missingStars": [
+          "Kendrick Nunn"
+        ],
+        "positionMatchPct": 4.760999999999993,
+        "teamPoints": 84.80499999999999,
+        "margin": 0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Lamar Stevens",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.476305366578407,
+              "weight": 0.8078175858002359,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.566224116578407,
+              "weight": 0.09905602644042967,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.990686616578408,
+              "weight": 0.09312638775933445,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Eleftherios Mantzoukas",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 5.3,
+      "expectedPir": 7.7218299849521514,
+      "expectedMinutes": 18.09541666666667,
+      "basePir": 7.7218299849521514,
+      "baseMinutes": 18.09541666666667,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.929,
+        "baseMin": 14,
+        "injuryBoost": 0.14875,
+        "injuryUsagePct": 0.255,
+        "missingStars": [
+          "Kendrick Nunn"
+        ],
+        "positionMatchPct": 4.760999999999993,
+        "teamPoints": 84.80499999999999,
+        "margin": 0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0071804366462287,
+          "defenseSample": 4,
+          "rival": "Lamar Stevens",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.33509465204161,
+              "weight": 0.8078175858002359,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.701755068708277,
+              "weight": 0.09905602644042967,
+              "observedGames": 4
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.435075902041614,
+              "weight": 0.09312638775933445,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Mario Nakic",
+      "team": "Partizan",
+      "pos": "F",
+      "opponent": "Panathinaikos",
+      "home": true,
+      "status": "active",
+      "price": 4.9,
+      "expectedPir": 3.725781055718794,
+      "expectedMinutes": 10.91,
+      "basePir": 3.725781055718794,
+      "baseMinutes": 10.91,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.557,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -1.878000000000002,
+        "teamPoints": 84.605,
+        "margin": -0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": true,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9944354323129362,
+          "defenseSample": 4,
+          "rival": "Nigel Hayes-davis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.19176045080817,
+              "weight": 0.8078175858002358,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 9.556951721974402,
+              "weight": 0.09312638775933452,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 9.884251721974401,
+              "weight": 0.09905602644042973,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Vanja Marinkovic",
+      "team": "Partizan",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": true,
+      "status": "out",
+      "price": 4.6,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 4.332458055828537,
+        "baseMin": 18.56851851851852,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 84.605,
+        "margin": -0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 19,
+          "historyWeight": 0.7037037037037037,
+          "sameTeam": true,
+          "avgPir": 4.157894736842105,
+          "avgMinutes": 20.492105263157896,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Bandja Sy",
+      "team": "Partizan",
+      "pos": "F",
+      "opponent": "Panathinaikos",
+      "home": true,
+      "status": "active",
+      "price": 4.4,
+      "expectedPir": 4.176550881020651,
+      "expectedMinutes": 12.893333333333334,
+      "basePir": 4.176550881020651,
+      "baseMinutes": 12.893333333333334,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.0920000000000005,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -1.878000000000002,
+        "teamPoints": 84.605,
+        "margin": -0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9936875830327294,
+          "defenseSample": 4,
+          "rival": "Nigel Hayes-davis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.289521279033165,
+              "weight": 0.8078175858002358,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.028633785574243,
+              "weight": 0.09312638775933452,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.415433785574244,
+              "weight": 0.09905602644042973,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Arijan Lakic",
+      "team": "Partizan",
+      "pos": "F",
+      "opponent": "Panathinaikos",
+      "home": true,
+      "status": "active",
+      "price": 4.1,
+      "expectedPir": 3.512140100384887,
+      "expectedMinutes": 17.242827272727276,
+      "basePir": 3.512140100384887,
+      "baseMinutes": 17.242827272727276,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.9746471917158934,
+        "baseMin": 13.34848181818182,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -1.878000000000002,
+        "teamPoints": 84.605,
+        "margin": -0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 25,
+          "historyWeight": 0.7575757575757576,
+          "sameTeam": true,
+          "avgPir": 2.72,
+          "avgMinutes": 13.139996000000002,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9783210482806015,
+          "defenseSample": 4,
+          "rival": "Nigel Hayes-davis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.26803248259235,
+              "weight": 0.8078175858002358,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.892137048911835,
+              "weight": 0.09312638775933452,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.426833650932913,
+              "weight": 0.09905602644042973,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Panagiotis Kalaitzakis",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 4.1,
+      "expectedPir": 3.2757280554816735,
+      "expectedMinutes": 14.541158823529413,
+      "basePir": 3.2757280554816735,
+      "baseMinutes": 14.541158823529413,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 1.5393032474562498,
+        "baseMin": 7.200976470588236,
+        "injuryBoost": 0.4675,
+        "injuryUsagePct": 0.51,
+        "missingStars": [
+          "Kendrick Nunn"
+        ],
+        "positionMatchPct": 1.7409999999999926,
+        "teamPoints": 84.80499999999999,
+        "margin": 0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 26,
+          "historyWeight": 0.7647058823529411,
+          "sameTeam": true,
+          "avgPir": 1,
+          "avgMinutes": 5.108969230769231,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0047131622094905,
+          "defenseSample": 4,
+          "rival": "Carlik Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.733759840463202,
+              "weight": 0.8078175858002359,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.224819281639673,
+              "weight": 0.09905602644042967,
+              "observedGames": 4
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.206938163992616,
+              "weight": 0.09312638775933445,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Dimitris Moraitis",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 4.1,
+      "expectedPir": 2.299398929554793,
+      "expectedMinutes": 13.6575,
+      "basePir": 2.299398929554793,
+      "baseMinutes": 13.6575,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.8129999999999997,
+        "baseMin": 14,
+        "injuryBoost": 0.4675,
+        "injuryUsagePct": 0.51,
+        "missingStars": [
+          "Kendrick Nunn"
+        ],
+        "positionMatchPct": 1.7409999999999926,
+        "teamPoints": 84.80499999999999,
+        "margin": 0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Carlik Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.838396751125284,
+              "weight": 0.8078175858002359,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.360384251125286,
+              "weight": 0.09905602644042967,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.404359251125287,
+              "weight": 0.09312638775933445,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Ioannis Kouzeloglou",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.8430232825158903,
+      "expectedMinutes": 14.14875,
+      "basePir": 3.8430232825158903,
+      "baseMinutes": 14.14875,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0.14875,
+        "injuryUsagePct": 0.255,
+        "missingStars": [
+          "Kendrick Nunn"
+        ],
+        "positionMatchPct": 4.760999999999993,
+        "teamPoints": 84.80499999999999,
+        "margin": 0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": true,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Lamar Stevens",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.476305366578407,
+              "weight": 0.8078175858002359,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.566224116578407,
+              "weight": 0.09905602644042967,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.990686616578408,
+              "weight": 0.09312638775933445,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Uros Danilovic",
+      "team": "Partizan",
+      "pos": "F",
+      "opponent": "Panathinaikos",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.7035973445023203,
+      "expectedMinutes": 14,
+      "basePir": 3.7035973445023203,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -1.878000000000002,
+        "teamPoints": 84.605,
+        "margin": -0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Nigel Hayes-davis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.321621231732573,
+              "weight": 0.8078175858002358,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.431621231732574,
+              "weight": 0.09312638775933452,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.851621231732576,
+              "weight": 0.09905602644042973,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Uros Mijailovic",
+      "team": "Partizan",
+      "pos": "F",
+      "opponent": "Panathinaikos",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 0,
+      "expectedMinutes": 9.553846153846155,
+      "basePir": 0,
+      "baseMinutes": 9.553846153846155,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": -0.24494746615301483,
+        "baseMin": 9.553846153846155,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -1.878000000000002,
+        "teamPoints": 84.605,
+        "margin": -0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 5,
+          "historyWeight": 0.38461538461538464,
+          "sameTeam": true,
+          "avgPir": -1.2,
+          "avgMinutes": 2.44,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Nigel Hayes-davis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 9.773326137259264,
+              "weight": 0.8078175858002358,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 8.483556906490035,
+              "weight": 0.09312638775933452,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 8.77017229110542,
+              "weight": 0.09905602644042973,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Iason Varvaritis",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.8986367891260025,
+      "expectedMinutes": 14.4675,
+      "basePir": 3.8986367891260025,
+      "baseMinutes": 14.4675,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0.4675,
+        "injuryUsagePct": 0.51,
+        "missingStars": [
+          "Kendrick Nunn"
+        ],
+        "positionMatchPct": 1.7409999999999926,
+        "teamPoints": 84.80499999999999,
+        "margin": 0.2,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Carlik Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.80243469500649,
+              "weight": 0.8078175858002359,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.849322195006492,
+              "weight": 0.09905602644042967,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.283347195006492,
+              "weight": 0.09312638775933445,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    }
+  ]
+}
