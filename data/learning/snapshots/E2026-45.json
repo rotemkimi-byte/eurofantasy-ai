@@ -1,0 +1,2839 @@
+{
+  "schema": "learning-v1",
+  "season": "E2026",
+  "modelId": "b3fc6df40846537dcb24",
+  "gameCode": 45,
+  "round": 5,
+  "kickoff": "2026-10-13T19:00:00Z",
+  "created_at": "2026-10-12T19:04:34.131071+00:00",
+  "predictions": [
+    {
+      "name": "Sasha Vezenkov",
+      "team": "Olympiacos",
+      "pos": "F",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 17.6,
+      "expectedPir": 21.51884147473496,
+      "expectedMinutes": 24.557753900709216,
+      "basePir": 21.51884147473496,
+      "baseMinutes": 24.557753900709216,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 21.12547273626787,
+        "baseMin": 27.693261702127657,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.817999999999989,
+        "teamPoints": 87.59635,
+        "margin": -1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 39,
+          "historyWeight": 0.8297872340425532,
+          "sameTeam": true,
+          "avgPir": 22.128205128205128,
+          "avgMinutes": 27.83546923076923,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 12,
+              "nextGameSamples": 17,
+              "nextGameAvgPir": 23.41176470588235,
+              "continuedRate": 0.7647058823529411
+            },
+            {
+              "threshold": 25,
+              "longestRun": 5,
+              "nextGameSamples": 8,
+              "nextGameAvgPir": 24.875,
+              "continuedRate": 0.5
+            },
+            {
+              "threshold": 30,
+              "longestRun": 4,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 28,
+              "continuedRate": 0.6666666666666666
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.002037983626592,
+          "defenseSample": 4,
+          "rival": "Kameron Taylor",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 24.986448278707627,
+              "weight": 0.8034439698292464,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 23.37410260760012,
+              "weight": 0.07410910862008721,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.46123267010423,
+              "weight": 0.12244692155066637,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "TJ Shorts",
+      "team": "Valencia",
+      "pos": "G",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 15.7,
+      "expectedPir": 15.457726431476901,
+      "expectedMinutes": 21.876268464052288,
+      "basePir": 15.457726431476901,
+      "baseMinutes": 21.876268464052288,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.376374561447378,
+        "baseMin": 21.948805392156864,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.7410000000000054,
+        "teamPoints": 89.22364999999999,
+        "margin": 1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 43,
+          "historyWeight": 0.46372549019607845,
+          "sameTeam": false,
+          "avgPir": 7.930232558139535,
+          "avgMinutes": 16.10736046511628,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9880216253007316,
+          "defenseSample": 4,
+          "rival": "Jean Montero",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.10661659306969,
+              "weight": 0.8034439698292464,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.324824473217383,
+              "weight": 0.12244692155066635,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.2901045184335,
+              "weight": 0.07410910862008718,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nikola Milutinov",
+      "team": "Olympiacos",
+      "pos": "C",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 14.6,
+      "expectedPir": 13.629341964918357,
+      "expectedMinutes": 17.142392708333333,
+      "basePir": 13.629341964918357,
+      "baseMinutes": 17.142392708333333,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 18.775276019539373,
+        "baseMin": 22.444785416666665,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -9.199000000000002,
+        "teamPoints": 87.59635,
+        "margin": -1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.8333333333333334,
+          "sameTeam": true,
+          "avgPir": 19.45,
+          "avgMinutes": 21.5337425,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 5,
+              "nextGameSamples": 9,
+              "nextGameAvgPir": 19.555555555555557,
+              "continuedRate": 0.6666666666666666
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 15.666666666666666,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Jasiel Rivero",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.407255456436925,
+              "weight": 0.8034439698292464,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.80727171164526,
+              "weight": 0.07410910862008721,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.607304222061927,
+              "weight": 0.12244692155066637,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jean Montero",
+      "team": "Olympiacos",
+      "pos": "G",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 13.5,
+      "expectedPir": 16.200290794025094,
+      "expectedMinutes": 23.038803550724637,
+      "basePir": 16.200290794025094,
+      "baseMinutes": 23.038803550724637,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 14.969594284692832,
+        "baseMin": 22.996410652173914,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.0490000000000017,
+        "teamPoints": 87.59635,
+        "margin": -1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.45434782608695656,
+          "sameTeam": false,
+          "avgPir": 17.86842105263158,
+          "avgMinutes": 22.9921,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 4,
+              "nextGameSamples": 4,
+              "nextGameAvgPir": 23.5,
+              "continuedRate": 0.5
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 6,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 6,
+              "continuedRate": 0
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0031635229366427,
+          "defenseSample": 4,
+          "rival": "TJ Shorts",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.22822845755384,
+              "weight": 0.8034439698292464,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 23.287691107058873,
+              "weight": 0.07410910862008721,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.645243533755636,
+              "weight": 0.12244692155066637,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kameron Taylor",
+      "team": "Valencia",
+      "pos": "F",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 13,
+      "expectedPir": 14.30261691300423,
+      "expectedMinutes": 23.545925,
+      "basePir": 14.30261691300423,
+      "baseMinutes": 23.545925,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 13.301154328944936,
+        "baseMin": 23.877775,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -10.145000000000003,
+        "teamPoints": 89.22364999999999,
+        "margin": 1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.8333333333333334,
+          "sameTeam": true,
+          "avgPir": 13.55,
+          "avgMinutes": 24.05333,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 16.333333333333332,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9959108024728288,
+          "defenseSample": 4,
+          "rival": "Sasha Vezenkov",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.784755863756935,
+              "weight": 0.8034439698292464,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.855955638009892,
+              "weight": 0.12244692155066635,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.09667544141689,
+              "weight": 0.07410910862008718,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tyler Dorsey",
+      "team": "Olympiacos",
+      "pos": "G",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 12.9,
+      "expectedPir": 14.213454440980534,
+      "expectedMinutes": 22.795490849673207,
+      "basePir": 14.213454440980534,
+      "baseMinutes": 22.795490849673207,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 13.405061475837787,
+        "baseMin": 24.826472549019613,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.0490000000000017,
+        "teamPoints": 87.59635,
+        "margin": -1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 43,
+          "historyWeight": 0.8431372549019608,
+          "sameTeam": true,
+          "avgPir": 13.674418604651162,
+          "avgMinutes": 25.16628139534884,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 4,
+              "nextGameAvgPir": 15.25,
+              "continuedRate": 0.25
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 12,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0035088499070945,
+          "defenseSample": 4,
+          "rival": "TJ Shorts",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.129126330016458,
+              "weight": 0.8034439698292464,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.107577390420214,
+              "weight": 0.07410910862008721,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.022667500741214,
+              "weight": 0.12244692155066637,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nikola Mirotic",
+      "team": "Valencia",
+      "pos": "F",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 12.4,
+      "expectedPir": 14.102066597864887,
+      "expectedMinutes": 18.10422333333333,
+      "basePir": 14.102066597864887,
+      "baseMinutes": 18.10422333333333,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.192314948772715,
+        "baseMin": 21.272669999999998,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -10.145000000000003,
+        "teamPoints": 89.22364999999999,
+        "margin": 1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 31,
+          "historyWeight": 0.4371794871794872,
+          "sameTeam": false,
+          "avgPir": 12.67741935483871,
+          "avgMinutes": 19.04892258064516,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 10,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9989919000250173,
+          "defenseSample": 4,
+          "rival": "Sasha Vezenkov",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.106964395344704,
+              "weight": 0.8034439698292464,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.545301202406495,
+              "weight": 0.12244692155066635,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.345734693775416,
+              "weight": 0.07410910862008718,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tyrique Jones",
+      "team": "Olympiacos",
+      "pos": "C",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 11,
+      "expectedPir": 10.641281346318015,
+      "expectedMinutes": 16.758501463414632,
+      "basePir": 10.641281346318015,
+      "baseMinutes": 16.758501463414632,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.712304645541714,
+        "baseMin": 20.116253658536586,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -9.199000000000002,
+        "teamPoints": 87.59635,
+        "margin": -1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 33,
+          "historyWeight": 0.8048780487804879,
+          "sameTeam": true,
+          "avgPir": 13.151515151515152,
+          "avgMinutes": 19.417163636363636,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 11.666666666666666,
+              "continuedRate": 0.3333333333333333
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 5,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0018886403900855,
+          "defenseSample": 4,
+          "rival": "Jasiel Rivero",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.672411287497344,
+              "weight": 0.8034439698292464,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.369948406044696,
+              "weight": 0.07410910862008721,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.348084744332,
+              "weight": 0.12244692155066637,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Codi Miller-Mcintyre",
+      "team": "Olympiacos",
+      "pos": "G",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 10.5,
+      "expectedPir": 8.932955267987236,
+      "expectedMinutes": 20.547203971631205,
+      "basePir": 8.932955267987236,
+      "baseMinutes": 20.547203971631205,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.035418271082683,
+        "baseMin": 26.621611914893617,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.0490000000000017,
+        "teamPoints": 87.59635,
+        "margin": -1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 39,
+          "historyWeight": 0.4563829787234043,
+          "sameTeam": false,
+          "avgPir": 15,
+          "avgMinutes": 30.935466666666663,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 4,
+              "nextGameAvgPir": 13,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 17,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 17,
+              "continuedRate": 0
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0018119735868842,
+          "defenseSample": 4,
+          "rival": "TJ Shorts",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.813675595852796,
+              "weight": 0.8034439698292464,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.146018922154436,
+              "weight": 0.07410910862008721,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.041542980989433,
+              "weight": 0.12244692155066637,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Donta Hall",
+      "team": "Olympiacos",
+      "pos": "C",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 10.3,
+      "expectedPir": 9.32979128251169,
+      "expectedMinutes": 16.854610434782607,
+      "basePir": 9.32979128251169,
+      "baseMinutes": 16.854610434782607,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.517080503888444,
+        "baseMin": 16.60652608695652,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -9.199000000000002,
+        "teamPoints": 87.59635,
+        "margin": -1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 11.473684210526315,
+          "avgMinutes": 15.26053157894737,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0008915408112553,
+          "defenseSample": 4,
+          "rival": "Jasiel Rivero",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.928573813694662,
+              "weight": 0.8034439698292464,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.468312170042875,
+              "weight": 0.07410910862008721,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.997861093882134,
+              "weight": 0.12244692155066637,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Armoni Brooks",
+      "team": "Valencia",
+      "pos": "G",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 10.2,
+      "expectedPir": 9.784159287579456,
+      "expectedMinutes": 21.510784891304347,
+      "basePir": 9.784159287579456,
+      "baseMinutes": 21.510784891304347,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.964841256622972,
+        "baseMin": 22.792354673913042,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.7410000000000054,
+        "teamPoints": 89.22364999999999,
+        "margin": 1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.45434782608695656,
+          "sameTeam": false,
+          "avgPir": 10.526315789473685,
+          "avgMinutes": 22.542981578947366,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 4,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 4,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0003340497200583,
+          "defenseSample": 4,
+          "rival": "Jean Montero",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.761850299064193,
+              "weight": 0.8034439698292464,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.88274873335194,
+              "weight": 0.12244692155066635,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.826566904370484,
+              "weight": 0.07410910862008718,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nathan Reuvers",
+      "team": "Valencia",
+      "pos": "F",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 9.9,
+      "expectedPir": 8.691917945301379,
+      "expectedMinutes": 17.08269166666667,
+      "basePir": 8.691917945301379,
+      "baseMinutes": 17.08269166666667,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.68502475201481,
+        "baseMin": 19.048075,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -10.145000000000003,
+        "teamPoints": 89.22364999999999,
+        "margin": 1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 44,
+          "historyWeight": 0.8461538461538461,
+          "sameTeam": true,
+          "avgPir": 10.954545454545455,
+          "avgMinutes": 19.05681590909091,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9936930959376469,
+          "defenseSample": 4,
+          "rival": "Sasha Vezenkov",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.44378193357474,
+              "weight": 0.8034439698292464,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.735512766908073,
+              "weight": 0.12244692155066635,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.39385893357474,
+              "weight": 0.07410910862008718,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Evan Fournier",
+      "team": "Olympiacos",
+      "pos": "G",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 9.3,
+      "expectedPir": 8.777444892872499,
+      "expectedMinutes": 21.37170070921986,
+      "basePir": 8.777444892872499,
+      "baseMinutes": 21.37170070921986,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.958865744631042,
+        "baseMin": 21.435102127659572,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.0490000000000017,
+        "teamPoints": 87.59635,
+        "margin": -1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 39,
+          "historyWeight": 0.8297872340425532,
+          "sameTeam": true,
+          "avgPir": 9,
+          "avgMinutes": 21.934610256410256,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 10,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0041941317735468,
+          "defenseSample": 4,
+          "rival": "TJ Shorts",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.456790782134792,
+              "weight": 0.8034439698292464,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.181618920206176,
+              "weight": 0.07410910862008721,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.323185801525092,
+              "weight": 0.12244692155066637,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Neal Sako",
+      "team": "Valencia",
+      "pos": "C",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 9,
+      "expectedPir": 7.770393898841786,
+      "expectedMinutes": 14.030668666666667,
+      "basePir": 7.770393898841786,
+      "baseMinutes": 14.030668666666667,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.534825660112385,
+        "baseMin": 14.272006000000001,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 89.22364999999999,
+        "margin": 1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.84,
+          "sameTeam": true,
+          "avgPir": 6.166666666666667,
+          "avgMinutes": 13.371435714285715,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9948555979005783,
+          "defenseSample": 4,
+          "rival": "Donta Hall",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.951893551424206,
+              "weight": 0.8034439698292464,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.932373542106713,
+              "weight": 0.12244692155066635,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.394854855003455,
+              "weight": 0.07410910862008718,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Mbaye Ndiaye",
+      "team": "Olympiacos",
+      "pos": "F",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 8.6,
+      "expectedPir": 11.866865623618189,
+      "expectedMinutes": 17.762000458333333,
+      "basePir": 11.866865623618189,
+      "baseMinutes": 17.762000458333333,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.97460796867996,
+        "baseMin": 21.046001375000003,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.817999999999989,
+        "teamPoints": 87.59635,
+        "margin": -1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 32,
+          "historyWeight": 0.44000000000000006,
+          "sameTeam": false,
+          "avgPir": 10.25,
+          "avgMinutes": 23.650003125,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0018425625162957,
+          "defenseSample": 4,
+          "rival": "Kameron Taylor",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.185126750708122,
+              "weight": 0.8034439698292464,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.183515946925922,
+              "weight": 0.07410910862008721,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.94098131673369,
+              "weight": 0.12244692155066637,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Omari Moore",
+      "team": "Valencia",
+      "pos": "G",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 8.5,
+      "expectedPir": 7.704274346534813,
+      "expectedMinutes": 17.321939215686275,
+      "basePir": 7.704274346534813,
+      "baseMinutes": 17.321939215686275,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.796926628474015,
+        "baseMin": 17.525817647058823,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.7410000000000054,
+        "teamPoints": 89.22364999999999,
+        "margin": 1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 43,
+          "historyWeight": 0.8431372549019608,
+          "sameTeam": true,
+          "avgPir": 7.767441860465116,
+          "avgMinutes": 17.251551162790697,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 1,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.988582099637743,
+          "defenseSample": 4,
+          "rival": "Jean Montero",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.213595241222837,
+              "weight": 0.8034439698292464,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.387111568440876,
+              "weight": 0.12244692155066635,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.736602765506106,
+              "weight": 0.07410910862008718,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Mo Gueye",
+      "team": "Valencia",
+      "pos": "F",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 8.3,
+      "expectedPir": 7.584920325397503,
+      "expectedMinutes": 19,
+      "basePir": 7.584920325397503,
+      "baseMinutes": 19,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.719000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -10.145000000000003,
+        "teamPoints": 89.22364999999999,
+        "margin": 1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Sasha Vezenkov",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.461924025474534,
+              "weight": 0.8034439698292464,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.896924025474537,
+              "weight": 0.12244692155066635,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.466924025474537,
+              "weight": 0.07410910862008718,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Dylan Osetkowski",
+      "team": "Valencia",
+      "pos": "F",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 8.2,
+      "expectedPir": 8.194426342336207,
+      "expectedMinutes": 19.013287829457365,
+      "basePir": 8.194426342336207,
+      "baseMinutes": 19.013287829457365,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.483837093711154,
+        "baseMin": 19.479863488372096,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -10.145000000000003,
+        "teamPoints": 89.22364999999999,
+        "margin": 1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 35,
+          "historyWeight": 0.4476744186046512,
+          "sameTeam": false,
+          "avgPir": 7.285714285714286,
+          "avgMinutes": 20.07190285714286,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.00064137811055,
+          "defenseSample": 4,
+          "rival": "Sasha Vezenkov",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.06367598230025,
+              "weight": 0.8034439698292464,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.350478016994817,
+              "weight": 0.12244692155066635,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.909888267431935,
+              "weight": 0.07410910862008718,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Gonzalo Corbalan",
+      "team": "Valencia",
+      "pos": "G",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 7.8,
+      "expectedPir": 3.7962947821626254,
+      "expectedMinutes": 15.690000000000001,
+      "basePir": 3.7962947821626254,
+      "baseMinutes": 15.690000000000001,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.2540000000000004,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.7410000000000054,
+        "teamPoints": 89.22364999999999,
+        "margin": 1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9982362046792413,
+          "defenseSample": 4,
+          "rival": "Jean Montero",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.817797993809908,
+              "weight": 0.8034439698292464,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.771190510816712,
+              "weight": 0.12244692155066635,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.17034799380991,
+              "weight": 0.07410910862008718,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tyson Ward",
+      "team": "Olympiacos",
+      "pos": "F",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 7.5,
+      "expectedPir": 8.041697776720888,
+      "expectedMinutes": 20.03749457364341,
+      "basePir": 8.041697776720888,
+      "baseMinutes": 20.03749457364341,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.622716276400624,
+        "baseMin": 19.072483720930233,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.817999999999989,
+        "teamPoints": 87.59635,
+        "margin": -1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 35,
+          "historyWeight": 0.813953488372093,
+          "sameTeam": true,
+          "avgPir": 7.771428571428571,
+          "avgMinutes": 19.08905142857143,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0023851069655483,
+          "defenseSample": 4,
+          "rival": "Kameron Taylor",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.33637836467575,
+              "weight": 0.8034439698292464,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.39693913898793,
+              "weight": 0.07410910862008721,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.4640341316768,
+              "weight": 0.12244692155066637,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jasiel Rivero",
+      "team": "Valencia",
+      "pos": "C",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 7.5,
+      "expectedPir": 7.008640389690882,
+      "expectedMinutes": 15.076420490196078,
+      "basePir": 7.008640389690882,
+      "baseMinutes": 15.076420490196078,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.345560537999877,
+        "baseMin": 16.329261470588236,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 89.22364999999999,
+        "margin": 1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 9,
+          "historyWeight": 0.2911764705882353,
+          "sameTeam": false,
+          "avgPir": 4.333333333333333,
+          "avgMinutes": 9.827766666666667,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9925974055737509,
+          "defenseSample": 4,
+          "rival": "Donta Hall",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.14838851709397,
+              "weight": 0.8034439698292464,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.287542095313261,
+              "weight": 0.12244692155066635,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.94736268058193,
+              "weight": 0.07410910862008718,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Yankuba Sima",
+      "team": "Valencia",
+      "pos": "C",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 6.1,
+      "expectedPir": 2.8988811625415156,
+      "expectedMinutes": 11.532142857142857,
+      "basePir": 2.8988811625415156,
+      "baseMinutes": 11.532142857142857,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.9701184918948074,
+        "baseMin": 11.532142857142857,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 89.22364999999999,
+        "margin": 1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 6,
+          "historyWeight": 0.42857142857142855,
+          "sameTeam": true,
+          "avgPir": 0.5,
+          "avgMinutes": 8.241666666666667,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Donta Hall",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.812509901928056,
+              "weight": 0.8034439698292464,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 10.25567061621377,
+              "weight": 0.12244692155066635,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.601634901928056,
+              "weight": 0.07410910862008718,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Antonis Karagiannidis",
+      "team": "Olympiacos",
+      "pos": "C",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 6.1,
+      "expectedPir": 5.561432038662063,
+      "expectedMinutes": 14,
+      "basePir": 5.561432038662063,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.673,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -9.199000000000002,
+        "teamPoints": 87.59635,
+        "margin": -1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Jasiel Rivero",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.320063189971446,
+              "weight": 0.8034439698292464,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.430063189971447,
+              "weight": 0.07410910862008721,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.850063189971449,
+              "weight": 0.12244692155066637,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Cory Joseph",
+      "team": "Olympiacos",
+      "pos": "G",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 6,
+      "expectedPir": 2.689799080104491,
+      "expectedMinutes": 11.844053333333335,
+      "basePir": 2.689799080104491,
+      "baseMinutes": 11.844053333333335,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.347800286488782,
+        "baseMin": 15.045133333333332,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.0490000000000017,
+        "teamPoints": 87.59635,
+        "margin": -1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 16,
+          "historyWeight": 0.6666666666666666,
+          "sameTeam": true,
+          "avgPir": 6.75,
+          "avgMinutes": 15.5677,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0010536081886534,
+          "defenseSample": 4,
+          "rival": "TJ Shorts",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.812153639239195,
+              "weight": 0.8034439698292464,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.764856269235288,
+              "weight": 0.07410910862008721,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.496063629749912,
+              "weight": 0.12244692155066637,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Josep Puerto",
+      "team": "Valencia",
+      "pos": "G",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 5.6,
+      "expectedPir": 5.738467716563365,
+      "expectedMinutes": 14.694613768115943,
+      "basePir": 5.738467716563365,
+      "baseMinutes": 14.694613768115943,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.241733551376517,
+        "baseMin": 15.443841304347826,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.7410000000000054,
+        "teamPoints": 89.22364999999999,
+        "margin": 1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 5.2368421052631575,
+          "avgMinutes": 15.747807894736843,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0012226290920156,
+          "defenseSample": 4,
+          "rival": "Jean Montero",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.613757902388851,
+              "weight": 0.8034439698292464,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.585703066762344,
+              "weight": 0.12244692155066635,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.098897741782972,
+              "weight": 0.07410910862008718,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Bryant Dunston",
+      "team": "Olympiacos",
+      "pos": "C",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 5.2,
+      "expectedPir": 4.423171713998202,
+      "expectedMinutes": 13.5292826,
+      "basePir": 4.423171713998202,
+      "baseMinutes": 13.5292826,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.847649809355605,
+        "baseMin": 12.858565200000001,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -9.199000000000002,
+        "teamPoints": 87.59635,
+        "margin": -1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 17,
+          "historyWeight": 0.37400000000000005,
+          "sameTeam": false,
+          "avgPir": 4.705882352941177,
+          "avgMinutes": 10.948035294117647,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Jasiel Rivero",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.828341187994607,
+              "weight": 0.8034439698292464,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.475412927994604,
+              "weight": 0.07410910862008721,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.204827275994607,
+              "weight": 0.12244692155066637,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Mario Saint-supery",
+      "team": "Valencia",
+      "pos": "G",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 4.3,
+      "expectedPir": 3.4190143045939783,
+      "expectedMinutes": 14.978000000000002,
+      "basePir": 3.4190143045939783,
+      "baseMinutes": 14.978000000000002,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.999,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.7410000000000054,
+        "teamPoints": 89.22364999999999,
+        "margin": 1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9991804576253553,
+          "defenseSample": 4,
+          "rival": "Jean Montero",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.064910583743883,
+              "weight": 0.8034439698292464,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.067572866004815,
+              "weight": 0.12244692155066635,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.887773607798868,
+              "weight": 0.07410910862008718,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kostas Papanikolaou",
+      "team": "Olympiacos",
+      "pos": "F",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 4.1,
+      "expectedPir": 3.2361055713080376,
+      "expectedMinutes": 12.671767424242425,
+      "basePir": 3.2361055713080376,
+      "baseMinutes": 12.671767424242425,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.562163951544407,
+        "baseMin": 14.255302272727272,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.817999999999989,
+        "teamPoints": 87.59635,
+        "margin": -1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.8181818181818182,
+          "sameTeam": true,
+          "avgPir": 2.2777777777777777,
+          "avgMinutes": 14.31203611111111,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0006946839117126,
+          "defenseSample": 4,
+          "rival": "Kameron Taylor",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.560323039719984,
+              "weight": 0.8034439698292464,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.186374398419764,
+              "weight": 0.07410910862008721,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.486324999372904,
+              "weight": 0.12244692155066637,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "George Papas",
+      "team": "Olympiacos",
+      "pos": "G",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 4.1,
+      "expectedPir": 3.8211491343859234,
+      "expectedMinutes": 14,
+      "basePir": 3.8211491343859234,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.8129999999999997,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.0490000000000017,
+        "teamPoints": 87.59635,
+        "margin": -1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "TJ Shorts",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.320063189971446,
+              "weight": 0.8034439698292464,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.430063189971447,
+              "weight": 0.07410910862008721,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.850063189971449,
+              "weight": 0.12244692155066637,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Alvaro Cardenas",
+      "team": "Valencia",
+      "pos": "G",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 4.1,
+      "expectedPir": 3.0109436201170223,
+      "expectedMinutes": 12.55,
+      "basePir": 3.0109436201170223,
+      "baseMinutes": 12.55,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.8129999999999997,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.7410000000000054,
+        "teamPoints": 89.22364999999999,
+        "margin": 1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Jean Montero",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.892114647400982,
+              "weight": 0.8034439698292464,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.009614647400982,
+              "weight": 0.12244692155066635,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.386114647400982,
+              "weight": 0.07410910862008718,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Omiros Netzipoglou",
+      "team": "Olympiacos",
+      "pos": "G",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.7279503750106566,
+      "expectedMinutes": 14,
+      "basePir": 3.7279503750106566,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.0490000000000017,
+        "teamPoints": 87.59635,
+        "margin": -1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": true,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "TJ Shorts",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.320063189971446,
+              "weight": 0.8034439698292464,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.430063189971447,
+              "weight": 0.07410910862008721,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.850063189971449,
+              "weight": 0.12244692155066637,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nikolaos Plotas",
+      "team": "Olympiacos",
+      "pos": "G",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.7279503750106566,
+      "expectedMinutes": 14,
+      "basePir": 3.7279503750106566,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.0490000000000017,
+        "teamPoints": 87.59635,
+        "margin": -1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "TJ Shorts",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.320063189971446,
+              "weight": 0.8034439698292464,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.430063189971447,
+              "weight": 0.07410910862008721,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.850063189971449,
+              "weight": 0.12244692155066637,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Lucas Mari",
+      "team": "Valencia",
+      "pos": "G",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.7403313434258054,
+      "expectedMinutes": 14,
+      "basePir": 3.7403313434258054,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.7410000000000054,
+        "teamPoints": 89.22364999999999,
+        "margin": 1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Jean Montero",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.340365071402289,
+              "weight": 0.8034439698292464,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.45036507140229,
+              "weight": 0.12244692155066635,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.870365071402292,
+              "weight": 0.07410910862008718,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Georgios Bourneles",
+      "team": "Olympiacos",
+      "pos": "G",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.7279503750106566,
+      "expectedMinutes": 14,
+      "basePir": 3.7279503750106566,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.0490000000000017,
+        "teamPoints": 87.59635,
+        "margin": -1.6273,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "TJ Shorts",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.320063189971446,
+              "weight": 0.8034439698292464,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.430063189971447,
+              "weight": 0.07410910862008721,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.850063189971449,
+              "weight": 0.12244692155066637,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    }
+  ]
+}
