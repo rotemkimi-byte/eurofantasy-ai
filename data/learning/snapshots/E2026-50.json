@@ -1,0 +1,2573 @@
+{
+  "schema": "learning-v1",
+  "season": "E2026",
+  "modelId": "b3fc6df40846537dcb24",
+  "gameCode": 50,
+  "round": 5,
+  "kickoff": "2026-10-14T18:45:00Z",
+  "created_at": "2026-10-13T18:46:20.020447+00:00",
+  "predictions": [
+    {
+      "name": "Nadir Hifi",
+      "team": "Paris",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 14.6,
+      "expectedPir": 16.42958796855176,
+      "expectedMinutes": 25.082836296296293,
+      "basePir": 16.42958796855176,
+      "baseMinutes": 25.082836296296293,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 17.056212065628074,
+        "baseMin": 23.108508888888885,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.8222222222222222,
+          "sameTeam": true,
+          "avgPir": 17.56756756756757,
+          "avgMinutes": 22.267105405405403,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 4,
+              "nextGameSamples": 7,
+              "nextGameAvgPir": 17.571428571428573,
+              "continuedRate": 0.42857142857142855
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 23,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9921955496965443,
+          "defenseSample": 4,
+          "rival": "Wendell Moore",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 25.63619615549828,
+              "weight": 0.7821358103632453,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.664041263967693,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 24.554307111537916,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tj Warren",
+      "team": "Paris",
+      "pos": "F",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 11,
+      "expectedPir": 9.783783183492416,
+      "expectedMinutes": 20.44666666666667,
+      "basePir": 9.783783183492416,
+      "baseMinutes": 20.44666666666667,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.23,
+        "baseMin": 23,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.3160000000000105,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9916470362715438,
+          "defenseSample": 4,
+          "rival": "Kessler Edwards",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.741344426591947,
+              "weight": 0.7821358103632453,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.843995358268966,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.226476517689253,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Marcus Carr",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "opponent": "Paris",
+      "home": false,
+      "status": "active",
+      "price": 10.7,
+      "expectedPir": 12.927167466651913,
+      "expectedMinutes": 22.86,
+      "basePir": 12.927167466651913,
+      "baseMinutes": 22.86,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.951,
+        "baseMin": 23,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 3.909000000000007,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0086104086679257,
+          "defenseSample": 4,
+          "rival": "Nadir Hifi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.2427903699607,
+              "weight": 0.7821358103632452,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.956790369960704,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.642590369960704,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tyson Etienne",
+      "team": "Paris",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 10.3,
+      "expectedPir": 7.645138483822702,
+      "expectedMinutes": 19.346666666666668,
+      "basePir": 7.645138483822702,
+      "baseMinutes": 19.346666666666668,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.579,
+        "baseMin": 23,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9838276999971903,
+          "defenseSample": 4,
+          "rival": "Wendell Moore",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.60863913840318,
+              "weight": 0.7821358103632453,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.90927421002993,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.082419407546112,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Trent Frazier",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "opponent": "Paris",
+      "home": false,
+      "status": "active",
+      "price": 10,
+      "expectedPir": 8.42431711196934,
+      "expectedMinutes": 20.86,
+      "basePir": 8.42431711196934,
+      "baseMinutes": 20.86,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.3,
+        "baseMin": 23,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 3.909000000000007,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0131659406465965,
+          "defenseSample": 4,
+          "rival": "Nadir Hifi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.20930039883553,
+              "weight": 0.7821358103632452,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.123300398835532,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.74910039883553,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kessler Edwards",
+      "team": "Virtus Bologna",
+      "pos": "F",
+      "opponent": "Paris",
+      "home": false,
+      "status": "active",
+      "price": 9.7,
+      "expectedPir": 9.356270507986567,
+      "expectedMinutes": 21.379682539682538,
+      "basePir": 9.356270507986567,
+      "baseMinutes": 21.379682539682538,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.7995921581082435,
+        "baseMin": 16.999047619047616,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.681000000000004,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 13,
+          "historyWeight": 0.3404761904761905,
+          "sameTeam": false,
+          "avgPir": 5.615384615384615,
+          "avgMinutes": 13.123076923076923,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0065928352843423,
+          "defenseSample": 4,
+          "rival": "Tj Warren",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.73768501514218,
+              "weight": 0.7821358103632452,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.599716761173926,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.241107237364403,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Wendell Moore",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "opponent": "Paris",
+      "home": false,
+      "status": "active",
+      "price": 9.7,
+      "expectedPir": 12.58246236165786,
+      "expectedMinutes": 22.313333333333333,
+      "basePir": 12.58246236165786,
+      "baseMinutes": 22.313333333333333,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.020999999999999,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 3.909000000000007,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0069851594854122,
+          "defenseSample": 4,
+          "rival": "Nadir Hifi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.686969777853154,
+              "weight": 0.7821358103632452,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.455636444519822,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.12503644451982,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Bobi Klintman",
+      "team": "Virtus Bologna",
+      "pos": "C",
+      "opponent": "Paris",
+      "home": false,
+      "status": "active",
+      "price": 9.4,
+      "expectedPir": 9.144828016709523,
+      "expectedMinutes": 19,
+      "basePir": 9.144828016709523,
+      "baseMinutes": 19,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.742,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Allan Dokossi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.46303441179756,
+              "weight": 0.7821358103632452,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.898034411797564,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.468034411797564,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Rasheed Bello",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "opponent": "Paris",
+      "home": false,
+      "status": "active",
+      "price": 9.3,
+      "expectedPir": 3.8494029063288844,
+      "expectedMinutes": 13.780000000000001,
+      "basePir": 3.8494029063288844,
+      "baseMinutes": 13.780000000000001,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.649000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 3.909000000000007,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0078453414871902,
+          "defenseSample": 4,
+          "rival": "Nadir Hifi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.010745901052427,
+              "weight": 0.7821358103632452,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.632745901052427,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.046145901052428,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jared Rhoden",
+      "team": "Paris",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 9.1,
+      "expectedPir": 9.306623065450655,
+      "expectedMinutes": 20.337528235294116,
+      "basePir": 9.306623065450655,
+      "baseMinutes": 20.337528235294116,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.138493718158932,
+        "baseMin": 20.783820588235294,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 26,
+          "historyWeight": 0.7647058823529411,
+          "sameTeam": true,
+          "avgPir": 8,
+          "avgMinutes": 21.33268846153846,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.992814713104765,
+          "defenseSample": 4,
+          "rival": "Wendell Moore",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.853492949172608,
+              "weight": 0.7821358103632453,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.097291898881316,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.79377695465063,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Alize Johnson",
+      "team": "Paris",
+      "pos": "F",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 9.1,
+      "expectedPir": 6.561402103502981,
+      "expectedMinutes": 15.532,
+      "basePir": 6.561402103502981,
+      "baseMinutes": 15.532,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.463000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.3160000000000105,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0004106910039112,
+          "defenseSample": 4,
+          "rival": "Kessler Edwards",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.716851808872255,
+              "weight": 0.7821358103632453,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.439610512353646,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.314762333081937,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Maozinha Pereira",
+      "team": "Paris",
+      "pos": "F",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 8.9,
+      "expectedPir": 8.613239140370508,
+      "expectedMinutes": 19,
+      "basePir": 8.613239140370508,
+      "baseMinutes": 19,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.277000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.3160000000000105,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Kessler Edwards",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.530426292946036,
+              "weight": 0.7821358103632453,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.965426292946038,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.53542629294604,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Mouhamet Diouf",
+      "team": "Virtus Bologna",
+      "pos": "C",
+      "opponent": "Paris",
+      "home": false,
+      "status": "active",
+      "price": 8.8,
+      "expectedPir": 8.037385362162373,
+      "expectedMinutes": 14.381870731707316,
+      "basePir": 8.037385362162373,
+      "baseMinutes": 14.381870731707316,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.021250743847482,
+        "baseMin": 18.62561219512195,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 33,
+          "historyWeight": 0.8048780487804879,
+          "sameTeam": true,
+          "avgPir": 10.454545454545455,
+          "avgMinutes": 18.534851515151512,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0001775692987926,
+          "defenseSample": 4,
+          "rival": "Allan Dokossi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.622694949472724,
+              "weight": 0.7821358103632452,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.184507876301993,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.615963998253212,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Aliou Diarra",
+      "team": "Virtus Bologna",
+      "pos": "C",
+      "opponent": "Paris",
+      "home": false,
+      "status": "active",
+      "price": 8.6,
+      "expectedPir": 14.48962323987135,
+      "expectedMinutes": 18.70030925925926,
+      "basePir": 14.48962323987135,
+      "baseMinutes": 18.70030925925926,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.041645957602173,
+        "baseMin": 12.500927777777775,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 28,
+          "historyWeight": 0.7777777777777778,
+          "sameTeam": true,
+          "avgPir": 6.428571428571429,
+          "avgMinutes": 10.644049999999998,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.000340530606001,
+          "defenseSample": 4,
+          "rival": "Allan Dokossi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.013445667821436,
+              "weight": 0.7821358103632452,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.143414741895512,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.70442401967329,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kevin Kokila",
+      "team": "Virtus Bologna",
+      "pos": "C",
+      "opponent": "Paris",
+      "home": false,
+      "status": "active",
+      "price": 8.3,
+      "expectedPir": 5.573006281552082,
+      "expectedMinutes": 15.133333333333335,
+      "basePir": 5.573006281552082,
+      "baseMinutes": 15.133333333333335,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.719000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Allan Dokossi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.386740781513792,
+              "weight": 0.7821358103632452,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.873407448180458,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.327407448180459,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Allan Dokossi",
+      "team": "Paris",
+      "pos": "C",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 8.2,
+      "expectedPir": 10.025732283765024,
+      "expectedMinutes": 19.517566666666667,
+      "basePir": 10.025732283765024,
+      "baseMinutes": 19.517566666666667,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.486019937035412,
+        "baseMin": 16.712699999999998,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.671000000000005,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.8095238095238095,
+          "sameTeam": true,
+          "avgPir": 8.617647058823529,
+          "avgMinutes": 16.174511764705883,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0002048604164837,
+          "defenseSample": 4,
+          "rival": "Aliou Diarra",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.875242287217066,
+              "weight": 0.7821358103632453,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.790184083840103,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.728980878882155,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Derrick Alston Jr.",
+      "team": "Virtus Bologna",
+      "pos": "F",
+      "opponent": "Paris",
+      "home": false,
+      "status": "active",
+      "price": 8.1,
+      "expectedPir": 8.119015882850734,
+      "expectedMinutes": 22.740248148148147,
+      "basePir": 8.119015882850734,
+      "baseMinutes": 22.740248148148147,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.499013396133249,
+        "baseMin": 21.820744444444443,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.681000000000004,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.8222222222222222,
+          "sameTeam": true,
+          "avgPir": 8.702702702702704,
+          "avgMinutes": 22.430635135135134,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0144973665377965,
+          "defenseSample": 4,
+          "rival": "Tj Warren",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.121033275078496,
+              "weight": 0.7821358103632452,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.84700846026368,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.529215904708128,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Frank Ntilikina",
+      "team": "Paris",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 7.1,
+      "expectedPir": 3.050494315781387,
+      "expectedMinutes": 15.304341041666667,
+      "basePir": 3.050494315781387,
+      "baseMinutes": 15.304341041666667,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.825555116978589,
+        "baseMin": 17.9315115625,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 24,
+          "historyWeight": 0.41250000000000003,
+          "sameTeam": false,
+          "avgPir": 2.5833333333333335,
+          "avgMinutes": 16.409724999999998,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Wendell Moore",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.731594982967358,
+              "weight": 0.7821358103632453,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.66550894234236,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.12463917359236,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Terry Tarpey",
+      "team": "Paris",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 6.6,
+      "expectedPir": 5.354460685257089,
+      "expectedMinutes": 13.523916999999999,
+      "basePir": 5.354460685257089,
+      "baseMinutes": 13.523916999999999,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.8319946291694125,
+        "baseMin": 11.1597925,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.45000000000000007,
+          "sameTeam": false,
+          "avgPir": 3.2777777777777777,
+          "avgMinutes": 7.688427777777777,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9968657809394288,
+          "defenseSample": 4,
+          "rival": "Wendell Moore",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.79559701185157,
+              "weight": 0.7821358103632453,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.234226461961944,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.609008753021547,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Mouhamed Faye",
+      "team": "Paris",
+      "pos": "C",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 6.4,
+      "expectedPir": 5.143841002213048,
+      "expectedMinutes": 13.774033333333332,
+      "basePir": 5.143841002213048,
+      "baseMinutes": 13.774033333333332,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.867824294698619,
+        "baseMin": 16.622099999999996,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.671000000000005,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 7.052631578947368,
+          "avgMinutes": 17.174121052631577,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0002053455019557,
+          "defenseSample": 4,
+          "rival": "Aliou Diarra",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.953927861551193,
+              "weight": 0.7821358103632453,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.970731986661606,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.659433653328273,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Amath M'baye",
+      "team": "Paris",
+      "pos": "F",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 6,
+      "expectedPir": 6.33122077066905,
+      "expectedMinutes": 16.6746,
+      "basePir": 6.33122077066905,
+      "baseMinutes": 16.6746,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.084065874034647,
+        "baseMin": 16.6746,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.3160000000000105,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.8095238095238095,
+          "sameTeam": true,
+          "avgPir": 6.176470588235294,
+          "avgMinutes": 17.303917647058825,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Kessler Edwards",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.140107698124105,
+              "weight": 0.7821358103632453,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.889036698124107,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.389274698124108,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Daulton Hommes",
+      "team": "Paris",
+      "pos": "F",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 5.6,
+      "expectedPir": 3.197402988456795,
+      "expectedMinutes": 12.199805747126437,
+      "basePir": 3.197402988456795,
+      "baseMinutes": 12.199805747126437,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.535451004258671,
+        "baseMin": 13.699417241379312,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.3160000000000105,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 21,
+          "historyWeight": 0.7241379310344828,
+          "sameTeam": true,
+          "avgPir": 4.285714285714286,
+          "avgMinutes": 13.584909523809523,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9959890102339781,
+          "defenseSample": 4,
+          "rival": "Kessler Edwards",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.373327862322325,
+              "weight": 0.7821358103632453,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.158421026743442,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.988391888812407,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jeremy Morgan",
+      "team": "Paris",
+      "pos": "F",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 5.4,
+      "expectedPir": 2.7396962971135657,
+      "expectedMinutes": 14.283472499999998,
+      "basePir": 2.7396962971135657,
+      "baseMinutes": 14.283472499999998,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.648606786382633,
+        "baseMin": 16.9704175,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.3160000000000105,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 32,
+          "historyWeight": 0.8,
+          "sameTeam": true,
+          "avgPir": 5.78125,
+          "avgMinutes": 17.713021875,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9923603410398577,
+          "defenseSample": 4,
+          "rival": "Kessler Edwards",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.527171551918824,
+              "weight": 0.7821358103632453,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.135613670882123,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.329428693741104,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nobel Boungou-colo",
+      "team": "Paris",
+      "pos": "F",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 5.3,
+      "expectedPir": 5.129232297074572,
+      "expectedMinutes": 14,
+      "basePir": 5.129232297074572,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.929,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.3160000000000105,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Kessler Edwards",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.390840426381292,
+              "weight": 0.7821358103632453,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.500840426381293,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.920840426381295,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Leopold Cavaliere",
+      "team": "Paris",
+      "pos": "F",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 5.1,
+      "expectedPir": 6.0534720670194995,
+      "expectedMinutes": 14.643383333333334,
+      "basePir": 6.0534720670194995,
+      "baseMinutes": 14.643383333333334,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.589612886908857,
+        "baseMin": 13.99015,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.3160000000000105,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.8181818181818182,
+          "sameTeam": true,
+          "avgPir": 4.555555555555555,
+          "avgMinutes": 13.987961111111112,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9984166790926399,
+          "defenseSample": 4,
+          "rival": "Kessler Edwards",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.891253938983793,
+              "weight": 0.7821358103632453,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.401290849578764,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.941726943367431,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Davide Casarin",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "opponent": "Paris",
+      "home": false,
+      "status": "active",
+      "price": 5.1,
+      "expectedPir": 4.826715114573313,
+      "expectedMinutes": 14,
+      "basePir": 4.826715114573313,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.743,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 3.909000000000007,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Nadir Hifi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.341183250798204,
+              "weight": 0.7821358103632452,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.451183250798206,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.871183250798207,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Sebastian Herrera",
+      "team": "Paris",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 5,
+      "expectedPir": 5.167290083523412,
+      "expectedMinutes": 17.840355303030304,
+      "basePir": 5.167290083523412,
+      "baseMinutes": 17.840355303030304,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.946326710709074,
+        "baseMin": 15.98106590909091,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.8181818181818182,
+          "sameTeam": true,
+          "avgPir": 5,
+          "avgMinutes": 16.42130277777778,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9859473506029186,
+          "defenseSample": 4,
+          "rival": "Wendell Moore",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.09239049256139,
+              "weight": 0.7821358103632453,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.514327092755156,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.35645732653164,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Joel Ayayi",
+      "team": "Paris",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 5,
+      "expectedPir": 4.8614186878655286,
+      "expectedMinutes": 12.985397619047617,
+      "basePir": 4.8614186878655286,
+      "baseMinutes": 12.985397619047617,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.3755271078793285,
+        "baseMin": 11.850795238095237,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 13,
+          "historyWeight": 0.6190476190476191,
+          "sameTeam": true,
+          "avgPir": 2.6923076923076925,
+          "avgMinutes": 10.528207692307692,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Wendell Moore",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.248896355387659,
+              "weight": 0.7821358103632453,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.950356593482898,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.339918522054326,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Francesco Ferrari",
+      "team": "Virtus Bologna",
+      "pos": "F",
+      "opponent": "Paris",
+      "home": false,
+      "status": "active",
+      "price": 4.6,
+      "expectedPir": 3.946177598736817,
+      "expectedMinutes": 11.354995,
+      "basePir": 3.946177598736817,
+      "baseMinutes": 11.354995,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.814778142253354,
+        "baseMin": 11.354995,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.681000000000004,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 12,
+          "historyWeight": 0.6,
+          "sameTeam": true,
+          "avgPir": 3.4166666666666665,
+          "avgMinutes": 9.591658333333333,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0000263065627841,
+          "defenseSample": 4,
+          "rival": "Tj Warren",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.54513422733823,
+              "weight": 0.7821358103632452,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 10.409634727338231,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.750284577338231,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tommaso Baldasso",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "opponent": "Paris",
+      "home": false,
+      "status": "active",
+      "price": 4.2,
+      "expectedPir": 5.2499569846932745,
+      "expectedMinutes": 12.89,
+      "basePir": 5.2499569846932745,
+      "baseMinutes": 12.89,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.9060000000000006,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 3.909000000000007,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0047995723091188,
+          "defenseSample": 4,
+          "rival": "Nadir Hifi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.105842863901726,
+              "weight": 0.7821358103632452,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.816842863901726,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.203542863901728,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Daniel Hackett",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "opponent": "Paris",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 1.5119264549299685,
+      "expectedMinutes": 12.64028888888889,
+      "basePir": 1.5119264549299685,
+      "baseMinutes": 12.64028888888889,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.347197108853048,
+        "baseMin": 14.540866666666666,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 3.909000000000007,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.8095238095238095,
+          "sameTeam": true,
+          "avgPir": 4.5,
+          "avgMinutes": 14.668129411764706,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0011933164365836,
+          "defenseSample": 4,
+          "rival": "Nadir Hifi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.851950343840242,
+              "weight": 0.7821358103632452,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.587921454951353,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.96713012161802,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Matteo Baiocchi",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "opponent": "Paris",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 1.4781948605365587,
+      "expectedMinutes": 12.424353846153847,
+      "basePir": 1.4781948605365587,
+      "baseMinutes": 12.424353846153847,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 1.4525568750383324,
+        "baseMin": 12.424353846153847,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 3.909000000000007,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 5,
+          "historyWeight": 0.38461538461538464,
+          "sameTeam": true,
+          "avgPir": -1.2,
+          "avgMinutes": 9.903319999999999,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Nadir Hifi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.727138234317986,
+              "weight": 0.7821358103632452,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.049850465087216,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.422581080471833,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    }
+  ]
+}
