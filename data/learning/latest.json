@@ -2,26 +2,26 @@
   "schema": "learning-v1",
   "season": "E2026",
   "modelId": "b3fc6df40846537dcb24",
-  "updated_at": "2026-10-13T19:52:28.042171+00:00",
+  "updated_at": "2026-10-13T20:13:01.759819+00:00",
   "metrics": {
-    "n": 735,
-    "mae": 5.772621615397316,
-    "bias": -1.003169042048973,
-    "minutesMae": 4.854455542887703,
-    "hits": 397,
-    "hitRate": 54.01360544217687,
-    "over": 206,
-    "under": 132
+    "n": 757,
+    "mae": 5.745163005810768,
+    "bias": -0.979556324649359,
+    "minutesMae": 4.8291536769617895,
+    "hits": 409,
+    "hitRate": 54.02906208718626,
+    "over": 212,
+    "under": 136
   },
   "eligibleMetrics": {
-    "n": 23,
-    "mae": 4.49389077851827,
-    "bias": -0.6609231466718041,
-    "minutesMae": 3.8345008584864795,
-    "hits": 16,
-    "hitRate": 69.56521739130434,
-    "over": 3,
-    "under": 4
+    "n": 45,
+    "mae": 4.657133244169859,
+    "bias": -0.4310249828226927,
+    "minutesMae": 3.9075117596178077,
+    "hits": 28,
+    "hitRate": 62.22222222222222,
+    "over": 9,
+    "under": 8
   },
   "legacyCount": 712,
   "validation": {
@@ -32,19 +32,19 @@
   },
   "coefficients": {
     "G": {
-      "n": 8,
-      "minutes": -0.14265165698008994,
-      "efficiencyPir": 0.0844623753764535
+      "n": 17,
+      "minutes": -0.22183688246895672,
+      "efficiencyPir": -0.223464135787236
     },
     "F": {
-      "n": 10,
-      "minutes": -0.2469492170987908,
-      "efficiencyPir": 0.05460353955435259
+      "n": 21,
+      "minutes": -0.25278418106326056,
+      "efficiencyPir": 0.3612440852240436
     },
     "C": {
-      "n": 4,
-      "minutes": -0.17013639087301585,
-      "efficiencyPir": 0.023535342602616867
+      "n": 5,
+      "minutes": -0.16010898618925828,
+      "efficiencyPir": 0.03382716564040707
     }
   },
   "active": false,
@@ -7279,18 +7279,128 @@
     },
     "bolomboy joel": {
       "name": "Joel Bolomboy",
-      "n": 4,
+      "n": 5,
       "metrics": {
-        "n": 4,
-        "mae": 2.6486715226858286,
-        "bias": -2.048171522685829,
-        "minutesMae": 7.6399983478260864,
-        "hits": 4,
+        "n": 5,
+        "mae": 2.349962549547954,
+        "bias": -1.4075118867493719,
+        "minutesMae": 6.248437279710145,
+        "hits": 5,
         "hitRate": 100.0,
         "over": 0,
         "under": 0
       },
       "games": [
+        {
+          "name": "Joel Bolomboy",
+          "key": "bolomboy joel",
+          "team": "ASVEL",
+          "pos": "C",
+          "opponent": "Crvena Zvezda",
+          "gameCode": 41,
+          "round": 5,
+          "start": "2026-10-13T18:00:00Z",
+          "basePir": 6.844873343003544,
+          "baseMinutes": 18.18447365942029,
+          "servedPir": 6.844873343003544,
+          "servedMinutes": 18.18447365942029,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+          "home": true,
+          "features": {
+            "basePir": 8.455689856109213,
+            "baseMin": 17.36873347826087,
+            "injuryBoost": 0.0815625,
+            "injuryUsagePct": 0.13982142857142857,
+            "missingStars": [],
+            "positionMatchPct": -2.9939999999999967,
+            "teamPoints": 83.6876,
+            "margin": -1.6448,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 15,
+              "historyWeight": 0.3586956521739131,
+              "sameTeam": false,
+              "avgPir": 7.6,
+              "avgMinutes": 14.452226666666666,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9863287700999566,
+              "defenseSample": 4,
+              "rival": "Ebuka Izundu",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 18.508878648571876,
+                  "weight": 0.8033482387277152,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 15.98706071818605,
+                  "weight": 0.07389614689912491,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 17.38426726831118,
+                  "weight": 0.12275561437315989,
+                  "observedGames": 1
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 8.0,
+          "actualMinutes": 18.866666666666667,
+          "fouls": 3.0,
+          "actualStats": {
+            "points": 5.0,
+            "totalRebounds": 5.0,
+            "assistances": 1.0,
+            "turnovers": 1.0,
+            "foulsCommited": 3.0,
+            "fieldGoalsMadeTotal": 2.0,
+            "fieldGoalsAttemptedTotal": 2.0
+          },
+          "minutesContribution": 0.25678635618167256,
+          "efficiencyContribution": 0.8983403008147839,
+          "reason": "efficiency",
+          "error": 1.1551266569964556,
+          "servedError": 1.1551266569964556
+        },
         {
           "name": "Joel Bolomboy",
           "key": "bolomboy joel",
@@ -8130,18 +8240,128 @@
     },
     "nathan sestina": {
       "name": "Nathan Sestina",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 3.6118312819848795,
-        "bias": -3.6118312819848795,
-        "minutesMae": 5.473965317460317,
+        "n": 4,
+        "mae": 4.049224865787963,
+        "bias": -4.049224865787963,
+        "minutesMae": 7.533824011904761,
         "hits": 2,
-        "hitRate": 66.66666666666666,
-        "over": 1,
+        "hitRate": 50.0,
+        "over": 2,
         "under": 0
       },
       "games": [
+        {
+          "name": "Nathan Sestina",
+          "key": "nathan sestina",
+          "team": "ASVEL",
+          "pos": "F",
+          "opponent": "Crvena Zvezda",
+          "gameCode": 41,
+          "round": 5,
+          "start": "2026-10-13T18:00:00Z",
+          "basePir": 5.361405617197213,
+          "baseMinutes": 17.263400095238094,
+          "servedPir": 5.361405617197213,
+          "servedMinutes": 17.263400095238094,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+          "home": true,
+          "features": {
+            "basePir": 4.635408478243793,
+            "baseMin": 15.424125238095238,
+            "injuryBoost": 0.12575,
+            "injuryUsagePct": 0.147,
+            "missingStars": [],
+            "positionMatchPct": -1.0140000000000038,
+            "teamPoints": 83.6876,
+            "margin": -1.6448,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 13,
+              "historyWeight": 0.3404761904761905,
+              "sameTeam": false,
+              "avgPir": 1.5384615384615385,
+              "avgMinutes": 8.49743076923077,
+              "currentSeasonWeight": 0.42857142857142855,
+              "minutesWeight": 0.6,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.42857142857142855,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9730642253013209,
+              "defenseSample": 4,
+              "rival": "Semi Ojeleye",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 16.994021460141525,
+                  "weight": 0.8033482387277152,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 16.74740145878098,
+                  "weight": 0.07389614689912491,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 19.336911473066696,
+                  "weight": 0.12275561437315989,
+                  "observedGames": 1
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 0.0,
+          "actualMinutes": 3.55,
+          "fouls": 0.0,
+          "actualStats": {
+            "points": 0.0,
+            "totalRebounds": 1.0,
+            "assistances": 0.0,
+            "turnovers": 1.0,
+            "foulsCommited": 0.0,
+            "fieldGoalsMadeTotal": 0.0,
+            "fieldGoalsAttemptedTotal": 1.0
+          },
+          "minutesContribution": -4.25890032646366,
+          "efficiencyContribution": -1.102505290733552,
+          "reason": "minutes",
+          "error": -5.361405617197213,
+          "servedError": -5.361405617197213
+        },
         {
           "name": "Nathan Sestina",
           "key": "nathan sestina",
@@ -8309,18 +8529,128 @@
     },
     "cale myles": {
       "name": "Myles Cale",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 4.122728470667758,
-        "bias": -4.122728470667758,
-        "minutesMae": 7.21463992063492,
-        "hits": 2,
-        "hitRate": 66.66666666666666,
+        "n": 4,
+        "mae": 4.014205113095307,
+        "bias": -4.014205113095307,
+        "minutesMae": 9.069876547619048,
+        "hits": 3,
+        "hitRate": 75.0,
         "over": 1,
         "under": 0
       },
       "games": [
+        {
+          "name": "Myles Cale",
+          "key": "cale myles",
+          "team": "ASVEL",
+          "pos": "G",
+          "opponent": "Crvena Zvezda",
+          "gameCode": 41,
+          "round": 5,
+          "start": "2026-10-13T18:00:00Z",
+          "basePir": 3.6886350403779544,
+          "baseMinutes": 14.635586428571429,
+          "servedPir": 3.6886350403779544,
+          "servedMinutes": 14.635586428571429,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+          "home": true,
+          "features": {
+            "basePir": 4.80387515449101,
+            "baseMin": 14.522716071428572,
+            "injuryBoost": 0.08450000000000002,
+            "injuryUsagePct": 0.114,
+            "missingStars": [],
+            "positionMatchPct": 0.11600000000000499,
+            "teamPoints": 83.6876,
+            "margin": -1.6448,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 34,
+              "historyWeight": 0.44523809523809527,
+              "sameTeam": false,
+              "avgPir": 3.235294117647059,
+              "avgMinutes": 15.174014705882355,
+              "currentSeasonWeight": 0.42857142857142855,
+              "minutesWeight": 0.6,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.42857142857142855,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9777169224942722,
+              "defenseSample": 4,
+              "rival": "Nick Weiler-Babb",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 14.510002060430379,
+                  "weight": 0.8033482387277152,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 13.778222739001809,
+                  "weight": 0.07389614689912491,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 15.973560703287523,
+                  "weight": 0.12275561437315989,
+                  "observedGames": 1
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 0.0,
+          "actualMinutes": 0.0,
+          "fouls": 0.0,
+          "actualStats": {
+            "points": 0.0,
+            "totalRebounds": 0.0,
+            "assistances": 0.0,
+            "turnovers": 0.0,
+            "foulsCommited": 0.0,
+            "fieldGoalsMadeTotal": 0.0,
+            "fieldGoalsAttemptedTotal": 0.0
+          },
+          "minutesContribution": -3.6886350403779544,
+          "efficiencyContribution": 0.0,
+          "reason": "did-not-play",
+          "error": -3.6886350403779544,
+          "servedError": -3.6886350403779544
+        },
         {
           "name": "Myles Cale",
           "key": "cale myles",
@@ -8488,18 +8818,128 @@
     },
     "bodian massa": {
       "name": "Bodian Massa",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 4.945256031713524,
-        "bias": -2.461857585043692,
-        "minutesMae": 4.478923015873016,
-        "hits": 1,
-        "hitRate": 33.33333333333333,
+        "n": 4,
+        "mae": 3.8588020014117497,
+        "bias": -1.9962531664093757,
+        "minutesMae": 3.921167619047619,
+        "hits": 2,
+        "hitRate": 50.0,
         "over": 2,
         "under": 0
       },
       "games": [
+        {
+          "name": "Bodian Massa",
+          "key": "bodian massa",
+          "team": "ASVEL",
+          "pos": "F",
+          "opponent": "Crvena Zvezda",
+          "gameCode": 41,
+          "round": 5,
+          "start": "2026-10-13T18:00:00Z",
+          "basePir": 4.599439910506427,
+          "baseMinutes": 16.885431904761905,
+          "servedPir": 4.599439910506427,
+          "servedMinutes": 16.885431904761905,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+          "home": true,
+          "features": {
+            "basePir": 4.6526850095549355,
+            "baseMin": 15.499204761904762,
+            "injuryBoost": 0.12575,
+            "injuryUsagePct": 0.147,
+            "missingStars": [],
+            "positionMatchPct": -1.0140000000000038,
+            "teamPoints": 83.6876,
+            "margin": -1.6448,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 34,
+              "historyWeight": 0.8095238095238095,
+              "sameTeam": true,
+              "avgPir": 4.4411764705882355,
+              "avgMinutes": 15.851958823529412,
+              "currentSeasonWeight": 0.42857142857142855,
+              "minutesWeight": 0.6,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.42857142857142855,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9863287700999566,
+              "defenseSample": 4,
+              "rival": "Semi Ojeleye",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 16.991559351200607,
+                  "weight": 0.8033482387277152,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 14.870832443623916,
+                  "weight": 0.07389614689912491,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 17.4036472293382,
+                  "weight": 0.12275561437315989,
+                  "observedGames": 1
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 4.0,
+          "actualMinutes": 19.133333333333333,
+          "fouls": 2.0,
+          "actualStats": {
+            "points": 0.0,
+            "totalRebounds": 6.0,
+            "assistances": 0.0,
+            "turnovers": 1.0,
+            "foulsCommited": 2.0,
+            "fieldGoalsMadeTotal": 0.0,
+            "fieldGoalsAttemptedTotal": 0.0
+          },
+          "minutesContribution": 0.6123081484542948,
+          "efficiencyContribution": -1.2117480589607217,
+          "reason": "efficiency",
+          "error": -0.599439910506427,
+          "servedError": -0.599439910506427
+        },
         {
           "name": "Bodian Massa",
           "key": "bodian massa",
@@ -8667,18 +9107,128 @@
     },
     "david lighty": {
       "name": "David Lighty",
-      "n": 4,
+      "n": 5,
       "metrics": {
-        "n": 4,
-        "mae": 4.102199161261133,
-        "bias": -0.4151991612611341,
-        "minutesMae": 6.159164126016259,
-        "hits": 2,
-        "hitRate": 50.0,
+        "n": 5,
+        "mae": 3.717794092244053,
+        "bias": 0.10387543422623899,
+        "minutesMae": 4.932826341463414,
+        "hits": 3,
+        "hitRate": 60.0,
         "over": 1,
         "under": 1
       },
       "games": [
+        {
+          "name": "David Lighty",
+          "key": "david lighty",
+          "team": "ASVEL",
+          "pos": "F",
+          "opponent": "Crvena Zvezda",
+          "gameCode": 41,
+          "round": 5,
+          "start": "2026-10-13T18:00:00Z",
+          "basePir": 5.819826183824269,
+          "baseMinutes": 15.560808536585366,
+          "servedPir": 5.819826183824269,
+          "servedMinutes": 15.560808536585366,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+          "home": true,
+          "features": {
+            "basePir": 4.187069949581851,
+            "baseMin": 17.677646341463415,
+            "injuryBoost": 0.12575,
+            "injuryUsagePct": 0.147,
+            "missingStars": [],
+            "positionMatchPct": -1.0140000000000038,
+            "teamPoints": 83.6876,
+            "margin": -1.6448,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 33,
+              "historyWeight": 0.8048780487804879,
+              "sameTeam": true,
+              "avgPir": 3.9393939393939394,
+              "avgMinutes": 18.56919696969697,
+              "currentSeasonWeight": 0.42857142857142855,
+              "minutesWeight": 0.6,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.42857142857142855,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9839812386509228,
+              "defenseSample": 4,
+              "rival": "Semi Ojeleye",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 15.690580810503755,
+                  "weight": 0.8033482387277152,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 13.573646982742476,
+                  "weight": 0.07389614689912491,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 15.90776826323028,
+                  "weight": 0.12275561437315989,
+                  "observedGames": 1
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 8.0,
+          "actualMinutes": 15.533333333333333,
+          "fouls": 1.0,
+          "actualStats": {
+            "points": 5.0,
+            "totalRebounds": 1.0,
+            "assistances": 0.0,
+            "turnovers": 0.0,
+            "foulsCommited": 1.0,
+            "fieldGoalsMadeTotal": 2.0,
+            "fieldGoalsAttemptedTotal": 4.0
+          },
+          "minutesContribution": -0.010275873963497986,
+          "efficiencyContribution": 2.1904496901392294,
+          "reason": "efficiency",
+          "error": 2.1801738161757314,
+          "servedError": 2.1801738161757314
+        },
         {
           "name": "David Lighty",
           "key": "david lighty",
@@ -27652,18 +28202,128 @@
     },
     "chima moneke": {
       "name": "Chima Moneke",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 6.891882497177752,
-        "bias": -1.4572158305110847,
-        "minutesMae": 8.403752351421188,
-        "hits": 1,
-        "hitRate": 33.33333333333333,
+        "n": 4,
+        "mae": 6.017052211148792,
+        "bias": -0.24477153461783585,
+        "minutesMae": 6.695746821705425,
+        "hits": 2,
+        "hitRate": 50.0,
         "over": 1,
         "under": 1
       },
       "games": [
+        {
+          "name": "Chima Moneke",
+          "key": "chima moneke",
+          "team": "Crvena Zvezda",
+          "pos": "F",
+          "opponent": "ASVEL",
+          "gameCode": 41,
+          "round": 5,
+          "start": "2026-10-13T18:00:00Z",
+          "basePir": 13.607438646938089,
+          "baseMinutes": 22.894936434108526,
+          "servedPir": 13.607438646938089,
+          "servedMinutes": 22.894936434108526,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+          "home": false,
+          "features": {
+            "basePir": 17.598497447183547,
+            "baseMin": 26.924809302325585,
+            "injuryBoost": 0.059999999999999956,
+            "injuryUsagePct": 0.10285714285714279,
+            "missingStars": [],
+            "positionMatchPct": 1.330000000000009,
+            "teamPoints": 85.3324,
+            "margin": 1.6448,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 35,
+              "historyWeight": 0.813953488372093,
+              "sameTeam": true,
+              "avgPir": 18.514285714285716,
+              "avgMinutes": 26.907622857142858,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 5,
+                  "nextGameSamples": 6,
+                  "nextGameAvgPir": 20.333333333333332,
+                  "continuedRate": 0.5
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0152708423062171,
+              "defenseSample": 4,
+              "rival": "Jae Crowder",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 23.27994978741692,
+                  "weight": 0.8033482387277152,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 21.553653227630683,
+                  "weight": 0.12275561437315986,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 20.937462854263796,
+                  "weight": 0.07389614689912495,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 17.0,
+          "actualMinutes": 24.466666666666665,
+          "fouls": 1.0,
+          "actualStats": {
+            "points": 18.0,
+            "totalRebounds": 4.0,
+            "assistances": 1.0,
+            "turnovers": 1.0,
+            "foulsCommited": 1.0,
+            "fieldGoalsMadeTotal": 6.0,
+            "fieldGoalsAttemptedTotal": 12.0
+          },
+          "minutesContribution": 0.9341464113964627,
+          "efficiencyContribution": 2.458414941665449,
+          "reason": "efficiency",
+          "error": 3.392561353061911,
+          "servedError": 3.392561353061911
+        },
         {
           "name": "Chima Moneke",
           "key": "chima moneke",
@@ -28211,18 +28871,128 @@
     },
     "jordan nwora": {
       "name": "Jordan Nwora",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 5.297067760296242,
-        "bias": 2.7470677602962428,
-        "minutesMae": 2.139935555555558,
-        "hits": 2,
-        "hitRate": 66.66666666666666,
+        "n": 4,
+        "mae": 3.9755329419494227,
+        "bias": 2.063032941949423,
+        "minutesMae": 2.999168333333335,
+        "hits": 3,
+        "hitRate": 75.0,
         "over": 0,
         "under": 1
       },
       "games": [
+        {
+          "name": "Jordan Nwora",
+          "key": "jordan nwora",
+          "team": "Crvena Zvezda",
+          "pos": "F",
+          "opponent": "ASVEL",
+          "gameCode": 41,
+          "round": 5,
+          "start": "2026-10-13T18:00:00Z",
+          "basePir": 13.989071513091035,
+          "baseMinutes": 23.826866666666668,
+          "servedPir": 13.989071513091035,
+          "servedMinutes": 23.826866666666668,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+          "home": false,
+          "features": {
+            "basePir": 15.124768100384028,
+            "baseMin": 26.34285,
+            "injuryBoost": 0.059249999999999955,
+            "injuryUsagePct": 0.10157142857142851,
+            "missingStars": [],
+            "positionMatchPct": 1.330000000000009,
+            "teamPoints": 85.3324,
+            "margin": 1.6448,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 34,
+              "historyWeight": 0.8095238095238095,
+              "sameTeam": true,
+              "avgPir": 15.911764705882353,
+              "avgMinutes": 27.12940294117647,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 3,
+                  "nextGameSamples": 2,
+                  "nextGameAvgPir": 19,
+                  "continuedRate": 0.5
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0181238098409695,
+              "defenseSample": 4,
+              "rival": "Jae Crowder",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 23.914907575123443,
+                  "weight": 0.8033482387277152,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 24.142907944292432,
+                  "weight": 0.12275561437315986,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 22.344741352386343,
+                  "weight": 0.07389614689912495,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 14.0,
+          "actualMinutes": 18.25,
+          "fouls": 4.0,
+          "actualStats": {
+            "points": 17.0,
+            "totalRebounds": 3.0,
+            "assistances": 1.0,
+            "turnovers": 1.0,
+            "foulsCommited": 4.0,
+            "fieldGoalsMadeTotal": 5.0,
+            "fieldGoalsAttemptedTotal": 11.0
+          },
+          "minutesContribution": -3.274252872204779,
+          "efficiencyContribution": 3.285181359113743,
+          "reason": "efficiency",
+          "error": 0.01092848690896453,
+          "servedError": 0.01092848690896453
+        },
         {
           "name": "Jordan Nwora",
           "key": "jordan nwora",
@@ -28396,18 +29166,128 @@
     },
     "chris jones": {
       "name": "Chris Jones",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 14.7472706835501,
-        "bias": -10.530729316449898,
-        "minutesMae": 6.583242613333334,
-        "hits": 0,
-        "hitRate": 0.0,
+        "n": 4,
+        "mae": 12.286412354281635,
+        "bias": -6.6720876457183635,
+        "minutesMae": 5.787375260000001,
+        "hits": 1,
+        "hitRate": 25.0,
         "over": 2,
         "under": 1
       },
       "games": [
+        {
+          "name": "Chris Jones",
+          "key": "chris jones",
+          "team": "Crvena Zvezda",
+          "pos": "G",
+          "opponent": "ASVEL",
+          "gameCode": 41,
+          "round": 5,
+          "start": "2026-10-13T18:00:00Z",
+          "basePir": 12.096162633523763,
+          "baseMinutes": 18.666893466666664,
+          "servedPir": 12.096162633523763,
+          "servedMinutes": 18.666893466666664,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+          "home": false,
+          "features": {
+            "basePir": 11.518446374808994,
+            "baseMin": 21.8231804,
+            "injuryBoost": 0.05249999999999996,
+            "injuryUsagePct": 0.08999999999999994,
+            "missingStars": [],
+            "positionMatchPct": 8.426,
+            "teamPoints": 85.3324,
+            "margin": 1.6448,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 42,
+              "historyWeight": 0.462,
+              "sameTeam": false,
+              "avgPir": 11.80952380952381,
+              "avgMinutes": 20.452771428571427,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 4,
+                  "nextGameSamples": 3,
+                  "nextGameAvgPir": 19.333333333333332,
+                  "continuedRate": 0.6666666666666666
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 2,
+                  "nextGameSamples": 1,
+                  "nextGameAvgPir": 21,
+                  "continuedRate": 0
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0149123985970967,
+              "defenseSample": 4,
+              "rival": "Hugo Besson",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 18.484534813500222,
+                  "weight": 0.8033482387277152,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 20.253591094142063,
+                  "weight": 0.12275561437315986,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 18.013563878142065,
+                  "weight": 0.07389614689912495,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 17.0,
+          "actualMinutes": 22.066666666666666,
+          "fouls": 0.0,
+          "actualStats": {
+            "points": 8.0,
+            "totalRebounds": 3.0,
+            "assistances": 9.0,
+            "turnovers": 2.0,
+            "foulsCommited": 0.0,
+            "fieldGoalsMadeTotal": 4.0,
+            "fieldGoalsAttemptedTotal": 7.0
+          },
+          "minutesContribution": 2.2030558870296626,
+          "efficiencyContribution": 2.700781479446574,
+          "reason": "efficiency",
+          "error": 4.903837366476237,
+          "servedError": 4.903837366476237
+        },
         {
           "name": "Chris Jones",
           "key": "chris jones",
@@ -28768,18 +29648,128 @@
     },
     "butler jared": {
       "name": "Jared Butler",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 8.817011535626841,
-        "bias": -5.743011535626842,
-        "minutesMae": 4.992388555555555,
+        "n": 4,
+        "mae": 10.199496679250451,
+        "bias": -7.893996679250451,
+        "minutesMae": 4.867395791666667,
         "hits": 2,
-        "hitRate": 66.66666666666666,
-        "over": 1,
+        "hitRate": 50.0,
+        "over": 2,
         "under": 0
       },
       "games": [
+        {
+          "name": "Jared Butler",
+          "key": "butler jared",
+          "team": "Crvena Zvezda",
+          "pos": "G",
+          "opponent": "ASVEL",
+          "gameCode": 41,
+          "round": 5,
+          "start": "2026-10-13T18:00:00Z",
+          "basePir": 9.34695211012128,
+          "baseMinutes": 17.709084166666667,
+          "servedPir": 9.34695211012128,
+          "servedMinutes": 17.709084166666667,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+          "home": false,
+          "features": {
+            "basePir": 10.424250452164731,
+            "baseMin": 19.8037525,
+            "injuryBoost": 0.034499999999999975,
+            "injuryUsagePct": 0.0591428571428571,
+            "missingStars": [],
+            "positionMatchPct": 8.426,
+            "teamPoints": 85.3324,
+            "margin": 1.6448,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 32,
+              "historyWeight": 0.8,
+              "sameTeam": true,
+              "avgPir": 10.8125,
+              "avgMinutes": 20.004690625,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0271691596789532,
+              "defenseSample": 4,
+              "rival": "Hugo Besson",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 17.58762698085936,
+                  "weight": 0.8033482387277152,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 18.967332089781063,
+                  "weight": 0.12275561437315986,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 16.939293278730567,
+                  "weight": 0.07389614689912495,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": -5.0,
+          "actualMinutes": 13.216666666666667,
+          "fouls": 1.0,
+          "actualStats": {
+            "points": 0.0,
+            "totalRebounds": 0.0,
+            "assistances": 3.0,
+            "turnovers": 1.0,
+            "foulsCommited": 1.0,
+            "fieldGoalsMadeTotal": 0.0,
+            "fieldGoalsAttemptedTotal": 6.0
+          },
+          "minutesContribution": -2.3711226868641906,
+          "efficiencyContribution": -11.975829423257089,
+          "reason": "efficiency",
+          "error": -14.34695211012128,
+          "servedError": -14.34695211012128
+        },
         {
           "name": "Jared Butler",
           "key": "butler jared",
@@ -29490,18 +30480,128 @@
     },
     "ojeleye semi": {
       "name": "Semi Ojeleye",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 4.042121643957868,
-        "bias": 4.006121643957868,
-        "minutesMae": 4.869867825059102,
+        "n": 4,
+        "mae": 4.907377801720525,
+        "bias": 4.880377801720525,
+        "minutesMae": 4.57961195035461,
         "hits": 2,
-        "hitRate": 66.66666666666666,
+        "hitRate": 50.0,
         "over": 0,
-        "under": 1
+        "under": 2
       },
       "games": [
+        {
+          "name": "Semi Ojeleye",
+          "key": "ojeleye semi",
+          "team": "Crvena Zvezda",
+          "pos": "F",
+          "opponent": "ASVEL",
+          "gameCode": 41,
+          "round": 5,
+          "start": "2026-10-13T18:00:00Z",
+          "basePir": 10.496853724991505,
+          "baseMinutes": 23.624489007092198,
+          "servedPir": 10.496853724991505,
+          "servedMinutes": 23.624489007092198,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+          "home": false,
+          "features": {
+            "basePir": 7.860043817946722,
+            "baseMin": 22.259217021276594,
+            "injuryBoost": 0.02474999999999999,
+            "injuryUsagePct": 0.04242857142857141,
+            "missingStars": [],
+            "positionMatchPct": 1.330000000000009,
+            "teamPoints": 85.3324,
+            "margin": 1.6448,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 39,
+              "historyWeight": 0.8297872340425532,
+              "sameTeam": true,
+              "avgPir": 7.846153846153846,
+              "avgMinutes": 22.927774358974357,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.013480789169713,
+              "defenseSample": 4,
+              "rival": "Jae Crowder",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 23.85631414103611,
+                  "weight": 0.8033482387277152,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 23.14644367808262,
+                  "weight": 0.12275561437315986,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 21.898369712131018,
+                  "weight": 0.07389614689912495,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 18.0,
+          "actualMinutes": 27.333333333333332,
+          "fouls": 3.0,
+          "actualStats": {
+            "points": 15.0,
+            "totalRebounds": 6.0,
+            "assistances": 0.0,
+            "turnovers": 1.0,
+            "foulsCommited": 3.0,
+            "fieldGoalsMadeTotal": 4.0,
+            "fieldGoalsAttemptedTotal": 6.0
+          },
+          "minutesContribution": 1.6479169716488051,
+          "efficiencyContribution": 5.855229303359691,
+          "reason": "efficiency",
+          "error": 7.503146275008495,
+          "servedError": 7.503146275008495
+        },
         {
           "name": "Semi Ojeleye",
           "key": "ojeleye semi",
@@ -29675,18 +30775,128 @@
     },
     "carter tyson": {
       "name": "Tyson Carter",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 5.516421591480867,
-        "bias": 3.4202450751857993,
-        "minutesMae": 0.639801403508771,
-        "hits": 2,
-        "hitRate": 66.66666666666666,
+        "n": 4,
+        "mae": 4.442051871524966,
+        "bias": 2.2604481284750335,
+        "minutesMae": 1.0641216666666664,
+        "hits": 3,
+        "hitRate": 75.0,
         "over": 0,
         "under": 1
       },
       "games": [
+        {
+          "name": "Tyson Carter",
+          "key": "carter tyson",
+          "team": "Crvena Zvezda",
+          "pos": "G",
+          "opponent": "ASVEL",
+          "gameCode": 41,
+          "round": 5,
+          "start": "2026-10-13T18:00:00Z",
+          "basePir": 6.218942711657265,
+          "baseMinutes": 16.820415789473685,
+          "servedPir": 6.218942711657265,
+          "servedMinutes": 16.820415789473685,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+          "home": false,
+          "features": {
+            "basePir": 3.9138153712703967,
+            "baseMin": 14.398247368421053,
+            "injuryBoost": 0.020999999999999984,
+            "injuryUsagePct": 0.03599999999999997,
+            "missingStars": [],
+            "positionMatchPct": 8.426,
+            "teamPoints": 85.3324,
+            "margin": 1.6448,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 11,
+              "historyWeight": 0.5789473684210527,
+              "sameTeam": true,
+              "avgPir": 2,
+              "avgMinutes": 14.687881818181818,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0175104542329432,
+              "defenseSample": 4,
+              "rival": "Hugo Besson",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 16.95458722230207,
+                  "weight": 0.8033482387277152,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 16.649171395221348,
+                  "weight": 0.12275561437315986,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 15.646265619718603,
+                  "weight": 0.07389614689912495,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 5.0,
+          "actualMinutes": 14.483333333333333,
+          "fouls": 1.0,
+          "actualStats": {
+            "points": 2.0,
+            "totalRebounds": 1.0,
+            "assistances": 4.0,
+            "turnovers": 1.0,
+            "foulsCommited": 1.0,
+            "fieldGoalsMadeTotal": 1.0,
+            "fieldGoalsAttemptedTotal": 4.0
+          },
+          "minutesContribution": -0.86407982353514,
+          "efficiencyContribution": -0.3548628881221241,
+          "reason": "minutes",
+          "error": -1.2189427116572649,
+          "servedError": -1.2189427116572649
+        },
         {
           "name": "Tyson Carter",
           "key": "carter tyson",
@@ -29860,18 +31070,128 @@
     },
     "david kramer": {
       "name": "David Kramer",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 7.2966180411347255,
-        "bias": -7.069951374468059,
-        "minutesMae": 6.812611222222222,
+        "n": 4,
+        "mae": 6.888397078493382,
+        "bias": -6.718397078493382,
+        "minutesMae": 6.594534875000001,
         "hits": 1,
-        "hitRate": 33.33333333333333,
-        "over": 2,
+        "hitRate": 25.0,
+        "over": 3,
         "under": 0
       },
       "games": [
+        {
+          "name": "David Kramer",
+          "key": "david kramer",
+          "team": "Crvena Zvezda",
+          "pos": "G",
+          "opponent": "ASVEL",
+          "gameCode": 41,
+          "round": 5,
+          "start": "2026-10-13T18:00:00Z",
+          "basePir": 3.663734190569348,
+          "baseMinutes": 14.423639166666668,
+          "servedPir": 3.663734190569348,
+          "servedMinutes": 14.423639166666668,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+          "home": false,
+          "features": {
+            "basePir": 3.731330473154751,
+            "baseMin": 13.067917499999998,
+            "injuryBoost": 0.020999999999999984,
+            "injuryUsagePct": 0.03599999999999997,
+            "missingStars": [],
+            "positionMatchPct": 8.426,
+            "teamPoints": 85.3324,
+            "margin": 1.6448,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 14,
+              "historyWeight": 0.35000000000000003,
+              "sameTeam": false,
+              "avgPir": 0.8571428571428571,
+              "avgMinutes": 11.336907142857143,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0132067961567146,
+              "defenseSample": 4,
+              "rival": "Hugo Besson",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 14.653748509342847,
+                  "weight": 0.8033482387277152,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 13.646791389521429,
+                  "weight": 0.12275561437315986,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 13.212540716324146,
+                  "weight": 0.07389614689912495,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": -2.0,
+          "actualMinutes": 8.483333333333333,
+          "fouls": 4.0,
+          "actualStats": {
+            "points": 2.0,
+            "totalRebounds": 1.0,
+            "assistances": 0.0,
+            "turnovers": 1.0,
+            "foulsCommited": 4.0,
+            "fieldGoalsMadeTotal": 1.0,
+            "fieldGoalsAttemptedTotal": 1.0
+          },
+          "minutesContribution": -1.5088911565618097,
+          "efficiencyContribution": -4.154843034007539,
+          "reason": "efficiency",
+          "error": -5.663734190569349,
+          "servedError": -5.663734190569349
+        },
         {
           "name": "David Kramer",
           "key": "david kramer",
@@ -34903,18 +36223,106 @@
     },
     "mills patty": {
       "name": "Patty Mills",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 7.502474140512972,
-        "bias": 1.0016819392452632,
-        "minutesMae": 4.210271825396823,
+        "n": 4,
+        "mae": 7.1186347534497205,
+        "bias": -0.7405176936310442,
+        "minutesMae": 3.260680059523808,
         "hits": 1,
-        "hitRate": 33.33333333333333,
-        "over": 1,
+        "hitRate": 25.0,
+        "over": 2,
         "under": 1
       },
       "games": [
+        {
+          "name": "Patty Mills",
+          "key": "mills patty",
+          "team": "ASVEL",
+          "pos": "G",
+          "opponent": "Crvena Zvezda",
+          "gameCode": 41,
+          "round": 5,
+          "start": "2026-10-13T18:00:00Z",
+          "basePir": 13.967116592259966,
+          "baseMinutes": 21.821428571428573,
+          "servedPir": 13.967116592259966,
+          "servedMinutes": 21.821428571428573,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+          "home": true,
+          "features": {
+            "basePir": 12.089999999999998,
+            "baseMin": 23,
+            "injuryBoost": 0.2414285714285715,
+            "injuryUsagePct": 0.32571428571428573,
+            "missingStars": [],
+            "positionMatchPct": 0.11600000000000499,
+            "teamPoints": 83.6876,
+            "margin": -1.6448,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.97,
+              "defenseSample": 4,
+              "rival": "Nick Weiler-Babb",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 22.255184346027047,
+                  "weight": 0.8033482387277152,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 19.368401565822314,
+                  "weight": 0.07389614689912491,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 20.459472994393742,
+                  "weight": 0.12275561437315989,
+                  "observedGames": 1
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 8.0,
+          "actualMinutes": 22.233333333333334,
+          "fouls": 3.0,
+          "actualStats": {
+            "points": 11.0,
+            "totalRebounds": 0.0,
+            "assistances": 3.0,
+            "turnovers": 1.0,
+            "foulsCommited": 3.0,
+            "fieldGoalsMadeTotal": 4.0,
+            "fieldGoalsAttemptedTotal": 9.0
+          },
+          "minutesContribution": 0.2636455177807933,
+          "efficiencyContribution": -6.230762110040759,
+          "reason": "efficiency",
+          "error": -5.967116592259966,
+          "servedError": -5.967116592259966
+        },
         {
           "name": "Patty Mills",
           "key": "mills patty",
@@ -35242,18 +36650,106 @@
     },
     "crowder jae": {
       "name": "Jae Crowder",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 8.565701180158673,
-        "bias": -6.958258438485331,
-        "minutesMae": 11.11862896825397,
+        "n": 4,
+        "mae": 7.708470976992459,
+        "bias": -6.502888920737452,
+        "minutesMae": 8.798732886904762,
         "hits": 2,
-        "hitRate": 66.66666666666666,
-        "over": 1,
+        "hitRate": 50.0,
+        "over": 2,
         "under": 0
       },
       "games": [
+        {
+          "name": "Jae Crowder",
+          "key": "crowder jae",
+          "team": "ASVEL",
+          "pos": "F",
+          "opponent": "Crvena Zvezda",
+          "gameCode": 41,
+          "round": 5,
+          "start": "2026-10-13T18:00:00Z",
+          "basePir": 11.136780367493815,
+          "baseMinutes": 24.289044642857142,
+          "servedPir": 11.136780367493815,
+          "servedMinutes": 24.289044642857142,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+          "home": true,
+          "features": {
+            "basePir": 9.393,
+            "baseMin": 23,
+            "injuryBoost": 0.22904464285714285,
+            "injuryUsagePct": 0.26775,
+            "missingStars": [],
+            "positionMatchPct": -1.0140000000000038,
+            "teamPoints": 83.6876,
+            "margin": -1.6448,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.97,
+              "defenseSample": 4,
+              "rival": "Semi Ojeleye",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 24.764467019331754,
+                  "weight": 0.8033482387277152,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 21.588786301712986,
+                  "weight": 0.07389614689912491,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 22.803238533855843,
+                  "weight": 0.12275561437315989,
+                  "observedGames": 1
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 6.0,
+          "actualMinutes": 22.45,
+          "fouls": 5.0,
+          "actualStats": {
+            "points": 9.0,
+            "totalRebounds": 4.0,
+            "assistances": 4.0,
+            "turnovers": 2.0,
+            "foulsCommited": 5.0,
+            "fieldGoalsMadeTotal": 3.0,
+            "fieldGoalsAttemptedTotal": 10.0
+          },
+          "minutesContribution": -0.8432211548320042,
+          "efficiencyContribution": -4.29355921266181,
+          "reason": "efficiency",
+          "error": -5.136780367493815,
+          "servedError": -5.136780367493815
+        },
         {
           "name": "Jae Crowder",
           "key": "crowder jae",
@@ -35581,18 +37077,106 @@
     },
     "besson hugo": {
       "name": "Hugo Besson",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 8.694765444355035,
-        "bias": 8.694765444355035,
-        "minutesMae": 4.2413531746031765,
-        "hits": 1,
-        "hitRate": 33.33333333333333,
+        "n": 4,
+        "mae": 7.698966456120586,
+        "bias": 5.343181710411966,
+        "minutesMae": 3.888141369047621,
+        "hits": 2,
+        "hitRate": 50.0,
         "over": 0,
         "under": 2
       },
       "games": [
+        {
+          "name": "Hugo Besson",
+          "key": "besson hugo",
+          "team": "ASVEL",
+          "pos": "G",
+          "opponent": "Crvena Zvezda",
+          "gameCode": 41,
+          "round": 5,
+          "start": "2026-10-13T18:00:00Z",
+          "basePir": 11.71156949141724,
+          "baseMinutes": 20.59517261904762,
+          "servedPir": 11.71156949141724,
+          "servedMinutes": 20.59517261904762,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+          "home": true,
+          "features": {
+            "basePir": 9.020999999999999,
+            "baseMin": 19,
+            "injuryBoost": 0.14183928571428572,
+            "injuryUsagePct": 0.19135714285714284,
+            "missingStars": [],
+            "positionMatchPct": 0.11600000000000499,
+            "teamPoints": 83.6876,
+            "margin": -1.6448,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.97,
+              "defenseSample": 4,
+              "rival": "Nick Weiler-Babb",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 20.872924573189767,
+                  "weight": 0.8033482387277152,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 18.49858844243141,
+                  "weight": 0.07389614689912491,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 20.039580508577302,
+                  "weight": 0.12275561437315989,
+                  "observedGames": 1
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 7.0,
+          "actualMinutes": 17.766666666666666,
+          "fouls": 2.0,
+          "actualStats": {
+            "points": 5.0,
+            "totalRebounds": 2.0,
+            "assistances": 3.0,
+            "turnovers": 2.0,
+            "foulsCommited": 2.0,
+            "fieldGoalsMadeTotal": 1.0,
+            "fieldGoalsAttemptedTotal": 2.0
+          },
+          "minutesContribution": -1.6084470196457477,
+          "efficiencyContribution": -3.103122471771492,
+          "reason": "efficiency",
+          "error": -4.71156949141724,
+          "servedError": -4.71156949141724
+        },
         {
           "name": "Hugo Besson",
           "key": "besson hugo",
@@ -35738,18 +37322,106 @@
     },
     "both gach": {
       "name": "Both Gach",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 10.265785869263881,
-        "bias": 3.704481281370775,
-        "minutesMae": 5.284507936507937,
+        "n": 4,
+        "mae": 10.434952429791583,
+        "bias": 5.5139739888717525,
+        "minutesMae": 5.642417410714286,
         "hits": 1,
-        "hitRate": 33.33333333333333,
+        "hitRate": 25.0,
         "over": 1,
-        "under": 1
+        "under": 2
       },
       "games": [
+        {
+          "name": "Both Gach",
+          "key": "both gach",
+          "team": "ASVEL",
+          "pos": "F",
+          "opponent": "Crvena Zvezda",
+          "gameCode": 41,
+          "round": 5,
+          "start": "2026-10-13T18:00:00Z",
+          "basePir": 7.057547888625315,
+          "baseMinutes": 19.0171875,
+          "servedPir": 7.057547888625315,
+          "servedMinutes": 19.0171875,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+          "home": true,
+          "features": {
+            "basePir": 7.905,
+            "baseMin": 19,
+            "injuryBoost": 0.1571875,
+            "injuryUsagePct": 0.18375,
+            "missingStars": [],
+            "positionMatchPct": -1.0140000000000038,
+            "teamPoints": 83.6876,
+            "margin": -1.6448,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9767988503107917,
+              "defenseSample": 4,
+              "rival": "Semi Ojeleye",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 19.440083491014875,
+                  "weight": 0.8033482387277152,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 16.696048480678403,
+                  "weight": 0.07389614689912491,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 17.646907855678403,
+                  "weight": 0.12275561437315989,
+                  "observedGames": 1
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 18.0,
+          "actualMinutes": 25.733333333333334,
+          "fouls": 1.0,
+          "actualStats": {
+            "points": 19.0,
+            "totalRebounds": 3.0,
+            "assistances": 0.0,
+            "turnovers": 3.0,
+            "foulsCommited": 1.0,
+            "fieldGoalsMadeTotal": 7.0,
+            "fieldGoalsAttemptedTotal": 10.0
+          },
+          "minutesContribution": 2.492456933799564,
+          "efficiencyContribution": 8.44999517757512,
+          "reason": "efficiency",
+          "error": 10.942452111374685,
+          "servedError": 10.942452111374685
+        },
         {
           "name": "Both Gach",
           "key": "both gach",
@@ -36077,18 +37749,106 @@
     },
     "pons yves": {
       "name": "Yves Pons",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 9.228856546980566,
-        "bias": -9.228856546980566,
-        "minutesMae": 7.223722222222223,
+        "n": 4,
+        "mae": 8.172318350407325,
+        "bias": -5.670966470063525,
+        "minutesMae": 6.2851875,
         "hits": 1,
-        "hitRate": 33.33333333333333,
+        "hitRate": 25.0,
         "over": 2,
-        "under": 0
+        "under": 1
       },
       "games": [
+        {
+          "name": "Yves Pons",
+          "key": "pons yves",
+          "team": "ASVEL",
+          "pos": "F",
+          "opponent": "Crvena Zvezda",
+          "gameCode": 41,
+          "round": 5,
+          "start": "2026-10-13T18:00:00Z",
+          "basePir": 3.997296239312399,
+          "baseMinutes": 11.263750000000002,
+          "servedPir": 3.997296239312399,
+          "servedMinutes": 11.263750000000002,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+          "home": true,
+          "features": {
+            "basePir": 6.138,
+            "baseMin": 14,
+            "injuryBoost": 0.12575,
+            "injuryUsagePct": 0.147,
+            "missingStars": [],
+            "positionMatchPct": -1.0140000000000038,
+            "teamPoints": 83.6876,
+            "margin": -1.6448,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.42857142857142855,
+              "minutesWeight": 0.6,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.42857142857142855,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.992164006020516,
+              "defenseSample": 4,
+              "rival": "Semi Ojeleye",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 11.357578544495954,
+                  "weight": 0.8033482387277152,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 10.163503808367535,
+                  "weight": 0.07389614689912491,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 11.312032583807932,
+                  "weight": 0.12275561437315989,
+                  "observedGames": 1
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 9.0,
+          "actualMinutes": 14.733333333333333,
+          "fouls": 2.0,
+          "actualStats": {
+            "points": 6.0,
+            "totalRebounds": 3.0,
+            "assistances": 1.0,
+            "turnovers": 0.0,
+            "foulsCommited": 2.0,
+            "fieldGoalsMadeTotal": 2.0,
+            "fieldGoalsAttemptedTotal": 5.0
+          },
+          "minutesContribution": 1.2312908587561247,
+          "efficiencyContribution": 3.771412901931476,
+          "reason": "efficiency",
+          "error": 5.0027037606876,
+          "servedError": 5.0027037606876
+        },
         {
           "name": "Yves Pons",
           "key": "pons yves",
@@ -37703,18 +39463,128 @@
     },
     "babb nick weiler": {
       "name": "Nick Weiler-Babb",
-      "n": 2,
+      "n": 3,
       "metrics": {
-        "n": 2,
-        "mae": 2.8024392922821066,
-        "bias": -2.8024392922821066,
-        "minutesMae": 3.441566422222225,
-        "hits": 1,
-        "hitRate": 50.0,
+        "n": 3,
+        "mae": 2.9575810676761782,
+        "bias": -2.9575810676761782,
+        "minutesMae": 2.545609232098767,
+        "hits": 2,
+        "hitRate": 66.66666666666666,
         "over": 1,
         "under": 0
       },
       "games": [
+        {
+          "name": "Nick Weiler-Babb",
+          "key": "babb nick weiler",
+          "team": "Crvena Zvezda",
+          "pos": "G",
+          "opponent": "ASVEL",
+          "gameCode": 41,
+          "round": 5,
+          "start": "2026-10-13T18:00:00Z",
+          "basePir": 6.267864618464322,
+          "baseMinutes": 21.479638481481484,
+          "servedPir": 6.267864618464322,
+          "servedMinutes": 21.479638481481484,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+          "home": false,
+          "features": {
+            "basePir": 9.628727729294841,
+            "baseMin": 23.431165444444446,
+            "injuryBoost": 0.02924999999999998,
+            "injuryUsagePct": 0.05014285714285711,
+            "missingStars": [],
+            "positionMatchPct": 8.426,
+            "teamPoints": 85.3324,
+            "margin": 1.6448,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 37,
+              "historyWeight": 0.45222222222222225,
+              "sameTeam": false,
+              "avgPir": 10.972972972972974,
+              "avgMinutes": 28.798645945945946,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 2,
+                  "nextGameSamples": 2,
+                  "nextGameAvgPir": 15,
+                  "continuedRate": 0
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 2,
+                  "nextGameSamples": 1,
+                  "nextGameAvgPir": 14,
+                  "continuedRate": 0
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0113998394976373,
+              "defenseSample": 4,
+              "rival": "Hugo Besson",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 21.661469258155883,
+                  "weight": 0.8033482387277152,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 21.203497939483828,
+                  "weight": 0.12275561437315986,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 19.96162114216416,
+                  "weight": 0.07389614689912495,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 3.0,
+          "actualMinutes": 22.233333333333334,
+          "fouls": 2.0,
+          "actualStats": {
+            "points": 0.0,
+            "totalRebounds": 4.0,
+            "assistances": 3.0,
+            "turnovers": 0.0,
+            "foulsCommited": 2.0,
+            "fieldGoalsMadeTotal": 0.0,
+            "fieldGoalsAttemptedTotal": 2.0
+          },
+          "minutesContribution": 0.21993188102833927,
+          "efficiencyContribution": -3.487796499492662,
+          "reason": "efficiency",
+          "error": -3.267864618464322,
+          "servedError": -3.267864618464322
+        },
         {
           "name": "Nick Weiler-Babb",
           "key": "babb nick weiler",
@@ -37845,18 +39715,128 @@
     },
     "dobric ognjen": {
       "name": "Ognjen Dobric",
-      "n": 2,
+      "n": 3,
       "metrics": {
-        "n": 2,
-        "mae": 8.765512298694258,
-        "bias": 4.019487701305742,
-        "minutesMae": 9.08003484848485,
+        "n": 3,
+        "mae": 8.53370846626648,
+        "bias": 5.36969206800747,
+        "minutesMae": 6.7542490909090915,
         "hits": 1,
-        "hitRate": 50.0,
+        "hitRate": 33.33333333333333,
         "over": 0,
-        "under": 1
+        "under": 2
       },
       "games": [
+        {
+          "name": "Ognjen Dobric",
+          "key": "dobric ognjen",
+          "team": "Crvena Zvezda",
+          "pos": "F",
+          "opponent": "ASVEL",
+          "gameCode": 41,
+          "round": 5,
+          "start": "2026-10-13T18:00:00Z",
+          "basePir": 4.929899198589076,
+          "baseMinutes": 12.630655757575758,
+          "servedPir": 4.929899198589076,
+          "servedMinutes": 12.630655757575758,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+          "home": false,
+          "features": {
+            "basePir": 4.466288220561959,
+            "baseMin": 12.864139393939393,
+            "injuryBoost": 0.020999999999999984,
+            "injuryUsagePct": 0.03599999999999997,
+            "missingStars": [],
+            "positionMatchPct": 1.330000000000009,
+            "teamPoints": 85.3324,
+            "margin": 1.6448,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 25,
+              "historyWeight": 0.7575757575757576,
+              "sameTeam": true,
+              "avgPir": 4.48,
+              "avgMinutes": 12.500663999999999,
+              "currentSeasonWeight": 0.42857142857142855,
+              "minutesWeight": 0.6,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.42857142857142855,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0116298388182166,
+              "defenseSample": 4,
+              "rival": "Jae Crowder",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 12.927094979728619,
+                  "weight": 0.8033482387277152,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 11.51458748683933,
+                  "weight": 0.12275561437315986,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 11.261974371687815,
+                  "weight": 0.07389614689912495,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 13.0,
+          "actualMinutes": 14.733333333333333,
+          "fouls": 1.0,
+          "actualStats": {
+            "points": 9.0,
+            "totalRebounds": 5.0,
+            "assistances": 2.0,
+            "turnovers": 1.0,
+            "foulsCommited": 1.0,
+            "fieldGoalsMadeTotal": 3.0,
+            "fieldGoalsAttemptedTotal": 4.0
+          },
+          "minutesContribution": 0.8207007375211741,
+          "efficiencyContribution": 7.24940006388975,
+          "reason": "efficiency",
+          "error": 8.070100801410923,
+          "servedError": 8.070100801410923
+        },
         {
           "name": "Ognjen Dobric",
           "key": "dobric ognjen",
@@ -41058,18 +43038,106 @@
     },
     "tremont waters": {
       "name": "Tremont Waters",
-      "n": 2,
+      "n": 3,
       "metrics": {
-        "n": 2,
-        "mae": 9.64445741886558,
-        "bias": 8.489363904689379,
-        "minutesMae": 5.513110119047621,
-        "hits": 1,
-        "hitRate": 50.0,
+        "n": 3,
+        "mae": 7.756656938595962,
+        "bias": 6.986594595811828,
+        "minutesMae": 5.271775793650794,
+        "hits": 2,
+        "hitRate": 66.66666666666666,
         "over": 0,
         "under": 1
       },
       "games": [
+        {
+          "name": "Tremont Waters",
+          "key": "tremont waters",
+          "team": "ASVEL",
+          "pos": "G",
+          "opponent": "Crvena Zvezda",
+          "gameCode": 41,
+          "round": 5,
+          "start": "2026-10-13T18:00:00Z",
+          "basePir": 9.018944021943273,
+          "baseMinutes": 20.91089285714286,
+          "servedPir": 9.018944021943273,
+          "servedMinutes": 20.91089285714286,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+          "home": true,
+          "features": {
+            "basePir": 9.3,
+            "baseMin": 23,
+            "injuryBoost": 0.15089285714285716,
+            "injuryUsagePct": 0.20357142857142857,
+            "missingStars": [],
+            "positionMatchPct": 0.11600000000000499,
+            "teamPoints": 83.6876,
+            "margin": -1.6448,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.97,
+              "defenseSample": 4,
+              "rival": "Nick Weiler-Babb",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 21.170692019767692,
+                  "weight": 0.8033482387277152,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 19.078335061484697,
+                  "weight": 0.07389614689912491,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 20.31385100270099,
+                  "weight": 0.12275561437315989,
+                  "observedGames": 1
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 13.0,
+          "actualMinutes": 25.7,
+          "fouls": 2.0,
+          "actualStats": {
+            "points": 15.0,
+            "totalRebounds": 1.0,
+            "assistances": 3.0,
+            "turnovers": 0.0,
+            "foulsCommited": 2.0,
+            "fieldGoalsMadeTotal": 6.0,
+            "fieldGoalsAttemptedTotal": 15.0
+          },
+          "minutesContribution": 2.0655593011545292,
+          "efficiencyContribution": 1.9154966769021975,
+          "reason": "minutes",
+          "error": 3.9810559780567267,
+          "servedError": 3.9810559780567267
+        },
         {
           "name": "Tremont Waters",
           "key": "tremont waters",
@@ -42388,18 +44456,128 @@
     },
     "davidovac dejan": {
       "name": "Dejan Davidovac",
-      "n": 1,
+      "n": 2,
       "metrics": {
-        "n": 1,
-        "mae": 2.3538853642464725,
-        "bias": 2.3538853642464725,
-        "minutesMae": 0.6979298850574711,
-        "hits": 1,
+        "n": 2,
+        "mae": 3.1100534360828256,
+        "bias": 3.1100534360828256,
+        "minutesMae": 2.1885994252873564,
+        "hits": 2,
         "hitRate": 100.0,
         "over": 0,
         "under": 0
       },
       "games": [
+        {
+          "name": "Dejan Davidovac",
+          "key": "davidovac dejan",
+          "team": "Crvena Zvezda",
+          "pos": "F",
+          "opponent": "ASVEL",
+          "gameCode": 41,
+          "round": 5,
+          "start": "2026-10-13T18:00:00Z",
+          "basePir": 4.133778492080822,
+          "baseMinutes": 14.44593563218391,
+          "servedPir": 4.133778492080822,
+          "servedMinutes": 14.44593563218391,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+          "home": false,
+          "features": {
+            "basePir": 3.596416195324116,
+            "baseMin": 14.172403448275862,
+            "injuryBoost": 0.020999999999999984,
+            "injuryUsagePct": 0.03599999999999997,
+            "missingStars": [],
+            "positionMatchPct": 1.330000000000009,
+            "teamPoints": 85.3324,
+            "margin": 1.6448,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 21,
+              "historyWeight": 0.7241379310344828,
+              "sameTeam": true,
+              "avgPir": 3.4761904761904763,
+              "avgMinutes": 14.238080952380953,
+              "currentSeasonWeight": 0.2,
+              "minutesWeight": 0.3333333333333333,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.2,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1,
+              "defenseSample": 4,
+              "rival": "Jae Crowder",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 14.620089214879215,
+                  "weight": 0.8033482387277152,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 14.11448146775278,
+                  "weight": 0.12275561437315986,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 13.103265973499907,
+                  "weight": 0.07389614689912495,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 8.0,
+          "actualMinutes": 10.766666666666667,
+          "fouls": 0.0,
+          "actualStats": {
+            "points": 2.0,
+            "totalRebounds": 3.0,
+            "assistances": 2.0,
+            "turnovers": 1.0,
+            "foulsCommited": 0.0,
+            "fieldGoalsMadeTotal": 1.0,
+            "fieldGoalsAttemptedTotal": 2.0
+          },
+          "minutesContribution": -1.052841664499118,
+          "efficiencyContribution": 4.919063172418296,
+          "reason": "efficiency",
+          "error": 3.866221507919178,
+          "servedError": 3.866221507919178
+        },
         {
           "name": "Dejan Davidovac",
           "key": "davidovac dejan",
@@ -44348,6 +46526,110 @@
           "servedError": 5.490424607576429
         }
       ]
+    },
+    "djurisic nikola": {
+      "name": "Nikola Djurisic",
+      "n": 1,
+      "metrics": {
+        "n": 1,
+        "mae": 5.240759317581755,
+        "bias": -5.240759317581755,
+        "minutesMae": 2.721,
+        "hits": 0,
+        "hitRate": 0.0,
+        "over": 1,
+        "under": 0
+      },
+      "games": [
+        {
+          "name": "Nikola Djurisic",
+          "key": "djurisic nikola",
+          "team": "Crvena Zvezda",
+          "pos": "G",
+          "opponent": "ASVEL",
+          "gameCode": 41,
+          "round": 5,
+          "start": "2026-10-13T18:00:00Z",
+          "basePir": 4.240759317581755,
+          "baseMinutes": 14.021,
+          "servedPir": 4.240759317581755,
+          "servedMinutes": 14.021,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+          "home": false,
+          "features": {
+            "basePir": 4.0920000000000005,
+            "baseMin": 14,
+            "injuryBoost": 0.020999999999999984,
+            "injuryUsagePct": 0.03599999999999997,
+            "missingStars": [],
+            "positionMatchPct": 8.426,
+            "teamPoints": 85.3324,
+            "margin": 1.6448,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0,
+              "minutesWeight": 0,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1,
+              "defenseSample": 4,
+              "rival": "Hugo Besson",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 14.362146400277647,
+                  "weight": 0.8033482387277152,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 12.469311400277649,
+                  "weight": 0.12275561437315986,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 12.889941400277648,
+                  "weight": 0.07389614689912495,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": -1.0,
+          "actualMinutes": 11.3,
+          "fouls": 4.0,
+          "actualStats": {
+            "points": 2.0,
+            "totalRebounds": 0.0,
+            "assistances": 0.0,
+            "turnovers": 0.0,
+            "foulsCommited": 4.0,
+            "fieldGoalsMadeTotal": 1.0,
+            "fieldGoalsAttemptedTotal": 1.0
+          },
+          "minutesContribution": -0.8229873834348447,
+          "efficiencyContribution": -4.417771934146911,
+          "reason": "efficiency",
+          "error": -5.240759317581755,
+          "servedError": -5.240759317581755
+        }
+      ]
     }
   },
   "largestMisses": [
@@ -45340,32 +47622,32 @@
   ],
   "byPosition": {
     "G": {
-      "n": 314,
-      "mae": 6.179946409835724,
-      "bias": -0.7757553526360044,
-      "minutesMae": 4.63469664831191,
-      "hits": 159,
-      "hitRate": 50.63694267515923,
-      "over": 89,
+      "n": 324,
+      "mae": 6.152758148473454,
+      "bias": -0.8605180909124122,
+      "minutesMae": 4.622234955854875,
+      "hits": 165,
+      "hitRate": 50.92592592592593,
+      "over": 93,
       "under": 66
     },
     "F": {
-      "n": 281,
-      "mae": 5.39700034075535,
-      "bias": -1.247494798162638,
-      "minutesMae": 5.3835474548612545,
-      "hits": 163,
-      "hitRate": 58.00711743772242,
-      "over": 78,
-      "under": 40
+      "n": 292,
+      "mae": 5.371996608767118,
+      "bias": -1.0982033426929838,
+      "minutesMae": 5.333663606573078,
+      "hits": 168,
+      "hitRate": 57.534246575342465,
+      "over": 80,
+      "under": 44
     },
     "C": {
-      "n": 140,
-      "mae": 5.612975849116833,
-      "bias": -1.0228287635327744,
-      "minutesMae": 4.285380297403643,
-      "hits": 75,
-      "hitRate": 53.57142857142857,
+      "n": 141,
+      "mae": 5.581359897399667,
+      "bias": -1.0073822711885956,
+      "minutesMae": 4.259825777615293,
+      "hits": 76,
+      "hitRate": 53.90070921985816,
       "over": 39,
       "under": 26
     }
@@ -45377,6 +47659,2272 @@
     "Excluded post-kickoff snapshot: 7"
   ],
   "rows": [
+    {
+      "name": "Chima Moneke",
+      "key": "chima moneke",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "opponent": "ASVEL",
+      "gameCode": 41,
+      "round": 5,
+      "start": "2026-10-13T18:00:00Z",
+      "basePir": 13.607438646938089,
+      "baseMinutes": 22.894936434108526,
+      "servedPir": 13.607438646938089,
+      "servedMinutes": 22.894936434108526,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+      "home": false,
+      "features": {
+        "basePir": 17.598497447183547,
+        "baseMin": 26.924809302325585,
+        "injuryBoost": 0.059999999999999956,
+        "injuryUsagePct": 0.10285714285714279,
+        "missingStars": [],
+        "positionMatchPct": 1.330000000000009,
+        "teamPoints": 85.3324,
+        "margin": 1.6448,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 35,
+          "historyWeight": 0.813953488372093,
+          "sameTeam": true,
+          "avgPir": 18.514285714285716,
+          "avgMinutes": 26.907622857142858,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 5,
+              "nextGameSamples": 6,
+              "nextGameAvgPir": 20.333333333333332,
+              "continuedRate": 0.5
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0152708423062171,
+          "defenseSample": 4,
+          "rival": "Jae Crowder",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.27994978741692,
+              "weight": 0.8033482387277152,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.553653227630683,
+              "weight": 0.12275561437315986,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.937462854263796,
+              "weight": 0.07389614689912495,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 17.0,
+      "actualMinutes": 24.466666666666665,
+      "fouls": 1.0,
+      "actualStats": {
+        "points": 18.0,
+        "totalRebounds": 4.0,
+        "assistances": 1.0,
+        "turnovers": 1.0,
+        "foulsCommited": 1.0,
+        "fieldGoalsMadeTotal": 6.0,
+        "fieldGoalsAttemptedTotal": 12.0
+      },
+      "minutesContribution": 0.9341464113964627,
+      "efficiencyContribution": 2.458414941665449,
+      "reason": "efficiency",
+      "error": 3.392561353061911,
+      "servedError": 3.392561353061911
+    },
+    {
+      "name": "Patty Mills",
+      "key": "mills patty",
+      "team": "ASVEL",
+      "pos": "G",
+      "opponent": "Crvena Zvezda",
+      "gameCode": 41,
+      "round": 5,
+      "start": "2026-10-13T18:00:00Z",
+      "basePir": 13.967116592259966,
+      "baseMinutes": 21.821428571428573,
+      "servedPir": 13.967116592259966,
+      "servedMinutes": 21.821428571428573,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+      "home": true,
+      "features": {
+        "basePir": 12.089999999999998,
+        "baseMin": 23,
+        "injuryBoost": 0.2414285714285715,
+        "injuryUsagePct": 0.32571428571428573,
+        "missingStars": [],
+        "positionMatchPct": 0.11600000000000499,
+        "teamPoints": 83.6876,
+        "margin": -1.6448,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.97,
+          "defenseSample": 4,
+          "rival": "Nick Weiler-Babb",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.255184346027047,
+              "weight": 0.8033482387277152,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.368401565822314,
+              "weight": 0.07389614689912491,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.459472994393742,
+              "weight": 0.12275561437315989,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 8.0,
+      "actualMinutes": 22.233333333333334,
+      "fouls": 3.0,
+      "actualStats": {
+        "points": 11.0,
+        "totalRebounds": 0.0,
+        "assistances": 3.0,
+        "turnovers": 1.0,
+        "foulsCommited": 3.0,
+        "fieldGoalsMadeTotal": 4.0,
+        "fieldGoalsAttemptedTotal": 9.0
+      },
+      "minutesContribution": 0.2636455177807933,
+      "efficiencyContribution": -6.230762110040759,
+      "reason": "efficiency",
+      "error": -5.967116592259966,
+      "servedError": -5.967116592259966
+    },
+    {
+      "name": "Jordan Nwora",
+      "key": "jordan nwora",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "opponent": "ASVEL",
+      "gameCode": 41,
+      "round": 5,
+      "start": "2026-10-13T18:00:00Z",
+      "basePir": 13.989071513091035,
+      "baseMinutes": 23.826866666666668,
+      "servedPir": 13.989071513091035,
+      "servedMinutes": 23.826866666666668,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+      "home": false,
+      "features": {
+        "basePir": 15.124768100384028,
+        "baseMin": 26.34285,
+        "injuryBoost": 0.059249999999999955,
+        "injuryUsagePct": 0.10157142857142851,
+        "missingStars": [],
+        "positionMatchPct": 1.330000000000009,
+        "teamPoints": 85.3324,
+        "margin": 1.6448,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.8095238095238095,
+          "sameTeam": true,
+          "avgPir": 15.911764705882353,
+          "avgMinutes": 27.12940294117647,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 19,
+              "continuedRate": 0.5
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0181238098409695,
+          "defenseSample": 4,
+          "rival": "Jae Crowder",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.914907575123443,
+              "weight": 0.8033482387277152,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 24.142907944292432,
+              "weight": 0.12275561437315986,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.344741352386343,
+              "weight": 0.07389614689912495,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 14.0,
+      "actualMinutes": 18.25,
+      "fouls": 4.0,
+      "actualStats": {
+        "points": 17.0,
+        "totalRebounds": 3.0,
+        "assistances": 1.0,
+        "turnovers": 1.0,
+        "foulsCommited": 4.0,
+        "fieldGoalsMadeTotal": 5.0,
+        "fieldGoalsAttemptedTotal": 11.0
+      },
+      "minutesContribution": -3.274252872204779,
+      "efficiencyContribution": 3.285181359113743,
+      "reason": "efficiency",
+      "error": 0.01092848690896453,
+      "servedError": 0.01092848690896453
+    },
+    {
+      "name": "Chris Jones",
+      "key": "chris jones",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "opponent": "ASVEL",
+      "gameCode": 41,
+      "round": 5,
+      "start": "2026-10-13T18:00:00Z",
+      "basePir": 12.096162633523763,
+      "baseMinutes": 18.666893466666664,
+      "servedPir": 12.096162633523763,
+      "servedMinutes": 18.666893466666664,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+      "home": false,
+      "features": {
+        "basePir": 11.518446374808994,
+        "baseMin": 21.8231804,
+        "injuryBoost": 0.05249999999999996,
+        "injuryUsagePct": 0.08999999999999994,
+        "missingStars": [],
+        "positionMatchPct": 8.426,
+        "teamPoints": 85.3324,
+        "margin": 1.6448,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.462,
+          "sameTeam": false,
+          "avgPir": 11.80952380952381,
+          "avgMinutes": 20.452771428571427,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 4,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 19.333333333333332,
+              "continuedRate": 0.6666666666666666
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 21,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0149123985970967,
+          "defenseSample": 4,
+          "rival": "Hugo Besson",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.484534813500222,
+              "weight": 0.8033482387277152,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.253591094142063,
+              "weight": 0.12275561437315986,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.013563878142065,
+              "weight": 0.07389614689912495,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 17.0,
+      "actualMinutes": 22.066666666666666,
+      "fouls": 0.0,
+      "actualStats": {
+        "points": 8.0,
+        "totalRebounds": 3.0,
+        "assistances": 9.0,
+        "turnovers": 2.0,
+        "foulsCommited": 0.0,
+        "fieldGoalsMadeTotal": 4.0,
+        "fieldGoalsAttemptedTotal": 7.0
+      },
+      "minutesContribution": 2.2030558870296626,
+      "efficiencyContribution": 2.700781479446574,
+      "reason": "efficiency",
+      "error": 4.903837366476237,
+      "servedError": 4.903837366476237
+    },
+    {
+      "name": "Jae Crowder",
+      "key": "crowder jae",
+      "team": "ASVEL",
+      "pos": "F",
+      "opponent": "Crvena Zvezda",
+      "gameCode": 41,
+      "round": 5,
+      "start": "2026-10-13T18:00:00Z",
+      "basePir": 11.136780367493815,
+      "baseMinutes": 24.289044642857142,
+      "servedPir": 11.136780367493815,
+      "servedMinutes": 24.289044642857142,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+      "home": true,
+      "features": {
+        "basePir": 9.393,
+        "baseMin": 23,
+        "injuryBoost": 0.22904464285714285,
+        "injuryUsagePct": 0.26775,
+        "missingStars": [],
+        "positionMatchPct": -1.0140000000000038,
+        "teamPoints": 83.6876,
+        "margin": -1.6448,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.97,
+          "defenseSample": 4,
+          "rival": "Semi Ojeleye",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 24.764467019331754,
+              "weight": 0.8033482387277152,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.588786301712986,
+              "weight": 0.07389614689912491,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.803238533855843,
+              "weight": 0.12275561437315989,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 6.0,
+      "actualMinutes": 22.45,
+      "fouls": 5.0,
+      "actualStats": {
+        "points": 9.0,
+        "totalRebounds": 4.0,
+        "assistances": 4.0,
+        "turnovers": 2.0,
+        "foulsCommited": 5.0,
+        "fieldGoalsMadeTotal": 3.0,
+        "fieldGoalsAttemptedTotal": 10.0
+      },
+      "minutesContribution": -0.8432211548320042,
+      "efficiencyContribution": -4.29355921266181,
+      "reason": "efficiency",
+      "error": -5.136780367493815,
+      "servedError": -5.136780367493815
+    },
+    {
+      "name": "Tremont Waters",
+      "key": "tremont waters",
+      "team": "ASVEL",
+      "pos": "G",
+      "opponent": "Crvena Zvezda",
+      "gameCode": 41,
+      "round": 5,
+      "start": "2026-10-13T18:00:00Z",
+      "basePir": 9.018944021943273,
+      "baseMinutes": 20.91089285714286,
+      "servedPir": 9.018944021943273,
+      "servedMinutes": 20.91089285714286,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+      "home": true,
+      "features": {
+        "basePir": 9.3,
+        "baseMin": 23,
+        "injuryBoost": 0.15089285714285716,
+        "injuryUsagePct": 0.20357142857142857,
+        "missingStars": [],
+        "positionMatchPct": 0.11600000000000499,
+        "teamPoints": 83.6876,
+        "margin": -1.6448,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.97,
+          "defenseSample": 4,
+          "rival": "Nick Weiler-Babb",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.170692019767692,
+              "weight": 0.8033482387277152,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.078335061484697,
+              "weight": 0.07389614689912491,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.31385100270099,
+              "weight": 0.12275561437315989,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 13.0,
+      "actualMinutes": 25.7,
+      "fouls": 2.0,
+      "actualStats": {
+        "points": 15.0,
+        "totalRebounds": 1.0,
+        "assistances": 3.0,
+        "turnovers": 0.0,
+        "foulsCommited": 2.0,
+        "fieldGoalsMadeTotal": 6.0,
+        "fieldGoalsAttemptedTotal": 15.0
+      },
+      "minutesContribution": 2.0655593011545292,
+      "efficiencyContribution": 1.9154966769021975,
+      "reason": "minutes",
+      "error": 3.9810559780567267,
+      "servedError": 3.9810559780567267
+    },
+    {
+      "name": "Hugo Besson",
+      "key": "besson hugo",
+      "team": "ASVEL",
+      "pos": "G",
+      "opponent": "Crvena Zvezda",
+      "gameCode": 41,
+      "round": 5,
+      "start": "2026-10-13T18:00:00Z",
+      "basePir": 11.71156949141724,
+      "baseMinutes": 20.59517261904762,
+      "servedPir": 11.71156949141724,
+      "servedMinutes": 20.59517261904762,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+      "home": true,
+      "features": {
+        "basePir": 9.020999999999999,
+        "baseMin": 19,
+        "injuryBoost": 0.14183928571428572,
+        "injuryUsagePct": 0.19135714285714284,
+        "missingStars": [],
+        "positionMatchPct": 0.11600000000000499,
+        "teamPoints": 83.6876,
+        "margin": -1.6448,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.97,
+          "defenseSample": 4,
+          "rival": "Nick Weiler-Babb",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.872924573189767,
+              "weight": 0.8033482387277152,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.49858844243141,
+              "weight": 0.07389614689912491,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.039580508577302,
+              "weight": 0.12275561437315989,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 7.0,
+      "actualMinutes": 17.766666666666666,
+      "fouls": 2.0,
+      "actualStats": {
+        "points": 5.0,
+        "totalRebounds": 2.0,
+        "assistances": 3.0,
+        "turnovers": 2.0,
+        "foulsCommited": 2.0,
+        "fieldGoalsMadeTotal": 1.0,
+        "fieldGoalsAttemptedTotal": 2.0
+      },
+      "minutesContribution": -1.6084470196457477,
+      "efficiencyContribution": -3.103122471771492,
+      "reason": "efficiency",
+      "error": -4.71156949141724,
+      "servedError": -4.71156949141724
+    },
+    {
+      "name": "Jared Butler",
+      "key": "butler jared",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "opponent": "ASVEL",
+      "gameCode": 41,
+      "round": 5,
+      "start": "2026-10-13T18:00:00Z",
+      "basePir": 9.34695211012128,
+      "baseMinutes": 17.709084166666667,
+      "servedPir": 9.34695211012128,
+      "servedMinutes": 17.709084166666667,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+      "home": false,
+      "features": {
+        "basePir": 10.424250452164731,
+        "baseMin": 19.8037525,
+        "injuryBoost": 0.034499999999999975,
+        "injuryUsagePct": 0.0591428571428571,
+        "missingStars": [],
+        "positionMatchPct": 8.426,
+        "teamPoints": 85.3324,
+        "margin": 1.6448,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 32,
+          "historyWeight": 0.8,
+          "sameTeam": true,
+          "avgPir": 10.8125,
+          "avgMinutes": 20.004690625,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0271691596789532,
+          "defenseSample": 4,
+          "rival": "Hugo Besson",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.58762698085936,
+              "weight": 0.8033482387277152,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.967332089781063,
+              "weight": 0.12275561437315986,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.939293278730567,
+              "weight": 0.07389614689912495,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": -5.0,
+      "actualMinutes": 13.216666666666667,
+      "fouls": 1.0,
+      "actualStats": {
+        "points": 0.0,
+        "totalRebounds": 0.0,
+        "assistances": 3.0,
+        "turnovers": 1.0,
+        "foulsCommited": 1.0,
+        "fieldGoalsMadeTotal": 0.0,
+        "fieldGoalsAttemptedTotal": 6.0
+      },
+      "minutesContribution": -2.3711226868641906,
+      "efficiencyContribution": -11.975829423257089,
+      "reason": "efficiency",
+      "error": -14.34695211012128,
+      "servedError": -14.34695211012128
+    },
+    {
+      "name": "Joel Bolomboy",
+      "key": "bolomboy joel",
+      "team": "ASVEL",
+      "pos": "C",
+      "opponent": "Crvena Zvezda",
+      "gameCode": 41,
+      "round": 5,
+      "start": "2026-10-13T18:00:00Z",
+      "basePir": 6.844873343003544,
+      "baseMinutes": 18.18447365942029,
+      "servedPir": 6.844873343003544,
+      "servedMinutes": 18.18447365942029,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+      "home": true,
+      "features": {
+        "basePir": 8.455689856109213,
+        "baseMin": 17.36873347826087,
+        "injuryBoost": 0.0815625,
+        "injuryUsagePct": 0.13982142857142857,
+        "missingStars": [],
+        "positionMatchPct": -2.9939999999999967,
+        "teamPoints": 83.6876,
+        "margin": -1.6448,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 15,
+          "historyWeight": 0.3586956521739131,
+          "sameTeam": false,
+          "avgPir": 7.6,
+          "avgMinutes": 14.452226666666666,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9863287700999566,
+          "defenseSample": 4,
+          "rival": "Ebuka Izundu",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.508878648571876,
+              "weight": 0.8033482387277152,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.98706071818605,
+              "weight": 0.07389614689912491,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.38426726831118,
+              "weight": 0.12275561437315989,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 8.0,
+      "actualMinutes": 18.866666666666667,
+      "fouls": 3.0,
+      "actualStats": {
+        "points": 5.0,
+        "totalRebounds": 5.0,
+        "assistances": 1.0,
+        "turnovers": 1.0,
+        "foulsCommited": 3.0,
+        "fieldGoalsMadeTotal": 2.0,
+        "fieldGoalsAttemptedTotal": 2.0
+      },
+      "minutesContribution": 0.25678635618167256,
+      "efficiencyContribution": 0.8983403008147839,
+      "reason": "efficiency",
+      "error": 1.1551266569964556,
+      "servedError": 1.1551266569964556
+    },
+    {
+      "name": "Nick Weiler-Babb",
+      "key": "babb nick weiler",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "opponent": "ASVEL",
+      "gameCode": 41,
+      "round": 5,
+      "start": "2026-10-13T18:00:00Z",
+      "basePir": 6.267864618464322,
+      "baseMinutes": 21.479638481481484,
+      "servedPir": 6.267864618464322,
+      "servedMinutes": 21.479638481481484,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+      "home": false,
+      "features": {
+        "basePir": 9.628727729294841,
+        "baseMin": 23.431165444444446,
+        "injuryBoost": 0.02924999999999998,
+        "injuryUsagePct": 0.05014285714285711,
+        "missingStars": [],
+        "positionMatchPct": 8.426,
+        "teamPoints": 85.3324,
+        "margin": 1.6448,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.45222222222222225,
+          "sameTeam": false,
+          "avgPir": 10.972972972972974,
+          "avgMinutes": 28.798645945945946,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 15,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 14,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0113998394976373,
+          "defenseSample": 4,
+          "rival": "Hugo Besson",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.661469258155883,
+              "weight": 0.8033482387277152,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.203497939483828,
+              "weight": 0.12275561437315986,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.96162114216416,
+              "weight": 0.07389614689912495,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 3.0,
+      "actualMinutes": 22.233333333333334,
+      "fouls": 2.0,
+      "actualStats": {
+        "points": 0.0,
+        "totalRebounds": 4.0,
+        "assistances": 3.0,
+        "turnovers": 0.0,
+        "foulsCommited": 2.0,
+        "fieldGoalsMadeTotal": 0.0,
+        "fieldGoalsAttemptedTotal": 2.0
+      },
+      "minutesContribution": 0.21993188102833927,
+      "efficiencyContribution": -3.487796499492662,
+      "reason": "efficiency",
+      "error": -3.267864618464322,
+      "servedError": -3.267864618464322
+    },
+    {
+      "name": "Both Gach",
+      "key": "both gach",
+      "team": "ASVEL",
+      "pos": "F",
+      "opponent": "Crvena Zvezda",
+      "gameCode": 41,
+      "round": 5,
+      "start": "2026-10-13T18:00:00Z",
+      "basePir": 7.057547888625315,
+      "baseMinutes": 19.0171875,
+      "servedPir": 7.057547888625315,
+      "servedMinutes": 19.0171875,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+      "home": true,
+      "features": {
+        "basePir": 7.905,
+        "baseMin": 19,
+        "injuryBoost": 0.1571875,
+        "injuryUsagePct": 0.18375,
+        "missingStars": [],
+        "positionMatchPct": -1.0140000000000038,
+        "teamPoints": 83.6876,
+        "margin": -1.6448,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9767988503107917,
+          "defenseSample": 4,
+          "rival": "Semi Ojeleye",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.440083491014875,
+              "weight": 0.8033482387277152,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.696048480678403,
+              "weight": 0.07389614689912491,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.646907855678403,
+              "weight": 0.12275561437315989,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 18.0,
+      "actualMinutes": 25.733333333333334,
+      "fouls": 1.0,
+      "actualStats": {
+        "points": 19.0,
+        "totalRebounds": 3.0,
+        "assistances": 0.0,
+        "turnovers": 3.0,
+        "foulsCommited": 1.0,
+        "fieldGoalsMadeTotal": 7.0,
+        "fieldGoalsAttemptedTotal": 10.0
+      },
+      "minutesContribution": 2.492456933799564,
+      "efficiencyContribution": 8.44999517757512,
+      "reason": "efficiency",
+      "error": 10.942452111374685,
+      "servedError": 10.942452111374685
+    },
+    {
+      "name": "Semi Ojeleye",
+      "key": "ojeleye semi",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "opponent": "ASVEL",
+      "gameCode": 41,
+      "round": 5,
+      "start": "2026-10-13T18:00:00Z",
+      "basePir": 10.496853724991505,
+      "baseMinutes": 23.624489007092198,
+      "servedPir": 10.496853724991505,
+      "servedMinutes": 23.624489007092198,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+      "home": false,
+      "features": {
+        "basePir": 7.860043817946722,
+        "baseMin": 22.259217021276594,
+        "injuryBoost": 0.02474999999999999,
+        "injuryUsagePct": 0.04242857142857141,
+        "missingStars": [],
+        "positionMatchPct": 1.330000000000009,
+        "teamPoints": 85.3324,
+        "margin": 1.6448,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 39,
+          "historyWeight": 0.8297872340425532,
+          "sameTeam": true,
+          "avgPir": 7.846153846153846,
+          "avgMinutes": 22.927774358974357,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.013480789169713,
+          "defenseSample": 4,
+          "rival": "Jae Crowder",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.85631414103611,
+              "weight": 0.8033482387277152,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 23.14644367808262,
+              "weight": 0.12275561437315986,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.898369712131018,
+              "weight": 0.07389614689912495,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 18.0,
+      "actualMinutes": 27.333333333333332,
+      "fouls": 3.0,
+      "actualStats": {
+        "points": 15.0,
+        "totalRebounds": 6.0,
+        "assistances": 0.0,
+        "turnovers": 1.0,
+        "foulsCommited": 3.0,
+        "fieldGoalsMadeTotal": 4.0,
+        "fieldGoalsAttemptedTotal": 6.0
+      },
+      "minutesContribution": 1.6479169716488051,
+      "efficiencyContribution": 5.855229303359691,
+      "reason": "efficiency",
+      "error": 7.503146275008495,
+      "servedError": 7.503146275008495
+    },
+    {
+      "name": "Nathan Sestina",
+      "key": "nathan sestina",
+      "team": "ASVEL",
+      "pos": "F",
+      "opponent": "Crvena Zvezda",
+      "gameCode": 41,
+      "round": 5,
+      "start": "2026-10-13T18:00:00Z",
+      "basePir": 5.361405617197213,
+      "baseMinutes": 17.263400095238094,
+      "servedPir": 5.361405617197213,
+      "servedMinutes": 17.263400095238094,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+      "home": true,
+      "features": {
+        "basePir": 4.635408478243793,
+        "baseMin": 15.424125238095238,
+        "injuryBoost": 0.12575,
+        "injuryUsagePct": 0.147,
+        "missingStars": [],
+        "positionMatchPct": -1.0140000000000038,
+        "teamPoints": 83.6876,
+        "margin": -1.6448,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 13,
+          "historyWeight": 0.3404761904761905,
+          "sameTeam": false,
+          "avgPir": 1.5384615384615385,
+          "avgMinutes": 8.49743076923077,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9730642253013209,
+          "defenseSample": 4,
+          "rival": "Semi Ojeleye",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.994021460141525,
+              "weight": 0.8033482387277152,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.74740145878098,
+              "weight": 0.07389614689912491,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.336911473066696,
+              "weight": 0.12275561437315989,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 0.0,
+      "actualMinutes": 3.55,
+      "fouls": 0.0,
+      "actualStats": {
+        "points": 0.0,
+        "totalRebounds": 1.0,
+        "assistances": 0.0,
+        "turnovers": 1.0,
+        "foulsCommited": 0.0,
+        "fieldGoalsMadeTotal": 0.0,
+        "fieldGoalsAttemptedTotal": 1.0
+      },
+      "minutesContribution": -4.25890032646366,
+      "efficiencyContribution": -1.102505290733552,
+      "reason": "minutes",
+      "error": -5.361405617197213,
+      "servedError": -5.361405617197213
+    },
+    {
+      "name": "Tyson Carter",
+      "key": "carter tyson",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "opponent": "ASVEL",
+      "gameCode": 41,
+      "round": 5,
+      "start": "2026-10-13T18:00:00Z",
+      "basePir": 6.218942711657265,
+      "baseMinutes": 16.820415789473685,
+      "servedPir": 6.218942711657265,
+      "servedMinutes": 16.820415789473685,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+      "home": false,
+      "features": {
+        "basePir": 3.9138153712703967,
+        "baseMin": 14.398247368421053,
+        "injuryBoost": 0.020999999999999984,
+        "injuryUsagePct": 0.03599999999999997,
+        "missingStars": [],
+        "positionMatchPct": 8.426,
+        "teamPoints": 85.3324,
+        "margin": 1.6448,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 11,
+          "historyWeight": 0.5789473684210527,
+          "sameTeam": true,
+          "avgPir": 2,
+          "avgMinutes": 14.687881818181818,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0175104542329432,
+          "defenseSample": 4,
+          "rival": "Hugo Besson",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.95458722230207,
+              "weight": 0.8033482387277152,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.649171395221348,
+              "weight": 0.12275561437315986,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.646265619718603,
+              "weight": 0.07389614689912495,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 5.0,
+      "actualMinutes": 14.483333333333333,
+      "fouls": 1.0,
+      "actualStats": {
+        "points": 2.0,
+        "totalRebounds": 1.0,
+        "assistances": 4.0,
+        "turnovers": 1.0,
+        "foulsCommited": 1.0,
+        "fieldGoalsMadeTotal": 1.0,
+        "fieldGoalsAttemptedTotal": 4.0
+      },
+      "minutesContribution": -0.86407982353514,
+      "efficiencyContribution": -0.3548628881221241,
+      "reason": "minutes",
+      "error": -1.2189427116572649,
+      "servedError": -1.2189427116572649
+    },
+    {
+      "name": "Yves Pons",
+      "key": "pons yves",
+      "team": "ASVEL",
+      "pos": "F",
+      "opponent": "Crvena Zvezda",
+      "gameCode": 41,
+      "round": 5,
+      "start": "2026-10-13T18:00:00Z",
+      "basePir": 3.997296239312399,
+      "baseMinutes": 11.263750000000002,
+      "servedPir": 3.997296239312399,
+      "servedMinutes": 11.263750000000002,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+      "home": true,
+      "features": {
+        "basePir": 6.138,
+        "baseMin": 14,
+        "injuryBoost": 0.12575,
+        "injuryUsagePct": 0.147,
+        "missingStars": [],
+        "positionMatchPct": -1.0140000000000038,
+        "teamPoints": 83.6876,
+        "margin": -1.6448,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.992164006020516,
+          "defenseSample": 4,
+          "rival": "Semi Ojeleye",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.357578544495954,
+              "weight": 0.8033482387277152,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 10.163503808367535,
+              "weight": 0.07389614689912491,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.312032583807932,
+              "weight": 0.12275561437315989,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 9.0,
+      "actualMinutes": 14.733333333333333,
+      "fouls": 2.0,
+      "actualStats": {
+        "points": 6.0,
+        "totalRebounds": 3.0,
+        "assistances": 1.0,
+        "turnovers": 0.0,
+        "foulsCommited": 2.0,
+        "fieldGoalsMadeTotal": 2.0,
+        "fieldGoalsAttemptedTotal": 5.0
+      },
+      "minutesContribution": 1.2312908587561247,
+      "efficiencyContribution": 3.771412901931476,
+      "reason": "efficiency",
+      "error": 5.0027037606876,
+      "servedError": 5.0027037606876
+    },
+    {
+      "name": "Myles Cale",
+      "key": "cale myles",
+      "team": "ASVEL",
+      "pos": "G",
+      "opponent": "Crvena Zvezda",
+      "gameCode": 41,
+      "round": 5,
+      "start": "2026-10-13T18:00:00Z",
+      "basePir": 3.6886350403779544,
+      "baseMinutes": 14.635586428571429,
+      "servedPir": 3.6886350403779544,
+      "servedMinutes": 14.635586428571429,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+      "home": true,
+      "features": {
+        "basePir": 4.80387515449101,
+        "baseMin": 14.522716071428572,
+        "injuryBoost": 0.08450000000000002,
+        "injuryUsagePct": 0.114,
+        "missingStars": [],
+        "positionMatchPct": 0.11600000000000499,
+        "teamPoints": 83.6876,
+        "margin": -1.6448,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.44523809523809527,
+          "sameTeam": false,
+          "avgPir": 3.235294117647059,
+          "avgMinutes": 15.174014705882355,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9777169224942722,
+          "defenseSample": 4,
+          "rival": "Nick Weiler-Babb",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.510002060430379,
+              "weight": 0.8033482387277152,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.778222739001809,
+              "weight": 0.07389614689912491,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.973560703287523,
+              "weight": 0.12275561437315989,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 0.0,
+      "actualMinutes": 0.0,
+      "fouls": 0.0,
+      "actualStats": {
+        "points": 0.0,
+        "totalRebounds": 0.0,
+        "assistances": 0.0,
+        "turnovers": 0.0,
+        "foulsCommited": 0.0,
+        "fieldGoalsMadeTotal": 0.0,
+        "fieldGoalsAttemptedTotal": 0.0
+      },
+      "minutesContribution": -3.6886350403779544,
+      "efficiencyContribution": 0.0,
+      "reason": "did-not-play",
+      "error": -3.6886350403779544,
+      "servedError": -3.6886350403779544
+    },
+    {
+      "name": "David Kramer",
+      "key": "david kramer",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "opponent": "ASVEL",
+      "gameCode": 41,
+      "round": 5,
+      "start": "2026-10-13T18:00:00Z",
+      "basePir": 3.663734190569348,
+      "baseMinutes": 14.423639166666668,
+      "servedPir": 3.663734190569348,
+      "servedMinutes": 14.423639166666668,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+      "home": false,
+      "features": {
+        "basePir": 3.731330473154751,
+        "baseMin": 13.067917499999998,
+        "injuryBoost": 0.020999999999999984,
+        "injuryUsagePct": 0.03599999999999997,
+        "missingStars": [],
+        "positionMatchPct": 8.426,
+        "teamPoints": 85.3324,
+        "margin": 1.6448,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 14,
+          "historyWeight": 0.35000000000000003,
+          "sameTeam": false,
+          "avgPir": 0.8571428571428571,
+          "avgMinutes": 11.336907142857143,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0132067961567146,
+          "defenseSample": 4,
+          "rival": "Hugo Besson",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.653748509342847,
+              "weight": 0.8033482387277152,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.646791389521429,
+              "weight": 0.12275561437315986,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.212540716324146,
+              "weight": 0.07389614689912495,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": -2.0,
+      "actualMinutes": 8.483333333333333,
+      "fouls": 4.0,
+      "actualStats": {
+        "points": 2.0,
+        "totalRebounds": 1.0,
+        "assistances": 0.0,
+        "turnovers": 1.0,
+        "foulsCommited": 4.0,
+        "fieldGoalsMadeTotal": 1.0,
+        "fieldGoalsAttemptedTotal": 1.0
+      },
+      "minutesContribution": -1.5088911565618097,
+      "efficiencyContribution": -4.154843034007539,
+      "reason": "efficiency",
+      "error": -5.663734190569349,
+      "servedError": -5.663734190569349
+    },
+    {
+      "name": "Bodian Massa",
+      "key": "bodian massa",
+      "team": "ASVEL",
+      "pos": "F",
+      "opponent": "Crvena Zvezda",
+      "gameCode": 41,
+      "round": 5,
+      "start": "2026-10-13T18:00:00Z",
+      "basePir": 4.599439910506427,
+      "baseMinutes": 16.885431904761905,
+      "servedPir": 4.599439910506427,
+      "servedMinutes": 16.885431904761905,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+      "home": true,
+      "features": {
+        "basePir": 4.6526850095549355,
+        "baseMin": 15.499204761904762,
+        "injuryBoost": 0.12575,
+        "injuryUsagePct": 0.147,
+        "missingStars": [],
+        "positionMatchPct": -1.0140000000000038,
+        "teamPoints": 83.6876,
+        "margin": -1.6448,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.8095238095238095,
+          "sameTeam": true,
+          "avgPir": 4.4411764705882355,
+          "avgMinutes": 15.851958823529412,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9863287700999566,
+          "defenseSample": 4,
+          "rival": "Semi Ojeleye",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.991559351200607,
+              "weight": 0.8033482387277152,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.870832443623916,
+              "weight": 0.07389614689912491,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.4036472293382,
+              "weight": 0.12275561437315989,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 4.0,
+      "actualMinutes": 19.133333333333333,
+      "fouls": 2.0,
+      "actualStats": {
+        "points": 0.0,
+        "totalRebounds": 6.0,
+        "assistances": 0.0,
+        "turnovers": 1.0,
+        "foulsCommited": 2.0,
+        "fieldGoalsMadeTotal": 0.0,
+        "fieldGoalsAttemptedTotal": 0.0
+      },
+      "minutesContribution": 0.6123081484542948,
+      "efficiencyContribution": -1.2117480589607217,
+      "reason": "efficiency",
+      "error": -0.599439910506427,
+      "servedError": -0.599439910506427
+    },
+    {
+      "name": "David Lighty",
+      "key": "david lighty",
+      "team": "ASVEL",
+      "pos": "F",
+      "opponent": "Crvena Zvezda",
+      "gameCode": 41,
+      "round": 5,
+      "start": "2026-10-13T18:00:00Z",
+      "basePir": 5.819826183824269,
+      "baseMinutes": 15.560808536585366,
+      "servedPir": 5.819826183824269,
+      "servedMinutes": 15.560808536585366,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+      "home": true,
+      "features": {
+        "basePir": 4.187069949581851,
+        "baseMin": 17.677646341463415,
+        "injuryBoost": 0.12575,
+        "injuryUsagePct": 0.147,
+        "missingStars": [],
+        "positionMatchPct": -1.0140000000000038,
+        "teamPoints": 83.6876,
+        "margin": -1.6448,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 33,
+          "historyWeight": 0.8048780487804879,
+          "sameTeam": true,
+          "avgPir": 3.9393939393939394,
+          "avgMinutes": 18.56919696969697,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9839812386509228,
+          "defenseSample": 4,
+          "rival": "Semi Ojeleye",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.690580810503755,
+              "weight": 0.8033482387277152,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.573646982742476,
+              "weight": 0.07389614689912491,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.90776826323028,
+              "weight": 0.12275561437315989,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 8.0,
+      "actualMinutes": 15.533333333333333,
+      "fouls": 1.0,
+      "actualStats": {
+        "points": 5.0,
+        "totalRebounds": 1.0,
+        "assistances": 0.0,
+        "turnovers": 0.0,
+        "foulsCommited": 1.0,
+        "fieldGoalsMadeTotal": 2.0,
+        "fieldGoalsAttemptedTotal": 4.0
+      },
+      "minutesContribution": -0.010275873963497986,
+      "efficiencyContribution": 2.1904496901392294,
+      "reason": "efficiency",
+      "error": 2.1801738161757314,
+      "servedError": 2.1801738161757314
+    },
+    {
+      "name": "Ognjen Dobric",
+      "key": "dobric ognjen",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "opponent": "ASVEL",
+      "gameCode": 41,
+      "round": 5,
+      "start": "2026-10-13T18:00:00Z",
+      "basePir": 4.929899198589076,
+      "baseMinutes": 12.630655757575758,
+      "servedPir": 4.929899198589076,
+      "servedMinutes": 12.630655757575758,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+      "home": false,
+      "features": {
+        "basePir": 4.466288220561959,
+        "baseMin": 12.864139393939393,
+        "injuryBoost": 0.020999999999999984,
+        "injuryUsagePct": 0.03599999999999997,
+        "missingStars": [],
+        "positionMatchPct": 1.330000000000009,
+        "teamPoints": 85.3324,
+        "margin": 1.6448,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 25,
+          "historyWeight": 0.7575757575757576,
+          "sameTeam": true,
+          "avgPir": 4.48,
+          "avgMinutes": 12.500663999999999,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0116298388182166,
+          "defenseSample": 4,
+          "rival": "Jae Crowder",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.927094979728619,
+              "weight": 0.8033482387277152,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.51458748683933,
+              "weight": 0.12275561437315986,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.261974371687815,
+              "weight": 0.07389614689912495,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 13.0,
+      "actualMinutes": 14.733333333333333,
+      "fouls": 1.0,
+      "actualStats": {
+        "points": 9.0,
+        "totalRebounds": 5.0,
+        "assistances": 2.0,
+        "turnovers": 1.0,
+        "foulsCommited": 1.0,
+        "fieldGoalsMadeTotal": 3.0,
+        "fieldGoalsAttemptedTotal": 4.0
+      },
+      "minutesContribution": 0.8207007375211741,
+      "efficiencyContribution": 7.24940006388975,
+      "reason": "efficiency",
+      "error": 8.070100801410923,
+      "servedError": 8.070100801410923
+    },
+    {
+      "name": "Nikola Djurisic",
+      "key": "djurisic nikola",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "opponent": "ASVEL",
+      "gameCode": 41,
+      "round": 5,
+      "start": "2026-10-13T18:00:00Z",
+      "basePir": 4.240759317581755,
+      "baseMinutes": 14.021,
+      "servedPir": 4.240759317581755,
+      "servedMinutes": 14.021,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+      "home": false,
+      "features": {
+        "basePir": 4.0920000000000005,
+        "baseMin": 14,
+        "injuryBoost": 0.020999999999999984,
+        "injuryUsagePct": 0.03599999999999997,
+        "missingStars": [],
+        "positionMatchPct": 8.426,
+        "teamPoints": 85.3324,
+        "margin": 1.6448,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Hugo Besson",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.362146400277647,
+              "weight": 0.8033482387277152,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.469311400277649,
+              "weight": 0.12275561437315986,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.889941400277648,
+              "weight": 0.07389614689912495,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": -1.0,
+      "actualMinutes": 11.3,
+      "fouls": 4.0,
+      "actualStats": {
+        "points": 2.0,
+        "totalRebounds": 0.0,
+        "assistances": 0.0,
+        "turnovers": 0.0,
+        "foulsCommited": 4.0,
+        "fieldGoalsMadeTotal": 1.0,
+        "fieldGoalsAttemptedTotal": 1.0
+      },
+      "minutesContribution": -0.8229873834348447,
+      "efficiencyContribution": -4.417771934146911,
+      "reason": "efficiency",
+      "error": -5.240759317581755,
+      "servedError": -5.240759317581755
+    },
+    {
+      "name": "Dejan Davidovac",
+      "key": "davidovac dejan",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "opponent": "ASVEL",
+      "gameCode": 41,
+      "round": 5,
+      "start": "2026-10-13T18:00:00Z",
+      "basePir": 4.133778492080822,
+      "baseMinutes": 14.44593563218391,
+      "servedPir": 4.133778492080822,
+      "servedMinutes": 14.44593563218391,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+      "home": false,
+      "features": {
+        "basePir": 3.596416195324116,
+        "baseMin": 14.172403448275862,
+        "injuryBoost": 0.020999999999999984,
+        "injuryUsagePct": 0.03599999999999997,
+        "missingStars": [],
+        "positionMatchPct": 1.330000000000009,
+        "teamPoints": 85.3324,
+        "margin": 1.6448,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 21,
+          "historyWeight": 0.7241379310344828,
+          "sameTeam": true,
+          "avgPir": 3.4761904761904763,
+          "avgMinutes": 14.238080952380953,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Jae Crowder",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.620089214879215,
+              "weight": 0.8033482387277152,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.11448146775278,
+              "weight": 0.12275561437315986,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.103265973499907,
+              "weight": 0.07389614689912495,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 8.0,
+      "actualMinutes": 10.766666666666667,
+      "fouls": 0.0,
+      "actualStats": {
+        "points": 2.0,
+        "totalRebounds": 3.0,
+        "assistances": 2.0,
+        "turnovers": 1.0,
+        "foulsCommited": 0.0,
+        "fieldGoalsMadeTotal": 1.0,
+        "fieldGoalsAttemptedTotal": 2.0
+      },
+      "minutesContribution": -1.052841664499118,
+      "efficiencyContribution": 4.919063172418296,
+      "reason": "efficiency",
+      "error": 3.866221507919178,
+      "servedError": 3.866221507919178
+    },
     {
       "name": "Jonas Valanciunas",
       "key": "jonas valanciunas",
@@ -85718,6 +90266,116 @@
       "servedError": 0.006999999999999673
     },
     {
+      "name": "Jordan Nwora",
+      "key": "jordan nwora",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "opponent": "ASVEL",
+      "gameCode": 41,
+      "round": 5,
+      "start": "2026-10-13T18:00:00Z",
+      "basePir": 13.989071513091035,
+      "baseMinutes": 23.826866666666668,
+      "servedPir": 13.989071513091035,
+      "servedMinutes": 23.826866666666668,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:00:29.411586+00:00",
+      "home": false,
+      "features": {
+        "basePir": 15.124768100384028,
+        "baseMin": 26.34285,
+        "injuryBoost": 0.059249999999999955,
+        "injuryUsagePct": 0.10157142857142851,
+        "missingStars": [],
+        "positionMatchPct": 1.330000000000009,
+        "teamPoints": 85.3324,
+        "margin": 1.6448,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.8095238095238095,
+          "sameTeam": true,
+          "avgPir": 15.911764705882353,
+          "avgMinutes": 27.12940294117647,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 19,
+              "continuedRate": 0.5
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0181238098409695,
+          "defenseSample": 4,
+          "rival": "Jae Crowder",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.914907575123443,
+              "weight": 0.8033482387277152,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 24.142907944292432,
+              "weight": 0.12275561437315986,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.344741352386343,
+              "weight": 0.07389614689912495,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 14.0,
+      "actualMinutes": 18.25,
+      "fouls": 4.0,
+      "actualStats": {
+        "points": 17.0,
+        "totalRebounds": 3.0,
+        "assistances": 1.0,
+        "turnovers": 1.0,
+        "foulsCommited": 4.0,
+        "fieldGoalsMadeTotal": 5.0,
+        "fieldGoalsAttemptedTotal": 11.0
+      },
+      "minutesContribution": -3.274252872204779,
+      "efficiencyContribution": 3.285181359113743,
+      "reason": "efficiency",
+      "error": 0.01092848690896453,
+      "servedError": 0.01092848690896453
+    },
+    {
       "name": "Antonio Blakeney",
       "key": "antonio blakeney",
       "team": "Hapoel Tel Aviv",
@@ -86684,138 +91342,55 @@
       "reason": "minutes",
       "error": 0.2278184728085666,
       "servedError": 0.2278184728085666
-    },
-    {
-      "name": "Leandro Bolmaro",
-      "key": "bolmaro leandro",
-      "team": "Milano",
-      "pos": "G",
-      "opponent": "Maccabi Tel Aviv",
-      "gameCode": 32,
-      "round": 4,
-      "start": "2026-10-08T16:00:00Z",
-      "basePir": 7.267464024834037,
-      "baseMinutes": 22.308085984555987,
-      "servedPir": 7.267464024834037,
-      "servedMinutes": 22.308085984555987,
-      "status": "active",
-      "modelId": "c9d03cdbf2c56829b3d4",
-      "eligible": true,
-      "snapshotAt": "2026-10-07T17:27:14.987912+00:00",
-      "home": false,
-      "features": {
-        "basePir": 9.888162391958875,
-        "baseMin": 21.823875675675673,
-        "injuryBoost": 0.10253571428571434,
-        "injuryUsagePct": 0.11185714285714292,
-        "missingStars": [],
-        "positionMatchPct": 10.800999999999995,
-        "teamPoints": 87.37,
-        "margin": -1.94,
-        "lastGameWeight": null,
-        "personalPrior": {
-          "historicalGames": 29,
-          "historyWeight": 0.7837837837837838,
-          "sameTeam": true,
-          "avgPir": 10.655172413793103,
-          "avgMinutes": 22.602875862068963,
-          "currentSeasonWeight": 0.42857142857142855,
-          "minutesWeight": 0.6,
-          "momentumPir": 0,
-          "momentumEnabled": false,
-          "hot": false,
-          "streaks": [
-            {
-              "threshold": 20,
-              "longestRun": 1,
-              "nextGameSamples": 0,
-              "nextGameAvgPir": null,
-              "continuedRate": null
-            },
-            {
-              "threshold": 25,
-              "longestRun": 1,
-              "nextGameSamples": 0,
-              "nextGameAvgPir": null,
-              "continuedRate": null
-            },
-            {
-              "threshold": 30,
-              "longestRun": 1,
-              "nextGameSamples": 0,
-              "nextGameAvgPir": null,
-              "continuedRate": null
-            }
-          ]
-        },
-        "currentSeasonWeight": 0.42857142857142855
-      },
-      "actualPir": 7.0,
-      "actualMinutes": 23.133333333333333,
-      "fouls": 2.0,
-      "actualStats": {
-        "points": 4.0,
-        "totalRebounds": 6.0,
-        "assistances": 3.0,
-        "turnovers": 3.0,
-        "foulsCommited": 2.0,
-        "fieldGoalsMadeTotal": 1.0,
-        "fieldGoalsAttemptedTotal": 5.0
-      },
-      "minutesContribution": 0.26884670531488447,
-      "efficiencyContribution": -0.5363107301489212,
-      "reason": "efficiency",
-      "error": -0.2674640248340374,
-      "servedError": -0.2674640248340374
     }
   ],
   "breakdowns": {
     "position": [
       {
         "label": "C",
-        "n": 140,
-        "mae": 5.612975849116833,
-        "bias": -1.0228287635327744,
-        "minutesMae": 4.285380297403643,
-        "hits": 75,
-        "hitRate": 53.57142857142857,
+        "n": 141,
+        "mae": 5.581359897399667,
+        "bias": -1.0073822711885956,
+        "minutesMae": 4.259825777615293,
+        "hits": 76,
+        "hitRate": 53.90070921985816,
         "over": 39,
         "under": 26
       },
       {
         "label": "F",
-        "n": 281,
-        "mae": 5.39700034075535,
-        "bias": -1.247494798162638,
-        "minutesMae": 5.3835474548612545,
-        "hits": 163,
-        "hitRate": 58.00711743772242,
-        "over": 78,
-        "under": 40
+        "n": 292,
+        "mae": 5.371996608767118,
+        "bias": -1.0982033426929838,
+        "minutesMae": 5.333663606573078,
+        "hits": 168,
+        "hitRate": 57.534246575342465,
+        "over": 80,
+        "under": 44
       },
       {
         "label": "G",
-        "n": 314,
-        "mae": 6.179946409835724,
-        "bias": -0.7757553526360044,
-        "minutesMae": 4.63469664831191,
-        "hits": 159,
-        "hitRate": 50.63694267515923,
-        "over": 89,
+        "n": 324,
+        "mae": 6.152758148473454,
+        "bias": -0.8605180909124122,
+        "minutesMae": 4.622234955854875,
+        "hits": 165,
+        "hitRate": 50.92592592592593,
+        "over": 93,
         "under": 66
       }
     ],
     "team": [
       {
         "label": "ASVEL",
-        "n": 37,
-        "mae": 6.560216835828642,
-        "bias": -1.5525944420597686,
-        "minutesMae": 6.180677674134823,
-        "hits": 19,
-        "hitRate": 51.35135135135135,
-        "over": 12,
-        "under": 6
+        "n": 48,
+        "mae": 6.071968380587575,
+        "bias": -1.2426964385869346,
+        "minutesMae": 5.8342900369278015,
+        "hits": 25,
+        "hitRate": 52.083333333333336,
+        "over": 15,
+        "under": 8
       },
       {
         "label": "Anadolu Efes",
@@ -86874,14 +91449,14 @@
       },
       {
         "label": "Crvena Zvezda",
-        "n": 30,
-        "mae": 6.645643432969015,
-        "bias": -1.7048257244584077,
-        "minutesMae": 4.75183699096182,
-        "hits": 16,
-        "hitRate": 53.333333333333336,
-        "over": 8,
-        "under": 6
+        "n": 41,
+        "mae": 6.264740286054881,
+        "bias": -1.2960055827161094,
+        "minutesMae": 4.361921252120022,
+        "hits": 22,
+        "hitRate": 53.65853658536586,
+        "over": 11,
+        "under": 8
       },
       {
         "label": "Dubai",
@@ -87074,38 +91649,38 @@
       },
       {
         "label": "5",
-        "n": 23,
-        "mae": 4.49389077851827,
-        "bias": -0.6609231466718041,
-        "minutesMae": 3.8345008584864795,
-        "hits": 16,
-        "hitRate": 69.56521739130434,
-        "over": 3,
-        "under": 4
+        "n": 45,
+        "mae": 4.657133244169859,
+        "bias": -0.4310249828226927,
+        "minutesMae": 3.9075117596178077,
+        "hits": 28,
+        "hitRate": 62.22222222222222,
+        "over": 9,
+        "under": 8
       }
     ],
     "home": [
       {
         "label": "False",
-        "n": 379,
-        "mae": 5.945194845317381,
-        "bias": -1.4081709079694609,
-        "minutesMae": 5.058339269300812,
-        "hits": 203,
-        "hitRate": 53.562005277044854,
-        "over": 110,
-        "under": 66
+        "n": 390,
+        "mae": 5.924907423370429,
+        "bias": -1.3735595673795742,
+        "minutesMae": 5.0087031914694204,
+        "hits": 209,
+        "hitRate": 53.58974358974359,
+        "over": 113,
+        "under": 68
       },
       {
         "label": "True",
-        "n": 356,
-        "mae": 5.588898991409382,
-        "bias": -0.5720013252403636,
-        "minutesMae": 4.637399553251276,
-        "hits": 194,
-        "hitRate": 54.49438202247191,
-        "over": 96,
-        "under": 66
+        "n": 367,
+        "mae": 5.554153951728293,
+        "bias": -0.5608607806036263,
+        "minutesMae": 4.638351740564034,
+        "hits": 200,
+        "hitRate": 54.495912806539515,
+        "over": 99,
+        "under": 68
       }
     ],
     "reason": [
@@ -87122,41 +91697,192 @@
       },
       {
         "label": "did-not-play",
-        "n": 25,
-        "mae": 4.185484959264342,
-        "bias": -4.185484959264342,
-        "minutesMae": 12.756786530005861,
-        "hits": 17,
-        "hitRate": 68.0,
+        "n": 26,
+        "mae": 4.166375346999481,
+        "bias": -4.166375346999481,
+        "minutesMae": 12.829048064566077,
+        "hits": 18,
+        "hitRate": 69.23076923076923,
         "over": 8,
         "under": 0
       },
       {
         "label": "efficiency",
-        "n": 532,
-        "mae": 6.452899880598829,
-        "bias": -0.553506194020244,
-        "minutesMae": 3.6596398338879594,
-        "hits": 253,
-        "hitRate": 47.556390977443606,
-        "over": 158,
-        "under": 121
+        "n": 550,
+        "mae": 6.408916736750929,
+        "bias": -0.5315859266930251,
+        "minutesMae": 3.634723136260363,
+        "hits": 262,
+        "hitRate": 47.63636363636364,
+        "over": 163,
+        "under": 125
       },
       {
         "label": "minutes",
-        "n": 174,
-        "mae": 3.9155001543496657,
-        "bias": -2.0817633718713604,
-        "minutesMae": 7.2135638073405435,
-        "hits": 124,
-        "hitRate": 71.26436781609196,
-        "over": 40,
+        "n": 177,
+        "mae": 3.908804695840413,
+        "bias": -2.0611645144430195,
+        "minutesMae": 7.209037808878476,
+        "hits": 126,
+        "hitRate": 71.1864406779661,
+        "over": 41,
         "under": 10
       }
     ]
   },
   "teamAudit": {
     "games": [
+      {
+        "gameCode": 41,
+        "round": 5,
+        "start": "2026-10-13T18:00:00Z",
+        "played": true,
+        "home": "ASVEL",
+        "away": "Crvena Zvezda",
+        "forecast": {
+          "opponent": "Crvena Zvezda",
+          "home": true,
+          "margin": -1.6448,
+          "total": 169.02,
+          "winProb": 0.4431347001751051,
+          "teamPoints": 83.6876,
+          "p20": 0.029907314814381514,
+          "p11_20": 0.1257203843534259,
+          "p1_10": 0.2875070010072977,
+          "l1_10": 0.3231111774813912,
+          "l11_20": 0.17852136595731388,
+          "l20": 0.05523275638618975,
+          "sampleGames": 42,
+          "currentSeasonGames": 4,
+          "source": "EuroLeague model + available roster + opponent strength",
+          "context": {
+            "availability": {
+              "missing": [
+                {
+                  "name": "Mathis Dossou-yovo",
+                  "status": "out",
+                  "missingProbability": 1,
+                  "avgMinutes": 19,
+                  "sampleGames": 0,
+                  "impactProxy": 0.304
+                },
+                {
+                  "name": "Tyty Washington",
+                  "status": "questionable",
+                  "missingProbability": 0.5,
+                  "avgMinutes": 19,
+                  "sampleGames": 0,
+                  "impactProxy": 0.148
+                }
+              ],
+              "marginPenalty": 0.452,
+              "available": 14,
+              "rosterCount": 16
+            },
+            "rating": -4.275410591103194,
+            "currentGames": 4,
+            "hardGames": 3,
+            "hardWins": 1,
+            "hardHistory": [
+              {
+                "opponent": "Panathinaikos",
+                "gameCode": 20,
+                "date": "2026-09-30T18:15:00+00:00",
+                "home": false,
+                "pregameWinProb": 0.21011,
+                "opponentRatingBefore": 3.23,
+                "hard": true,
+                "won": false,
+                "margin": -23
+              },
+              {
+                "opponent": "Valencia",
+                "gameCode": 26,
+                "date": "2026-10-02T18:00:00+00:00",
+                "home": true,
+                "pregameWinProb": 0.30473,
+                "opponentRatingBefore": 4.688,
+                "hard": true,
+                "won": false,
+                "margin": -13
+              },
+              {
+                "opponent": "Paris",
+                "gameCode": 31,
+                "date": "2026-10-07T18:45:00+00:00",
+                "home": false,
+                "pregameWinProb": 0.27944,
+                "opponentRatingBefore": -1.537,
+                "hard": true,
+                "won": true,
+                "margin": 2
+              }
+            ],
+            "recentHistory": [
+              {
+                "opponent": "Maccabi Tel Aviv",
+                "gameCode": 6,
+                "date": "2026-09-24T18:45:00+00:00",
+                "home": true,
+                "pregameWinProb": 0.57545,
+                "opponentRatingBefore": -2.876,
+                "hard": false,
+                "won": true,
+                "margin": 10
+              },
+              {
+                "opponent": "Panathinaikos",
+                "gameCode": 20,
+                "date": "2026-09-30T18:15:00+00:00",
+                "home": false,
+                "pregameWinProb": 0.21011,
+                "opponentRatingBefore": 3.23,
+                "hard": true,
+                "won": false,
+                "margin": -23
+              },
+              {
+                "opponent": "Valencia",
+                "gameCode": 26,
+                "date": "2026-10-02T18:00:00+00:00",
+                "home": true,
+                "pregameWinProb": 0.30473,
+                "opponentRatingBefore": 4.688,
+                "hard": true,
+                "won": false,
+                "margin": -13
+              },
+              {
+                "opponent": "Paris",
+                "gameCode": 31,
+                "date": "2026-10-07T18:45:00+00:00",
+                "home": false,
+                "pregameWinProb": 0.27944,
+                "opponentRatingBefore": -1.537,
+                "hard": true,
+                "won": true,
+                "margin": 2
+              }
+            ],
+            "opponent": "Crvena Zvezda",
+            "home": true,
+            "baseMargin": -1.17,
+            "strengthDelta": -0.1268,
+            "rosterDelta": -0.348,
+            "margin": -1.6448,
+            "rawWinProb": 0.4431347001751051,
+            "winProb": 0.4431347001751051
+          }
+        },
+        "homeScore": 82.0,
+        "awayScore": 84.0,
+        "actualMargin": -2.0,
+        "actualTotal": 166.0,
+        "marginError": -0.35519999999999996,
+        "totalError": -3.0200000000000102,
+        "winnerHit": true,
+        "brier": 0.19636836249928027
+      },
       {
         "gameCode": 46,
         "round": 5,
@@ -87807,11 +92533,11 @@
         "brier": 0.4994955625
       }
     ],
-    "n": 17,
-    "winnerAccuracy": 58.82352941176471,
-    "marginMae": 11.36355294117647,
-    "totalMae": 12.755882352941178,
-    "brier": 0.23446805651234573
+    "n": 18,
+    "winnerAccuracy": 61.111111111111114,
+    "marginMae": 10.751977777777778,
+    "totalMae": 12.215000000000002,
+    "brier": 0.2323514068449532
   },
   "reportVersion": 2
 }

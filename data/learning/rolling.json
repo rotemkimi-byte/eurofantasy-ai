@@ -2,8 +2,8 @@
   "schema": "rolling-learning-v1",
   "season": "E2026",
   "engineId": "521db8c8eff2c21ece3b",
-  "updated_at": "2026-10-13T19:50:16.692385+00:00",
-  "exactCount": 23,
+  "updated_at": "2026-10-13T20:13:03.087629+00:00",
+  "exactCount": 45,
   "diagnostic": {
     "n": 365,
     "mae": 5.174146696094897,
@@ -27,19 +27,19 @@
   },
   "coefficients": {
     "G": {
-      "n": 8,
-      "minutes": -0.14265165698008994,
-      "efficiencyPir": 0.0844623753764535
+      "n": 17,
+      "minutes": -0.22183688246895672,
+      "efficiencyPir": -0.223464135787236
     },
     "F": {
-      "n": 10,
-      "minutes": -0.2469492170987908,
-      "efficiencyPir": 0.05460353955435259
+      "n": 21,
+      "minutes": -0.25278418106326056,
+      "efficiencyPir": 0.3612440852240436
     },
     "C": {
-      "n": 4,
-      "minutes": -0.17013639087301585,
-      "efficiencyPir": 0.023535342602616867
+      "n": 5,
+      "minutes": -0.16010898618925828,
+      "efficiencyPir": 0.03382716564040707
     }
   },
   "interval": {
@@ -47,7 +47,7 @@
     "targetCoverage": 0.8,
     "coverage": null,
     "n": 0,
-    "radius": 7.325752362741776
+    "radius": 7.1405468053698335
   },
   "limitations": [
     "Partial historical reconstructions exclude unrecoverable pregame defensive context and momentum configuration; never activate live corrections.",
@@ -105,14 +105,14 @@
     {
       "round": 5,
       "kind": "exact-frozen-input",
-      "n": 23,
-      "mae": 4.49389077851827,
-      "bias": -0.6609231466718041,
-      "minutesMae": 3.8345008584864795,
-      "hits": 16,
-      "hitRate": 69.56521739130434,
-      "over": 3,
-      "under": 4
+      "n": 45,
+      "mae": 4.657133244169859,
+      "bias": -0.4310249828226927,
+      "minutesMae": 3.9075117596178077,
+      "hits": 28,
+      "hitRate": 62.22222222222222,
+      "over": 9,
+      "under": 8
     },
     {
       "round": 5,
