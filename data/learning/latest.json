@@ -2,26 +2,26 @@
   "schema": "learning-v1",
   "season": "E2026",
   "modelId": "b3fc6df40846537dcb24",
-  "updated_at": "2026-10-13T20:52:24.707820+00:00",
+  "updated_at": "2026-10-13T21:07:20.168093+00:00",
   "metrics": {
-    "n": 826,
-    "mae": 5.720028059709547,
-    "bias": -1.0297965439683012,
-    "minutesMae": 4.852294708039818,
-    "hits": 447,
-    "hitRate": 54.116222760290555,
-    "over": 232,
-    "under": 147
+    "n": 847,
+    "mae": 5.734534203640687,
+    "bias": -1.0188086475046938,
+    "minutesMae": 4.837947433420117,
+    "hits": 457,
+    "hitRate": 53.955135773317586,
+    "over": 239,
+    "under": 151
   },
   "eligibleMetrics": {
-    "n": 114,
-    "mae": 5.133559455341918,
-    "bias": -1.1270520332041516,
-    "minutesMae": 4.633018636522953,
-    "hits": 66,
-    "hitRate": 57.89473684210527,
-    "over": 29,
-    "under": 19
+    "n": 135,
+    "mae": 5.315800526463365,
+    "bias": -1.0429845252143113,
+    "minutesMae": 4.577112383922713,
+    "hits": 76,
+    "hitRate": 56.2962962962963,
+    "over": 36,
+    "under": 23
   },
   "legacyCount": 712,
   "validation": {
@@ -32,19 +32,19 @@
   },
   "coefficients": {
     "G": {
-      "n": 45,
-      "minutes": -0.4787759482201536,
-      "efficiencyPir": -0.6017535779990216
+      "n": 55,
+      "minutes": -0.5415102256248222,
+      "efficiencyPir": -0.4025848644246951
     },
     "F": {
-      "n": 46,
-      "minutes": -0.6305245662482243,
-      "efficiencyPir": 0.04889462846016699
+      "n": 54,
+      "minutes": -0.7671129881601166,
+      "efficiencyPir": -5.377191673079257e-05
     },
     "C": {
-      "n": 19,
-      "minutes": -0.5063152961820699,
-      "efficiencyPir": 0.4771796550579519
+      "n": 22,
+      "minutes": -0.5587064877449748,
+      "efficiencyPir": 0.36247446953333423
     }
   },
   "active": false,
@@ -4748,18 +4748,128 @@
     },
     "kevin punter": {
       "name": "Kevin Punter",
-      "n": 4,
+      "n": 5,
       "metrics": {
-        "n": 4,
-        "mae": 8.37073384005938,
-        "bias": 0.7938069155102774,
-        "minutesMae": 3.034813687943264,
-        "hits": 1,
-        "hitRate": 25.0,
+        "n": 5,
+        "mae": 7.587386862694105,
+        "bias": 1.5258453230548235,
+        "minutesMae": 2.6881156312056746,
+        "hits": 2,
+        "hitRate": 40.0,
         "over": 1,
         "under": 2
       },
       "games": [
+        {
+          "name": "Kevin Punter",
+          "key": "kevin punter",
+          "team": "Barcelona",
+          "pos": "G",
+          "opponent": "Maccabi Tel Aviv",
+          "gameCode": 44,
+          "round": 5,
+          "start": "2026-10-13T18:30:00Z",
+          "basePir": 16.546001046766992,
+          "baseMinutes": 24.834656737588652,
+          "servedPir": 16.546001046766992,
+          "servedMinutes": 24.834656737588652,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+          "home": true,
+          "features": {
+            "basePir": 13.231946661181524,
+            "baseMin": 27.143970212765957,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 10.800999999999995,
+            "teamPoints": 90.26695,
+            "margin": 5.5939,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 39,
+              "historyWeight": 0.8297872340425532,
+              "sameTeam": true,
+              "avgPir": 13.256410256410257,
+              "avgMinutes": 27.173502564102563,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 2,
+                  "nextGameSamples": 1,
+                  "nextGameAvgPir": 12,
+                  "continuedRate": 0
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 2,
+                  "nextGameSamples": 1,
+                  "nextGameAvgPir": 12,
+                  "continuedRate": 0
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0148833301121052,
+              "defenseSample": 4,
+              "rival": "Iffe Lundberg",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 25.399942876417295,
+                  "weight": 0.7569380698960014,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 22.96127748980385,
+                  "weight": 0.2062040595220554,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 23.70631719193151,
+                  "weight": 0.03685787058194324,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 21.0,
+          "actualMinutes": 23.533333333333335,
+          "fouls": 2.0,
+          "actualStats": {
+            "points": 19.0,
+            "totalRebounds": 2.0,
+            "assistances": 3.0,
+            "turnovers": 0.0,
+            "foulsCommited": 2.0,
+            "fieldGoalsMadeTotal": 5.0,
+            "fieldGoalsAttemptedTotal": 11.0
+          },
+          "minutesContribution": -0.8670020542865579,
+          "efficiencyContribution": 5.321001007519566,
+          "reason": "efficiency",
+          "error": 4.4539989532330075,
+          "servedError": 4.4539989532330075
+        },
         {
           "name": "Kevin Punter",
           "key": "kevin punter",
@@ -4972,18 +5082,128 @@
     },
     "justin robinson": {
       "name": "Justin Robinson",
-      "n": 4,
+      "n": 5,
       "metrics": {
-        "n": 4,
-        "mae": 6.321439162810783,
-        "bias": -0.7254622037537257,
-        "minutesMae": 4.774156458333334,
-        "hits": 2,
-        "hitRate": 50.0,
+        "n": 5,
+        "mae": 5.3755338214987045,
+        "bias": -0.8987522542530577,
+        "minutesMae": 4.444505583333333,
+        "hits": 3,
+        "hitRate": 60.0,
         "over": 1,
         "under": 1
       },
       "games": [
+        {
+          "name": "Justin Robinson",
+          "key": "justin robinson",
+          "team": "Barcelona",
+          "pos": "G",
+          "opponent": "Maccabi Tel Aviv",
+          "gameCode": 44,
+          "round": 5,
+          "start": "2026-10-13T18:30:00Z",
+          "basePir": 12.591912456250386,
+          "baseMinutes": 19.909235416666668,
+          "servedPir": 12.591912456250386,
+          "servedMinutes": 19.909235416666668,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+          "home": true,
+          "features": {
+            "basePir": 12.824219373460608,
+            "baseMin": 21.187706249999998,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 10.800999999999995,
+            "teamPoints": 90.26695,
+            "margin": 5.5939,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 36,
+              "historyWeight": 0.45000000000000007,
+              "sameTeam": false,
+              "avgPir": 14.36111111111111,
+              "avgMinutes": 18.972680555555556,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 2,
+                  "nextGameSamples": 2,
+                  "nextGameAvgPir": -2.5,
+                  "continuedRate": 0
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 2,
+                  "nextGameSamples": 1,
+                  "nextGameAvgPir": -1,
+                  "continuedRate": 0
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0248093424485227,
+              "defenseSample": 4,
+              "rival": "Iffe Lundberg",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 20.43038599812337,
+                  "weight": 0.7569380698960014,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 18.195708844463457,
+                  "weight": 0.2062040595220554,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 18.79298590696346,
+                  "weight": 0.03685787058194324,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 11.0,
+          "actualMinutes": 16.783333333333335,
+          "fouls": 4.0,
+          "actualStats": {
+            "points": 11.0,
+            "totalRebounds": 1.0,
+            "assistances": 3.0,
+            "turnovers": 1.0,
+            "foulsCommited": 4.0,
+            "fieldGoalsMadeTotal": 4.0,
+            "fieldGoalsAttemptedTotal": 7.0
+          },
+          "minutesContribution": -1.9770264681884058,
+          "efficiencyContribution": 0.3851140119380201,
+          "reason": "minutes",
+          "error": -1.5919124562503857,
+          "servedError": -1.5919124562503857
+        },
         {
           "name": "Justin Robinson",
           "key": "justin robinson",
@@ -6533,18 +6753,128 @@
     },
     "joel parra": {
       "name": "Joel Parra",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 4.208725631843346,
-        "bias": -2.8273047326352247,
-        "minutesMae": 7.3485830555555545,
-        "hits": 2,
-        "hitRate": 66.66666666666666,
+        "n": 4,
+        "mae": 3.432490725358983,
+        "bias": -1.8445320479999452,
+        "minutesMae": 6.474753437499999,
+        "hits": 3,
+        "hitRate": 75.0,
         "over": 1,
         "under": 0
       },
       "games": [
+        {
+          "name": "Joel Parra",
+          "key": "joel parra",
+          "team": "Barcelona",
+          "pos": "F",
+          "opponent": "Maccabi Tel Aviv",
+          "gameCode": 44,
+          "round": 5,
+          "start": "2026-10-13T18:30:00Z",
+          "basePir": 6.896213994094107,
+          "baseMinutes": 22.546735416666667,
+          "servedPir": 6.896213994094107,
+          "servedMinutes": 22.546735416666667,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+          "home": true,
+          "features": {
+            "basePir": 6.797212767312024,
+            "baseMin": 17.88020625,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 7.211999999999996,
+            "teamPoints": 90.26695,
+            "margin": 5.5939,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 40,
+              "historyWeight": 0.8333333333333334,
+              "sameTeam": true,
+              "avgPir": 6.85,
+              "avgMinutes": 18.6562475,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0217085953343255,
+              "defenseSample": 4,
+              "rival": "Jaylen Hoard",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 23.015440533897497,
+                  "weight": 0.7569380698960014,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 20.9845348437279,
+                  "weight": 0.2062040595220554,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 21.6609369062279,
+                  "weight": 0.03685787058194324,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 8.0,
+          "actualMinutes": 26.4,
+          "fouls": 2.0,
+          "actualStats": {
+            "points": 11.0,
+            "totalRebounds": 2.0,
+            "assistances": 2.0,
+            "turnovers": 3.0,
+            "foulsCommited": 2.0,
+            "fieldGoalsMadeTotal": 4.0,
+            "fieldGoalsAttemptedTotal": 6.0
+          },
+          "minutesContribution": 1.1785713830166145,
+          "efficiencyContribution": -0.07478537711072164,
+          "reason": "minutes",
+          "error": 1.103786005905893,
+          "servedError": 1.103786005905893
+        },
         {
           "name": "Joel Parra",
           "key": "joel parra",
@@ -6714,18 +7044,128 @@
     },
     "brizuela dario": {
       "name": "Dario Brizuela",
-      "n": 4,
+      "n": 5,
       "metrics": {
-        "n": 4,
-        "mae": 9.309750243685208,
-        "bias": -3.918707501786077,
-        "minutesMae": 2.915291268115942,
+        "n": 5,
+        "mae": 8.813028204114978,
+        "bias": -4.500194010595673,
+        "minutesMae": 2.65199663768116,
         "hits": 2,
-        "hitRate": 50.0,
-        "over": 1,
+        "hitRate": 40.0,
+        "over": 2,
         "under": 1
       },
       "games": [
+        {
+          "name": "Dario Brizuela",
+          "key": "brizuela dario",
+          "team": "Barcelona",
+          "pos": "G",
+          "opponent": "Maccabi Tel Aviv",
+          "gameCode": 44,
+          "round": 5,
+          "start": "2026-10-13T18:30:00Z",
+          "basePir": 5.826140045834059,
+          "baseMinutes": 17.65118188405797,
+          "servedPir": 5.826140045834059,
+          "servedMinutes": 17.65118188405797,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+          "home": true,
+          "features": {
+            "basePir": 5.8405525329117935,
+            "baseMin": 15.273545652173912,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 10.800999999999995,
+            "teamPoints": 90.26695,
+            "margin": 5.5939,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 38,
+              "historyWeight": 0.8260869565217391,
+              "sameTeam": true,
+              "avgPir": 5.868421052631579,
+              "avgMinutes": 15.541660526315788,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.023199113132931,
+              "defenseSample": 4,
+              "rival": "Iffe Lundberg",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 18.113116818079074,
+                  "weight": 0.7569380698960014,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 16.132335693119938,
+                  "weight": 0.2062040595220554,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 16.661871149641676,
+                  "weight": 0.03685787058194324,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": -1.0,
+          "actualMinutes": 19.25,
+          "fouls": 2.0,
+          "actualStats": {
+            "points": 1.0,
+            "totalRebounds": 3.0,
+            "assistances": 4.0,
+            "turnovers": 0.0,
+            "foulsCommited": 2.0,
+            "fieldGoalsMadeTotal": 0.0,
+            "fieldGoalsAttemptedTotal": 6.0
+          },
+          "minutesContribution": 0.5277232036064285,
+          "efficiencyContribution": -7.353863249440487,
+          "reason": "efficiency",
+          "error": -6.826140045834059,
+          "servedError": -6.826140045834059
+        },
         {
           "name": "Dario Brizuela",
           "key": "brizuela dario",
@@ -7082,18 +7522,128 @@
     },
     "hoard jaylen": {
       "name": "Jaylen Hoard",
-      "n": 4,
+      "n": 5,
       "metrics": {
-        "n": 4,
-        "mae": 9.569076567526928,
-        "bias": -4.005425132271302,
-        "minutesMae": 3.287513410852714,
+        "n": 5,
+        "mae": 9.893572122379329,
+        "bias": -5.442650974174829,
+        "minutesMae": 3.2002795658914733,
         "hits": 1,
-        "hitRate": 25.0,
-        "over": 2,
+        "hitRate": 20.0,
+        "over": 3,
         "under": 1
       },
       "games": [
+        {
+          "name": "Jaylen Hoard",
+          "key": "hoard jaylen",
+          "team": "Maccabi Tel Aviv",
+          "pos": "F",
+          "opponent": "Barcelona",
+          "gameCode": 44,
+          "round": 5,
+          "start": "2026-10-13T18:30:00Z",
+          "basePir": 13.191554341788938,
+          "baseMinutes": 26.451344186046512,
+          "servedPir": 13.191554341788938,
+          "servedMinutes": 26.451344186046512,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+          "home": false,
+          "features": {
+            "basePir": 15.59518854289874,
+            "baseMin": 28.474032558139534,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": -7.096000000000002,
+            "teamPoints": 84.67305,
+            "margin": -5.5939,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 35,
+              "historyWeight": 0.813953488372093,
+              "sameTeam": true,
+              "avgPir": 16.142857142857142,
+              "avgMinutes": 28.81095428571429,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 2,
+                  "nextGameSamples": 2,
+                  "nextGameAvgPir": 15.5,
+                  "continuedRate": 0
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0009635948304823,
+              "defenseSample": 4,
+              "rival": "Joel Parra",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 26.728969284567942,
+                  "weight": 0.7569380698960013,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 26.55857630422328,
+                  "weight": 0.03685787058194324,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 25.413065142172556,
+                  "weight": 0.2062040595220554,
+                  "observedGames": 2
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 2.0,
+          "actualMinutes": 23.6,
+          "fouls": 1.0,
+          "actualStats": {
+            "points": 4.0,
+            "totalRebounds": 2.0,
+            "assistances": 0.0,
+            "turnovers": 3.0,
+            "foulsCommited": 1.0,
+            "fieldGoalsMadeTotal": 2.0,
+            "fieldGoalsAttemptedTotal": 4.0
+          },
+          "minutesContribution": -1.4219943422466323,
+          "efficiencyContribution": -9.769559999542306,
+          "reason": "efficiency",
+          "error": -11.191554341788938,
+          "servedError": -11.191554341788938
+        },
         {
           "name": "Jaylen Hoard",
           "key": "hoard jaylen",
@@ -7306,18 +7856,128 @@
     },
     "roman sorkin": {
       "name": "Roman Sorkin",
-      "n": 4,
+      "n": 5,
       "metrics": {
-        "n": 4,
-        "mae": 4.53578480600183,
-        "bias": -1.9826860913840867,
-        "minutesMae": 6.333877846790891,
+        "n": 5,
+        "mae": 5.209171827784755,
+        "bias": -3.1666928560905605,
+        "minutesMae": 5.995957349896481,
         "hits": 3,
-        "hitRate": 75.0,
-        "over": 1,
+        "hitRate": 60.0,
+        "over": 2,
         "under": 0
       },
       "games": [
+        {
+          "name": "Roman Sorkin",
+          "key": "roman sorkin",
+          "team": "Maccabi Tel Aviv",
+          "pos": "C",
+          "opponent": "Barcelona",
+          "gameCode": 44,
+          "round": 5,
+          "start": "2026-10-13T18:30:00Z",
+          "basePir": 12.902719914916457,
+          "baseMinutes": 18.927608695652175,
+          "servedPir": 12.902719914916457,
+          "servedMinutes": 18.927608695652175,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+          "home": false,
+          "features": {
+            "basePir": 13.788231462519024,
+            "baseMin": 22.922826086956523,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 4.105000000000003,
+            "teamPoints": 84.67305,
+            "margin": -5.5939,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 38,
+              "historyWeight": 0.8260869565217391,
+              "sameTeam": true,
+              "avgPir": 14.105263157894736,
+              "avgMinutes": 22.906578947368423,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 2,
+                  "nextGameSamples": 2,
+                  "nextGameAvgPir": 16,
+                  "continuedRate": 0
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0007010835829224,
+              "defenseSample": 4,
+              "rival": "Josh Nebo",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 19.24494106174698,
+                  "weight": 0.7569380698960013,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 17.35218019218176,
+                  "weight": 0.03685787058194324,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 18.04433797228489,
+                  "weight": 0.2062040595220554,
+                  "observedGames": 2
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 5.0,
+          "actualMinutes": 14.283333333333333,
+          "fouls": 0.0,
+          "actualStats": {
+            "points": 2.0,
+            "totalRebounds": 3.0,
+            "assistances": 0.0,
+            "turnovers": 1.0,
+            "foulsCommited": 0.0,
+            "fieldGoalsMadeTotal": 1.0,
+            "fieldGoalsAttemptedTotal": 5.0
+          },
+          "minutesContribution": -3.1659458503869082,
+          "efficiencyContribution": -4.736774064529548,
+          "reason": "efficiency",
+          "error": -7.902719914916457,
+          "servedError": -7.902719914916457
+        },
         {
           "name": "Roman Sorkin",
           "key": "roman sorkin",
@@ -7530,18 +8190,128 @@
     },
     "daniel theis": {
       "name": "Daniel Theis",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 2.638811240692286,
-        "bias": 0.47385542597438085,
-        "minutesMae": 3.1159292637681144,
-        "hits": 3,
+        "n": 4,
+        "mae": 2.7231233129213512,
+        "bias": 1.0994064518829223,
+        "minutesMae": 3.4679377304347816,
+        "hits": 4,
         "hitRate": 100.0,
         "over": 0,
         "under": 0
       },
       "games": [
+        {
+          "name": "Daniel Theis",
+          "key": "daniel theis",
+          "team": "Maccabi Tel Aviv",
+          "pos": "C",
+          "opponent": "Barcelona",
+          "gameCode": 44,
+          "round": 5,
+          "start": "2026-10-13T18:30:00Z",
+          "basePir": 11.023940470391453,
+          "baseMinutes": 19.07603686956522,
+          "servedPir": 11.023940470391453,
+          "servedMinutes": 19.07603686956522,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+          "home": false,
+          "features": {
+            "basePir": 11.582635552481923,
+            "baseMin": 21.875092173913043,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 4.105000000000003,
+            "teamPoints": 84.67305,
+            "margin": -5.5939,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 38,
+              "historyWeight": 0.45434782608695656,
+              "sameTeam": false,
+              "avgPir": 12.157894736842104,
+              "avgMinutes": 20.524126315789474,
+              "currentSeasonWeight": 0.42857142857142855,
+              "minutesWeight": 0.6,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 3,
+                  "nextGameSamples": 2,
+                  "nextGameAvgPir": 22,
+                  "continuedRate": 0.5
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.42857142857142855,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0001301290206772,
+              "defenseSample": 4,
+              "rival": "Josh Nebo",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 18.956480147951655,
+                  "weight": 0.7569380698960013,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 18.512994628220078,
+                  "weight": 0.03685787058194324,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 19.61554890644164,
+                  "weight": 0.2062040595220554,
+                  "observedGames": 1
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 14.0,
+          "actualMinutes": 23.6,
+          "fouls": 3.0,
+          "actualStats": {
+            "points": 11.0,
+            "totalRebounds": 5.0,
+            "assistances": 2.0,
+            "turnovers": 0.0,
+            "foulsCommited": 3.0,
+            "fieldGoalsMadeTotal": 4.0,
+            "fieldGoalsAttemptedTotal": 7.0
+          },
+          "minutesContribution": 2.6143742844053066,
+          "efficiencyContribution": 0.36168524520323864,
+          "reason": "minutes",
+          "error": 2.9760595296085466,
+          "servedError": 2.9760595296085466
+        },
         {
           "name": "Daniel Theis",
           "key": "daniel theis",
@@ -7715,18 +8485,128 @@
     },
     "bonzie colson": {
       "name": "Bonzie Colson",
-      "n": 4,
+      "n": 5,
       "metrics": {
-        "n": 4,
-        "mae": 10.214765597368432,
-        "bias": 2.1883236834516646,
-        "minutesMae": 8.325069177083334,
+        "n": 5,
+        "mae": 9.588504810440497,
+        "bias": 3.167351279307084,
+        "minutesMae": 7.110592556944445,
         "hits": 0,
         "hitRate": 0.0,
         "over": 2,
-        "under": 2
+        "under": 3
       },
       "games": [
+        {
+          "name": "Bonzie Colson",
+          "key": "bonzie colson",
+          "team": "Maccabi Tel Aviv",
+          "pos": "F",
+          "opponent": "Barcelona",
+          "gameCode": 44,
+          "round": 5,
+          "start": "2026-10-13T18:30:00Z",
+          "basePir": 8.916538337271238,
+          "baseMinutes": 18.930647256944443,
+          "servedPir": 8.916538337271238,
+          "servedMinutes": 18.930647256944443,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+          "home": false,
+          "features": {
+            "basePir": 9.578538933911853,
+            "baseMin": 20.19194177083333,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": -7.096000000000002,
+            "teamPoints": 84.67305,
+            "margin": -5.5939,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 40,
+              "historyWeight": 0.45833333333333337,
+              "sameTeam": false,
+              "avgPir": 8.675,
+              "avgMinutes": 16.8733275,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9974167172597579,
+              "defenseSample": 4,
+              "rival": "Joel Parra",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 18.384452945565986,
+                  "weight": 0.7569380698960013,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 19.144207519751795,
+                  "weight": 0.03685787058194324,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 20.897455729362555,
+                  "weight": 0.2062040595220554,
+                  "observedGames": 2
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 16.0,
+          "actualMinutes": 21.183333333333334,
+          "fouls": 1.0,
+          "actualStats": {
+            "points": 12.0,
+            "totalRebounds": 4.0,
+            "assistances": 1.0,
+            "turnovers": 2.0,
+            "foulsCommited": 1.0,
+            "fieldGoalsMadeTotal": 4.0,
+            "fieldGoalsAttemptedTotal": 8.0
+          },
+          "minutesContribution": 1.0610393553548645,
+          "efficiencyContribution": 6.022422307373898,
+          "reason": "efficiency",
+          "error": 7.083461662728762,
+          "servedError": 7.083461662728762
+        },
         {
           "name": "Bonzie Colson",
           "key": "bonzie colson",
@@ -8271,18 +9151,128 @@
     },
     "clark iii jimmy": {
       "name": "Jimmy Clark III",
-      "n": 4,
+      "n": 5,
       "metrics": {
-        "n": 4,
-        "mae": 5.916571736070191,
-        "bias": 1.790558249684989,
-        "minutesMae": 5.465070097222221,
+        "n": 5,
+        "mae": 6.195526052499762,
+        "bias": -0.029822063895617746,
+        "minutesMae": 4.748154892592591,
         "hits": 2,
-        "hitRate": 50.0,
-        "over": 1,
+        "hitRate": 40.0,
+        "over": 2,
         "under": 1
       },
       "games": [
+        {
+          "name": "Jimmy Clark III",
+          "key": "clark iii jimmy",
+          "team": "Maccabi Tel Aviv",
+          "pos": "G",
+          "opponent": "Barcelona",
+          "gameCode": 44,
+          "round": 5,
+          "start": "2026-10-13T18:30:00Z",
+          "basePir": 9.311343318218045,
+          "baseMinutes": 19.49716074074074,
+          "servedPir": 9.311343318218045,
+          "servedMinutes": 19.49716074074074,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+          "home": false,
+          "features": {
+            "basePir": 8.657447047869756,
+            "baseMin": 19.591482222222226,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": -4.507000000000005,
+            "teamPoints": 84.67305,
+            "margin": -5.5939,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 37,
+              "historyWeight": 0.8222222222222222,
+              "sameTeam": true,
+              "avgPir": 8.594594594594595,
+              "avgMinutes": 19.71937027027027,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9990741901748665,
+              "defenseSample": 4,
+              "rival": "Kevin Punter",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 19.045549473036495,
+                  "weight": 0.7569380698960013,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 19.734237484202364,
+                  "weight": 0.03685787058194324,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 21.11256840130239,
+                  "weight": 0.2062040595220554,
+                  "observedGames": 2
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 2.0,
+          "actualMinutes": 17.616666666666667,
+          "fouls": 5.0,
+          "actualStats": {
+            "points": 9.0,
+            "totalRebounds": 0.0,
+            "assistances": 2.0,
+            "turnovers": 1.0,
+            "foulsCommited": 5.0,
+            "fieldGoalsMadeTotal": 4.0,
+            "fieldGoalsAttemptedTotal": 8.0
+          },
+          "minutesContribution": -0.8980756821166259,
+          "efficiencyContribution": -6.41326763610142,
+          "reason": "efficiency",
+          "error": -7.311343318218045,
+          "servedError": -7.311343318218045
+        },
         {
           "name": "Jimmy Clark III",
           "key": "clark iii jimmy",
@@ -8495,18 +9485,128 @@
     },
     "madar yam": {
       "name": "Yam Madar",
-      "n": 4,
+      "n": 5,
       "metrics": {
-        "n": 4,
-        "mae": 10.77714939370381,
-        "bias": 2.6949998650411886,
-        "minutesMae": 7.333723729166666,
+        "n": 5,
+        "mae": 12.966826033085217,
+        "bias": 6.50110641015512,
+        "minutesMae": 7.336826052777777,
         "hits": 0,
         "hitRate": 0.0,
         "over": 2,
-        "under": 2
+        "under": 3
       },
       "games": [
+        {
+          "name": "Yam Madar",
+          "key": "madar yam",
+          "team": "Maccabi Tel Aviv",
+          "pos": "G",
+          "opponent": "Barcelona",
+          "gameCode": 44,
+          "round": 5,
+          "start": "2026-10-13T18:30:00Z",
+          "basePir": 9.274467409389157,
+          "baseMinutes": 19.450764652777778,
+          "servedPir": 9.274467409389157,
+          "servedMinutes": 19.450764652777778,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+          "home": false,
+          "features": {
+            "basePir": 6.3727580859264545,
+            "baseMin": 15.592293958333332,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": -4.507000000000005,
+            "teamPoints": 84.67305,
+            "margin": -5.5939,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 16,
+              "historyWeight": 0.3666666666666667,
+              "sameTeam": false,
+              "avgPir": 3.1875,
+              "avgMinutes": 9.70625625,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9964695378628594,
+              "defenseSample": 4,
+              "rival": "Kevin Punter",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 19.777525032780424,
+                  "weight": 0.7569380698960013,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 19.330206726596877,
+                  "weight": 0.03685787058194324,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 18.272835064583106,
+                  "weight": 0.2062040595220554,
+                  "observedGames": 2
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 31.0,
+          "actualMinutes": 26.8,
+          "fouls": 1.0,
+          "actualStats": {
+            "points": 22.0,
+            "totalRebounds": 3.0,
+            "assistances": 4.0,
+            "turnovers": 1.0,
+            "foulsCommited": 1.0,
+            "fieldGoalsMadeTotal": 8.0,
+            "fieldGoalsAttemptedTotal": 11.0
+          },
+          "minutesContribution": 3.504244945044322,
+          "efficiencyContribution": 18.22128764556652,
+          "reason": "efficiency",
+          "error": 21.725532590610843,
+          "servedError": 21.725532590610843
+        },
         {
           "name": "Yam Madar",
           "key": "madar yam",
@@ -8719,18 +9819,128 @@
     },
     "iffe lundberg": {
       "name": "Iffe Lundberg",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 6.080259153472881,
-        "bias": -6.080259153472881,
-        "minutesMae": 3.1334727777777807,
+        "n": 4,
+        "mae": 6.870067802293432,
+        "bias": -2.2503209279158907,
+        "minutesMae": 2.462743125000002,
         "hits": 2,
-        "hitRate": 66.66666666666666,
+        "hitRate": 50.0,
         "over": 1,
-        "under": 0
+        "under": 1
       },
       "games": [
+        {
+          "name": "Iffe Lundberg",
+          "key": "iffe lundberg",
+          "team": "Maccabi Tel Aviv",
+          "pos": "G",
+          "opponent": "Barcelona",
+          "gameCode": 44,
+          "round": 5,
+          "start": "2026-10-13T18:30:00Z",
+          "basePir": 7.760506251244918,
+          "baseMinutes": 21.91722083333333,
+          "servedPir": 7.760506251244918,
+          "servedMinutes": 21.91722083333333,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+          "home": false,
+          "features": {
+            "basePir": 10.517577891158245,
+            "baseMin": 22.591662499999998,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": -4.507000000000005,
+            "teamPoints": 84.67305,
+            "margin": -5.5939,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 16,
+              "historyWeight": 0.6666666666666666,
+              "sameTeam": true,
+              "avgPir": 12.375,
+              "avgMinutes": 24.38749375,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9963834527127083,
+              "defenseSample": 4,
+              "rival": "Kevin Punter",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 22.04863148340971,
+                  "weight": 0.7569380698960013,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 22.649451050655532,
+                  "weight": 0.03685787058194324,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 21.303953709921938,
+                  "weight": 0.2062040595220554,
+                  "observedGames": 2
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 17.0,
+          "actualMinutes": 21.466666666666665,
+          "fouls": 1.0,
+          "actualStats": {
+            "points": 13.0,
+            "totalRebounds": 1.0,
+            "assistances": 3.0,
+            "turnovers": 3.0,
+            "foulsCommited": 1.0,
+            "fieldGoalsMadeTotal": 2.0,
+            "fieldGoalsAttemptedTotal": 5.0
+          },
+          "minutesContribution": -0.15953338489081295,
+          "efficiencyContribution": 9.399027133645895,
+          "reason": "efficiency",
+          "error": 9.239493748755082,
+          "servedError": 9.239493748755082
+        },
         {
           "name": "Iffe Lundberg",
           "key": "iffe lundberg",
@@ -10158,18 +11368,128 @@
     },
     "rayman william": {
       "name": "William Rayman",
-      "n": 4,
+      "n": 5,
       "metrics": {
-        "n": 4,
-        "mae": 1.888371546160541,
-        "bias": -1.6708862972982237,
-        "minutesMae": 7.355516485507247,
-        "hits": 4,
+        "n": 5,
+        "mae": 1.8687271977379334,
+        "bias": -1.6947389986480796,
+        "minutesMae": 7.718985579710146,
+        "hits": 5,
         "hitRate": 100.0,
         "over": 0,
         "under": 0
       },
       "games": [
+        {
+          "name": "William Rayman",
+          "key": "rayman william",
+          "team": "Maccabi Tel Aviv",
+          "pos": "F",
+          "opponent": "Barcelona",
+          "gameCode": 44,
+          "round": 5,
+          "start": "2026-10-13T18:30:00Z",
+          "basePir": 1.7901498040475028,
+          "baseMinutes": 10.27286195652174,
+          "servedPir": 1.7901498040475028,
+          "servedMinutes": 10.27286195652174,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+          "home": false,
+          "features": {
+            "basePir": 2.919392436830075,
+            "baseMin": 12.325723913043479,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": -7.096000000000002,
+            "teamPoints": 84.67305,
+            "margin": -5.5939,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 38,
+              "historyWeight": 0.8260869565217391,
+              "sameTeam": true,
+              "avgPir": 2.763157894736842,
+              "avgMinutes": 11.973244736842105,
+              "currentSeasonWeight": 0.3333333333333333,
+              "minutesWeight": 0.5,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.3333333333333333,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0004520380677568,
+              "defenseSample": 4,
+              "rival": "Joel Parra",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 10.578205212105686,
+                  "weight": 0.7569380698960013,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 10.093671202770516,
+                  "weight": 0.03685787058194324,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 9.184031089434878,
+                  "weight": 0.2062040595220554,
+                  "observedGames": 2
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 0.0,
+          "actualMinutes": 1.1,
+          "fouls": 0.0,
+          "actualStats": {
+            "points": 0.0,
+            "totalRebounds": 0.0,
+            "assistances": 0.0,
+            "turnovers": 0.0,
+            "foulsCommited": 0.0,
+            "fieldGoalsMadeTotal": 0.0,
+            "fieldGoalsAttemptedTotal": 0.0
+          },
+          "minutesContribution": -1.5984637098717578,
+          "efficiencyContribution": -0.1916860941757449,
+          "reason": "minutes",
+          "error": -1.7901498040475028,
+          "servedError": -1.7901498040475028
+        },
         {
           "name": "William Rayman",
           "key": "rayman william",
@@ -24066,18 +25386,106 @@
     },
     "gibson umoja": {
       "name": "Umoja Gibson",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 6.814524673117353,
-        "bias": -0.6400240287834867,
-        "minutesMae": 9.062375,
-        "hits": 1,
-        "hitRate": 33.33333333333333,
+        "n": 4,
+        "mae": 5.866731413007798,
+        "bias": -1.2358559297573977,
+        "minutesMae": 7.080947916666665,
+        "hits": 2,
+        "hitRate": 50.0,
         "over": 1,
         "under": 1
       },
       "games": [
+        {
+          "name": "Umoja Gibson",
+          "key": "gibson umoja",
+          "team": "Barcelona",
+          "pos": "G",
+          "opponent": "Maccabi Tel Aviv",
+          "gameCode": 44,
+          "round": 5,
+          "start": "2026-10-13T18:30:00Z",
+          "basePir": 12.02335163267913,
+          "baseMinutes": 19.080000000000002,
+          "servedPir": 12.02335163267913,
+          "servedMinutes": 19.080000000000002,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+          "home": true,
+          "features": {
+            "basePir": 9.765,
+            "baseMin": 23,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 10.800999999999995,
+            "teamPoints": 90.26695,
+            "margin": 5.5939,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0156780442424873,
+              "defenseSample": 4,
+              "rival": "Iffe Lundberg",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 19.421791650382232,
+                  "weight": 0.7569380698960014,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 17.928801385110877,
+                  "weight": 0.2062040595220554,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 18.50120138511088,
+                  "weight": 0.03685787058194324,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 9.0,
+          "actualMinutes": 20.216666666666665,
+          "fouls": 3.0,
+          "actualStats": {
+            "points": 13.0,
+            "totalRebounds": 1.0,
+            "assistances": 2.0,
+            "turnovers": 4.0,
+            "foulsCommited": 3.0,
+            "fieldGoalsMadeTotal": 5.0,
+            "fieldGoalsAttemptedTotal": 6.0
+          },
+          "minutesContribution": 0.7162758397525455,
+          "efficiencyContribution": -3.7396274724316765,
+          "reason": "efficiency",
+          "error": -3.0233516326791303,
+          "servedError": -3.0233516326791303
+        },
         {
           "name": "Umoja Gibson",
           "key": "gibson umoja",
@@ -24811,18 +26219,106 @@
     },
     "stanley umude": {
       "name": "Stanley Umude",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 4.2855848065265905,
-        "bias": -0.2889181398599237,
-        "minutesMae": 3.9227777777777777,
+        "n": 4,
+        "mae": 5.697300672392191,
+        "bias": -2.6998006723921915,
+        "minutesMae": 6.2162500000000005,
         "hits": 2,
-        "hitRate": 66.66666666666666,
-        "over": 0,
+        "hitRate": 50.0,
+        "over": 1,
         "under": 1
       },
       "games": [
+        {
+          "name": "Stanley Umude",
+          "key": "stanley umude",
+          "team": "Barcelona",
+          "pos": "G",
+          "opponent": "Maccabi Tel Aviv",
+          "gameCode": 44,
+          "round": 5,
+          "start": "2026-10-13T18:30:00Z",
+          "basePir": 7.932448269988994,
+          "baseMinutes": 16.78,
+          "servedPir": 7.932448269988994,
+          "servedMinutes": 16.78,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+          "home": true,
+          "features": {
+            "basePir": 8.184000000000001,
+            "baseMin": 19,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 10.800999999999995,
+            "teamPoints": 90.26695,
+            "margin": 5.5939,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0155221651655437,
+              "defenseSample": 4,
+              "rival": "Iffe Lundberg",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 17.2416708013637,
+                  "weight": 0.7569380698960014,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 15.265939541395598,
+                  "weight": 0.2062040595220554,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 15.769339541395597,
+                  "weight": 0.03685787058194324,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": -2.0,
+          "actualMinutes": 3.683333333333333,
+          "fouls": 2.0,
+          "actualStats": {
+            "points": 0.0,
+            "totalRebounds": 0.0,
+            "assistances": 0.0,
+            "turnovers": 0.0,
+            "foulsCommited": 2.0,
+            "fieldGoalsMadeTotal": 0.0,
+            "fieldGoalsAttemptedTotal": 0.0
+          },
+          "minutesContribution": -6.191217571074048,
+          "efficiencyContribution": -3.7412306989149458,
+          "reason": "minutes",
+          "error": -9.932448269988994,
+          "servedError": -9.932448269988994
+        },
         {
           "name": "Stanley Umude",
           "key": "stanley umude",
@@ -24970,18 +26466,106 @@
     },
     "nkamhoua olivier": {
       "name": "Olivier Nkamhoua",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 5.100052624238654,
-        "bias": -1.0754237765699894,
-        "minutesMae": 5.461222222222222,
-        "hits": 1,
-        "hitRate": 33.33333333333333,
+        "n": 4,
+        "mae": 4.7148212516566765,
+        "bias": -1.6963496159051785,
+        "minutesMae": 6.138416666666666,
+        "hits": 2,
+        "hitRate": 50.0,
         "over": 1,
         "under": 1
       },
       "games": [
+        {
+          "name": "Olivier Nkamhoua",
+          "key": "nkamhoua olivier",
+          "team": "Barcelona",
+          "pos": "F",
+          "opponent": "Maccabi Tel Aviv",
+          "gameCode": 44,
+          "round": 5,
+          "start": "2026-10-13T18:30:00Z",
+          "basePir": 6.559127133910746,
+          "baseMinutes": 16.119999999999997,
+          "servedPir": 6.559127133910746,
+          "servedMinutes": 16.119999999999997,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+          "home": true,
+          "features": {
+            "basePir": 6.882000000000001,
+            "baseMin": 19,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 7.211999999999996,
+            "teamPoints": 90.26695,
+            "margin": 5.5939,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0068595070918585,
+              "defenseSample": 4,
+              "rival": "Jaylen Hoard",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 16.373182410592598,
+                  "weight": 0.7569380698960014,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 15.2582119308878,
+                  "weight": 0.2062040595220554,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 15.7418119308878,
+                  "weight": 0.03685787058194324,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 3.0,
+          "actualMinutes": 7.95,
+          "fouls": 1.0,
+          "actualStats": {
+            "points": 5.0,
+            "totalRebounds": 0.0,
+            "assistances": 0.0,
+            "turnovers": 2.0,
+            "foulsCommited": 1.0,
+            "fieldGoalsMadeTotal": 2.0,
+            "fieldGoalsAttemptedTotal": 2.0
+          },
+          "minutesContribution": -3.3243218786632003,
+          "efficiencyContribution": -0.23480525524754592,
+          "reason": "minutes",
+          "error": -3.5591271339107458,
+          "servedError": -3.5591271339107458
+        },
         {
           "name": "Olivier Nkamhoua",
           "key": "nkamhoua olivier",
@@ -46959,18 +48543,106 @@
     },
     "martin tyrese": {
       "name": "Tyrese Martin",
-      "n": 2,
+      "n": 3,
       "metrics": {
-        "n": 2,
-        "mae": 2.044612626057945,
-        "bias": -0.9899529232483353,
-        "minutesMae": 1.028380952380953,
-        "hits": 2,
+        "n": 3,
+        "mae": 2.378008492811675,
+        "bias": 0.35496479327415464,
+        "minutesMae": 1.3111428571428583,
+        "hits": 3,
         "hitRate": 100.0,
         "over": 0,
         "under": 0
       },
       "games": [
+        {
+          "name": "Tyrese Martin",
+          "key": "martin tyrese",
+          "team": "Barcelona",
+          "pos": "F",
+          "opponent": "Maccabi Tel Aviv",
+          "gameCode": 44,
+          "round": 5,
+          "start": "2026-10-13T18:30:00Z",
+          "basePir": 5.9551997736808655,
+          "baseMinutes": 20.54,
+          "servedPir": 5.9551997736808655,
+          "servedMinutes": 20.54,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+          "home": true,
+          "features": {
+            "basePir": 7.347,
+            "baseMin": 19,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 7.211999999999996,
+            "teamPoints": 90.26695,
+            "margin": 5.5939,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.025843610268604,
+              "defenseSample": 4,
+              "rival": "Jaylen Hoard",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 21.034960314656647,
+                  "weight": 0.7569380698960014,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 18.90516510449047,
+                  "weight": 0.2062040595220554,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 19.52136510449047,
+                  "weight": 0.03685787058194324,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 9.0,
+          "actualMinutes": 22.416666666666668,
+          "fouls": 2.0,
+          "actualStats": {
+            "points": 7.0,
+            "totalRebounds": 7.0,
+            "assistances": 2.0,
+            "turnovers": 3.0,
+            "foulsCommited": 2.0,
+            "fieldGoalsMadeTotal": 3.0,
+            "fieldGoalsAttemptedTotal": 6.0
+          },
+          "minutesContribution": 0.5441053996401057,
+          "efficiencyContribution": 2.5006948266790285,
+          "reason": "efficiency",
+          "error": 3.0448002263191345,
+          "servedError": 3.0448002263191345
+        },
         {
           "name": "Tyrese Martin",
           "key": "martin tyrese",
@@ -47075,18 +48747,106 @@
     },
     "agustin ubal": {
       "name": "Agustin Ubal",
-      "n": 1,
+      "n": 2,
       "metrics": {
-        "n": 1,
-        "mae": 5.660964967187188,
-        "bias": -5.660964967187188,
-        "minutesMae": 14.1925,
+        "n": 2,
+        "mae": 7.017725750263974,
+        "bias": 1.3567607830767865,
+        "minutesMae": 7.14625,
         "hits": 0,
         "hitRate": 0.0,
         "over": 1,
-        "under": 0
+        "under": 1
       },
       "games": [
+        {
+          "name": "Agustin Ubal",
+          "key": "agustin ubal",
+          "team": "Barcelona",
+          "pos": "G",
+          "opponent": "Maccabi Tel Aviv",
+          "gameCode": 44,
+          "round": 5,
+          "start": "2026-10-13T18:30:00Z",
+          "basePir": 5.62551346665924,
+          "baseMinutes": 14.0,
+          "servedPir": 5.62551346665924,
+          "servedMinutes": 14.0,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+          "home": true,
+          "features": {
+            "basePir": 5.301,
+            "baseMin": 14,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 10.800999999999995,
+            "teamPoints": 90.26695,
+            "margin": 5.5939,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0,
+              "minutesWeight": 0,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1,
+              "defenseSample": 4,
+              "rival": "Iffe Lundberg",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 14.44390674225214,
+                  "weight": 0.7569380698960014,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 12.553906742252142,
+                  "weight": 0.2062040595220554,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 12.973906742252144,
+                  "weight": 0.03685787058194324,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 14.0,
+          "actualMinutes": 13.9,
+          "fouls": 0.0,
+          "actualStats": {
+            "points": 6.0,
+            "totalRebounds": 3.0,
+            "assistances": 2.0,
+            "turnovers": 0.0,
+            "foulsCommited": 0.0,
+            "fieldGoalsMadeTotal": 1.0,
+            "fieldGoalsAttemptedTotal": 1.0
+          },
+          "minutesContribution": -0.040182239047565856,
+          "efficiencyContribution": 8.414668772388325,
+          "reason": "efficiency",
+          "error": 8.374486533340761,
+          "servedError": 8.374486533340761
+        },
         {
           "name": "Agustin Ubal",
           "key": "agustin ubal",
@@ -49867,18 +51627,128 @@
     },
     "leaf tj": {
       "name": "TJ Leaf",
-      "n": 2,
+      "n": 3,
       "metrics": {
-        "n": 2,
-        "mae": 4.281960723267034,
-        "bias": -4.281960723267034,
-        "minutesMae": 5.384687934027778,
+        "n": 3,
+        "mae": 5.1950261828170845,
+        "bias": -5.1950261828170845,
+        "minutesMae": 5.381610706018519,
         "hits": 1,
-        "hitRate": 50.0,
-        "over": 1,
+        "hitRate": 33.33333333333333,
+        "over": 2,
         "under": 0
       },
       "games": [
+        {
+          "name": "TJ Leaf",
+          "key": "leaf tj",
+          "team": "Maccabi Tel Aviv",
+          "pos": "F",
+          "opponent": "Barcelona",
+          "gameCode": 44,
+          "round": 5,
+          "start": "2026-10-13T18:30:00Z",
+          "basePir": 6.021157101917187,
+          "baseMinutes": 14.07545625,
+          "servedPir": 6.021157101917187,
+          "servedMinutes": 14.07545625,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+          "home": false,
+          "features": {
+            "basePir": 11.625863777567643,
+            "baseMin": 18.403640625,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": -7.096000000000002,
+            "teamPoints": 84.67305,
+            "margin": -5.5939,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 24,
+              "historyWeight": 0.75,
+              "sameTeam": true,
+              "avgPir": 12.541666666666666,
+              "avgMinutes": 18.204854166666667,
+              "currentSeasonWeight": 0.42857142857142855,
+              "minutesWeight": 0.6,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.42857142857142855,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0001434347927125,
+              "defenseSample": 4,
+              "rival": "Joel Parra",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 14.018246739075217,
+                  "weight": 0.7569380698960013,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 12.821832957825217,
+                  "weight": 0.03685787058194324,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 14.509540535479418,
+                  "weight": 0.2062040595220554,
+                  "observedGames": 2
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": -1.0,
+          "actualMinutes": 8.7,
+          "fouls": 1.0,
+          "actualStats": {
+            "points": 2.0,
+            "totalRebounds": 0.0,
+            "assistances": 0.0,
+            "turnovers": 1.0,
+            "foulsCommited": 1.0,
+            "fieldGoalsMadeTotal": 1.0,
+            "fieldGoalsAttemptedTotal": 2.0
+          },
+          "minutesContribution": -2.299496797891197,
+          "efficiencyContribution": -4.72166030402599,
+          "reason": "efficiency",
+          "error": -7.021157101917187,
+          "servedError": -7.021157101917187
+        },
         {
           "name": "TJ Leaf",
           "key": "leaf tj",
@@ -50005,18 +51875,106 @@
     },
     "keaton wallace": {
       "name": "Keaton Wallace",
-      "n": 2,
+      "n": 3,
       "metrics": {
-        "n": 2,
-        "mae": 4.843529460449167,
-        "bias": -0.15621297831319714,
-        "minutesMae": 5.5959375,
-        "hits": 2,
+        "n": 3,
+        "mae": 3.9098655642849005,
+        "bias": 0.5767039384433247,
+        "minutesMae": 5.225069444444443,
+        "hits": 3,
         "hitRate": 100.0,
         "over": 0,
         "under": 0
       },
       "games": [
+        {
+          "name": "Keaton Wallace",
+          "key": "keaton wallace",
+          "team": "Maccabi Tel Aviv",
+          "pos": "G",
+          "opponent": "Barcelona",
+          "gameCode": 44,
+          "round": 5,
+          "start": "2026-10-13T18:30:00Z",
+          "basePir": 5.957462228043632,
+          "baseMinutes": 17.166666666666664,
+          "servedPir": 5.957462228043632,
+          "servedMinutes": 17.166666666666664,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+          "home": false,
+          "features": {
+            "basePir": 9.020999999999999,
+            "baseMin": 19,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": -4.507000000000005,
+            "teamPoints": 84.67305,
+            "margin": -5.5939,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9969861701363842,
+              "defenseSample": 4,
+              "rival": "Kevin Punter",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 16.8052340111433,
+                  "weight": 0.7569380698960013,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 17.048857732325366,
+                  "weight": 0.03685787058194324,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 18.514478750331612,
+                  "weight": 0.2062040595220554,
+                  "observedGames": 2
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 8.0,
+          "actualMinutes": 12.683333333333334,
+          "fouls": 0.0,
+          "actualStats": {
+            "points": 5.0,
+            "totalRebounds": 2.0,
+            "assistances": 4.0,
+            "turnovers": 0.0,
+            "foulsCommited": 0.0,
+            "fieldGoalsMadeTotal": 2.0,
+            "fieldGoalsAttemptedTotal": 5.0
+          },
+          "minutesContribution": -1.5558809119842099,
+          "efficiencyContribution": 3.5984186839405785,
+          "reason": "efficiency",
+          "error": 2.0425377719563684,
+          "servedError": 2.0425377719563684
+        },
         {
           "name": "Keaton Wallace",
           "key": "keaton wallace",
@@ -52754,18 +54712,128 @@
     },
     "josh nebo": {
       "name": "Josh Nebo",
-      "n": 1,
+      "n": 2,
       "metrics": {
-        "n": 1,
-        "mae": 1.3238811787219298,
-        "bias": -1.3238811787219298,
-        "minutesMae": 1.2088182911764704,
+        "n": 2,
+        "mae": 5.523010610054391,
+        "bias": -5.523010610054391,
+        "minutesMae": 3.9756767436274503,
         "hits": 1,
-        "hitRate": 100.0,
-        "over": 0,
+        "hitRate": 50.0,
+        "over": 1,
         "under": 0
       },
       "games": [
+        {
+          "name": "Josh Nebo",
+          "key": "josh nebo",
+          "team": "Barcelona",
+          "pos": "C",
+          "opponent": "Maccabi Tel Aviv",
+          "gameCode": 44,
+          "round": 5,
+          "start": "2026-10-13T18:30:00Z",
+          "basePir": 11.722140041386853,
+          "baseMinutes": 20.64253519607843,
+          "servedPir": 11.722140041386853,
+          "servedMinutes": 20.64253519607843,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+          "home": true,
+          "features": {
+            "basePir": 12.29507646495044,
+            "baseMin": 22.388802794117645,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 5.800000000000005,
+            "teamPoints": 90.26695,
+            "margin": 5.5939,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 26,
+              "historyWeight": 0.42058823529411765,
+              "sameTeam": false,
+              "avgPir": 13.73076923076923,
+              "avgMinutes": 21.546803846153846,
+              "currentSeasonWeight": 0.2,
+              "minutesWeight": 0.3333333333333333,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.2,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1,
+              "defenseSample": 4,
+              "rival": "Daniel Theis",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 21.121451444056074,
+                  "weight": 0.7569380698960014,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 19.057197924448232,
+                  "weight": 0.2062040595220554,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 19.676473980330584,
+                  "weight": 0.03685787058194324,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 2.0,
+          "actualMinutes": 13.9,
+          "fouls": 3.0,
+          "actualStats": {
+            "points": 5.0,
+            "totalRebounds": 3.0,
+            "assistances": 0.0,
+            "turnovers": 2.0,
+            "foulsCommited": 3.0,
+            "fieldGoalsMadeTotal": 2.0,
+            "fieldGoalsAttemptedTotal": 4.0
+          },
+          "minutesContribution": -3.8288389023760114,
+          "efficiencyContribution": -5.893301139010841,
+          "reason": "efficiency",
+          "error": -9.722140041386853,
+          "servedError": -9.722140041386853
+        },
         {
           "name": "Josh Nebo",
           "key": "josh nebo",
@@ -52853,18 +54921,106 @@
     },
     "evbuomwan tosan": {
       "name": "Tosan Evbuomwan",
-      "n": 1,
+      "n": 2,
       "metrics": {
-        "n": 1,
-        "mae": 4.057102196477271,
-        "bias": 4.057102196477271,
-        "minutesMae": 5.153333333333336,
-        "hits": 1,
+        "n": 2,
+        "mae": 3.2740971383280537,
+        "bias": 0.7830050581492176,
+        "minutesMae": 5.456666666666669,
+        "hits": 2,
         "hitRate": 100.0,
         "over": 0,
         "under": 0
       },
       "games": [
+        {
+          "name": "Tosan Evbuomwan",
+          "key": "evbuomwan tosan",
+          "team": "Barcelona",
+          "pos": "F",
+          "opponent": "Maccabi Tel Aviv",
+          "gameCode": 44,
+          "round": 5,
+          "start": "2026-10-13T18:30:00Z",
+          "basePir": 9.491092080178836,
+          "baseMinutes": 19.576666666666668,
+          "servedPir": 9.491092080178836,
+          "servedMinutes": 19.576666666666668,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+          "home": true,
+          "features": {
+            "basePir": 8.463000000000001,
+            "baseMin": 19,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 7.211999999999996,
+            "teamPoints": 90.26695,
+            "margin": 5.5939,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.2,
+              "minutesWeight": 0.3333333333333333,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.2,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1,
+              "defenseSample": 4,
+              "rival": "Jaylen Hoard",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 20.03085427777415,
+                  "weight": 0.7569380698960014,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 18.073187611107485,
+                  "weight": 0.2062040595220554,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 18.660487611107484,
+                  "weight": 0.03685787058194324,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 7.0,
+          "actualMinutes": 13.816666666666666,
+          "fouls": 1.0,
+          "actualStats": {
+            "points": 6.0,
+            "totalRebounds": 5.0,
+            "assistances": 0.0,
+            "turnovers": 1.0,
+            "foulsCommited": 1.0,
+            "fieldGoalsMadeTotal": 2.0,
+            "fieldGoalsAttemptedTotal": 5.0
+          },
+          "minutesContribution": -2.7925433534052497,
+          "efficiencyContribution": 0.3014512732264141,
+          "reason": "minutes",
+          "error": -2.491092080178836,
+          "servedError": -2.491092080178836
+        },
         {
           "name": "Tosan Evbuomwan",
           "key": "evbuomwan tosan",
@@ -54233,6 +56389,116 @@
       "servedError": -21.915
     },
     {
+      "name": "Yam Madar",
+      "key": "madar yam",
+      "team": "Maccabi Tel Aviv",
+      "pos": "G",
+      "opponent": "Barcelona",
+      "gameCode": 44,
+      "round": 5,
+      "start": "2026-10-13T18:30:00Z",
+      "basePir": 9.274467409389157,
+      "baseMinutes": 19.450764652777778,
+      "servedPir": 9.274467409389157,
+      "servedMinutes": 19.450764652777778,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+      "home": false,
+      "features": {
+        "basePir": 6.3727580859264545,
+        "baseMin": 15.592293958333332,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.507000000000005,
+        "teamPoints": 84.67305,
+        "margin": -5.5939,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 16,
+          "historyWeight": 0.3666666666666667,
+          "sameTeam": false,
+          "avgPir": 3.1875,
+          "avgMinutes": 9.70625625,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9964695378628594,
+          "defenseSample": 4,
+          "rival": "Kevin Punter",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.777525032780424,
+              "weight": 0.7569380698960013,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.330206726596877,
+              "weight": 0.03685787058194324,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.272835064583106,
+              "weight": 0.2062040595220554,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 31.0,
+      "actualMinutes": 26.8,
+      "fouls": 1.0,
+      "actualStats": {
+        "points": 22.0,
+        "totalRebounds": 3.0,
+        "assistances": 4.0,
+        "turnovers": 1.0,
+        "foulsCommited": 1.0,
+        "fieldGoalsMadeTotal": 8.0,
+        "fieldGoalsAttemptedTotal": 11.0
+      },
+      "minutesContribution": 3.504244945044322,
+      "efficiencyContribution": 18.22128764556652,
+      "reason": "efficiency",
+      "error": 21.725532590610843,
+      "servedError": 21.725532590610843
+    },
+    {
       "name": "Chris Duarte",
       "key": "chris duarte",
       "team": "Baskonia",
@@ -54946,74 +57212,37 @@
       "reason": "efficiency",
       "error": 18.11864125253799,
       "servedError": 18.11864125253799
-    },
-    {
-      "name": "Nigel Hayes-davis",
-      "key": "davis hayes nigel",
-      "team": "Panathinaikos",
-      "pos": "F",
-      "opponent": "Maccabi Tel Aviv",
-      "gameCode": 30,
-      "round": 3,
-      "start": "2026-10-02T18:15:00Z",
-      "basePir": 0.0,
-      "baseMinutes": 0.0,
-      "servedPir": 0,
-      "servedMinutes": 0,
-      "status": "out",
-      "modelId": "d055ed8ef292ed4cde64",
-      "eligible": true,
-      "snapshotAt": "2026-10-02T12:39:06.709930+00:00",
-      "home": true,
-      "features": {},
-      "actualPir": 18.0,
-      "actualMinutes": 24.65,
-      "fouls": 2.0,
-      "actualStats": {
-        "points": 13.0,
-        "totalRebounds": 4.0,
-        "assistances": 4.0,
-        "turnovers": 0.0,
-        "foulsCommited": 2.0,
-        "fieldGoalsMadeTotal": 5.0,
-        "fieldGoalsAttemptedTotal": 9.0
-      },
-      "minutesContribution": null,
-      "efficiencyContribution": null,
-      "reason": "availability",
-      "error": 18.0,
-      "servedError": 18.0
     }
   ],
   "byPosition": {
     "G": {
-      "n": 353,
-      "mae": 6.172994460936598,
-      "bias": -1.0047970288237436,
-      "minutesMae": 4.681840154925636,
-      "hits": 178,
-      "hitRate": 50.42492917847026,
-      "over": 104,
-      "under": 71
+      "n": 363,
+      "mae": 6.208232203943488,
+      "bias": -0.9298691385670965,
+      "minutesMae": 4.647968508393691,
+      "hits": 182,
+      "hitRate": 50.13774104683195,
+      "over": 107,
+      "under": 74
     },
     "F": {
-      "n": 318,
-      "mae": 5.298977015599359,
-      "bias": -1.18531577127401,
-      "minutesMae": 5.312962039271874,
-      "hits": 185,
-      "hitRate": 58.17610062893082,
-      "over": 87,
-      "under": 46
+      "n": 326,
+      "mae": 5.283312329194458,
+      "bias": -1.2016915577669467,
+      "minutesMae": 5.303172417814151,
+      "hits": 190,
+      "hitRate": 58.282208588957054,
+      "over": 89,
+      "under": 47
     },
     "C": {
-      "n": 155,
-      "mae": 5.552267365476583,
-      "bias": -0.7676656701800013,
-      "minutesMae": 4.295380165572157,
-      "hits": 84,
-      "hitRate": 54.19354838709678,
-      "over": 41,
+      "n": 158,
+      "mae": 5.577230133764444,
+      "bias": -0.8458036664847782,
+      "minutesMae": 4.314523413623521,
+      "hits": 85,
+      "hitRate": 53.79746835443038,
+      "over": 43,
       "under": 30
     }
   },
@@ -57421,6 +59650,2162 @@
       "reason": "minutes",
       "error": -2.2757280554816735,
       "servedError": -2.2757280554816735
+    },
+    {
+      "name": "Jaylen Hoard",
+      "key": "hoard jaylen",
+      "team": "Maccabi Tel Aviv",
+      "pos": "F",
+      "opponent": "Barcelona",
+      "gameCode": 44,
+      "round": 5,
+      "start": "2026-10-13T18:30:00Z",
+      "basePir": 13.191554341788938,
+      "baseMinutes": 26.451344186046512,
+      "servedPir": 13.191554341788938,
+      "servedMinutes": 26.451344186046512,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+      "home": false,
+      "features": {
+        "basePir": 15.59518854289874,
+        "baseMin": 28.474032558139534,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.096000000000002,
+        "teamPoints": 84.67305,
+        "margin": -5.5939,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 35,
+          "historyWeight": 0.813953488372093,
+          "sameTeam": true,
+          "avgPir": 16.142857142857142,
+          "avgMinutes": 28.81095428571429,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 15.5,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0009635948304823,
+          "defenseSample": 4,
+          "rival": "Joel Parra",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 26.728969284567942,
+              "weight": 0.7569380698960013,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 26.55857630422328,
+              "weight": 0.03685787058194324,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 25.413065142172556,
+              "weight": 0.2062040595220554,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 2.0,
+      "actualMinutes": 23.6,
+      "fouls": 1.0,
+      "actualStats": {
+        "points": 4.0,
+        "totalRebounds": 2.0,
+        "assistances": 0.0,
+        "turnovers": 3.0,
+        "foulsCommited": 1.0,
+        "fieldGoalsMadeTotal": 2.0,
+        "fieldGoalsAttemptedTotal": 4.0
+      },
+      "minutesContribution": -1.4219943422466323,
+      "efficiencyContribution": -9.769559999542306,
+      "reason": "efficiency",
+      "error": -11.191554341788938,
+      "servedError": -11.191554341788938
+    },
+    {
+      "name": "Kevin Punter",
+      "key": "kevin punter",
+      "team": "Barcelona",
+      "pos": "G",
+      "opponent": "Maccabi Tel Aviv",
+      "gameCode": 44,
+      "round": 5,
+      "start": "2026-10-13T18:30:00Z",
+      "basePir": 16.546001046766992,
+      "baseMinutes": 24.834656737588652,
+      "servedPir": 16.546001046766992,
+      "servedMinutes": 24.834656737588652,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+      "home": true,
+      "features": {
+        "basePir": 13.231946661181524,
+        "baseMin": 27.143970212765957,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 10.800999999999995,
+        "teamPoints": 90.26695,
+        "margin": 5.5939,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 39,
+          "historyWeight": 0.8297872340425532,
+          "sameTeam": true,
+          "avgPir": 13.256410256410257,
+          "avgMinutes": 27.173502564102563,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 12,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 12,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0148833301121052,
+          "defenseSample": 4,
+          "rival": "Iffe Lundberg",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 25.399942876417295,
+              "weight": 0.7569380698960014,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.96127748980385,
+              "weight": 0.2062040595220554,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 23.70631719193151,
+              "weight": 0.03685787058194324,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 21.0,
+      "actualMinutes": 23.533333333333335,
+      "fouls": 2.0,
+      "actualStats": {
+        "points": 19.0,
+        "totalRebounds": 2.0,
+        "assistances": 3.0,
+        "turnovers": 0.0,
+        "foulsCommited": 2.0,
+        "fieldGoalsMadeTotal": 5.0,
+        "fieldGoalsAttemptedTotal": 11.0
+      },
+      "minutesContribution": -0.8670020542865579,
+      "efficiencyContribution": 5.321001007519566,
+      "reason": "efficiency",
+      "error": 4.4539989532330075,
+      "servedError": 4.4539989532330075
+    },
+    {
+      "name": "Roman Sorkin",
+      "key": "roman sorkin",
+      "team": "Maccabi Tel Aviv",
+      "pos": "C",
+      "opponent": "Barcelona",
+      "gameCode": 44,
+      "round": 5,
+      "start": "2026-10-13T18:30:00Z",
+      "basePir": 12.902719914916457,
+      "baseMinutes": 18.927608695652175,
+      "servedPir": 12.902719914916457,
+      "servedMinutes": 18.927608695652175,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+      "home": false,
+      "features": {
+        "basePir": 13.788231462519024,
+        "baseMin": 22.922826086956523,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.105000000000003,
+        "teamPoints": 84.67305,
+        "margin": -5.5939,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 14.105263157894736,
+          "avgMinutes": 22.906578947368423,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 16,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0007010835829224,
+          "defenseSample": 4,
+          "rival": "Josh Nebo",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.24494106174698,
+              "weight": 0.7569380698960013,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.35218019218176,
+              "weight": 0.03685787058194324,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.04433797228489,
+              "weight": 0.2062040595220554,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 5.0,
+      "actualMinutes": 14.283333333333333,
+      "fouls": 0.0,
+      "actualStats": {
+        "points": 2.0,
+        "totalRebounds": 3.0,
+        "assistances": 0.0,
+        "turnovers": 1.0,
+        "foulsCommited": 0.0,
+        "fieldGoalsMadeTotal": 1.0,
+        "fieldGoalsAttemptedTotal": 5.0
+      },
+      "minutesContribution": -3.1659458503869082,
+      "efficiencyContribution": -4.736774064529548,
+      "reason": "efficiency",
+      "error": -7.902719914916457,
+      "servedError": -7.902719914916457
+    },
+    {
+      "name": "Josh Nebo",
+      "key": "josh nebo",
+      "team": "Barcelona",
+      "pos": "C",
+      "opponent": "Maccabi Tel Aviv",
+      "gameCode": 44,
+      "round": 5,
+      "start": "2026-10-13T18:30:00Z",
+      "basePir": 11.722140041386853,
+      "baseMinutes": 20.64253519607843,
+      "servedPir": 11.722140041386853,
+      "servedMinutes": 20.64253519607843,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+      "home": true,
+      "features": {
+        "basePir": 12.29507646495044,
+        "baseMin": 22.388802794117645,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 5.800000000000005,
+        "teamPoints": 90.26695,
+        "margin": 5.5939,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 26,
+          "historyWeight": 0.42058823529411765,
+          "sameTeam": false,
+          "avgPir": 13.73076923076923,
+          "avgMinutes": 21.546803846153846,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Daniel Theis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.121451444056074,
+              "weight": 0.7569380698960014,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.057197924448232,
+              "weight": 0.2062040595220554,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.676473980330584,
+              "weight": 0.03685787058194324,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 2.0,
+      "actualMinutes": 13.9,
+      "fouls": 3.0,
+      "actualStats": {
+        "points": 5.0,
+        "totalRebounds": 3.0,
+        "assistances": 0.0,
+        "turnovers": 2.0,
+        "foulsCommited": 3.0,
+        "fieldGoalsMadeTotal": 2.0,
+        "fieldGoalsAttemptedTotal": 4.0
+      },
+      "minutesContribution": -3.8288389023760114,
+      "efficiencyContribution": -5.893301139010841,
+      "reason": "efficiency",
+      "error": -9.722140041386853,
+      "servedError": -9.722140041386853
+    },
+    {
+      "name": "Justin Robinson",
+      "key": "justin robinson",
+      "team": "Barcelona",
+      "pos": "G",
+      "opponent": "Maccabi Tel Aviv",
+      "gameCode": 44,
+      "round": 5,
+      "start": "2026-10-13T18:30:00Z",
+      "basePir": 12.591912456250386,
+      "baseMinutes": 19.909235416666668,
+      "servedPir": 12.591912456250386,
+      "servedMinutes": 19.909235416666668,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+      "home": true,
+      "features": {
+        "basePir": 12.824219373460608,
+        "baseMin": 21.187706249999998,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 10.800999999999995,
+        "teamPoints": 90.26695,
+        "margin": 5.5939,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.45000000000000007,
+          "sameTeam": false,
+          "avgPir": 14.36111111111111,
+          "avgMinutes": 18.972680555555556,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": -2.5,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": -1,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0248093424485227,
+          "defenseSample": 4,
+          "rival": "Iffe Lundberg",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.43038599812337,
+              "weight": 0.7569380698960014,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.195708844463457,
+              "weight": 0.2062040595220554,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.79298590696346,
+              "weight": 0.03685787058194324,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 11.0,
+      "actualMinutes": 16.783333333333335,
+      "fouls": 4.0,
+      "actualStats": {
+        "points": 11.0,
+        "totalRebounds": 1.0,
+        "assistances": 3.0,
+        "turnovers": 1.0,
+        "foulsCommited": 4.0,
+        "fieldGoalsMadeTotal": 4.0,
+        "fieldGoalsAttemptedTotal": 7.0
+      },
+      "minutesContribution": -1.9770264681884058,
+      "efficiencyContribution": 0.3851140119380201,
+      "reason": "minutes",
+      "error": -1.5919124562503857,
+      "servedError": -1.5919124562503857
+    },
+    {
+      "name": "Daniel Theis",
+      "key": "daniel theis",
+      "team": "Maccabi Tel Aviv",
+      "pos": "C",
+      "opponent": "Barcelona",
+      "gameCode": 44,
+      "round": 5,
+      "start": "2026-10-13T18:30:00Z",
+      "basePir": 11.023940470391453,
+      "baseMinutes": 19.07603686956522,
+      "servedPir": 11.023940470391453,
+      "servedMinutes": 19.07603686956522,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+      "home": false,
+      "features": {
+        "basePir": 11.582635552481923,
+        "baseMin": 21.875092173913043,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.105000000000003,
+        "teamPoints": 84.67305,
+        "margin": -5.5939,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.45434782608695656,
+          "sameTeam": false,
+          "avgPir": 12.157894736842104,
+          "avgMinutes": 20.524126315789474,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 22,
+              "continuedRate": 0.5
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0001301290206772,
+          "defenseSample": 4,
+          "rival": "Josh Nebo",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.956480147951655,
+              "weight": 0.7569380698960013,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.512994628220078,
+              "weight": 0.03685787058194324,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.61554890644164,
+              "weight": 0.2062040595220554,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 14.0,
+      "actualMinutes": 23.6,
+      "fouls": 3.0,
+      "actualStats": {
+        "points": 11.0,
+        "totalRebounds": 5.0,
+        "assistances": 2.0,
+        "turnovers": 0.0,
+        "foulsCommited": 3.0,
+        "fieldGoalsMadeTotal": 4.0,
+        "fieldGoalsAttemptedTotal": 7.0
+      },
+      "minutesContribution": 2.6143742844053066,
+      "efficiencyContribution": 0.36168524520323864,
+      "reason": "minutes",
+      "error": 2.9760595296085466,
+      "servedError": 2.9760595296085466
+    },
+    {
+      "name": "Bonzie Colson",
+      "key": "bonzie colson",
+      "team": "Maccabi Tel Aviv",
+      "pos": "F",
+      "opponent": "Barcelona",
+      "gameCode": 44,
+      "round": 5,
+      "start": "2026-10-13T18:30:00Z",
+      "basePir": 8.916538337271238,
+      "baseMinutes": 18.930647256944443,
+      "servedPir": 8.916538337271238,
+      "servedMinutes": 18.930647256944443,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+      "home": false,
+      "features": {
+        "basePir": 9.578538933911853,
+        "baseMin": 20.19194177083333,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.096000000000002,
+        "teamPoints": 84.67305,
+        "margin": -5.5939,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.45833333333333337,
+          "sameTeam": false,
+          "avgPir": 8.675,
+          "avgMinutes": 16.8733275,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9974167172597579,
+          "defenseSample": 4,
+          "rival": "Joel Parra",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.384452945565986,
+              "weight": 0.7569380698960013,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.144207519751795,
+              "weight": 0.03685787058194324,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.897455729362555,
+              "weight": 0.2062040595220554,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 16.0,
+      "actualMinutes": 21.183333333333334,
+      "fouls": 1.0,
+      "actualStats": {
+        "points": 12.0,
+        "totalRebounds": 4.0,
+        "assistances": 1.0,
+        "turnovers": 2.0,
+        "foulsCommited": 1.0,
+        "fieldGoalsMadeTotal": 4.0,
+        "fieldGoalsAttemptedTotal": 8.0
+      },
+      "minutesContribution": 1.0610393553548645,
+      "efficiencyContribution": 6.022422307373898,
+      "reason": "efficiency",
+      "error": 7.083461662728762,
+      "servedError": 7.083461662728762
+    },
+    {
+      "name": "Umoja Gibson",
+      "key": "gibson umoja",
+      "team": "Barcelona",
+      "pos": "G",
+      "opponent": "Maccabi Tel Aviv",
+      "gameCode": 44,
+      "round": 5,
+      "start": "2026-10-13T18:30:00Z",
+      "basePir": 12.02335163267913,
+      "baseMinutes": 19.080000000000002,
+      "servedPir": 12.02335163267913,
+      "servedMinutes": 19.080000000000002,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+      "home": true,
+      "features": {
+        "basePir": 9.765,
+        "baseMin": 23,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 10.800999999999995,
+        "teamPoints": 90.26695,
+        "margin": 5.5939,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0156780442424873,
+          "defenseSample": 4,
+          "rival": "Iffe Lundberg",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.421791650382232,
+              "weight": 0.7569380698960014,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.928801385110877,
+              "weight": 0.2062040595220554,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.50120138511088,
+              "weight": 0.03685787058194324,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 9.0,
+      "actualMinutes": 20.216666666666665,
+      "fouls": 3.0,
+      "actualStats": {
+        "points": 13.0,
+        "totalRebounds": 1.0,
+        "assistances": 2.0,
+        "turnovers": 4.0,
+        "foulsCommited": 3.0,
+        "fieldGoalsMadeTotal": 5.0,
+        "fieldGoalsAttemptedTotal": 6.0
+      },
+      "minutesContribution": 0.7162758397525455,
+      "efficiencyContribution": -3.7396274724316765,
+      "reason": "efficiency",
+      "error": -3.0233516326791303,
+      "servedError": -3.0233516326791303
+    },
+    {
+      "name": "Keaton Wallace",
+      "key": "keaton wallace",
+      "team": "Maccabi Tel Aviv",
+      "pos": "G",
+      "opponent": "Barcelona",
+      "gameCode": 44,
+      "round": 5,
+      "start": "2026-10-13T18:30:00Z",
+      "basePir": 5.957462228043632,
+      "baseMinutes": 17.166666666666664,
+      "servedPir": 5.957462228043632,
+      "servedMinutes": 17.166666666666664,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+      "home": false,
+      "features": {
+        "basePir": 9.020999999999999,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.507000000000005,
+        "teamPoints": 84.67305,
+        "margin": -5.5939,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9969861701363842,
+          "defenseSample": 4,
+          "rival": "Kevin Punter",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.8052340111433,
+              "weight": 0.7569380698960013,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.048857732325366,
+              "weight": 0.03685787058194324,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.514478750331612,
+              "weight": 0.2062040595220554,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 8.0,
+      "actualMinutes": 12.683333333333334,
+      "fouls": 0.0,
+      "actualStats": {
+        "points": 5.0,
+        "totalRebounds": 2.0,
+        "assistances": 4.0,
+        "turnovers": 0.0,
+        "foulsCommited": 0.0,
+        "fieldGoalsMadeTotal": 2.0,
+        "fieldGoalsAttemptedTotal": 5.0
+      },
+      "minutesContribution": -1.5558809119842099,
+      "efficiencyContribution": 3.5984186839405785,
+      "reason": "efficiency",
+      "error": 2.0425377719563684,
+      "servedError": 2.0425377719563684
+    },
+    {
+      "name": "Jimmy Clark III",
+      "key": "clark iii jimmy",
+      "team": "Maccabi Tel Aviv",
+      "pos": "G",
+      "opponent": "Barcelona",
+      "gameCode": 44,
+      "round": 5,
+      "start": "2026-10-13T18:30:00Z",
+      "basePir": 9.311343318218045,
+      "baseMinutes": 19.49716074074074,
+      "servedPir": 9.311343318218045,
+      "servedMinutes": 19.49716074074074,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+      "home": false,
+      "features": {
+        "basePir": 8.657447047869756,
+        "baseMin": 19.591482222222226,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.507000000000005,
+        "teamPoints": 84.67305,
+        "margin": -5.5939,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.8222222222222222,
+          "sameTeam": true,
+          "avgPir": 8.594594594594595,
+          "avgMinutes": 19.71937027027027,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9990741901748665,
+          "defenseSample": 4,
+          "rival": "Kevin Punter",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.045549473036495,
+              "weight": 0.7569380698960013,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.734237484202364,
+              "weight": 0.03685787058194324,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.11256840130239,
+              "weight": 0.2062040595220554,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 2.0,
+      "actualMinutes": 17.616666666666667,
+      "fouls": 5.0,
+      "actualStats": {
+        "points": 9.0,
+        "totalRebounds": 0.0,
+        "assistances": 2.0,
+        "turnovers": 1.0,
+        "foulsCommited": 5.0,
+        "fieldGoalsMadeTotal": 4.0,
+        "fieldGoalsAttemptedTotal": 8.0
+      },
+      "minutesContribution": -0.8980756821166259,
+      "efficiencyContribution": -6.41326763610142,
+      "reason": "efficiency",
+      "error": -7.311343318218045,
+      "servedError": -7.311343318218045
+    },
+    {
+      "name": "TJ Leaf",
+      "key": "leaf tj",
+      "team": "Maccabi Tel Aviv",
+      "pos": "F",
+      "opponent": "Barcelona",
+      "gameCode": 44,
+      "round": 5,
+      "start": "2026-10-13T18:30:00Z",
+      "basePir": 6.021157101917187,
+      "baseMinutes": 14.07545625,
+      "servedPir": 6.021157101917187,
+      "servedMinutes": 14.07545625,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+      "home": false,
+      "features": {
+        "basePir": 11.625863777567643,
+        "baseMin": 18.403640625,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.096000000000002,
+        "teamPoints": 84.67305,
+        "margin": -5.5939,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 24,
+          "historyWeight": 0.75,
+          "sameTeam": true,
+          "avgPir": 12.541666666666666,
+          "avgMinutes": 18.204854166666667,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0001434347927125,
+          "defenseSample": 4,
+          "rival": "Joel Parra",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.018246739075217,
+              "weight": 0.7569380698960013,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.821832957825217,
+              "weight": 0.03685787058194324,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.509540535479418,
+              "weight": 0.2062040595220554,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": -1.0,
+      "actualMinutes": 8.7,
+      "fouls": 1.0,
+      "actualStats": {
+        "points": 2.0,
+        "totalRebounds": 0.0,
+        "assistances": 0.0,
+        "turnovers": 1.0,
+        "foulsCommited": 1.0,
+        "fieldGoalsMadeTotal": 1.0,
+        "fieldGoalsAttemptedTotal": 2.0
+      },
+      "minutesContribution": -2.299496797891197,
+      "efficiencyContribution": -4.72166030402599,
+      "reason": "efficiency",
+      "error": -7.021157101917187,
+      "servedError": -7.021157101917187
+    },
+    {
+      "name": "Yam Madar",
+      "key": "madar yam",
+      "team": "Maccabi Tel Aviv",
+      "pos": "G",
+      "opponent": "Barcelona",
+      "gameCode": 44,
+      "round": 5,
+      "start": "2026-10-13T18:30:00Z",
+      "basePir": 9.274467409389157,
+      "baseMinutes": 19.450764652777778,
+      "servedPir": 9.274467409389157,
+      "servedMinutes": 19.450764652777778,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+      "home": false,
+      "features": {
+        "basePir": 6.3727580859264545,
+        "baseMin": 15.592293958333332,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.507000000000005,
+        "teamPoints": 84.67305,
+        "margin": -5.5939,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 16,
+          "historyWeight": 0.3666666666666667,
+          "sameTeam": false,
+          "avgPir": 3.1875,
+          "avgMinutes": 9.70625625,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9964695378628594,
+          "defenseSample": 4,
+          "rival": "Kevin Punter",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.777525032780424,
+              "weight": 0.7569380698960013,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.330206726596877,
+              "weight": 0.03685787058194324,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.272835064583106,
+              "weight": 0.2062040595220554,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 31.0,
+      "actualMinutes": 26.8,
+      "fouls": 1.0,
+      "actualStats": {
+        "points": 22.0,
+        "totalRebounds": 3.0,
+        "assistances": 4.0,
+        "turnovers": 1.0,
+        "foulsCommited": 1.0,
+        "fieldGoalsMadeTotal": 8.0,
+        "fieldGoalsAttemptedTotal": 11.0
+      },
+      "minutesContribution": 3.504244945044322,
+      "efficiencyContribution": 18.22128764556652,
+      "reason": "efficiency",
+      "error": 21.725532590610843,
+      "servedError": 21.725532590610843
+    },
+    {
+      "name": "Tosan Evbuomwan",
+      "key": "evbuomwan tosan",
+      "team": "Barcelona",
+      "pos": "F",
+      "opponent": "Maccabi Tel Aviv",
+      "gameCode": 44,
+      "round": 5,
+      "start": "2026-10-13T18:30:00Z",
+      "basePir": 9.491092080178836,
+      "baseMinutes": 19.576666666666668,
+      "servedPir": 9.491092080178836,
+      "servedMinutes": 19.576666666666668,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+      "home": true,
+      "features": {
+        "basePir": 8.463000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 7.211999999999996,
+        "teamPoints": 90.26695,
+        "margin": 5.5939,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Jaylen Hoard",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.03085427777415,
+              "weight": 0.7569380698960014,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.073187611107485,
+              "weight": 0.2062040595220554,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.660487611107484,
+              "weight": 0.03685787058194324,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 7.0,
+      "actualMinutes": 13.816666666666666,
+      "fouls": 1.0,
+      "actualStats": {
+        "points": 6.0,
+        "totalRebounds": 5.0,
+        "assistances": 0.0,
+        "turnovers": 1.0,
+        "foulsCommited": 1.0,
+        "fieldGoalsMadeTotal": 2.0,
+        "fieldGoalsAttemptedTotal": 5.0
+      },
+      "minutesContribution": -2.7925433534052497,
+      "efficiencyContribution": 0.3014512732264141,
+      "reason": "minutes",
+      "error": -2.491092080178836,
+      "servedError": -2.491092080178836
+    },
+    {
+      "name": "Stanley Umude",
+      "key": "stanley umude",
+      "team": "Barcelona",
+      "pos": "G",
+      "opponent": "Maccabi Tel Aviv",
+      "gameCode": 44,
+      "round": 5,
+      "start": "2026-10-13T18:30:00Z",
+      "basePir": 7.932448269988994,
+      "baseMinutes": 16.78,
+      "servedPir": 7.932448269988994,
+      "servedMinutes": 16.78,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+      "home": true,
+      "features": {
+        "basePir": 8.184000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 10.800999999999995,
+        "teamPoints": 90.26695,
+        "margin": 5.5939,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0155221651655437,
+          "defenseSample": 4,
+          "rival": "Iffe Lundberg",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.2416708013637,
+              "weight": 0.7569380698960014,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.265939541395598,
+              "weight": 0.2062040595220554,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.769339541395597,
+              "weight": 0.03685787058194324,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": -2.0,
+      "actualMinutes": 3.683333333333333,
+      "fouls": 2.0,
+      "actualStats": {
+        "points": 0.0,
+        "totalRebounds": 0.0,
+        "assistances": 0.0,
+        "turnovers": 0.0,
+        "foulsCommited": 2.0,
+        "fieldGoalsMadeTotal": 0.0,
+        "fieldGoalsAttemptedTotal": 0.0
+      },
+      "minutesContribution": -6.191217571074048,
+      "efficiencyContribution": -3.7412306989149458,
+      "reason": "minutes",
+      "error": -9.932448269988994,
+      "servedError": -9.932448269988994
+    },
+    {
+      "name": "Tyrese Martin",
+      "key": "martin tyrese",
+      "team": "Barcelona",
+      "pos": "F",
+      "opponent": "Maccabi Tel Aviv",
+      "gameCode": 44,
+      "round": 5,
+      "start": "2026-10-13T18:30:00Z",
+      "basePir": 5.9551997736808655,
+      "baseMinutes": 20.54,
+      "servedPir": 5.9551997736808655,
+      "servedMinutes": 20.54,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+      "home": true,
+      "features": {
+        "basePir": 7.347,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 7.211999999999996,
+        "teamPoints": 90.26695,
+        "margin": 5.5939,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.025843610268604,
+          "defenseSample": 4,
+          "rival": "Jaylen Hoard",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.034960314656647,
+              "weight": 0.7569380698960014,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.90516510449047,
+              "weight": 0.2062040595220554,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.52136510449047,
+              "weight": 0.03685787058194324,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 9.0,
+      "actualMinutes": 22.416666666666668,
+      "fouls": 2.0,
+      "actualStats": {
+        "points": 7.0,
+        "totalRebounds": 7.0,
+        "assistances": 2.0,
+        "turnovers": 3.0,
+        "foulsCommited": 2.0,
+        "fieldGoalsMadeTotal": 3.0,
+        "fieldGoalsAttemptedTotal": 6.0
+      },
+      "minutesContribution": 0.5441053996401057,
+      "efficiencyContribution": 2.5006948266790285,
+      "reason": "efficiency",
+      "error": 3.0448002263191345,
+      "servedError": 3.0448002263191345
+    },
+    {
+      "name": "Iffe Lundberg",
+      "key": "iffe lundberg",
+      "team": "Maccabi Tel Aviv",
+      "pos": "G",
+      "opponent": "Barcelona",
+      "gameCode": 44,
+      "round": 5,
+      "start": "2026-10-13T18:30:00Z",
+      "basePir": 7.760506251244918,
+      "baseMinutes": 21.91722083333333,
+      "servedPir": 7.760506251244918,
+      "servedMinutes": 21.91722083333333,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+      "home": false,
+      "features": {
+        "basePir": 10.517577891158245,
+        "baseMin": 22.591662499999998,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.507000000000005,
+        "teamPoints": 84.67305,
+        "margin": -5.5939,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 16,
+          "historyWeight": 0.6666666666666666,
+          "sameTeam": true,
+          "avgPir": 12.375,
+          "avgMinutes": 24.38749375,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9963834527127083,
+          "defenseSample": 4,
+          "rival": "Kevin Punter",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.04863148340971,
+              "weight": 0.7569380698960013,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.649451050655532,
+              "weight": 0.03685787058194324,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.303953709921938,
+              "weight": 0.2062040595220554,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 17.0,
+      "actualMinutes": 21.466666666666665,
+      "fouls": 1.0,
+      "actualStats": {
+        "points": 13.0,
+        "totalRebounds": 1.0,
+        "assistances": 3.0,
+        "turnovers": 3.0,
+        "foulsCommited": 1.0,
+        "fieldGoalsMadeTotal": 2.0,
+        "fieldGoalsAttemptedTotal": 5.0
+      },
+      "minutesContribution": -0.15953338489081295,
+      "efficiencyContribution": 9.399027133645895,
+      "reason": "efficiency",
+      "error": 9.239493748755082,
+      "servedError": 9.239493748755082
+    },
+    {
+      "name": "Olivier Nkamhoua",
+      "key": "nkamhoua olivier",
+      "team": "Barcelona",
+      "pos": "F",
+      "opponent": "Maccabi Tel Aviv",
+      "gameCode": 44,
+      "round": 5,
+      "start": "2026-10-13T18:30:00Z",
+      "basePir": 6.559127133910746,
+      "baseMinutes": 16.119999999999997,
+      "servedPir": 6.559127133910746,
+      "servedMinutes": 16.119999999999997,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+      "home": true,
+      "features": {
+        "basePir": 6.882000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 7.211999999999996,
+        "teamPoints": 90.26695,
+        "margin": 5.5939,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0068595070918585,
+          "defenseSample": 4,
+          "rival": "Jaylen Hoard",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.373182410592598,
+              "weight": 0.7569380698960014,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.2582119308878,
+              "weight": 0.2062040595220554,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.7418119308878,
+              "weight": 0.03685787058194324,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 3.0,
+      "actualMinutes": 7.95,
+      "fouls": 1.0,
+      "actualStats": {
+        "points": 5.0,
+        "totalRebounds": 0.0,
+        "assistances": 0.0,
+        "turnovers": 2.0,
+        "foulsCommited": 1.0,
+        "fieldGoalsMadeTotal": 2.0,
+        "fieldGoalsAttemptedTotal": 2.0
+      },
+      "minutesContribution": -3.3243218786632003,
+      "efficiencyContribution": -0.23480525524754592,
+      "reason": "minutes",
+      "error": -3.5591271339107458,
+      "servedError": -3.5591271339107458
+    },
+    {
+      "name": "Joel Parra",
+      "key": "joel parra",
+      "team": "Barcelona",
+      "pos": "F",
+      "opponent": "Maccabi Tel Aviv",
+      "gameCode": 44,
+      "round": 5,
+      "start": "2026-10-13T18:30:00Z",
+      "basePir": 6.896213994094107,
+      "baseMinutes": 22.546735416666667,
+      "servedPir": 6.896213994094107,
+      "servedMinutes": 22.546735416666667,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+      "home": true,
+      "features": {
+        "basePir": 6.797212767312024,
+        "baseMin": 17.88020625,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 7.211999999999996,
+        "teamPoints": 90.26695,
+        "margin": 5.5939,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.8333333333333334,
+          "sameTeam": true,
+          "avgPir": 6.85,
+          "avgMinutes": 18.6562475,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0217085953343255,
+          "defenseSample": 4,
+          "rival": "Jaylen Hoard",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.015440533897497,
+              "weight": 0.7569380698960014,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.9845348437279,
+              "weight": 0.2062040595220554,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.6609369062279,
+              "weight": 0.03685787058194324,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 8.0,
+      "actualMinutes": 26.4,
+      "fouls": 2.0,
+      "actualStats": {
+        "points": 11.0,
+        "totalRebounds": 2.0,
+        "assistances": 2.0,
+        "turnovers": 3.0,
+        "foulsCommited": 2.0,
+        "fieldGoalsMadeTotal": 4.0,
+        "fieldGoalsAttemptedTotal": 6.0
+      },
+      "minutesContribution": 1.1785713830166145,
+      "efficiencyContribution": -0.07478537711072164,
+      "reason": "minutes",
+      "error": 1.103786005905893,
+      "servedError": 1.103786005905893
+    },
+    {
+      "name": "Dario Brizuela",
+      "key": "brizuela dario",
+      "team": "Barcelona",
+      "pos": "G",
+      "opponent": "Maccabi Tel Aviv",
+      "gameCode": 44,
+      "round": 5,
+      "start": "2026-10-13T18:30:00Z",
+      "basePir": 5.826140045834059,
+      "baseMinutes": 17.65118188405797,
+      "servedPir": 5.826140045834059,
+      "servedMinutes": 17.65118188405797,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+      "home": true,
+      "features": {
+        "basePir": 5.8405525329117935,
+        "baseMin": 15.273545652173912,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 10.800999999999995,
+        "teamPoints": 90.26695,
+        "margin": 5.5939,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 5.868421052631579,
+          "avgMinutes": 15.541660526315788,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.023199113132931,
+          "defenseSample": 4,
+          "rival": "Iffe Lundberg",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.113116818079074,
+              "weight": 0.7569380698960014,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.132335693119938,
+              "weight": 0.2062040595220554,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.661871149641676,
+              "weight": 0.03685787058194324,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": -1.0,
+      "actualMinutes": 19.25,
+      "fouls": 2.0,
+      "actualStats": {
+        "points": 1.0,
+        "totalRebounds": 3.0,
+        "assistances": 4.0,
+        "turnovers": 0.0,
+        "foulsCommited": 2.0,
+        "fieldGoalsMadeTotal": 0.0,
+        "fieldGoalsAttemptedTotal": 6.0
+      },
+      "minutesContribution": 0.5277232036064285,
+      "efficiencyContribution": -7.353863249440487,
+      "reason": "efficiency",
+      "error": -6.826140045834059,
+      "servedError": -6.826140045834059
+    },
+    {
+      "name": "Agustin Ubal",
+      "key": "agustin ubal",
+      "team": "Barcelona",
+      "pos": "G",
+      "opponent": "Maccabi Tel Aviv",
+      "gameCode": 44,
+      "round": 5,
+      "start": "2026-10-13T18:30:00Z",
+      "basePir": 5.62551346665924,
+      "baseMinutes": 14.0,
+      "servedPir": 5.62551346665924,
+      "servedMinutes": 14.0,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+      "home": true,
+      "features": {
+        "basePir": 5.301,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 10.800999999999995,
+        "teamPoints": 90.26695,
+        "margin": 5.5939,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Iffe Lundberg",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.44390674225214,
+              "weight": 0.7569380698960014,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.553906742252142,
+              "weight": 0.2062040595220554,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.973906742252144,
+              "weight": 0.03685787058194324,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 14.0,
+      "actualMinutes": 13.9,
+      "fouls": 0.0,
+      "actualStats": {
+        "points": 6.0,
+        "totalRebounds": 3.0,
+        "assistances": 2.0,
+        "turnovers": 0.0,
+        "foulsCommited": 0.0,
+        "fieldGoalsMadeTotal": 1.0,
+        "fieldGoalsAttemptedTotal": 1.0
+      },
+      "minutesContribution": -0.040182239047565856,
+      "efficiencyContribution": 8.414668772388325,
+      "reason": "efficiency",
+      "error": 8.374486533340761,
+      "servedError": 8.374486533340761
+    },
+    {
+      "name": "William Rayman",
+      "key": "rayman william",
+      "team": "Maccabi Tel Aviv",
+      "pos": "F",
+      "opponent": "Barcelona",
+      "gameCode": 44,
+      "round": 5,
+      "start": "2026-10-13T18:30:00Z",
+      "basePir": 1.7901498040475028,
+      "baseMinutes": 10.27286195652174,
+      "servedPir": 1.7901498040475028,
+      "servedMinutes": 10.27286195652174,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:41:46.780677+00:00",
+      "home": false,
+      "features": {
+        "basePir": 2.919392436830075,
+        "baseMin": 12.325723913043479,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.096000000000002,
+        "teamPoints": 84.67305,
+        "margin": -5.5939,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 2.763157894736842,
+          "avgMinutes": 11.973244736842105,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0004520380677568,
+          "defenseSample": 4,
+          "rival": "Joel Parra",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 10.578205212105686,
+              "weight": 0.7569380698960013,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 10.093671202770516,
+              "weight": 0.03685787058194324,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 9.184031089434878,
+              "weight": 0.2062040595220554,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 0.0,
+      "actualMinutes": 1.1,
+      "fouls": 0.0,
+      "actualStats": {
+        "points": 0.0,
+        "totalRebounds": 0.0,
+        "assistances": 0.0,
+        "turnovers": 0.0,
+        "foulsCommited": 0.0,
+        "fieldGoalsMadeTotal": 0.0,
+        "fieldGoalsAttemptedTotal": 0.0
+      },
+      "minutesContribution": -1.5984637098717578,
+      "efficiencyContribution": -0.1916860941757449,
+      "reason": "minutes",
+      "error": -1.7901498040475028,
+      "servedError": -1.7901498040475028
     },
     {
       "name": "Walter Tavares",
@@ -106173,36 +110558,36 @@
     "position": [
       {
         "label": "C",
-        "n": 155,
-        "mae": 5.552267365476583,
-        "bias": -0.7676656701800013,
-        "minutesMae": 4.295380165572157,
-        "hits": 84,
-        "hitRate": 54.19354838709678,
-        "over": 41,
+        "n": 158,
+        "mae": 5.577230133764444,
+        "bias": -0.8458036664847782,
+        "minutesMae": 4.314523413623521,
+        "hits": 85,
+        "hitRate": 53.79746835443038,
+        "over": 43,
         "under": 30
       },
       {
         "label": "F",
-        "n": 318,
-        "mae": 5.298977015599359,
-        "bias": -1.18531577127401,
-        "minutesMae": 5.312962039271874,
-        "hits": 185,
-        "hitRate": 58.17610062893082,
-        "over": 87,
-        "under": 46
+        "n": 326,
+        "mae": 5.283312329194458,
+        "bias": -1.2016915577669467,
+        "minutesMae": 5.303172417814151,
+        "hits": 190,
+        "hitRate": 58.282208588957054,
+        "over": 89,
+        "under": 47
       },
       {
         "label": "G",
-        "n": 353,
-        "mae": 6.172994460936598,
-        "bias": -1.0047970288237436,
-        "minutesMae": 4.681840154925636,
-        "hits": 178,
-        "hitRate": 50.42492917847026,
-        "over": 104,
-        "under": 71
+        "n": 363,
+        "mae": 6.208232203943488,
+        "bias": -0.9298691385670965,
+        "minutesMae": 4.647968508393691,
+        "hits": 182,
+        "hitRate": 50.13774104683195,
+        "over": 107,
+        "under": 74
       }
     ],
     "team": [
@@ -106230,14 +110615,14 @@
       },
       {
         "label": "Barcelona",
-        "n": 33,
-        "mae": 5.670360800739234,
-        "bias": -1.255430591651431,
-        "minutesMae": 4.9666439400053095,
-        "hits": 17,
-        "hitRate": 51.515151515151516,
-        "over": 9,
-        "under": 7
+        "n": 44,
+        "mae": 5.482845222805057,
+        "bias": -1.3999624878619872,
+        "minutesMae": 4.787752122798128,
+        "hits": 24,
+        "hitRate": 54.54545454545454,
+        "over": 12,
+        "under": 8
       },
       {
         "label": "Baskonia",
@@ -106318,14 +110703,14 @@
       },
       {
         "label": "Maccabi Tel Aviv",
-        "n": 36,
-        "mae": 6.326814311138079,
-        "bias": -1.1496185150131955,
-        "minutesMae": 5.981829814236635,
-        "hits": 19,
-        "hitRate": 52.77777777777778,
-        "over": 11,
-        "under": 6
+        "n": 46,
+        "mae": 6.65324619533736,
+        "bias": -0.7290457764718166,
+        "minutesMae": 5.615871243380998,
+        "hits": 22,
+        "hitRate": 47.82608695652174,
+        "over": 15,
+        "under": 9
       },
       {
         "label": "Milano",
@@ -106474,38 +110859,38 @@
       },
       {
         "label": "5",
-        "n": 114,
-        "mae": 5.133559455341918,
-        "bias": -1.1270520332041516,
-        "minutesMae": 4.633018636522953,
-        "hits": 66,
-        "hitRate": 57.89473684210527,
-        "over": 29,
-        "under": 19
+        "n": 135,
+        "mae": 5.315800526463365,
+        "bias": -1.0429845252143113,
+        "minutesMae": 4.577112383922713,
+        "hits": 76,
+        "hitRate": 56.2962962962963,
+        "over": 36,
+        "under": 23
       }
     ],
     "home": [
       {
         "label": "False",
-        "n": 424,
-        "mae": 5.862320357577727,
-        "bias": -1.3047002953493623,
-        "minutesMae": 5.035019285969425,
-        "hits": 228,
-        "hitRate": 53.77358490566038,
-        "over": 121,
-        "under": 75
+        "n": 434,
+        "mae": 5.907621754372129,
+        "bias": -1.2565501483994426,
+        "minutesMae": 5.018046961138349,
+        "hits": 231,
+        "hitRate": 53.2258064516129,
+        "over": 125,
+        "under": 78
       },
       {
         "label": "True",
-        "n": 402,
-        "mae": 5.569948621162014,
-        "bias": -0.7398483086808143,
-        "minutesMae": 4.659570277586701,
-        "hits": 219,
-        "hitRate": 54.47761194029851,
-        "over": 111,
-        "under": 72
+        "n": 413,
+        "mae": 5.5526455910076455,
+        "bias": -0.7689785957169916,
+        "minutesMae": 4.648690302597569,
+        "hits": 226,
+        "hitRate": 54.72154963680388,
+        "over": 114,
+        "under": 73
       }
     ],
     "reason": [
@@ -106533,24 +110918,24 @@
       },
       {
         "label": "efficiency",
-        "n": 597,
-        "mae": 6.427804627291572,
-        "bias": -0.6173387479662249,
-        "minutesMae": 3.6892038987690268,
-        "hits": 283,
-        "hitRate": 47.403685092127304,
-        "over": 179,
-        "under": 135
+        "n": 611,
+        "mae": 6.458857742024145,
+        "bias": -0.59833932478827,
+        "minutesMae": 3.673483005582273,
+        "hits": 287,
+        "hitRate": 46.9721767594108,
+        "over": 185,
+        "under": 139
       },
       {
         "label": "minutes",
-        "n": 197,
-        "mae": 3.7930943883212276,
-        "bias": -1.9794745809860141,
-        "minutesMae": 7.121245982914213,
-        "hits": 142,
-        "hitRate": 72.08121827411168,
-        "over": 44,
+        "n": 204,
+        "mae": 3.777863577348886,
+        "bias": -1.9864773365838568,
+        "minutesMae": 7.110726063992107,
+        "hits": 148,
+        "hitRate": 72.54901960784314,
+        "over": 45,
         "under": 11
       }
     ]
@@ -106685,6 +111070,146 @@
         "totalError": -42.41,
         "winnerHit": true,
         "brier": 0.243104079384439
+      },
+      {
+        "gameCode": 44,
+        "round": 5,
+        "start": "2026-10-13T18:30:00Z",
+        "played": true,
+        "home": "Barcelona",
+        "away": "Maccabi Tel Aviv",
+        "forecast": {
+          "opponent": "Maccabi Tel Aviv",
+          "home": true,
+          "margin": 5.5939,
+          "total": 174.94,
+          "winProb": 0.6850169822452079,
+          "teamPoints": 90.26695,
+          "p20": 0.10490397715988897,
+          "p11_20": 0.2450611850405425,
+          "p1_10": 0.3350518200447764,
+          "l1_10": 0.22697081777219075,
+          "l11_20": 0.07492170062163649,
+          "l20": 0.013090499360964885,
+          "sampleGames": 44,
+          "currentSeasonGames": 4,
+          "source": "EuroLeague model + available roster + opponent strength",
+          "context": {
+            "availability": {
+              "missing": [
+                {
+                  "name": "Justin Minaya",
+                  "status": "questionable",
+                  "missingProbability": 0.75,
+                  "avgMinutes": 15.1,
+                  "sampleGames": 3,
+                  "impactProxy": 0.086
+                },
+                {
+                  "name": "Yoan Makoundou",
+                  "status": "out",
+                  "missingProbability": 1,
+                  "avgMinutes": 14,
+                  "sampleGames": 0,
+                  "impactProxy": 0.09
+                }
+              ],
+              "marginPenalty": 0.176,
+              "available": 14,
+              "rosterCount": 16
+            },
+            "rating": 0.5739168373731856,
+            "currentGames": 4,
+            "hardGames": 2,
+            "hardWins": 1,
+            "hardHistory": [
+              {
+                "opponent": "Dubai",
+                "gameCode": 13,
+                "date": "2026-09-29T16:00:00+00:00",
+                "home": false,
+                "pregameWinProb": 0.37931,
+                "opponentRatingBefore": 0.546,
+                "hard": true,
+                "won": false,
+                "margin": -7
+              },
+              {
+                "opponent": "Besiktas",
+                "gameCode": 25,
+                "date": "2026-10-02T17:00:00+00:00",
+                "home": false,
+                "pregameWinProb": 0.34183,
+                "opponentRatingBefore": 1.372,
+                "hard": true,
+                "won": true,
+                "margin": 13
+              }
+            ],
+            "recentHistory": [
+              {
+                "opponent": "Anadolu Efes",
+                "gameCode": 4,
+                "date": "2026-09-24T18:30:00+00:00",
+                "home": true,
+                "pregameWinProb": 0.65666,
+                "opponentRatingBefore": -1.502,
+                "hard": false,
+                "won": true,
+                "margin": 7
+              },
+              {
+                "opponent": "Dubai",
+                "gameCode": 13,
+                "date": "2026-09-29T16:00:00+00:00",
+                "home": false,
+                "pregameWinProb": 0.37931,
+                "opponentRatingBefore": 0.546,
+                "hard": true,
+                "won": false,
+                "margin": -7
+              },
+              {
+                "opponent": "Besiktas",
+                "gameCode": 25,
+                "date": "2026-10-02T17:00:00+00:00",
+                "home": false,
+                "pregameWinProb": 0.34183,
+                "opponentRatingBefore": 1.372,
+                "hard": true,
+                "won": true,
+                "margin": 13
+              },
+              {
+                "opponent": "Zalgiris",
+                "gameCode": 39,
+                "date": "2026-10-09T18:30:00+00:00",
+                "home": true,
+                "pregameWinProb": 0.62012,
+                "opponentRatingBefore": 1.298,
+                "hard": false,
+                "won": false,
+                "margin": -7
+              }
+            ],
+            "opponent": "Maccabi Tel Aviv",
+            "home": true,
+            "baseMargin": 5.49,
+            "strengthDelta": 0.2799,
+            "rosterDelta": -0.176,
+            "margin": 5.5939,
+            "rawWinProb": 0.6850169822452079,
+            "winProb": 0.6850169822452079
+          }
+        },
+        "homeScore": 90.0,
+        "awayScore": 87.0,
+        "actualMargin": 3.0,
+        "actualTotal": 177.0,
+        "marginError": -2.5938999999999997,
+        "totalError": 2.0600000000000023,
+        "winnerHit": true,
+        "brier": 0.09921430147391568
       },
       {
         "gameCode": 43,
@@ -107731,11 +112256,11 @@
         "brier": 0.4994955625
       }
     ],
-    "n": 21,
-    "winnerAccuracy": 61.904761904761905,
-    "marginMae": 11.135280952380953,
-    "totalMae": 13.419523809523811,
-    "brier": 0.23548395531733535
+    "n": 22,
+    "winnerAccuracy": 63.63636363636363,
+    "marginMae": 10.747036363636363,
+    "totalMae": 12.90318181818182,
+    "brier": 0.22928988014263446
   },
   "reportVersion": 2
 }
