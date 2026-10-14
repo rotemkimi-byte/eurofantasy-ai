@@ -2,26 +2,26 @@
   "schema": "learning-v1",
   "season": "E2026",
   "modelId": "b3fc6df40846537dcb24",
-  "updated_at": "2026-10-14T20:14:23.086240+00:00",
+  "updated_at": "2026-10-14T20:49:34.265392+00:00",
   "metrics": {
-    "n": 918,
-    "mae": 5.765164727826465,
-    "bias": -0.9939121822853729,
-    "minutesMae": 4.909059674035082,
-    "hits": 490,
-    "hitRate": 53.37690631808278,
-    "over": 262,
-    "under": 166
+    "n": 941,
+    "mae": 5.761719904137781,
+    "bias": -0.9168318857881192,
+    "minutesMae": 4.893163048617834,
+    "hits": 502,
+    "hitRate": 53.347502656748134,
+    "over": 266,
+    "under": 173
   },
   "eligibleMetrics": {
-    "n": 206,
-    "mae": 5.596620488998,
-    "bias": -0.9237056786671297,
-    "minutesMae": 4.9839100800336515,
-    "hits": 109,
-    "hitRate": 52.9126213592233,
-    "over": 59,
-    "under": 38
+    "n": 229,
+    "mae": 5.599393145775306,
+    "bias": -0.6140209213715138,
+    "minutesMae": 4.9110704125419575,
+    "hits": 121,
+    "hitRate": 52.838427947598255,
+    "over": 63,
+    "under": 45
   },
   "legacyCount": 712,
   "validation": {
@@ -32,19 +32,19 @@
   },
   "coefficients": {
     "G": {
-      "n": 84,
-      "minutes": -0.6999674593629333,
-      "efficiencyPir": -0.39437399835453496
+      "n": 95,
+      "minutes": -0.6112296847212938,
+      "efficiencyPir": -0.3058209871567399
     },
     "F": {
-      "n": 76,
-      "minutes": -0.4274967749475376,
-      "efficiencyPir": 0.0421952146101295
+      "n": 82,
+      "minutes": -0.4198524022228786,
+      "efficiencyPir": 0.15144370901745458
     },
     "C": {
-      "n": 37,
-      "minutes": -0.6946542692946828,
-      "efficiencyPir": 0.14280760801593528
+      "n": 42,
+      "minutes": -0.6994398592768671,
+      "efficiencyPir": 0.3544368451551753
     }
   },
   "active": false,
@@ -19755,18 +19755,128 @@
     },
     "edwards kessler": {
       "name": "Kessler Edwards",
-      "n": 4,
+      "n": 5,
       "metrics": {
-        "n": 4,
-        "mae": 4.2535677102120255,
-        "bias": -1.1150677102120259,
-        "minutesMae": 4.000505952380953,
-        "hits": 1,
-        "hitRate": 25.0,
+        "n": 5,
+        "mae": 4.274108269766934,
+        "bias": -1.763308269766934,
+        "minutesMae": 3.4996746031746033,
+        "hits": 2,
+        "hitRate": 40.0,
         "over": 2,
         "under": 1
       },
       "games": [
+        {
+          "name": "Kessler Edwards",
+          "key": "edwards kessler",
+          "team": "Virtus Bologna",
+          "pos": "F",
+          "opponent": "Paris",
+          "gameCode": 50,
+          "round": 5,
+          "start": "2026-10-14T18:45:00Z",
+          "basePir": 9.356270507986567,
+          "baseMinutes": 21.379682539682538,
+          "servedPir": 9.356270507986567,
+          "servedMinutes": 21.379682539682538,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+          "home": false,
+          "features": {
+            "basePir": 7.7995921581082435,
+            "baseMin": 16.999047619047616,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 8.681000000000004,
+            "teamPoints": 85.08755000000001,
+            "margin": -3.9449,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 13,
+              "historyWeight": 0.3404761904761905,
+              "sameTeam": false,
+              "avgPir": 5.615384615384615,
+              "avgMinutes": 13.123076923076923,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0065928352843423,
+              "defenseSample": 4,
+              "rival": "Tj Warren",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 21.73768501514218,
+                  "weight": 0.7821358103632452,
+                  "observedGames": 4
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 19.599716761173926,
+                  "weight": 0.04981640960041756,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 20.241107237364403,
+                  "weight": 0.16804778003633722,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 5.0,
+          "actualMinutes": 19.883333333333333,
+          "fouls": 1.0,
+          "actualStats": {
+            "points": 5.0,
+            "totalRebounds": 7.0,
+            "assistances": 1.0,
+            "turnovers": 1.0,
+            "foulsCommited": 1.0,
+            "fieldGoalsMadeTotal": 2.0,
+            "fieldGoalsAttemptedTotal": 8.0
+          },
+          "minutesContribution": -0.6548389071272925,
+          "efficiencyContribution": -3.7014316008592747,
+          "reason": "efficiency",
+          "error": -4.356270507986567,
+          "servedError": -4.356270507986567
+        },
         {
           "name": "Kessler Edwards",
           "key": "edwards kessler",
@@ -19983,18 +20093,128 @@
     },
     "diouf mouhamet": {
       "name": "Mouhamet Diouf",
-      "n": 4,
+      "n": 5,
       "metrics": {
-        "n": 4,
-        "mae": 3.7028029225129244,
-        "bias": -1.7526970774870763,
-        "minutesMae": 2.8387874099883854,
+        "n": 5,
+        "mae": 4.554765265577865,
+        "bias": 0.19036526557786432,
+        "minutesMae": 2.7213224483159117,
         "hits": 3,
-        "hitRate": 75.0,
+        "hitRate": 60.0,
         "over": 1,
-        "under": 0
+        "under": 1
       },
       "games": [
+        {
+          "name": "Mouhamet Diouf",
+          "key": "diouf mouhamet",
+          "team": "Virtus Bologna",
+          "pos": "C",
+          "opponent": "Paris",
+          "gameCode": 50,
+          "round": 5,
+          "start": "2026-10-14T18:45:00Z",
+          "basePir": 8.037385362162373,
+          "baseMinutes": 14.381870731707316,
+          "servedPir": 8.037385362162373,
+          "servedMinutes": 14.381870731707316,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+          "home": false,
+          "features": {
+            "basePir": 10.021250743847482,
+            "baseMin": 18.62561219512195,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 12.00000000000001,
+            "teamPoints": 85.08755000000001,
+            "margin": -3.9449,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 33,
+              "historyWeight": 0.8048780487804879,
+              "sameTeam": true,
+              "avgPir": 10.454545454545455,
+              "avgMinutes": 18.534851515151512,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0001775692987926,
+              "defenseSample": 4,
+              "rival": "Allan Dokossi",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 14.622694949472724,
+                  "weight": 0.7821358103632452,
+                  "observedGames": 4
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 13.184507876301993,
+                  "weight": 0.04981640960041756,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 13.615963998253212,
+                  "weight": 0.16804778003633722,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 16.0,
+          "actualMinutes": 16.633333333333333,
+          "fouls": 1.0,
+          "actualStats": {
+            "points": 11.0,
+            "totalRebounds": 4.0,
+            "assistances": 1.0,
+            "turnovers": 0.0,
+            "foulsCommited": 1.0,
+            "fieldGoalsMadeTotal": 5.0,
+            "fieldGoalsAttemptedTotal": 6.0
+          },
+          "minutesContribution": 1.258241914097412,
+          "efficiencyContribution": 6.7043727237402155,
+          "reason": "efficiency",
+          "error": 7.962614637837627,
+          "servedError": 7.962614637837627
+        },
         {
           "name": "Mouhamet Diouf",
           "key": "diouf mouhamet",
@@ -20211,18 +20431,128 @@
     },
     "alston derrick jr": {
       "name": "Derrick Alston Jr.",
-      "n": 4,
+      "n": 5,
       "metrics": {
-        "n": 4,
-        "mae": 4.015750479304329,
-        "bias": 0.2817495206956704,
-        "minutesMae": 3.4238244444444437,
+        "n": 5,
+        "mae": 5.988797206873317,
+        "bias": 3.0015964399863897,
+        "minutesMae": 2.964343259259259,
         "hits": 2,
-        "hitRate": 50.0,
+        "hitRate": 40.0,
         "over": 1,
-        "under": 1
+        "under": 2
       },
       "games": [
+        {
+          "name": "Derrick Alston Jr.",
+          "key": "alston derrick jr",
+          "team": "Virtus Bologna",
+          "pos": "F",
+          "opponent": "Paris",
+          "gameCode": 50,
+          "round": 5,
+          "start": "2026-10-14T18:45:00Z",
+          "basePir": 8.119015882850734,
+          "baseMinutes": 22.740248148148147,
+          "servedPir": 8.119015882850734,
+          "servedMinutes": 22.740248148148147,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+          "home": false,
+          "features": {
+            "basePir": 8.499013396133249,
+            "baseMin": 21.820744444444443,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 8.681000000000004,
+            "teamPoints": 85.08755000000001,
+            "margin": -3.9449,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 37,
+              "historyWeight": 0.8222222222222222,
+              "sameTeam": true,
+              "avgPir": 8.702702702702704,
+              "avgMinutes": 22.430635135135134,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0144973665377965,
+              "defenseSample": 4,
+              "rival": "Tj Warren",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 23.121033275078496,
+                  "weight": 0.7821358103632452,
+                  "observedGames": 4
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 20.84700846026368,
+                  "weight": 0.04981640960041756,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 21.529215904708128,
+                  "weight": 0.16804778003633722,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 22.0,
+          "actualMinutes": 23.866666666666667,
+          "fouls": 1.0,
+          "actualStats": {
+            "points": 23.0,
+            "totalRebounds": 3.0,
+            "assistances": 2.0,
+            "turnovers": 2.0,
+            "foulsCommited": 1.0,
+            "fieldGoalsMadeTotal": 7.0,
+            "fieldGoalsAttemptedTotal": 12.0
+          },
+          "minutesContribution": 0.4021684276709976,
+          "efficiencyContribution": 13.478815689478267,
+          "reason": "efficiency",
+          "error": 13.880984117149266,
+          "servedError": 13.880984117149266
+        },
         {
           "name": "Derrick Alston Jr.",
           "key": "alston derrick jr",
@@ -21292,18 +21622,128 @@
     },
     "aliou diarra": {
       "name": "Aliou Diarra",
-      "n": 4,
+      "n": 5,
       "metrics": {
-        "n": 4,
-        "mae": 7.634323467360684,
-        "bias": 7.634323467360684,
-        "minutesMae": 2.867449920634921,
-        "hits": 2,
-        "hitRate": 50.0,
+        "n": 5,
+        "mae": 6.8095341259142765,
+        "bias": 6.8095341259142765,
+        "minutesMae": 2.4740217883597886,
+        "hits": 3,
+        "hitRate": 60.0,
         "over": 0,
         "under": 2
       },
       "games": [
+        {
+          "name": "Aliou Diarra",
+          "key": "aliou diarra",
+          "team": "Virtus Bologna",
+          "pos": "C",
+          "opponent": "Paris",
+          "gameCode": 50,
+          "round": 5,
+          "start": "2026-10-14T18:45:00Z",
+          "basePir": 14.48962323987135,
+          "baseMinutes": 18.70030925925926,
+          "servedPir": 14.48962323987135,
+          "servedMinutes": 18.70030925925926,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+          "home": false,
+          "features": {
+            "basePir": 7.041645957602173,
+            "baseMin": 12.500927777777775,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 12.00000000000001,
+            "teamPoints": 85.08755000000001,
+            "margin": -3.9449,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 28,
+              "historyWeight": 0.7777777777777778,
+              "sameTeam": true,
+              "avgPir": 6.428571428571429,
+              "avgMinutes": 10.644049999999998,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.000340530606001,
+              "defenseSample": 4,
+              "rival": "Allan Dokossi",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 19.013445667821436,
+                  "weight": 0.7821358103632452,
+                  "observedGames": 4
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 17.143414741895512,
+                  "weight": 0.04981640960041756,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 17.70442401967329,
+                  "weight": 0.16804778003633722,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 18.0,
+          "actualMinutes": 17.8,
+          "fouls": 2.0,
+          "actualStats": {
+            "points": 8.0,
+            "totalRebounds": 11.0,
+            "assistances": 1.0,
+            "turnovers": 3.0,
+            "foulsCommited": 2.0,
+            "fieldGoalsMadeTotal": 4.0,
+            "fieldGoalsAttemptedTotal": 7.0
+          },
+          "minutesContribution": -0.6975896379668246,
+          "efficiencyContribution": 4.207966398095476,
+          "reason": "efficiency",
+          "error": 3.5103767601286506,
+          "servedError": 3.5103767601286506
+        },
         {
           "name": "Aliou Diarra",
           "key": "aliou diarra",
@@ -43207,18 +43647,106 @@
     },
     "frazier trent": {
       "name": "Trent Frazier",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 5.44533763908025,
-        "bias": 3.1879956942530825,
-        "minutesMae": 3.9240833333333343,
+        "n": 4,
+        "mae": 5.440082507302523,
+        "bias": 1.0349174926974767,
+        "minutesMae": 3.5205625000000005,
         "hits": 2,
-        "hitRate": 66.66666666666666,
-        "over": 0,
+        "hitRate": 50.0,
+        "over": 1,
         "under": 1
       },
       "games": [
+        {
+          "name": "Trent Frazier",
+          "key": "frazier trent",
+          "team": "Virtus Bologna",
+          "pos": "G",
+          "opponent": "Paris",
+          "gameCode": 50,
+          "round": 5,
+          "start": "2026-10-14T18:45:00Z",
+          "basePir": 8.42431711196934,
+          "baseMinutes": 20.86,
+          "servedPir": 8.42431711196934,
+          "servedMinutes": 20.86,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+          "home": false,
+          "features": {
+            "basePir": 9.3,
+            "baseMin": 23,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 3.909000000000007,
+            "teamPoints": 85.08755000000001,
+            "margin": -3.9449,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0131659406465965,
+              "defenseSample": 4,
+              "rival": "Nadir Hifi",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 21.20930039883553,
+                  "weight": 0.7821358103632452,
+                  "observedGames": 4
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 19.123300398835532,
+                  "weight": 0.04981640960041756,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 19.74910039883553,
+                  "weight": 0.16804778003633722,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 3.0,
+          "actualMinutes": 18.55,
+          "fouls": 3.0,
+          "actualStats": {
+            "points": 8.0,
+            "totalRebounds": 1.0,
+            "assistances": 2.0,
+            "turnovers": 2.0,
+            "foulsCommited": 3.0,
+            "fieldGoalsMadeTotal": 2.0,
+            "fieldGoalsAttemptedTotal": 8.0
+          },
+          "minutesContribution": -0.9328941768288191,
+          "efficiencyContribution": -4.4914229351405215,
+          "reason": "efficiency",
+          "error": -5.424317111969341,
+          "servedError": -5.424317111969341
+        },
         {
           "name": "Trent Frazier",
           "key": "frazier trent",
@@ -43370,18 +43898,106 @@
     },
     "carr marcus": {
       "name": "Marcus Carr",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 11.190408498890552,
-        "bias": 11.190408498890552,
-        "minutesMae": 2.2659166666666657,
-        "hits": 1,
-        "hitRate": 33.33333333333333,
+        "n": 4,
+        "mae": 8.624598240830892,
+        "bias": 8.161014507504936,
+        "minutesMae": 1.7727708333333325,
+        "hits": 2,
+        "hitRate": 50.0,
         "over": 0,
         "under": 2
       },
       "games": [
+        {
+          "name": "Marcus Carr",
+          "key": "carr marcus",
+          "team": "Virtus Bologna",
+          "pos": "G",
+          "opponent": "Paris",
+          "gameCode": 50,
+          "round": 5,
+          "start": "2026-10-14T18:45:00Z",
+          "basePir": 12.927167466651913,
+          "baseMinutes": 22.86,
+          "servedPir": 12.927167466651913,
+          "servedMinutes": 22.86,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+          "home": false,
+          "features": {
+            "basePir": 9.951,
+            "baseMin": 23,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 3.909000000000007,
+            "teamPoints": 85.08755000000001,
+            "margin": -3.9449,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0086104086679257,
+              "defenseSample": 4,
+              "rival": "Nadir Hifi",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 23.2427903699607,
+                  "weight": 0.7821358103632452,
+                  "observedGames": 4
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 20.956790369960704,
+                  "weight": 0.04981640960041756,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 21.642590369960704,
+                  "weight": 0.16804778003633722,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 12.0,
+          "actualMinutes": 22.566666666666666,
+          "fouls": 3.0,
+          "actualStats": {
+            "points": 11.0,
+            "totalRebounds": 2.0,
+            "assistances": 6.0,
+            "turnovers": 2.0,
+            "foulsCommited": 3.0,
+            "fieldGoalsMadeTotal": 3.0,
+            "fieldGoalsAttemptedTotal": 8.0
+          },
+          "minutesContribution": -0.16587791441606403,
+          "efficiencyContribution": -0.7612895522358478,
+          "reason": "efficiency",
+          "error": -0.9271674666519125,
+          "servedError": -0.9271674666519125
+        },
         {
           "name": "Marcus Carr",
           "key": "carr marcus",
@@ -43774,18 +44390,106 @@
     },
     "moore wendell": {
       "name": "Wendell Moore",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 6.806089695043895,
-        "bias": 5.952756361710562,
-        "minutesMae": 2.2761388888888896,
-        "hits": 2,
-        "hitRate": 66.66666666666666,
+        "n": 4,
+        "mae": 5.708951680868456,
+        "bias": 5.068951680868457,
+        "minutesMae": 2.7246041666666674,
+        "hits": 3,
+        "hitRate": 75.0,
         "over": 0,
         "under": 1
       },
       "games": [
+        {
+          "name": "Wendell Moore",
+          "key": "moore wendell",
+          "team": "Virtus Bologna",
+          "pos": "G",
+          "opponent": "Paris",
+          "gameCode": 50,
+          "round": 5,
+          "start": "2026-10-14T18:45:00Z",
+          "basePir": 12.58246236165786,
+          "baseMinutes": 22.313333333333333,
+          "servedPir": 12.58246236165786,
+          "servedMinutes": 22.313333333333333,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+          "home": false,
+          "features": {
+            "basePir": 9.020999999999999,
+            "baseMin": 19,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 3.909000000000007,
+            "teamPoints": 85.08755000000001,
+            "margin": -3.9449,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0069851594854122,
+              "defenseSample": 4,
+              "rival": "Nadir Hifi",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 22.686969777853154,
+                  "weight": 0.7821358103632452,
+                  "observedGames": 4
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 20.455636444519822,
+                  "weight": 0.04981640960041756,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 21.12503644451982,
+                  "weight": 0.16804778003633722,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 15.0,
+          "actualMinutes": 26.383333333333333,
+          "fouls": 1.0,
+          "actualStats": {
+            "points": 14.0,
+            "totalRebounds": 7.0,
+            "assistances": 3.0,
+            "turnovers": 3.0,
+            "foulsCommited": 1.0,
+            "fieldGoalsMadeTotal": 6.0,
+            "fieldGoalsAttemptedTotal": 14.0
+          },
+          "minutesContribution": 2.295068201909807,
+          "efficiencyContribution": 0.12246943643233266,
+          "reason": "minutes",
+          "error": 2.4175376383421394,
+          "servedError": 2.4175376383421394
+        },
         {
           "name": "Wendell Moore",
           "key": "moore wendell",
@@ -44796,18 +45500,106 @@
     },
     "tj warren": {
       "name": "Tj Warren",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 4.629777488913301,
-        "bias": 2.1451108222466337,
-        "minutesMae": 2.6816666666666653,
+        "n": 4,
+        "mae": 6.026387320811871,
+        "bias": 4.162887320811871,
+        "minutesMae": 3.1370833333333317,
         "hits": 2,
-        "hitRate": 66.66666666666666,
+        "hitRate": 50.0,
         "over": 0,
-        "under": 1
+        "under": 2
       },
       "games": [
+        {
+          "name": "Tj Warren",
+          "key": "tj warren",
+          "team": "Paris",
+          "pos": "F",
+          "opponent": "Virtus Bologna",
+          "gameCode": 50,
+          "round": 5,
+          "start": "2026-10-14T18:45:00Z",
+          "basePir": 9.783783183492416,
+          "baseMinutes": 20.44666666666667,
+          "servedPir": 9.783783183492416,
+          "servedMinutes": 20.44666666666667,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+          "home": true,
+          "features": {
+            "basePir": 10.23,
+            "baseMin": 23,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 6.3160000000000105,
+            "teamPoints": 89.03245,
+            "margin": 3.9449,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9916470362715438,
+              "defenseSample": 4,
+              "rival": "Kessler Edwards",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 20.741344426591947,
+                  "weight": 0.7821358103632453,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 18.843995358268966,
+                  "weight": 0.16804778003633716,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 21.226476517689253,
+                  "weight": 0.04981640960041756,
+                  "observedGames": 1
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 20.0,
+          "actualMinutes": 24.95,
+          "fouls": 0.0,
+          "actualStats": {
+            "points": 19.0,
+            "totalRebounds": 4.0,
+            "assistances": 2.0,
+            "turnovers": 4.0,
+            "foulsCommited": 0.0,
+            "fieldGoalsMadeTotal": 9.0,
+            "fieldGoalsAttemptedTotal": 15.0
+          },
+          "minutesContribution": 2.154856713547154,
+          "efficiencyContribution": 8.06136010296043,
+          "reason": "efficiency",
+          "error": 10.216216816507584,
+          "servedError": 10.216216816507584
+        },
         {
           "name": "Tj Warren",
           "key": "tj warren",
@@ -44959,18 +45751,106 @@
     },
     "etienne tyson": {
       "name": "Tyson Etienne",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 9.079182147760868,
-        "bias": -1.8481511855724662,
-        "minutesMae": 4.563777777777777,
+        "n": 4,
+        "mae": 11.648101989864974,
+        "bias": 3.452601989864975,
+        "minutesMae": 5.544499999999999,
         "hits": 1,
-        "hitRate": 33.33333333333333,
+        "hitRate": 25.0,
         "over": 1,
-        "under": 1
+        "under": 2
       },
       "games": [
+        {
+          "name": "Tyson Etienne",
+          "key": "etienne tyson",
+          "team": "Paris",
+          "pos": "G",
+          "opponent": "Virtus Bologna",
+          "gameCode": 50,
+          "round": 5,
+          "start": "2026-10-14T18:45:00Z",
+          "basePir": 7.645138483822702,
+          "baseMinutes": 19.346666666666668,
+          "servedPir": 7.645138483822702,
+          "servedMinutes": 19.346666666666668,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+          "home": true,
+          "features": {
+            "basePir": 9.579,
+            "baseMin": 23,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 0.5659999999999998,
+            "teamPoints": 89.03245,
+            "margin": 3.9449,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9838276999971903,
+              "defenseSample": 4,
+              "rival": "Wendell Moore",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 19.60863913840318,
+                  "weight": 0.7821358103632453,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 17.90927421002993,
+                  "weight": 0.16804778003633716,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 20.082419407546112,
+                  "weight": 0.04981640960041756,
+                  "observedGames": 1
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 27.0,
+          "actualMinutes": 27.833333333333332,
+          "fouls": 2.0,
+          "actualStats": {
+            "points": 23.0,
+            "totalRebounds": 2.0,
+            "assistances": 7.0,
+            "turnovers": 0.0,
+            "foulsCommited": 2.0,
+            "fieldGoalsMadeTotal": 8.0,
+            "fieldGoalsAttemptedTotal": 19.0
+          },
+          "minutesContribution": 3.3536393142337344,
+          "efficiencyContribution": 16.001222201943563,
+          "reason": "efficiency",
+          "error": 19.354861516177298,
+          "servedError": 19.354861516177298
+        },
         {
           "name": "Tyson Etienne",
           "key": "etienne tyson",
@@ -45367,18 +46247,128 @@
     },
     "jared rhoden": {
       "name": "Jared Rhoden",
-      "n": 2,
+      "n": 3,
       "metrics": {
-        "n": 2,
-        "mae": 5.6475,
-        "bias": 5.6475,
-        "minutesMae": 3.3535000000000004,
+        "n": 3,
+        "mae": 5.867207688483552,
+        "bias": 1.6627923115164485,
+        "minutesMae": 3.1815094117647056,
         "hits": 1,
-        "hitRate": 50.0,
-        "over": 0,
+        "hitRate": 33.33333333333333,
+        "over": 1,
         "under": 1
       },
       "games": [
+        {
+          "name": "Jared Rhoden",
+          "key": "jared rhoden",
+          "team": "Paris",
+          "pos": "G",
+          "opponent": "Virtus Bologna",
+          "gameCode": 50,
+          "round": 5,
+          "start": "2026-10-14T18:45:00Z",
+          "basePir": 9.306623065450655,
+          "baseMinutes": 20.337528235294116,
+          "servedPir": 9.306623065450655,
+          "servedMinutes": 20.337528235294116,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+          "home": true,
+          "features": {
+            "basePir": 8.138493718158932,
+            "baseMin": 20.783820588235294,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 0.5659999999999998,
+            "teamPoints": 89.03245,
+            "margin": 3.9449,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 26,
+              "historyWeight": 0.7647058823529411,
+              "sameTeam": true,
+              "avgPir": 8,
+              "avgMinutes": 21.33268846153846,
+              "currentSeasonWeight": 0.42857142857142855,
+              "minutesWeight": 0.6,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.42857142857142855,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.992814713104765,
+              "defenseSample": 4,
+              "rival": "Wendell Moore",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 20.853492949172608,
+                  "weight": 0.7821358103632453,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 18.097291898881316,
+                  "weight": 0.16804778003633716,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 19.79377695465063,
+                  "weight": 0.04981640960041756,
+                  "observedGames": 1
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 3.0,
+          "actualMinutes": 17.5,
+          "fouls": 1.0,
+          "actualStats": {
+            "points": 9.0,
+            "totalRebounds": 1.0,
+            "assistances": 2.0,
+            "turnovers": 2.0,
+            "foulsCommited": 1.0,
+            "fieldGoalsMadeTotal": 4.0,
+            "fieldGoalsAttemptedTotal": 12.0
+          },
+          "minutesContribution": -1.29847665940186,
+          "efficiencyContribution": -5.008146406048795,
+          "reason": "efficiency",
+          "error": -6.306623065450655,
+          "servedError": -6.306623065450655
+        },
         {
           "name": "Jared Rhoden",
           "key": "jared rhoden",
@@ -45469,18 +46459,128 @@
     },
     "allan dokossi": {
       "name": "Allan Dokossi",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 6.931839923338849,
-        "bias": -2.131493409994485,
-        "minutesMae": 1.3657511111111127,
-        "hits": 1,
-        "hitRate": 33.33333333333333,
+        "n": 4,
+        "mae": 5.205313013445393,
+        "bias": -1.6050531284371194,
+        "minutesMae": 1.7287050000000015,
+        "hits": 2,
+        "hitRate": 50.0,
         "over": 1,
         "under": 1
       },
       "games": [
+        {
+          "name": "Allan Dokossi",
+          "key": "allan dokossi",
+          "team": "Paris",
+          "pos": "C",
+          "opponent": "Virtus Bologna",
+          "gameCode": 50,
+          "round": 5,
+          "start": "2026-10-14T18:45:00Z",
+          "basePir": 10.025732283765024,
+          "baseMinutes": 19.517566666666667,
+          "servedPir": 10.025732283765024,
+          "servedMinutes": 19.517566666666667,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+          "home": true,
+          "features": {
+            "basePir": 8.486019937035412,
+            "baseMin": 16.712699999999998,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 6.671000000000005,
+            "teamPoints": 89.03245,
+            "margin": 3.9449,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 34,
+              "historyWeight": 0.8095238095238095,
+              "sameTeam": true,
+              "avgPir": 8.617647058823529,
+              "avgMinutes": 16.174511764705883,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0002048604164837,
+              "defenseSample": 4,
+              "rival": "Aliou Diarra",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 19.875242287217066,
+                  "weight": 0.7821358103632453,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 17.790184083840103,
+                  "weight": 0.16804778003633716,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 19.728980878882155,
+                  "weight": 0.04981640960041756,
+                  "observedGames": 1
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 10.0,
+          "actualMinutes": 16.7,
+          "fouls": 2.0,
+          "actualStats": {
+            "points": 6.0,
+            "totalRebounds": 4.0,
+            "assistances": 1.0,
+            "turnovers": 0.0,
+            "foulsCommited": 2.0,
+            "fieldGoalsMadeTotal": 3.0,
+            "fieldGoalsAttemptedTotal": 7.0
+          },
+          "minutesContribution": -1.4473202307490627,
+          "efficiencyContribution": 1.4215879469840385,
+          "reason": "minutes",
+          "error": -0.025732283765023567,
+          "servedError": -0.025732283765023567
+        },
         {
           "name": "Allan Dokossi",
           "key": "allan dokossi",
@@ -45899,18 +46999,128 @@
     },
     "tarpey terry": {
       "name": "Terry Tarpey",
-      "n": 2,
+      "n": 3,
       "metrics": {
-        "n": 2,
-        "mae": 3.4177547373027366,
-        "bias": -0.538754737302737,
-        "minutesMae": 2.7100518749999996,
+        "n": 3,
+        "mae": 4.4936829297827945,
+        "bias": 1.856009946712479,
+        "minutesMae": 3.7987289166666667,
         "hits": 2,
-        "hitRate": 100.0,
+        "hitRate": 66.66666666666666,
         "over": 0,
-        "under": 0
+        "under": 1
       },
       "games": [
+        {
+          "name": "Terry Tarpey",
+          "key": "tarpey terry",
+          "team": "Paris",
+          "pos": "G",
+          "opponent": "Virtus Bologna",
+          "gameCode": 50,
+          "round": 5,
+          "start": "2026-10-14T18:45:00Z",
+          "basePir": 5.354460685257089,
+          "baseMinutes": 13.523916999999999,
+          "servedPir": 5.354460685257089,
+          "servedMinutes": 13.523916999999999,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+          "home": true,
+          "features": {
+            "basePir": 4.8319946291694125,
+            "baseMin": 11.1597925,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 0.5659999999999998,
+            "teamPoints": 89.03245,
+            "margin": 3.9449,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 36,
+              "historyWeight": 0.45000000000000007,
+              "sameTeam": false,
+              "avgPir": 3.2777777777777777,
+              "avgMinutes": 7.688427777777777,
+              "currentSeasonWeight": 0.42857142857142855,
+              "minutesWeight": 0.6,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.42857142857142855,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9968657809394288,
+              "defenseSample": 4,
+              "rival": "Wendell Moore",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 13.79559701185157,
+                  "weight": 0.7821358103632453,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 12.234226461961944,
+                  "weight": 0.16804778003633716,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 13.609008753021547,
+                  "weight": 0.04981640960041756,
+                  "observedGames": 1
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 12.0,
+          "actualMinutes": 19.5,
+          "fouls": 0.0,
+          "actualStats": {
+            "points": 5.0,
+            "totalRebounds": 6.0,
+            "assistances": 1.0,
+            "turnovers": 1.0,
+            "foulsCommited": 0.0,
+            "fieldGoalsMadeTotal": 2.0,
+            "fieldGoalsAttemptedTotal": 4.0
+          },
+          "minutesContribution": 2.366082361739816,
+          "efficiencyContribution": 4.279456953003096,
+          "reason": "efficiency",
+          "error": 6.645539314742911,
+          "servedError": 6.645539314742911
+        },
         {
           "name": "Terry Tarpey",
           "key": "tarpey terry",
@@ -46041,18 +47251,128 @@
     },
     "daulton hommes": {
       "name": "Daulton Hommes",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 2.216991898366535,
-        "bias": 0.6250081016334647,
-        "minutesMae": 6.66447785440613,
-        "hits": 3,
+        "n": 4,
+        "mae": 1.9620946708891003,
+        "bias": 0.16940532911089978,
+        "minutesMae": 5.256740287356322,
+        "hits": 4,
         "hitRate": 100.0,
         "over": 0,
         "under": 0
       },
       "games": [
+        {
+          "name": "Daulton Hommes",
+          "key": "daulton hommes",
+          "team": "Paris",
+          "pos": "F",
+          "opponent": "Virtus Bologna",
+          "gameCode": 50,
+          "round": 5,
+          "start": "2026-10-14T18:45:00Z",
+          "basePir": 3.197402988456795,
+          "baseMinutes": 12.199805747126437,
+          "servedPir": 3.197402988456795,
+          "servedMinutes": 12.199805747126437,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+          "home": true,
+          "features": {
+            "basePir": 4.535451004258671,
+            "baseMin": 13.699417241379312,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 6.3160000000000105,
+            "teamPoints": 89.03245,
+            "margin": 3.9449,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 21,
+              "historyWeight": 0.7241379310344828,
+              "sameTeam": true,
+              "avgPir": 4.285714285714286,
+              "avgMinutes": 13.584909523809523,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9959890102339781,
+              "defenseSample": 4,
+              "rival": "Kessler Edwards",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 12.373327862322325,
+                  "weight": 0.7821358103632453,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 11.158421026743442,
+                  "weight": 0.16804778003633716,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 12.988391888812407,
+                  "weight": 0.04981640960041756,
+                  "observedGames": 1
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 2.0,
+          "actualMinutes": 13.233333333333333,
+          "fouls": 2.0,
+          "actualStats": {
+            "points": 3.0,
+            "totalRebounds": 2.0,
+            "assistances": 4.0,
+            "turnovers": 1.0,
+            "foulsCommited": 2.0,
+            "fieldGoalsMadeTotal": 1.0,
+            "fieldGoalsAttemptedTotal": 6.0
+          },
+          "minutesContribution": 0.270873509077703,
+          "efficiencyContribution": -1.468276497534498,
+          "reason": "efficiency",
+          "error": -1.197402988456795,
+          "servedError": -1.197402988456795
+        },
         {
           "name": "Daulton Hommes",
           "key": "daulton hommes",
@@ -46226,18 +47546,128 @@
     },
     "herrera sebastian": {
       "name": "Sebastian Herrera",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 3.06411744053722,
-        "bias": -2.5101174405372197,
-        "minutesMae": 0.7954754545454558,
-        "hits": 2,
-        "hitRate": 66.66666666666666,
+        "n": 4,
+        "mae": 3.256265559522062,
+        "bias": -0.9244106012837676,
+        "minutesMae": 1.8698510984848493,
+        "hits": 3,
+        "hitRate": 75.0,
         "over": 1,
         "under": 0
       },
       "games": [
+        {
+          "name": "Sebastian Herrera",
+          "key": "herrera sebastian",
+          "team": "Paris",
+          "pos": "G",
+          "opponent": "Virtus Bologna",
+          "gameCode": 50,
+          "round": 5,
+          "start": "2026-10-14T18:45:00Z",
+          "basePir": 5.167290083523412,
+          "baseMinutes": 17.840355303030304,
+          "servedPir": 5.167290083523412,
+          "servedMinutes": 17.840355303030304,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+          "home": true,
+          "features": {
+            "basePir": 4.946326710709074,
+            "baseMin": 15.98106590909091,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 0.5659999999999998,
+            "teamPoints": 89.03245,
+            "margin": 3.9449,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 36,
+              "historyWeight": 0.8181818181818182,
+              "sameTeam": true,
+              "avgPir": 5,
+              "avgMinutes": 16.42130277777778,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9859473506029186,
+              "defenseSample": 4,
+              "rival": "Wendell Moore",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 18.09239049256139,
+                  "weight": 0.7821358103632453,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 16.514327092755156,
+                  "weight": 0.16804778003633716,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 18.35645732653164,
+                  "weight": 0.04981640960041756,
+                  "observedGames": 1
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 9.0,
+          "actualMinutes": 22.933333333333334,
+          "fouls": 4.0,
+          "actualStats": {
+            "points": 12.0,
+            "totalRebounds": 3.0,
+            "assistances": 1.0,
+            "turnovers": 0.0,
+            "foulsCommited": 4.0,
+            "fieldGoalsMadeTotal": 4.0,
+            "fieldGoalsAttemptedTotal": 7.0
+          },
+          "minutesContribution": 1.4751328897086116,
+          "efficiencyContribution": 2.357577026767977,
+          "reason": "efficiency",
+          "error": 3.8327099164765883,
+          "servedError": 3.8327099164765883
+        },
         {
           "name": "Sebastian Herrera",
           "key": "herrera sebastian",
@@ -46411,18 +47841,128 @@
     },
     "cavaliere leopold": {
       "name": "Leopold Cavaliere",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 2.1560013912707956,
-        "bias": 2.1560013912707956,
-        "minutesMae": 0.6226466666666669,
-        "hits": 3,
+        "n": 4,
+        "mae": 2.1303690602079715,
+        "bias": 1.1036330266982217,
+        "minutesMae": 1.7403308333333336,
+        "hits": 4,
         "hitRate": 100.0,
         "over": 0,
         "under": 0
       },
       "games": [
+        {
+          "name": "Leopold Cavaliere",
+          "key": "cavaliere leopold",
+          "team": "Paris",
+          "pos": "F",
+          "opponent": "Virtus Bologna",
+          "gameCode": 50,
+          "round": 5,
+          "start": "2026-10-14T18:45:00Z",
+          "basePir": 6.0534720670194995,
+          "baseMinutes": 14.643383333333334,
+          "servedPir": 6.0534720670194995,
+          "servedMinutes": 14.643383333333334,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+          "home": true,
+          "features": {
+            "basePir": 4.589612886908857,
+            "baseMin": 13.99015,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 6.3160000000000105,
+            "teamPoints": 89.03245,
+            "margin": 3.9449,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 36,
+              "historyWeight": 0.8181818181818182,
+              "sameTeam": true,
+              "avgPir": 4.555555555555555,
+              "avgMinutes": 13.987961111111112,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9984166790926399,
+              "defenseSample": 4,
+              "rival": "Kessler Edwards",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 14.891253938983793,
+                  "weight": 0.7821358103632453,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 13.401290849578764,
+                  "weight": 0.16804778003633716,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 14.941726943367431,
+                  "weight": 0.04981640960041756,
+                  "observedGames": 1
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 4.0,
+          "actualMinutes": 9.55,
+          "fouls": 1.0,
+          "actualStats": {
+            "points": 2.0,
+            "totalRebounds": 2.0,
+            "assistances": 0.0,
+            "turnovers": 0.0,
+            "foulsCommited": 1.0,
+            "fieldGoalsMadeTotal": 0.0,
+            "fieldGoalsAttemptedTotal": 0.0
+          },
+          "minutesContribution": -2.1055689817783003,
+          "efficiencyContribution": 0.05209691475880085,
+          "reason": "minutes",
+          "error": -2.0534720670194995,
+          "servedError": -2.0534720670194995
+        },
         {
           "name": "Leopold Cavaliere",
           "key": "cavaliere leopold",
@@ -53941,18 +55481,106 @@
     },
     "bello rasheed": {
       "name": "Rasheed Bello",
-      "n": 2,
+      "n": 3,
       "metrics": {
-        "n": 2,
-        "mae": 3.514859066190655,
-        "bias": -3.514859066190655,
-        "minutesMae": 1.1226250000000002,
+        "n": 3,
+        "mae": 4.726771742017475,
+        "bias": 0.040292987096601784,
+        "minutesMae": 1.419527777777778,
         "hits": 2,
-        "hitRate": 100.0,
+        "hitRate": 66.66666666666666,
         "over": 0,
-        "under": 0
+        "under": 1
       },
       "games": [
+        {
+          "name": "Rasheed Bello",
+          "key": "bello rasheed",
+          "team": "Virtus Bologna",
+          "pos": "G",
+          "opponent": "Paris",
+          "gameCode": 50,
+          "round": 5,
+          "start": "2026-10-14T18:45:00Z",
+          "basePir": 3.8494029063288844,
+          "baseMinutes": 13.780000000000001,
+          "servedPir": 3.8494029063288844,
+          "servedMinutes": 13.780000000000001,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+          "home": false,
+          "features": {
+            "basePir": 8.649000000000001,
+            "baseMin": 19,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 3.909000000000007,
+            "teamPoints": 85.08755000000001,
+            "margin": -3.9449,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0078453414871902,
+              "defenseSample": 4,
+              "rival": "Nadir Hifi",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 14.010745901052427,
+                  "weight": 0.7821358103632452,
+                  "observedGames": 4
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 12.632745901052427,
+                  "weight": 0.04981640960041756,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 13.046145901052428,
+                  "weight": 0.16804778003633722,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 11.0,
+          "actualMinutes": 11.766666666666667,
+          "fouls": 4.0,
+          "actualStats": {
+            "points": 12.0,
+            "totalRebounds": 0.0,
+            "assistances": 4.0,
+            "turnovers": 1.0,
+            "foulsCommited": 4.0,
+            "fieldGoalsMadeTotal": 4.0,
+            "fieldGoalsAttemptedTotal": 6.0
+          },
+          "minutesContribution": -0.5624188087621302,
+          "efficiencyContribution": 7.713015902433246,
+          "reason": "efficiency",
+          "error": 7.150597093671116,
+          "servedError": 7.150597093671116
+        },
         {
           "name": "Rasheed Bello",
           "key": "bello rasheed",
@@ -54061,18 +55689,106 @@
     },
     "baldasso tommaso": {
       "name": "Tommaso Baldasso",
-      "n": 2,
+      "n": 3,
       "metrics": {
-        "n": 2,
-        "mae": 6.63599286910372,
-        "bias": -4.256007130896279,
-        "minutesMae": 5.582166666666667,
-        "hits": 1,
-        "hitRate": 50.0,
+        "n": 3,
+        "mae": 5.173980907633571,
+        "bias": -3.587323748828611,
+        "minutesMae": 3.890333333333334,
+        "hits": 2,
+        "hitRate": 66.66666666666666,
         "over": 1,
         "under": 0
       },
       "games": [
+        {
+          "name": "Tommaso Baldasso",
+          "key": "baldasso tommaso",
+          "team": "Virtus Bologna",
+          "pos": "G",
+          "opponent": "Paris",
+          "gameCode": 50,
+          "round": 5,
+          "start": "2026-10-14T18:45:00Z",
+          "basePir": 5.2499569846932745,
+          "baseMinutes": 12.89,
+          "servedPir": 5.2499569846932745,
+          "servedMinutes": 12.89,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+          "home": false,
+          "features": {
+            "basePir": 3.9060000000000006,
+            "baseMin": 14,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 3.909000000000007,
+            "teamPoints": 85.08755000000001,
+            "margin": -3.9449,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.3333333333333333,
+              "minutesWeight": 0.5,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.3333333333333333,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0047995723091188,
+              "defenseSample": 4,
+              "rival": "Nadir Hifi",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 13.105842863901726,
+                  "weight": 0.7821358103632452,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 11.816842863901726,
+                  "weight": 0.04981640960041756,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 12.203542863901728,
+                  "weight": 0.16804778003633722,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 3.0,
+          "actualMinutes": 12.383333333333333,
+          "fouls": 0.0,
+          "actualStats": {
+            "points": 0.0,
+            "totalRebounds": 2.0,
+            "assistances": 1.0,
+            "turnovers": 0.0,
+            "foulsCommited": 0.0,
+            "fieldGoalsMadeTotal": 0.0,
+            "fieldGoalsAttemptedTotal": 2.0
+          },
+          "minutesContribution": -0.2063598297577914,
+          "efficiencyContribution": -2.043597154935483,
+          "reason": "efficiency",
+          "error": -2.2499569846932745,
+          "servedError": -2.2499569846932745
+        },
         {
           "name": "Tommaso Baldasso",
           "key": "baldasso tommaso",
@@ -54509,18 +56225,128 @@
     },
     "faye mouhamed": {
       "name": "Mouhamed Faye",
-      "n": 2,
+      "n": 3,
       "metrics": {
-        "n": 2,
-        "mae": 7.6381439769889905,
-        "bias": 0.4151439769889911,
-        "minutesMae": 3.3752466666666674,
+        "n": 3,
+        "mae": 9.377482317254978,
+        "bias": 4.562148983921645,
+        "minutesMae": 4.714375555555557,
         "hits": 0,
         "hitRate": 0.0,
         "over": 1,
-        "under": 1
+        "under": 2
       },
       "games": [
+        {
+          "name": "Mouhamed Faye",
+          "key": "faye mouhamed",
+          "team": "Paris",
+          "pos": "C",
+          "opponent": "Virtus Bologna",
+          "gameCode": 50,
+          "round": 5,
+          "start": "2026-10-14T18:45:00Z",
+          "basePir": 5.143841002213048,
+          "baseMinutes": 13.774033333333332,
+          "servedPir": 5.143841002213048,
+          "servedMinutes": 13.774033333333332,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+          "home": true,
+          "features": {
+            "basePir": 6.867824294698619,
+            "baseMin": 16.622099999999996,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 6.671000000000005,
+            "teamPoints": 89.03245,
+            "margin": 3.9449,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 38,
+              "historyWeight": 0.8260869565217391,
+              "sameTeam": true,
+              "avgPir": 7.052631578947368,
+              "avgMinutes": 17.174121052631577,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0002053455019557,
+              "defenseSample": 4,
+              "rival": "Aliou Diarra",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 13.953927861551193,
+                  "weight": 0.7821358103632453,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 12.970731986661606,
+                  "weight": 0.16804778003633716,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 13.659433653328273,
+                  "weight": 0.04981640960041756,
+                  "observedGames": 1
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 18.0,
+          "actualMinutes": 21.166666666666668,
+          "fouls": 3.0,
+          "actualStats": {
+            "points": 10.0,
+            "totalRebounds": 7.0,
+            "assistances": 3.0,
+            "turnovers": 0.0,
+            "foulsCommited": 3.0,
+            "fieldGoalsMadeTotal": 5.0,
+            "fieldGoalsAttemptedTotal": 6.0
+          },
+          "minutesContribution": 2.7607404116194676,
+          "efficiencyContribution": 10.095418586167485,
+          "reason": "efficiency",
+          "error": 12.856158997786952,
+          "servedError": 12.856158997786952
+        },
         {
           "name": "Mouhamed Faye",
           "key": "faye mouhamed",
@@ -54903,18 +56729,128 @@
     },
     "jeremy morgan": {
       "name": "Jeremy Morgan",
-      "n": 2,
+      "n": 3,
       "metrics": {
-        "n": 2,
-        "mae": 5.761566454362194,
-        "bias": -5.761566454362194,
-        "minutesMae": 2.963749833333332,
-        "hits": 1,
-        "hitRate": 50.0,
+        "n": 3,
+        "mae": 4.261145537203608,
+        "bias": -3.4209430686126514,
+        "minutesMae": 2.4425462777777764,
+        "hits": 2,
+        "hitRate": 66.66666666666666,
         "over": 1,
         "under": 0
       },
       "games": [
+        {
+          "name": "Jeremy Morgan",
+          "key": "jeremy morgan",
+          "team": "Paris",
+          "pos": "F",
+          "opponent": "Virtus Bologna",
+          "gameCode": 50,
+          "round": 5,
+          "start": "2026-10-14T18:45:00Z",
+          "basePir": 2.7396962971135657,
+          "baseMinutes": 14.283472499999998,
+          "servedPir": 2.7396962971135657,
+          "servedMinutes": 14.283472499999998,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+          "home": true,
+          "features": {
+            "basePir": 5.648606786382633,
+            "baseMin": 16.9704175,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 6.3160000000000105,
+            "teamPoints": 89.03245,
+            "margin": 3.9449,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 32,
+              "historyWeight": 0.8,
+              "sameTeam": true,
+              "avgPir": 5.78125,
+              "avgMinutes": 17.713021875,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9923603410398577,
+              "defenseSample": 4,
+              "rival": "Kessler Edwards",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 14.527171551918824,
+                  "weight": 0.7821358103632453,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 13.135613670882123,
+                  "weight": 0.16804778003633716,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 14.329428693741104,
+                  "weight": 0.04981640960041756,
+                  "observedGames": 1
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 4.0,
+          "actualMinutes": 12.883333333333333,
+          "fouls": 2.0,
+          "actualStats": {
+            "points": 3.0,
+            "totalRebounds": 1.0,
+            "assistances": 3.0,
+            "turnovers": 0.0,
+            "foulsCommited": 2.0,
+            "fieldGoalsMadeTotal": 1.0,
+            "fieldGoalsAttemptedTotal": 4.0
+          },
+          "minutesContribution": -0.2685590699572767,
+          "efficiencyContribution": 1.528862772843711,
+          "reason": "efficiency",
+          "error": 1.2603037028864343,
+          "servedError": 1.2603037028864343
+        },
         {
           "name": "Jeremy Morgan",
           "key": "jeremy morgan",
@@ -59908,18 +61844,128 @@
     },
     "ayayi joel": {
       "name": "Joel Ayayi",
-      "n": 1,
+      "n": 2,
       "metrics": {
-        "n": 1,
-        "mae": 3.720186500057519,
-        "bias": 3.720186500057519,
-        "minutesMae": 4.576136507936509,
+        "n": 2,
+        "mae": 4.790802593961524,
+        "bias": -1.0706160939040048,
+        "minutesMae": 2.6703694444444457,
         "hits": 1,
-        "hitRate": 100.0,
-        "over": 0,
+        "hitRate": 50.0,
+        "over": 1,
         "under": 0
       },
       "games": [
+        {
+          "name": "Joel Ayayi",
+          "key": "ayayi joel",
+          "team": "Paris",
+          "pos": "G",
+          "opponent": "Virtus Bologna",
+          "gameCode": 50,
+          "round": 5,
+          "start": "2026-10-14T18:45:00Z",
+          "basePir": 4.8614186878655286,
+          "baseMinutes": 12.985397619047617,
+          "servedPir": 4.8614186878655286,
+          "servedMinutes": 12.985397619047617,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+          "home": true,
+          "features": {
+            "basePir": 3.3755271078793285,
+            "baseMin": 11.850795238095237,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 0.5659999999999998,
+            "teamPoints": 89.03245,
+            "margin": 3.9449,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 13,
+              "historyWeight": 0.6190476190476191,
+              "sameTeam": true,
+              "avgPir": 2.6923076923076925,
+              "avgMinutes": 10.528207692307692,
+              "currentSeasonWeight": 0.3333333333333333,
+              "minutesWeight": 0.5,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.3333333333333333,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1,
+              "defenseSample": 4,
+              "rival": "Wendell Moore",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 13.248896355387659,
+                  "weight": 0.7821358103632453,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 11.950356593482898,
+                  "weight": 0.16804778003633716,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 12.339918522054326,
+                  "weight": 0.04981640960041756,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": -1.0,
+          "actualMinutes": 13.75,
+          "fouls": 2.0,
+          "actualStats": {
+            "points": 2.0,
+            "totalRebounds": 5.0,
+            "assistances": 3.0,
+            "turnovers": 1.0,
+            "foulsCommited": 2.0,
+            "fieldGoalsMadeTotal": 1.0,
+            "fieldGoalsAttemptedTotal": 7.0
+          },
+          "minutesContribution": 0.28624863193222794,
+          "efficiencyContribution": -6.1476673197977565,
+          "reason": "efficiency",
+          "error": -5.8614186878655286,
+          "servedError": -5.8614186878655286
+        },
         {
           "name": "Joel Ayayi",
           "key": "ayayi joel",
@@ -60484,18 +62530,106 @@
     },
     "kevin kokila": {
       "name": "Kevin Kokila",
-      "n": 1,
+      "n": 2,
       "metrics": {
-        "n": 1,
-        "mae": 1.0,
-        "bias": 1.0,
-        "minutesMae": 7.4,
-        "hits": 1,
+        "n": 2,
+        "mae": 0.7134968592239588,
+        "bias": 0.7134968592239588,
+        "minutesMae": 8.691666666666666,
+        "hits": 2,
         "hitRate": 100.0,
         "over": 0,
         "under": 0
       },
       "games": [
+        {
+          "name": "Kevin Kokila",
+          "key": "kevin kokila",
+          "team": "Virtus Bologna",
+          "pos": "C",
+          "opponent": "Paris",
+          "gameCode": 50,
+          "round": 5,
+          "start": "2026-10-14T18:45:00Z",
+          "basePir": 5.573006281552082,
+          "baseMinutes": 15.133333333333335,
+          "servedPir": 5.573006281552082,
+          "servedMinutes": 15.133333333333335,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+          "home": false,
+          "features": {
+            "basePir": 7.719000000000001,
+            "baseMin": 19,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 12.00000000000001,
+            "teamPoints": 85.08755000000001,
+            "margin": -3.9449,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.2,
+              "minutesWeight": 0.3333333333333333,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.2,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1,
+              "defenseSample": 4,
+              "rival": "Allan Dokossi",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 15.386740781513792,
+                  "weight": 0.7821358103632452,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 13.873407448180458,
+                  "weight": 0.04981640960041756,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 14.327407448180459,
+                  "weight": 0.16804778003633722,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 6.0,
+          "actualMinutes": 5.15,
+          "fouls": 0.0,
+          "actualStats": {
+            "points": 2.0,
+            "totalRebounds": 3.0,
+            "assistances": 0.0,
+            "turnovers": 0.0,
+            "foulsCommited": 0.0,
+            "fieldGoalsMadeTotal": 1.0,
+            "fieldGoalsAttemptedTotal": 1.0
+          },
+          "minutesContribution": -3.6764655976318252,
+          "efficiencyContribution": 4.103459316079743,
+          "reason": "efficiency",
+          "error": 0.42699371844791756,
+          "servedError": 0.42699371844791756
+        },
         {
           "name": "Kevin Kokila",
           "key": "kevin kokila",
@@ -63514,6 +65648,214 @@
           "servedError": 8.537948438927998
         }
       ]
+    },
+    "maozinha pereira": {
+      "name": "Maozinha Pereira",
+      "n": 1,
+      "metrics": {
+        "n": 1,
+        "mae": 8.613239140370508,
+        "bias": -8.613239140370508,
+        "minutesMae": 19.0,
+        "hits": 0,
+        "hitRate": 0.0,
+        "over": 1,
+        "under": 0
+      },
+      "games": [
+        {
+          "name": "Maozinha Pereira",
+          "key": "maozinha pereira",
+          "team": "Paris",
+          "pos": "F",
+          "opponent": "Virtus Bologna",
+          "gameCode": 50,
+          "round": 5,
+          "start": "2026-10-14T18:45:00Z",
+          "basePir": 8.613239140370508,
+          "baseMinutes": 19.0,
+          "servedPir": 8.613239140370508,
+          "servedMinutes": 19.0,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+          "home": true,
+          "features": {
+            "basePir": 8.277000000000001,
+            "baseMin": 19,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 6.3160000000000105,
+            "teamPoints": 89.03245,
+            "margin": 3.9449,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0,
+              "minutesWeight": 0,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1,
+              "defenseSample": 4,
+              "rival": "Kessler Edwards",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 19.530426292946036,
+                  "weight": 0.7821358103632453,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 16.965426292946038,
+                  "weight": 0.16804778003633716,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 17.53542629294604,
+                  "weight": 0.04981640960041756,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 0.0,
+          "actualMinutes": 0.0,
+          "fouls": 0.0,
+          "actualStats": {
+            "points": 0.0,
+            "totalRebounds": 0.0,
+            "assistances": 0.0,
+            "turnovers": 0.0,
+            "foulsCommited": 0.0,
+            "fieldGoalsMadeTotal": 0.0,
+            "fieldGoalsAttemptedTotal": 0.0
+          },
+          "minutesContribution": -8.613239140370508,
+          "efficiencyContribution": 0.0,
+          "reason": "did-not-play",
+          "error": -8.613239140370508,
+          "servedError": -8.613239140370508
+        }
+      ]
+    },
+    "casarin davide": {
+      "name": "Davide Casarin",
+      "n": 1,
+      "metrics": {
+        "n": 1,
+        "mae": 2.8267151145733127,
+        "bias": -2.8267151145733127,
+        "minutesMae": 8.6,
+        "hits": 1,
+        "hitRate": 100.0,
+        "over": 0,
+        "under": 0
+      },
+      "games": [
+        {
+          "name": "Davide Casarin",
+          "key": "casarin davide",
+          "team": "Virtus Bologna",
+          "pos": "G",
+          "opponent": "Paris",
+          "gameCode": 50,
+          "round": 5,
+          "start": "2026-10-14T18:45:00Z",
+          "basePir": 4.826715114573313,
+          "baseMinutes": 14.0,
+          "servedPir": 4.826715114573313,
+          "servedMinutes": 14.0,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+          "home": false,
+          "features": {
+            "basePir": 4.743,
+            "baseMin": 14,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 3.909000000000007,
+            "teamPoints": 85.08755000000001,
+            "margin": -3.9449,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0,
+              "minutesWeight": 0,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1,
+              "defenseSample": 4,
+              "rival": "Nadir Hifi",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 14.341183250798204,
+                  "weight": 0.7821358103632452,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 12.451183250798206,
+                  "weight": 0.04981640960041756,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 12.871183250798207,
+                  "weight": 0.16804778003633722,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 2.0,
+          "actualMinutes": 5.4,
+          "fouls": 1.0,
+          "actualStats": {
+            "points": 2.0,
+            "totalRebounds": 1.0,
+            "assistances": 0.0,
+            "turnovers": 0.0,
+            "foulsCommited": 1.0,
+            "fieldGoalsMadeTotal": 1.0,
+            "fieldGoalsAttemptedTotal": 1.0
+          },
+          "minutesContribution": -2.9649821418093203,
+          "efficiencyContribution": 0.1382670272360078,
+          "reason": "minutes",
+          "error": -2.8267151145733127,
+          "servedError": -2.8267151145733127
+        }
+      ]
     }
   },
   "largestMisses": [
@@ -64290,6 +66632,94 @@
       "servedError": -20.052
     },
     {
+      "name": "Tyson Etienne",
+      "key": "etienne tyson",
+      "team": "Paris",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 7.645138483822702,
+      "baseMinutes": 19.346666666666668,
+      "servedPir": 7.645138483822702,
+      "servedMinutes": 19.346666666666668,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": true,
+      "features": {
+        "basePir": 9.579,
+        "baseMin": 23,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9838276999971903,
+          "defenseSample": 4,
+          "rival": "Wendell Moore",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.60863913840318,
+              "weight": 0.7821358103632453,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.90927421002993,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.082419407546112,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 27.0,
+      "actualMinutes": 27.833333333333332,
+      "fouls": 2.0,
+      "actualStats": {
+        "points": 23.0,
+        "totalRebounds": 2.0,
+        "assistances": 7.0,
+        "turnovers": 0.0,
+        "foulsCommited": 2.0,
+        "fieldGoalsMadeTotal": 8.0,
+        "fieldGoalsAttemptedTotal": 19.0
+      },
+      "minutesContribution": 3.3536393142337344,
+      "efficiencyContribution": 16.001222201943563,
+      "reason": "efficiency",
+      "error": 19.354861516177298,
+      "servedError": 19.354861516177298
+    },
+    {
       "name": "Antonio Blakeney",
       "key": "antonio blakeney",
       "team": "Hapoel Tel Aviv",
@@ -64630,99 +67060,38 @@
       "reason": "efficiency",
       "error": -18.136,
       "servedError": -18.136
-    },
-    {
-      "name": "Tremont Waters",
-      "key": "tremont waters",
-      "team": "ASVEL",
-      "pos": "G",
-      "opponent": "Paris",
-      "gameCode": 31,
-      "round": 4,
-      "start": "2026-10-07T18:45:00Z",
-      "basePir": 6.866178676445042,
-      "baseMinutes": 18.717589285714283,
-      "servedPir": 6.866178676445042,
-      "servedMinutes": 18.717589285714283,
-      "status": "active",
-      "modelId": "c9d03cdbf2c56829b3d4",
-      "eligible": true,
-      "snapshotAt": "2026-10-07T17:27:15.004896+00:00",
-      "home": false,
-      "features": {
-        "basePir": 8.649000000000001,
-        "baseMin": 19,
-        "injuryBoost": 0.1435892857142857,
-        "injuryUsagePct": 0.1935,
-        "missingStars": [],
-        "positionMatchPct": 3.909000000000007,
-        "teamPoints": 83.65,
-        "margin": -5.82,
-        "lastGameWeight": null,
-        "personalPrior": {
-          "historicalGames": 0,
-          "historyWeight": 0,
-          "sameTeam": false,
-          "avgPir": null,
-          "avgMinutes": null,
-          "currentSeasonWeight": 0.42857142857142855,
-          "minutesWeight": 0.6,
-          "momentumPir": 0,
-          "momentumEnabled": false,
-          "hot": false,
-          "streaks": []
-        },
-        "currentSeasonWeight": 0.42857142857142855
-      },
-      "actualPir": 25.0,
-      "actualMinutes": 23.666666666666668,
-      "fouls": 0.0,
-      "actualStats": {
-        "points": 19.0,
-        "totalRebounds": 2.0,
-        "assistances": 3.0,
-        "turnovers": 3.0,
-        "foulsCommited": 0.0,
-        "fieldGoalsMadeTotal": 6.0,
-        "fieldGoalsAttemptedTotal": 6.0
-      },
-      "minutesContribution": 1.815471483130953,
-      "efficiencyContribution": 16.318349840424005,
-      "reason": "efficiency",
-      "error": 18.133821323554958,
-      "servedError": 18.133821323554958
     }
   ],
   "byPosition": {
     "G": {
-      "n": 393,
-      "mae": 6.187260889587666,
-      "bias": -0.9429589746231194,
-      "minutesMae": 4.740100077511154,
-      "hits": 197,
-      "hitRate": 50.12722646310432,
-      "over": 116,
-      "under": 80
+      "n": 404,
+      "mae": 6.1747301324717,
+      "bias": -0.878162945491782,
+      "minutesMae": 4.712402282446616,
+      "hits": 202,
+      "hitRate": 50.0,
+      "over": 119,
+      "under": 83
     },
     "F": {
-      "n": 352,
-      "mae": 5.31549432539516,
-      "bias": -1.058183541852626,
-      "minutesMae": 5.32543906696543,
-      "hits": 203,
-      "hitRate": 57.67045454545454,
-      "over": 95,
-      "under": 54
+      "n": 359,
+      "mae": 5.327665436990175,
+      "bias": -1.0120988490234384,
+      "minutesMae": 5.315341790295931,
+      "hits": 207,
+      "hitRate": 57.66016713091921,
+      "over": 96,
+      "under": 56
     },
     "C": {
-      "n": 173,
-      "mae": 5.72123519073784,
-      "bias": -0.9788895929419773,
-      "minutesMae": 4.44568149555197,
-      "hits": 90,
-      "hitRate": 52.02312138728323,
+      "n": 178,
+      "mae": 5.699750361773104,
+      "bias": -0.8124577963400335,
+      "minutesMae": 4.45195620182421,
+      "hits": 93,
+      "hitRate": 52.24719101123596,
       "over": 51,
-      "under": 32
+      "under": 34
     }
   },
   "warnings": [
@@ -64732,6 +67101,2316 @@
     "Excluded post-kickoff snapshot: 7"
   ],
   "rows": [
+    {
+      "name": "Tj Warren",
+      "key": "tj warren",
+      "team": "Paris",
+      "pos": "F",
+      "opponent": "Virtus Bologna",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 9.783783183492416,
+      "baseMinutes": 20.44666666666667,
+      "servedPir": 9.783783183492416,
+      "servedMinutes": 20.44666666666667,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": true,
+      "features": {
+        "basePir": 10.23,
+        "baseMin": 23,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.3160000000000105,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9916470362715438,
+          "defenseSample": 4,
+          "rival": "Kessler Edwards",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.741344426591947,
+              "weight": 0.7821358103632453,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.843995358268966,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.226476517689253,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 20.0,
+      "actualMinutes": 24.95,
+      "fouls": 0.0,
+      "actualStats": {
+        "points": 19.0,
+        "totalRebounds": 4.0,
+        "assistances": 2.0,
+        "turnovers": 4.0,
+        "foulsCommited": 0.0,
+        "fieldGoalsMadeTotal": 9.0,
+        "fieldGoalsAttemptedTotal": 15.0
+      },
+      "minutesContribution": 2.154856713547154,
+      "efficiencyContribution": 8.06136010296043,
+      "reason": "efficiency",
+      "error": 10.216216816507584,
+      "servedError": 10.216216816507584
+    },
+    {
+      "name": "Marcus Carr",
+      "key": "carr marcus",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "opponent": "Paris",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 12.927167466651913,
+      "baseMinutes": 22.86,
+      "servedPir": 12.927167466651913,
+      "servedMinutes": 22.86,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": false,
+      "features": {
+        "basePir": 9.951,
+        "baseMin": 23,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 3.909000000000007,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0086104086679257,
+          "defenseSample": 4,
+          "rival": "Nadir Hifi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.2427903699607,
+              "weight": 0.7821358103632452,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.956790369960704,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.642590369960704,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 12.0,
+      "actualMinutes": 22.566666666666666,
+      "fouls": 3.0,
+      "actualStats": {
+        "points": 11.0,
+        "totalRebounds": 2.0,
+        "assistances": 6.0,
+        "turnovers": 2.0,
+        "foulsCommited": 3.0,
+        "fieldGoalsMadeTotal": 3.0,
+        "fieldGoalsAttemptedTotal": 8.0
+      },
+      "minutesContribution": -0.16587791441606403,
+      "efficiencyContribution": -0.7612895522358478,
+      "reason": "efficiency",
+      "error": -0.9271674666519125,
+      "servedError": -0.9271674666519125
+    },
+    {
+      "name": "Tyson Etienne",
+      "key": "etienne tyson",
+      "team": "Paris",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 7.645138483822702,
+      "baseMinutes": 19.346666666666668,
+      "servedPir": 7.645138483822702,
+      "servedMinutes": 19.346666666666668,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": true,
+      "features": {
+        "basePir": 9.579,
+        "baseMin": 23,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9838276999971903,
+          "defenseSample": 4,
+          "rival": "Wendell Moore",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.60863913840318,
+              "weight": 0.7821358103632453,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.90927421002993,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.082419407546112,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 27.0,
+      "actualMinutes": 27.833333333333332,
+      "fouls": 2.0,
+      "actualStats": {
+        "points": 23.0,
+        "totalRebounds": 2.0,
+        "assistances": 7.0,
+        "turnovers": 0.0,
+        "foulsCommited": 2.0,
+        "fieldGoalsMadeTotal": 8.0,
+        "fieldGoalsAttemptedTotal": 19.0
+      },
+      "minutesContribution": 3.3536393142337344,
+      "efficiencyContribution": 16.001222201943563,
+      "reason": "efficiency",
+      "error": 19.354861516177298,
+      "servedError": 19.354861516177298
+    },
+    {
+      "name": "Trent Frazier",
+      "key": "frazier trent",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "opponent": "Paris",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 8.42431711196934,
+      "baseMinutes": 20.86,
+      "servedPir": 8.42431711196934,
+      "servedMinutes": 20.86,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": false,
+      "features": {
+        "basePir": 9.3,
+        "baseMin": 23,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 3.909000000000007,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0131659406465965,
+          "defenseSample": 4,
+          "rival": "Nadir Hifi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.20930039883553,
+              "weight": 0.7821358103632452,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.123300398835532,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.74910039883553,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 3.0,
+      "actualMinutes": 18.55,
+      "fouls": 3.0,
+      "actualStats": {
+        "points": 8.0,
+        "totalRebounds": 1.0,
+        "assistances": 2.0,
+        "turnovers": 2.0,
+        "foulsCommited": 3.0,
+        "fieldGoalsMadeTotal": 2.0,
+        "fieldGoalsAttemptedTotal": 8.0
+      },
+      "minutesContribution": -0.9328941768288191,
+      "efficiencyContribution": -4.4914229351405215,
+      "reason": "efficiency",
+      "error": -5.424317111969341,
+      "servedError": -5.424317111969341
+    },
+    {
+      "name": "Kessler Edwards",
+      "key": "edwards kessler",
+      "team": "Virtus Bologna",
+      "pos": "F",
+      "opponent": "Paris",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 9.356270507986567,
+      "baseMinutes": 21.379682539682538,
+      "servedPir": 9.356270507986567,
+      "servedMinutes": 21.379682539682538,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": false,
+      "features": {
+        "basePir": 7.7995921581082435,
+        "baseMin": 16.999047619047616,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.681000000000004,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 13,
+          "historyWeight": 0.3404761904761905,
+          "sameTeam": false,
+          "avgPir": 5.615384615384615,
+          "avgMinutes": 13.123076923076923,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0065928352843423,
+          "defenseSample": 4,
+          "rival": "Tj Warren",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.73768501514218,
+              "weight": 0.7821358103632452,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.599716761173926,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.241107237364403,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 5.0,
+      "actualMinutes": 19.883333333333333,
+      "fouls": 1.0,
+      "actualStats": {
+        "points": 5.0,
+        "totalRebounds": 7.0,
+        "assistances": 1.0,
+        "turnovers": 1.0,
+        "foulsCommited": 1.0,
+        "fieldGoalsMadeTotal": 2.0,
+        "fieldGoalsAttemptedTotal": 8.0
+      },
+      "minutesContribution": -0.6548389071272925,
+      "efficiencyContribution": -3.7014316008592747,
+      "reason": "efficiency",
+      "error": -4.356270507986567,
+      "servedError": -4.356270507986567
+    },
+    {
+      "name": "Wendell Moore",
+      "key": "moore wendell",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "opponent": "Paris",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 12.58246236165786,
+      "baseMinutes": 22.313333333333333,
+      "servedPir": 12.58246236165786,
+      "servedMinutes": 22.313333333333333,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": false,
+      "features": {
+        "basePir": 9.020999999999999,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 3.909000000000007,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0069851594854122,
+          "defenseSample": 4,
+          "rival": "Nadir Hifi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.686969777853154,
+              "weight": 0.7821358103632452,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.455636444519822,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.12503644451982,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 15.0,
+      "actualMinutes": 26.383333333333333,
+      "fouls": 1.0,
+      "actualStats": {
+        "points": 14.0,
+        "totalRebounds": 7.0,
+        "assistances": 3.0,
+        "turnovers": 3.0,
+        "foulsCommited": 1.0,
+        "fieldGoalsMadeTotal": 6.0,
+        "fieldGoalsAttemptedTotal": 14.0
+      },
+      "minutesContribution": 2.295068201909807,
+      "efficiencyContribution": 0.12246943643233266,
+      "reason": "minutes",
+      "error": 2.4175376383421394,
+      "servedError": 2.4175376383421394
+    },
+    {
+      "name": "Rasheed Bello",
+      "key": "bello rasheed",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "opponent": "Paris",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 3.8494029063288844,
+      "baseMinutes": 13.780000000000001,
+      "servedPir": 3.8494029063288844,
+      "servedMinutes": 13.780000000000001,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": false,
+      "features": {
+        "basePir": 8.649000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 3.909000000000007,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0078453414871902,
+          "defenseSample": 4,
+          "rival": "Nadir Hifi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.010745901052427,
+              "weight": 0.7821358103632452,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.632745901052427,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.046145901052428,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 11.0,
+      "actualMinutes": 11.766666666666667,
+      "fouls": 4.0,
+      "actualStats": {
+        "points": 12.0,
+        "totalRebounds": 0.0,
+        "assistances": 4.0,
+        "turnovers": 1.0,
+        "foulsCommited": 4.0,
+        "fieldGoalsMadeTotal": 4.0,
+        "fieldGoalsAttemptedTotal": 6.0
+      },
+      "minutesContribution": -0.5624188087621302,
+      "efficiencyContribution": 7.713015902433246,
+      "reason": "efficiency",
+      "error": 7.150597093671116,
+      "servedError": 7.150597093671116
+    },
+    {
+      "name": "Jared Rhoden",
+      "key": "jared rhoden",
+      "team": "Paris",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 9.306623065450655,
+      "baseMinutes": 20.337528235294116,
+      "servedPir": 9.306623065450655,
+      "servedMinutes": 20.337528235294116,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": true,
+      "features": {
+        "basePir": 8.138493718158932,
+        "baseMin": 20.783820588235294,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 26,
+          "historyWeight": 0.7647058823529411,
+          "sameTeam": true,
+          "avgPir": 8,
+          "avgMinutes": 21.33268846153846,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.992814713104765,
+          "defenseSample": 4,
+          "rival": "Wendell Moore",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.853492949172608,
+              "weight": 0.7821358103632453,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.097291898881316,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.79377695465063,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 3.0,
+      "actualMinutes": 17.5,
+      "fouls": 1.0,
+      "actualStats": {
+        "points": 9.0,
+        "totalRebounds": 1.0,
+        "assistances": 2.0,
+        "turnovers": 2.0,
+        "foulsCommited": 1.0,
+        "fieldGoalsMadeTotal": 4.0,
+        "fieldGoalsAttemptedTotal": 12.0
+      },
+      "minutesContribution": -1.29847665940186,
+      "efficiencyContribution": -5.008146406048795,
+      "reason": "efficiency",
+      "error": -6.306623065450655,
+      "servedError": -6.306623065450655
+    },
+    {
+      "name": "Maozinha Pereira",
+      "key": "maozinha pereira",
+      "team": "Paris",
+      "pos": "F",
+      "opponent": "Virtus Bologna",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 8.613239140370508,
+      "baseMinutes": 19.0,
+      "servedPir": 8.613239140370508,
+      "servedMinutes": 19.0,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": true,
+      "features": {
+        "basePir": 8.277000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.3160000000000105,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Kessler Edwards",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.530426292946036,
+              "weight": 0.7821358103632453,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.965426292946038,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.53542629294604,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 0.0,
+      "actualMinutes": 0.0,
+      "fouls": 0.0,
+      "actualStats": {
+        "points": 0.0,
+        "totalRebounds": 0.0,
+        "assistances": 0.0,
+        "turnovers": 0.0,
+        "foulsCommited": 0.0,
+        "fieldGoalsMadeTotal": 0.0,
+        "fieldGoalsAttemptedTotal": 0.0
+      },
+      "minutesContribution": -8.613239140370508,
+      "efficiencyContribution": 0.0,
+      "reason": "did-not-play",
+      "error": -8.613239140370508,
+      "servedError": -8.613239140370508
+    },
+    {
+      "name": "Mouhamet Diouf",
+      "key": "diouf mouhamet",
+      "team": "Virtus Bologna",
+      "pos": "C",
+      "opponent": "Paris",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 8.037385362162373,
+      "baseMinutes": 14.381870731707316,
+      "servedPir": 8.037385362162373,
+      "servedMinutes": 14.381870731707316,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": false,
+      "features": {
+        "basePir": 10.021250743847482,
+        "baseMin": 18.62561219512195,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 33,
+          "historyWeight": 0.8048780487804879,
+          "sameTeam": true,
+          "avgPir": 10.454545454545455,
+          "avgMinutes": 18.534851515151512,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0001775692987926,
+          "defenseSample": 4,
+          "rival": "Allan Dokossi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.622694949472724,
+              "weight": 0.7821358103632452,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.184507876301993,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.615963998253212,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 16.0,
+      "actualMinutes": 16.633333333333333,
+      "fouls": 1.0,
+      "actualStats": {
+        "points": 11.0,
+        "totalRebounds": 4.0,
+        "assistances": 1.0,
+        "turnovers": 0.0,
+        "foulsCommited": 1.0,
+        "fieldGoalsMadeTotal": 5.0,
+        "fieldGoalsAttemptedTotal": 6.0
+      },
+      "minutesContribution": 1.258241914097412,
+      "efficiencyContribution": 6.7043727237402155,
+      "reason": "efficiency",
+      "error": 7.962614637837627,
+      "servedError": 7.962614637837627
+    },
+    {
+      "name": "Aliou Diarra",
+      "key": "aliou diarra",
+      "team": "Virtus Bologna",
+      "pos": "C",
+      "opponent": "Paris",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 14.48962323987135,
+      "baseMinutes": 18.70030925925926,
+      "servedPir": 14.48962323987135,
+      "servedMinutes": 18.70030925925926,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": false,
+      "features": {
+        "basePir": 7.041645957602173,
+        "baseMin": 12.500927777777775,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 28,
+          "historyWeight": 0.7777777777777778,
+          "sameTeam": true,
+          "avgPir": 6.428571428571429,
+          "avgMinutes": 10.644049999999998,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.000340530606001,
+          "defenseSample": 4,
+          "rival": "Allan Dokossi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.013445667821436,
+              "weight": 0.7821358103632452,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.143414741895512,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.70442401967329,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 18.0,
+      "actualMinutes": 17.8,
+      "fouls": 2.0,
+      "actualStats": {
+        "points": 8.0,
+        "totalRebounds": 11.0,
+        "assistances": 1.0,
+        "turnovers": 3.0,
+        "foulsCommited": 2.0,
+        "fieldGoalsMadeTotal": 4.0,
+        "fieldGoalsAttemptedTotal": 7.0
+      },
+      "minutesContribution": -0.6975896379668246,
+      "efficiencyContribution": 4.207966398095476,
+      "reason": "efficiency",
+      "error": 3.5103767601286506,
+      "servedError": 3.5103767601286506
+    },
+    {
+      "name": "Kevin Kokila",
+      "key": "kevin kokila",
+      "team": "Virtus Bologna",
+      "pos": "C",
+      "opponent": "Paris",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 5.573006281552082,
+      "baseMinutes": 15.133333333333335,
+      "servedPir": 5.573006281552082,
+      "servedMinutes": 15.133333333333335,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": false,
+      "features": {
+        "basePir": 7.719000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Allan Dokossi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.386740781513792,
+              "weight": 0.7821358103632452,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.873407448180458,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.327407448180459,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 6.0,
+      "actualMinutes": 5.15,
+      "fouls": 0.0,
+      "actualStats": {
+        "points": 2.0,
+        "totalRebounds": 3.0,
+        "assistances": 0.0,
+        "turnovers": 0.0,
+        "foulsCommited": 0.0,
+        "fieldGoalsMadeTotal": 1.0,
+        "fieldGoalsAttemptedTotal": 1.0
+      },
+      "minutesContribution": -3.6764655976318252,
+      "efficiencyContribution": 4.103459316079743,
+      "reason": "efficiency",
+      "error": 0.42699371844791756,
+      "servedError": 0.42699371844791756
+    },
+    {
+      "name": "Allan Dokossi",
+      "key": "allan dokossi",
+      "team": "Paris",
+      "pos": "C",
+      "opponent": "Virtus Bologna",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 10.025732283765024,
+      "baseMinutes": 19.517566666666667,
+      "servedPir": 10.025732283765024,
+      "servedMinutes": 19.517566666666667,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": true,
+      "features": {
+        "basePir": 8.486019937035412,
+        "baseMin": 16.712699999999998,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.671000000000005,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.8095238095238095,
+          "sameTeam": true,
+          "avgPir": 8.617647058823529,
+          "avgMinutes": 16.174511764705883,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0002048604164837,
+          "defenseSample": 4,
+          "rival": "Aliou Diarra",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.875242287217066,
+              "weight": 0.7821358103632453,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.790184083840103,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.728980878882155,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 10.0,
+      "actualMinutes": 16.7,
+      "fouls": 2.0,
+      "actualStats": {
+        "points": 6.0,
+        "totalRebounds": 4.0,
+        "assistances": 1.0,
+        "turnovers": 0.0,
+        "foulsCommited": 2.0,
+        "fieldGoalsMadeTotal": 3.0,
+        "fieldGoalsAttemptedTotal": 7.0
+      },
+      "minutesContribution": -1.4473202307490627,
+      "efficiencyContribution": 1.4215879469840385,
+      "reason": "minutes",
+      "error": -0.025732283765023567,
+      "servedError": -0.025732283765023567
+    },
+    {
+      "name": "Derrick Alston Jr.",
+      "key": "alston derrick jr",
+      "team": "Virtus Bologna",
+      "pos": "F",
+      "opponent": "Paris",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 8.119015882850734,
+      "baseMinutes": 22.740248148148147,
+      "servedPir": 8.119015882850734,
+      "servedMinutes": 22.740248148148147,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": false,
+      "features": {
+        "basePir": 8.499013396133249,
+        "baseMin": 21.820744444444443,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.681000000000004,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.8222222222222222,
+          "sameTeam": true,
+          "avgPir": 8.702702702702704,
+          "avgMinutes": 22.430635135135134,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0144973665377965,
+          "defenseSample": 4,
+          "rival": "Tj Warren",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.121033275078496,
+              "weight": 0.7821358103632452,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.84700846026368,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.529215904708128,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 22.0,
+      "actualMinutes": 23.866666666666667,
+      "fouls": 1.0,
+      "actualStats": {
+        "points": 23.0,
+        "totalRebounds": 3.0,
+        "assistances": 2.0,
+        "turnovers": 2.0,
+        "foulsCommited": 1.0,
+        "fieldGoalsMadeTotal": 7.0,
+        "fieldGoalsAttemptedTotal": 12.0
+      },
+      "minutesContribution": 0.4021684276709976,
+      "efficiencyContribution": 13.478815689478267,
+      "reason": "efficiency",
+      "error": 13.880984117149266,
+      "servedError": 13.880984117149266
+    },
+    {
+      "name": "Terry Tarpey",
+      "key": "tarpey terry",
+      "team": "Paris",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 5.354460685257089,
+      "baseMinutes": 13.523916999999999,
+      "servedPir": 5.354460685257089,
+      "servedMinutes": 13.523916999999999,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": true,
+      "features": {
+        "basePir": 4.8319946291694125,
+        "baseMin": 11.1597925,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.45000000000000007,
+          "sameTeam": false,
+          "avgPir": 3.2777777777777777,
+          "avgMinutes": 7.688427777777777,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9968657809394288,
+          "defenseSample": 4,
+          "rival": "Wendell Moore",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.79559701185157,
+              "weight": 0.7821358103632453,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.234226461961944,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.609008753021547,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 12.0,
+      "actualMinutes": 19.5,
+      "fouls": 0.0,
+      "actualStats": {
+        "points": 5.0,
+        "totalRebounds": 6.0,
+        "assistances": 1.0,
+        "turnovers": 1.0,
+        "foulsCommited": 0.0,
+        "fieldGoalsMadeTotal": 2.0,
+        "fieldGoalsAttemptedTotal": 4.0
+      },
+      "minutesContribution": 2.366082361739816,
+      "efficiencyContribution": 4.279456953003096,
+      "reason": "efficiency",
+      "error": 6.645539314742911,
+      "servedError": 6.645539314742911
+    },
+    {
+      "name": "Mouhamed Faye",
+      "key": "faye mouhamed",
+      "team": "Paris",
+      "pos": "C",
+      "opponent": "Virtus Bologna",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 5.143841002213048,
+      "baseMinutes": 13.774033333333332,
+      "servedPir": 5.143841002213048,
+      "servedMinutes": 13.774033333333332,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": true,
+      "features": {
+        "basePir": 6.867824294698619,
+        "baseMin": 16.622099999999996,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.671000000000005,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 7.052631578947368,
+          "avgMinutes": 17.174121052631577,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0002053455019557,
+          "defenseSample": 4,
+          "rival": "Aliou Diarra",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.953927861551193,
+              "weight": 0.7821358103632453,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.970731986661606,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.659433653328273,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 18.0,
+      "actualMinutes": 21.166666666666668,
+      "fouls": 3.0,
+      "actualStats": {
+        "points": 10.0,
+        "totalRebounds": 7.0,
+        "assistances": 3.0,
+        "turnovers": 0.0,
+        "foulsCommited": 3.0,
+        "fieldGoalsMadeTotal": 5.0,
+        "fieldGoalsAttemptedTotal": 6.0
+      },
+      "minutesContribution": 2.7607404116194676,
+      "efficiencyContribution": 10.095418586167485,
+      "reason": "efficiency",
+      "error": 12.856158997786952,
+      "servedError": 12.856158997786952
+    },
+    {
+      "name": "Daulton Hommes",
+      "key": "daulton hommes",
+      "team": "Paris",
+      "pos": "F",
+      "opponent": "Virtus Bologna",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 3.197402988456795,
+      "baseMinutes": 12.199805747126437,
+      "servedPir": 3.197402988456795,
+      "servedMinutes": 12.199805747126437,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": true,
+      "features": {
+        "basePir": 4.535451004258671,
+        "baseMin": 13.699417241379312,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.3160000000000105,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 21,
+          "historyWeight": 0.7241379310344828,
+          "sameTeam": true,
+          "avgPir": 4.285714285714286,
+          "avgMinutes": 13.584909523809523,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9959890102339781,
+          "defenseSample": 4,
+          "rival": "Kessler Edwards",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.373327862322325,
+              "weight": 0.7821358103632453,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.158421026743442,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.988391888812407,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 2.0,
+      "actualMinutes": 13.233333333333333,
+      "fouls": 2.0,
+      "actualStats": {
+        "points": 3.0,
+        "totalRebounds": 2.0,
+        "assistances": 4.0,
+        "turnovers": 1.0,
+        "foulsCommited": 2.0,
+        "fieldGoalsMadeTotal": 1.0,
+        "fieldGoalsAttemptedTotal": 6.0
+      },
+      "minutesContribution": 0.270873509077703,
+      "efficiencyContribution": -1.468276497534498,
+      "reason": "efficiency",
+      "error": -1.197402988456795,
+      "servedError": -1.197402988456795
+    },
+    {
+      "name": "Jeremy Morgan",
+      "key": "jeremy morgan",
+      "team": "Paris",
+      "pos": "F",
+      "opponent": "Virtus Bologna",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 2.7396962971135657,
+      "baseMinutes": 14.283472499999998,
+      "servedPir": 2.7396962971135657,
+      "servedMinutes": 14.283472499999998,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": true,
+      "features": {
+        "basePir": 5.648606786382633,
+        "baseMin": 16.9704175,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.3160000000000105,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 32,
+          "historyWeight": 0.8,
+          "sameTeam": true,
+          "avgPir": 5.78125,
+          "avgMinutes": 17.713021875,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9923603410398577,
+          "defenseSample": 4,
+          "rival": "Kessler Edwards",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.527171551918824,
+              "weight": 0.7821358103632453,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.135613670882123,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.329428693741104,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 4.0,
+      "actualMinutes": 12.883333333333333,
+      "fouls": 2.0,
+      "actualStats": {
+        "points": 3.0,
+        "totalRebounds": 1.0,
+        "assistances": 3.0,
+        "turnovers": 0.0,
+        "foulsCommited": 2.0,
+        "fieldGoalsMadeTotal": 1.0,
+        "fieldGoalsAttemptedTotal": 4.0
+      },
+      "minutesContribution": -0.2685590699572767,
+      "efficiencyContribution": 1.528862772843711,
+      "reason": "efficiency",
+      "error": 1.2603037028864343,
+      "servedError": 1.2603037028864343
+    },
+    {
+      "name": "Leopold Cavaliere",
+      "key": "cavaliere leopold",
+      "team": "Paris",
+      "pos": "F",
+      "opponent": "Virtus Bologna",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 6.0534720670194995,
+      "baseMinutes": 14.643383333333334,
+      "servedPir": 6.0534720670194995,
+      "servedMinutes": 14.643383333333334,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": true,
+      "features": {
+        "basePir": 4.589612886908857,
+        "baseMin": 13.99015,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.3160000000000105,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.8181818181818182,
+          "sameTeam": true,
+          "avgPir": 4.555555555555555,
+          "avgMinutes": 13.987961111111112,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9984166790926399,
+          "defenseSample": 4,
+          "rival": "Kessler Edwards",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.891253938983793,
+              "weight": 0.7821358103632453,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.401290849578764,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.941726943367431,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 4.0,
+      "actualMinutes": 9.55,
+      "fouls": 1.0,
+      "actualStats": {
+        "points": 2.0,
+        "totalRebounds": 2.0,
+        "assistances": 0.0,
+        "turnovers": 0.0,
+        "foulsCommited": 1.0,
+        "fieldGoalsMadeTotal": 0.0,
+        "fieldGoalsAttemptedTotal": 0.0
+      },
+      "minutesContribution": -2.1055689817783003,
+      "efficiencyContribution": 0.05209691475880085,
+      "reason": "minutes",
+      "error": -2.0534720670194995,
+      "servedError": -2.0534720670194995
+    },
+    {
+      "name": "Davide Casarin",
+      "key": "casarin davide",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "opponent": "Paris",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 4.826715114573313,
+      "baseMinutes": 14.0,
+      "servedPir": 4.826715114573313,
+      "servedMinutes": 14.0,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": false,
+      "features": {
+        "basePir": 4.743,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 3.909000000000007,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Nadir Hifi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.341183250798204,
+              "weight": 0.7821358103632452,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.451183250798206,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.871183250798207,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 2.0,
+      "actualMinutes": 5.4,
+      "fouls": 1.0,
+      "actualStats": {
+        "points": 2.0,
+        "totalRebounds": 1.0,
+        "assistances": 0.0,
+        "turnovers": 0.0,
+        "foulsCommited": 1.0,
+        "fieldGoalsMadeTotal": 1.0,
+        "fieldGoalsAttemptedTotal": 1.0
+      },
+      "minutesContribution": -2.9649821418093203,
+      "efficiencyContribution": 0.1382670272360078,
+      "reason": "minutes",
+      "error": -2.8267151145733127,
+      "servedError": -2.8267151145733127
+    },
+    {
+      "name": "Sebastian Herrera",
+      "key": "herrera sebastian",
+      "team": "Paris",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 5.167290083523412,
+      "baseMinutes": 17.840355303030304,
+      "servedPir": 5.167290083523412,
+      "servedMinutes": 17.840355303030304,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": true,
+      "features": {
+        "basePir": 4.946326710709074,
+        "baseMin": 15.98106590909091,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.8181818181818182,
+          "sameTeam": true,
+          "avgPir": 5,
+          "avgMinutes": 16.42130277777778,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9859473506029186,
+          "defenseSample": 4,
+          "rival": "Wendell Moore",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.09239049256139,
+              "weight": 0.7821358103632453,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.514327092755156,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.35645732653164,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 9.0,
+      "actualMinutes": 22.933333333333334,
+      "fouls": 4.0,
+      "actualStats": {
+        "points": 12.0,
+        "totalRebounds": 3.0,
+        "assistances": 1.0,
+        "turnovers": 0.0,
+        "foulsCommited": 4.0,
+        "fieldGoalsMadeTotal": 4.0,
+        "fieldGoalsAttemptedTotal": 7.0
+      },
+      "minutesContribution": 1.4751328897086116,
+      "efficiencyContribution": 2.357577026767977,
+      "reason": "efficiency",
+      "error": 3.8327099164765883,
+      "servedError": 3.8327099164765883
+    },
+    {
+      "name": "Joel Ayayi",
+      "key": "ayayi joel",
+      "team": "Paris",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 4.8614186878655286,
+      "baseMinutes": 12.985397619047617,
+      "servedPir": 4.8614186878655286,
+      "servedMinutes": 12.985397619047617,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": true,
+      "features": {
+        "basePir": 3.3755271078793285,
+        "baseMin": 11.850795238095237,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 13,
+          "historyWeight": 0.6190476190476191,
+          "sameTeam": true,
+          "avgPir": 2.6923076923076925,
+          "avgMinutes": 10.528207692307692,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Wendell Moore",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.248896355387659,
+              "weight": 0.7821358103632453,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.950356593482898,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.339918522054326,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": -1.0,
+      "actualMinutes": 13.75,
+      "fouls": 2.0,
+      "actualStats": {
+        "points": 2.0,
+        "totalRebounds": 5.0,
+        "assistances": 3.0,
+        "turnovers": 1.0,
+        "foulsCommited": 2.0,
+        "fieldGoalsMadeTotal": 1.0,
+        "fieldGoalsAttemptedTotal": 7.0
+      },
+      "minutesContribution": 0.28624863193222794,
+      "efficiencyContribution": -6.1476673197977565,
+      "reason": "efficiency",
+      "error": -5.8614186878655286,
+      "servedError": -5.8614186878655286
+    },
+    {
+      "name": "Tommaso Baldasso",
+      "key": "baldasso tommaso",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "opponent": "Paris",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 5.2499569846932745,
+      "baseMinutes": 12.89,
+      "servedPir": 5.2499569846932745,
+      "servedMinutes": 12.89,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": false,
+      "features": {
+        "basePir": 3.9060000000000006,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 3.909000000000007,
+        "teamPoints": 85.08755000000001,
+        "margin": -3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0047995723091188,
+          "defenseSample": 4,
+          "rival": "Nadir Hifi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.105842863901726,
+              "weight": 0.7821358103632452,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.816842863901726,
+              "weight": 0.04981640960041756,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.203542863901728,
+              "weight": 0.16804778003633722,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 3.0,
+      "actualMinutes": 12.383333333333333,
+      "fouls": 0.0,
+      "actualStats": {
+        "points": 0.0,
+        "totalRebounds": 2.0,
+        "assistances": 1.0,
+        "turnovers": 0.0,
+        "foulsCommited": 0.0,
+        "fieldGoalsMadeTotal": 0.0,
+        "fieldGoalsAttemptedTotal": 2.0
+      },
+      "minutesContribution": -0.2063598297577914,
+      "efficiencyContribution": -2.043597154935483,
+      "reason": "efficiency",
+      "error": -2.2499569846932745,
+      "servedError": -2.2499569846932745
+    },
     {
       "name": "Dario Saric",
       "key": "dario saric",
@@ -124301,6 +128980,116 @@
       "servedError": 0.01092848690896453
     },
     {
+      "name": "Allan Dokossi",
+      "key": "allan dokossi",
+      "team": "Paris",
+      "pos": "C",
+      "opponent": "Virtus Bologna",
+      "gameCode": 50,
+      "round": 5,
+      "start": "2026-10-14T18:45:00Z",
+      "basePir": 10.025732283765024,
+      "baseMinutes": 19.517566666666667,
+      "servedPir": 10.025732283765024,
+      "servedMinutes": 19.517566666666667,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T18:46:20.020447+00:00",
+      "home": true,
+      "features": {
+        "basePir": 8.486019937035412,
+        "baseMin": 16.712699999999998,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.671000000000005,
+        "teamPoints": 89.03245,
+        "margin": 3.9449,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.8095238095238095,
+          "sameTeam": true,
+          "avgPir": 8.617647058823529,
+          "avgMinutes": 16.174511764705883,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0002048604164837,
+          "defenseSample": 4,
+          "rival": "Aliou Diarra",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.875242287217066,
+              "weight": 0.7821358103632453,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.790184083840103,
+              "weight": 0.16804778003633716,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.728980878882155,
+              "weight": 0.04981640960041756,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 10.0,
+      "actualMinutes": 16.7,
+      "fouls": 2.0,
+      "actualStats": {
+        "points": 6.0,
+        "totalRebounds": 4.0,
+        "assistances": 1.0,
+        "turnovers": 0.0,
+        "foulsCommited": 2.0,
+        "fieldGoalsMadeTotal": 3.0,
+        "fieldGoalsAttemptedTotal": 7.0
+      },
+      "minutesContribution": -1.4473202307490627,
+      "efficiencyContribution": 1.4215879469840385,
+      "reason": "minutes",
+      "error": -0.025732283765023567,
+      "servedError": -0.025732283765023567
+    },
+    {
       "name": "Antonio Blakeney",
       "key": "antonio blakeney",
       "team": "Hapoel Tel Aviv",
@@ -125408,79 +130197,42 @@
       "reason": "minutes",
       "error": -0.18691633289340182,
       "servedError": -0.18691633289340182
-    },
-    {
-      "name": "Eleftherios Mantzoukas",
-      "key": "eleftherios mantzoukas",
-      "team": "Panathinaikos",
-      "pos": "F",
-      "opponent": "Maccabi Tel Aviv",
-      "gameCode": 30,
-      "round": 3,
-      "start": "2026-10-02T18:15:00Z",
-      "basePir": 6.807203801793807,
-      "baseMinutes": 16.76,
-      "servedPir": 6.807203801793807,
-      "servedMinutes": 16.76,
-      "status": "active",
-      "modelId": "d055ed8ef292ed4cde64",
-      "eligible": true,
-      "snapshotAt": "2026-10-02T12:39:06.709930+00:00",
-      "home": true,
-      "features": {},
-      "actualPir": 7.0,
-      "actualMinutes": 22.816666666666666,
-      "fouls": 2.0,
-      "actualStats": {
-        "points": 11.0,
-        "totalRebounds": 2.0,
-        "assistances": 2.0,
-        "turnovers": 0.0,
-        "foulsCommited": 2.0,
-        "fieldGoalsMadeTotal": 4.0,
-        "fieldGoalsAttemptedTotal": 8.0
-      },
-      "minutesContribution": 2.4599620739577053,
-      "efficiencyContribution": -2.2671658757515125,
-      "reason": "minutes",
-      "error": 0.1927961982061932,
-      "servedError": 0.1927961982061932
     }
   ],
   "breakdowns": {
     "position": [
       {
         "label": "C",
-        "n": 173,
-        "mae": 5.72123519073784,
-        "bias": -0.9788895929419773,
-        "minutesMae": 4.44568149555197,
-        "hits": 90,
-        "hitRate": 52.02312138728323,
+        "n": 178,
+        "mae": 5.699750361773104,
+        "bias": -0.8124577963400335,
+        "minutesMae": 4.45195620182421,
+        "hits": 93,
+        "hitRate": 52.24719101123596,
         "over": 51,
-        "under": 32
+        "under": 34
       },
       {
         "label": "F",
-        "n": 352,
-        "mae": 5.31549432539516,
-        "bias": -1.058183541852626,
-        "minutesMae": 5.32543906696543,
-        "hits": 203,
-        "hitRate": 57.67045454545454,
-        "over": 95,
-        "under": 54
+        "n": 359,
+        "mae": 5.327665436990175,
+        "bias": -1.0120988490234384,
+        "minutesMae": 5.315341790295931,
+        "hits": 207,
+        "hitRate": 57.66016713091921,
+        "over": 96,
+        "under": 56
       },
       {
         "label": "G",
-        "n": 393,
-        "mae": 6.187260889587666,
-        "bias": -0.9429589746231194,
-        "minutesMae": 4.740100077511154,
-        "hits": 197,
-        "hitRate": 50.12722646310432,
-        "over": 116,
-        "under": 80
+        "n": 404,
+        "mae": 6.1747301324717,
+        "bias": -0.878162945491782,
+        "minutesMae": 4.712402282446616,
+        "hits": 202,
+        "hitRate": 50.0,
+        "over": 119,
+        "under": 83
       }
     ],
     "team": [
@@ -125640,14 +130392,14 @@
       },
       {
         "label": "Paris",
-        "n": 32,
-        "mae": 5.1938763401377965,
-        "bias": 0.48608100668576004,
-        "minutesMae": 3.182604898135838,
-        "hits": 18,
-        "hitRate": 56.25,
-        "over": 6,
-        "under": 8
+        "n": 44,
+        "mae": 5.55517548595262,
+        "bias": 1.0377839601271381,
+        "minutesMae": 3.7782226925705285,
+        "hits": 23,
+        "hitRate": 52.27272727272727,
+        "over": 9,
+        "under": 12
       },
       {
         "label": "Partizan",
@@ -125684,14 +130436,14 @@
       },
       {
         "label": "Virtus Bologna",
-        "n": 35,
-        "mae": 5.360274835081977,
-        "bias": 1.5313815008897493,
-        "minutesMae": 3.4963700259941377,
-        "hits": 21,
-        "hitRate": 60.0,
-        "over": 6,
-        "under": 8
+        "n": 46,
+        "mae": 5.190068486506964,
+        "bias": 1.5905006371922508,
+        "minutesMae": 3.3896555904829238,
+        "hits": 28,
+        "hitRate": 60.86956521739131,
+        "over": 7,
+        "under": 11
       },
       {
         "label": "Zalgiris",
@@ -125752,38 +130504,38 @@
       },
       {
         "label": "5",
-        "n": 206,
-        "mae": 5.596620488998,
-        "bias": -0.9237056786671297,
-        "minutesMae": 4.9839100800336515,
-        "hits": 109,
-        "hitRate": 52.9126213592233,
-        "over": 59,
-        "under": 38
+        "n": 229,
+        "mae": 5.599393145775306,
+        "bias": -0.6140209213715138,
+        "minutesMae": 4.9110704125419575,
+        "hits": 121,
+        "hitRate": 52.838427947598255,
+        "over": 63,
+        "under": 45
       }
     ],
     "home": [
       {
         "label": "False",
-        "n": 470,
-        "mae": 5.941630266169001,
-        "bias": -1.2404780383396912,
-        "minutesMae": 5.084059891892199,
-        "hits": 249,
-        "hitRate": 52.97872340425533,
-        "over": 136,
-        "under": 85
+        "n": 481,
+        "mae": 5.912057705303289,
+        "bias": -1.1714345140123752,
+        "minutesMae": 5.037545437508842,
+        "hits": 256,
+        "hitRate": 53.222453222453225,
+        "over": 137,
+        "under": 88
       },
       {
         "label": "True",
-        "n": 448,
-        "mae": 5.58003347108318,
-        "bias": -0.7352381815141016,
-        "minutesMae": 4.725465695479625,
-        "hits": 241,
-        "hitRate": 53.79464285714286,
-        "over": 126,
-        "under": 81
+        "n": 460,
+        "mae": 5.604518855527762,
+        "bias": -0.6506060941014516,
+        "minutesMae": 4.742189289799192,
+        "hits": 246,
+        "hitRate": 53.47826086956522,
+        "over": 129,
+        "under": 85
       }
     ],
     "reason": [
@@ -125800,34 +130552,34 @@
       },
       {
         "label": "did-not-play",
-        "n": 32,
-        "mae": 4.2957678914472615,
-        "bias": -4.2957678914472615,
-        "minutesMae": 12.961301097115461,
+        "n": 33,
+        "mae": 4.426600353535845,
+        "bias": -4.426600353535845,
+        "minutesMae": 13.144291972960447,
         "hits": 21,
-        "hitRate": 65.625,
-        "over": 11,
+        "hitRate": 63.63636363636363,
+        "over": 12,
         "under": 0
       },
       {
         "label": "efficiency",
-        "n": 658,
-        "mae": 6.479236059639887,
-        "bias": -0.5126425700728527,
-        "minutesMae": 3.6939914026426384,
-        "hits": 306,
-        "hitRate": 46.504559270516715,
-        "over": 199,
-        "under": 153
+        "n": 676,
+        "mae": 6.474493847112326,
+        "bias": -0.40908966172958405,
+        "minutesMae": 3.6819749126095154,
+        "hits": 314,
+        "hitRate": 46.44970414201183,
+        "over": 202,
+        "under": 160
       },
       {
         "label": "minutes",
-        "n": 224,
-        "mae": 3.8733005373898974,
-        "bias": -2.0608392843916197,
-        "minutesMae": 7.205768464513339,
-        "hits": 160,
-        "hitRate": 71.42857142857143,
+        "n": 228,
+        "mae": 3.8374683222764783,
+        "bias": -2.035598164608502,
+        "minutesMae": 7.169618798469245,
+        "hits": 164,
+        "hitRate": 71.9298245614035,
         "over": 52,
         "under": 12
       }
@@ -125835,6 +130587,118 @@
   },
   "teamAudit": {
     "games": [
+      {
+        "gameCode": 50,
+        "round": 5,
+        "start": "2026-10-14T18:45:00Z",
+        "played": true,
+        "home": "Paris",
+        "away": "Virtus Bologna",
+        "forecast": {
+          "opponent": "Virtus Bologna",
+          "home": true,
+          "margin": 3.9449,
+          "total": 174.12,
+          "winProb": 0.6336496581787153,
+          "teamPoints": 89.03245,
+          "p20": 0.08127054786407843,
+          "p11_20": 0.2177231029990842,
+          "p1_10": 0.3346560073155528,
+          "l1_10": 0.2535351614606981,
+          "l11_20": 0.09412277033974425,
+          "l20": 0.01869241002084223,
+          "sampleGames": 42,
+          "currentSeasonGames": 4,
+          "source": "EuroLeague model + available roster + opponent strength",
+          "context": {
+            "availability": {
+              "missing": [],
+              "marginPenalty": 0,
+              "available": 17,
+              "rosterCount": 17
+            },
+            "rating": -2.4194365093844326,
+            "currentGames": 4,
+            "hardGames": 1,
+            "hardWins": 0,
+            "hardHistory": [
+              {
+                "opponent": "Panathinaikos",
+                "gameCode": 7,
+                "date": "2026-09-24T18:15:00+00:00",
+                "home": false,
+                "pregameWinProb": 0.36647,
+                "opponentRatingBefore": 1.724,
+                "hard": true,
+                "won": false,
+                "margin": -19
+              }
+            ],
+            "recentHistory": [
+              {
+                "opponent": "Panathinaikos",
+                "gameCode": 7,
+                "date": "2026-09-24T18:15:00+00:00",
+                "home": false,
+                "pregameWinProb": 0.36647,
+                "opponentRatingBefore": 1.724,
+                "hard": true,
+                "won": false,
+                "margin": -19
+              },
+              {
+                "opponent": "Partizan",
+                "gameCode": 18,
+                "date": "2026-09-29T18:45:00+00:00",
+                "home": true,
+                "pregameWinProb": 0.55838,
+                "opponentRatingBefore": 0.988,
+                "hard": false,
+                "won": false,
+                "margin": -13
+              },
+              {
+                "opponent": "Zalgiris",
+                "gameCode": 24,
+                "date": "2026-10-01T18:45:00+00:00",
+                "home": true,
+                "pregameWinProb": 0.4811,
+                "opponentRatingBefore": 1.753,
+                "hard": false,
+                "won": true,
+                "margin": 4
+              },
+              {
+                "opponent": "ASVEL",
+                "gameCode": 31,
+                "date": "2026-10-07T18:45:00+00:00",
+                "home": true,
+                "pregameWinProb": 0.72056,
+                "opponentRatingBefore": -5.157,
+                "hard": false,
+                "won": false,
+                "margin": -2
+              }
+            ],
+            "opponent": "Virtus Bologna",
+            "home": true,
+            "baseMargin": 3.97,
+            "strengthDelta": -0.0251,
+            "rosterDelta": 0,
+            "margin": 3.9449,
+            "rawWinProb": 0.6336496581787153,
+            "winProb": 0.6336496581787153
+          }
+        },
+        "homeScore": 94.0,
+        "awayScore": 96.0,
+        "actualMargin": -2.0,
+        "actualTotal": 190.0,
+        "marginError": -5.9449000000000005,
+        "totalError": 15.879999999999995,
+        "winnerHit": false,
+        "brier": 0.40151188931000276
+      },
       {
         "gameCode": 49,
         "round": 5,
@@ -127564,11 +132428,11 @@
         "brier": 0.4994955625
       }
     ],
-    "n": 25,
-    "winnerAccuracy": 60.0,
-    "marginMae": 10.72808,
-    "totalMae": 13.474000000000002,
-    "brier": 0.23331852737115316
+    "n": 26,
+    "winnerAccuracy": 57.692307692307686,
+    "marginMae": 10.544111538461538,
+    "totalMae": 13.566538461538464,
+    "brier": 0.2397875028303397
   },
   "reportVersion": 2
 }
