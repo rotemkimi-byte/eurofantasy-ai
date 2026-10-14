@@ -2,26 +2,26 @@
   "schema": "learning-v1",
   "season": "E2026",
   "modelId": "b3fc6df40846537dcb24",
-  "updated_at": "2026-10-14T17:51:03.165826+00:00",
+  "updated_at": "2026-10-14T18:15:29.873942+00:00",
   "metrics": {
-    "n": 871,
-    "mae": 5.743560253928048,
-    "bias": -1.0243323096974517,
-    "minutesMae": 4.871405264738715,
-    "hits": 470,
-    "hitRate": 53.9609644087256,
-    "over": 246,
-    "under": 155
+    "n": 895,
+    "mae": 5.737976411648769,
+    "bias": -1.038133485475812,
+    "minutesMae": 4.893779643288109,
+    "hits": 482,
+    "hitRate": 53.85474860335195,
+    "over": 254,
+    "under": 159
   },
   "eligibleMetrics": {
-    "n": 159,
-    "mae": 5.428450199749825,
-    "bias": -1.069593888137968,
-    "minutesMae": 4.7997652912587885,
-    "hits": 89,
-    "hitRate": 55.9748427672956,
-    "over": 43,
-    "under": 27
+    "n": 183,
+    "mae": 5.442467153084923,
+    "bias": -1.1311554970945796,
+    "minutesMae": 4.918587303090625,
+    "hits": 101,
+    "hitRate": 55.19125683060109,
+    "over": 51,
+    "under": 31
   },
   "legacyCount": 712,
   "validation": {
@@ -32,19 +32,19 @@
   },
   "coefficients": {
     "G": {
-      "n": 66,
-      "minutes": -0.531270874343829,
-      "efficiencyPir": -0.4146018377909695
+      "n": 75,
+      "minutes": -0.6586142636400808,
+      "efficiencyPir": -0.5323291738941534
     },
     "F": {
-      "n": 62,
-      "minutes": -0.47113815445897683,
-      "efficiencyPir": -0.09398077576403256
+      "n": 68,
+      "minutes": -0.4299185475941586,
+      "efficiencyPir": -0.06329212408227997
     },
     "C": {
-      "n": 27,
-      "minutes": -0.6508976175569917,
-      "efficiencyPir": 0.13536385610585103
+      "n": 32,
+      "minutes": -0.6367166934905398,
+      "efficiencyPir": 0.17968096595045752
     }
   },
   "active": false,
@@ -14018,18 +14018,128 @@
     },
     "eugene omoruyi": {
       "name": "Eugene Omoruyi",
-      "n": 4,
+      "n": 5,
       "metrics": {
-        "n": 4,
-        "mae": 6.956142048634735,
-        "bias": -4.923142048634734,
-        "minutesMae": 6.455050897849462,
-        "hits": 2,
-        "hitRate": 50.0,
+        "n": 5,
+        "mae": 5.716333142943181,
+        "bias": -3.787094134872394,
+        "minutesMae": 5.4947290086021505,
+        "hits": 3,
+        "hitRate": 60.0,
         "over": 2,
         "under": 0
       },
       "games": [
+        {
+          "name": "Eugene Omoruyi",
+          "key": "eugene omoruyi",
+          "team": "Besiktas",
+          "pos": "F",
+          "opponent": "Hapoel Tel Aviv",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 8.242902479823032,
+          "baseMinutes": 19.02010811827957,
+          "servedPir": 8.242902479823032,
+          "servedMinutes": 19.02010811827957,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": false,
+          "features": {
+            "basePir": 9.898816378228087,
+            "baseMin": 19.50032435483871,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": -0.7140000000000035,
+            "teamPoints": 88.788,
+            "margin": -2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 23,
+              "historyWeight": 0.4080645161290323,
+              "sameTeam": false,
+              "avgPir": 11.08695652173913,
+              "avgMinutes": 20.226091304347825,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.000622221736166,
+              "defenseSample": 4,
+              "rival": "Ish Wainright",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 19.421472200149495,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 18.428958002064597,
+                  "weight": 0.06654781545871635,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 16.92315725080169,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 9.0,
+          "actualMinutes": 17.366666666666667,
+          "fouls": 4.0,
+          "actualStats": {
+            "points": 12.0,
+            "totalRebounds": 0.0,
+            "assistances": 1.0,
+            "turnovers": 3.0,
+            "foulsCommited": 4.0,
+            "fieldGoalsMadeTotal": 5.0,
+            "fieldGoalsAttemptedTotal": 8.0
+          },
+          "minutesContribution": -0.716565676545428,
+          "efficiencyContribution": 1.4736631967223959,
+          "reason": "efficiency",
+          "error": 0.7570975201769681,
+          "servedError": 0.7570975201769681
+        },
         {
           "name": "Eugene Omoruyi",
           "key": "eugene omoruyi",
@@ -15568,18 +15678,128 @@
     },
     "gabriel wenyen": {
       "name": "Wenyen Gabriel",
-      "n": 4,
+      "n": 5,
       "metrics": {
-        "n": 4,
-        "mae": 4.532737177365946,
-        "bias": -0.7952948812840166,
-        "minutesMae": 4.943166791666668,
-        "hits": 2,
-        "hitRate": 50.0,
+        "n": 5,
+        "mae": 3.6892978161956593,
+        "bias": -0.5731278307243108,
+        "minutesMae": 5.009533516666668,
+        "hits": 3,
+        "hitRate": 60.0,
         "over": 1,
         "under": 1
       },
       "games": [
+        {
+          "name": "Wenyen Gabriel",
+          "key": "gabriel wenyen",
+          "team": "Besiktas",
+          "pos": "C",
+          "opponent": "Hapoel Tel Aviv",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 5.684459628485488,
+          "baseMinutes": 14.524999583333333,
+          "servedPir": 5.684459628485488,
+          "servedMinutes": 14.524999583333333,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": false,
+          "features": {
+            "basePir": 6.564263744121408,
+            "baseMin": 18.07499875,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": -7.737000000000005,
+            "teamPoints": 88.788,
+            "margin": -2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 36,
+              "historyWeight": 0.45000000000000007,
+              "sameTeam": false,
+              "avgPir": 5.666666666666667,
+              "avgMinutes": 16.944441666666666,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9953799414528548,
+              "defenseSample": 4,
+              "rival": "Dan Oturu",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 14.944497955016454,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 13.049195721803725,
+                  "weight": 0.06654781545871635,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 12.75869573013706,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 6.0,
+          "actualMinutes": 19.8,
+          "fouls": 4.0,
+          "actualStats": {
+            "points": 10.0,
+            "totalRebounds": 5.0,
+            "assistances": 0.0,
+            "turnovers": 1.0,
+            "foulsCommited": 4.0,
+            "fieldGoalsMadeTotal": 4.0,
+            "fieldGoalsAttemptedTotal": 9.0
+          },
+          "minutesContribution": 2.064408108017614,
+          "efficiencyContribution": -1.7488677365031018,
+          "reason": "minutes",
+          "error": 0.315540371514512,
+          "servedError": 0.315540371514512
+        },
         {
           "name": "Wenyen Gabriel",
           "key": "gabriel wenyen",
@@ -16122,18 +16342,128 @@
     },
     "scottie wilbekin": {
       "name": "Scottie Wilbekin",
-      "n": 4,
+      "n": 5,
       "metrics": {
-        "n": 4,
-        "mae": 5.688556694002247,
-        "bias": 5.688556694002247,
-        "minutesMae": 4.687910321428572,
+        "n": 5,
+        "mae": 6.221273683380193,
+        "bias": 2.8804170270234013,
+        "minutesMae": 4.192721376190478,
         "hits": 1,
-        "hitRate": 25.0,
-        "over": 0,
+        "hitRate": 20.0,
+        "over": 1,
         "under": 3
       },
       "games": [
+        {
+          "name": "Scottie Wilbekin",
+          "key": "scottie wilbekin",
+          "team": "Besiktas",
+          "pos": "G",
+          "opponent": "Hapoel Tel Aviv",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 12.35214164089198,
+          "baseMinutes": 22.478632261904764,
+          "servedPir": 12.35214164089198,
+          "servedMinutes": 22.478632261904764,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": false,
+          "features": {
+            "basePir": 7.669288414299151,
+            "baseMin": 18.015896785714286,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": -0.47199999999999465,
+            "teamPoints": 88.788,
+            "margin": -2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 6,
+              "historyWeight": 0.2357142857142857,
+              "sameTeam": false,
+              "avgPir": 5.833333333333333,
+              "avgMinutes": 14.825016666666668,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0084159404509225,
+              "defenseSample": 4,
+              "rival": "Elijah Bryant",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 22.73883093172032,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 22.305956049301237,
+                  "weight": 0.06654781545871635,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 21.014808577936698,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 4.0,
+          "actualMinutes": 20.266666666666666,
+          "fouls": 1.0,
+          "actualStats": {
+            "points": 9.0,
+            "totalRebounds": 1.0,
+            "assistances": 2.0,
+            "turnovers": 1.0,
+            "foulsCommited": 1.0,
+            "fieldGoalsMadeTotal": 2.0,
+            "fieldGoalsAttemptedTotal": 9.0
+          },
+          "minutesContribution": -1.2154882031441583,
+          "efficiencyContribution": -7.136653437747823,
+          "reason": "efficiency",
+          "error": -8.35214164089198,
+          "servedError": -8.35214164089198
+        },
         {
           "name": "Scottie Wilbekin",
           "key": "scottie wilbekin",
@@ -16676,18 +17006,128 @@
     },
     "birsen metecan": {
       "name": "Metecan Birsen",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 5.733100835554589,
-        "bias": -2.3116849511806037,
-        "minutesMae": 5.015967690972222,
-        "hits": 1,
-        "hitRate": 33.33333333333333,
+        "n": 4,
+        "mae": 5.120438566743795,
+        "bias": -2.554376653463306,
+        "minutesMae": 6.756723049479167,
+        "hits": 2,
+        "hitRate": 50.0,
         "over": 1,
         "under": 1
       },
       "games": [
+        {
+          "name": "Metecan Birsen",
+          "key": "birsen metecan",
+          "team": "Besiktas",
+          "pos": "F",
+          "opponent": "Hapoel Tel Aviv",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 3.2824517603114125,
+          "baseMinutes": 11.978989125,
+          "servedPir": 3.2824517603114125,
+          "servedMinutes": 11.978989125,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": false,
+          "features": {
+            "basePir": 3.8186218169952477,
+            "baseMin": 12.862472812499998,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": -0.7140000000000035,
+            "teamPoints": 88.788,
+            "margin": -2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 24,
+              "historyWeight": 0.41250000000000003,
+              "sameTeam": false,
+              "avgPir": 2.6666666666666665,
+              "avgMinutes": 11.242358333333334,
+              "currentSeasonWeight": 0.42857142857142855,
+              "minutesWeight": 0.6,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.42857142857142855,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0001960389360278,
+              "defenseSample": 4,
+              "rival": "Ish Wainright",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 12.134022779953796,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 11.564290370350138,
+                  "weight": 0.06654781545871635,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 11.261406986783065,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 0.0,
+          "actualMinutes": 0.0,
+          "fouls": 0.0,
+          "actualStats": {
+            "points": 0.0,
+            "totalRebounds": 0.0,
+            "assistances": 0.0,
+            "turnovers": 0.0,
+            "foulsCommited": 0.0,
+            "fieldGoalsMadeTotal": 0.0,
+            "fieldGoalsAttemptedTotal": 0.0
+          },
+          "minutesContribution": -3.2824517603114125,
+          "efficiencyContribution": 0.0,
+          "reason": "did-not-play",
+          "error": -3.2824517603114125,
+          "servedError": -3.2824517603114125
+        },
         {
           "name": "Metecan Birsen",
           "key": "birsen metecan",
@@ -36193,18 +36633,130 @@
     },
     "bryant elijah": {
       "name": "Elijah Bryant",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 11.017680044501503,
-        "bias": 10.662986622165162,
-        "minutesMae": 2.706932367149758,
+        "n": 4,
+        "mae": 10.502409426243211,
+        "bias": 5.758090573756787,
+        "minutesMae": 3.5062681159420297,
         "hits": 1,
-        "hitRate": 33.33333333333333,
-        "over": 0,
+        "hitRate": 25.0,
+        "over": 1,
         "under": 2
       },
       "games": [
+        {
+          "name": "Elijah Bryant",
+          "key": "bryant elijah",
+          "team": "Hapoel Tel Aviv",
+          "pos": "G",
+          "opponent": "Besiktas",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 23.956597571468336,
+          "baseMinutes": 31.354275362318845,
+          "servedPir": 23.956597571468336,
+          "servedMinutes": 31.354275362318845,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": true,
+          "features": {
+            "basePir": 18.947683142863024,
+            "baseMin": 29.047826086956523,
+            "injuryBoost": 0.20499999999999996,
+            "injuryUsagePct": 0.35142857142857137,
+            "missingStars": [
+              "Amir Coffey"
+            ],
+            "positionMatchPct": 0,
+            "teamPoints": 91.062,
+            "margin": 2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 38,
+              "historyWeight": 0.8260869565217391,
+              "sameTeam": true,
+              "avgPir": 19.57894736842105,
+              "avgMinutes": 29.478947368421053,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 5,
+                  "nextGameSamples": 8,
+                  "nextGameAvgPir": 23.375,
+                  "continuedRate": 0.625
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 3,
+                  "nextGameSamples": 3,
+                  "nextGameAvgPir": 23,
+                  "continuedRate": 0.3333333333333333
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 2,
+                  "nextGameSamples": 2,
+                  "nextGameAvgPir": 23,
+                  "continuedRate": 0
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0013318471028785,
+              "defenseSample": 4,
+              "rival": "Scottie Wilbekin",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 31.939487027953128,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 28.712771811124433,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 29.653400071994,
+                  "weight": 0.06654781545871641,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 15.0,
+          "actualMinutes": 25.45,
+          "fouls": 3.0,
+          "actualStats": {
+            "points": 16.0,
+            "totalRebounds": 1.0,
+            "assistances": 2.0,
+            "turnovers": 3.0,
+            "foulsCommited": 3.0,
+            "fieldGoalsMadeTotal": 3.0,
+            "fieldGoalsAttemptedTotal": 7.0
+          },
+          "minutesContribution": -4.5112300371067215,
+          "efficiencyContribution": -4.4453675343616155,
+          "reason": "minutes",
+          "error": -8.956597571468336,
+          "servedError": -8.956597571468336
+        },
         {
           "name": "Elijah Bryant",
           "key": "bryant elijah",
@@ -36675,18 +37227,130 @@
     },
     "dan oturu": {
       "name": "Dan Oturu",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 13.568891406560871,
-        "bias": -13.568891406560871,
-        "minutesMae": 6.4567775111111105,
+        "n": 4,
+        "mae": 12.287577654483798,
+        "bias": -12.287577654483798,
+        "minutesMae": 5.781332966666666,
         "hits": 1,
-        "hitRate": 33.33333333333333,
-        "over": 2,
+        "hitRate": 25.0,
+        "over": 3,
         "under": 0
       },
       "games": [
+        {
+          "name": "Dan Oturu",
+          "key": "dan oturu",
+          "team": "Hapoel Tel Aviv",
+          "pos": "C",
+          "opponent": "Besiktas",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 15.443636398252577,
+          "baseMinutes": 22.388332666666663,
+          "servedPir": 15.443636398252577,
+          "servedMinutes": 22.388332666666663,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": true,
+          "features": {
+            "basePir": 16.131579902371953,
+            "baseMin": 23.749997999999998,
+            "injuryBoost": 0.20499999999999996,
+            "injuryUsagePct": 0.35142857142857137,
+            "missingStars": [
+              "Amir Coffey"
+            ],
+            "positionMatchPct": 0,
+            "teamPoints": 91.062,
+            "margin": 2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 42,
+              "historyWeight": 0.84,
+              "sameTeam": true,
+              "avgPir": 16.761904761904763,
+              "avgMinutes": 23.89285476190476,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 2,
+                  "nextGameSamples": 2,
+                  "nextGameAvgPir": 15.5,
+                  "continuedRate": 0
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0053571088699946,
+              "defenseSample": 4,
+              "rival": "Ante Zizic",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 22.81488667136037,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 20.467599699711556,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 21.139249679711558,
+                  "weight": 0.06654781545871641,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 7.0,
+          "actualMinutes": 18.633333333333333,
+          "fouls": 3.0,
+          "actualStats": {
+            "points": 6.0,
+            "totalRebounds": 5.0,
+            "assistances": 0.0,
+            "turnovers": 2.0,
+            "foulsCommited": 3.0,
+            "fieldGoalsMadeTotal": 3.0,
+            "fieldGoalsAttemptedTotal": 5.0
+          },
+          "minutesContribution": -2.5902261344374997,
+          "efficiencyContribution": -5.853410263815077,
+          "reason": "efficiency",
+          "error": -8.443636398252577,
+          "servedError": -8.443636398252577
+        },
         {
           "name": "Dan Oturu",
           "key": "dan oturu",
@@ -36862,18 +37526,130 @@
     },
     "leday zach": {
       "name": "Zach Leday",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 4.797062746278342,
-        "bias": -4.792396079611675,
-        "minutesMae": 6.373997654135338,
+        "n": 4,
+        "mae": 5.999097332949253,
+        "bias": -1.1929967864682598,
+        "minutesMae": 4.9505681591478705,
         "hits": 2,
-        "hitRate": 66.66666666666666,
+        "hitRate": 50.0,
         "over": 1,
-        "under": 0
+        "under": 1
       },
       "games": [
+        {
+          "name": "Zach Leday",
+          "key": "leday zach",
+          "team": "Hapoel Tel Aviv",
+          "pos": "F",
+          "opponent": "Besiktas",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 12.394798907038014,
+          "baseMinutes": 19.869720325814534,
+          "servedPir": 12.394798907038014,
+          "servedMinutes": 19.869720325814534,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": true,
+          "features": {
+            "basePir": 13.239654886891492,
+            "baseMin": 23.704625263157894,
+            "injuryBoost": 0.6281785714285715,
+            "injuryUsagePct": 0.6852857142857143,
+            "missingStars": [
+              "Amir Coffey"
+            ],
+            "positionMatchPct": 0,
+            "teamPoints": 91.062,
+            "margin": 2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 30,
+              "historyWeight": 0.4342105263157895,
+              "sameTeam": false,
+              "avgPir": 15.066666666666666,
+              "avgMinutes": 24.62277333333333,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 2,
+                  "nextGameSamples": 1,
+                  "nextGameAvgPir": 15,
+                  "continuedRate": 0
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0025951370379171,
+              "defenseSample": 4,
+              "rival": "Anthony Brown",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 20.215527130424636,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 18.295485194482076,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 18.891576804256513,
+                  "weight": 0.06654781545871641,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 22.0,
+          "actualMinutes": 20.55,
+          "fouls": 2.0,
+          "actualStats": {
+            "points": 15.0,
+            "totalRebounds": 6.0,
+            "assistances": 0.0,
+            "turnovers": 1.0,
+            "foulsCommited": 2.0,
+            "fieldGoalsMadeTotal": 5.0,
+            "fieldGoalsAttemptedTotal": 8.0
+          },
+          "minutesContribution": 0.42436076722828997,
+          "efficiencyContribution": 9.180840325733696,
+          "reason": "efficiency",
+          "error": 9.605201092961986,
+          "servedError": 9.605201092961986
+        },
         {
           "name": "Zach Leday",
           "key": "leday zach",
@@ -37639,18 +38415,130 @@
     },
     "micic vasilije": {
       "name": "Vasilije Micic",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 8.57773404982342,
-        "bias": -2.1457340498234205,
-        "minutesMae": 3.887587777777778,
+        "n": 4,
+        "mae": 8.118137332780009,
+        "bias": 0.07553625804487751,
+        "minutesMae": 3.4026988194444447,
         "hits": 1,
-        "hitRate": 33.33333333333333,
+        "hitRate": 25.0,
         "over": 1,
-        "under": 1
+        "under": 2
       },
       "games": [
+        {
+          "name": "Vasilije Micic",
+          "key": "micic vasilije",
+          "team": "Hapoel Tel Aviv",
+          "pos": "G",
+          "opponent": "Besiktas",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 9.260652818350229,
+          "baseMinutes": 26.598031944444443,
+          "servedPir": 9.260652818350229,
+          "servedMinutes": 26.598031944444443,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": true,
+          "features": {
+            "basePir": 11.076635981049298,
+            "baseMin": 23.912845833333332,
+            "injuryBoost": 0.15374999999999997,
+            "injuryUsagePct": 0.2635714285714285,
+            "missingStars": [
+              "Amir Coffey"
+            ],
+            "positionMatchPct": 0,
+            "teamPoints": 91.062,
+            "margin": 2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 40,
+              "historyWeight": 0.8333333333333334,
+              "sameTeam": true,
+              "avgPir": 11.25,
+              "avgMinutes": 24.095415,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.996385641145585,
+              "defenseSample": 4,
+              "rival": "Scottie Wilbekin",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 27.28830499718732,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 23.585578971237034,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 24.383519929570365,
+                  "weight": 0.06654781545871641,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 16.0,
+          "actualMinutes": 24.65,
+          "fouls": 5.0,
+          "actualStats": {
+            "points": 16.0,
+            "totalRebounds": 3.0,
+            "assistances": 3.0,
+            "turnovers": 3.0,
+            "foulsCommited": 5.0,
+            "fieldGoalsMadeTotal": 5.0,
+            "fieldGoalsAttemptedTotal": 8.0
+          },
+          "minutesContribution": -0.6782474565876204,
+          "efficiencyContribution": 7.417594638237391,
+          "reason": "efficiency",
+          "error": 6.739347181649771,
+          "servedError": 6.739347181649771
+        },
         {
           "name": "Vasilije Micic",
           "key": "micic vasilije",
@@ -38121,18 +39009,130 @@
     },
     "antonio blakeney": {
       "name": "Antonio Blakeney",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 6.546169782061249,
-        "bias": 6.52616978206125,
-        "minutesMae": 5.930053854875283,
-        "hits": 2,
-        "hitRate": 66.66666666666666,
+        "n": 4,
+        "mae": 5.553229182111378,
+        "bias": 5.53822918211138,
+        "minutesMae": 5.108556972789114,
+        "hits": 3,
+        "hitRate": 75.0,
         "over": 0,
         "under": 1
       },
       "games": [
+        {
+          "name": "Antonio Blakeney",
+          "key": "antonio blakeney",
+          "team": "Hapoel Tel Aviv",
+          "pos": "G",
+          "opponent": "Besiktas",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 12.425592617738232,
+          "baseMinutes": 25.560732993197277,
+          "servedPir": 12.425592617738232,
+          "servedMinutes": 25.560732993197277,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": true,
+          "features": {
+            "basePir": 10.306064091319067,
+            "baseMin": 22.722448979591835,
+            "injuryBoost": 0.13324999999999995,
+            "injuryUsagePct": 0.22842857142857137,
+            "missingStars": [
+              "Amir Coffey"
+            ],
+            "positionMatchPct": 0,
+            "teamPoints": 91.062,
+            "margin": 2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 41,
+              "historyWeight": 0.8367346938775511,
+              "sameTeam": true,
+              "avgPir": 10.463414634146341,
+              "avgMinutes": 22.66829268292683,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9975767475587055,
+              "defenseSample": 4,
+              "rival": "Scottie Wilbekin",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 25.93864630071404,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 23.80209032105553,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 24.56891231085145,
+                  "weight": 0.06654781545871641,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 15.0,
+          "actualMinutes": 22.916666666666668,
+          "fouls": 0.0,
+          "actualStats": {
+            "points": 15.0,
+            "totalRebounds": 3.0,
+            "assistances": 1.0,
+            "turnovers": 0.0,
+            "foulsCommited": 0.0,
+            "fieldGoalsMadeTotal": 5.0,
+            "fieldGoalsAttemptedTotal": 12.0
+          },
+          "minutesContribution": -1.2853344634714803,
+          "efficiencyContribution": 3.8597418457332484,
+          "reason": "efficiency",
+          "error": 2.574407382261768,
+          "servedError": 2.574407382261768
+        },
         {
           "name": "Antonio Blakeney",
           "key": "antonio blakeney",
@@ -38493,18 +39493,108 @@
     },
     "eugene german": {
       "name": "Eugene German",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 3.836499819288206,
-        "bias": -3.509833152621539,
-        "minutesMae": 14.611138888888888,
+        "n": 4,
+        "mae": 4.217324012339652,
+        "bias": -3.9723240123396515,
+        "minutesMae": 15.252958333333334,
         "hits": 2,
-        "hitRate": 66.66666666666666,
-        "over": 1,
+        "hitRate": 50.0,
+        "over": 2,
         "under": 0
       },
       "games": [
+        {
+          "name": "Eugene German",
+          "key": "eugene german",
+          "team": "Hapoel Tel Aviv",
+          "pos": "G",
+          "opponent": "Besiktas",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 5.359796591493989,
+          "baseMinutes": 17.17841666666667,
+          "servedPir": 5.359796591493989,
+          "servedMinutes": 17.17841666666667,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": true,
+          "features": {
+            "basePir": 6.510000000000001,
+            "baseMin": 19,
+            "injuryBoost": 0.07174999999999998,
+            "injuryUsagePct": 0.12299999999999997,
+            "missingStars": [
+              "Amir Coffey"
+            ],
+            "positionMatchPct": 0,
+            "teamPoints": 91.062,
+            "margin": 2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.2,
+              "minutesWeight": 0.3333333333333333,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.2,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.999194377420003,
+              "defenseSample": 4,
+              "rival": "Scottie Wilbekin",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 17.714066566521467,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 14.875184419709251,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 15.390536919709252,
+                  "weight": 0.06654781545871641,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 0.0,
+          "actualMinutes": 0.0,
+          "fouls": 0.0,
+          "actualStats": {
+            "points": 0.0,
+            "totalRebounds": 0.0,
+            "assistances": 0.0,
+            "turnovers": 0.0,
+            "foulsCommited": 0.0,
+            "fieldGoalsMadeTotal": 0.0,
+            "fieldGoalsAttemptedTotal": 0.0
+          },
+          "minutesContribution": -5.359796591493989,
+          "efficiencyContribution": 0.0,
+          "reason": "did-not-play",
+          "error": -5.359796591493989,
+          "servedError": -5.359796591493989
+        },
         {
           "name": "Eugene German",
           "key": "eugene german",
@@ -39543,18 +40633,130 @@
     },
     "ish wainright": {
       "name": "Ish Wainright",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 3.4018949150216864,
-        "bias": -2.0678949150216863,
-        "minutesMae": 1.0470994666666666,
-        "hits": 2,
-        "hitRate": 66.66666666666666,
+        "n": 4,
+        "mae": 3.0826797669289734,
+        "bias": -1.0196626056035558,
+        "minutesMae": 1.0106159333333329,
+        "hits": 3,
+        "hitRate": 75.0,
         "over": 1,
         "under": 0
       },
       "games": [
+        {
+          "name": "Ish Wainright",
+          "key": "ish wainright",
+          "team": "Hapoel Tel Aviv",
+          "pos": "F",
+          "opponent": "Besiktas",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 3.8749656773491643,
+          "baseMinutes": 20.35116533333333,
+          "servedPir": 3.8749656773491643,
+          "servedMinutes": 20.35116533333333,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": true,
+          "features": {
+            "basePir": 4.676233470374555,
+            "baseMin": 21.596995999999997,
+            "injuryBoost": 0.22549999999999998,
+            "injuryUsagePct": 0.24599999999999994,
+            "missingStars": [
+              "Amir Coffey"
+            ],
+            "positionMatchPct": 0,
+            "teamPoints": 91.062,
+            "margin": 2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 42,
+              "historyWeight": 0.84,
+              "sameTeam": true,
+              "avgPir": 4.190476190476191,
+              "avgMinutes": 23.044042857142855,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9979125976164362,
+              "defenseSample": 4,
+              "rival": "Anthony Brown",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 20.699580360765594,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 18.761759364318095,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 19.372294324318098,
+                  "weight": 0.06654781545871641,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 6.0,
+          "actualMinutes": 19.45,
+          "fouls": 4.0,
+          "actualStats": {
+            "points": 6.0,
+            "totalRebounds": 1.0,
+            "assistances": 1.0,
+            "turnovers": 0.0,
+            "foulsCommited": 4.0,
+            "fieldGoalsMadeTotal": 2.0,
+            "fieldGoalsAttemptedTotal": 3.0
+          },
+          "minutesContribution": -0.17158647571714378,
+          "efficiencyContribution": 2.2966207983679796,
+          "reason": "efficiency",
+          "error": 2.1250343226508357,
+          "servedError": 2.1250343226508357
+        },
         {
           "name": "Ish Wainright",
           "key": "ish wainright",
@@ -39730,18 +40932,130 @@
     },
     "odiase tai": {
       "name": "Tai Odiase",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 5.16239072533296,
-        "bias": 1.2443907253329602,
-        "minutesMae": 6.4102930630630635,
-        "hits": 1,
-        "hitRate": 33.33333333333333,
+        "n": 4,
+        "mae": 4.148116524513394,
+        "bias": 1.2096165245133947,
+        "minutesMae": 6.752830045045045,
+        "hits": 2,
+        "hitRate": 50.0,
         "over": 1,
         "under": 1
       },
       "games": [
+        {
+          "name": "Tai Odiase",
+          "key": "odiase tai",
+          "team": "Hapoel Tel Aviv",
+          "pos": "C",
+          "opponent": "Besiktas",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 3.8947060779453015,
+          "baseMinutes": 12.56955900900901,
+          "servedPir": 3.8947060779453015,
+          "servedMinutes": 12.56955900900901,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": true,
+          "features": {
+            "basePir": 4.245558135368334,
+            "baseMin": 12.373427027027027,
+            "injuryBoost": 0.07174999999999998,
+            "injuryUsagePct": 0.12299999999999997,
+            "missingStars": [
+              "Amir Coffey"
+            ],
+            "positionMatchPct": 0,
+            "teamPoints": 91.062,
+            "margin": 2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 29,
+              "historyWeight": 0.7837837837837838,
+              "sameTeam": true,
+              "avgPir": 3.9310344827586206,
+              "avgMinutes": 11.92471724137931,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0029390140082037,
+              "defenseSample": 4,
+              "rival": "Ante Zizic",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 12.785412321107565,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 11.585259153705088,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 11.962345923975358,
+                  "weight": 0.06654781545871641,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 5.0,
+          "actualMinutes": 20.35,
+          "fouls": 3.0,
+          "actualStats": {
+            "points": 6.0,
+            "totalRebounds": 1.0,
+            "assistances": 0.0,
+            "turnovers": 1.0,
+            "foulsCommited": 3.0,
+            "fieldGoalsMadeTotal": 3.0,
+            "fieldGoalsAttemptedTotal": 6.0
+          },
+          "minutesContribution": 2.4107871083614447,
+          "efficiencyContribution": -1.3054931863067463,
+          "reason": "minutes",
+          "error": 1.1052939220546985,
+          "servedError": 1.1052939220546985
+        },
         {
           "name": "Tai Odiase",
           "key": "odiase tai",
@@ -43306,18 +44620,106 @@
     },
     "ante zizic": {
       "name": "Ante Zizic",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 4.064133375304666,
-        "bias": 0.2854667086379994,
-        "minutesMae": 5.929555555555557,
+        "n": 4,
+        "mae": 7.042159317604693,
+        "bias": 4.208159317604693,
+        "minutesMae": 4.705500000000001,
         "hits": 1,
-        "hitRate": 33.33333333333333,
+        "hitRate": 25.0,
         "over": 1,
-        "under": 1
+        "under": 2
       },
       "games": [
+        {
+          "name": "Ante Zizic",
+          "key": "ante zizic",
+          "team": "Besiktas",
+          "pos": "C",
+          "opponent": "Hapoel Tel Aviv",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 12.023762855495224,
+          "baseMinutes": 19.166666666666668,
+          "servedPir": 12.023762855495224,
+          "servedMinutes": 19.166666666666668,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": false,
+          "features": {
+            "basePir": 11.253,
+            "baseMin": 23,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": -7.737000000000005,
+            "teamPoints": 88.788,
+            "margin": -2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9968877340660901,
+              "defenseSample": 4,
+              "rival": "Dan Oturu",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 19.18949921283104,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 20.605493164142548,
+                  "weight": 0.06654781545871635,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 18.31729586880326,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 28.0,
+          "actualMinutes": 20.2,
+          "fouls": 2.0,
+          "actualStats": {
+            "points": 17.0,
+            "totalRebounds": 9.0,
+            "assistances": 4.0,
+            "turnovers": 1.0,
+            "foulsCommited": 2.0,
+            "fieldGoalsMadeTotal": 6.0,
+            "fieldGoalsAttemptedTotal": 9.0
+          },
+          "minutesContribution": 0.6482376496006108,
+          "efficiencyContribution": 15.327999494904166,
+          "reason": "efficiency",
+          "error": 15.976237144504776,
+          "servedError": 15.976237144504776
+        },
         {
           "name": "Ante Zizic",
           "key": "ante zizic",
@@ -43463,18 +44865,106 @@
     },
     "devon dotson": {
       "name": "Devon Dotson",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 6.781044611316812,
-        "bias": 5.409737671115117,
-        "minutesMae": 2.2153333333333323,
-        "hits": 1,
-        "hitRate": 33.33333333333333,
+        "n": 4,
+        "mae": 5.943338747697493,
+        "bias": 3.1997479641264537,
+        "minutesMae": 2.3423333333333325,
+        "hits": 2,
+        "hitRate": 50.0,
         "over": 0,
         "under": 2
       },
       "games": [
+        {
+          "name": "Devon Dotson",
+          "key": "devon dotson",
+          "team": "Besiktas",
+          "pos": "G",
+          "opponent": "Hapoel Tel Aviv",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 13.430221156839536,
+          "baseMinutes": 23.973333333333333,
+          "servedPir": 13.430221156839536,
+          "servedMinutes": 23.973333333333333,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": false,
+          "features": {
+            "basePir": 10.044,
+            "baseMin": 23,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": -0.47199999999999465,
+            "teamPoints": 88.788,
+            "margin": -2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0019722019691935,
+              "defenseSample": 4,
+              "rival": "Elijah Bryant",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 24.1039805028239,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 24.701612151508364,
+                  "weight": 0.06654781545871635,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 22.83425148522027,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 10.0,
+          "actualMinutes": 21.25,
+          "fouls": 3.0,
+          "actualStats": {
+            "points": 5.0,
+            "totalRebounds": 1.0,
+            "assistances": 6.0,
+            "turnovers": 0.0,
+            "foulsCommited": 3.0,
+            "fieldGoalsMadeTotal": 2.0,
+            "fieldGoalsAttemptedTotal": 4.0
+          },
+          "minutesContribution": -1.5256522087232895,
+          "efficiencyContribution": -1.9045689481162462,
+          "reason": "efficiency",
+          "error": -3.4302211568395364,
+          "servedError": -3.4302211568395364
+        },
         {
           "name": "Devon Dotson",
           "key": "devon dotson",
@@ -43620,18 +45110,106 @@
     },
     "jaylen nowell": {
       "name": "Jaylen Nowell",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 5.255178477139563,
-        "bias": -3.317844564666684,
-        "minutesMae": 6.417111111111112,
+        "n": 4,
+        "mae": 7.236286194825293,
+        "bias": -5.783285760470633,
+        "minutesMae": 5.692000000000001,
         "hits": 2,
-        "hitRate": 66.66666666666666,
-        "over": 1,
+        "hitRate": 50.0,
+        "over": 2,
         "under": 0
       },
       "games": [
+        {
+          "name": "Jaylen Nowell",
+          "key": "jaylen nowell",
+          "team": "Besiktas",
+          "pos": "G",
+          "opponent": "Hapoel Tel Aviv",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 9.179609347882481,
+          "baseMinutes": 21.1,
+          "servedPir": 9.179609347882481,
+          "servedMinutes": 21.1,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": false,
+          "features": {
+            "basePir": 8.835,
+            "baseMin": 19,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": -0.47199999999999465,
+            "teamPoints": 88.788,
+            "margin": -2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9962174022472069,
+              "defenseSample": 4,
+              "rival": "Elijah Bryant",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 21.639833955307044,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 19.233054959284253,
+                  "weight": 0.06654781545871635,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 18.811054959284252,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": -4.0,
+          "actualMinutes": 17.583333333333332,
+          "fouls": 5.0,
+          "actualStats": {
+            "points": 7.0,
+            "totalRebounds": 1.0,
+            "assistances": 1.0,
+            "turnovers": 0.0,
+            "foulsCommited": 5.0,
+            "fieldGoalsMadeTotal": 2.0,
+            "fieldGoalsAttemptedTotal": 10.0
+          },
+          "minutesContribution": -1.529934891313748,
+          "efficiencyContribution": -11.649674456568732,
+          "reason": "efficiency",
+          "error": -13.179609347882481,
+          "servedError": -13.179609347882481
+        },
         {
           "name": "Jaylen Nowell",
           "key": "jaylen nowell",
@@ -43777,18 +45355,106 @@
     },
     "david dejulius": {
       "name": "David Dejulius",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 6.982908696710156,
-        "bias": -6.982908696710156,
-        "minutesMae": 7.578703703703704,
+        "n": 4,
+        "mae": 6.922861401063812,
+        "bias": -6.922861401063812,
+        "minutesMae": 8.375861111111112,
         "hits": 1,
-        "hitRate": 33.33333333333333,
-        "over": 2,
+        "hitRate": 25.0,
+        "over": 3,
         "under": 0
       },
       "games": [
+        {
+          "name": "David Dejulius",
+          "key": "david dejulius",
+          "team": "Besiktas",
+          "pos": "G",
+          "opponent": "Hapoel Tel Aviv",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 4.742719514124778,
+          "baseMinutes": 14.734000000000002,
+          "servedPir": 4.742719514124778,
+          "servedMinutes": 14.734000000000002,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": false,
+          "features": {
+            "basePir": 8.184000000000001,
+            "baseMin": 19,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": -0.47199999999999465,
+            "teamPoints": 88.788,
+            "margin": -2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.42857142857142855,
+              "minutesWeight": 0.6,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.42857142857142855,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 0.9960064585052549,
+              "defenseSample": 4,
+              "rival": "Elijah Bryant",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 15.099820460624688,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 12.98217680241374,
+                  "weight": 0.06654781545871635,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 13.424196802413741,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": -2.0,
+          "actualMinutes": 3.966666666666667,
+          "fouls": 0.0,
+          "actualStats": {
+            "points": 0.0,
+            "totalRebounds": 1.0,
+            "assistances": 0.0,
+            "turnovers": 0.0,
+            "foulsCommited": 0.0,
+            "fieldGoalsMadeTotal": 0.0,
+            "fieldGoalsAttemptedTotal": 2.0
+          },
+          "minutesContribution": -3.4658912661250305,
+          "efficiencyContribution": -3.276828247999748,
+          "reason": "minutes",
+          "error": -6.742719514124778,
+          "servedError": -6.742719514124778
+        },
         {
           "name": "David Dejulius",
           "key": "david dejulius",
@@ -43934,18 +45600,106 @@
     },
     "anthony brown": {
       "name": "Anthony Brown",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 11.0643620965277,
-        "bias": 5.268782685711961,
-        "minutesMae": 3.2764444444444436,
-        "hits": 1,
-        "hitRate": 33.33333333333333,
+        "n": 4,
+        "mae": 8.940007249185395,
+        "bias": 3.3098513374943517,
+        "minutesMae": 3.3023333333333316,
+        "hits": 2,
+        "hitRate": 50.0,
         "over": 1,
         "under": 1
       },
       "games": [
+        {
+          "name": "Anthony Brown",
+          "key": "anthony brown",
+          "team": "Besiktas",
+          "pos": "F",
+          "opponent": "Hapoel Tel Aviv",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 10.566942707158477,
+          "baseMinutes": 22.979999999999997,
+          "servedPir": 10.566942707158477,
+          "servedMinutes": 22.979999999999997,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": false,
+          "features": {
+            "basePir": 9.114,
+            "baseMin": 19,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": -0.7140000000000035,
+            "teamPoints": 88.788,
+            "margin": -2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0068559822905532,
+              "defenseSample": 4,
+              "rival": "Ish Wainright",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 23.001402367959166,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 24.56961075393328,
+                  "weight": 0.06654781545871635,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 22.064383021578866,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 8.0,
+          "actualMinutes": 19.6,
+          "fouls": 3.0,
+          "actualStats": {
+            "points": 9.0,
+            "totalRebounds": 1.0,
+            "assistances": 2.0,
+            "turnovers": 0.0,
+            "foulsCommited": 3.0,
+            "fieldGoalsMadeTotal": 3.0,
+            "fieldGoalsAttemptedTotal": 4.0
+          },
+          "minutesContribution": -1.5542326523148655,
+          "efficiencyContribution": -1.0127100548436108,
+          "reason": "minutes",
+          "error": -2.5669427071584767,
+          "servedError": -2.5669427071584767
+        },
         {
           "name": "Anthony Brown",
           "key": "anthony brown",
@@ -44091,18 +45845,106 @@
     },
     "conor morgan": {
       "name": "Conor Morgan",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 5.409467574009105,
-        "bias": -2.5054522106833415,
-        "minutesMae": 4.155777777777778,
-        "hits": 2,
-        "hitRate": 66.66666666666666,
+        "n": 4,
+        "mae": 5.0311345456147105,
+        "bias": -2.8531230231203875,
+        "minutesMae": 3.7918333333333343,
+        "hits": 3,
+        "hitRate": 75.0,
         "over": 1,
         "under": 0
       },
       "games": [
+        {
+          "name": "Conor Morgan",
+          "key": "conor morgan",
+          "team": "Besiktas",
+          "pos": "F",
+          "opponent": "Hapoel Tel Aviv",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 8.896135460431525,
+          "baseMinutes": 19.93333333333333,
+          "servedPir": 8.896135460431525,
+          "servedMinutes": 19.93333333333333,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": false,
+          "features": {
+            "basePir": 7.998,
+            "baseMin": 19,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": -0.7140000000000035,
+            "teamPoints": 88.788,
+            "margin": -2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0061479509338285,
+              "defenseSample": 4,
+              "rival": "Ish Wainright",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 19.945550389036853,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 2
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 21.025691777836606,
+                  "weight": 0.06654781545871635,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 19.318963713035025,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 5.0,
+          "actualMinutes": 22.633333333333333,
+          "fouls": 1.0,
+          "actualStats": {
+            "points": 5.0,
+            "totalRebounds": 3.0,
+            "assistances": 0.0,
+            "turnovers": 2.0,
+            "foulsCommited": 1.0,
+            "fieldGoalsMadeTotal": 2.0,
+            "fieldGoalsAttemptedTotal": 4.0
+          },
+          "minutesContribution": 1.2049949369480843,
+          "efficiencyContribution": -5.10113039737961,
+          "reason": "efficiency",
+          "error": -3.896135460431525,
+          "servedError": -3.896135460431525
+        },
         {
           "name": "Conor Morgan",
           "key": "conor morgan",
@@ -44248,18 +46090,106 @@
     },
     "berk ugurlu": {
       "name": "Berk Ugurlu",
-      "n": 3,
+      "n": 4,
       "metrics": {
-        "n": 3,
-        "mae": 4.460720956880915,
-        "bias": -4.460720956880915,
-        "minutesMae": 9.414888888888889,
-        "hits": 2,
-        "hitRate": 66.66666666666666,
+        "n": 4,
+        "mae": 4.293260545967584,
+        "bias": -4.293260545967584,
+        "minutesMae": 8.498000000000001,
+        "hits": 3,
+        "hitRate": 75.0,
         "over": 1,
         "under": 0
       },
       "games": [
+        {
+          "name": "Berk Ugurlu",
+          "key": "berk ugurlu",
+          "team": "Besiktas",
+          "pos": "G",
+          "opponent": "Hapoel Tel Aviv",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 2.7908793132275895,
+          "baseMinutes": 10.736,
+          "servedPir": 2.7908793132275895,
+          "servedMinutes": 10.736,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": false,
+          "features": {
+            "basePir": 3.8129999999999997,
+            "baseMin": 14,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": -0.47199999999999465,
+            "teamPoints": 88.788,
+            "margin": -2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.42857142857142855,
+              "minutesWeight": 0.6,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.42857142857142855,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0008680292258714,
+              "defenseSample": 4,
+              "rival": "Elijah Bryant",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 10.69337317563189,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 11.766973175631893,
+                  "weight": 0.06654781545871635,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 10.478653175631893,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": -1.0,
+          "actualMinutes": 16.483333333333334,
+          "fouls": 2.0,
+          "actualStats": {
+            "points": 4.0,
+            "totalRebounds": 0.0,
+            "assistances": 2.0,
+            "turnovers": 3.0,
+            "foulsCommited": 2.0,
+            "fieldGoalsMadeTotal": 2.0,
+            "fieldGoalsAttemptedTotal": 5.0
+          },
+          "minutesContribution": 1.494049339253294,
+          "efficiencyContribution": -5.284928652480884,
+          "reason": "efficiency",
+          "error": -3.7908793132275895,
+          "servedError": -3.7908793132275895
+        },
         {
           "name": "Berk Ugurlu",
           "key": "berk ugurlu",
@@ -48233,18 +50163,130 @@
     },
     "satoransky tomas": {
       "name": "Tomas Satoransky",
-      "n": 2,
+      "n": 3,
       "metrics": {
-        "n": 2,
-        "mae": 2.295796016657439,
-        "bias": 2.295796016657439,
-        "minutesMae": 1.7747556111111091,
-        "hits": 2,
+        "n": 3,
+        "mae": 1.6038081355284277,
+        "bias": 1.6038081355284277,
+        "minutesMae": 1.3669450679012332,
+        "hits": 3,
         "hitRate": 100.0,
         "over": 0,
         "under": 0
       },
       "games": [
+        {
+          "name": "Tomas Satoransky",
+          "key": "satoransky tomas",
+          "team": "Hapoel Tel Aviv",
+          "pos": "G",
+          "opponent": "Besiktas",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 8.780167626729595,
+          "baseMinutes": 21.834657314814816,
+          "servedPir": 8.780167626729595,
+          "servedMinutes": 21.834657314814816,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": true,
+          "features": {
+            "basePir": 9.710898887827698,
+            "baseMin": 21.673409444444445,
+            "injuryBoost": 0.1101875,
+            "injuryUsagePct": 0.18889285714285714,
+            "missingStars": [
+              "Amir Coffey"
+            ],
+            "positionMatchPct": 0,
+            "teamPoints": 91.062,
+            "margin": 2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 37,
+              "historyWeight": 0.45222222222222225,
+              "sameTeam": false,
+              "avgPir": 10.945945945945946,
+              "avgMinutes": 24.911716216216217,
+              "currentSeasonWeight": 0.5,
+              "minutesWeight": 0.6666666666666666,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.5,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.001749729960458,
+              "defenseSample": 4,
+              "rival": "Scottie Wilbekin",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 22.20454424254127,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 3
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 20.145020209268527,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 20.80005992871297,
+                  "weight": 0.06654781545871641,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 9.0,
+          "actualMinutes": 21.283333333333335,
+          "fouls": 2.0,
+          "actualStats": {
+            "points": 5.0,
+            "totalRebounds": 4.0,
+            "assistances": 3.0,
+            "turnovers": 1.0,
+            "foulsCommited": 2.0,
+            "fieldGoalsMadeTotal": 2.0,
+            "fieldGoalsAttemptedTotal": 3.0
+          },
+          "minutesContribution": -0.22169878392178566,
+          "efficiencyContribution": 0.44153115719219116,
+          "reason": "efficiency",
+          "error": 0.21983237327040506,
+          "servedError": 0.21983237327040506
+        },
         {
           "name": "Tomas Satoransky",
           "key": "satoransky tomas",
@@ -50937,18 +52979,106 @@
     },
     "furkan korkmaz": {
       "name": "Furkan Korkmaz",
-      "n": 2,
+      "n": 3,
       "metrics": {
-        "n": 2,
-        "mae": 4.988697536742825,
-        "bias": -4.988697536742825,
-        "minutesMae": 4.15,
-        "hits": 1,
-        "hitRate": 50.0,
+        "n": 3,
+        "mae": 3.453434242271702,
+        "bias": -3.453434242271702,
+        "minutesMae": 4.709333333333334,
+        "hits": 2,
+        "hitRate": 66.66666666666666,
         "over": 1,
         "under": 0
       },
       "games": [
+        {
+          "name": "Furkan Korkmaz",
+          "key": "furkan korkmaz",
+          "team": "Besiktas",
+          "pos": "F",
+          "opponent": "Hapoel Tel Aviv",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 6.382907653329457,
+          "baseMinutes": 15.021999999999998,
+          "servedPir": 6.382907653329457,
+          "servedMinutes": 15.021999999999998,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": false,
+          "features": {
+            "basePir": 7.347,
+            "baseMin": 19,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": -0.7140000000000035,
+            "teamPoints": 88.788,
+            "margin": -2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.42857142857142855,
+              "minutesWeight": 0.6,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.42857142857142855,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1.0033740974354717,
+              "defenseSample": 4,
+              "rival": "Ish Wainright",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 15.066377453777404,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 15.349811416041556,
+                  "weight": 0.06654781545871635,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 14.59520223365162,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 6.0,
+          "actualMinutes": 20.85,
+          "fouls": 3.0,
+          "actualStats": {
+            "points": 4.0,
+            "totalRebounds": 7.0,
+            "assistances": 1.0,
+            "turnovers": 1.0,
+            "foulsCommited": 3.0,
+            "fieldGoalsMadeTotal": 2.0,
+            "fieldGoalsAttemptedTotal": 5.0
+          },
+          "minutesContribution": 2.476340420956204,
+          "efficiencyContribution": -2.859248074285661,
+          "reason": "efficiency",
+          "error": -0.38290765332945664,
+          "servedError": -0.38290765332945664
+        },
         {
           "name": "Furkan Korkmaz",
           "key": "furkan korkmaz",
@@ -56455,18 +58585,108 @@
     },
     "jacob toppin": {
       "name": "Jacob Toppin",
-      "n": 1,
+      "n": 2,
       "metrics": {
-        "n": 1,
-        "mae": 1.4314355529111058,
-        "bias": 1.4314355529111058,
-        "minutesMae": 1.4749999999999996,
+        "n": 2,
+        "mae": 5.9808421229563224,
+        "bias": -4.549406570045217,
+        "minutesMae": 10.491758928571429,
         "hits": 1,
-        "hitRate": 100.0,
-        "over": 0,
+        "hitRate": 50.0,
+        "over": 1,
         "under": 0
       },
       "games": [
+        {
+          "name": "Jacob Toppin",
+          "key": "jacob toppin",
+          "team": "Hapoel Tel Aviv",
+          "pos": "F",
+          "opponent": "Besiktas",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 10.530248693001539,
+          "baseMinutes": 19.50851785714286,
+          "servedPir": 10.530248693001539,
+          "servedMinutes": 19.50851785714286,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": true,
+          "features": {
+            "basePir": 9.020999999999999,
+            "baseMin": 19,
+            "injuryBoost": 0.3785178571428571,
+            "injuryUsagePct": 0.4129285714285713,
+            "missingStars": [
+              "Amir Coffey"
+            ],
+            "positionMatchPct": 0,
+            "teamPoints": 91.062,
+            "margin": 2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0.3333333333333333,
+              "minutesWeight": 0.5,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0.3333333333333333,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1,
+              "defenseSample": 4,
+              "rival": "Anthony Brown",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 19.996530276233607,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 17.371758105868274,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 17.95701364158256,
+                  "weight": 0.06654781545871641,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 0.0,
+          "actualMinutes": 0.0,
+          "fouls": 0.0,
+          "actualStats": {
+            "points": 0.0,
+            "totalRebounds": 0.0,
+            "assistances": 0.0,
+            "turnovers": 0.0,
+            "foulsCommited": 0.0,
+            "fieldGoalsMadeTotal": 0.0,
+            "fieldGoalsAttemptedTotal": 0.0
+          },
+          "minutesContribution": -10.530248693001539,
+          "efficiencyContribution": 0.0,
+          "reason": "did-not-play",
+          "error": -10.530248693001539,
+          "servedError": -10.530248693001539
+        },
         {
           "name": "Jacob Toppin",
           "key": "jacob toppin",
@@ -56532,18 +58752,130 @@
     },
     "bruno caboclo": {
       "name": "Bruno Caboclo",
-      "n": 1,
+      "n": 2,
       "metrics": {
-        "n": 1,
-        "mae": 9.964000193405061,
-        "bias": -9.964000193405061,
-        "minutesMae": 9.455813684210526,
+        "n": 2,
+        "mae": 7.9708399446681355,
+        "bias": -7.9708399446681355,
+        "minutesMae": 10.943847390350877,
         "hits": 0,
         "hitRate": 0.0,
-        "over": 1,
+        "over": 2,
         "under": 0
       },
       "games": [
+        {
+          "name": "Bruno Caboclo",
+          "key": "bruno caboclo",
+          "team": "Hapoel Tel Aviv",
+          "pos": "C",
+          "opponent": "Besiktas",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 5.977679695931209,
+          "baseMinutes": 13.448547763157894,
+          "servedPir": 5.977679695931209,
+          "servedMinutes": 13.448547763157894,
+          "status": "active",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": true,
+          "features": {
+            "basePir": 7.118195678860298,
+            "baseMin": 17.003595526315788,
+            "injuryBoost": 0.07174999999999998,
+            "injuryUsagePct": 0.12299999999999997,
+            "missingStars": [
+              "Amir Coffey"
+            ],
+            "positionMatchPct": 0,
+            "teamPoints": 91.062,
+            "margin": 2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 11,
+              "historyWeight": 0.318421052631579,
+              "sameTeam": false,
+              "avgPir": 7,
+              "avgMinutes": 12.7303,
+              "currentSeasonWeight": 0.3333333333333333,
+              "minutesWeight": 0.5,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": [
+                {
+                  "threshold": 20,
+                  "longestRun": 1,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 25,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                },
+                {
+                  "threshold": 30,
+                  "longestRun": 0,
+                  "nextGameSamples": 0,
+                  "nextGameAvgPir": null,
+                  "continuedRate": null
+                }
+              ]
+            },
+            "currentSeasonWeight": 0.3333333333333333,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1,
+              "defenseSample": 4,
+              "rival": "Ante Zizic",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 13.826696360266356,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 1
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 11.809414195792671,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 12.212870628687408,
+                  "weight": 0.06654781545871641,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 0.0,
+          "actualMinutes": 1.0166666666666666,
+          "fouls": 0.0,
+          "actualStats": {
+            "points": 0.0,
+            "totalRebounds": 0.0,
+            "assistances": 0.0,
+            "turnovers": 0.0,
+            "foulsCommited": 0.0,
+            "fieldGoalsMadeTotal": 0.0,
+            "fieldGoalsAttemptedTotal": 0.0
+          },
+          "minutesContribution": -5.525786465681316,
+          "efficiencyContribution": -0.45189323024989314,
+          "reason": "minutes",
+          "error": -5.977679695931209,
+          "servedError": -5.977679695931209
+        },
         {
           "name": "Bruno Caboclo",
           "key": "bruno caboclo",
@@ -58680,6 +61012,110 @@
           "servedError": -1.513233432606425
         }
       ]
+    },
+    "amir coffey": {
+      "name": "Amir Coffey",
+      "n": 1,
+      "metrics": {
+        "n": 1,
+        "mae": 8.537948438927998,
+        "bias": 8.537948438927998,
+        "minutesMae": 6.84,
+        "hits": 0,
+        "hitRate": 0.0,
+        "over": 0,
+        "under": 1
+      },
+      "games": [
+        {
+          "name": "Amir Coffey",
+          "key": "amir coffey",
+          "team": "Hapoel Tel Aviv",
+          "pos": "F",
+          "opponent": "Besiktas",
+          "gameCode": 48,
+          "round": 5,
+          "start": "2026-10-14T16:00:00Z",
+          "basePir": 9.462051561072002,
+          "baseMinutes": 18.86,
+          "servedPir": 9.462051561072002,
+          "servedMinutes": 18.86,
+          "status": "questionable",
+          "modelId": "b3fc6df40846537dcb24",
+          "eligible": true,
+          "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+          "home": true,
+          "features": {
+            "basePir": 11.253,
+            "baseMin": 23,
+            "injuryBoost": 0,
+            "injuryUsagePct": 0,
+            "missingStars": [],
+            "positionMatchPct": 0,
+            "teamPoints": 91.062,
+            "margin": 2.274,
+            "lastGameWeight": null,
+            "personalPrior": {
+              "historicalGames": 0,
+              "historyWeight": 0,
+              "sameTeam": false,
+              "avgPir": null,
+              "avgMinutes": null,
+              "currentSeasonWeight": 0,
+              "minutesWeight": 0,
+              "momentumPir": 0,
+              "momentumEnabled": false,
+              "hot": false,
+              "streaks": []
+            },
+            "currentSeasonWeight": 0,
+            "context": {
+              "involvementFactor": 1,
+              "defenseFactor": 1,
+              "defenseSample": 4,
+              "rival": "Anthony Brown",
+              "scenarios": [
+                {
+                  "id": "close",
+                  "minutes": 19.333512598789586,
+                  "weight": 0.7992359480082754,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-win",
+                  "minutes": 16.787412598789587,
+                  "weight": 0.13421623653300832,
+                  "observedGames": 0
+                },
+                {
+                  "id": "big-loss",
+                  "minutes": 17.353212598789586,
+                  "weight": 0.06654781545871641,
+                  "observedGames": 0
+                }
+              ],
+              "minutesCorrectionActive": false
+            }
+          },
+          "actualPir": 18.0,
+          "actualMinutes": 25.7,
+          "fouls": 0.0,
+          "actualStats": {
+            "points": 15.0,
+            "totalRebounds": 7.0,
+            "assistances": 2.0,
+            "turnovers": 0.0,
+            "foulsCommited": 0.0,
+            "fieldGoalsMadeTotal": 6.0,
+            "fieldGoalsAttemptedTotal": 11.0
+          },
+          "minutesContribution": 3.43162421408974,
+          "efficiencyContribution": 5.106324224838259,
+          "reason": "efficiency",
+          "error": 8.537948438927998,
+          "servedError": 8.537948438927998
+        }
+      ]
     }
   },
   "largestMisses": [
@@ -59861,34 +62297,34 @@
   ],
   "byPosition": {
     "G": {
-      "n": 374,
-      "mae": 6.214296987444416,
-      "bias": -0.915697934445699,
-      "minutesMae": 4.72978721354853,
-      "hits": 189,
-      "hitRate": 50.534759358288774,
-      "over": 109,
-      "under": 76
+      "n": 384,
+      "mae": 6.207012045253443,
+      "bias": -0.9967432439620786,
+      "minutesMae": 4.745138448985669,
+      "hits": 193,
+      "hitRate": 50.260416666666664,
+      "over": 114,
+      "under": 77
     },
     "F": {
-      "n": 334,
-      "mae": 5.272966412514646,
-      "bias": -1.1578023535236928,
-      "minutesMae": 5.283609972118845,
-      "hits": 194,
-      "hitRate": 58.08383233532935,
-      "over": 91,
-      "under": 49
+      "n": 343,
+      "mae": 5.256136295710909,
+      "bias": -1.1263539095522683,
+      "minutesMae": 5.30086333565297,
+      "hits": 200,
+      "hitRate": 58.309037900874635,
+      "over": 92,
+      "under": 51
     },
     "C": {
-      "n": 163,
-      "mae": 5.627749239798933,
-      "bias": -1.0001007864225502,
-      "minutesMae": 4.351704521672247,
-      "hits": 87,
-      "hitRate": 53.37423312883436,
-      "over": 46,
-      "under": 30
+      "n": 168,
+      "mae": 5.6496518667826425,
+      "bias": -0.9526230526368183,
+      "minutesMae": 4.402401739305904,
+      "hits": 89,
+      "hitRate": 52.976190476190474,
+      "over": 48,
+      "under": 31
     }
   },
   "warnings": [
@@ -59898,6 +62334,2426 @@
     "Excluded post-kickoff snapshot: 7"
   ],
   "rows": [
+    {
+      "name": "Elijah Bryant",
+      "key": "bryant elijah",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Besiktas",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 23.956597571468336,
+      "baseMinutes": 31.354275362318845,
+      "servedPir": 23.956597571468336,
+      "servedMinutes": 31.354275362318845,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": true,
+      "features": {
+        "basePir": 18.947683142863024,
+        "baseMin": 29.047826086956523,
+        "injuryBoost": 0.20499999999999996,
+        "injuryUsagePct": 0.35142857142857137,
+        "missingStars": [
+          "Amir Coffey"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 91.062,
+        "margin": 2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 19.57894736842105,
+          "avgMinutes": 29.478947368421053,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 5,
+              "nextGameSamples": 8,
+              "nextGameAvgPir": 23.375,
+              "continuedRate": 0.625
+            },
+            {
+              "threshold": 25,
+              "longestRun": 3,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 23,
+              "continuedRate": 0.3333333333333333
+            },
+            {
+              "threshold": 30,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 23,
+              "continuedRate": 0
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0013318471028785,
+          "defenseSample": 4,
+          "rival": "Scottie Wilbekin",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 31.939487027953128,
+              "weight": 0.7992359480082754,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 28.712771811124433,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 29.653400071994,
+              "weight": 0.06654781545871641,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 15.0,
+      "actualMinutes": 25.45,
+      "fouls": 3.0,
+      "actualStats": {
+        "points": 16.0,
+        "totalRebounds": 1.0,
+        "assistances": 2.0,
+        "turnovers": 3.0,
+        "foulsCommited": 3.0,
+        "fieldGoalsMadeTotal": 3.0,
+        "fieldGoalsAttemptedTotal": 7.0
+      },
+      "minutesContribution": -4.5112300371067215,
+      "efficiencyContribution": -4.4453675343616155,
+      "reason": "minutes",
+      "error": -8.956597571468336,
+      "servedError": -8.956597571468336
+    },
+    {
+      "name": "Dan Oturu",
+      "key": "dan oturu",
+      "team": "Hapoel Tel Aviv",
+      "pos": "C",
+      "opponent": "Besiktas",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 15.443636398252577,
+      "baseMinutes": 22.388332666666663,
+      "servedPir": 15.443636398252577,
+      "servedMinutes": 22.388332666666663,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": true,
+      "features": {
+        "basePir": 16.131579902371953,
+        "baseMin": 23.749997999999998,
+        "injuryBoost": 0.20499999999999996,
+        "injuryUsagePct": 0.35142857142857137,
+        "missingStars": [
+          "Amir Coffey"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 91.062,
+        "margin": 2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.84,
+          "sameTeam": true,
+          "avgPir": 16.761904761904763,
+          "avgMinutes": 23.89285476190476,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 15.5,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0053571088699946,
+          "defenseSample": 4,
+          "rival": "Ante Zizic",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.81488667136037,
+              "weight": 0.7992359480082754,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.467599699711556,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.139249679711558,
+              "weight": 0.06654781545871641,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 7.0,
+      "actualMinutes": 18.633333333333333,
+      "fouls": 3.0,
+      "actualStats": {
+        "points": 6.0,
+        "totalRebounds": 5.0,
+        "assistances": 0.0,
+        "turnovers": 2.0,
+        "foulsCommited": 3.0,
+        "fieldGoalsMadeTotal": 3.0,
+        "fieldGoalsAttemptedTotal": 5.0
+      },
+      "minutesContribution": -2.5902261344374997,
+      "efficiencyContribution": -5.853410263815077,
+      "reason": "efficiency",
+      "error": -8.443636398252577,
+      "servedError": -8.443636398252577
+    },
+    {
+      "name": "Zach Leday",
+      "key": "leday zach",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "opponent": "Besiktas",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 12.394798907038014,
+      "baseMinutes": 19.869720325814534,
+      "servedPir": 12.394798907038014,
+      "servedMinutes": 19.869720325814534,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": true,
+      "features": {
+        "basePir": 13.239654886891492,
+        "baseMin": 23.704625263157894,
+        "injuryBoost": 0.6281785714285715,
+        "injuryUsagePct": 0.6852857142857143,
+        "missingStars": [
+          "Amir Coffey"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 91.062,
+        "margin": 2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 30,
+          "historyWeight": 0.4342105263157895,
+          "sameTeam": false,
+          "avgPir": 15.066666666666666,
+          "avgMinutes": 24.62277333333333,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 15,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0025951370379171,
+          "defenseSample": 4,
+          "rival": "Anthony Brown",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.215527130424636,
+              "weight": 0.7992359480082754,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.295485194482076,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.891576804256513,
+              "weight": 0.06654781545871641,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 22.0,
+      "actualMinutes": 20.55,
+      "fouls": 2.0,
+      "actualStats": {
+        "points": 15.0,
+        "totalRebounds": 6.0,
+        "assistances": 0.0,
+        "turnovers": 1.0,
+        "foulsCommited": 2.0,
+        "fieldGoalsMadeTotal": 5.0,
+        "fieldGoalsAttemptedTotal": 8.0
+      },
+      "minutesContribution": 0.42436076722828997,
+      "efficiencyContribution": 9.180840325733696,
+      "reason": "efficiency",
+      "error": 9.605201092961986,
+      "servedError": 9.605201092961986
+    },
+    {
+      "name": "Ante Zizic",
+      "key": "ante zizic",
+      "team": "Besiktas",
+      "pos": "C",
+      "opponent": "Hapoel Tel Aviv",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 12.023762855495224,
+      "baseMinutes": 19.166666666666668,
+      "servedPir": 12.023762855495224,
+      "servedMinutes": 19.166666666666668,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": false,
+      "features": {
+        "basePir": 11.253,
+        "baseMin": 23,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.737000000000005,
+        "teamPoints": 88.788,
+        "margin": -2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9968877340660901,
+          "defenseSample": 4,
+          "rival": "Dan Oturu",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.18949921283104,
+              "weight": 0.7992359480082754,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.605493164142548,
+              "weight": 0.06654781545871635,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.31729586880326,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 28.0,
+      "actualMinutes": 20.2,
+      "fouls": 2.0,
+      "actualStats": {
+        "points": 17.0,
+        "totalRebounds": 9.0,
+        "assistances": 4.0,
+        "turnovers": 1.0,
+        "foulsCommited": 2.0,
+        "fieldGoalsMadeTotal": 6.0,
+        "fieldGoalsAttemptedTotal": 9.0
+      },
+      "minutesContribution": 0.6482376496006108,
+      "efficiencyContribution": 15.327999494904166,
+      "reason": "efficiency",
+      "error": 15.976237144504776,
+      "servedError": 15.976237144504776
+    },
+    {
+      "name": "Amir Coffey",
+      "key": "amir coffey",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "opponent": "Besiktas",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 9.462051561072002,
+      "baseMinutes": 18.86,
+      "servedPir": 9.462051561072002,
+      "servedMinutes": 18.86,
+      "status": "questionable",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": true,
+      "features": {
+        "basePir": 11.253,
+        "baseMin": 23,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0,
+        "teamPoints": 91.062,
+        "margin": 2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Anthony Brown",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.333512598789586,
+              "weight": 0.7992359480082754,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.787412598789587,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.353212598789586,
+              "weight": 0.06654781545871641,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 18.0,
+      "actualMinutes": 25.7,
+      "fouls": 0.0,
+      "actualStats": {
+        "points": 15.0,
+        "totalRebounds": 7.0,
+        "assistances": 2.0,
+        "turnovers": 0.0,
+        "foulsCommited": 0.0,
+        "fieldGoalsMadeTotal": 6.0,
+        "fieldGoalsAttemptedTotal": 11.0
+      },
+      "minutesContribution": 3.43162421408974,
+      "efficiencyContribution": 5.106324224838259,
+      "reason": "efficiency",
+      "error": 8.537948438927998,
+      "servedError": 8.537948438927998
+    },
+    {
+      "name": "Vasilije Micic",
+      "key": "micic vasilije",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Besiktas",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 9.260652818350229,
+      "baseMinutes": 26.598031944444443,
+      "servedPir": 9.260652818350229,
+      "servedMinutes": 26.598031944444443,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": true,
+      "features": {
+        "basePir": 11.076635981049298,
+        "baseMin": 23.912845833333332,
+        "injuryBoost": 0.15374999999999997,
+        "injuryUsagePct": 0.2635714285714285,
+        "missingStars": [
+          "Amir Coffey"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 91.062,
+        "margin": 2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.8333333333333334,
+          "sameTeam": true,
+          "avgPir": 11.25,
+          "avgMinutes": 24.095415,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.996385641145585,
+          "defenseSample": 4,
+          "rival": "Scottie Wilbekin",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 27.28830499718732,
+              "weight": 0.7992359480082754,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 23.585578971237034,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 24.383519929570365,
+              "weight": 0.06654781545871641,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 16.0,
+      "actualMinutes": 24.65,
+      "fouls": 5.0,
+      "actualStats": {
+        "points": 16.0,
+        "totalRebounds": 3.0,
+        "assistances": 3.0,
+        "turnovers": 3.0,
+        "foulsCommited": 5.0,
+        "fieldGoalsMadeTotal": 5.0,
+        "fieldGoalsAttemptedTotal": 8.0
+      },
+      "minutesContribution": -0.6782474565876204,
+      "efficiencyContribution": 7.417594638237391,
+      "reason": "efficiency",
+      "error": 6.739347181649771,
+      "servedError": 6.739347181649771
+    },
+    {
+      "name": "Devon Dotson",
+      "key": "devon dotson",
+      "team": "Besiktas",
+      "pos": "G",
+      "opponent": "Hapoel Tel Aviv",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 13.430221156839536,
+      "baseMinutes": 23.973333333333333,
+      "servedPir": 13.430221156839536,
+      "servedMinutes": 23.973333333333333,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": false,
+      "features": {
+        "basePir": 10.044,
+        "baseMin": 23,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.47199999999999465,
+        "teamPoints": 88.788,
+        "margin": -2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0019722019691935,
+          "defenseSample": 4,
+          "rival": "Elijah Bryant",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 24.1039805028239,
+              "weight": 0.7992359480082754,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 24.701612151508364,
+              "weight": 0.06654781545871635,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.83425148522027,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 10.0,
+      "actualMinutes": 21.25,
+      "fouls": 3.0,
+      "actualStats": {
+        "points": 5.0,
+        "totalRebounds": 1.0,
+        "assistances": 6.0,
+        "turnovers": 0.0,
+        "foulsCommited": 3.0,
+        "fieldGoalsMadeTotal": 2.0,
+        "fieldGoalsAttemptedTotal": 4.0
+      },
+      "minutesContribution": -1.5256522087232895,
+      "efficiencyContribution": -1.9045689481162462,
+      "reason": "efficiency",
+      "error": -3.4302211568395364,
+      "servedError": -3.4302211568395364
+    },
+    {
+      "name": "Antonio Blakeney",
+      "key": "antonio blakeney",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Besiktas",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 12.425592617738232,
+      "baseMinutes": 25.560732993197277,
+      "servedPir": 12.425592617738232,
+      "servedMinutes": 25.560732993197277,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": true,
+      "features": {
+        "basePir": 10.306064091319067,
+        "baseMin": 22.722448979591835,
+        "injuryBoost": 0.13324999999999995,
+        "injuryUsagePct": 0.22842857142857137,
+        "missingStars": [
+          "Amir Coffey"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 91.062,
+        "margin": 2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 41,
+          "historyWeight": 0.8367346938775511,
+          "sameTeam": true,
+          "avgPir": 10.463414634146341,
+          "avgMinutes": 22.66829268292683,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9975767475587055,
+          "defenseSample": 4,
+          "rival": "Scottie Wilbekin",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 25.93864630071404,
+              "weight": 0.7992359480082754,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 23.80209032105553,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 24.56891231085145,
+              "weight": 0.06654781545871641,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 15.0,
+      "actualMinutes": 22.916666666666668,
+      "fouls": 0.0,
+      "actualStats": {
+        "points": 15.0,
+        "totalRebounds": 3.0,
+        "assistances": 1.0,
+        "turnovers": 0.0,
+        "foulsCommited": 0.0,
+        "fieldGoalsMadeTotal": 5.0,
+        "fieldGoalsAttemptedTotal": 12.0
+      },
+      "minutesContribution": -1.2853344634714803,
+      "efficiencyContribution": 3.8597418457332484,
+      "reason": "efficiency",
+      "error": 2.574407382261768,
+      "servedError": 2.574407382261768
+    },
+    {
+      "name": "Anthony Brown",
+      "key": "anthony brown",
+      "team": "Besiktas",
+      "pos": "F",
+      "opponent": "Hapoel Tel Aviv",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 10.566942707158477,
+      "baseMinutes": 22.979999999999997,
+      "servedPir": 10.566942707158477,
+      "servedMinutes": 22.979999999999997,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": false,
+      "features": {
+        "basePir": 9.114,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.7140000000000035,
+        "teamPoints": 88.788,
+        "margin": -2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0068559822905532,
+          "defenseSample": 4,
+          "rival": "Ish Wainright",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.001402367959166,
+              "weight": 0.7992359480082754,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 24.56961075393328,
+              "weight": 0.06654781545871635,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.064383021578866,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 8.0,
+      "actualMinutes": 19.6,
+      "fouls": 3.0,
+      "actualStats": {
+        "points": 9.0,
+        "totalRebounds": 1.0,
+        "assistances": 2.0,
+        "turnovers": 0.0,
+        "foulsCommited": 3.0,
+        "fieldGoalsMadeTotal": 3.0,
+        "fieldGoalsAttemptedTotal": 4.0
+      },
+      "minutesContribution": -1.5542326523148655,
+      "efficiencyContribution": -1.0127100548436108,
+      "reason": "minutes",
+      "error": -2.5669427071584767,
+      "servedError": -2.5669427071584767
+    },
+    {
+      "name": "Eugene Omoruyi",
+      "key": "eugene omoruyi",
+      "team": "Besiktas",
+      "pos": "F",
+      "opponent": "Hapoel Tel Aviv",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 8.242902479823032,
+      "baseMinutes": 19.02010811827957,
+      "servedPir": 8.242902479823032,
+      "servedMinutes": 19.02010811827957,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": false,
+      "features": {
+        "basePir": 9.898816378228087,
+        "baseMin": 19.50032435483871,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.7140000000000035,
+        "teamPoints": 88.788,
+        "margin": -2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 23,
+          "historyWeight": 0.4080645161290323,
+          "sameTeam": false,
+          "avgPir": 11.08695652173913,
+          "avgMinutes": 20.226091304347825,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.000622221736166,
+          "defenseSample": 4,
+          "rival": "Ish Wainright",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.421472200149495,
+              "weight": 0.7992359480082754,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.428958002064597,
+              "weight": 0.06654781545871635,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.92315725080169,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 9.0,
+      "actualMinutes": 17.366666666666667,
+      "fouls": 4.0,
+      "actualStats": {
+        "points": 12.0,
+        "totalRebounds": 0.0,
+        "assistances": 1.0,
+        "turnovers": 3.0,
+        "foulsCommited": 4.0,
+        "fieldGoalsMadeTotal": 5.0,
+        "fieldGoalsAttemptedTotal": 8.0
+      },
+      "minutesContribution": -0.716565676545428,
+      "efficiencyContribution": 1.4736631967223959,
+      "reason": "efficiency",
+      "error": 0.7570975201769681,
+      "servedError": 0.7570975201769681
+    },
+    {
+      "name": "Jacob Toppin",
+      "key": "jacob toppin",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "opponent": "Besiktas",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 10.530248693001539,
+      "baseMinutes": 19.50851785714286,
+      "servedPir": 10.530248693001539,
+      "servedMinutes": 19.50851785714286,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": true,
+      "features": {
+        "basePir": 9.020999999999999,
+        "baseMin": 19,
+        "injuryBoost": 0.3785178571428571,
+        "injuryUsagePct": 0.4129285714285713,
+        "missingStars": [
+          "Amir Coffey"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 91.062,
+        "margin": 2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Anthony Brown",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.996530276233607,
+              "weight": 0.7992359480082754,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.371758105868274,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.95701364158256,
+              "weight": 0.06654781545871641,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 0.0,
+      "actualMinutes": 0.0,
+      "fouls": 0.0,
+      "actualStats": {
+        "points": 0.0,
+        "totalRebounds": 0.0,
+        "assistances": 0.0,
+        "turnovers": 0.0,
+        "foulsCommited": 0.0,
+        "fieldGoalsMadeTotal": 0.0,
+        "fieldGoalsAttemptedTotal": 0.0
+      },
+      "minutesContribution": -10.530248693001539,
+      "efficiencyContribution": 0.0,
+      "reason": "did-not-play",
+      "error": -10.530248693001539,
+      "servedError": -10.530248693001539
+    },
+    {
+      "name": "Jaylen Nowell",
+      "key": "jaylen nowell",
+      "team": "Besiktas",
+      "pos": "G",
+      "opponent": "Hapoel Tel Aviv",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 9.179609347882481,
+      "baseMinutes": 21.1,
+      "servedPir": 9.179609347882481,
+      "servedMinutes": 21.1,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": false,
+      "features": {
+        "basePir": 8.835,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.47199999999999465,
+        "teamPoints": 88.788,
+        "margin": -2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9962174022472069,
+          "defenseSample": 4,
+          "rival": "Elijah Bryant",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.639833955307044,
+              "weight": 0.7992359480082754,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.233054959284253,
+              "weight": 0.06654781545871635,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.811054959284252,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": -4.0,
+      "actualMinutes": 17.583333333333332,
+      "fouls": 5.0,
+      "actualStats": {
+        "points": 7.0,
+        "totalRebounds": 1.0,
+        "assistances": 1.0,
+        "turnovers": 0.0,
+        "foulsCommited": 5.0,
+        "fieldGoalsMadeTotal": 2.0,
+        "fieldGoalsAttemptedTotal": 10.0
+      },
+      "minutesContribution": -1.529934891313748,
+      "efficiencyContribution": -11.649674456568732,
+      "reason": "efficiency",
+      "error": -13.179609347882481,
+      "servedError": -13.179609347882481
+    },
+    {
+      "name": "Tomas Satoransky",
+      "key": "satoransky tomas",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Besiktas",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 8.780167626729595,
+      "baseMinutes": 21.834657314814816,
+      "servedPir": 8.780167626729595,
+      "servedMinutes": 21.834657314814816,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": true,
+      "features": {
+        "basePir": 9.710898887827698,
+        "baseMin": 21.673409444444445,
+        "injuryBoost": 0.1101875,
+        "injuryUsagePct": 0.18889285714285714,
+        "missingStars": [
+          "Amir Coffey"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 91.062,
+        "margin": 2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.45222222222222225,
+          "sameTeam": false,
+          "avgPir": 10.945945945945946,
+          "avgMinutes": 24.911716216216217,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.001749729960458,
+          "defenseSample": 4,
+          "rival": "Scottie Wilbekin",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.20454424254127,
+              "weight": 0.7992359480082754,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.145020209268527,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.80005992871297,
+              "weight": 0.06654781545871641,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 9.0,
+      "actualMinutes": 21.283333333333335,
+      "fouls": 2.0,
+      "actualStats": {
+        "points": 5.0,
+        "totalRebounds": 4.0,
+        "assistances": 3.0,
+        "turnovers": 1.0,
+        "foulsCommited": 2.0,
+        "fieldGoalsMadeTotal": 2.0,
+        "fieldGoalsAttemptedTotal": 3.0
+      },
+      "minutesContribution": -0.22169878392178566,
+      "efficiencyContribution": 0.44153115719219116,
+      "reason": "efficiency",
+      "error": 0.21983237327040506,
+      "servedError": 0.21983237327040506
+    },
+    {
+      "name": "Scottie Wilbekin",
+      "key": "scottie wilbekin",
+      "team": "Besiktas",
+      "pos": "G",
+      "opponent": "Hapoel Tel Aviv",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 12.35214164089198,
+      "baseMinutes": 22.478632261904764,
+      "servedPir": 12.35214164089198,
+      "servedMinutes": 22.478632261904764,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": false,
+      "features": {
+        "basePir": 7.669288414299151,
+        "baseMin": 18.015896785714286,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.47199999999999465,
+        "teamPoints": 88.788,
+        "margin": -2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 6,
+          "historyWeight": 0.2357142857142857,
+          "sameTeam": false,
+          "avgPir": 5.833333333333333,
+          "avgMinutes": 14.825016666666668,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0084159404509225,
+          "defenseSample": 4,
+          "rival": "Elijah Bryant",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.73883093172032,
+              "weight": 0.7992359480082754,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.305956049301237,
+              "weight": 0.06654781545871635,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.014808577936698,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 4.0,
+      "actualMinutes": 20.266666666666666,
+      "fouls": 1.0,
+      "actualStats": {
+        "points": 9.0,
+        "totalRebounds": 1.0,
+        "assistances": 2.0,
+        "turnovers": 1.0,
+        "foulsCommited": 1.0,
+        "fieldGoalsMadeTotal": 2.0,
+        "fieldGoalsAttemptedTotal": 9.0
+      },
+      "minutesContribution": -1.2154882031441583,
+      "efficiencyContribution": -7.136653437747823,
+      "reason": "efficiency",
+      "error": -8.35214164089198,
+      "servedError": -8.35214164089198
+    },
+    {
+      "name": "David Dejulius",
+      "key": "david dejulius",
+      "team": "Besiktas",
+      "pos": "G",
+      "opponent": "Hapoel Tel Aviv",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 4.742719514124778,
+      "baseMinutes": 14.734000000000002,
+      "servedPir": 4.742719514124778,
+      "servedMinutes": 14.734000000000002,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": false,
+      "features": {
+        "basePir": 8.184000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.47199999999999465,
+        "teamPoints": 88.788,
+        "margin": -2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9960064585052549,
+          "defenseSample": 4,
+          "rival": "Elijah Bryant",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.099820460624688,
+              "weight": 0.7992359480082754,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.98217680241374,
+              "weight": 0.06654781545871635,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.424196802413741,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": -2.0,
+      "actualMinutes": 3.966666666666667,
+      "fouls": 0.0,
+      "actualStats": {
+        "points": 0.0,
+        "totalRebounds": 1.0,
+        "assistances": 0.0,
+        "turnovers": 0.0,
+        "foulsCommited": 0.0,
+        "fieldGoalsMadeTotal": 0.0,
+        "fieldGoalsAttemptedTotal": 2.0
+      },
+      "minutesContribution": -3.4658912661250305,
+      "efficiencyContribution": -3.276828247999748,
+      "reason": "minutes",
+      "error": -6.742719514124778,
+      "servedError": -6.742719514124778
+    },
+    {
+      "name": "Conor Morgan",
+      "key": "conor morgan",
+      "team": "Besiktas",
+      "pos": "F",
+      "opponent": "Hapoel Tel Aviv",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 8.896135460431525,
+      "baseMinutes": 19.93333333333333,
+      "servedPir": 8.896135460431525,
+      "servedMinutes": 19.93333333333333,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": false,
+      "features": {
+        "basePir": 7.998,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.7140000000000035,
+        "teamPoints": 88.788,
+        "margin": -2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0061479509338285,
+          "defenseSample": 4,
+          "rival": "Ish Wainright",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.945550389036853,
+              "weight": 0.7992359480082754,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.025691777836606,
+              "weight": 0.06654781545871635,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.318963713035025,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 5.0,
+      "actualMinutes": 22.633333333333333,
+      "fouls": 1.0,
+      "actualStats": {
+        "points": 5.0,
+        "totalRebounds": 3.0,
+        "assistances": 0.0,
+        "turnovers": 2.0,
+        "foulsCommited": 1.0,
+        "fieldGoalsMadeTotal": 2.0,
+        "fieldGoalsAttemptedTotal": 4.0
+      },
+      "minutesContribution": 1.2049949369480843,
+      "efficiencyContribution": -5.10113039737961,
+      "reason": "efficiency",
+      "error": -3.896135460431525,
+      "servedError": -3.896135460431525
+    },
+    {
+      "name": "Wenyen Gabriel",
+      "key": "gabriel wenyen",
+      "team": "Besiktas",
+      "pos": "C",
+      "opponent": "Hapoel Tel Aviv",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 5.684459628485488,
+      "baseMinutes": 14.524999583333333,
+      "servedPir": 5.684459628485488,
+      "servedMinutes": 14.524999583333333,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": false,
+      "features": {
+        "basePir": 6.564263744121408,
+        "baseMin": 18.07499875,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.737000000000005,
+        "teamPoints": 88.788,
+        "margin": -2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.45000000000000007,
+          "sameTeam": false,
+          "avgPir": 5.666666666666667,
+          "avgMinutes": 16.944441666666666,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9953799414528548,
+          "defenseSample": 4,
+          "rival": "Dan Oturu",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.944497955016454,
+              "weight": 0.7992359480082754,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.049195721803725,
+              "weight": 0.06654781545871635,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.75869573013706,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 6.0,
+      "actualMinutes": 19.8,
+      "fouls": 4.0,
+      "actualStats": {
+        "points": 10.0,
+        "totalRebounds": 5.0,
+        "assistances": 0.0,
+        "turnovers": 1.0,
+        "foulsCommited": 4.0,
+        "fieldGoalsMadeTotal": 4.0,
+        "fieldGoalsAttemptedTotal": 9.0
+      },
+      "minutesContribution": 2.064408108017614,
+      "efficiencyContribution": -1.7488677365031018,
+      "reason": "minutes",
+      "error": 0.315540371514512,
+      "servedError": 0.315540371514512
+    },
+    {
+      "name": "Furkan Korkmaz",
+      "key": "furkan korkmaz",
+      "team": "Besiktas",
+      "pos": "F",
+      "opponent": "Hapoel Tel Aviv",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 6.382907653329457,
+      "baseMinutes": 15.021999999999998,
+      "servedPir": 6.382907653329457,
+      "servedMinutes": 15.021999999999998,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": false,
+      "features": {
+        "basePir": 7.347,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.7140000000000035,
+        "teamPoints": 88.788,
+        "margin": -2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0033740974354717,
+          "defenseSample": 4,
+          "rival": "Ish Wainright",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.066377453777404,
+              "weight": 0.7992359480082754,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.349811416041556,
+              "weight": 0.06654781545871635,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.59520223365162,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 6.0,
+      "actualMinutes": 20.85,
+      "fouls": 3.0,
+      "actualStats": {
+        "points": 4.0,
+        "totalRebounds": 7.0,
+        "assistances": 1.0,
+        "turnovers": 1.0,
+        "foulsCommited": 3.0,
+        "fieldGoalsMadeTotal": 2.0,
+        "fieldGoalsAttemptedTotal": 5.0
+      },
+      "minutesContribution": 2.476340420956204,
+      "efficiencyContribution": -2.859248074285661,
+      "reason": "efficiency",
+      "error": -0.38290765332945664,
+      "servedError": -0.38290765332945664
+    },
+    {
+      "name": "Bruno Caboclo",
+      "key": "bruno caboclo",
+      "team": "Hapoel Tel Aviv",
+      "pos": "C",
+      "opponent": "Besiktas",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 5.977679695931209,
+      "baseMinutes": 13.448547763157894,
+      "servedPir": 5.977679695931209,
+      "servedMinutes": 13.448547763157894,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": true,
+      "features": {
+        "basePir": 7.118195678860298,
+        "baseMin": 17.003595526315788,
+        "injuryBoost": 0.07174999999999998,
+        "injuryUsagePct": 0.12299999999999997,
+        "missingStars": [
+          "Amir Coffey"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 91.062,
+        "margin": 2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 11,
+          "historyWeight": 0.318421052631579,
+          "sameTeam": false,
+          "avgPir": 7,
+          "avgMinutes": 12.7303,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 4,
+          "rival": "Ante Zizic",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.826696360266356,
+              "weight": 0.7992359480082754,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.809414195792671,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.212870628687408,
+              "weight": 0.06654781545871641,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 0.0,
+      "actualMinutes": 1.0166666666666666,
+      "fouls": 0.0,
+      "actualStats": {
+        "points": 0.0,
+        "totalRebounds": 0.0,
+        "assistances": 0.0,
+        "turnovers": 0.0,
+        "foulsCommited": 0.0,
+        "fieldGoalsMadeTotal": 0.0,
+        "fieldGoalsAttemptedTotal": 0.0
+      },
+      "minutesContribution": -5.525786465681316,
+      "efficiencyContribution": -0.45189323024989314,
+      "reason": "minutes",
+      "error": -5.977679695931209,
+      "servedError": -5.977679695931209
+    },
+    {
+      "name": "Eugene German",
+      "key": "eugene german",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Besiktas",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 5.359796591493989,
+      "baseMinutes": 17.17841666666667,
+      "servedPir": 5.359796591493989,
+      "servedMinutes": 17.17841666666667,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": true,
+      "features": {
+        "basePir": 6.510000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0.07174999999999998,
+        "injuryUsagePct": 0.12299999999999997,
+        "missingStars": [
+          "Amir Coffey"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 91.062,
+        "margin": 2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.999194377420003,
+          "defenseSample": 4,
+          "rival": "Scottie Wilbekin",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.714066566521467,
+              "weight": 0.7992359480082754,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.875184419709251,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.390536919709252,
+              "weight": 0.06654781545871641,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 0.0,
+      "actualMinutes": 0.0,
+      "fouls": 0.0,
+      "actualStats": {
+        "points": 0.0,
+        "totalRebounds": 0.0,
+        "assistances": 0.0,
+        "turnovers": 0.0,
+        "foulsCommited": 0.0,
+        "fieldGoalsMadeTotal": 0.0,
+        "fieldGoalsAttemptedTotal": 0.0
+      },
+      "minutesContribution": -5.359796591493989,
+      "efficiencyContribution": 0.0,
+      "reason": "did-not-play",
+      "error": -5.359796591493989,
+      "servedError": -5.359796591493989
+    },
+    {
+      "name": "Ish Wainright",
+      "key": "ish wainright",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "opponent": "Besiktas",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 3.8749656773491643,
+      "baseMinutes": 20.35116533333333,
+      "servedPir": 3.8749656773491643,
+      "servedMinutes": 20.35116533333333,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": true,
+      "features": {
+        "basePir": 4.676233470374555,
+        "baseMin": 21.596995999999997,
+        "injuryBoost": 0.22549999999999998,
+        "injuryUsagePct": 0.24599999999999994,
+        "missingStars": [
+          "Amir Coffey"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 91.062,
+        "margin": 2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.84,
+          "sameTeam": true,
+          "avgPir": 4.190476190476191,
+          "avgMinutes": 23.044042857142855,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9979125976164362,
+          "defenseSample": 4,
+          "rival": "Anthony Brown",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.699580360765594,
+              "weight": 0.7992359480082754,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.761759364318095,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.372294324318098,
+              "weight": 0.06654781545871641,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 6.0,
+      "actualMinutes": 19.45,
+      "fouls": 4.0,
+      "actualStats": {
+        "points": 6.0,
+        "totalRebounds": 1.0,
+        "assistances": 1.0,
+        "turnovers": 0.0,
+        "foulsCommited": 4.0,
+        "fieldGoalsMadeTotal": 2.0,
+        "fieldGoalsAttemptedTotal": 3.0
+      },
+      "minutesContribution": -0.17158647571714378,
+      "efficiencyContribution": 2.2966207983679796,
+      "reason": "efficiency",
+      "error": 2.1250343226508357,
+      "servedError": 2.1250343226508357
+    },
+    {
+      "name": "Tai Odiase",
+      "key": "odiase tai",
+      "team": "Hapoel Tel Aviv",
+      "pos": "C",
+      "opponent": "Besiktas",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 3.8947060779453015,
+      "baseMinutes": 12.56955900900901,
+      "servedPir": 3.8947060779453015,
+      "servedMinutes": 12.56955900900901,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": true,
+      "features": {
+        "basePir": 4.245558135368334,
+        "baseMin": 12.373427027027027,
+        "injuryBoost": 0.07174999999999998,
+        "injuryUsagePct": 0.12299999999999997,
+        "missingStars": [
+          "Amir Coffey"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 91.062,
+        "margin": 2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 29,
+          "historyWeight": 0.7837837837837838,
+          "sameTeam": true,
+          "avgPir": 3.9310344827586206,
+          "avgMinutes": 11.92471724137931,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0029390140082037,
+          "defenseSample": 4,
+          "rival": "Ante Zizic",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.785412321107565,
+              "weight": 0.7992359480082754,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.585259153705088,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.962345923975358,
+              "weight": 0.06654781545871641,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 5.0,
+      "actualMinutes": 20.35,
+      "fouls": 3.0,
+      "actualStats": {
+        "points": 6.0,
+        "totalRebounds": 1.0,
+        "assistances": 0.0,
+        "turnovers": 1.0,
+        "foulsCommited": 3.0,
+        "fieldGoalsMadeTotal": 3.0,
+        "fieldGoalsAttemptedTotal": 6.0
+      },
+      "minutesContribution": 2.4107871083614447,
+      "efficiencyContribution": -1.3054931863067463,
+      "reason": "minutes",
+      "error": 1.1052939220546985,
+      "servedError": 1.1052939220546985
+    },
+    {
+      "name": "Metecan Birsen",
+      "key": "birsen metecan",
+      "team": "Besiktas",
+      "pos": "F",
+      "opponent": "Hapoel Tel Aviv",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 3.2824517603114125,
+      "baseMinutes": 11.978989125,
+      "servedPir": 3.2824517603114125,
+      "servedMinutes": 11.978989125,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": false,
+      "features": {
+        "basePir": 3.8186218169952477,
+        "baseMin": 12.862472812499998,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.7140000000000035,
+        "teamPoints": 88.788,
+        "margin": -2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 24,
+          "historyWeight": 0.41250000000000003,
+          "sameTeam": false,
+          "avgPir": 2.6666666666666665,
+          "avgMinutes": 11.242358333333334,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0001960389360278,
+          "defenseSample": 4,
+          "rival": "Ish Wainright",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.134022779953796,
+              "weight": 0.7992359480082754,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.564290370350138,
+              "weight": 0.06654781545871635,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.261406986783065,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 0.0,
+      "actualMinutes": 0.0,
+      "fouls": 0.0,
+      "actualStats": {
+        "points": 0.0,
+        "totalRebounds": 0.0,
+        "assistances": 0.0,
+        "turnovers": 0.0,
+        "foulsCommited": 0.0,
+        "fieldGoalsMadeTotal": 0.0,
+        "fieldGoalsAttemptedTotal": 0.0
+      },
+      "minutesContribution": -3.2824517603114125,
+      "efficiencyContribution": 0.0,
+      "reason": "did-not-play",
+      "error": -3.2824517603114125,
+      "servedError": -3.2824517603114125
+    },
+    {
+      "name": "Berk Ugurlu",
+      "key": "berk ugurlu",
+      "team": "Besiktas",
+      "pos": "G",
+      "opponent": "Hapoel Tel Aviv",
+      "gameCode": 48,
+      "round": 5,
+      "start": "2026-10-14T16:00:00Z",
+      "basePir": 2.7908793132275895,
+      "baseMinutes": 10.736,
+      "servedPir": 2.7908793132275895,
+      "servedMinutes": 10.736,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-13T16:04:49.378376+00:00",
+      "home": false,
+      "features": {
+        "basePir": 3.8129999999999997,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.47199999999999465,
+        "teamPoints": 88.788,
+        "margin": -2.274,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0008680292258714,
+          "defenseSample": 4,
+          "rival": "Elijah Bryant",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 10.69337317563189,
+              "weight": 0.7992359480082754,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.766973175631893,
+              "weight": 0.06654781545871635,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.478653175631893,
+              "weight": 0.13421623653300832,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": -1.0,
+      "actualMinutes": 16.483333333333334,
+      "fouls": 2.0,
+      "actualStats": {
+        "points": 4.0,
+        "totalRebounds": 0.0,
+        "assistances": 2.0,
+        "turnovers": 3.0,
+        "foulsCommited": 2.0,
+        "fieldGoalsMadeTotal": 2.0,
+        "fieldGoalsAttemptedTotal": 5.0
+      },
+      "minutesContribution": 1.494049339253294,
+      "efficiencyContribution": -5.284928652480884,
+      "reason": "efficiency",
+      "error": -3.7908793132275895,
+      "servedError": -3.7908793132275895
+    },
     {
       "name": "Sasha Vezenkov",
       "key": "sasha vezenkov",
@@ -115799,36 +120655,36 @@
     "position": [
       {
         "label": "C",
-        "n": 163,
-        "mae": 5.627749239798933,
-        "bias": -1.0001007864225502,
-        "minutesMae": 4.351704521672247,
-        "hits": 87,
-        "hitRate": 53.37423312883436,
-        "over": 46,
-        "under": 30
+        "n": 168,
+        "mae": 5.6496518667826425,
+        "bias": -0.9526230526368183,
+        "minutesMae": 4.402401739305904,
+        "hits": 89,
+        "hitRate": 52.976190476190474,
+        "over": 48,
+        "under": 31
       },
       {
         "label": "F",
-        "n": 334,
-        "mae": 5.272966412514646,
-        "bias": -1.1578023535236928,
-        "minutesMae": 5.283609972118845,
-        "hits": 194,
-        "hitRate": 58.08383233532935,
-        "over": 91,
-        "under": 49
+        "n": 343,
+        "mae": 5.256136295710909,
+        "bias": -1.1263539095522683,
+        "minutesMae": 5.30086333565297,
+        "hits": 200,
+        "hitRate": 58.309037900874635,
+        "over": 92,
+        "under": 51
       },
       {
         "label": "G",
-        "n": 374,
-        "mae": 6.214296987444416,
-        "bias": -0.915697934445699,
-        "minutesMae": 4.72978721354853,
-        "hits": 189,
-        "hitRate": 50.534759358288774,
-        "over": 109,
-        "under": 76
+        "n": 384,
+        "mae": 6.207012045253443,
+        "bias": -0.9967432439620786,
+        "minutesMae": 4.745138448985669,
+        "hits": 193,
+        "hitRate": 50.260416666666664,
+        "over": 114,
+        "under": 77
       }
     ],
     "team": [
@@ -115889,14 +120745,14 @@
       },
       {
         "label": "Besiktas",
-        "n": 38,
-        "mae": 5.9984181216796815,
-        "bias": -0.9458102358189878,
-        "minutesMae": 5.3856805147668405,
-        "hits": 17,
-        "hitRate": 44.73684210526316,
-        "over": 12,
-        "under": 9
+        "n": 50,
+        "mae": 5.812255444284427,
+        "bias": -1.2903184495824505,
+        "minutesMae": 5.229425122993152,
+        "hits": 25,
+        "hitRate": 50.0,
+        "over": 15,
+        "under": 10
       },
       {
         "label": "Crvena Zvezda",
@@ -115933,14 +120789,14 @@
       },
       {
         "label": "Hapoel Tel Aviv",
-        "n": 29,
-        "mae": 6.534650321210296,
-        "bias": -1.0237048654579781,
-        "minutesMae": 5.736654405811983,
-        "hits": 16,
-        "hitRate": 55.172413793103445,
-        "over": 8,
-        "under": 5
+        "n": 41,
+        "mae": 6.333655682415212,
+        "bias": -0.9280081788939403,
+        "minutesMae": 6.011862837450409,
+        "hits": 20,
+        "hitRate": 48.78048780487805,
+        "over": 13,
+        "under": 8
       },
       {
         "label": "Maccabi Tel Aviv",
@@ -116100,38 +120956,38 @@
       },
       {
         "label": "5",
-        "n": 159,
-        "mae": 5.428450199749825,
-        "bias": -1.069593888137968,
-        "minutesMae": 4.7997652912587885,
-        "hits": 89,
-        "hitRate": 55.9748427672956,
-        "over": 43,
-        "under": 27
+        "n": 183,
+        "mae": 5.442467153084923,
+        "bias": -1.1311554970945796,
+        "minutesMae": 4.918587303090625,
+        "hits": 101,
+        "hitRate": 55.19125683060109,
+        "over": 51,
+        "under": 31
       }
     ],
     "home": [
       {
         "label": "False",
-        "n": 446,
-        "mae": 5.955641141062587,
-        "bias": -1.2498220491512513,
-        "minutesMae": 5.111473081902105,
-        "hits": 236,
-        "hitRate": 52.91479820627802,
-        "over": 129,
-        "under": 81
+        "n": 458,
+        "mae": 5.936438498917703,
+        "bias": -1.27946674113419,
+        "minutesMae": 5.101599107242045,
+        "hits": 244,
+        "hitRate": 53.275109170305676,
+        "over": 132,
+        "under": 82
       },
       {
         "label": "True",
-        "n": 425,
-        "mae": 5.521000075899801,
-        "bias": -0.7877007242941705,
-        "minutesMae": 4.619475273080193,
-        "hits": 234,
-        "hitRate": 55.05882352941176,
-        "over": 117,
-        "under": 74
+        "n": 437,
+        "mae": 5.52997724467126,
+        "bias": -0.7852029795455209,
+        "minutesMae": 4.675973431638446,
+        "hits": 238,
+        "hitRate": 54.46224256292906,
+        "over": 122,
+        "under": 77
       }
     ],
     "reason": [
@@ -116148,41 +121004,197 @@
       },
       {
         "label": "did-not-play",
-        "n": 28,
-        "mae": 4.1465792974191364,
-        "bias": -4.1465792974191364,
-        "minutesMae": 12.701377713393367,
-        "hits": 19,
-        "hitRate": 67.85714285714286,
-        "over": 9,
+        "n": 31,
+        "mae": 4.363765076533638,
+        "bias": -4.363765076533638,
+        "minutesMae": 13.042080633026574,
+        "hits": 20,
+        "hitRate": 64.51612903225806,
+        "over": 11,
         "under": 0
       },
       {
         "label": "efficiency",
-        "n": 626,
-        "mae": 6.454203306350461,
-        "bias": -0.5975034599065526,
-        "minutesMae": 3.684555491254464,
-        "hits": 294,
-        "hitRate": 46.96485623003195,
-        "over": 190,
-        "under": 142
+        "n": 641,
+        "mae": 6.4404709925158325,
+        "bias": -0.5756280677315952,
+        "minutesMae": 3.665001057460407,
+        "hits": 302,
+        "hitRate": 47.113884555382214,
+        "over": 193,
+        "under": 146
       },
       {
         "label": "minutes",
-        "n": 213,
-        "mae": 3.8601196763765477,
-        "bias": -2.0002443920997313,
-        "minutesMae": 7.200971856434015,
-        "hits": 154,
-        "hitRate": 72.30046948356808,
-        "over": 47,
+        "n": 219,
+        "mae": 3.871553720778341,
+        "bias": -2.0496582680929514,
+        "minutesMae": 7.2116252813709885,
+        "hits": 157,
+        "hitRate": 71.68949771689498,
+        "over": 50,
         "under": 12
       }
     ]
   },
   "teamAudit": {
     "games": [
+      {
+        "gameCode": 48,
+        "round": 5,
+        "start": "2026-10-14T16:00:00Z",
+        "played": true,
+        "home": "Hapoel Tel Aviv",
+        "away": "Besiktas",
+        "forecast": {
+          "opponent": "Besiktas",
+          "home": true,
+          "margin": 2.274,
+          "total": 179.85,
+          "winProb": 0.5783091101892435,
+          "teamPoints": 91.062,
+          "p20": 0.061603746601722006,
+          "p11_20": 0.18921465034324758,
+          "p1_10": 0.32749071324427387,
+          "l1_10": 0.278751175932465,
+          "l11_20": 0.11655499025302289,
+          "l20": 0.02638472362526868,
+          "sampleGames": 46,
+          "currentSeasonGames": 4,
+          "source": "EuroLeague model + available roster + opponent strength",
+          "context": {
+            "availability": {
+              "missing": [
+                {
+                  "name": "Amir Coffey",
+                  "status": "questionable",
+                  "missingProbability": 0.5,
+                  "avgMinutes": 23,
+                  "sampleGames": 0,
+                  "impactProxy": 0.327
+                },
+                {
+                  "name": "Tamir Blatt",
+                  "status": "questionable",
+                  "missingProbability": 0.5,
+                  "avgMinutes": 19,
+                  "sampleGames": 0,
+                  "impactProxy": 0.087
+                },
+                {
+                  "name": "Tyler Ennis",
+                  "status": "out",
+                  "missingProbability": 1,
+                  "avgMinutes": 14,
+                  "sampleGames": 0,
+                  "impactProxy": 0.017
+                },
+                {
+                  "name": "Tomer Ginat",
+                  "status": "questionable",
+                  "missingProbability": 0.5,
+                  "avgMinutes": 14,
+                  "sampleGames": 0,
+                  "impactProxy": 0
+                }
+              ],
+              "marginPenalty": 0.431,
+              "available": 18,
+              "rosterCount": 22
+            },
+            "rating": -0.13848333176700534,
+            "currentGames": 4,
+            "hardGames": 2,
+            "hardWins": 1,
+            "hardHistory": [
+              {
+                "opponent": "Crvena Zvezda",
+                "gameCode": 12,
+                "date": "2026-09-29T18:00:00+00:00",
+                "home": false,
+                "pregameWinProb": 0.39244,
+                "opponentRatingBefore": -0.856,
+                "hard": true,
+                "won": true,
+                "margin": 1
+              },
+              {
+                "opponent": "Valencia",
+                "gameCode": 34,
+                "date": "2026-10-08T18:30:00+00:00",
+                "home": false,
+                "pregameWinProb": 0.23544,
+                "opponentRatingBefore": 5.394,
+                "hard": true,
+                "won": false,
+                "margin": -11
+              }
+            ],
+            "recentHistory": [
+              {
+                "opponent": "Bayern Munich",
+                "gameCode": 3,
+                "date": "2026-09-24T16:00:00+00:00",
+                "home": true,
+                "pregameWinProb": 0.6525,
+                "opponentRatingBefore": -1.485,
+                "hard": false,
+                "won": false,
+                "margin": -2
+              },
+              {
+                "opponent": "Crvena Zvezda",
+                "gameCode": 12,
+                "date": "2026-09-29T18:00:00+00:00",
+                "home": false,
+                "pregameWinProb": 0.39244,
+                "opponentRatingBefore": -0.856,
+                "hard": true,
+                "won": true,
+                "margin": 1
+              },
+              {
+                "opponent": "Real Madrid",
+                "gameCode": 22,
+                "date": "2026-10-01T16:00:00+00:00",
+                "home": true,
+                "pregameWinProb": 0.46494,
+                "opponentRatingBefore": 3.824,
+                "hard": false,
+                "won": true,
+                "margin": 4
+              },
+              {
+                "opponent": "Valencia",
+                "gameCode": 34,
+                "date": "2026-10-08T18:30:00+00:00",
+                "home": false,
+                "pregameWinProb": 0.23544,
+                "opponentRatingBefore": 5.394,
+                "hard": true,
+                "won": false,
+                "margin": -11
+              }
+            ],
+            "opponent": "Besiktas",
+            "home": true,
+            "baseMargin": 2.65,
+            "strengthDelta": 0.003,
+            "rosterDelta": -0.379,
+            "margin": 2.274,
+            "rawWinProb": 0.5783091101892435,
+            "winProb": 0.5783091101892435
+          }
+        },
+        "homeScore": 100.0,
+        "awayScore": 82.0,
+        "actualMargin": 18.0,
+        "actualTotal": 182.0,
+        "marginError": 15.725999999999999,
+        "totalError": 2.1500000000000057,
+        "winnerHit": true,
+        "brier": 0.1778232065493876
+      },
       {
         "gameCode": 45,
         "round": 5,
@@ -117597,11 +122609,11 @@
         "brier": 0.4994955625
       }
     ],
-    "n": 23,
-    "winnerAccuracy": 60.86956521739131,
-    "marginMae": 10.567917391304348,
-    "totalMae": 13.306521739130437,
-    "brier": 0.2327743082822234
+    "n": 24,
+    "winnerAccuracy": 62.5,
+    "marginMae": 10.7828375,
+    "totalMae": 12.841666666666669,
+    "brier": 0.23048467904335523
   },
   "reportVersion": 2
 }
