@@ -1,0 +1,2613 @@
+{
+  "schema": "learning-v1",
+  "season": "E2026",
+  "modelId": "b3fc6df40846537dcb24",
+  "gameCode": 52,
+  "round": 6,
+  "kickoff": "2026-10-15T18:30:00Z",
+  "created_at": "2026-10-15T07:05:27.950421+00:00",
+  "predictions": [
+    {
+      "name": "TJ Shorts",
+      "team": "Valencia",
+      "pos": "G",
+      "opponent": "Maccabi Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 15.7,
+      "expectedPir": 17.13986338711928,
+      "expectedMinutes": 22.999658683473392,
+      "basePir": 17.13986338711928,
+      "baseMinutes": 22.999658683473392,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.376374561447378,
+        "baseMin": 21.948805392156864,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 10.800999999999995,
+        "teamPoints": 94.2202,
+        "margin": 8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 43,
+          "historyWeight": 0.46372549019607845,
+          "sameTeam": false,
+          "avgPir": 7.930232558139535,
+          "avgMinutes": 16.10736046511628,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.990157125926391,
+          "defenseFactor": 1.0130191268974174,
+          "defenseSample": 5,
+          "rival": "Yam Madar",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.506871363118922,
+              "weight": 0.704655119955884,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.855933927210547,
+              "weight": 0.2726473437333263,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.99166564680226,
+              "weight": 0.02269753631078963,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jaylen Hoard",
+      "team": "Maccabi Tel Aviv",
+      "pos": "F",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 13.8,
+      "expectedPir": 12.335658033582899,
+      "expectedMinutes": 25.829956146179402,
+      "basePir": 12.335658033582899,
+      "baseMinutes": 25.829956146179402,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 15.5252294527944,
+        "baseMin": 27.72984651162791,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.817999999999989,
+        "teamPoints": 86.1198,
+        "margin": -8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 35,
+          "historyWeight": 0.813953488372093,
+          "sameTeam": true,
+          "avgPir": 16.142857142857142,
+          "avgMinutes": 28.81095428571429,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 15.5,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9881751231336791,
+          "defenseFactor": 1.0026941463246706,
+          "defenseSample": 5,
+          "rival": "Kameron Taylor",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 26.087743639454263,
+              "weight": 0.7046551199558841,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 26.221012490564885,
+              "weight": 0.02269753631078964,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 25.1311512725866,
+              "weight": 0.2726473437333263,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Roman Sorkin",
+      "team": "Maccabi Tel Aviv",
+      "pos": "C",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 12.8,
+      "expectedPir": 11.725542585809128,
+      "expectedMinutes": 18.26366459627329,
+      "basePir": 11.725542585809128,
+      "baseMinutes": 18.26366459627329,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 13.723752889329248,
+        "baseMin": 22.922826086956523,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -9.199000000000002,
+        "teamPoints": 86.1198,
+        "margin": -8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 14.105263157894736,
+          "avgMinutes": 22.906578947368423,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 16,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0284480876895938,
+          "defenseFactor": 1.0022301391821085,
+          "defenseSample": 5,
+          "rival": "Neal Sako",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.57300053880415,
+              "weight": 0.7046551199558841,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.7609522831286,
+              "weight": 0.02269753631078964,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.589286896931704,
+              "weight": 0.2726473437333263,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kameron Taylor",
+      "team": "Valencia",
+      "pos": "F",
+      "opponent": "Maccabi Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 12.8,
+      "expectedPir": 15.72917950004058,
+      "expectedMinutes": 24.272221428571427,
+      "basePir": 15.72917950004058,
+      "baseMinutes": 24.272221428571427,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 13.268971240901458,
+        "baseMin": 23.877775,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 7.211999999999996,
+        "teamPoints": 94.2202,
+        "margin": 8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.8333333333333334,
+          "sameTeam": true,
+          "avgPir": 13.55,
+          "avgMinutes": 24.05333,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 16.333333333333332,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.029286104489481,
+          "defenseFactor": 1.0150889723541243,
+          "defenseSample": 5,
+          "rival": "Jaylen Hoard",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 24.739942187514607,
+              "weight": 0.704655119955884,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 23.206075923976446,
+              "weight": 0.2726473437333263,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.558375172076232,
+              "weight": 0.02269753631078963,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nikola Mirotic",
+      "team": "Valencia",
+      "pos": "F",
+      "opponent": "Maccabi Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 12.6,
+      "expectedPir": 16.207632460720227,
+      "expectedMinutes": 18.38504857142857,
+      "basePir": 16.207632460720227,
+      "baseMinutes": 18.38504857142857,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.289137612996793,
+        "baseMin": 21.272669999999998,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 7.211999999999996,
+        "teamPoints": 94.2202,
+        "margin": 8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 31,
+          "historyWeight": 0.4371794871794872,
+          "sameTeam": false,
+          "avgPir": 12.67741935483871,
+          "avgMinutes": 19.04892258064516,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 10,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0025864213543692,
+          "defenseFactor": 1.019421583684719,
+          "defenseSample": 5,
+          "rival": "Jaylen Hoard",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.437055062106356,
+              "weight": 0.704655119955884,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.345153535772138,
+              "weight": 0.2726473437333263,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.24971105839119,
+              "weight": 0.02269753631078963,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Daniel Theis",
+      "team": "Maccabi Tel Aviv",
+      "pos": "C",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 11.8,
+      "expectedPir": 11.039814582989159,
+      "expectedMinutes": 19.82503072463768,
+      "basePir": 11.039814582989159,
+      "baseMinutes": 19.82503072463768,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.582635552481923,
+        "baseMin": 21.875092173913043,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -9.199000000000002,
+        "teamPoints": 86.1198,
+        "margin": -8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.45434782608695656,
+          "sameTeam": false,
+          "avgPir": 12.157894736842104,
+          "avgMinutes": 20.524126315789474,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 22,
+              "continuedRate": 0.5
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0008770179908821,
+          "defenseSample": 5,
+          "rival": "Neal Sako",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.89179660684942,
+              "weight": 0.7046551199558841,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.697876789381688,
+              "weight": 0.02269753631078964,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.746308874383576,
+              "weight": 0.2726473437333263,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Bonzie Colson",
+      "team": "Maccabi Tel Aviv",
+      "pos": "F",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 11.1,
+      "expectedPir": 10.58687384703266,
+      "expectedMinutes": 19.25484050595238,
+      "basePir": 10.58687384703266,
+      "baseMinutes": 19.25484050595238,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.66698841797322,
+        "baseMin": 20.19194177083333,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.817999999999989,
+        "teamPoints": 86.1198,
+        "margin": -8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.45833333333333337,
+          "sameTeam": false,
+          "avgPir": 8.675,
+          "avgMinutes": 16.8733275,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0345307636250924,
+          "defenseFactor": 0.999705476782129,
+          "defenseSample": 5,
+          "rival": "Kameron Taylor",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.55081262850874,
+              "weight": 0.7046551199558841,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.40326955663735,
+              "weight": 0.02269753631078964,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.06203902077366,
+              "weight": 0.2726473437333263,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Oshae Brissett",
+      "team": "Maccabi Tel Aviv",
+      "pos": "F",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 10.2,
+      "expectedPir": 9.719573458081234,
+      "expectedMinutes": 23,
+      "basePir": 9.719573458081234,
+      "baseMinutes": 23,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.486,
+        "baseMin": 23,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.817999999999989,
+        "teamPoints": 86.1198,
+        "margin": -8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Kameron Taylor",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.72891918536098,
+              "weight": 0.7046551199558841,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.62391918536098,
+              "weight": 0.02269753631078964,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.31391918536098,
+              "weight": 0.2726473437333263,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Yam Madar",
+      "team": "Maccabi Tel Aviv",
+      "pos": "G",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 10.1,
+      "expectedPir": 11.989268326937857,
+      "expectedMinutes": 21.22160779761905,
+      "basePir": 11.989268326937857,
+      "baseMinutes": 21.22160779761905,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.870697637627218,
+        "baseMin": 18.125627291666667,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.0490000000000017,
+        "teamPoints": 86.1198,
+        "margin": -8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 16,
+          "historyWeight": 0.3666666666666667,
+          "sameTeam": false,
+          "avgPir": 3.1875,
+          "avgMinutes": 9.70625625,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.014283503217105,
+          "defenseFactor": 0.9991270947362647,
+          "defenseSample": 5,
+          "rival": "TJ Shorts",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.84097724992593,
+              "weight": 0.7046551199558841,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.87001285299278,
+              "weight": 0.02269753631078964,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.65012167630533,
+              "weight": 0.2726473437333263,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Armoni Brooks",
+      "team": "Valencia",
+      "pos": "G",
+      "opponent": "Maccabi Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 10,
+      "expectedPir": 10.486137171139678,
+      "expectedMinutes": 22.019244192546584,
+      "basePir": 10.486137171139678,
+      "baseMinutes": 22.019244192546584,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.864266221622376,
+        "baseMin": 22.792354673913042,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 10.800999999999995,
+        "teamPoints": 94.2202,
+        "margin": 8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.45434782608695656,
+          "sameTeam": false,
+          "avgPir": 10.526315789473685,
+          "avgMinutes": 22.542981578947366,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 4,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 4,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0044223679762436,
+          "defenseFactor": 1.03,
+          "defenseSample": 5,
+          "rival": "Yam Madar",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.428420502103652,
+              "weight": 0.704655119955884,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.116543585796958,
+              "weight": 0.2726473437333263,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.159603643927802,
+              "weight": 0.02269753631078963,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nathan Reuvers",
+      "team": "Valencia",
+      "pos": "F",
+      "opponent": "Maccabi Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 10,
+      "expectedPir": 10.069961811888488,
+      "expectedMinutes": 17.732417032967035,
+      "basePir": 10.069961811888488,
+      "baseMinutes": 17.732417032967035,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.787513994124028,
+        "baseMin": 19.663459615384618,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 7.211999999999996,
+        "teamPoints": 94.2202,
+        "margin": 8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 44,
+          "historyWeight": 0.8461538461538461,
+          "sameTeam": true,
+          "avgPir": 10.954545454545455,
+          "avgMinutes": 19.05681590909091,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9785982078757745,
+          "defenseFactor": 1.0134365726097894,
+          "defenseSample": 5,
+          "rival": "Jaylen Hoard",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.33486122226646,
+              "weight": 0.704655119955884,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.32231729185885,
+              "weight": 0.2726473437333263,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.967668951199514,
+              "weight": 0.02269753631078963,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Keaton Wallace",
+      "team": "Maccabi Tel Aviv",
+      "pos": "G",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 9.6,
+      "expectedPir": 6.117154747988884,
+      "expectedMinutes": 16.521428571428572,
+      "basePir": 6.117154747988884,
+      "baseMinutes": 16.521428571428572,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.928,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.0490000000000017,
+        "teamPoints": 86.1198,
+        "margin": -8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9952937481983503,
+          "defenseFactor": 0.9994834593622263,
+          "defenseSample": 5,
+          "rival": "TJ Shorts",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.918973001320143,
+              "weight": 0.7046551199558841,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.51366676938531,
+              "weight": 0.02269753631078964,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.07911686573286,
+              "weight": 0.2726473437333263,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jimmy Clark III",
+      "team": "Maccabi Tel Aviv",
+      "pos": "G",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 9.3,
+      "expectedPir": 8.401356897048489,
+      "expectedMinutes": 19.22613777777778,
+      "basePir": 8.401356897048489,
+      "baseMinutes": 19.22613777777778,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.606302967963323,
+        "baseMin": 19.591482222222226,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.0490000000000017,
+        "teamPoints": 86.1198,
+        "margin": -8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.8222222222222222,
+          "sameTeam": true,
+          "avgPir": 8.594594594594595,
+          "avgMinutes": 19.71937027027027,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9820559491552668,
+          "defenseFactor": 1.0015906932365595,
+          "defenseSample": 5,
+          "rival": "TJ Shorts",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.605257005144093,
+              "weight": 0.7046551199558841,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.3881922187994,
+              "weight": 0.02269753631078964,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.817308895818837,
+              "weight": 0.2726473437333263,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "TJ Leaf",
+      "team": "Maccabi Tel Aviv",
+      "pos": "F",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 9,
+      "expectedPir": 5.038139239358348,
+      "expectedMinutes": 13.181213541666668,
+      "basePir": 5.038139239358348,
+      "baseMinutes": 13.181213541666668,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.53578279977159,
+        "baseMin": 18.403640625,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.817999999999989,
+        "teamPoints": 86.1198,
+        "margin": -8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 24,
+          "historyWeight": 0.75,
+          "sameTeam": true,
+          "avgPir": 12.541666666666666,
+          "avgMinutes": 18.204854166666667,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0013437645393657,
+          "defenseSample": 5,
+          "rival": "Kameron Taylor",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.773299551620259,
+              "weight": 0.7046551199558841,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.503042243358914,
+              "weight": 0.02269753631078964,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.291921224013675,
+              "weight": 0.2726473437333263,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Neal Sako",
+      "team": "Valencia",
+      "pos": "C",
+      "opponent": "Maccabi Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 8.8,
+      "expectedPir": 7.7162115229145,
+      "expectedMinutes": 14.163430285714284,
+      "basePir": 7.7162115229145,
+      "baseMinutes": 14.163430285714284,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.512471191767122,
+        "baseMin": 14.272006000000001,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 5.800000000000005,
+        "teamPoints": 94.2202,
+        "margin": 8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.84,
+          "sameTeam": true,
+          "avgPir": 6.166666666666667,
+          "avgMinutes": 13.371435714285715,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9488421183336437,
+          "defenseFactor": 1.0029574955931664,
+          "defenseSample": 5,
+          "rival": "Daniel Theis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.964090638718087,
+              "weight": 0.704655119955884,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.75500794552466,
+              "weight": 0.2726473437333263,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.245869260233956,
+              "weight": 0.02269753631078963,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Omari Moore",
+      "team": "Valencia",
+      "pos": "G",
+      "opponent": "Maccabi Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 8.3,
+      "expectedPir": 7.7579170550896555,
+      "expectedMinutes": 17.007376470588234,
+      "basePir": 7.7579170550896555,
+      "baseMinutes": 17.007376470588234,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.770013917783795,
+        "baseMin": 17.525817647058823,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 10.800999999999995,
+        "teamPoints": 94.2202,
+        "margin": 8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 43,
+          "historyWeight": 0.8431372549019608,
+          "sameTeam": true,
+          "avgPir": 7.767441860465116,
+          "avgMinutes": 17.251551162790697,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 1,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9924164616321823,
+          "defenseFactor": 1.012482000099701,
+          "defenseSample": 5,
+          "rival": "Yam Madar",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.653530322513866,
+              "weight": 0.704655119955884,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.982432471151096,
+              "weight": 0.2726473437333263,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.280120067011666,
+              "weight": 0.02269753631078963,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Mo Gueye",
+      "team": "Valencia",
+      "pos": "F",
+      "opponent": "Maccabi Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 8.2,
+      "expectedPir": 8.106159207458418,
+      "expectedMinutes": 19,
+      "basePir": 8.106159207458418,
+      "baseMinutes": 19,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.6259999999999994,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 7.211999999999996,
+        "teamPoints": 94.2202,
+        "margin": 8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Jaylen Hoard",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.74462202161601,
+              "weight": 0.704655119955884,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.179622021616012,
+              "weight": 0.2726473437333263,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.749622021616013,
+              "weight": 0.02269753631078963,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Iffe Lundberg",
+      "team": "Maccabi Tel Aviv",
+      "pos": "G",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 8.1,
+      "expectedPir": 8.860550790496546,
+      "expectedMinutes": 21.85476071428571,
+      "basePir": 8.860550790496546,
+      "baseMinutes": 21.85476071428571,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.628158133921405,
+        "baseMin": 22.591662499999998,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.0490000000000017,
+        "teamPoints": 86.1198,
+        "margin": -8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 16,
+          "historyWeight": 0.6666666666666666,
+          "sameTeam": true,
+          "avgPir": 12.375,
+          "avgMinutes": 24.38749375,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9937298606088415,
+          "defenseFactor": 0.9980212570105801,
+          "defenseSample": 5,
+          "rival": "TJ Shorts",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.035332768817025,
+              "weight": 0.7046551199558841,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.66123478591638,
+              "weight": 0.02269753631078964,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.32093560791185,
+              "weight": 0.2726473437333263,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Dylan Osetkowski",
+      "team": "Valencia",
+      "pos": "F",
+      "opponent": "Maccabi Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 8,
+      "expectedPir": 8.46142031676313,
+      "expectedMinutes": 19.594246710963457,
+      "basePir": 8.46142031676313,
+      "baseMinutes": 19.594246710963457,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.378509924849608,
+        "baseMin": 19.479863488372096,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 7.211999999999996,
+        "teamPoints": 94.2202,
+        "margin": 8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 35,
+          "historyWeight": 0.4476744186046512,
+          "sameTeam": false,
+          "avgPir": 7.285714285714286,
+          "avgMinutes": 20.07190285714286,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0030101421501159,
+          "defenseFactor": 1.026439472536799,
+          "defenseSample": 5,
+          "rival": "Jaylen Hoard",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.699290039553407,
+              "weight": 0.704655119955884,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.4463522592914,
+              "weight": 0.2726473437333263,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.10966752820801,
+              "weight": 0.02269753631078963,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Gonzalo Corbalan",
+      "team": "Valencia",
+      "pos": "G",
+      "opponent": "Maccabi Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 7.7,
+      "expectedPir": 4.036619663091694,
+      "expectedMinutes": 15.690000000000001,
+      "basePir": 4.036619663091694,
+      "baseMinutes": 15.690000000000001,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.1610000000000005,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 10.800999999999995,
+        "teamPoints": 94.2202,
+        "margin": 8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0054725074278068,
+          "defenseSample": 5,
+          "rival": "Yam Madar",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.740100462631403,
+              "weight": 0.704655119955884,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.693492979638208,
+              "weight": 0.2726473437333263,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.092650462631406,
+              "weight": 0.02269753631078963,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jasiel Rivero",
+      "team": "Valencia",
+      "pos": "C",
+      "opponent": "Maccabi Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 7.1,
+      "expectedPir": 6.287245037482429,
+      "expectedMinutes": 14.57264613445378,
+      "basePir": 6.287245037482429,
+      "baseMinutes": 14.57264613445378,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.118942743981119,
+        "baseMin": 16.329261470588236,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 5.800000000000005,
+        "teamPoints": 94.2202,
+        "margin": 8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 9,
+          "historyWeight": 0.2911764705882353,
+          "sameTeam": false,
+          "avgPir": 4.333333333333333,
+          "avgMinutes": 9.827766666666667,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9752215891306423,
+          "defenseFactor": 1.0078827522781926,
+          "defenseSample": 5,
+          "rival": "Daniel Theis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.450037055806925,
+              "weight": 0.704655119955884,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.973407903412795,
+              "weight": 0.2726473437333263,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.56506908107588,
+              "weight": 0.02269753631078963,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Armando Bacot",
+      "team": "Maccabi Tel Aviv",
+      "pos": "C",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 6.2,
+      "expectedPir": 5.622940232359407,
+      "expectedMinutes": 14,
+      "basePir": 5.622940232359407,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.766000000000001,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -9.199000000000002,
+        "teamPoints": 86.1198,
+        "margin": -8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Neal Sako",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.44368993891538,
+              "weight": 0.7046551199558841,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.553689938915381,
+              "weight": 0.02269753631078964,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.973689938915383,
+              "weight": 0.2726473437333263,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Yankuba Sima",
+      "team": "Valencia",
+      "pos": "C",
+      "opponent": "Maccabi Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 6,
+      "expectedPir": 3.095601987574806,
+      "expectedMinutes": 11.532142857142857,
+      "basePir": 3.095601987574806,
+      "baseMinutes": 11.532142857142857,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.9263434190085102,
+        "baseMin": 11.532142857142857,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 5.800000000000005,
+        "teamPoints": 94.2202,
+        "margin": 8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 6,
+          "historyWeight": 0.42857142857142855,
+          "sameTeam": true,
+          "avgPir": 0.5,
+          "avgMinutes": 8.241666666666667,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Daniel Theis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.984094832292874,
+              "weight": 0.704655119955884,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 10.427255546578587,
+              "weight": 0.2726473437333263,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.773219832292874,
+              "weight": 0.02269753631078963,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Josep Puerto",
+      "team": "Valencia",
+      "pos": "G",
+      "opponent": "Maccabi Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 5.6,
+      "expectedPir": 6.410264177691952,
+      "expectedMinutes": 14.933954658385094,
+      "basePir": 6.410264177691952,
+      "baseMinutes": 14.933954658385094,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.241733551376517,
+        "baseMin": 15.443841304347826,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 10.800999999999995,
+        "teamPoints": 94.2202,
+        "margin": 8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 5.2368421052631575,
+          "avgMinutes": 15.747807894736843,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9998630876191058,
+          "defenseFactor": 1.0170695400104561,
+          "defenseSample": 5,
+          "rival": "Yam Madar",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.776480689984295,
+              "weight": 0.704655119955884,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.419533448830663,
+              "weight": 0.2726473437333263,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.989934611387943,
+              "weight": 0.02269753631078963,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Shane Hunter",
+      "team": "Maccabi Tel Aviv",
+      "pos": "C",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 5.4,
+      "expectedPir": 4.897399557216257,
+      "expectedMinutes": 14,
+      "basePir": 4.897399557216257,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.022,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -9.199000000000002,
+        "teamPoints": 86.1198,
+        "margin": -8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Neal Sako",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.44368993891538,
+              "weight": 0.7046551199558841,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.553689938915381,
+              "weight": 0.02269753631078964,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.973689938915383,
+              "weight": 0.2726473437333263,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Alvaro Cardenas",
+      "team": "Valencia",
+      "pos": "G",
+      "opponent": "Maccabi Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 4.2,
+      "expectedPir": 4.15437417611463,
+      "expectedMinutes": 12.77,
+      "basePir": 4.15437417611463,
+      "baseMinutes": 12.77,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.9060000000000006,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 10.800999999999995,
+        "teamPoints": 94.2202,
+        "margin": 8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0027362537139035,
+          "defenseSample": 5,
+          "rival": "Yam Madar",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.414371743997734,
+              "weight": 0.704655119955884,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.203169809293986,
+              "weight": 0.2726473437333263,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.586269809293986,
+              "weight": 0.02269753631078963,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "John Dibartolomeo",
+      "team": "Maccabi Tel Aviv",
+      "pos": "G",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 1.9457398519557552,
+      "expectedMinutes": 12.026184761904764,
+      "basePir": 1.9457398519557552,
+      "baseMinutes": 12.026184761904764,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.304695265489598,
+        "baseMin": 14.254277142857143,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.0490000000000017,
+        "teamPoints": 86.1198,
+        "margin": -8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 27,
+          "historyWeight": 0.7714285714285715,
+          "sameTeam": true,
+          "avgPir": 4.481481481481482,
+          "avgMinutes": 14.329618518518519,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "TJ Shorts",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.28300475157669,
+              "weight": 0.7046551199558841,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.080386275386214,
+              "weight": 0.02269753631078964,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.441171818243358,
+              "weight": 0.2726473437333263,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "William Rayman",
+      "team": "Maccabi Tel Aviv",
+      "pos": "F",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 1.7639262663579038,
+      "expectedMinutes": 10.27286195652174,
+      "basePir": 1.7639262663579038,
+      "baseMinutes": 10.27286195652174,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.919392436830075,
+        "baseMin": 12.325723913043479,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.817999999999989,
+        "teamPoints": 86.1198,
+        "margin": -8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 2.763157894736842,
+          "avgMinutes": 11.973244736842105,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 0.94,
+          "defenseFactor": 1.0005160497619414,
+          "defenseSample": 5,
+          "rival": "Kameron Taylor",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 10.764852973177948,
+              "weight": 0.7046551199558841,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 10.243116759314686,
+              "weight": 0.02269753631078964,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 9.003790923488507,
+              "weight": 0.2726473437333263,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Gur Lavi",
+      "team": "Maccabi Tel Aviv",
+      "pos": "F",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "out",
+      "price": 4,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 3.4868259039359666,
+        "baseMin": 12.208695652173914,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.817999999999989,
+        "teamPoints": 86.1198,
+        "margin": -8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 15,
+          "historyWeight": 0.6521739130434783,
+          "sameTeam": true,
+          "avgPir": 3.3333333333333335,
+          "avgMinutes": 11.253333333333334,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Amit Ebo",
+      "team": "Maccabi Tel Aviv",
+      "pos": "G",
+      "opponent": "Valencia",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.708387435199186,
+      "expectedMinutes": 14,
+      "basePir": 3.708387435199186,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.0490000000000017,
+        "teamPoints": 86.1198,
+        "margin": -8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "TJ Shorts",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.44368993891538,
+              "weight": 0.7046551199558841,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.553689938915381,
+              "weight": 0.02269753631078964,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.973689938915383,
+              "weight": 0.2726473437333263,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Mario Saint-supery",
+      "team": "Valencia",
+      "pos": "G",
+      "opponent": "Maccabi Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 2.525327086002963,
+      "expectedMinutes": 13.586666666666666,
+      "basePir": 2.525327086002963,
+      "baseMinutes": 13.586666666666666,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 10.800999999999995,
+        "teamPoints": 94.2202,
+        "margin": 8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0147728430773901,
+          "defenseSample": 5,
+          "rival": "Yam Madar",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.308371958347168,
+              "weight": 0.704655119955884,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.363675404338874,
+              "weight": 0.2726473437333263,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.892865493961352,
+              "weight": 0.02269753631078963,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Lucas Mari",
+      "team": "Valencia",
+      "pos": "G",
+      "opponent": "Maccabi Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 4.002672062556734,
+      "expectedMinutes": 14,
+      "basePir": 4.002672062556734,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 10.800999999999995,
+        "teamPoints": 94.2202,
+        "margin": 8.1004,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Yam Madar",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.548668858032848,
+              "weight": 0.704655119955884,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.658668858032849,
+              "weight": 0.2726473437333263,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.07866885803285,
+              "weight": 0.02269753631078963,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    }
+  ]
+}

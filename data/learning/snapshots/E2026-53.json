@@ -1,0 +1,2584 @@
+{
+  "schema": "learning-v1",
+  "season": "E2026",
+  "modelId": "b3fc6df40846537dcb24",
+  "gameCode": 53,
+  "round": 6,
+  "kickoff": "2026-10-15T19:00:00Z",
+  "created_at": "2026-10-15T07:05:27.929814+00:00",
+  "predictions": [
+    {
+      "name": "Walter Tavares",
+      "team": "Real Madrid",
+      "pos": "C",
+      "opponent": "ASVEL",
+      "home": true,
+      "status": "active",
+      "price": 14.7,
+      "expectedPir": 16.057550980180842,
+      "expectedMinutes": 22.251365957446808,
+      "basePir": 16.057550980180842,
+      "baseMinutes": 22.251365957446808,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 15.260464267590054,
+        "baseMin": 23.47978085106383,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 89.89004999999999,
+        "margin": 9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 39,
+          "historyWeight": 0.8297872340425532,
+          "sameTeam": true,
+          "avgPir": 15.461538461538462,
+          "avgMinutes": 22.757684615384616,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 5,
+              "nextGameAvgPir": 14.2,
+              "continuedRate": 0.2
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 8,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0035363168935263,
+          "defenseFactor": 1.0058897255580077,
+          "defenseSample": 5,
+          "rival": "Joel Bolomboy",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.950325789840715,
+              "weight": 0.6802908209778795,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.725189194096036,
+              "weight": 0.30107846983706965,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.39273017281944,
+              "weight": 0.018630709185050828,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Facundo Campazzo",
+      "team": "Real Madrid",
+      "pos": "G",
+      "opponent": "ASVEL",
+      "home": true,
+      "status": "active",
+      "price": 13.3,
+      "expectedPir": 13.354623454534881,
+      "expectedMinutes": 21.649815934065934,
+      "basePir": 13.354623454534881,
+      "baseMinutes": 21.649815934065934,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 14.10470907177152,
+        "baseMin": 24.17435576923077,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.426,
+        "teamPoints": 89.89004999999999,
+        "margin": 9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 44,
+          "historyWeight": 0.8461538461538461,
+          "sameTeam": true,
+          "avgPir": 14.431818181818182,
+          "avgMinutes": 24.387874999999998,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 12,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9936179893685747,
+          "defenseFactor": 1.0140638325195717,
+          "defenseSample": 5,
+          "rival": "Patty Mills",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.329879879154635,
+              "weight": 0.6802908209778795,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.164898285748045,
+              "weight": 0.30107846983706965,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.814392763770023,
+              "weight": 0.018630709185050828,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Patty Mills",
+      "team": "ASVEL",
+      "pos": "G",
+      "opponent": "Real Madrid",
+      "home": false,
+      "status": "active",
+      "price": 12.8,
+      "expectedPir": 13.303953117337603,
+      "expectedMinutes": 21.75917857142857,
+      "basePir": 13.303953117337603,
+      "baseMinutes": 21.75917857142857,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.904000000000002,
+        "baseMin": 23,
+        "injuryBoost": 0.08775000000000004,
+        "injuryUsagePct": 0.1504285714285715,
+        "missingStars": [],
+        "positionMatchPct": -2.685000000000004,
+        "teamPoints": 80.80995,
+        "margin": -9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.014157114993524,
+          "defenseFactor": 0.993182372400584,
+          "defenseSample": 5,
+          "rival": "Theo Maledon",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.343781268479496,
+              "weight": 0.6802908209778795,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.490676739855132,
+              "weight": 0.018630709185050887,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.57863566842656,
+              "weight": 0.3010784698370696,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Theo Maledon",
+      "team": "Real Madrid",
+      "pos": "G",
+      "opponent": "ASVEL",
+      "home": true,
+      "status": "active",
+      "price": 11.7,
+      "expectedPir": 17.802146867613192,
+      "expectedMinutes": 21.44440931677019,
+      "basePir": 17.802146867613192,
+      "baseMinutes": 21.44440931677019,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.312987028851389,
+        "baseMin": 18.055432608695654,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.426,
+        "teamPoints": 89.89004999999999,
+        "margin": 9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 11.210526315789474,
+          "avgMinutes": 17.014471052631578,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0020754049858753,
+          "defenseFactor": 1.0097910901014362,
+          "defenseSample": 5,
+          "rival": "Patty Mills",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.118021029889302,
+              "weight": 0.6802908209778795,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.973580098212285,
+              "weight": 0.30107846983706965,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.61691237771539,
+              "weight": 0.018630709185050828,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Timothé Luwawu-Cabarrot",
+      "team": "Real Madrid",
+      "pos": "F",
+      "opponent": "ASVEL",
+      "home": true,
+      "status": "active",
+      "price": 10.6,
+      "expectedPir": 5.965756538142822,
+      "expectedMinutes": 20.23130892857143,
+      "basePir": 5.965756538142822,
+      "baseMinutes": 20.23130892857143,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.667834233114045,
+        "baseMin": 24.08458125,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 1.330000000000009,
+        "teamPoints": 89.89004999999999,
+        "margin": 9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.45000000000000007,
+          "sameTeam": false,
+          "avgPir": 16.38888888888889,
+          "avgMinutes": 25.410180555555556,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 4,
+              "nextGameAvgPir": 15.75,
+              "continuedRate": 0.25
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 17,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0000376836847538,
+          "defenseFactor": 1.0216489736346286,
+          "defenseSample": 5,
+          "rival": "Jae Crowder",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.866814736388644,
+              "weight": 0.6802908209778795,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.8436838435315,
+              "weight": 0.30107846983706965,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.450623111388644,
+              "weight": 0.018630709185050828,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tremont Waters",
+      "team": "ASVEL",
+      "pos": "G",
+      "opponent": "Real Madrid",
+      "home": false,
+      "status": "active",
+      "price": 10.1,
+      "expectedPir": 9.466371202420783,
+      "expectedMinutes": 21.521660714285716,
+      "basePir": 9.466371202420783,
+      "baseMinutes": 21.521660714285716,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.393,
+        "baseMin": 23,
+        "injuryBoost": 0.057375000000000016,
+        "injuryUsagePct": 0.09835714285714288,
+        "missingStars": [],
+        "positionMatchPct": -2.685000000000004,
+        "teamPoints": 80.80995,
+        "margin": -9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9969753882717384,
+          "defenseFactor": 0.9929711382249631,
+          "defenseSample": 5,
+          "rival": "Theo Maledon",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.974638546271816,
+              "weight": 0.6802908209778795,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.50850740047417,
+              "weight": 0.018630709185050887,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.622725006865245,
+              "weight": 0.3010784698370696,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jae Crowder",
+      "team": "ASVEL",
+      "pos": "F",
+      "opponent": "Real Madrid",
+      "home": false,
+      "status": "active",
+      "price": 9.9,
+      "expectedPir": 10.475795408202014,
+      "expectedMinutes": 22.858964285714283,
+      "basePir": 10.475795408202014,
+      "baseMinutes": 22.858964285714283,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.207,
+        "baseMin": 19,
+        "injuryBoost": 0.17325000000000007,
+        "injuryUsagePct": 0.18900000000000006,
+        "missingStars": [],
+        "positionMatchPct": -10.907999999999996,
+        "teamPoints": 80.80995,
+        "margin": -9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0014507771863004,
+          "defenseFactor": 0.9870396740873609,
+          "defenseSample": 5,
+          "rival": "Mikael Jantunen",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.413426599451032,
+              "weight": 0.6802908209778795,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.60281160257998,
+              "weight": 0.018630709185050887,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.74575981686569,
+              "weight": 0.3010784698370696,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Hugo Besson",
+      "team": "ASVEL",
+      "pos": "G",
+      "opponent": "Real Madrid",
+      "home": false,
+      "status": "active",
+      "price": 9.6,
+      "expectedPir": 10.838985393614866,
+      "expectedMinutes": 20.123178571428568,
+      "basePir": 10.838985393614866,
+      "baseMinutes": 20.123178571428568,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.928,
+        "baseMin": 19,
+        "injuryBoost": 0.051750000000000004,
+        "injuryUsagePct": 0.08871428571428573,
+        "missingStars": [],
+        "positionMatchPct": -2.685000000000004,
+        "teamPoints": 80.80995,
+        "margin": -9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9761513789028691,
+          "defenseFactor": 0.9937050502688267,
+          "defenseSample": 5,
+          "rival": "Theo Maledon",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.31993999595269,
+              "weight": 0.6802908209778795,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.197190061283703,
+              "weight": 0.018630709185050887,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.79777350592172,
+              "weight": 0.3010784698370696,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Joel Bolomboy",
+      "team": "ASVEL",
+      "pos": "C",
+      "opponent": "Real Madrid",
+      "home": false,
+      "status": "active",
+      "price": 9.4,
+      "expectedPir": 6.774056206778901,
+      "expectedMinutes": 18.261995279503104,
+      "basePir": 6.774056206778901,
+      "baseMinutes": 18.261995279503104,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.401169123503253,
+        "baseMin": 17.36873347826087,
+        "injuryBoost": 0.049500000000000016,
+        "injuryUsagePct": 0.0848571428571429,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 80.80995,
+        "margin": -9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 15,
+          "historyWeight": 0.3586956521739131,
+          "sameTeam": false,
+          "avgPir": 7.6,
+          "avgMinutes": 14.452226666666666,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0110628621497155,
+          "defenseFactor": 0.995819082666886,
+          "defenseSample": 5,
+          "rival": "Walter Tavares",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.62983653555642,
+              "weight": 0.6802908209778795,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.1685370639354,
+              "weight": 0.018630709185050887,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.56039606193347,
+              "weight": 0.3010784698370696,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Both Gach",
+      "team": "ASVEL",
+      "pos": "F",
+      "opponent": "Real Madrid",
+      "home": false,
+      "status": "active",
+      "price": 8.9,
+      "expectedPir": 8.737976008068511,
+      "expectedMinutes": 19.98075,
+      "basePir": 8.737976008068511,
+      "baseMinutes": 19.98075,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.277000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0.13789285714285723,
+        "injuryUsagePct": 0.1504285714285715,
+        "missingStars": [],
+        "positionMatchPct": -10.907999999999996,
+        "teamPoints": 80.80995,
+        "margin": -9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.06,
+          "defenseFactor": 0.9939296972734124,
+          "defenseSample": 5,
+          "rival": "Mikael Jantunen",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.659246296826876,
+              "weight": 0.6802908209778795,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.596196991730228,
+              "weight": 0.018630709185050887,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.595234491730228,
+              "weight": 0.3010784698370696,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tyty Washington",
+      "team": "ASVEL",
+      "pos": "G",
+      "opponent": "Real Madrid",
+      "home": false,
+      "status": "active",
+      "price": 8.9,
+      "expectedPir": 8.129882126577929,
+      "expectedMinutes": 19.043875,
+      "basePir": 8.129882126577929,
+      "baseMinutes": 19.043875,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.277000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0.04387500000000002,
+        "injuryUsagePct": 0.07521428571428575,
+        "missingStars": [],
+        "positionMatchPct": -2.685000000000004,
+        "teamPoints": 80.80995,
+        "margin": -9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Theo Maledon",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.69381169927968,
+              "weight": 0.6802908209778795,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.122888574279685,
+              "weight": 0.018630709185050887,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.694204824279684,
+              "weight": 0.3010784698370696,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Mathis Dossou-yovo",
+      "team": "ASVEL",
+      "pos": "F",
+      "opponent": "Real Madrid",
+      "home": false,
+      "status": "out",
+      "price": 8.9,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form",
+      "features": {
+        "basePir": 8.277000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -10.907999999999996,
+        "teamPoints": 80.80995,
+        "margin": -9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Olivier Sarr",
+      "team": "Real Madrid",
+      "pos": "C",
+      "opponent": "ASVEL",
+      "home": true,
+      "status": "active",
+      "price": 8.6,
+      "expectedPir": 8.510629854968881,
+      "expectedMinutes": 19,
+      "basePir": 8.510629854968881,
+      "baseMinutes": 19,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.998,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 89.89004999999999,
+        "margin": 9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Joel Bolomboy",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.59682793590655,
+              "weight": 0.6802908209778795,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.69682793590655,
+              "weight": 0.30107846983706965,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.26682793590655,
+              "weight": 0.018630709185050828,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Chuma Okeke",
+      "team": "Real Madrid",
+      "pos": "F",
+      "opponent": "ASVEL",
+      "home": true,
+      "status": "active",
+      "price": 8.5,
+      "expectedPir": 7.700842713917646,
+      "expectedMinutes": 15.939150980392156,
+      "basePir": 7.700842713917646,
+      "baseMinutes": 15.939150980392156,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.949953426205229,
+        "baseMin": 18.07745294117647,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 1.330000000000009,
+        "teamPoints": 89.89004999999999,
+        "margin": 9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 43,
+          "historyWeight": 0.8431372549019608,
+          "sameTeam": true,
+          "avgPir": 7.953488372093023,
+          "avgMinutes": 17.905816279069768,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0156695753673697,
+          "defenseSample": 5,
+          "rival": "Jae Crowder",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.439831537220066,
+              "weight": 0.6802908209778795,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.845916439180852,
+              "weight": 0.30107846983706965,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.324090968592618,
+              "weight": 0.018630709185050828,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Damian Jones",
+      "team": "Real Madrid",
+      "pos": "C",
+      "opponent": "ASVEL",
+      "home": true,
+      "status": "active",
+      "price": 8.4,
+      "expectedPir": 6.785921170632371,
+      "expectedMinutes": 13.778571428571428,
+      "basePir": 6.785921170632371,
+      "baseMinutes": 13.778571428571428,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.812000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 89.89004999999999,
+        "margin": 9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0011018159559273,
+          "defenseFactor": 1.0086127431101353,
+          "defenseSample": 5,
+          "rival": "Joel Bolomboy",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.211383867805914,
+              "weight": 0.6802908209778795,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.833526724948772,
+              "weight": 0.30107846983706965,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.246883867805915,
+              "weight": 0.018630709185050828,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jaime Pradilla",
+      "team": "Real Madrid",
+      "pos": "F",
+      "opponent": "ASVEL",
+      "home": true,
+      "status": "active",
+      "price": 8.2,
+      "expectedPir": 8.771425064101377,
+      "expectedMinutes": 17.17879842948718,
+      "basePir": 8.771425064101377,
+      "baseMinutes": 17.17879842948718,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.393443853497025,
+        "baseMin": 19.236395288461537,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 1.330000000000009,
+        "teamPoints": 89.89004999999999,
+        "margin": 9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 44,
+          "historyWeight": 0.4653846153846154,
+          "sameTeam": false,
+          "avgPir": 9.295454545454545,
+          "avgMinutes": 19.507956818181817,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1.06,
+          "defenseFactor": 1.0078592121981194,
+          "defenseSample": 5,
+          "rival": "Jae Crowder",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.718418787804314,
+              "weight": 0.6802908209778795,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.0005389448556,
+              "weight": 0.30107846983706965,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.51590289774021,
+              "weight": 0.018630709185050828,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nick Smith Jr",
+      "team": "Real Madrid",
+      "pos": "G",
+      "opponent": "ASVEL",
+      "home": true,
+      "status": "active",
+      "price": 7.8,
+      "expectedPir": 6.546442111018089,
+      "expectedMinutes": 16.78,
+      "basePir": 6.546442111018089,
+      "baseMinutes": 16.78,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.2540000000000004,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.426,
+        "teamPoints": 89.89004999999999,
+        "margin": 9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0128538678202585,
+          "defenseSample": 5,
+          "rival": "Patty Mills",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.307093303395366,
+              "weight": 0.6802908209778795,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.629093303395367,
+              "weight": 0.30107846983706965,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.132493303395364,
+              "weight": 0.018630709185050828,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Gabriel Deck",
+      "team": "Real Madrid",
+      "pos": "F",
+      "opponent": "ASVEL",
+      "home": true,
+      "status": "out",
+      "price": 7.6,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 8.449354881448881,
+        "baseMin": 20.174144897959184,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 1.330000000000009,
+        "teamPoints": 89.89004999999999,
+        "margin": 9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 41,
+          "historyWeight": 0.8367346938775511,
+          "sameTeam": true,
+          "avgPir": 8.731707317073171,
+          "avgMinutes": 20.403246341463415,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": null
+      }
+    },
+    {
+      "name": "Max Shulga",
+      "team": "Real Madrid",
+      "pos": "G",
+      "opponent": "ASVEL",
+      "home": true,
+      "status": "active",
+      "price": 7.5,
+      "expectedPir": 7.332960574494851,
+      "expectedMinutes": 19,
+      "basePir": 7.332960574494851,
+      "baseMinutes": 19,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.9750000000000005,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.426,
+        "teamPoints": 89.89004999999999,
+        "margin": 9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Patty Mills",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.809434539956257,
+              "weight": 0.6802908209778795,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.24443453995626,
+              "weight": 0.30107846983706965,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.81443453995626,
+              "weight": 0.018630709185050828,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Andres Feliz",
+      "team": "Real Madrid",
+      "pos": "G",
+      "opponent": "ASVEL",
+      "home": true,
+      "status": "active",
+      "price": 7.2,
+      "expectedPir": 9.680028309380711,
+      "expectedMinutes": 18.036218844984802,
+      "basePir": 9.680028309380711,
+      "baseMinutes": 18.036218844984802,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.731127676977616,
+        "baseMin": 17.051765957446808,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.426,
+        "teamPoints": 89.89004999999999,
+        "margin": 9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 39,
+          "historyWeight": 0.8297872340425532,
+          "sameTeam": true,
+          "avgPir": 6.717948717948718,
+          "avgMinutes": 16.652128205128204,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0029913792835763,
+          "defenseFactor": 1.015802744623378,
+          "defenseSample": 5,
+          "rival": "Patty Mills",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.602772490501174,
+              "weight": 0.6802908209778795,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.799150606002698,
+              "weight": 0.30107846983706965,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.340237171352243,
+              "weight": 0.018630709185050828,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nathan Sestina",
+      "team": "ASVEL",
+      "pos": "F",
+      "opponent": "Real Madrid",
+      "home": false,
+      "status": "active",
+      "price": 7.1,
+      "expectedPir": 5.184744118446678,
+      "expectedMinutes": 17.236650095238094,
+      "basePir": 5.184744118446678,
+      "baseMinutes": 17.236650095238094,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.486032203710495,
+        "baseMin": 15.424125238095238,
+        "injuryBoost": 0.09900000000000003,
+        "injuryUsagePct": 0.10800000000000003,
+        "missingStars": [],
+        "positionMatchPct": -10.907999999999996,
+        "teamPoints": 80.80995,
+        "margin": -9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 13,
+          "historyWeight": 0.3404761904761905,
+          "sameTeam": false,
+          "avgPir": 1.5384615384615385,
+          "avgMinutes": 8.49743076923077,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1.0084214345444704,
+          "defenseFactor": 0.9959820216105514,
+          "defenseSample": 5,
+          "rival": "Mikael Jantunen",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.3893285192314,
+              "weight": 0.6802908209778795,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.60478664542188,
+              "weight": 0.018630709185050887,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.190284159707595,
+              "weight": 0.3010784698370696,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Yves Pons",
+      "team": "ASVEL",
+      "pos": "F",
+      "opponent": "Real Madrid",
+      "home": false,
+      "status": "active",
+      "price": 6.7,
+      "expectedPir": 4.667474214967843,
+      "expectedMinutes": 11.838999999999999,
+      "basePir": 4.667474214967843,
+      "baseMinutes": 11.838999999999999,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.231000000000001,
+        "baseMin": 14,
+        "injuryBoost": 0.09900000000000003,
+        "injuryUsagePct": 0.10800000000000003,
+        "missingStars": [],
+        "positionMatchPct": -10.907999999999996,
+        "teamPoints": 80.80995,
+        "margin": -9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1.0093618950950705,
+          "defenseFactor": 0.998301286253617,
+          "defenseSample": 5,
+          "rival": "Mikael Jantunen",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.08786411332128,
+              "weight": 0.6802908209778795,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 10.435920343466002,
+              "weight": 0.018630709185050887,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.363510659973825,
+              "weight": 0.3010784698370696,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Myles Cale",
+      "team": "ASVEL",
+      "pos": "G",
+      "opponent": "Real Madrid",
+      "home": false,
+      "status": "active",
+      "price": 6.3,
+      "expectedPir": 3.6348391717078483,
+      "expectedMinutes": 14.582586428571428,
+      "basePir": 3.6348391717078483,
+      "baseMinutes": 14.582586428571428,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.7503559819481875,
+        "baseMin": 14.522716071428572,
+        "injuryBoost": 0.03150000000000001,
+        "injuryUsagePct": 0.05400000000000001,
+        "missingStars": [],
+        "positionMatchPct": -2.685000000000004,
+        "teamPoints": 80.80995,
+        "margin": -9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.44523809523809527,
+          "sameTeam": false,
+          "avgPir": 3.235294117647059,
+          "avgMinutes": 15.174014705882355,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9954903187495945,
+          "defenseSample": 5,
+          "rival": "Theo Maledon",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.157120344099148,
+              "weight": 0.6802908209778795,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.427991022670577,
+              "weight": 0.018630709185050887,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.61537898695629,
+              "weight": 0.3010784698370696,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Mikael Jantunen",
+      "team": "Real Madrid",
+      "pos": "F",
+      "opponent": "ASVEL",
+      "home": true,
+      "status": "active",
+      "price": 6,
+      "expectedPir": 6.489784016047712,
+      "expectedMinutes": 18.47511892857143,
+      "basePir": 6.489784016047712,
+      "baseMinutes": 18.47511892857143,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.4443530759351155,
+        "baseMin": 16.06291625,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 1.330000000000009,
+        "teamPoints": 89.89004999999999,
+        "margin": 9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.45000000000000007,
+          "sameTeam": false,
+          "avgPir": 4.944444444444445,
+          "avgMinutes": 18.58425833333333,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9666361594142607,
+          "defenseFactor": 1.0100301335747883,
+          "defenseSample": 5,
+          "rival": "Jae Crowder",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.055459302032865,
+              "weight": 0.6802908209778795,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.207947409175727,
+              "weight": 0.30107846983706965,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.76220097703287,
+              "weight": 0.018630709185050828,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Juhann Begarin",
+      "team": "ASVEL",
+      "pos": "F",
+      "opponent": "Real Madrid",
+      "home": false,
+      "status": "active",
+      "price": 6,
+      "expectedPir": 4.614314541227904,
+      "expectedMinutes": 13.884029838709678,
+      "basePir": 4.614314541227904,
+      "baseMinutes": 13.884029838709678,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.81340330742572,
+        "baseMin": 13.785029838709677,
+        "injuryBoost": 0.09900000000000003,
+        "injuryUsagePct": 0.10800000000000003,
+        "missingStars": [],
+        "positionMatchPct": -10.907999999999996,
+        "teamPoints": 80.80995,
+        "margin": -9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 23,
+          "historyWeight": 0.4080645161290323,
+          "sameTeam": false,
+          "avgPir": 3.739130434782609,
+          "avgMinutes": 13.473195652173912,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Mikael Jantunen",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.357869355408438,
+              "weight": 0.6802908209778795,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.483525327182631,
+              "weight": 0.018630709185050887,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.900046222343923,
+              "weight": 0.3010784698370696,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Bodian Massa",
+      "team": "ASVEL",
+      "pos": "F",
+      "opponent": "Real Madrid",
+      "home": false,
+      "status": "active",
+      "price": 5.7,
+      "expectedPir": 4.181360482613715,
+      "expectedMinutes": 17.252068253968254,
+      "basePir": 4.181360482613715,
+      "baseMinutes": 17.252068253968254,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.6330737708766065,
+        "baseMin": 15.499204761904762,
+        "injuryBoost": 0.09900000000000003,
+        "injuryUsagePct": 0.10800000000000003,
+        "missingStars": [],
+        "positionMatchPct": -10.907999999999996,
+        "teamPoints": 80.80995,
+        "margin": -9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.8095238095238095,
+          "sameTeam": true,
+          "avgPir": 4.4411764705882355,
+          "avgMinutes": 15.851958823529412,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 0.9548072725593734,
+          "defenseFactor": 0.9965159022224049,
+          "defenseSample": 5,
+          "rival": "Mikael Jantunen",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.22794467160706,
+              "weight": 0.6802908209778795,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.86639106635075,
+              "weight": 0.018630709185050887,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.454201304445988,
+              "weight": 0.3010784698370696,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Usman Garuba",
+      "team": "Real Madrid",
+      "pos": "C",
+      "opponent": "ASVEL",
+      "home": true,
+      "status": "out",
+      "price": 5.6,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 6.2306631868472095,
+        "baseMin": 12.745145833333332,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 89.89004999999999,
+        "margin": 9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.8333333333333334,
+          "sameTeam": true,
+          "avgPir": 6.4,
+          "avgMinutes": 12.494175,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "David Lighty",
+      "team": "ASVEL",
+      "pos": "F",
+      "opponent": "Real Madrid",
+      "home": false,
+      "status": "active",
+      "price": 5.2,
+      "expectedPir": 5.91993159001336,
+      "expectedMinutes": 15.551548780487805,
+      "basePir": 5.91993159001336,
+      "baseMinutes": 15.551548780487805,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.209983135780542,
+        "baseMin": 17.677646341463415,
+        "injuryBoost": 0.09900000000000003,
+        "injuryUsagePct": 0.10800000000000003,
+        "missingStars": [],
+        "positionMatchPct": -10.907999999999996,
+        "teamPoints": 80.80995,
+        "margin": -9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 33,
+          "historyWeight": 0.8048780487804879,
+          "sameTeam": true,
+          "avgPir": 3.9393939393939394,
+          "avgMinutes": 18.56919696969697,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1.0075891426671977,
+          "defenseFactor": 0.9971416539320842,
+          "defenseSample": 5,
+          "rival": "Mikael Jantunen",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.57825895945347,
+              "weight": 0.6802908209778795,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.29791887738441,
+              "weight": 0.018630709185050887,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.63065119445758,
+              "weight": 0.3010784698370696,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Marc-owen Fodzo Dada",
+      "team": "ASVEL",
+      "pos": "G",
+      "opponent": "Real Madrid",
+      "home": false,
+      "status": "active",
+      "price": 4.6,
+      "expectedPir": 4.58708528164691,
+      "expectedMinutes": 16.2115,
+      "basePir": 4.58708528164691,
+      "baseMinutes": 16.2115,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.278,
+        "baseMin": 14,
+        "injuryBoost": 0.03150000000000001,
+        "injuryUsagePct": 0.05400000000000001,
+        "missingStars": [],
+        "positionMatchPct": -2.685000000000004,
+        "teamPoints": 80.80995,
+        "margin": -9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9948280222616257,
+          "defenseSample": 5,
+          "rival": "Theo Maledon",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.87440141525644,
+              "weight": 0.6802908209778795,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.638773903624525,
+              "weight": 0.018630709185050887,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.070498903624525,
+              "weight": 0.3010784698370696,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Alberto Abalde",
+      "team": "Real Madrid",
+      "pos": "F",
+      "opponent": "ASVEL",
+      "home": true,
+      "status": "active",
+      "price": 4.5,
+      "expectedPir": 4.038566881254029,
+      "expectedMinutes": 15.46304857142857,
+      "basePir": 4.038566881254029,
+      "baseMinutes": 15.46304857142857,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.8417186225464395,
+        "baseMin": 15.32067,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 1.330000000000009,
+        "teamPoints": 89.89004999999999,
+        "margin": 9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.84,
+          "sameTeam": true,
+          "avgPir": 3.761904761904762,
+          "avgMinutes": 15.57222619047619,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9924083001467198,
+          "defenseFactor": 1.0072716461742626,
+          "defenseSample": 5,
+          "rival": "Jae Crowder",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.948773800992173,
+              "weight": 0.6802908209778795,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.402468943849316,
+              "weight": 0.30107846983706965,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.866360400992173,
+              "weight": 0.018630709185050828,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Edwin Jackson",
+      "team": "ASVEL",
+      "pos": "F",
+      "opponent": "Real Madrid",
+      "home": false,
+      "status": "active",
+      "price": 4.1,
+      "expectedPir": 3.9806514423961477,
+      "expectedMinutes": 15.347851724137932,
+      "basePir": 3.9806514423961477,
+      "baseMinutes": 15.347851724137932,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.155244489349452,
+        "baseMin": 15.248851724137932,
+        "injuryBoost": 0.09900000000000003,
+        "injuryUsagePct": 0.10800000000000003,
+        "missingStars": [],
+        "positionMatchPct": -10.907999999999996,
+        "teamPoints": 80.80995,
+        "margin": -9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 21,
+          "historyWeight": 0.7241379310344828,
+          "sameTeam": true,
+          "avgPir": 4.285714285714286,
+          "avgMinutes": 15.724604761904763,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Mikael Jantunen",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.871649117820686,
+              "weight": 0.6802908209778795,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.799689135062067,
+              "weight": 0.018630709185050887,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.260124686786206,
+              "weight": 0.3010784698370696,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Gabriele Procida",
+      "team": "Real Madrid",
+      "pos": "F",
+      "opponent": "ASVEL",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 1.5441349290957367,
+      "expectedMinutes": 8.529166666666667,
+      "basePir": 1.5441349290957367,
+      "baseMinutes": 8.529166666666667,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.0940975877192987,
+        "baseMin": 9.49375,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 1.330000000000009,
+        "teamPoints": 89.89004999999999,
+        "margin": 9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 8,
+          "historyWeight": 0.5,
+          "sameTeam": true,
+          "avgPir": 0.875,
+          "avgMinutes": 4.9875,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Jae Crowder",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 8.797084821228227,
+              "weight": 0.6802908209778795,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 7.94416815456156,
+              "weight": 0.30107846983706965,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 8.200043154561559,
+              "weight": 0.018630709185050828,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Sergio Llull",
+      "team": "Real Madrid",
+      "pos": "G",
+      "opponent": "ASVEL",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 2.273729680132497,
+      "expectedMinutes": 11.213547916666666,
+      "basePir": 2.273729680132497,
+      "baseMinutes": 11.213547916666666,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.1627369133941747,
+        "baseMin": 11.213547916666666,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.426,
+        "teamPoints": 89.89004999999999,
+        "margin": 9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.8333333333333334,
+          "sameTeam": true,
+          "avgPir": 1.9,
+          "avgMinutes": 10.656257499999999,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Patty Mills",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.69126544294059,
+              "weight": 0.6802908209778795,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 10.177436474190591,
+              "weight": 0.30107846983706965,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.513842911690592,
+              "weight": 0.018630709185050828,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    }
+  ]
+}

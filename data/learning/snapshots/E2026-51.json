@@ -1,0 +1,2768 @@
+{
+  "schema": "learning-v1",
+  "season": "E2026",
+  "modelId": "b3fc6df40846537dcb24",
+  "gameCode": 51,
+  "round": 6,
+  "kickoff": "2026-10-15T18:30:00Z",
+  "created_at": "2026-10-15T07:05:27.969444+00:00",
+  "predictions": [
+    {
+      "name": "Mfiondu Kabengele",
+      "team": "Dubai",
+      "pos": "C",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 14.9,
+      "expectedPir": 17.108378976545655,
+      "expectedMinutes": 24.012144805194804,
+      "basePir": 17.108378976545655,
+      "baseMinutes": 24.012144805194804,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 16.912791407107203,
+        "baseMin": 23.112506818181817,
+        "injuryBoost": 0.48000000000000004,
+        "injuryUsagePct": 0.822857142857143,
+        "missingStars": [
+          "Dzanan Musa"
+        ],
+        "positionMatchPct": -4.452,
+        "teamPoints": 85.12780000000001,
+        "margin": -2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.8181818181818182,
+          "sameTeam": true,
+          "avgPir": 17.36111111111111,
+          "avgMinutes": 22.248619444444444,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 6,
+              "nextGameAvgPir": 12.666666666666666,
+              "continuedRate": 0.3333333333333333
+            },
+            {
+              "threshold": 25,
+              "longestRun": 3,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 13.5,
+              "continuedRate": 0.5
+            },
+            {
+              "threshold": 30,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": -3,
+              "continuedRate": 0
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9955579659270738,
+          "defenseFactor": 1.0187621208862243,
+          "defenseSample": 5,
+          "rival": "Moses Wright",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 24.20543793465402,
+              "weight": 0.8008870098154588,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.53745936475043,
+              "weight": 0.06915974187373262,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 24.137902722151708,
+              "weight": 0.12995324831080862,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Moses Wright",
+      "team": "Milano",
+      "pos": "C",
+      "opponent": "Dubai",
+      "home": true,
+      "status": "active",
+      "price": 14.6,
+      "expectedPir": 17.12348625387996,
+      "expectedMinutes": 24.663213971428576,
+      "basePir": 17.12348625387996,
+      "baseMinutes": 24.663213971428576,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 15.410846525567397,
+        "baseMin": 25.4462489,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 1.4920000000000044,
+        "teamPoints": 87.1722,
+        "margin": 2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.462,
+          "sameTeam": false,
+          "avgPir": 17.142857142857142,
+          "avgMinutes": 23.63690238095238,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 6,
+              "nextGameAvgPir": 15.5,
+              "continuedRate": 0.16666666666666666
+            },
+            {
+              "threshold": 25,
+              "longestRun": 3,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 15.666666666666666,
+              "continuedRate": 0.3333333333333333
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.003688437615755,
+          "defenseFactor": 1.000785444913533,
+          "defenseSample": 5,
+          "rival": "Mfiondu Kabengele",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 24.78181353814309,
+              "weight": 0.8008870098154588,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 23.04137728868773,
+              "weight": 0.12995324831080862,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 26.33728171175915,
+              "weight": 0.06915974187373261,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Dwayne Bacon",
+      "team": "Dubai",
+      "pos": "F",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 13.6,
+      "expectedPir": 16.776894306521687,
+      "expectedMinutes": 28.173112741312742,
+      "basePir": 16.776894306521687,
+      "baseMinutes": 28.173112741312742,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 13.735531475007727,
+        "baseMin": 28.000894594594598,
+        "injuryBoost": 0.48000000000000004,
+        "injuryUsagePct": 0.822857142857143,
+        "missingStars": [
+          "Dzanan Musa"
+        ],
+        "positionMatchPct": -3.7699999999999956,
+        "teamPoints": 85.12780000000001,
+        "margin": -2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 29,
+          "historyWeight": 0.7837837837837838,
+          "sameTeam": true,
+          "avgPir": 13.931034482758621,
+          "avgMinutes": 29.38045172413793,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 4,
+              "nextGameAvgPir": 5,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0026688110161392,
+          "defenseFactor": 1.023755106122897,
+          "defenseSample": 5,
+          "rival": "Alec Peters",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 28.228132621980464,
+              "weight": 0.8008870098154588,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 25.748466106703333,
+              "weight": 0.06915974187373262,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 29.12440275740035,
+              "weight": 0.12995324831080862,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Dzanan Musa",
+      "team": "Dubai",
+      "pos": "G",
+      "opponent": "Milano",
+      "home": false,
+      "status": "out",
+      "price": 12.8,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 14.417519064613721,
+        "baseMin": 25.55193076923077,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.66,
+        "teamPoints": 85.12780000000001,
+        "margin": -2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 18,
+          "historyWeight": 0.6923076923076923,
+          "sameTeam": true,
+          "avgPir": 15.61111111111111,
+          "avgMinutes": 26.686122222222224,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 14,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Mckinley Wright",
+      "team": "Dubai",
+      "pos": "G",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 12.4,
+      "expectedPir": 12.846187375148464,
+      "expectedMinutes": 24.39542857142857,
+      "basePir": 12.846187375148464,
+      "baseMinutes": 24.39542857142857,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.532000000000002,
+        "baseMin": 23,
+        "injuryBoost": 1.395428571428572,
+        "injuryUsagePct": 1.5222857142857147,
+        "missingStars": [
+          "Dzanan Musa"
+        ],
+        "positionMatchPct": 8.66,
+        "teamPoints": 85.12780000000001,
+        "margin": -2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Devon Hall",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 24.956075924333046,
+              "weight": 0.8008870098154588,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.66269306719019,
+              "weight": 0.06915974187373262,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.394555924333048,
+              "weight": 0.12995324831080862,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Elie Okobo",
+      "team": "Dubai",
+      "pos": "G",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 12.1,
+      "expectedPir": 13.617779190658958,
+      "expectedMinutes": 27.99913694285714,
+      "basePir": 13.617779190658958,
+      "baseMinutes": 27.99913694285714,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.49635185131159,
+        "baseMin": 24.1859793,
+        "injuryBoost": 1.3388571428571432,
+        "injuryUsagePct": 1.4605714285714286,
+        "missingStars": [
+          "Dzanan Musa"
+        ],
+        "positionMatchPct": 8.66,
+        "teamPoints": 85.12780000000001,
+        "margin": -2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.462,
+          "sameTeam": false,
+          "avgPir": 11.738095238095237,
+          "avgMinutes": 25.56705476190476,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 11,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 11,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0010445570628437,
+          "defenseFactor": 1.023269551030543,
+          "defenseSample": 5,
+          "rival": "Devon Hall",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 28.35300300615813,
+              "weight": 0.8008870098154588,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 24.629067161407423,
+              "weight": 0.06915974187373262,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 27.61181628881406,
+              "weight": 0.12995324831080862,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Filip Petrusev",
+      "team": "Dubai",
+      "pos": "F",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 12,
+      "expectedPir": 11.282923353585094,
+      "expectedMinutes": 17.76350507246377,
+      "basePir": 11.282923353585094,
+      "baseMinutes": 17.76350507246377,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 14.624467359269527,
+        "baseMin": 23.410515217391303,
+        "injuryBoost": 0.42000000000000004,
+        "injuryUsagePct": 0.7200000000000001,
+        "missingStars": [
+          "Dzanan Musa"
+        ],
+        "positionMatchPct": -3.7699999999999956,
+        "teamPoints": 85.12780000000001,
+        "margin": -2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 15.368421052631579,
+          "avgMinutes": 23.49693947368421,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 4,
+              "nextGameSamples": 4,
+              "nextGameAvgPir": 20.25,
+              "continuedRate": 0.5
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0153687439381858,
+          "defenseSample": 5,
+          "rival": "Alec Peters",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.76959521098708,
+              "weight": 0.8008870098154588,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.39120255051803,
+              "weight": 0.06915974187373262,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.924107702691945,
+              "weight": 0.12995324831080862,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tornike Shengelia",
+      "team": "Dubai",
+      "pos": "F",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 11.8,
+      "expectedPir": 6.847003645116981,
+      "expectedMinutes": 17.52016023809524,
+      "basePir": 6.847003645116981,
+      "baseMinutes": 17.52016023809524,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.857131150327271,
+        "baseMin": 23.867560833333336,
+        "injuryBoost": 0.40800000000000003,
+        "injuryUsagePct": 0.6994285714285715,
+        "missingStars": [
+          "Dzanan Musa"
+        ],
+        "positionMatchPct": -3.7699999999999956,
+        "teamPoints": 85.12780000000001,
+        "margin": -2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.44523809523809527,
+          "sameTeam": false,
+          "avgPir": 15.352941176470589,
+          "avgMinutes": 24.948532352941175,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 16,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9795805294757626,
+          "defenseFactor": 1.0158110890498482,
+          "defenseSample": 5,
+          "rival": "Alec Peters",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.436806908633887,
+              "weight": 0.8008870098154588,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.140221837115817,
+              "weight": 0.06915974187373262,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.768245872830104,
+              "weight": 0.12995324831080862,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Alec Peters",
+      "team": "Milano",
+      "pos": "F",
+      "opponent": "Dubai",
+      "home": true,
+      "status": "active",
+      "price": 11.2,
+      "expectedPir": 10.47774280847009,
+      "expectedMinutes": 22.700163193277312,
+      "basePir": 10.47774280847009,
+      "baseMinutes": 22.700163193277312,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.72845274956227,
+        "baseMin": 19.375571176470586,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 3.845999999999994,
+        "teamPoints": 87.1722,
+        "margin": 2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 43,
+          "historyWeight": 0.46372549019607845,
+          "sameTeam": false,
+          "avgPir": 8.488372093023257,
+          "avgMinutes": 15.184106976744186,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9867231927619423,
+          "defenseFactor": 0.9942312280188135,
+          "defenseSample": 5,
+          "rival": "Dwayne Bacon",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.69852821772707,
+              "weight": 0.8008870098154588,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.494944023999164,
+              "weight": 0.12995324831080862,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 24.98373991544098,
+              "weight": 0.06915974187373261,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Mamadi Diakite",
+      "team": "Dubai",
+      "pos": "C",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 10,
+      "expectedPir": 9.838625148277314,
+      "expectedMinutes": 17.926170126984125,
+      "basePir": 9.838625148277314,
+      "baseMinutes": 17.926170126984125,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.789615354378645,
+        "baseMin": 21.31659544444444,
+        "injuryBoost": 0.30000000000000004,
+        "injuryUsagePct": 0.5142857142857143,
+        "missingStars": [
+          "Dzanan Musa"
+        ],
+        "positionMatchPct": -4.452,
+        "teamPoints": 85.12780000000001,
+        "margin": -2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.45222222222222225,
+          "sameTeam": false,
+          "avgPir": 10.135135135135135,
+          "avgMinutes": 19.277483783783783,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0191738235442995,
+          "defenseFactor": 1.0143931684448293,
+          "defenseSample": 5,
+          "rival": "Moses Wright",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.11212034884742,
+              "weight": 0.8008870098154588,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.968009804247359,
+              "weight": 0.06915974187373262,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.82229234885834,
+              "weight": 0.12995324831080862,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Devin Booker",
+      "team": "Milano",
+      "pos": "C",
+      "opponent": "Dubai",
+      "home": true,
+      "status": "active",
+      "price": 9.2,
+      "expectedPir": 8.361114749006036,
+      "expectedMinutes": 16.215366233766233,
+      "basePir": 8.361114749006036,
+      "baseMinutes": 16.215366233766233,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.39229650750812,
+        "baseMin": 19.778781818181816,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 1.4920000000000044,
+        "teamPoints": 87.1722,
+        "margin": 2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.8181818181818182,
+          "sameTeam": true,
+          "avgPir": 9.583333333333334,
+          "avgMinutes": 19.951844444444443,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 13,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 13,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.006336109181163,
+          "defenseFactor": 0.9997181122463781,
+          "defenseSample": 5,
+          "rival": "Mfiondu Kabengele",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.660199199172833,
+              "weight": 0.8008870098154588,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.197006111566123,
+              "weight": 0.12995324831080862,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.856649632965501,
+              "weight": 0.06915974187373261,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Devon Hall",
+      "team": "Milano",
+      "pos": "G",
+      "opponent": "Dubai",
+      "home": true,
+      "status": "active",
+      "price": 9.2,
+      "expectedPir": 12.158832981077213,
+      "expectedMinutes": 25.864007275747507,
+      "basePir": 12.158832981077213,
+      "baseMinutes": 25.864007275747507,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.679124764853546,
+        "baseMin": 21.79902546511628,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.10900000000000354,
+        "teamPoints": 87.1722,
+        "margin": 2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 35,
+          "historyWeight": 0.4476744186046512,
+          "sameTeam": false,
+          "avgPir": 8.428571428571429,
+          "avgMinutes": 25.252368571428573,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0036719640612144,
+          "defenseFactor": 0.9898980399454276,
+          "defenseSample": 5,
+          "rival": "Elie Okobo",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 26.27612981939835,
+              "weight": 0.8008870098154588,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 23.416457004278183,
+              "weight": 0.12995324831080862,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 25.690546774658173,
+              "weight": 0.06915974187373261,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Marko Guduric",
+      "team": "Milano",
+      "pos": "G",
+      "opponent": "Dubai",
+      "home": true,
+      "status": "active",
+      "price": 9.1,
+      "expectedPir": 9.380671194575209,
+      "expectedMinutes": 22.978139534883724,
+      "basePir": 9.380671194575209,
+      "baseMinutes": 22.978139534883724,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.616587113257866,
+        "baseMin": 21.474418604651163,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.10900000000000354,
+        "teamPoints": 87.1722,
+        "margin": 2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 35,
+          "historyWeight": 0.813953488372093,
+          "sameTeam": true,
+          "avgPir": 11.142857142857142,
+          "avgMinutes": 22.04,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 5,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9837411646071524,
+          "defenseSample": 5,
+          "rival": "Elie Okobo",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.30643207112923,
+              "weight": 0.8008870098154588,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.897968970602893,
+              "weight": 0.12995324831080862,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 23.085133777053304,
+              "weight": 0.06915974187373261,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jason Burnell",
+      "team": "Milano",
+      "pos": "F",
+      "opponent": "Dubai",
+      "home": true,
+      "status": "active",
+      "price": 8.4,
+      "expectedPir": 6.30953103605905,
+      "expectedMinutes": 16.442857142857143,
+      "basePir": 6.30953103605905,
+      "baseMinutes": 16.442857142857143,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.812000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 3.845999999999994,
+        "teamPoints": 87.1722,
+        "margin": 2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9817234890909905,
+          "defenseFactor": 0.9917548072403028,
+          "defenseSample": 5,
+          "rival": "Dwayne Bacon",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.873675846948117,
+              "weight": 0.8008870098154588,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.44874540719764,
+              "weight": 0.12995324831080862,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.200865720952194,
+              "weight": 0.06915974187373261,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jaron Blossomgame",
+      "team": "Dubai",
+      "pos": "F",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 8.3,
+      "expectedPir": 5.9951552105064465,
+      "expectedMinutes": 17.665629103641457,
+      "basePir": 5.9951552105064465,
+      "baseMinutes": 17.665629103641457,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.980287095172354,
+        "baseMin": 21.1867018627451,
+        "injuryBoost": 0.19800000000000006,
+        "injuryUsagePct": 0.3394285714285716,
+        "missingStars": [
+          "Dzanan Musa"
+        ],
+        "positionMatchPct": -3.7699999999999956,
+        "teamPoints": 85.12780000000001,
+        "margin": -2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 43,
+          "historyWeight": 0.46372549019607845,
+          "sameTeam": false,
+          "avgPir": 10.534883720930232,
+          "avgMinutes": 23.715509302325582,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0071520551060194,
+          "defenseFactor": 1.0136536420859428,
+          "defenseSample": 5,
+          "rival": "Alec Peters",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.76672179386214,
+              "weight": 0.8008870098154588,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.889633571066453,
+              "weight": 0.06915974187373262,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.987772418725225,
+              "weight": 0.12995324831080862,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Leandro Bolmaro",
+      "team": "Milano",
+      "pos": "G",
+      "opponent": "Dubai",
+      "home": true,
+      "status": "active",
+      "price": 8.1,
+      "expectedPir": 8.357237624442213,
+      "expectedMinutes": 22.91396447876448,
+      "basePir": 8.357237624442213,
+      "baseMinutes": 22.91396447876448,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.93435574474039,
+        "baseMin": 21.823875675675673,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.10900000000000354,
+        "teamPoints": 87.1722,
+        "margin": 2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 29,
+          "historyWeight": 0.7837837837837838,
+          "sameTeam": true,
+          "avgPir": 10.655172413793103,
+          "avgMinutes": 22.602875862068963,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.036526628206485,
+          "defenseFactor": 0.9948052256593212,
+          "defenseSample": 5,
+          "rival": "Elie Okobo",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.19843026357915,
+              "weight": 0.8008870098154588,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.95488029350138,
+              "weight": 0.12995324831080862,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 23.3009584302906,
+              "weight": 0.06915974187373261,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Garrison Mathews",
+      "team": "Milano",
+      "pos": "G",
+      "opponent": "Dubai",
+      "home": true,
+      "status": "active",
+      "price": 8.1,
+      "expectedPir": 6.103610851998507,
+      "expectedMinutes": 18.053333333333335,
+      "basePir": 6.103610851998507,
+      "baseMinutes": 18.053333333333335,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.5329999999999995,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.10900000000000354,
+        "teamPoints": 87.1722,
+        "margin": 2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9823191465163352,
+          "defenseSample": 5,
+          "rival": "Elie Okobo",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.248060520102875,
+              "weight": 0.8008870098154588,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.579624501145528,
+              "weight": 0.12995324831080862,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.567487586980178,
+              "weight": 0.06915974187373261,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Rj Cole",
+      "team": "Milano",
+      "pos": "G",
+      "opponent": "Dubai",
+      "home": true,
+      "status": "active",
+      "price": 7.8,
+      "expectedPir": 5.6802693056444715,
+      "expectedMinutes": 16.57857142857143,
+      "basePir": 5.6802693056444715,
+      "baseMinutes": 16.57857142857143,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.2540000000000004,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.10900000000000354,
+        "teamPoints": 87.1722,
+        "margin": 2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.982147395281473,
+          "defenseFactor": 0.992560198181009,
+          "defenseSample": 5,
+          "rival": "Elie Okobo",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.865529562709863,
+              "weight": 0.8008870098154588,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.950568266532198,
+              "weight": 0.12995324831080862,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.314592091308743,
+              "weight": 0.06915974187373261,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Darius Thompson",
+      "team": "Milano",
+      "pos": "G",
+      "opponent": "Dubai",
+      "home": true,
+      "status": "active",
+      "price": 7.5,
+      "expectedPir": 4.950731677066894,
+      "expectedMinutes": 17.242073873626374,
+      "basePir": 4.950731677066894,
+      "baseMinutes": 17.242073873626374,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.336464164759054,
+        "baseMin": 18.92225855769231,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.10900000000000354,
+        "teamPoints": 87.1722,
+        "margin": 2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 44,
+          "historyWeight": 0.4653846153846154,
+          "sameTeam": false,
+          "avgPir": 9.886363636363637,
+          "avgMinutes": 18.832952272727272,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 17,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9869935873408027,
+          "defenseFactor": 0.9933454548103849,
+          "defenseSample": 5,
+          "rival": "Elie Okobo",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.347857675566214,
+              "weight": 0.8008870098154588,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.048893512007567,
+              "weight": 0.12995324831080862,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.259093155146193,
+              "weight": 0.06915974187373261,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Thomas Walkup",
+      "team": "Dubai",
+      "pos": "G",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 7.1,
+      "expectedPir": 4.115413073746287,
+      "expectedMinutes": 15.562539682539683,
+      "basePir": 4.115413073746287,
+      "baseMinutes": 15.562539682539683,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.869673796402575,
+        "baseMin": 21.270888888888887,
+        "injuryBoost": 0.5280000000000001,
+        "injuryUsagePct": 0.5760000000000001,
+        "missingStars": [
+          "Dzanan Musa"
+        ],
+        "positionMatchPct": 8.66,
+        "teamPoints": 85.12780000000001,
+        "margin": -2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.45222222222222225,
+          "sameTeam": false,
+          "avgPir": 9.54054054054054,
+          "avgMinutes": 24.02162162162162,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9921997931933642,
+          "defenseFactor": 1.0122488212193712,
+          "defenseSample": 5,
+          "rival": "Devon Hall",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.505618708294364,
+              "weight": 0.8008870098154588,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.483667568146732,
+              "weight": 0.06915974187373262,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.487501446618204,
+              "weight": 0.12995324831080862,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Mam Jaiteh",
+      "team": "Dubai",
+      "pos": "C",
+      "opponent": "Milano",
+      "home": false,
+      "status": "out",
+      "price": 6.3,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form",
+      "features": {
+        "basePir": 5.859,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.452,
+        "teamPoints": 85.12780000000001,
+        "margin": -2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Justin Anderson",
+      "team": "Dubai",
+      "pos": "F",
+      "opponent": "Milano",
+      "home": false,
+      "status": "out",
+      "price": 6,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 6.3782089077501825,
+        "baseMin": 21.631307317073173,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.7699999999999956,
+        "teamPoints": 85.12780000000001,
+        "margin": -2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 33,
+          "historyWeight": 0.8048780487804879,
+          "sameTeam": true,
+          "avgPir": 6.333333333333333,
+          "avgMinutes": 23.481321212121212,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Davion Mintz",
+      "team": "Dubai",
+      "pos": "G",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 5.8,
+      "expectedPir": 4.061895007059406,
+      "expectedMinutes": 15.388,
+      "basePir": 4.061895007059406,
+      "baseMinutes": 15.388,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.394,
+        "baseMin": 14,
+        "injuryBoost": 0.5280000000000001,
+        "injuryUsagePct": 0.5760000000000001,
+        "missingStars": [
+          "Dzanan Musa"
+        ],
+        "positionMatchPct": 8.66,
+        "teamPoints": 85.12780000000001,
+        "margin": -2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0153055682998608,
+          "defenseSample": 5,
+          "rival": "Devon Hall",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.348414945551887,
+              "weight": 0.8008870098154588,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.045064698306627,
+              "weight": 0.06915974187373262,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.814464698306626,
+              "weight": 0.12995324831080862,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kenan Kamenjas",
+      "team": "Dubai",
+      "pos": "C",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 5.4,
+      "expectedPir": 5.7427510572428115,
+      "expectedMinutes": 11.726799999999999,
+      "basePir": 5.7427510572428115,
+      "baseMinutes": 11.726799999999999,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.710379930838001,
+        "baseMin": 11.5588,
+        "injuryBoost": 0.168,
+        "injuryUsagePct": 0.28800000000000003,
+        "missingStars": [
+          "Dzanan Musa"
+        ],
+        "positionMatchPct": -4.452,
+        "teamPoints": 85.12780000000001,
+        "margin": -2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 28,
+          "historyWeight": 0.7777777777777778,
+          "sameTeam": true,
+          "avgPir": 5.785714285714286,
+          "avgMinutes": 10.861314285714286,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Moses Wright",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.996301286226233,
+              "weight": 0.8008870098154588,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 10.413183286226234,
+              "weight": 0.06915974187373262,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.764987286226233,
+              "weight": 0.12995324831080862,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Davis Bertans",
+      "team": "Dubai",
+      "pos": "F",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 4.6,
+      "expectedPir": 3.296686907384085,
+      "expectedMinutes": 14.254956756756755,
+      "basePir": 3.296686907384085,
+      "baseMinutes": 14.254956756756755,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.2568433725554256,
+        "baseMin": 17.63739189189189,
+        "injuryBoost": 0.168,
+        "injuryUsagePct": 0.28800000000000003,
+        "missingStars": [
+          "Dzanan Musa"
+        ],
+        "positionMatchPct": -3.7699999999999956,
+        "teamPoints": 85.12780000000001,
+        "margin": -2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 29,
+          "historyWeight": 0.7837837837837838,
+          "sameTeam": true,
+          "avgPir": 5.517241379310345,
+          "avgMinutes": 18.640810344827585,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0063180253583721,
+          "defenseSample": 5,
+          "rival": "Alec Peters",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.697366228267015,
+              "weight": 0.8008870098154588,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.196355073239712,
+              "weight": 0.06915974187373262,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.624003775942414,
+              "weight": 0.12995324831080862,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Giampaolo Ricci",
+      "team": "Milano",
+      "pos": "F",
+      "opponent": "Dubai",
+      "home": true,
+      "status": "active",
+      "price": 4.1,
+      "expectedPir": 4.018467371763226,
+      "expectedMinutes": 11.072554782608695,
+      "basePir": 4.018467371763226,
+      "baseMinutes": 11.072554782608695,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.316364913967931,
+        "baseMin": 15.99638695652174,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 3.845999999999994,
+        "teamPoints": 87.1722,
+        "margin": 2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 4.421052631578948,
+          "avgMinutes": 16.41667894736842,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.99469784143306,
+          "defenseSample": 5,
+          "rival": "Dwayne Bacon",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.320936651866203,
+              "weight": 0.8008870098154588,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 9.840233483260574,
+              "weight": 0.12995324831080862,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.511799989452557,
+              "weight": 0.06915974187373261,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Stefano Tonut",
+      "team": "Milano",
+      "pos": "G",
+      "opponent": "Dubai",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 2.3202653184582123,
+      "expectedMinutes": 11.205549999999999,
+      "basePir": 2.3202653184582123,
+      "baseMinutes": 11.205549999999999,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.2949427746120716,
+        "baseMin": 11.205549999999999,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.10900000000000354,
+        "teamPoints": 87.1722,
+        "margin": 2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 10,
+          "historyWeight": 0.5555555555555556,
+          "sameTeam": true,
+          "avgPir": 1.4,
+          "avgMinutes": 8.96999,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Elie Okobo",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.483508838200322,
+              "weight": 0.8008870098154588,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 9.970759588200323,
+              "weight": 0.12995324831080862,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.306926088200324,
+              "weight": 0.06915974187373261,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Ousmane Diop",
+      "team": "Milano",
+      "pos": "C",
+      "opponent": "Dubai",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.782129783938734,
+      "expectedMinutes": 14,
+      "basePir": 3.782129783938734,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 1.4920000000000044,
+        "teamPoints": 87.1722,
+        "margin": 2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": true,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Mfiondu Kabengele",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.347276459861813,
+              "weight": 0.8008870098154588,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.457276459861815,
+              "weight": 0.12995324831080862,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.877276459861816,
+              "weight": 0.06915974187373261,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Diego Flaccadori",
+      "team": "Milano",
+      "pos": "G",
+      "opponent": "Dubai",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 2.1648277912751457,
+      "expectedMinutes": 10.219993333333333,
+      "basePir": 2.1648277912751457,
+      "baseMinutes": 10.219993333333333,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.141201636874693,
+        "baseMin": 10.219993333333333,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.10900000000000354,
+        "teamPoints": 87.1722,
+        "margin": 2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 7,
+          "historyWeight": 0.4666666666666667,
+          "sameTeam": true,
+          "avgPir": 0.8571428571428571,
+          "avgMinutes": 5.899985714285714,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Elie Okobo",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 10.424028136600793,
+              "weight": 0.8008870098154588,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 9.044329036600793,
+              "weight": 0.12995324831080862,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.066328369934126,
+              "weight": 0.06915974187373261,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nicola Akele",
+      "team": "Milano",
+      "pos": "F",
+      "opponent": "Dubai",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.63804368009086,
+      "expectedMinutes": 12.260430142857142,
+      "basePir": 3.63804368009086,
+      "baseMinutes": 12.260430142857142,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.5491909497962433,
+        "baseMin": 12.260430142857142,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 3.845999999999994,
+        "teamPoints": 87.1722,
+        "margin": 2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 27,
+          "historyWeight": 0.4242857142857143,
+          "sameTeam": false,
+          "avgPir": 3.185185185185185,
+          "avgMinutes": 9.900003703703703,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Dwayne Bacon",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.564555769742466,
+              "weight": 0.8008870098154588,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 10.909397700456752,
+              "weight": 0.12995324831080862,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.277210604742468,
+              "weight": 0.06915974187373261,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Klemen Prepelic",
+      "team": "Dubai",
+      "pos": "G",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.6967300796375056,
+      "expectedMinutes": 14.10229142857143,
+      "basePir": 3.6967300796375056,
+      "baseMinutes": 14.10229142857143,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.419977509515925,
+        "baseMin": 13.57429142857143,
+        "injuryBoost": 0.5280000000000001,
+        "injuryUsagePct": 0.5760000000000001,
+        "missingStars": [
+          "Dzanan Musa"
+        ],
+        "positionMatchPct": 8.66,
+        "teamPoints": 85.12780000000001,
+        "margin": -2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 27,
+          "historyWeight": 0.7714285714285715,
+          "sameTeam": true,
+          "avgPir": 3.3333333333333335,
+          "avgMinutes": 13.448155555555557,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Devon Hall",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.426385442175926,
+              "weight": 0.8008870098154588,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.522576099318785,
+              "weight": 0.06915974187373262,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.945644842175929,
+              "weight": 0.12995324831080862,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nemanja Dangubic",
+      "team": "Dubai",
+      "pos": "F",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 0.9373488733784002,
+      "expectedMinutes": 9.823604545454543,
+      "basePir": 0.9373488733784002,
+      "baseMinutes": 9.823604545454543,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 1.4362480776093207,
+        "baseMin": 9.97120909090909,
+        "injuryBoost": 0.168,
+        "injuryUsagePct": 0.28800000000000003,
+        "missingStars": [
+          "Dzanan Musa"
+        ],
+        "positionMatchPct": -3.7699999999999956,
+        "teamPoints": 85.12780000000001,
+        "margin": -2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 14,
+          "historyWeight": 0.6363636363636364,
+          "sameTeam": true,
+          "avgPir": 0.5714285714285714,
+          "avgMinutes": 7.669042857142856,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Alec Peters",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 10.053175170729796,
+              "weight": 0.8008870098154588,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 8.579634488911616,
+              "weight": 0.06915974187373262,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 9.070814716184342,
+              "weight": 0.12995324831080862,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kosta Kondic",
+      "team": "Dubai",
+      "pos": "G",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.566410155267902,
+      "expectedMinutes": 12.10558888888889,
+      "basePir": 3.566410155267902,
+      "baseMinutes": 12.10558888888889,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.7666645367043086,
+        "baseMin": 12.501383333333333,
+        "injuryBoost": 0.5280000000000001,
+        "injuryUsagePct": 0.5760000000000001,
+        "missingStars": [
+          "Dzanan Musa"
+        ],
+        "positionMatchPct": 8.66,
+        "teamPoints": 85.12780000000001,
+        "margin": -2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 16,
+          "historyWeight": 0.6666666666666666,
+          "sameTeam": true,
+          "avgPir": 3.75,
+          "avgMinutes": 11.752075,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.003610300204784,
+          "defenseSample": 5,
+          "rival": "Devon Hall",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.021141530509524,
+              "weight": 0.8008870098154588,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.260132762050235,
+              "weight": 0.06915974187373262,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.075971095383569,
+              "weight": 0.12995324831080862,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    }
+  ]
+}

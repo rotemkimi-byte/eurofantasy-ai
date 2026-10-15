@@ -1,0 +1,2587 @@
+{
+  "schema": "learning-v1",
+  "season": "E2026",
+  "modelId": "b3fc6df40846537dcb24",
+  "gameCode": 54,
+  "round": 6,
+  "kickoff": "2026-10-15T17:45:00Z",
+  "created_at": "2026-10-15T07:05:27.988434+00:00",
+  "predictions": [
+    {
+      "name": "Carlik Jones",
+      "team": "Partizan",
+      "pos": "G",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 14.6,
+      "expectedPir": 16.588305480308417,
+      "expectedMinutes": 26.584770186335405,
+      "basePir": 16.588305480308417,
+      "baseMinutes": 26.584770186335405,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 15.61328390475009,
+        "baseMin": 27.694195652173914,
+        "injuryBoost": 0.015000000000000036,
+        "injuryUsagePct": 0.025714285714285776,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 78.7316,
+        "margin": -6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 15,
+          "historyWeight": 0.6521739130434783,
+          "sameTeam": true,
+          "avgPir": 16.733333333333334,
+          "avgMinutes": 28.064433333333334,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 17,
+              "continuedRate": 0.3333333333333333
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9924574395019587,
+          "defenseFactor": 0.9956824851860051,
+          "defenseSample": 5,
+          "rival": "Talen Horton-Tucker",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 26.64788366341128,
+              "weight": 0.7356543588508571,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 26.494406842894147,
+              "weight": 0.029832674996604188,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 26.39828188688604,
+              "weight": 0.2345129661525388,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Wade Baldwin",
+      "team": "Fenerbahce",
+      "pos": "G",
+      "opponent": "Partizan",
+      "home": true,
+      "status": "active",
+      "price": 14.4,
+      "expectedPir": 13.543373707964053,
+      "expectedMinutes": 27,
+      "basePir": 13.543373707964053,
+      "baseMinutes": 27,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 13.392000000000001,
+        "baseMin": 27,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 1.7409999999999926,
+        "teamPoints": 85.43839999999999,
+        "margin": 6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Carlik Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 27.939375395241377,
+              "weight": 0.7356543588508571,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 24.29437539524138,
+              "weight": 0.23451296615253872,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 25.104375395241384,
+              "weight": 0.029832674996604202,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Shane Larkin",
+      "team": "Fenerbahce",
+      "pos": "G",
+      "opponent": "Partizan",
+      "home": true,
+      "status": "active",
+      "price": 12.9,
+      "expectedPir": 11.490402787681298,
+      "expectedMinutes": 22.0279185,
+      "basePir": 11.490402787681298,
+      "baseMinutes": 22.0279185,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 13.055648123751022,
+        "baseMin": 25.426877749999996,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 1.7409999999999926,
+        "teamPoints": 85.43839999999999,
+        "margin": 6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 12,
+          "historyWeight": 0.33,
+          "sameTeam": false,
+          "avgPir": 15.083333333333334,
+          "avgMinutes": 30.354174999999998,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Carlik Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.277723569709575,
+              "weight": 0.7356543588508571,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.506746422209577,
+              "weight": 0.23451296615253872,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.964792127209577,
+              "weight": 0.029832674996604202,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Talen Horton-Tucker",
+      "team": "Fenerbahce",
+      "pos": "G",
+      "opponent": "Partizan",
+      "home": true,
+      "status": "active",
+      "price": 12.6,
+      "expectedPir": 13.403150624647258,
+      "expectedMinutes": 21.471427988338192,
+      "basePir": 13.403150624647258,
+      "baseMinutes": 21.471427988338192,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 14.06493788267666,
+        "baseMin": 23.699997959183673,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 1.7409999999999926,
+        "teamPoints": 85.43839999999999,
+        "margin": 6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 41,
+          "historyWeight": 0.8367346938775511,
+          "sameTeam": true,
+          "avgPir": 14.536585365853659,
+          "avgMinutes": 23.83658292682927,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 5,
+              "nextGameAvgPir": 16.8,
+              "continuedRate": 0.4
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 12,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0032289116552295,
+          "defenseFactor": 1.0010276923098214,
+          "defenseSample": 5,
+          "rival": "Carlik Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.634737977307715,
+              "weight": 0.7356543588508571,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.969111291260912,
+              "weight": 0.23451296615253872,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.39299296197728,
+              "weight": 0.029832674996604202,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Shavon Shields",
+      "team": "Fenerbahce",
+      "pos": "F",
+      "opponent": "Partizan",
+      "home": true,
+      "status": "active",
+      "price": 11.9,
+      "expectedPir": 10.786272850296804,
+      "expectedMinutes": 22.698472126245846,
+      "basePir": 10.786272850296804,
+      "baseMinutes": 22.698472126245846,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.84791439338879,
+        "baseMin": 24.744652441860467,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.760999999999993,
+        "teamPoints": 85.43839999999999,
+        "margin": 6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 35,
+          "historyWeight": 0.4476744186046512,
+          "sameTeam": false,
+          "avgPir": 12.8,
+          "avgMinutes": 26.897145714285713,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0066182318281478,
+          "defenseFactor": 1.0006669594597537,
+          "defenseSample": 5,
+          "rival": "Lamar Stevens",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.820711753732738,
+              "weight": 0.7356543588508571,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.143926979358294,
+              "weight": 0.23451296615253872,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 24.043370378971233,
+              "weight": 0.029832674996604202,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Will Clyburn",
+      "team": "Fenerbahce",
+      "pos": "F",
+      "opponent": "Partizan",
+      "home": true,
+      "status": "active",
+      "price": 11.4,
+      "expectedPir": 9.54760364828148,
+      "expectedMinutes": 21.631330104529617,
+      "basePir": 9.54760364828148,
+      "baseMinutes": 21.631330104529617,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.342701634612814,
+        "baseMin": 24.13465536585366,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.760999999999993,
+        "teamPoints": 85.43839999999999,
+        "margin": 6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 33,
+          "historyWeight": 0.44268292682926835,
+          "sameTeam": false,
+          "avgPir": 14.696969696969697,
+          "avgMinutes": 25.563133333333333,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 5,
+              "nextGameAvgPir": 18.6,
+              "continuedRate": 0.4
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 17,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 12,
+              "continuedRate": 0
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9964649353295641,
+          "defenseFactor": 1.0035034121339914,
+          "defenseSample": 5,
+          "rival": "Lamar Stevens",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.74886584416582,
+              "weight": 0.7356543588508571,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.292076851651522,
+              "weight": 0.23451296615253872,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.399825803437682,
+              "weight": 0.029832674996604202,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Marcus Bingham",
+      "team": "Fenerbahce",
+      "pos": "C",
+      "opponent": "Partizan",
+      "home": true,
+      "status": "active",
+      "price": 11.2,
+      "expectedPir": 10.858294488627497,
+      "expectedMinutes": 19.026666666666667,
+      "basePir": 10.858294488627497,
+      "baseMinutes": 19.026666666666667,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.416,
+        "baseMin": 23,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.899999999999997,
+        "teamPoints": 85.43839999999999,
+        "margin": 6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0025900608584943,
+          "defenseSample": 5,
+          "rival": "Tonye Jekiri",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.433314363297303,
+              "weight": 0.7356543588508571,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.835021197620275,
+              "weight": 0.23451296615253872,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.366456444253565,
+              "weight": 0.029832674996604202,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tonye Jekiri",
+      "team": "Partizan",
+      "pos": "C",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 9.7,
+      "expectedPir": 13.014925988021277,
+      "expectedMinutes": 19.517303183229817,
+      "basePir": 13.014925988021277,
+      "baseMinutes": 19.517303183229817,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.570203553627762,
+        "baseMin": 19.17971739130435,
+        "injuryBoost": 0.00881250000000002,
+        "injuryUsagePct": 0.015107142857142892,
+        "missingStars": [],
+        "positionMatchPct": 4.109000000000007,
+        "teamPoints": 78.7316,
+        "margin": -6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 15,
+          "historyWeight": 0.6521739130434783,
+          "sameTeam": true,
+          "avgPir": 9.866666666666667,
+          "avgMinutes": 19.27556666666667,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9969877709487043,
+          "defenseFactor": 1.005079274443856,
+          "defenseSample": 5,
+          "rival": "Marcus Bingham",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.456151797502912,
+              "weight": 0.7356543588508571,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.853979706965287,
+              "weight": 0.029832674996604188,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.666302714988984,
+              "weight": 0.2345129661525388,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Johnny Juzang",
+      "team": "Fenerbahce",
+      "pos": "F",
+      "opponent": "Partizan",
+      "home": true,
+      "status": "active",
+      "price": 9.4,
+      "expectedPir": 9.139215727642846,
+      "expectedMinutes": 14.934999999999999,
+      "basePir": 9.139215727642846,
+      "baseMinutes": 14.934999999999999,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.742,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.760999999999993,
+        "teamPoints": 85.43839999999999,
+        "margin": 6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.001095656910132,
+          "defenseSample": 5,
+          "rival": "Lamar Stevens",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.064149230752596,
+              "weight": 0.7356543588508571,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.586644434441007,
+              "weight": 0.23451296615253872,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.48866732644945,
+              "weight": 0.029832674996604202,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Trent Forrest",
+      "team": "Fenerbahce",
+      "pos": "G",
+      "opponent": "Partizan",
+      "home": true,
+      "status": "active",
+      "price": 9.3,
+      "expectedPir": 7.076810520916948,
+      "expectedMinutes": 20.140559020408162,
+      "basePir": 7.076810520916948,
+      "baseMinutes": 20.140559020408162,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.957308840769445,
+        "baseMin": 21.06695657142857,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 1.7409999999999926,
+        "teamPoints": 85.43839999999999,
+        "margin": 6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 27,
+          "historyWeight": 0.4242857142857143,
+          "sameTeam": false,
+          "avgPir": 14.518518518518519,
+          "avgMinutes": 23.871614814814816,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 21,
+              "continuedRate": 0.3333333333333333
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 18,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0141092136891356,
+          "defenseFactor": 0.9971593619689486,
+          "defenseSample": 5,
+          "rival": "Carlik Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.202904341107462,
+              "weight": 0.7356543588508571,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.076752923489874,
+              "weight": 0.23451296615253872,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.10474007748768,
+              "weight": 0.029832674996604202,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kyle Allman",
+      "team": "Partizan",
+      "pos": "G",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 9,
+      "expectedPir": 6.231553525214312,
+      "expectedMinutes": 19.500357142857144,
+      "basePir": 6.231553525214312,
+      "baseMinutes": 19.500357142857144,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.370000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0.007500000000000018,
+        "injuryUsagePct": 0.012857142857142888,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 78.7316,
+        "margin": -6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9986928719268483,
+          "defenseFactor": 0.9939125081176088,
+          "defenseSample": 5,
+          "rival": "Talen Horton-Tucker",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.801001915586227,
+              "weight": 0.7356543588508571,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.836964573461294,
+              "weight": 0.029832674996604188,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.641641883271284,
+              "weight": 0.2345129661525388,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Braxton Key",
+      "team": "Fenerbahce",
+      "pos": "F",
+      "opponent": "Partizan",
+      "home": true,
+      "status": "active",
+      "price": 8.9,
+      "expectedPir": 11.420854164547357,
+      "expectedMinutes": 22.055589693877554,
+      "basePir": 11.420854164547357,
+      "baseMinutes": 22.055589693877554,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.515298126934326,
+        "baseMin": 18.11956392857143,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.760999999999993,
+        "teamPoints": 85.43839999999999,
+        "margin": 6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.44523809523809527,
+          "sameTeam": false,
+          "avgPir": 6.617647058823529,
+          "avgMinutes": 17.02255,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.03027305532984,
+          "defenseFactor": 0.9943156081577113,
+          "defenseSample": 5,
+          "rival": "Lamar Stevens",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.408193116290608,
+              "weight": 0.7356543588508571,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.859457873833158,
+              "weight": 0.23451296615253872,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.763343067872793,
+              "weight": 0.029832674996604202,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Ethan Thompson",
+      "team": "Partizan",
+      "pos": "G",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 8.9,
+      "expectedPir": 5.129424461288289,
+      "expectedMinutes": 16.343026785714287,
+      "basePir": 5.129424461288289,
+      "baseMinutes": 16.343026785714287,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.277000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0.007312500000000018,
+        "injuryUsagePct": 0.012535714285714317,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 78.7316,
+        "margin": -6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9924805963267501,
+          "defenseFactor": 0.9920393142795395,
+          "defenseSample": 5,
+          "rival": "Talen Horton-Tucker",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.646509852246485,
+              "weight": 0.7356543588508571,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.746780150567186,
+              "weight": 0.029832674996604188,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.594077435353729,
+              "weight": 0.2345129661525388,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nicolo Melli",
+      "team": "Fenerbahce",
+      "pos": "F",
+      "opponent": "Partizan",
+      "home": true,
+      "status": "active",
+      "price": 8.5,
+      "expectedPir": 9.718360707084916,
+      "expectedMinutes": 19.811127574750827,
+      "basePir": 9.718360707084916,
+      "baseMinutes": 19.811127574750827,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.696165258735215,
+        "baseMin": 22.863946511627905,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.760999999999993,
+        "teamPoints": 85.43839999999999,
+        "margin": 6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 35,
+          "historyWeight": 0.813953488372093,
+          "sameTeam": true,
+          "avgPir": 10.114285714285714,
+          "avgMinutes": 23.747134285714285,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0478191449580778,
+          "defenseFactor": 1.0013688986430571,
+          "defenseSample": 5,
+          "rival": "Lamar Stevens",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.173729832129265,
+              "weight": 0.7356543588508571,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.881986655306637,
+              "weight": 0.23451296615253872,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.173515855968752,
+              "weight": 0.029832674996604202,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Lamar Stevens",
+      "team": "Partizan",
+      "pos": "F",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "questionable",
+      "price": 8.3,
+      "expectedPir": 7.475276897985099,
+      "expectedMinutes": 17.332013957419356,
+      "basePir": 7.475276897985099,
+      "baseMinutes": 17.332013957419356,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.817692017958774,
+        "baseMin": 19.391505967741935,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.926,
+        "teamPoints": 78.7316,
+        "margin": -6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 23,
+          "historyWeight": 0.4080645161290323,
+          "sameTeam": false,
+          "avgPir": 7.956521739130435,
+          "avgMinutes": 19.959421739130434,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9947066037914152,
+          "defenseSample": 5,
+          "rival": "Braxton Key",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.41311470298703,
+              "weight": 0.7356543588508571,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.968415122151303,
+              "weight": 0.029832674996604188,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.123859193518292,
+              "weight": 0.2345129661525388,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Luca Vildoza",
+      "team": "Partizan",
+      "pos": "G",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 7.9,
+      "expectedPir": 8.103659706781524,
+      "expectedMinutes": 19.10432625457875,
+      "basePir": 8.103659706781524,
+      "baseMinutes": 19.10432625457875,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.420393273631554,
+        "baseMin": 19.99611064102564,
+        "injuryBoost": 0.0054375000000000135,
+        "injuryUsagePct": 0.009321428571428595,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 78.7316,
+        "margin": -6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 31,
+          "historyWeight": 0.4371794871794872,
+          "sameTeam": false,
+          "avgPir": 9.903225806451612,
+          "avgMinutes": 21.278493548387097,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 11,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0097826220372894,
+          "defenseFactor": 0.9843838774870441,
+          "defenseSample": 5,
+          "rival": "Talen Horton-Tucker",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.28220512162763,
+              "weight": 0.7356543588508571,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.72990961969398,
+              "weight": 0.029832674996604188,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.593959957679544,
+              "weight": 0.2345129661525388,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nikola Tanaskovic",
+      "team": "Partizan",
+      "pos": "C",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 7.9,
+      "expectedPir": 7.640465033871542,
+      "expectedMinutes": 17.184008928571426,
+      "basePir": 7.640465033871542,
+      "baseMinutes": 17.184008928571426,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.347,
+        "baseMin": 19,
+        "injuryBoost": 0.0054375000000000135,
+        "injuryUsagePct": 0.009321428571428595,
+        "missingStars": [],
+        "positionMatchPct": 4.109000000000007,
+        "teamPoints": 78.7316,
+        "margin": -6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0095008334110622,
+          "defenseFactor": 1.0011607738544466,
+          "defenseSample": 5,
+          "rival": "Marcus Bingham",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.292807535329178,
+              "weight": 0.7356543588508571,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.405701556908173,
+              "weight": 0.029832674996604188,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.687300664051026,
+              "weight": 0.2345129661525388,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Joffrey Lauvergne",
+      "team": "Partizan",
+      "pos": "C",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 7.8,
+      "expectedPir": 3.4209767622543943,
+      "expectedMinutes": 13.48025,
+      "basePir": 3.4209767622543943,
+      "baseMinutes": 13.48025,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.2540000000000004,
+        "baseMin": 19,
+        "injuryBoost": 0.0052500000000000125,
+        "injuryUsagePct": 0.009000000000000022,
+        "missingStars": [],
+        "positionMatchPct": 4.109000000000007,
+        "teamPoints": 78.7316,
+        "margin": -6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0018325284780147,
+          "defenseSample": 5,
+          "rival": "Marcus Bingham",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.056962350047632,
+              "weight": 0.7356543588508571,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.864387350047632,
+              "weight": 0.029832674996604188,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.886424850047632,
+              "weight": 0.2345129661525388,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Derek Willis",
+      "team": "Partizan",
+      "pos": "F",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "out",
+      "price": 7.6,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 7.5323901406968075,
+        "baseMin": 17.810877083333335,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.926,
+        "teamPoints": 78.7316,
+        "margin": -6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 28,
+          "historyWeight": 0.4277777777777778,
+          "sameTeam": false,
+          "avgPir": 7.964285714285714,
+          "avgMinutes": 16.220232142857142,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Alessandro Pajola",
+      "team": "Partizan",
+      "pos": "G",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 7.6,
+      "expectedPir": 8.040839233414113,
+      "expectedMinutes": 20.0223778125,
+      "basePir": 8.040839233414113,
+      "baseMinutes": 20.0223778125,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.9886290370832365,
+        "baseMin": 19.034947343749998,
+        "injuryBoost": 0.0052500000000000125,
+        "injuryUsagePct": 0.009000000000000022,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 78.7316,
+        "margin": -6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 24,
+          "historyWeight": 0.41250000000000003,
+          "sameTeam": false,
+          "avgPir": 6.875,
+          "avgMinutes": 19.084720833333332,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.06,
+          "defenseFactor": 0.9876618373398873,
+          "defenseSample": 5,
+          "rival": "Talen Horton-Tucker",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.515561725608514,
+              "weight": 0.7356543588508571,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.553007288532054,
+              "weight": 0.029832674996604188,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.53499601514558,
+              "weight": 0.2345129661525388,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kevarrius Hayes",
+      "team": "Partizan",
+      "pos": "C",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 7.4,
+      "expectedPir": 7.480478428736052,
+      "expectedMinutes": 17.513667113095238,
+      "basePir": 7.480478428736052,
+      "baseMinutes": 17.513667113095238,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.071660038081248,
+        "baseMin": 18.279459895833334,
+        "injuryBoost": 0.0052500000000000125,
+        "injuryUsagePct": 0.009000000000000022,
+        "missingStars": [],
+        "positionMatchPct": 4.109000000000007,
+        "teamPoints": 78.7316,
+        "margin": -6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.45833333333333337,
+          "sameTeam": false,
+          "avgPir": 7.25,
+          "avgMinutes": 17.427912499999998,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9951313841252434,
+          "defenseFactor": 1.0021583688135631,
+          "defenseSample": 5,
+          "rival": "Marcus Bingham",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.348864221483147,
+              "weight": 0.7356543588508571,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.33997485556196,
+              "weight": 0.029832674996604188,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.05274037760653,
+              "weight": 0.2345129661525388,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Chris Silva",
+      "team": "Fenerbahce",
+      "pos": "C",
+      "opponent": "Partizan",
+      "home": true,
+      "status": "active",
+      "price": 6.7,
+      "expectedPir": 1.870842745160756,
+      "expectedMinutes": 8.543221666666668,
+      "basePir": 1.870842745160756,
+      "baseMinutes": 8.543221666666668,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.961331669204357,
+        "baseMin": 10.468054166666668,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.899999999999997,
+        "teamPoints": 85.43839999999999,
+        "margin": 6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 16,
+          "historyWeight": 0.6666666666666666,
+          "sameTeam": true,
+          "avgPir": 4.25,
+          "avgMinutes": 8.70208125,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9977229855589554,
+          "defenseSample": 5,
+          "rival": "Tonye Jekiri",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 8.443591082135422,
+              "weight": 0.7356543588508571,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 8.86551895158412,
+              "weight": 0.23451296615253872,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 8.4664863928807,
+              "weight": 0.029832674996604202,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Ignas Sargiunas",
+      "team": "Fenerbahce",
+      "pos": "G",
+      "opponent": "Partizan",
+      "home": true,
+      "status": "active",
+      "price": 6.2,
+      "expectedPir": 6.065550270886065,
+      "expectedMinutes": 14.171428571428573,
+      "basePir": 6.065550270886065,
+      "baseMinutes": 14.171428571428573,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.766000000000001,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 1.7409999999999926,
+        "teamPoints": 85.43839999999999,
+        "margin": 6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0143076564489042,
+          "defenseFactor": 1.000439607753268,
+          "defenseSample": 5,
+          "rival": "Carlik Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.275773395549967,
+              "weight": 0.7356543588508571,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.012821877474916,
+              "weight": 0.23451296615253872,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.845151311940018,
+              "weight": 0.029832674996604202,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Mario Nakic",
+      "team": "Partizan",
+      "pos": "F",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 4.8,
+      "expectedPir": 3.534531828257515,
+      "expectedMinutes": 10.9265,
+      "basePir": 3.534531828257515,
+      "baseMinutes": 10.9265,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.464,
+        "baseMin": 14,
+        "injuryBoost": 0.016500000000000042,
+        "injuryUsagePct": 0.018000000000000044,
+        "missingStars": [],
+        "positionMatchPct": -7.926,
+        "teamPoints": 78.7316,
+        "margin": -6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": true,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9958261948306953,
+          "defenseSample": 5,
+          "rival": "Braxton Key",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.282435963149252,
+              "weight": 0.7356543588508571,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 9.64515479214997,
+              "weight": 0.029832674996604188,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 9.97294979214997,
+              "weight": 0.2345129661525388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Vanja Marinkovic",
+      "team": "Partizan",
+      "pos": "G",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "out",
+      "price": 4.5,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 4.295910495569866,
+        "baseMin": 18.56851851851852,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 78.7316,
+        "margin": -6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 19,
+          "historyWeight": 0.7037037037037037,
+          "sameTeam": true,
+          "avgPir": 4.157894736842105,
+          "avgMinutes": 20.492105263157896,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Onuralp Bitim",
+      "team": "Fenerbahce",
+      "pos": "F",
+      "opponent": "Partizan",
+      "home": true,
+      "status": "active",
+      "price": 4.5,
+      "expectedPir": 2.8161510026285903,
+      "expectedMinutes": 11.340086486486488,
+      "basePir": 2.8161510026285903,
+      "baseMinutes": 11.340086486486488,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.755723423337506,
+        "baseMin": 11.340086486486488,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.760999999999993,
+        "teamPoints": 85.43839999999999,
+        "margin": 6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 29,
+          "historyWeight": 0.7837837837837838,
+          "sameTeam": true,
+          "avgPir": 2.413793103448276,
+          "avgMinutes": 10.60631724137931,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Lamar Stevens",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.73462716149814,
+              "weight": 0.7356543588508571,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 10.203715485822466,
+              "weight": 0.23451296615253872,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.543918080417061,
+              "weight": 0.029832674996604202,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Sertac Sanli",
+      "team": "Fenerbahce",
+      "pos": "C",
+      "opponent": "Partizan",
+      "home": true,
+      "status": "active",
+      "price": 4.4,
+      "expectedPir": 3.6277352299587684,
+      "expectedMinutes": 12.505445142857143,
+      "basePir": 3.6277352299587684,
+      "baseMinutes": 12.505445142857143,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.279022816220996,
+        "baseMin": 12.419058,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.899999999999997,
+        "teamPoints": 85.43839999999999,
+        "margin": 6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 7,
+          "historyWeight": 0.2566666666666667,
+          "sameTeam": false,
+          "avgPir": 1.4285714285714286,
+          "avgMinutes": 7.840485714285714,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9780312052836163,
+          "defenseFactor": 1.0016421403759825,
+          "defenseSample": 5,
+          "rival": "Tonye Jekiri",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.300759660767072,
+              "weight": 0.7356543588508571,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.1864076896054,
+              "weight": 0.23451296615253872,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.199848022092464,
+              "weight": 0.029832674996604202,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Bandja Sy",
+      "team": "Partizan",
+      "pos": "F",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 4.2,
+      "expectedPir": 3.1983785373605724,
+      "expectedMinutes": 13.476500000000001,
+      "basePir": 3.1983785373605724,
+      "baseMinutes": 13.476500000000001,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.9060000000000006,
+        "baseMin": 14,
+        "injuryBoost": 0.016500000000000042,
+        "injuryUsagePct": 0.018000000000000044,
+        "missingStars": [],
+        "positionMatchPct": -7.926,
+        "teamPoints": 78.7316,
+        "margin": -6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9930520940667874,
+          "defenseSample": 5,
+          "rival": "Braxton Key",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.276787810031179,
+              "weight": 0.7356543588508571,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.238942407732328,
+              "weight": 0.029832674996604188,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.260417407732328,
+              "weight": 0.2345129661525388,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Arijan Lakic",
+      "team": "Partizan",
+      "pos": "F",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.0876634114226533,
+      "expectedMinutes": 16.65178051948052,
+      "basePir": 3.0876634114226533,
+      "baseMinutes": 16.65178051948052,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.9531509352814185,
+        "baseMin": 13.34848181818182,
+        "injuryBoost": 0.016500000000000042,
+        "injuryUsagePct": 0.018000000000000044,
+        "missingStars": [],
+        "positionMatchPct": -7.926,
+        "teamPoints": 78.7316,
+        "margin": -6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 25,
+          "historyWeight": 0.7575757575757576,
+          "sameTeam": true,
+          "avgPir": 2.72,
+          "avgMinutes": 13.139996000000002,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0084582949805783,
+          "defenseFactor": 0.9764432657190549,
+          "defenseSample": 5,
+          "rival": "Braxton Key",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.806066505462365,
+              "weight": 0.7356543588508571,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.313069215770792,
+              "weight": 0.029832674996604188,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.083670486852977,
+              "weight": 0.2345129661525388,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Melih Mahmutoglu",
+      "team": "Fenerbahce",
+      "pos": "G",
+      "opponent": "Partizan",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 1.585107051361348,
+      "expectedMinutes": 10.252220000000001,
+      "basePir": 1.585107051361348,
+      "baseMinutes": 10.252220000000001,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 1.5673903777275522,
+        "baseMin": 10.252220000000001,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 1.7409999999999926,
+        "teamPoints": 85.43839999999999,
+        "margin": 6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 7,
+          "historyWeight": 0.4666666666666667,
+          "sameTeam": true,
+          "avgPir": 0.14285714285714285,
+          "avgMinutes": 5.969042857142857,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Carlik Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 10.60891197091117,
+              "weight": 0.7356543588508571,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 9.22486227091117,
+              "weight": 0.23451296615253872,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 9.53242887091117,
+              "weight": 0.029832674996604202,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Uros Danilovic",
+      "team": "Partizan",
+      "pos": "F",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.5530275616172884,
+      "expectedMinutes": 14.0165,
+      "basePir": 3.5530275616172884,
+      "baseMinutes": 14.0165,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0.016500000000000042,
+        "injuryUsagePct": 0.018000000000000044,
+        "missingStars": [],
+        "positionMatchPct": -7.926,
+        "teamPoints": 78.7316,
+        "margin": -6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Braxton Key",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.41809056198523,
+              "weight": 0.7356543588508571,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.52586306198523,
+              "weight": 0.029832674996604188,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.946358061985231,
+              "weight": 0.2345129661525388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Uros Mijailovic",
+      "team": "Partizan",
+      "pos": "F",
+      "opponent": "Fenerbahce",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 0,
+      "expectedMinutes": 9.570346153846156,
+      "basePir": 0,
+      "baseMinutes": 9.570346153846156,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": -0.24494746615301483,
+        "baseMin": 9.553846153846155,
+        "injuryBoost": 0.016500000000000042,
+        "injuryUsagePct": 0.018000000000000044,
+        "missingStars": [],
+        "positionMatchPct": -7.926,
+        "teamPoints": 78.7316,
+        "margin": -6.7068,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 5,
+          "historyWeight": 0.38461538461538464,
+          "sameTeam": true,
+          "avgPir": -1.2,
+          "avgMinutes": 2.44,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Braxton Key",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 9.844548750094594,
+              "weight": 0.7356543588508571,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 8.552552019325365,
+              "weight": 0.029832674996604188,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 8.839662403940748,
+              "weight": 0.2345129661525388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    }
+  ]
+}
