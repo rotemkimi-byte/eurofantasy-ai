@@ -1,0 +1,2858 @@
+{
+  "schema": "learning-v1",
+  "season": "E2026",
+  "modelId": "b3fc6df40846537dcb24",
+  "gameCode": 56,
+  "round": 6,
+  "kickoff": "2026-10-16T18:00:00Z",
+  "created_at": "2026-10-15T18:59:52.401972+00:00",
+  "predictions": [
+    {
+      "name": "Chima Moneke",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "opponent": "Paris",
+      "home": true,
+      "status": "active",
+      "price": 14.7,
+      "expectedPir": 14.73054369228041,
+      "expectedMinutes": 23.21137408637874,
+      "basePir": 14.73054369228041,
+      "baseMinutes": 23.21137408637874,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 17.615751588545248,
+        "baseMin": 26.924809302325585,
+        "injuryBoost": 0.13999999999999993,
+        "injuryUsagePct": 0.23999999999999988,
+        "missingStars": [],
+        "positionMatchPct": 8.681000000000004,
+        "teamPoints": 89.9258,
+        "margin": 5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 35,
+          "historyWeight": 0.813953488372093,
+          "sameTeam": true,
+          "avgPir": 18.514285714285716,
+          "avgMinutes": 26.907622857142858,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 5,
+              "nextGameSamples": 6,
+              "nextGameAvgPir": 20.333333333333332,
+              "continuedRate": 0.5
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0047253206467581,
+          "defenseFactor": 1.0058123722269092,
+          "defenseSample": 5,
+          "rival": "Tj Warren",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.67901469954632,
+              "weight": 0.7548433186202711,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.848965462582164,
+              "weight": 0.20910311630869519,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.32219881871415,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nadir Hifi",
+      "team": "Paris",
+      "pos": "G",
+      "opponent": "Crvena Zvezda",
+      "home": false,
+      "status": "questionable",
+      "price": 14.5,
+      "expectedPir": 12.920026822384493,
+      "expectedMinutes": 20.567925762962957,
+      "basePir": 12.920026822384493,
+      "baseMinutes": 20.567925762962957,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 17.042061670061543,
+        "baseMin": 23.108508888888885,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.11600000000000499,
+        "teamPoints": 84.21419999999999,
+        "margin": -5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.8222222222222222,
+          "sameTeam": true,
+          "avgPir": 17.56756756756757,
+          "avgMinutes": 22.267105405405403,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 4,
+              "nextGameSamples": 7,
+              "nextGameAvgPir": 17.571428571428573,
+              "continuedRate": 0.42857142857142855
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 23,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.97,
+          "defenseSample": 5,
+          "rival": "Nick Weiler-Babb",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.841299946270734,
+              "weight": 0.7548433186202711,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.404132935215653,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.95415093022324,
+              "weight": 0.20910311630869519,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jordan Nwora",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "opponent": "Paris",
+      "home": true,
+      "status": "active",
+      "price": 13,
+      "expectedPir": 14.581791073398685,
+      "expectedMinutes": 23.11652857142857,
+      "basePir": 14.581791073398685,
+      "baseMinutes": 23.11652857142857,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 15.145057003489617,
+        "baseMin": 26.34285,
+        "injuryBoost": 0.13999999999999993,
+        "injuryUsagePct": 0.23999999999999988,
+        "missingStars": [],
+        "positionMatchPct": 8.681000000000004,
+        "teamPoints": 89.9258,
+        "margin": 5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.8095238095238095,
+          "sameTeam": true,
+          "avgPir": 15.911764705882353,
+          "avgMinutes": 27.12940294117647,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 19,
+              "continuedRate": 0.5
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0096774918888807,
+          "defenseFactor": 1.0048796748013897,
+          "defenseSample": 5,
+          "rival": "Tj Warren",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.069819338920436,
+              "weight": 0.7548433186202711,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 23.53978814012864,
+              "weight": 0.20910311630869519,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.63964985940372,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Chris Jones",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "opponent": "Paris",
+      "home": true,
+      "status": "active",
+      "price": 12.2,
+      "expectedPir": 12.573455533468673,
+      "expectedMinutes": 19.232622971428572,
+      "basePir": 12.573455533468673,
+      "baseMinutes": 19.232622971428572,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.613394288559743,
+        "baseMin": 21.8231804,
+        "injuryBoost": 0.12599999999999992,
+        "injuryUsagePct": 0.21599999999999986,
+        "missingStars": [],
+        "positionMatchPct": 3.909000000000007,
+        "teamPoints": 89.9258,
+        "margin": 5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.462,
+          "sameTeam": false,
+          "avgPir": 11.80952380952381,
+          "avgMinutes": 20.452771428571427,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 4,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 19.333333333333332,
+              "continuedRate": 0.6666666666666666
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 21,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9845823409425035,
+          "defenseFactor": 1.004180196545411,
+          "defenseSample": 5,
+          "rival": "Nadir Hifi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.944517854195215,
+              "weight": 0.7548433186202711,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.45058710895624,
+              "weight": 0.20910311630869519,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.200661948099626,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tj Warren",
+      "team": "Paris",
+      "pos": "F",
+      "opponent": "Crvena Zvezda",
+      "home": false,
+      "status": "active",
+      "price": 11.3,
+      "expectedPir": 10.859214037736976,
+      "expectedMinutes": 21.341651785714287,
+      "basePir": 10.859214037736976,
+      "baseMinutes": 21.341651785714287,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.509,
+        "baseMin": 23,
+        "injuryBoost": 0.2559375,
+        "injuryUsagePct": 0.43875000000000003,
+        "missingStars": [
+          "Nadir Hifi"
+        ],
+        "positionMatchPct": -1.0140000000000038,
+        "teamPoints": 84.21419999999999,
+        "margin": -5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0175417717997506,
+          "defenseFactor": 0.97,
+          "defenseSample": 5,
+          "rival": "Semi Ojeleye",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.434728288449687,
+              "weight": 0.7548433186202711,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.123795287149278,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.388056916112003,
+              "weight": 0.20910311630869519,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tyson Etienne",
+      "team": "Paris",
+      "pos": "G",
+      "opponent": "Crvena Zvezda",
+      "home": false,
+      "status": "active",
+      "price": 10.9,
+      "expectedPir": 10.491893473719777,
+      "expectedMinutes": 21.310446428571428,
+      "basePir": 10.491893473719777,
+      "baseMinutes": 21.310446428571428,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.137,
+        "baseMin": 23,
+        "injuryBoost": 0.7533035714285715,
+        "injuryUsagePct": 0.8217857142857142,
+        "missingStars": [
+          "Nadir Hifi"
+        ],
+        "positionMatchPct": 0.11600000000000499,
+        "teamPoints": 84.21419999999999,
+        "margin": -5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.012562088689699,
+          "defenseFactor": 0.97,
+          "defenseSample": 5,
+          "rival": "Nick Weiler-Babb",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.504167676960577,
+              "weight": 0.7548433186202711,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.014926168601917,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.006923926960578,
+              "weight": 0.20910311630869519,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Patrick Baldwin Jr",
+      "team": "Crvena Zvezda",
+      "pos": "C",
+      "opponent": "Paris",
+      "home": true,
+      "status": "active",
+      "price": 9.8,
+      "expectedPir": 9.862474555297787,
+      "expectedMinutes": 19.264,
+      "basePir": 9.862474555297787,
+      "baseMinutes": 19.264,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.114,
+        "baseMin": 19,
+        "injuryBoost": 0.26399999999999996,
+        "injuryUsagePct": 0.2879999999999999,
+        "missingStars": [],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 89.9258,
+        "margin": 5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Allan Dokossi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.880728195537525,
+              "weight": 0.7548433186202711,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.280088195537527,
+              "weight": 0.20910311630869519,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.85800819553753,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Johnathan Motley",
+      "team": "Crvena Zvezda",
+      "pos": "C",
+      "opponent": "Paris",
+      "home": true,
+      "status": "out",
+      "price": 9.1,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 8.409356342647854,
+        "baseMin": 17.04792465116279,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 89.9258,
+        "margin": 5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 35,
+          "historyWeight": 0.4476744186046512,
+          "sameTeam": false,
+          "avgPir": 8.085714285714285,
+          "avgMinutes": 14.63952,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": null
+      }
+    },
+    {
+      "name": "Jared Butler",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "opponent": "Paris",
+      "home": true,
+      "status": "active",
+      "price": 9,
+      "expectedPir": 7.288886357877569,
+      "expectedMinutes": 17.10678642857143,
+      "basePir": 7.288886357877569,
+      "baseMinutes": 17.10678642857143,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.307929463796311,
+        "baseMin": 19.8037525,
+        "injuryBoost": 0.06999999999999997,
+        "injuryUsagePct": 0.11999999999999994,
+        "missingStars": [],
+        "positionMatchPct": 3.909000000000007,
+        "teamPoints": 89.9258,
+        "margin": 5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 32,
+          "historyWeight": 0.8,
+          "sameTeam": true,
+          "avgPir": 10.8125,
+          "avgMinutes": 20.004690625,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.983935846516742,
+          "defenseFactor": 1.012414795682267,
+          "defenseSample": 5,
+          "rival": "Nadir Hifi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.82146471437052,
+              "weight": 0.7548433186202711,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.287192626404792,
+              "weight": 0.20910311630869519,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.23437825497622,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Alize Johnson",
+      "team": "Paris",
+      "pos": "F",
+      "opponent": "Crvena Zvezda",
+      "home": false,
+      "status": "active",
+      "price": 9,
+      "expectedPir": 6.198486542843775,
+      "expectedMinutes": 15.6945,
+      "basePir": 6.198486542843775,
+      "baseMinutes": 15.6945,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.370000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0.1625,
+        "injuryUsagePct": 0.2785714285714286,
+        "missingStars": [
+          "Nadir Hifi"
+        ],
+        "positionMatchPct": -1.0140000000000038,
+        "teamPoints": 84.21419999999999,
+        "margin": -5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.980044483125423,
+          "defenseSample": 5,
+          "rival": "Semi Ojeleye",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.614697881511873,
+              "weight": 0.7548433186202711,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.32409373985521,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.218863907922437,
+              "weight": 0.20910311630869519,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jared Rhoden",
+      "team": "Paris",
+      "pos": "G",
+      "opponent": "Crvena Zvezda",
+      "home": false,
+      "status": "active",
+      "price": 8.8,
+      "expectedPir": 8.3352623923311,
+      "expectedMinutes": 20.353118767507006,
+      "basePir": 8.3352623923311,
+      "baseMinutes": 20.353118767507006,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.066683365909796,
+        "baseMin": 20.783820588235294,
+        "injuryBoost": 0.48517857142857157,
+        "injuryUsagePct": 0.5292857142857144,
+        "missingStars": [
+          "Nadir Hifi"
+        ],
+        "positionMatchPct": 0.11600000000000499,
+        "teamPoints": 84.21419999999999,
+        "margin": -5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 26,
+          "historyWeight": 0.7647058823529411,
+          "sameTeam": true,
+          "avgPir": 8,
+          "avgMinutes": 21.33268846153846,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.97,
+          "defenseSample": 5,
+          "rival": "Nick Weiler-Babb",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.58632380491375,
+              "weight": 0.7548433186202711,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.101577912564537,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.899480432001393,
+              "weight": 0.20910311630869519,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Maozinha Pereira",
+      "team": "Paris",
+      "pos": "F",
+      "opponent": "Crvena Zvezda",
+      "home": false,
+      "status": "active",
+      "price": 8.8,
+      "expectedPir": 8.249327168529517,
+      "expectedMinutes": 19.154375,
+      "basePir": 8.249327168529517,
+      "baseMinutes": 19.154375,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.184000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0.154375,
+        "injuryUsagePct": 0.2646428571428572,
+        "missingStars": [
+          "Nadir Hifi"
+        ],
+        "positionMatchPct": -1.0140000000000038,
+        "teamPoints": 84.21419999999999,
+        "margin": -5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Semi Ojeleye",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.668153921098526,
+              "weight": 0.7548433186202711,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.082313296098526,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.656944546098526,
+              "weight": 0.20910311630869519,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Semi Ojeleye",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "opponent": "Paris",
+      "home": true,
+      "status": "active",
+      "price": 8.7,
+      "expectedPir": 12.132087929033752,
+      "expectedMinutes": 24.195954863221885,
+      "basePir": 12.132087929033752,
+      "baseMinutes": 24.195954863221885,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.934224590461077,
+        "baseMin": 22.259217021276594,
+        "injuryBoost": 0.06474999999999996,
+        "injuryUsagePct": 0.11099999999999993,
+        "missingStars": [],
+        "positionMatchPct": 8.681000000000004,
+        "teamPoints": 89.9258,
+        "margin": 5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 39,
+          "historyWeight": 0.8297872340425532,
+          "sameTeam": true,
+          "avgPir": 7.846153846153846,
+          "avgMinutes": 22.927774358974357,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0246280794184295,
+          "defenseFactor": 1.0051802086879198,
+          "defenseSample": 5,
+          "rival": "Tj Warren",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 24.445011980719837,
+              "weight": 0.7548433186202711,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 23.603974190353885,
+              "weight": 0.20910311630869519,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.414880024147926,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nick Weiler-Babb",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "opponent": "Paris",
+      "home": true,
+      "status": "active",
+      "price": 8.6,
+      "expectedPir": 5.608517546100127,
+      "expectedMinutes": 21.62904726984127,
+      "basePir": 5.608517546100127,
+      "baseMinutes": 21.62904726984127,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.440254833775134,
+        "baseMin": 23.431165444444446,
+        "injuryBoost": 0.06299999999999996,
+        "injuryUsagePct": 0.10799999999999993,
+        "missingStars": [],
+        "positionMatchPct": 3.909000000000007,
+        "teamPoints": 89.9258,
+        "margin": 5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.45222222222222225,
+          "sameTeam": false,
+          "avgPir": 10.972972972972974,
+          "avgMinutes": 28.798645945945946,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 15,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 14,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9622126794456891,
+          "defenseFactor": 1.0034225535019052,
+          "defenseSample": 5,
+          "rival": "Nadir Hifi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.802983079212183,
+              "weight": 0.7548433186202711,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.26903942496603,
+              "weight": 0.20910311630869519,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.075372308624832,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Ebuka Izundu",
+      "team": "Crvena Zvezda",
+      "pos": "C",
+      "opponent": "Paris",
+      "home": true,
+      "status": "questionable",
+      "price": 8.6,
+      "expectedPir": 6.844448990954733,
+      "expectedMinutes": 13.548978666666665,
+      "basePir": 6.844448990954733,
+      "baseMinutes": 13.548978666666665,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.092798040881792,
+        "baseMin": 15.289434146341463,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 89.9258,
+        "margin": 5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 33,
+          "historyWeight": 0.8048780487804879,
+          "sameTeam": true,
+          "avgPir": 10.333333333333334,
+          "avgMinutes": 14.389903030303032,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9974210260167804,
+          "defenseSample": 5,
+          "rival": "Allan Dokossi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.526659369806275,
+              "weight": 0.7548433186202711,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.778328739384408,
+              "weight": 0.20910311630869519,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.686089164387381,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Allan Dokossi",
+      "team": "Paris",
+      "pos": "C",
+      "opponent": "Crvena Zvezda",
+      "home": false,
+      "status": "active",
+      "price": 8.2,
+      "expectedPir": 9.726759713836392,
+      "expectedMinutes": 19.240771428571428,
+      "basePir": 9.726759713836392,
+      "baseMinutes": 19.240771428571428,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.486019937035412,
+        "baseMin": 16.712699999999998,
+        "injuryBoost": 0.12999999999999998,
+        "injuryUsagePct": 0.22285714285714284,
+        "missingStars": [
+          "Nadir Hifi"
+        ],
+        "positionMatchPct": -2.9939999999999967,
+        "teamPoints": 84.21419999999999,
+        "margin": -5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.8095238095238095,
+          "sameTeam": true,
+          "avgPir": 8.617647058823529,
+          "avgMinutes": 16.174511764705883,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.029179668068557,
+          "defenseFactor": 0.9850333623440674,
+          "defenseSample": 5,
+          "rival": "Ebuka Izundu",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.264583573157626,
+              "weight": 0.7548433186202711,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.422779738883296,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.46826991964906,
+              "weight": 0.20910311630869519,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Frank Ntilikina",
+      "team": "Paris",
+      "pos": "G",
+      "opponent": "Crvena Zvezda",
+      "home": false,
+      "status": "out",
+      "price": 7,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 4.773990224189322,
+        "baseMin": 17.9315115625,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.11600000000000499,
+        "teamPoints": 84.21419999999999,
+        "margin": -5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 24,
+          "historyWeight": 0.41250000000000003,
+          "sameTeam": false,
+          "avgPir": 2.5833333333333335,
+          "avgMinutes": 16.409724999999998,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.2,
+        "context": null
+      }
+    },
+    {
+      "name": "Terry Tarpey",
+      "team": "Paris",
+      "pos": "G",
+      "opponent": "Crvena Zvezda",
+      "home": false,
+      "status": "active",
+      "price": 6.8,
+      "expectedPir": 6.3597551711592555,
+      "expectedMinutes": 14.877430833333333,
+      "basePir": 6.3597551711592555,
+      "baseMinutes": 14.877430833333333,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.913540827222984,
+        "baseMin": 11.1597925,
+        "injuryBoost": 0.35750000000000004,
+        "injuryUsagePct": 0.39,
+        "missingStars": [
+          "Nadir Hifi"
+        ],
+        "positionMatchPct": 0.11600000000000499,
+        "teamPoints": 84.21419999999999,
+        "margin": -5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.45000000000000007,
+          "sameTeam": false,
+          "avgPir": 3.2777777777777777,
+          "avgMinutes": 7.688427777777777,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.99261443618098,
+          "defenseSample": 5,
+          "rival": "Nick Weiler-Babb",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.077261681292288,
+              "weight": 0.7548433186202711,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.117219206424561,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.459555301160501,
+              "weight": 0.20910311630869519,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tyson Carter",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "opponent": "Paris",
+      "home": true,
+      "status": "active",
+      "price": 6.8,
+      "expectedPir": 5.9952157269887145,
+      "expectedMinutes": 16.519927819548872,
+      "basePir": 5.9952157269887145,
+      "baseMinutes": 16.519927819548872,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.873543581638421,
+        "baseMin": 14.398247368421053,
+        "injuryBoost": 0.048999999999999974,
+        "injuryUsagePct": 0.08399999999999995,
+        "missingStars": [],
+        "positionMatchPct": 3.909000000000007,
+        "teamPoints": 89.9258,
+        "margin": 5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 11,
+          "historyWeight": 0.5789473684210527,
+          "sameTeam": true,
+          "avgPir": 2,
+          "avgMinutes": 14.687881818181818,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9913638138930381,
+          "defenseFactor": 1.0071541375255637,
+          "defenseSample": 5,
+          "rival": "Nadir Hifi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.58632433472888,
+              "weight": 0.7548433186202711,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.475802445548638,
+              "weight": 0.20910311630869519,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.385720631688363,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Mouhamed Faye",
+      "team": "Paris",
+      "pos": "C",
+      "opponent": "Crvena Zvezda",
+      "home": false,
+      "status": "active",
+      "price": 6.8,
+      "expectedPir": 6.905246528181541,
+      "expectedMinutes": 14.948635714285711,
+      "basePir": 6.905246528181541,
+      "baseMinutes": 14.948635714285711,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.944636980412905,
+        "baseMin": 16.622099999999996,
+        "injuryBoost": 0.11374999999999999,
+        "injuryUsagePct": 0.195,
+        "missingStars": [
+          "Nadir Hifi"
+        ],
+        "positionMatchPct": -2.9939999999999967,
+        "teamPoints": 84.21419999999999,
+        "margin": -5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 7.052631578947368,
+          "avgMinutes": 17.174121052631577,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.06,
+          "defenseFactor": 0.9860311381877962,
+          "defenseSample": 5,
+          "rival": "Ebuka Izundu",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.19289435345757,
+              "weight": 0.7548433186202711,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.559045532619319,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.306477318333604,
+              "weight": 0.20910311630869519,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Amath M'baye",
+      "team": "Paris",
+      "pos": "F",
+      "opponent": "Crvena Zvezda",
+      "home": false,
+      "status": "active",
+      "price": 5.9,
+      "expectedPir": 6.099224010417965,
+      "expectedMinutes": 16.78835,
+      "basePir": 6.099224010417965,
+      "baseMinutes": 16.78835,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.062967400565259,
+        "baseMin": 16.6746,
+        "injuryBoost": 0.11374999999999999,
+        "injuryUsagePct": 0.195,
+        "missingStars": [
+          "Nadir Hifi"
+        ],
+        "positionMatchPct": -1.0140000000000038,
+        "teamPoints": 84.21419999999999,
+        "margin": -5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.8095238095238095,
+          "sameTeam": true,
+          "avgPir": 6.176470588235294,
+          "avgMinutes": 17.303917647058825,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Semi Ojeleye",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.238664894118156,
+              "weight": 0.7548433186202711,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.972237644118156,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.475888144118157,
+              "weight": 0.20910311630869519,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "David Kramer",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "opponent": "Paris",
+      "home": true,
+      "status": "active",
+      "price": 5.7,
+      "expectedPir": 2.85765232802245,
+      "expectedMinutes": 13.611262142857143,
+      "basePir": 2.85765232802245,
+      "baseMinutes": 13.611262142857143,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.5620542703958225,
+        "baseMin": 13.067917499999998,
+        "injuryBoost": 0.048999999999999974,
+        "injuryUsagePct": 0.08399999999999995,
+        "missingStars": [],
+        "positionMatchPct": 3.909000000000007,
+        "teamPoints": 89.9258,
+        "margin": 5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 14,
+          "historyWeight": 0.35000000000000003,
+          "sameTeam": false,
+          "avgPir": 0.8571428571428571,
+          "avgMinutes": 11.336907142857143,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9972908130802868,
+          "defenseFactor": 1.006214543160112,
+          "defenseSample": 5,
+          "rival": "Nadir Hifi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.7862971294807,
+              "weight": 0.7548433186202711,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.156909553615607,
+              "weight": 0.20910311630869519,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.581753749134664,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Daulton Hommes",
+      "team": "Paris",
+      "pos": "F",
+      "opponent": "Crvena Zvezda",
+      "home": false,
+      "status": "active",
+      "price": 5.4,
+      "expectedPir": 2.9386473085690366,
+      "expectedMinutes": 12.463583497536947,
+      "basePir": 2.9386473085690366,
+      "baseMinutes": 12.463583497536947,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.485242302644945,
+        "baseMin": 13.699417241379312,
+        "injuryBoost": 0.11374999999999999,
+        "injuryUsagePct": 0.195,
+        "missingStars": [
+          "Nadir Hifi"
+        ],
+        "positionMatchPct": -1.0140000000000038,
+        "teamPoints": 84.21419999999999,
+        "margin": -5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 21,
+          "historyWeight": 0.7241379310344828,
+          "sameTeam": true,
+          "avgPir": 4.285714285714286,
+          "avgMinutes": 13.584909523809523,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9967221346896279,
+          "defenseFactor": 0.988014824323685,
+          "defenseSample": 5,
+          "rival": "Semi Ojeleye",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.410582865835993,
+              "weight": 0.7548433186202711,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.074495160015896,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.894417628939136,
+              "weight": 0.20910311630869519,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jeremy Morgan",
+      "team": "Paris",
+      "pos": "F",
+      "opponent": "Crvena Zvezda",
+      "home": false,
+      "status": "active",
+      "price": 5.3,
+      "expectedPir": 2.7467803781393942,
+      "expectedMinutes": 14.198155,
+      "basePir": 2.7467803781393942,
+      "baseMinutes": 14.198155,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.626060374561205,
+        "baseMin": 16.9704175,
+        "injuryBoost": 0.11374999999999999,
+        "injuryUsagePct": 0.195,
+        "missingStars": [
+          "Nadir Hifi"
+        ],
+        "positionMatchPct": -1.0140000000000038,
+        "teamPoints": 84.21419999999999,
+        "margin": -5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 32,
+          "historyWeight": 0.8,
+          "sameTeam": true,
+          "avgPir": 5.78125,
+          "avgMinutes": 17.713021875,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9831902732534553,
+          "defenseFactor": 0.9900885800182998,
+          "defenseSample": 5,
+          "rival": "Semi Ojeleye",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.289053541717005,
+              "weight": 0.7548433186202711,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.904468060246264,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.093077031716573,
+              "weight": 0.20910311630869519,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nobel Boungou-colo",
+      "team": "Paris",
+      "pos": "F",
+      "opponent": "Crvena Zvezda",
+      "home": false,
+      "status": "active",
+      "price": 5.2,
+      "expectedPir": 4.871216565784779,
+      "expectedMinutes": 14.11375,
+      "basePir": 4.871216565784779,
+      "baseMinutes": 14.11375,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.836,
+        "baseMin": 14,
+        "injuryBoost": 0.11374999999999999,
+        "injuryUsagePct": 0.195,
+        "missingStars": [
+          "Nadir Hifi"
+        ],
+        "positionMatchPct": -1.0140000000000038,
+        "teamPoints": 84.21419999999999,
+        "margin": -5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Semi Ojeleye",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.492323941862068,
+              "weight": 0.7548433186202711,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.58696769186207,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.010380191862069,
+              "weight": 0.20910311630869519,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Ognjen Dobric",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "opponent": "Paris",
+      "home": true,
+      "status": "active",
+      "price": 5.1,
+      "expectedPir": 6.072700524089698,
+      "expectedMinutes": 13.017046464646464,
+      "basePir": 6.072700524089698,
+      "baseMinutes": 13.017046464646464,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.5491533262683745,
+        "baseMin": 12.864139393939393,
+        "injuryBoost": 0.048999999999999974,
+        "injuryUsagePct": 0.08399999999999995,
+        "missingStars": [],
+        "positionMatchPct": 8.681000000000004,
+        "teamPoints": 89.9258,
+        "margin": 5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 25,
+          "historyWeight": 0.7575757575757576,
+          "sameTeam": true,
+          "avgPir": 4.48,
+          "avgMinutes": 12.500663999999999,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 0.9670080015086144,
+          "defenseFactor": 1.0060180499042475,
+          "defenseSample": 5,
+          "rival": "Tj Warren",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.374672650567621,
+              "weight": 0.7548433186202711,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.954193447935387,
+              "weight": 0.20910311630869519,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.693852518642458,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Sebastian Herrera",
+      "team": "Paris",
+      "pos": "G",
+      "opponent": "Crvena Zvezda",
+      "home": false,
+      "status": "active",
+      "price": 5.1,
+      "expectedPir": 5.70357349194686,
+      "expectedMinutes": 18.923518831168835,
+      "basePir": 5.70357349194686,
+      "baseMinutes": 18.923518831168835,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.965628517586287,
+        "baseMin": 15.98106590909091,
+        "injuryBoost": 0.35750000000000004,
+        "injuryUsagePct": 0.39,
+        "missingStars": [
+          "Nadir Hifi"
+        ],
+        "positionMatchPct": 0.11600000000000499,
+        "teamPoints": 84.21419999999999,
+        "margin": -5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.8181818181818182,
+          "sameTeam": true,
+          "avgPir": 5,
+          "avgMinutes": 16.42130277777778,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.01206936062944,
+          "defenseFactor": 0.9795159313246367,
+          "defenseSample": 5,
+          "rival": "Nick Weiler-Babb",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.01188514807474,
+              "weight": 0.7548433186202711,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.10143040893314,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.91868896335491,
+              "weight": 0.20910311630869519,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Leopold Cavaliere",
+      "team": "Paris",
+      "pos": "F",
+      "opponent": "Crvena Zvezda",
+      "home": false,
+      "status": "active",
+      "price": 5,
+      "expectedPir": 5.4876019543452745,
+      "expectedMinutes": 14.025221428571427,
+      "basePir": 5.4876019543452745,
+      "baseMinutes": 14.025221428571427,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.572715692753013,
+        "baseMin": 13.99015,
+        "injuryBoost": 0.11374999999999999,
+        "injuryUsagePct": 0.195,
+        "missingStars": [
+          "Nadir Hifi"
+        ],
+        "positionMatchPct": -1.0140000000000038,
+        "teamPoints": 84.21419999999999,
+        "margin": -5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.8181818181818182,
+          "sameTeam": true,
+          "avgPir": 4.555555555555555,
+          "avgMinutes": 13.987961111111112,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9842449084155245,
+          "defenseFactor": 0.9912664949794804,
+          "defenseSample": 5,
+          "rival": "Semi Ojeleye",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.959817393459481,
+              "weight": 0.7548433186202711,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.8077456332554,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.47124128408716,
+              "weight": 0.20910311630869519,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Joel Ayayi",
+      "team": "Paris",
+      "pos": "G",
+      "opponent": "Crvena Zvezda",
+      "home": false,
+      "status": "active",
+      "price": 4.7,
+      "expectedPir": 4.005283510657808,
+      "expectedMinutes": 13.491818095238095,
+      "basePir": 4.005283510657808,
+      "baseMinutes": 13.491818095238095,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.2855578052554217,
+        "baseMin": 11.850795238095237,
+        "injuryBoost": 0.35750000000000004,
+        "injuryUsagePct": 0.39,
+        "missingStars": [
+          "Nadir Hifi"
+        ],
+        "positionMatchPct": 0.11600000000000499,
+        "teamPoints": 84.21419999999999,
+        "margin": -5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 13,
+          "historyWeight": 0.6190476190476191,
+          "sameTeam": true,
+          "avgPir": 2.6923076923076925,
+          "avgMinutes": 10.528207692307692,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9801748231373515,
+          "defenseSample": 5,
+          "rival": "Nick Weiler-Babb",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.737943593987318,
+              "weight": 0.7548433186202711,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.388761784463508,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.793516327320651,
+              "weight": 0.20910311630869519,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Dejan Davidovac",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "opponent": "Paris",
+      "home": true,
+      "status": "active",
+      "price": 4.4,
+      "expectedPir": 5.0445135833032175,
+      "expectedMinutes": 13.56020172413793,
+      "basePir": 5.0445135833032175,
+      "baseMinutes": 13.56020172413793,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.6483584030360237,
+        "baseMin": 14.172403448275862,
+        "injuryBoost": 0.048999999999999974,
+        "injuryUsagePct": 0.08399999999999995,
+        "missingStars": [],
+        "positionMatchPct": 8.681000000000004,
+        "teamPoints": 89.9258,
+        "margin": 5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 21,
+          "historyWeight": 0.7241379310344828,
+          "sameTeam": true,
+          "avgPir": 3.4761904761904763,
+          "avgMinutes": 14.238080952380953,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Tj Warren",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.427977711818125,
+              "weight": 0.7548433186202711,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.160803140057311,
+              "weight": 0.20910311630869519,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.845176305248064,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nikola Djurisic",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "opponent": "Paris",
+      "home": true,
+      "status": "active",
+      "price": 4.2,
+      "expectedPir": 2.7998711130458163,
+      "expectedMinutes": 13.149000000000001,
+      "basePir": 2.7998711130458163,
+      "baseMinutes": 13.149000000000001,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.9060000000000006,
+        "baseMin": 14,
+        "injuryBoost": 0.048999999999999974,
+        "injuryUsagePct": 0.08399999999999995,
+        "missingStars": [],
+        "positionMatchPct": 3.909000000000007,
+        "teamPoints": 89.9258,
+        "margin": 5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Nadir Hifi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.457134470532635,
+              "weight": 0.7548433186202711,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.142234470532635,
+              "weight": 0.20910311630869519,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.536704470532635,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Stefan Miljenovic",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "opponent": "Paris",
+      "home": true,
+      "status": "questionable",
+      "price": 4,
+      "expectedPir": 1.3900990590607758,
+      "expectedMinutes": 6.7354982222222235,
+      "basePir": 1.3900990590607758,
+      "baseMinutes": 6.7354982222222235,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.8294565293504075,
+        "baseMin": 9.596033333333335,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 3.909000000000007,
+        "teamPoints": 89.9258,
+        "margin": 5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 13,
+          "historyWeight": 0.6190476190476191,
+          "sameTeam": true,
+          "avgPir": 2.1538461538461537,
+          "avgMinutes": 6.8859,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.000794904169507,
+          "defenseSample": 5,
+          "rival": "Nadir Hifi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 6.893338299678908,
+              "weight": 0.7548433186202711,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 6.219788477456686,
+              "weight": 0.20910311630869519,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 6.421853424123353,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Aleksej Nedeljkovic",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "opponent": "Paris",
+      "home": true,
+      "status": "out",
+      "price": 4,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.681000000000004,
+        "teamPoints": 89.9258,
+        "margin": 5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Andrej Bjelic",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "opponent": "Paris",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.8680653695820224,
+      "expectedMinutes": 14.049,
+      "basePir": 3.8680653695820224,
+      "baseMinutes": 14.049,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0.048999999999999974,
+        "injuryUsagePct": 0.08399999999999995,
+        "missingStars": [],
+        "positionMatchPct": 3.909000000000007,
+        "teamPoints": 89.9258,
+        "margin": 5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Nadir Hifi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.498772343184525,
+              "weight": 0.7548433186202711,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.602157343184526,
+              "weight": 0.20910311630869519,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.023627343184527,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Vojin Medarevic",
+      "team": "Crvena Zvezda",
+      "pos": "C",
+      "opponent": "Paris",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 4.009203773502723,
+      "expectedMinutes": 14.154,
+      "basePir": 4.009203773502723,
+      "baseMinutes": 14.154,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0.15399999999999994,
+        "injuryUsagePct": 0.1679999999999999,
+        "missingStars": [],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 89.9258,
+        "margin": 5.7116,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Allan Dokossi",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.60713387041311,
+              "weight": 0.7548433186202711,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.696343870413111,
+              "weight": 0.20910311630869519,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.120963870413112,
+              "weight": 0.03605356507103373,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    }
+  ]
+}

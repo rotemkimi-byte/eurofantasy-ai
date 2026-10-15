@@ -1,0 +1,3193 @@
+{
+  "schema": "learning-v1",
+  "season": "E2026",
+  "modelId": "b3fc6df40846537dcb24",
+  "gameCode": 60,
+  "round": 6,
+  "kickoff": "2026-10-16T18:15:00Z",
+  "created_at": "2026-10-15T18:59:52.381682+00:00",
+  "predictions": [
+    {
+      "name": "Elijah Bryant",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 17.2,
+      "expectedPir": 21.993820343630926,
+      "expectedMinutes": 30.335093167701864,
+      "basePir": 21.993820343630926,
+      "baseMinutes": 30.335093167701864,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 18.9302825127433,
+        "baseMin": 29.047826086956523,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 83.5557,
+        "margin": -4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 19.57894736842105,
+          "avgMinutes": 29.478947368421053,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 5,
+              "nextGameSamples": 8,
+              "nextGameAvgPir": 23.375,
+              "continuedRate": 0.625
+            },
+            {
+              "threshold": 25,
+              "longestRun": 3,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 23,
+              "continuedRate": 0.3333333333333333
+            },
+            {
+              "threshold": 30,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 23,
+              "continuedRate": 0
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9936271239780416,
+          "defenseFactor": 0.9812264607349483,
+          "defenseSample": 5,
+          "rival": "Sylvain Francisco",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 30.87687830335524,
+              "weight": 0.7786432314284599,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 29.401914291959688,
+              "weight": 0.04752094075910125,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 28.16343617705789,
+              "weight": 0.1738358278124388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Mathias Lessort",
+      "team": "Panathinaikos",
+      "pos": "C",
+      "opponent": "Hapoel Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 15.8,
+      "expectedPir": 17.88979515448012,
+      "expectedMinutes": 23.128896103896103,
+      "basePir": 17.88979515448012,
+      "baseMinutes": 23.128896103896103,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 13.062143660981187,
+        "baseMin": 24.238636363636363,
+        "injuryBoost": 0.9249999999999997,
+        "injuryUsagePct": 1.5857142857142854,
+        "missingStars": [
+          "Kendrick Nunn",
+          "Kostas Sloukas"
+        ],
+        "positionMatchPct": -7.737000000000005,
+        "teamPoints": 87.76429999999999,
+        "margin": 4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 14,
+          "historyWeight": 0.6363636363636364,
+          "sameTeam": true,
+          "avgPir": 12.142857142857142,
+          "avgMinutes": 22.660714285714285,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.984099265597563,
+          "defenseFactor": 0.9930153119079119,
+          "defenseSample": 5,
+          "rival": "Dan Oturu",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.385024406582954,
+              "weight": 0.7786432314284599,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.575513042946593,
+              "weight": 0.1738358278124388,
+              "observedGames": 5
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.956490315673868,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Sylvain Francisco",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Hapoel Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 14.8,
+      "expectedPir": 17.890885543882938,
+      "expectedMinutes": 26.470314914285716,
+      "basePir": 17.890885543882938,
+      "baseMinutes": 26.470314914285716,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 16.236089129315694,
+        "baseMin": 27.358602200000004,
+        "injuryBoost": 2.7035714285714287,
+        "injuryUsagePct": 3.008571428571428,
+        "missingStars": [
+          "Kendrick Nunn",
+          "Kostas Sloukas"
+        ],
+        "positionMatchPct": -0.47199999999999465,
+        "teamPoints": 87.76429999999999,
+        "margin": 4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.462,
+          "sameTeam": false,
+          "avgPir": 19.19047619047619,
+          "avgMinutes": 27.77619523809524,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 5,
+              "nextGameSamples": 9,
+              "nextGameAvgPir": 20.555555555555557,
+              "continuedRate": 0.5555555555555556
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 13,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 15,
+              "continuedRate": 0
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9957958274148129,
+          "defenseFactor": 0.9990206530671669,
+          "defenseSample": 5,
+          "rival": "Elijah Bryant",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 26.76344593100728,
+              "weight": 0.7786432314284599,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 25.83698490900728,
+              "weight": 0.1738358278124388,
+              "observedGames": 5
+            },
+            {
+              "id": "big-loss",
+              "minutes": 23.98406286500728,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kendrick Nunn",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Hapoel Tel Aviv",
+      "home": true,
+      "status": "out",
+      "price": 14.1,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 15.181629070284101,
+        "baseMin": 29.245177777777776,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.47199999999999465,
+        "teamPoints": 87.76429999999999,
+        "margin": 4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.8222222222222222,
+          "sameTeam": true,
+          "avgPir": 15.64864864864865,
+          "avgMinutes": 29.73062162162162,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 2.5,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 9,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Guerschon Yabusele",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Hapoel Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 14,
+      "expectedPir": 13.189126053085932,
+      "expectedMinutes": 23.385714285714286,
+      "basePir": 13.189126053085932,
+      "baseMinutes": 23.385714285714286,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 13.020000000000001,
+        "baseMin": 27,
+        "injuryBoost": 1.1285714285714283,
+        "injuryUsagePct": 1.7485714285714282,
+        "missingStars": [
+          "Kendrick Nunn",
+          "Kostas Sloukas"
+        ],
+        "positionMatchPct": -0.7140000000000035,
+        "teamPoints": 87.76429999999999,
+        "margin": 4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9751468236240012,
+          "defenseFactor": 0.9974688381089463,
+          "defenseSample": 5,
+          "rival": "Amir Coffey",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.644686580812742,
+              "weight": 0.7786432314284599,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.826186580812745,
+              "weight": 0.1738358278124388,
+              "observedGames": 5
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.189186580812745,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Dan Oturu",
+      "team": "Hapoel Tel Aviv",
+      "pos": "C",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 13.6,
+      "expectedPir": 13.231664782882813,
+      "expectedMinutes": 21.671428,
+      "basePir": 13.231664782882813,
+      "baseMinutes": 21.671428,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 16.08548425407978,
+        "baseMin": 23.749997999999998,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.759000000000005,
+        "teamPoints": 83.5557,
+        "margin": -4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.84,
+          "sameTeam": true,
+          "avgPir": 16.761904761904763,
+          "avgMinutes": 23.89285476190476,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 15.5,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0000403851979907,
+          "defenseFactor": 0.9870107449401933,
+          "defenseSample": 5,
+          "rival": "Mathias Lessort",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.024874548196298,
+              "weight": 0.7786432314284599,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.318724947204775,
+              "weight": 0.04752094075910125,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.184692010073796,
+              "weight": 0.1738358278124388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nigel Hayes-davis",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Hapoel Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 13.5,
+      "expectedPir": 14.971459083402836,
+      "expectedMinutes": 27.331403095238098,
+      "basePir": 14.971459083402836,
+      "baseMinutes": 27.331403095238098,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.885511049285071,
+        "baseMin": 26.702079166666667,
+        "injuryBoost": 1.1285714285714283,
+        "injuryUsagePct": 1.7485714285714282,
+        "missingStars": [
+          "Kendrick Nunn",
+          "Kostas Sloukas"
+        ],
+        "positionMatchPct": -0.7140000000000035,
+        "teamPoints": 87.76429999999999,
+        "margin": 4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 16,
+          "historyWeight": 0.6666666666666666,
+          "sameTeam": true,
+          "avgPir": 12.875,
+          "avgMinutes": 28.55311875,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9947120893603768,
+          "defenseSample": 5,
+          "rival": "Amir Coffey",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 27.634069761791817,
+              "weight": 0.7786432314284599,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 26.677470653458485,
+              "weight": 0.1738358278124388,
+              "observedGames": 3
+            },
+            {
+              "id": "big-loss",
+              "minutes": 24.76427243679182,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Zach Leday",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 13.2,
+      "expectedPir": 12.676120404193547,
+      "expectedMinutes": 19.429892932330826,
+      "basePir": 12.676120404193547,
+      "baseMinutes": 19.429892932330826,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 13.456576617846567,
+        "baseMin": 23.704625263157894,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -1.878000000000002,
+        "teamPoints": 83.5557,
+        "margin": -4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 30,
+          "historyWeight": 0.4342105263157895,
+          "sameTeam": false,
+          "avgPir": 15.066666666666666,
+          "avgMinutes": 24.62277333333333,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 15,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0098377185559153,
+          "defenseFactor": 0.9776959902175208,
+          "defenseSample": 5,
+          "rival": "Nigel Hayes-davis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.563323287743735,
+              "weight": 0.7786432314284599,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.43535321121186,
+              "weight": 0.04752094075910125,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.557373939172873,
+              "weight": 0.1738358278124388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Amir Coffey",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 12.4,
+      "expectedPir": 12.828895259914114,
+      "expectedMinutes": 23.900000000000002,
+      "basePir": 12.828895259914114,
+      "baseMinutes": 23.900000000000002,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.532000000000002,
+        "baseMin": 23,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -1.878000000000002,
+        "teamPoints": 83.5557,
+        "margin": -4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Nigel Hayes-davis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 24.375992276840304,
+              "weight": 0.7786432314284599,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 23.539492276840306,
+              "weight": 0.04752094075910125,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.866492276840308,
+              "weight": 0.1738358278124388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Juancho Hernangomez",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Hapoel Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 11.2,
+      "expectedPir": 12.499127808134006,
+      "expectedMinutes": 23.00371208791209,
+      "basePir": 12.499127808134006,
+      "baseMinutes": 23.00371208791209,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.015886966521895,
+        "baseMin": 24.238138461538465,
+        "injuryBoost": 0.8746428571428569,
+        "injuryUsagePct": 1.3551428571428568,
+        "missingStars": [
+          "Kendrick Nunn",
+          "Kostas Sloukas"
+        ],
+        "positionMatchPct": -0.7140000000000035,
+        "teamPoints": 87.76429999999999,
+        "margin": 4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 44,
+          "historyWeight": 0.8461538461538461,
+          "sameTeam": true,
+          "avgPir": 12.318181818181818,
+          "avgMinutes": 24.463254545454546,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 9,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Amir Coffey",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.258454108720485,
+              "weight": 0.7786432314284599,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.453324185643563,
+              "weight": 0.1738358278124388,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.843064339489718,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Vasilije Micic",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 11.2,
+      "expectedPir": 9.429830999859675,
+      "expectedMinutes": 26.189384523809522,
+      "basePir": 9.429830999859675,
+      "baseMinutes": 26.189384523809522,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.108866338476835,
+        "baseMin": 23.912845833333332,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 83.5557,
+        "margin": -4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.8333333333333334,
+          "sameTeam": true,
+          "avgPir": 11.25,
+          "avgMinutes": 24.095415,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9822408810447458,
+          "defenseFactor": 0.97,
+          "defenseSample": 5,
+          "rival": "Sylvain Francisco",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 26.808315424678185,
+              "weight": 0.7786432314284599,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 25.14241626764536,
+              "weight": 0.04752094075910125,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 23.703283438412083,
+              "weight": 0.1738358278124388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Antonio Blakeney",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 10.4,
+      "expectedPir": 12.308361520807981,
+      "expectedMinutes": 25.07069970845481,
+      "basePir": 12.308361520807981,
+      "baseMinutes": 25.07069970845481,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.336064982252193,
+        "baseMin": 22.722448979591835,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 83.5557,
+        "margin": -4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 41,
+          "historyWeight": 0.8367346938775511,
+          "sameTeam": true,
+          "avgPir": 10.463414634146341,
+          "avgMinutes": 22.66829268292683,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.007175233729059,
+          "defenseFactor": 0.97,
+          "defenseSample": 5,
+          "rival": "Sylvain Francisco",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 25.367472109838953,
+              "weight": 0.7786432314284599,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 25.0147162588213,
+              "weight": 0.04752094075910125,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 23.75670455398375,
+              "weight": 0.1738358278124388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kostas Sloukas",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Hapoel Tel Aviv",
+      "home": true,
+      "status": "out",
+      "price": 10.2,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 12.061593321395804,
+        "baseMin": 21.61920652173913,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.47199999999999465,
+        "teamPoints": 87.76429999999999,
+        "margin": 4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 12.552631578947368,
+          "avgMinutes": 21.328513157894736,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 13.333333333333334,
+              "continuedRate": 0.3333333333333333
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 3,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Isaac Bonga",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Hapoel Tel Aviv",
+      "home": true,
+      "status": "questionable",
+      "price": 9.9,
+      "expectedPir": 5.220590825671715,
+      "expectedMinutes": 16.282655266666662,
+      "basePir": 5.220590825671715,
+      "baseMinutes": 16.282655266666662,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.461346972223582,
+        "baseMin": 22.99069,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.7140000000000035,
+        "teamPoints": 87.76429999999999,
+        "margin": 4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.45434782608695656,
+          "sameTeam": false,
+          "avgPir": 14.31578947368421,
+          "avgMinutes": 27.783336842105268,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9984663493814749,
+          "defenseSample": 5,
+          "rival": "Amir Coffey",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.46296862178541,
+              "weight": 0.7786432314284599,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.893075687452075,
+              "weight": 0.1738358278124388,
+              "observedGames": 4
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.753289818785413,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jacob Toppin",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 9.6,
+      "expectedPir": 9.884746091649516,
+      "expectedMinutes": 19.130000000000003,
+      "basePir": 9.884746091649516,
+      "baseMinutes": 19.130000000000003,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.928,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -1.878000000000002,
+        "teamPoints": 83.5557,
+        "margin": -4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Nigel Hayes-davis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.599973522346204,
+              "weight": 0.7786432314284599,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.026129010590832,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.600029010590834,
+              "weight": 0.1738358278124388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tomas Satoransky",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 9.3,
+      "expectedPir": 8.541323078199587,
+      "expectedMinutes": 21.65668841269841,
+      "basePir": 8.541323078199587,
+      "baseMinutes": 21.65668841269841,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.710898887827698,
+        "baseMin": 21.673409444444445,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 83.5557,
+        "margin": -4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.45222222222222225,
+          "sameTeam": false,
+          "avgPir": 10.945945945945946,
+          "avgMinutes": 24.911716216216217,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9959668491811249,
+          "defenseFactor": 0.9850038942747713,
+          "defenseSample": 5,
+          "rival": "Sylvain Francisco",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.90350045265245,
+              "weight": 0.7786432314284599,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.93058798241741,
+              "weight": 0.04752094075910125,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.4762960151472,
+              "weight": 0.1738358278124388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jerian Grant",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Hapoel Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 8.8,
+      "expectedPir": 8.962522421868963,
+      "expectedMinutes": 18.92867414285714,
+      "basePir": 8.962522421868963,
+      "baseMinutes": 18.92867414285714,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.339043264624936,
+        "baseMin": 22.905672,
+        "injuryBoost": 1.2841964285714287,
+        "injuryUsagePct": 1.4290714285714288,
+        "missingStars": [
+          "Kendrick Nunn",
+          "Kostas Sloukas"
+        ],
+        "positionMatchPct": -0.47199999999999465,
+        "teamPoints": 87.76429999999999,
+        "margin": 4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.84,
+          "sameTeam": true,
+          "avgPir": 8.30952380952381,
+          "avgMinutes": 23.649609523809524,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 2,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9716180851758077,
+          "defenseFactor": 0.9966630911318702,
+          "defenseSample": 5,
+          "rival": "Elijah Bryant",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.138289385994742,
+              "weight": 0.7786432314284599,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.475785790994745,
+              "weight": 0.1738358278124388,
+              "observedGames": 5
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.150778600994748,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Moustapha Fall",
+      "team": "Panathinaikos",
+      "pos": "C",
+      "opponent": "Hapoel Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 7.9,
+      "expectedPir": 9.20445850812075,
+      "expectedMinutes": 17.575312500000003,
+      "basePir": 9.20445850812075,
+      "baseMinutes": 17.575312500000003,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.347,
+        "baseMin": 19,
+        "injuryBoost": 0.33531249999999996,
+        "injuryUsagePct": 0.5748214285714286,
+        "missingStars": [
+          "Kendrick Nunn",
+          "Kostas Sloukas"
+        ],
+        "positionMatchPct": -7.737000000000005,
+        "teamPoints": 87.76429999999999,
+        "margin": 4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Dan Oturu",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.76994068024669,
+              "weight": 0.7786432314284599,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.15480474274669,
+              "weight": 0.1738358278124388,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.924532867746692,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Brancou Badio",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Hapoel Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 7.4,
+      "expectedPir": 6.274851876940013,
+      "expectedMinutes": 21.063560744047617,
+      "basePir": 6.274851876940013,
+      "baseMinutes": 21.063560744047617,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.0773145689729,
+        "baseMin": 19.685587604166663,
+        "injuryBoost": 0.9462499999999998,
+        "injuryUsagePct": 1.0529999999999997,
+        "missingStars": [
+          "Kendrick Nunn",
+          "Kostas Sloukas"
+        ],
+        "positionMatchPct": -0.47199999999999465,
+        "teamPoints": 87.76429999999999,
+        "margin": 4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.45833333333333337,
+          "sameTeam": false,
+          "avgPir": 9.575,
+          "avgMinutes": 20.495827499999997,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.018165412635713,
+          "defenseFactor": 0.998984565851646,
+          "defenseSample": 5,
+          "rival": "Elijah Bryant",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.296817620540114,
+              "weight": 0.7786432314284599,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.55959299449845,
+              "weight": 0.1738358278124388,
+              "observedGames": 5
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.085143742415116,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tamir Blatt",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "out",
+      "price": 7.2,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 7.660139015128075,
+        "baseMin": 19.19528945652174,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 83.5557,
+        "margin": -4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.45434782608695656,
+          "sameTeam": false,
+          "avgPir": 8.842105263157896,
+          "avgMinutes": 19.429823684210525,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Bruno Caboclo",
+      "team": "Hapoel Tel Aviv",
+      "pos": "C",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 7,
+      "expectedPir": 5.433267857644753,
+      "expectedMinutes": 13.376797763157894,
+      "basePir": 5.433267857644753,
+      "baseMinutes": 13.376797763157894,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.948016064410561,
+        "baseMin": 17.003595526315788,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.759000000000005,
+        "teamPoints": 83.5557,
+        "margin": -4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 11,
+          "historyWeight": 0.318421052631579,
+          "sameTeam": false,
+          "avgPir": 7,
+          "avgMinutes": 12.7303,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9810391074090279,
+          "defenseSample": 5,
+          "rival": "Mathias Lessort",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.719409570079419,
+              "weight": 0.7786432314284599,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.381729793763627,
+              "weight": 0.04752094075910125,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.114193838500471,
+              "weight": 0.1738358278124388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Eugene German",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 6.9,
+      "expectedPir": 5.47843197647014,
+      "expectedMinutes": 13.773333333333333,
+      "basePir": 5.47843197647014,
+      "baseMinutes": 13.773333333333333,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.417000000000001,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 83.5557,
+        "margin": -4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9829212301223904,
+          "defenseSample": 5,
+          "rival": "Sylvain Francisco",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.205348374353585,
+              "weight": 0.7786432314284599,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.929185741858728,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.342385741858727,
+              "weight": 0.1738358278124388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Khadeen Carrington",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 6.6,
+      "expectedPir": 5.225475018963826,
+      "expectedMinutes": 11.226666666666667,
+      "basePir": 5.225475018963826,
+      "baseMinutes": 11.226666666666667,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.138,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 83.5557,
+        "margin": -4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Sylvain Francisco",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.416628625375752,
+              "weight": 0.7786432314284599,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 10.293961958709087,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.630761958709087,
+              "weight": 0.1738358278124388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Konstantinos Mitoglou",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Hapoel Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 6.2,
+      "expectedPir": 7.522940599902784,
+      "expectedMinutes": 14.6761326007326,
+      "basePir": 7.522940599902784,
+      "baseMinutes": 14.6761326007326,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.439507619447027,
+        "baseMin": 13.158964102564102,
+        "injuryBoost": 0.3949999999999999,
+        "injuryUsagePct": 0.6119999999999999,
+        "missingStars": [
+          "Kendrick Nunn",
+          "Kostas Sloukas"
+        ],
+        "positionMatchPct": -0.7140000000000035,
+        "teamPoints": 87.76429999999999,
+        "margin": 4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 31,
+          "historyWeight": 0.7948717948717948,
+          "sameTeam": true,
+          "avgPir": 5.354838709677419,
+          "avgMinutes": 12.94192258064516,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9846655085484053,
+          "defenseFactor": 0.9926812238283481,
+          "defenseSample": 5,
+          "rival": "Amir Coffey",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.838655399751946,
+              "weight": 0.7786432314284599,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.324990758726306,
+              "weight": 0.1738358278124388,
+              "observedGames": 5
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.297661476675025,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Ish Wainright",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 6,
+      "expectedPir": 3.905194402510753,
+      "expectedMinutes": 20.02771314285714,
+      "basePir": 3.905194402510753,
+      "baseMinutes": 20.02771314285714,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.676233470374555,
+        "baseMin": 21.596995999999997,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -1.878000000000002,
+        "teamPoints": 83.5557,
+        "margin": -4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.84,
+          "sameTeam": true,
+          "avgPir": 4.190476190476191,
+          "avgMinutes": 23.044042857142855,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0076309655257023,
+          "defenseFactor": 0.9789038518298135,
+          "defenseSample": 5,
+          "rival": "Nigel Hayes-davis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.248857447180736,
+              "weight": 0.7786432314284599,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.357092883695493,
+              "weight": 0.04752094075910125,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.947124904828172,
+              "weight": 0.1738358278124388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tai Odiase",
+      "team": "Hapoel Tel Aviv",
+      "pos": "C",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 5.9,
+      "expectedPir": 4.090125660014327,
+      "expectedMinutes": 13.62097915057915,
+      "basePir": 4.090125660014327,
+      "baseMinutes": 13.62097915057915,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.245558135368334,
+        "baseMin": 12.373427027027027,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.759000000000005,
+        "teamPoints": 83.5557,
+        "margin": -4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 29,
+          "historyWeight": 0.7837837837837838,
+          "sameTeam": true,
+          "avgPir": 3.9310344827586206,
+          "avgMinutes": 11.92471724137931,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.06,
+          "defenseFactor": 0.9915576110245993,
+          "defenseSample": 5,
+          "rival": "Mathias Lessort",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.617522539819568,
+              "weight": 0.7786432314284599,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.916756870742965,
+              "weight": 0.04752094075910125,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.282239372673468,
+              "weight": 0.1738358278124388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Max Heidegger",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 5.3,
+      "expectedPir": 5.027697696939987,
+      "expectedMinutes": 14,
+      "basePir": 5.027697696939987,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.929,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 83.5557,
+        "margin": -4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Sylvain Francisco",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.345353244918984,
+              "weight": 0.7786432314284599,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.455353244918985,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.875353244918987,
+              "weight": 0.1738358278124388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tyler Ennis",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "out",
+      "price": 5.2,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 3.9781501287017966,
+        "baseMin": 10.874072222222221,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 83.5557,
+        "margin": -4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 10,
+          "historyWeight": 0.5555555555555556,
+          "sameTeam": true,
+          "avgPir": 3.2,
+          "avgMinutes": 8.37333,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Nikos Rogkavopoulos",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Hapoel Tel Aviv",
+      "home": true,
+      "status": "out",
+      "price": 5.1,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form",
+      "features": {
+        "basePir": 4.743,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.7140000000000035,
+        "teamPoints": 87.76429999999999,
+        "margin": 4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Eleftherios Mantzoukas",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Hapoel Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 5.1,
+      "expectedPir": 6.746224891606149,
+      "expectedMinutes": 16.98785714285714,
+      "basePir": 6.746224891606149,
+      "baseMinutes": 16.98785714285714,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.743,
+        "baseMin": 14,
+        "injuryBoost": 0.3949999999999999,
+        "injuryUsagePct": 0.6119999999999999,
+        "missingStars": [
+          "Kendrick Nunn",
+          "Kostas Sloukas"
+        ],
+        "positionMatchPct": -0.7140000000000035,
+        "teamPoints": 87.76429999999999,
+        "margin": 4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9845702278885008,
+          "defenseFactor": 1.0002801070270737,
+          "defenseSample": 5,
+          "rival": "Amir Coffey",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.175979870234247,
+              "weight": 0.7786432314284599,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.58140487023425,
+              "weight": 0.1738358278124388,
+              "observedGames": 5
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.392254870234249,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Frederic Bourdillon",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 4.5,
+      "expectedPir": 4.26879993136414,
+      "expectedMinutes": 14,
+      "basePir": 4.26879993136414,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.1850000000000005,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 83.5557,
+        "margin": -4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Sylvain Francisco",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.345353244918984,
+              "weight": 0.7786432314284599,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.455353244918985,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.875353244918987,
+              "weight": 0.1738358278124388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Panagiotis Kalaitzakis",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Hapoel Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.094497943167402,
+      "expectedMinutes": 14.289386134453782,
+      "basePir": 3.094497943167402,
+      "baseMinutes": 14.289386134453782,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 1.5280479396954985,
+        "baseMin": 7.200976470588236,
+        "injuryBoost": 0.9462499999999998,
+        "injuryUsagePct": 1.0529999999999997,
+        "missingStars": [
+          "Kendrick Nunn",
+          "Kostas Sloukas"
+        ],
+        "positionMatchPct": -0.47199999999999465,
+        "teamPoints": 87.76429999999999,
+        "margin": 4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 26,
+          "historyWeight": 0.7647058823529411,
+          "sameTeam": true,
+          "avgPir": 1,
+          "avgMinutes": 5.108969230769231,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9901870894944467,
+          "defenseFactor": 1.0001162425692272,
+          "defenseSample": 5,
+          "rival": "Elijah Bryant",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.447626121378109,
+              "weight": 0.7786432314284599,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.947497606672227,
+              "weight": 0.1738358278124388,
+              "observedGames": 5
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.947240577260464,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Dimitris Moraitis",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Hapoel Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 2.3228444063980245,
+      "expectedMinutes": 14.13625,
+      "basePir": 2.3228444063980245,
+      "baseMinutes": 14.13625,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0.9462499999999998,
+        "injuryUsagePct": 1.0529999999999997,
+        "missingStars": [
+          "Kendrick Nunn",
+          "Kostas Sloukas"
+        ],
+        "positionMatchPct": -0.47199999999999465,
+        "teamPoints": 87.76429999999999,
+        "margin": 4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Elijah Bryant",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.29279416460659,
+              "weight": 0.7786432314284599,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.798025414606592,
+              "weight": 0.1738358278124388,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.808487914606593,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tomer Ginat",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "out",
+      "price": 4,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 3.3534792886216467,
+        "baseMin": 11.329540909090909,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -1.878000000000002,
+        "teamPoints": 83.5557,
+        "margin": -4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 14,
+          "historyWeight": 0.6363636363636364,
+          "sameTeam": true,
+          "avgPir": 3.0714285714285716,
+          "avgMinutes": 9.803564285714286,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Guy Palatin",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 1.088747804299173,
+      "expectedMinutes": 7.425927777777777,
+      "basePir": 1.088747804299173,
+      "baseMinutes": 7.425927777777777,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 1.067374820617557,
+        "baseMin": 7.425927777777777,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 83.5557,
+        "margin": -4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 10,
+          "historyWeight": 0.5555555555555556,
+          "sameTeam": true,
+          "avgPir": 0.1,
+          "avgMinutes": 2.16667,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Sylvain Francisco",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 7.6091112245341765,
+              "weight": 0.7786432314284599,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 6.606610974534178,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 6.829388807867511,
+              "weight": 0.1738358278124388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Oz Blayzer",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.6896374841811888,
+      "expectedMinutes": 14,
+      "basePir": 3.6896374841811888,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -1.878000000000002,
+        "teamPoints": 83.5557,
+        "margin": -4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Nigel Hayes-davis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.345353244918984,
+              "weight": 0.7786432314284599,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.455353244918985,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.875353244918987,
+              "weight": 0.1738358278124388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Bar Timor",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 2.8008784266062574,
+      "expectedMinutes": 9.43426111111111,
+      "basePir": 2.8008784266062574,
+      "baseMinutes": 9.43426111111111,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.7458949596640863,
+        "baseMin": 9.43426111111111,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 83.5557,
+        "margin": -4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 10,
+          "historyWeight": 0.5555555555555556,
+          "sameTeam": true,
+          "avgPir": 1.8,
+          "avgMinutes": 5.78167,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Sylvain Francisco",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 9.666986303120769,
+              "weight": 0.7786432314284599,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 8.39336105312077,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 8.676388886454104,
+              "weight": 0.1738358278124388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Ioannis Kouzeloglou",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Hapoel Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.8907695420170207,
+      "expectedMinutes": 14.395,
+      "basePir": 3.8907695420170207,
+      "baseMinutes": 14.395,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0.3949999999999999,
+        "injuryUsagePct": 0.6119999999999999,
+        "missingStars": [
+          "Kendrick Nunn",
+          "Kostas Sloukas"
+        ],
+        "positionMatchPct": -0.7140000000000035,
+        "teamPoints": 87.76429999999999,
+        "margin": 4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": true,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Amir Coffey",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.80464622401747,
+              "weight": 0.7786432314284599,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.861321224017471,
+              "weight": 0.1738358278124388,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.29317122401747,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Itay Segev",
+      "team": "Hapoel Tel Aviv",
+      "pos": "C",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.6131893373564665,
+      "expectedMinutes": 14,
+      "basePir": 3.6131893373564665,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.759000000000005,
+        "teamPoints": 83.5557,
+        "margin": -4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": true,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Mathias Lessort",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.345353244918984,
+              "weight": 0.7786432314284599,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.455353244918985,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.875353244918987,
+              "weight": 0.1738358278124388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Iason Varvaritis",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Hapoel Tel Aviv",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 4.0609170823404535,
+      "expectedMinutes": 14.94625,
+      "basePir": 4.0609170823404535,
+      "baseMinutes": 14.94625,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0.9462499999999998,
+        "injuryUsagePct": 1.0529999999999997,
+        "missingStars": [
+          "Kendrick Nunn",
+          "Kostas Sloukas"
+        ],
+        "positionMatchPct": -0.47199999999999465,
+        "teamPoints": 87.76429999999999,
+        "margin": 4.2086,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Elijah Bryant",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.371583440480798,
+              "weight": 0.7786432314284599,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.3538396904808,
+              "weight": 0.1738358278124388,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.802227190480801,
+              "weight": 0.04752094075910125,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2699 @@
+{
+  "schema": "learning-v1",
+  "season": "E2026",
+  "modelId": "b3fc6df40846537dcb24",
+  "gameCode": 58,
+  "round": 6,
+  "kickoff": "2026-10-16T18:30:00Z",
+  "created_at": "2026-10-15T18:59:52.362061+00:00",
+  "predictions": [
+    {
+      "name": "Sasha Vezenkov",
+      "team": "Olympiacos",
+      "pos": "F",
+      "opponent": "Barcelona",
+      "home": false,
+      "status": "active",
+      "price": 17.5,
+      "expectedPir": 19.812310264683298,
+      "expectedMinutes": 24.940931914893618,
+      "basePir": 19.812310264683298,
+      "baseMinutes": 24.940931914893618,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 21.10923649772856,
+        "baseMin": 27.693261702127657,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.096000000000002,
+        "teamPoints": 86.86704999999999,
+        "margin": 1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 39,
+          "historyWeight": 0.8297872340425532,
+          "sameTeam": true,
+          "avgPir": 22.128205128205128,
+          "avgMinutes": 27.83546923076923,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 12,
+              "nextGameSamples": 17,
+              "nextGameAvgPir": 23.41176470588235,
+              "continuedRate": 0.7647058823529411
+            },
+            {
+              "threshold": 25,
+              "longestRun": 5,
+              "nextGameSamples": 8,
+              "nextGameAvgPir": 24.875,
+              "continuedRate": 0.5
+            },
+            {
+              "threshold": 30,
+              "longestRun": 4,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 28,
+              "continuedRate": 0.6666666666666666
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.98909353581344,
+          "defenseFactor": 1.0011487051956969,
+          "defenseSample": 5,
+          "rival": "Joel Parra",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 25.377000590340923,
+              "weight": 0.8053690188157856,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 23.422612484058682,
+              "weight": 0.11548069117947524,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.71908757336666,
+              "weight": 0.07915029000473911,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nikola Milutinov",
+      "team": "Olympiacos",
+      "pos": "C",
+      "opponent": "Barcelona",
+      "home": false,
+      "status": "active",
+      "price": 14.7,
+      "expectedPir": 15.002576871343061,
+      "expectedMinutes": 18.235914166666667,
+      "basePir": 15.002576871343061,
+      "baseMinutes": 18.235914166666667,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 18.788160988945236,
+        "baseMin": 22.444785416666665,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.105000000000003,
+        "teamPoints": 86.86704999999999,
+        "margin": 1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.8333333333333334,
+          "sameTeam": true,
+          "avgPir": 19.45,
+          "avgMinutes": 21.5337425,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 5,
+              "nextGameSamples": 9,
+              "nextGameAvgPir": 19.555555555555557,
+              "continuedRate": 0.6666666666666666
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 15.666666666666666,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0004141626335,
+          "defenseSample": 5,
+          "rival": "Josh Nebo",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.65427293193461,
+              "weight": 0.8053690188157856,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.531377620269488,
+              "weight": 0.11548069117947524,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.465963231934612,
+              "weight": 0.07915029000473911,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jean Montero",
+      "team": "Olympiacos",
+      "pos": "G",
+      "opponent": "Barcelona",
+      "home": false,
+      "status": "active",
+      "price": 14.5,
+      "expectedPir": 18.46129326219497,
+      "expectedMinutes": 24.779719813664595,
+      "basePir": 18.46129326219497,
+      "baseMinutes": 24.779719813664595,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 15.752536966886877,
+        "baseMin": 25.179019347826088,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.507000000000005,
+        "teamPoints": 86.86704999999999,
+        "margin": 1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.45434782608695656,
+          "sameTeam": false,
+          "avgPir": 17.86842105263158,
+          "avgMinutes": 22.9921,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 4,
+              "nextGameSamples": 4,
+              "nextGameAvgPir": 23.5,
+              "continuedRate": 0.5
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 6,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 6,
+              "continuedRate": 0
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0014370352181206,
+          "defenseFactor": 1.0008996366506058,
+          "defenseSample": 5,
+          "rival": "Kevin Punter",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 25.03619230215602,
+              "weight": 0.8053690188157856,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 24.25426140079147,
+              "weight": 0.11548069117947524,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.936710827896043,
+              "weight": 0.07915029000473911,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kevin Punter",
+      "team": "Barcelona",
+      "pos": "G",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 14.4,
+      "expectedPir": 15.92704513646296,
+      "expectedMinutes": 24.648277203647417,
+      "basePir": 15.92704513646296,
+      "baseMinutes": 24.648277203647417,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 13.279689247087667,
+        "baseMin": 27.143970212765957,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.7410000000000054,
+        "teamPoints": 85.64295,
+        "margin": -1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 39,
+          "historyWeight": 0.8297872340425532,
+          "sameTeam": true,
+          "avgPir": 13.256410256410257,
+          "avgMinutes": 27.173502564102563,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 12,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 12,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0078578713012734,
+          "defenseFactor": 0.9939911645520115,
+          "defenseSample": 5,
+          "rival": "Jean Montero",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 25.034276620485475,
+              "weight": 0.8053690188157857,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.612301369650616,
+              "weight": 0.0791502900047391,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 23.35174968576004,
+              "weight": 0.11548069117947526,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tyler Dorsey",
+      "team": "Olympiacos",
+      "pos": "G",
+      "opponent": "Barcelona",
+      "home": false,
+      "status": "active",
+      "price": 12.3,
+      "expectedPir": 11.997294734689147,
+      "expectedMinutes": 20.264706442577033,
+      "basePir": 11.997294734689147,
+      "baseMinutes": 20.264706442577033,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 13.310581191559164,
+        "baseMin": 24.826472549019613,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.507000000000005,
+        "teamPoints": 86.86704999999999,
+        "margin": 1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 43,
+          "historyWeight": 0.8431372549019608,
+          "sameTeam": true,
+          "avgPir": 13.674418604651162,
+          "avgMinutes": 25.16628139534884,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 4,
+              "nextGameAvgPir": 15.25,
+              "continuedRate": 0.25
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 12,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9924519688362698,
+          "defenseFactor": 1.0001347511507268,
+          "defenseSample": 5,
+          "rival": "Kevin Punter",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.230271608017407,
+              "weight": 0.8053690188157856,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.192837314370447,
+              "weight": 0.11548069117947524,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.260939486668438,
+              "weight": 0.07915029000473911,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Justin Robinson",
+      "team": "Barcelona",
+      "pos": "G",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 11.9,
+      "expectedPir": 11.461886634585461,
+      "expectedMinutes": 19.460773214285712,
+      "basePir": 11.461886634585461,
+      "baseMinutes": 19.460773214285712,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.824219373460608,
+        "baseMin": 21.187706249999998,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.7410000000000054,
+        "teamPoints": 85.64295,
+        "margin": -1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.45000000000000007,
+          "sameTeam": false,
+          "avgPir": 14.36111111111111,
+          "avgMinutes": 18.972680555555556,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": -2.5,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": -1,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.010975548478113,
+          "defenseFactor": 0.9969936757829306,
+          "defenseSample": 5,
+          "rival": "Jean Montero",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.803280242195058,
+              "weight": 0.8053690188157857,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.697103046430207,
+              "weight": 0.0791502900047391,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.28092624285878,
+              "weight": 0.11548069117947526,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Josh Nebo",
+      "team": "Barcelona",
+      "pos": "C",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 11.6,
+      "expectedPir": 8.730105078466357,
+      "expectedMinutes": 18.954401397058824,
+      "basePir": 8.730105078466357,
+      "baseMinutes": 18.954401397058824,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.085263034776,
+        "baseMin": 22.388802794117645,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 85.64295,
+        "margin": -1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 26,
+          "historyWeight": 0.42058823529411765,
+          "sameTeam": false,
+          "avgPir": 13.73076923076923,
+          "avgMinutes": 21.546803846153846,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Nikola Milutinov",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.257646749998955,
+              "weight": 0.8053690188157857,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.36220661029307,
+              "weight": 0.0791502900047391,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.930838652204837,
+              "weight": 0.11548069117947526,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tyrique Jones",
+      "team": "Olympiacos",
+      "pos": "C",
+      "opponent": "Barcelona",
+      "home": false,
+      "status": "active",
+      "price": 10.6,
+      "expectedPir": 9.513482591754531,
+      "expectedMinutes": 16.172084552845526,
+      "basePir": 9.513482591754531,
+      "baseMinutes": 16.172084552845526,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.64882005287172,
+        "baseMin": 20.116253658536586,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.105000000000003,
+        "teamPoints": 86.86704999999999,
+        "margin": 1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 33,
+          "historyWeight": 0.8048780487804879,
+          "sameTeam": true,
+          "avgPir": 13.151515151515152,
+          "avgMinutes": 19.417163636363636,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 11.666666666666666,
+              "continuedRate": 0.3333333333333333
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 5,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 0.9758057521450774,
+          "defenseFactor": 1.001639686684073,
+          "defenseSample": 5,
+          "rival": "Josh Nebo",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.06690537636115,
+              "weight": 0.8053690188157856,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.34484884060585,
+              "weight": 0.11548069117947524,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.53123307430949,
+              "weight": 0.07915029000473911,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Umoja Gibson",
+      "team": "Barcelona",
+      "pos": "G",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 10.4,
+      "expectedPir": 10.746723861140007,
+      "expectedMinutes": 19.24285714285714,
+      "basePir": 10.746723861140007,
+      "baseMinutes": 19.24285714285714,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.672,
+        "baseMin": 23,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.7410000000000054,
+        "teamPoints": 85.64295,
+        "margin": -1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0025196739363988,
+          "defenseFactor": 0.9972423275301017,
+          "defenseSample": 5,
+          "rival": "Jean Montero",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.49535723739895,
+              "weight": 0.8053690188157857,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.85550809368284,
+              "weight": 0.0791502900047391,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.432793807968554,
+              "weight": 0.11548069117947526,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Codi Miller-Mcintyre",
+      "team": "Olympiacos",
+      "pos": "G",
+      "opponent": "Barcelona",
+      "home": false,
+      "status": "active",
+      "price": 10.2,
+      "expectedPir": 8.280867988933066,
+      "expectedMinutes": 19.627603404255318,
+      "basePir": 8.280867988933066,
+      "baseMinutes": 19.627603404255318,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.859867087498296,
+        "baseMin": 26.621611914893617,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.507000000000005,
+        "teamPoints": 86.86704999999999,
+        "margin": 1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 39,
+          "historyWeight": 0.4563829787234043,
+          "sameTeam": false,
+          "avgPir": 15,
+          "avgMinutes": 30.935466666666663,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 4,
+              "nextGameAvgPir": 13,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 17,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 17,
+              "continuedRate": 0
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0198860398860399,
+          "defenseFactor": 1.0002513032926124,
+          "defenseSample": 5,
+          "rival": "Kevin Punter",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.765876152058137,
+              "weight": 0.8053690188157856,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.572160771504763,
+              "weight": 0.11548069117947524,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.301543402835357,
+              "weight": 0.07915029000473911,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Donta Hall",
+      "team": "Olympiacos",
+      "pos": "C",
+      "opponent": "Barcelona",
+      "home": false,
+      "status": "active",
+      "price": 9.7,
+      "expectedPir": 9.688522282660841,
+      "expectedMinutes": 16.57634956521739,
+      "basePir": 9.688522282660841,
+      "baseMinutes": 16.57634956521739,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.195980128343308,
+        "baseMin": 15.91087391304348,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.105000000000003,
+        "teamPoints": 86.86704999999999,
+        "margin": 1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 11.473684210526315,
+          "avgMinutes": 15.26053157894737,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0006521481129835,
+          "defenseSample": 5,
+          "rival": "Josh Nebo",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.41151565619169,
+              "weight": 0.8053690188157856,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.06734995400833,
+              "weight": 0.11548069117947524,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.078188006182245,
+              "weight": 0.07915029000473911,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Evan Fournier",
+      "team": "Olympiacos",
+      "pos": "G",
+      "opponent": "Barcelona",
+      "home": false,
+      "status": "active",
+      "price": 9.6,
+      "expectedPir": 9.732905574093495,
+      "expectedMinutes": 23.66002917933131,
+      "basePir": 9.732905574093495,
+      "baseMinutes": 23.66002917933131,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.01244149821328,
+        "baseMin": 21.435102127659572,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.507000000000005,
+        "teamPoints": 86.86704999999999,
+        "margin": 1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 39,
+          "historyWeight": 0.8297872340425532,
+          "sameTeam": true,
+          "avgPir": 9,
+          "avgMinutes": 21.934610256410256,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 10,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.011587410680139,
+          "defenseFactor": 1.0007573847696851,
+          "defenseSample": 5,
+          "rival": "Kevin Punter",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.943912120318746,
+              "weight": 0.8053690188157856,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.941441433894507,
+              "weight": 0.11548069117947524,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.81989042410091,
+              "weight": 0.07915029000473911,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tosan Evbuomwan",
+      "team": "Barcelona",
+      "pos": "F",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 9,
+      "expectedPir": 8.222699175470545,
+      "expectedMinutes": 18.134999999999998,
+      "basePir": 8.222699175470545,
+      "baseMinutes": 18.134999999999998,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.370000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -10.145000000000003,
+        "teamPoints": 85.64295,
+        "margin": -1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Sasha Vezenkov",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.425136014341376,
+              "weight": 0.8053690188157857,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.61163601434138,
+              "weight": 0.0791502900047391,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.155686014341377,
+              "weight": 0.11548069117947526,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Mbaye Ndiaye",
+      "team": "Olympiacos",
+      "pos": "F",
+      "opponent": "Barcelona",
+      "home": false,
+      "status": "active",
+      "price": 8.7,
+      "expectedPir": 10.9950151380184,
+      "expectedMinutes": 18.64171467857143,
+      "basePir": 10.9950151380184,
+      "baseMinutes": 18.64171467857143,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.032296166133117,
+        "baseMin": 21.046001375000003,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.096000000000002,
+        "teamPoints": 86.86704999999999,
+        "margin": 1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 32,
+          "historyWeight": 0.44000000000000006,
+          "sameTeam": false,
+          "avgPir": 10.25,
+          "avgMinutes": 23.650003125,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9869665533913164,
+          "defenseFactor": 1.00157234657239,
+          "defenseSample": 5,
+          "rival": "Joel Parra",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.152730268174434,
+              "weight": 0.8053690188157856,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.477638436639317,
+              "weight": 0.11548069117947524,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.599434052624716,
+              "weight": 0.07915029000473911,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Aleksander Balcerowski",
+      "team": "Barcelona",
+      "pos": "C",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 8.4,
+      "expectedPir": 7.52816040095952,
+      "expectedMinutes": 19,
+      "basePir": 7.52816040095952,
+      "baseMinutes": 19,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.812000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 85.64295,
+        "margin": -1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Nikola Milutinov",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.433404472765204,
+              "weight": 0.8053690188157857,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.868404472765206,
+              "weight": 0.0791502900047391,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.438404472765207,
+              "weight": 0.11548069117947526,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Stanley Umude",
+      "team": "Barcelona",
+      "pos": "G",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 8.3,
+      "expectedPir": 6.82201608551177,
+      "expectedMinutes": 16.78,
+      "basePir": 6.82201608551177,
+      "baseMinutes": 16.78,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.719000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.7410000000000054,
+        "teamPoints": 85.64295,
+        "margin": -1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 0.9628109094401229,
+          "defenseFactor": 0.9974900421762122,
+          "defenseSample": 5,
+          "rival": "Jean Montero",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.043720249399126,
+              "weight": 0.8053690188157857,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.390061477395891,
+              "weight": 0.0791502900047391,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.89346147739589,
+              "weight": 0.11548069117947526,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tyrese Martin",
+      "team": "Barcelona",
+      "pos": "F",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 8,
+      "expectedPir": 5.683210452638253,
+      "expectedMinutes": 20.807142857142857,
+      "basePir": 5.683210452638253,
+      "baseMinutes": 20.807142857142857,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.44,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -10.145000000000003,
+        "teamPoints": 85.64295,
+        "margin": -1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9807538584517002,
+          "defenseFactor": 0.9982636732247369,
+          "defenseSample": 5,
+          "rival": "Sasha Vezenkov",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.157791529248655,
+              "weight": 0.8053690188157857,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.98581784503813,
+              "weight": 0.0791502900047391,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.61003213075242,
+              "weight": 0.11548069117947526,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tyson Ward",
+      "team": "Olympiacos",
+      "pos": "F",
+      "opponent": "Barcelona",
+      "home": false,
+      "status": "active",
+      "price": 7.6,
+      "expectedPir": 8.13792955622061,
+      "expectedMinutes": 20.69213820598007,
+      "basePir": 8.13792955622061,
+      "baseMinutes": 20.69213820598007,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.640084609189329,
+        "baseMin": 19.072483720930233,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.096000000000002,
+        "teamPoints": 86.86704999999999,
+        "margin": 1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 35,
+          "historyWeight": 0.813953488372093,
+          "sameTeam": true,
+          "avgPir": 7.771428571428571,
+          "avgMinutes": 19.08905142857143,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.018317728016751,
+          "defenseFactor": 1.0012600808358159,
+          "defenseSample": 5,
+          "rival": "Joel Parra",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.00524460426436,
+              "weight": 0.8053690188157856,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.703155307596713,
+              "weight": 0.11548069117947524,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.94915325806752,
+              "weight": 0.07915029000473911,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Olivier Nkamhoua",
+      "team": "Barcelona",
+      "pos": "F",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 7.2,
+      "expectedPir": 5.838275307251735,
+      "expectedMinutes": 14.95,
+      "basePir": 5.838275307251735,
+      "baseMinutes": 14.95,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.696000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -10.145000000000003,
+        "teamPoints": 85.64295,
+        "margin": -1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.06,
+          "defenseFactor": 0.9950232605643855,
+          "defenseSample": 5,
+          "rival": "Sasha Vezenkov",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.068749604060601,
+              "weight": 0.8053690188157857,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.192513492949491,
+              "weight": 0.0791502900047391,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.64101349294949,
+              "weight": 0.11548069117947526,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Joel Parra",
+      "team": "Barcelona",
+      "pos": "F",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 6.8,
+      "expectedPir": 6.463437479905261,
+      "expectedMinutes": 23.094344642857145,
+      "basePir": 6.463437479905261,
+      "baseMinutes": 23.094344642857145,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.817008709945952,
+        "baseMin": 17.88020625,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -10.145000000000003,
+        "teamPoints": 85.64295,
+        "margin": -1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.8333333333333334,
+          "sameTeam": true,
+          "avgPir": 6.85,
+          "avgMinutes": 18.6562475,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0032784033886577,
+          "defenseFactor": 0.9962999963331435,
+          "defenseSample": 5,
+          "rival": "Sasha Vezenkov",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.430700140371098,
+              "weight": 0.8053690188157857,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.29145169476675,
+              "weight": 0.0791502900047391,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.984282034052466,
+              "weight": 0.11548069117947526,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Justin Minaya",
+      "team": "Barcelona",
+      "pos": "F",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "out",
+      "price": 6.8,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form",
+      "features": {
+        "basePir": 6.324,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -10.145000000000003,
+        "teamPoints": 85.64295,
+        "margin": -1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": null
+      }
+    },
+    {
+      "name": "Yoan Makoundou",
+      "team": "Barcelona",
+      "pos": "C",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "out",
+      "price": 6.5,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 7.005227012618679,
+        "baseMin": 12.624297692307692,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 85.64295,
+        "margin": -1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 5,
+          "historyWeight": 0.21153846153846156,
+          "sameTeam": false,
+          "avgPir": 7.6,
+          "avgMinutes": 7.4966800000000005,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Agustin Ubal",
+      "team": "Barcelona",
+      "pos": "G",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 6.1,
+      "expectedPir": 7.287742933210931,
+      "expectedMinutes": 13.966666666666667,
+      "basePir": 7.287742933210931,
+      "baseMinutes": 13.966666666666667,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.673,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.7410000000000054,
+        "teamPoints": 85.64295,
+        "margin": -1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Jean Montero",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.190114860783083,
+              "weight": 0.8053690188157857,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.793448194116417,
+              "weight": 0.0791502900047391,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.212448194116417,
+              "weight": 0.11548069117947526,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Antonis Karagiannidis",
+      "team": "Olympiacos",
+      "pos": "C",
+      "opponent": "Barcelona",
+      "home": false,
+      "status": "active",
+      "price": 6,
+      "expectedPir": 5.718591422143497,
+      "expectedMinutes": 14,
+      "basePir": 5.718591422143497,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.58,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.105000000000003,
+        "teamPoints": 86.86704999999999,
+        "margin": 1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Josh Nebo",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.334609432636174,
+              "weight": 0.8053690188157856,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.444609432636176,
+              "weight": 0.11548069117947524,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.864609432636177,
+              "weight": 0.07915029000473911,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Dario Brizuela",
+      "team": "Barcelona",
+      "pos": "G",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 5.8,
+      "expectedPir": 4.554954559978009,
+      "expectedMinutes": 17.87815590062112,
+      "basePir": 4.554954559978009,
+      "baseMinutes": 17.87815590062112,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.787616890216682,
+        "baseMin": 15.273545652173912,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.7410000000000054,
+        "teamPoints": 85.64295,
+        "margin": -1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 5.868421052631579,
+          "avgMinutes": 15.541660526315788,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9814110164215046,
+          "defenseFactor": 0.9967327709580563,
+          "defenseSample": 5,
+          "rival": "Jean Montero",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.20347881752757,
+              "weight": 0.8053690188157857,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.213762850610344,
+              "weight": 0.0791502900047391,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.75010752762898,
+              "weight": 0.11548069117947526,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Cory Joseph",
+      "team": "Olympiacos",
+      "pos": "G",
+      "opponent": "Barcelona",
+      "home": false,
+      "status": "active",
+      "price": 5.7,
+      "expectedPir": 2.622319759999576,
+      "expectedMinutes": 11.844053333333335,
+      "basePir": 2.622319759999576,
+      "baseMinutes": 11.844053333333335,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.2478576150602105,
+        "baseMin": 15.045133333333332,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.507000000000005,
+        "teamPoints": 86.86704999999999,
+        "margin": 1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 16,
+          "historyWeight": 0.6666666666666666,
+          "sameTeam": true,
+          "avgPir": 6.75,
+          "avgMinutes": 15.5677,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0003228163453846,
+          "defenseSample": 5,
+          "rival": "Kevin Punter",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.594848763827905,
+              "weight": 0.8053690188157856,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.625257906685048,
+              "weight": 0.11548069117947524,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.780969601923145,
+              "weight": 0.07915029000473911,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Bryant Dunston",
+      "team": "Olympiacos",
+      "pos": "C",
+      "opponent": "Barcelona",
+      "home": false,
+      "status": "active",
+      "price": 5.1,
+      "expectedPir": 4.585529377316566,
+      "expectedMinutes": 13.5292826,
+      "basePir": 4.585529377316566,
+      "baseMinutes": 13.5292826,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.794178384440348,
+        "baseMin": 12.858565200000001,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.105000000000003,
+        "teamPoints": 86.86704999999999,
+        "margin": 1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 17,
+          "historyWeight": 0.37400000000000005,
+          "sameTeam": false,
+          "avgPir": 4.705882352941177,
+          "avgMinutes": 10.948035294117647,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Josh Nebo",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.814021287542575,
+              "weight": 0.8053690188157856,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.461093027542573,
+              "weight": 0.11548069117947524,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.190507375542575,
+              "weight": 0.07915029000473911,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kostas Papanikolaou",
+      "team": "Olympiacos",
+      "pos": "F",
+      "opponent": "Barcelona",
+      "home": false,
+      "status": "active",
+      "price": 4.5,
+      "expectedPir": 4.474930657263603,
+      "expectedMinutes": 13.822943506493505,
+      "basePir": 4.474930657263603,
+      "baseMinutes": 13.822943506493505,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.6310337235632972,
+        "baseMin": 14.255302272727272,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.096000000000002,
+        "teamPoints": 86.86704999999999,
+        "margin": 1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.8181818181818182,
+          "sameTeam": true,
+          "avgPir": 2.2777777777777777,
+          "avgMinutes": 14.31203611111111,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.06,
+          "defenseFactor": 1.0002929125138782,
+          "defenseSample": 5,
+          "rival": "Joel Parra",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.826094342042934,
+              "weight": 0.8053690188157856,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.307899035360524,
+              "weight": 0.11548069117947524,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.083330486803264,
+              "weight": 0.07915029000473911,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Juan Nunez",
+      "team": "Barcelona",
+      "pos": "G",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 4.2,
+      "expectedPir": 4.291365554953417,
+      "expectedMinutes": 12.956666666666667,
+      "basePir": 4.291365554953417,
+      "baseMinutes": 12.956666666666667,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.9060000000000006,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.7410000000000054,
+        "teamPoints": 85.64295,
+        "margin": -1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": true,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Jean Montero",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.290044633936724,
+              "weight": 0.8053690188157857,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.346544633936723,
+              "weight": 0.0791502900047391,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.735244633936723,
+              "weight": 0.11548069117947526,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Omiros Netzipoglou",
+      "team": "Olympiacos",
+      "pos": "G",
+      "opponent": "Barcelona",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.699108723255227,
+      "expectedMinutes": 14,
+      "basePir": 3.699108723255227,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.507000000000005,
+        "teamPoints": 86.86704999999999,
+        "margin": 1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": true,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Kevin Punter",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.334609432636174,
+              "weight": 0.8053690188157856,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.444609432636176,
+              "weight": 0.11548069117947524,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.864609432636177,
+              "weight": 0.07915029000473911,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "George Papas",
+      "team": "Olympiacos",
+      "pos": "G",
+      "opponent": "Barcelona",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.699108723255227,
+      "expectedMinutes": 14,
+      "basePir": 3.699108723255227,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.507000000000005,
+        "teamPoints": 86.86704999999999,
+        "margin": 1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Kevin Punter",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.334609432636174,
+              "weight": 0.8053690188157856,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.444609432636176,
+              "weight": 0.11548069117947524,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.864609432636177,
+              "weight": 0.07915029000473911,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nikolaos Plotas",
+      "team": "Olympiacos",
+      "pos": "G",
+      "opponent": "Barcelona",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.699108723255227,
+      "expectedMinutes": 14,
+      "basePir": 3.699108723255227,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.507000000000005,
+        "teamPoints": 86.86704999999999,
+        "margin": 1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Kevin Punter",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.334609432636174,
+              "weight": 0.8053690188157856,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.444609432636176,
+              "weight": 0.11548069117947524,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.864609432636177,
+              "weight": 0.07915029000473911,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Georgios Bourneles",
+      "team": "Olympiacos",
+      "pos": "G",
+      "opponent": "Barcelona",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.699108723255227,
+      "expectedMinutes": 14,
+      "basePir": 3.699108723255227,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.507000000000005,
+        "teamPoints": 86.86704999999999,
+        "margin": 1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Kevin Punter",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.334609432636174,
+              "weight": 0.8053690188157856,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.444609432636176,
+              "weight": 0.11548069117947524,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.864609432636177,
+              "weight": 0.07915029000473911,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Abdu Kone",
+      "team": "Barcelona",
+      "pos": "C",
+      "opponent": "Olympiacos",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.5848382861712005,
+      "expectedMinutes": 14,
+      "basePir": 3.5848382861712005,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 85.64295,
+        "margin": -1.2241,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 5,
+          "rival": "Nikola Milutinov",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.319350664142783,
+              "weight": 0.8053690188157857,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.429350664142785,
+              "weight": 0.0791502900047391,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.849350664142786,
+              "weight": 0.11548069117947526,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    }
+  ]
+}
