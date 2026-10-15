@@ -2,8 +2,8 @@
   "schema": "rolling-learning-v1",
   "season": "E2026",
   "engineId": "521db8c8eff2c21ece3b",
-  "updated_at": "2026-10-15T20:51:13.613108+00:00",
-  "exactCount": 275,
+  "updated_at": "2026-10-15T21:16:02.573279+00:00",
+  "exactCount": 320,
   "diagnostic": {
     "n": 365,
     "mae": 5.174146696094897,
@@ -16,10 +16,10 @@
   },
   "missingInputs": 347,
   "validation": {
-    "n": 45,
-    "games": 2,
-    "baselineMae": 5.303954478842546,
-    "candidateMae": 5.224626503184956,
+    "n": 90,
+    "games": 4,
+    "baselineMae": 5.740977544359954,
+    "candidateMae": 5.673596079388889,
     "active": false,
     "reason": "collecting-or-no-improvement",
     "folds": [
@@ -33,6 +33,15 @@
         "candidateMae": 5.616276160939149
       },
       {
+        "gameCode": 51,
+        "round": 6,
+        "trainingN": 227,
+        "trainingGames": 10,
+        "testN": 23,
+        "baselineMae": 6.62881950080625,
+        "candidateMae": 6.549021447144009
+      },
+      {
         "gameCode": 52,
         "round": 6,
         "trainingN": 227,
@@ -40,33 +49,42 @@
         "testN": 23,
         "baselineMae": 4.887575479875918,
         "candidateMae": 4.850005091420075
+      },
+      {
+        "gameCode": 53,
+        "round": 6,
+        "trainingN": 227,
+        "trainingGames": 10,
+        "testN": 22,
+        "baselineMae": 5.70668995117898,
+        "candidateMae": 5.6767255098802165
       }
     ],
-    "intervalCoverage": 0.8222222222222222
+    "intervalCoverage": 0.7666666666666667
   },
   "coefficients": {
     "G": {
-      "n": 113,
-      "minutes": -0.6209194855771819,
-      "efficiencyPir": -0.32021690530014835
+      "n": 129,
+      "minutes": -0.6445531245416621,
+      "efficiencyPir": -0.19713304752259497
     },
     "F": {
-      "n": 96,
-      "minutes": -0.6148248093753008,
-      "efficiencyPir": -0.004424389216187645
+      "n": 116,
+      "minutes": -0.5823737648543069,
+      "efficiencyPir": 0.2200532113843426
     },
     "C": {
-      "n": 52,
-      "minutes": -0.683710649677126,
-      "efficiencyPir": 0.15364598672822077
+      "n": 60,
+      "minutes": -0.8947045254305409,
+      "efficiencyPir": 0.3001352911792503
     }
   },
   "interval": {
     "active": false,
     "targetCoverage": 0.8,
-    "coverage": 0.8222222222222222,
-    "n": 45,
-    "radius": 8.744441375197358
+    "coverage": 0.7666666666666667,
+    "n": 90,
+    "radius": 9.008640389690882
   },
   "limitations": [
     "Partial historical reconstructions exclude unrecoverable pregame defensive context and momentum configuration; never activate live corrections.",
@@ -148,14 +166,14 @@
     {
       "round": 6,
       "kind": "exact-frozen-input",
-      "n": 46,
-      "mae": 5.200058144563684,
-      "bias": -2.017544563844421,
-      "minutesMae": 4.567064898489951,
-      "hits": 29,
-      "hitRate": 63.04347826086957,
-      "over": 14,
-      "under": 3
+      "n": 91,
+      "mae": 5.683656066971547,
+      "bias": -0.3874985439077908,
+      "minutesMae": 4.868027293404272,
+      "hits": 52,
+      "hitRate": 57.14285714285714,
+      "over": 22,
+      "under": 17
     },
     {
       "round": 6,
@@ -349,6 +367,97 @@
       "baseCeiling": 14.577972935880545
     },
     {
+      "name": "Garrison Mathews",
+      "key": "garrison mathews",
+      "team": "Milano",
+      "pos": "G",
+      "opponent": "Dubai",
+      "gameCode": 51,
+      "round": 6,
+      "start": "2026-10-15T18:30:00Z",
+      "basePir": 6.103610851998507,
+      "baseMinutes": 18.053333333333335,
+      "servedPir": 6.103610851998507,
+      "servedMinutes": 18.053333333333335,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-15T07:07:11.590683+00:00",
+      "home": true,
+      "features": {
+        "basePir": 7.5329999999999995,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.10900000000000354,
+        "teamPoints": 87.1722,
+        "margin": 2.0444,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9823191465163352,
+          "defenseSample": 5,
+          "rival": "Elie Okobo",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.248060520102875,
+              "weight": 0.8008870098154588,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.579624501145528,
+              "weight": 0.12995324831080862,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.567487586980178,
+              "weight": 0.06915974187373261,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 27,
+      "actualMinutes": 24.55,
+      "fouls": 1,
+      "actualStats": {
+        "points": 21,
+        "totalRebounds": 6,
+        "assistances": 0,
+        "turnovers": 0,
+        "foulsCommited": 1,
+        "fieldGoalsMadeTotal": 3,
+        "fieldGoalsAttemptedTotal": 9
+      },
+      "minutesContribution": 2.1964434177520475,
+      "efficiencyContribution": 18.699945730249446,
+      "reason": "efficiency",
+      "error": 20.896389148001493,
+      "servedError": 20.896389148001493,
+      "replayKind": "exact-frozen-input",
+      "baseFloor": 3.1067351550889315,
+      "baseCeiling": 9.382340168368575
+    },
+    {
       "name": "Both Gach",
       "key": "both gach",
       "team": "ASVEL",
@@ -524,6 +633,119 @@
       "replayKind": "exact-frozen-input",
       "baseFloor": 10.363049111573934,
       "baseCeiling": 31.296408316953286
+    },
+    {
+      "name": "Andres Feliz",
+      "key": "andres feliz",
+      "team": "Real Madrid",
+      "pos": "G",
+      "opponent": "ASVEL",
+      "gameCode": 53,
+      "round": 6,
+      "start": "2026-10-15T19:00:00Z",
+      "basePir": 9.680028309380711,
+      "baseMinutes": 18.036218844984802,
+      "servedPir": 9.680028309380711,
+      "servedMinutes": 18.036218844984802,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-15T07:07:11.590683+00:00",
+      "home": true,
+      "features": {
+        "basePir": 6.731127676977616,
+        "baseMin": 17.051765957446808,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.426,
+        "teamPoints": 89.89004999999999,
+        "margin": 9.0801,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 39,
+          "historyWeight": 0.8297872340425532,
+          "sameTeam": true,
+          "avgPir": 6.717948717948718,
+          "avgMinutes": 16.652128205128204,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0029913792835763,
+          "defenseFactor": 1.015802744623378,
+          "defenseSample": 5,
+          "rival": "Patty Mills",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.602772490501174,
+              "weight": 0.6802908209778795,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.799150606002698,
+              "weight": 0.30107846983706965,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.340237171352243,
+              "weight": 0.018630709185050828,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 30,
+      "actualMinutes": 25.15,
+      "fouls": 2,
+      "actualStats": {
+        "points": 26,
+        "totalRebounds": 4,
+        "assistances": 5,
+        "turnovers": 1,
+        "foulsCommited": 2,
+        "fieldGoalsMadeTotal": 9,
+        "fieldGoalsAttemptedTotal": 12
+      },
+      "minutesContribution": 3.8179622657680246,
+      "efficiencyContribution": 16.502009424851266,
+      "reason": "efficiency",
+      "error": 20.31997169061929,
+      "servedError": 20.31997169061929,
+      "replayKind": "exact-frozen-input",
+      "baseFloor": 4.869270652403494,
+      "baseCeiling": 14.156513701621867
     },
     {
       "name": "Tyson Etienne",
@@ -880,86 +1102,6 @@
       "replayKind": "partial-reconstruction",
       "baseFloor": 4.405734903047376,
       "baseCeiling": 14.376608630996705
-    },
-    {
-      "name": "Nigel Hayes-davis",
-      "key": "davis hayes nigel",
-      "team": "Panathinaikos",
-      "pos": "F",
-      "opponent": "Maccabi Tel Aviv",
-      "gameCode": 30,
-      "round": 3,
-      "start": "2026-10-02T18:15:00Z",
-      "basePir": 0,
-      "baseMinutes": 0,
-      "servedPir": 0,
-      "servedMinutes": 0,
-      "status": "out",
-      "modelId": "d055ed8ef292ed4cde64",
-      "eligible": true,
-      "snapshotAt": "2026-10-02T12:39:06.709930+00:00",
-      "home": true,
-      "features": {},
-      "actualPir": 18,
-      "actualMinutes": 24.65,
-      "fouls": 2,
-      "actualStats": {
-        "points": 13,
-        "totalRebounds": 4,
-        "assistances": 4,
-        "turnovers": 0,
-        "foulsCommited": 2,
-        "fieldGoalsMadeTotal": 5,
-        "fieldGoalsAttemptedTotal": 9
-      },
-      "minutesContribution": null,
-      "efficiencyContribution": null,
-      "reason": "availability",
-      "error": 18,
-      "servedError": 18,
-      "replayKind": "partial-reconstruction",
-      "baseFloor": 0,
-      "baseCeiling": 0
-    },
-    {
-      "name": "Jaylen Hoard",
-      "key": "hoard jaylen",
-      "team": "Maccabi Tel Aviv",
-      "pos": "F",
-      "opponent": "Panathinaikos",
-      "gameCode": 30,
-      "round": 3,
-      "start": "2026-10-02T18:15:00Z",
-      "basePir": 15.394667364169113,
-      "baseMinutes": 28.203682945736432,
-      "servedPir": 13.916003399596457,
-      "servedMinutes": 27.346000000000004,
-      "status": "active",
-      "modelId": "d055ed8ef292ed4cde64",
-      "eligible": true,
-      "snapshotAt": "2026-10-02T12:39:06.709930+00:00",
-      "home": false,
-      "features": {},
-      "actualPir": -2,
-      "actualMinutes": 18.333333333333332,
-      "fouls": 2,
-      "actualStats": {
-        "points": 2,
-        "totalRebounds": 4,
-        "assistances": 0,
-        "turnovers": 1,
-        "foulsCommited": 2,
-        "fieldGoalsMadeTotal": 1,
-        "fieldGoalsAttemptedTotal": 6
-      },
-      "minutesContribution": -5.387620806238418,
-      "efficiencyContribution": -12.007046557930694,
-      "reason": "efficiency",
-      "error": -17.394667364169113,
-      "servedError": -15.916003399596457,
-      "replayKind": "partial-reconstruction",
-      "baseFloor": 7.312466997980328,
-      "baseCeiling": 23.861734414462127
     }
   ]
 }
