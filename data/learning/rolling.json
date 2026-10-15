@@ -2,8 +2,8 @@
   "schema": "rolling-learning-v1",
   "season": "E2026",
   "engineId": "521db8c8eff2c21ece3b",
-  "updated_at": "2026-10-15T18:12:04.290669+00:00",
-  "exactCount": 229,
+  "updated_at": "2026-10-15T20:10:49.663549+00:00",
+  "exactCount": 252,
   "diagnostic": {
     "n": 365,
     "mae": 5.174146696094897,
@@ -16,37 +16,47 @@
   },
   "missingInputs": 347,
   "validation": {
-    "n": 0,
-    "games": 0,
-    "baselineMae": null,
-    "candidateMae": null,
+    "n": 22,
+    "games": 1,
+    "baselineMae": 5.7392597959440215,
+    "candidateMae": 5.616276160939149,
     "active": false,
     "reason": "collecting-or-no-improvement",
-    "folds": [],
-    "intervalCoverage": null
+    "folds": [
+      {
+        "gameCode": 54,
+        "round": 6,
+        "trainingN": 227,
+        "trainingGames": 10,
+        "testN": 22,
+        "baselineMae": 5.7392597959440215,
+        "candidateMae": 5.616276160939149
+      }
+    ],
+    "intervalCoverage": 0.7727272727272727
   },
   "coefficients": {
     "G": {
-      "n": 95,
-      "minutes": -0.6112296847212938,
-      "efficiencyPir": -0.3058209871567399
+      "n": 103,
+      "minutes": -0.6169032341545994,
+      "efficiencyPir": -0.4289502456351245
     },
     "F": {
-      "n": 82,
-      "minutes": -0.4198524022228786,
-      "efficiencyPir": 0.15144370901745458
+      "n": 89,
+      "minutes": -0.549265616443732,
+      "efficiencyPir": 0.14741325553340637
     },
     "C": {
-      "n": 42,
-      "minutes": -0.6994398592768671,
-      "efficiencyPir": 0.3544368451551753
+      "n": 48,
+      "minutes": -0.7409507865856896,
+      "efficiencyPir": 0.22256070781539825
     }
   },
   "interval": {
     "active": false,
     "targetCoverage": 0.8,
-    "coverage": null,
-    "n": 0,
+    "coverage": 0.7727272727272727,
+    "n": 22,
     "radius": 8.775990712465097
   },
   "limitations": [
@@ -116,6 +126,30 @@
     },
     {
       "round": 5,
+      "kind": "partial-reconstruction",
+      "n": 0,
+      "mae": null,
+      "bias": null,
+      "minutesMae": null,
+      "hits": 0,
+      "hitRate": null,
+      "over": 0,
+      "under": 0
+    },
+    {
+      "round": 6,
+      "kind": "exact-frozen-input",
+      "n": 23,
+      "mae": 5.512540809251451,
+      "bias": -2.719399934227369,
+      "minutesMae": 5.520966099278246,
+      "hits": 14,
+      "hitRate": 60.86956521739131,
+      "over": 8,
+      "under": 1
+    },
+    {
+      "round": 6,
       "kind": "partial-reconstruction",
       "n": 0,
       "mae": null,
