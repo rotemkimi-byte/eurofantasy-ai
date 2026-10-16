@@ -57,7 +57,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
 .pmControls{grid-template-columns:1fr 1fr 1fr auto}
 .pmList{max-width:900px;margin:auto}.pmListGroup{background:#fff;color:#180d3e;border-radius:18px;padding:8px 12px;margin-bottom:18px}.pmListHeader,.pmListRow{display:grid;grid-template-columns:minmax(0,1fr) 48px 48px minmax(0,1fr);gap:8px;align-items:center}.pmListHeader{color:#766d81;font-size:10px;padding:8px 0;text-align:center}.pmListRow{padding:14px 0;border-bottom:1px solid #eeeaf2}.pmListRow:last-child{border-bottom:0}.pmListPlayer{min-width:0;background:transparent;color:#180d3e;padding:0;border-radius:0;text-align:right;cursor:pointer}.pmListPlayer.pmListOther{text-align:left}.pmListName{display:block;border-bottom:3px solid #00c783;padding:0 0 5px;font-size:19px;line-height:1.35;overflow-wrap:anywhere}.pmListPos{display:inline-block;background:#eeeaf2;border-radius:4px;padding:1px 4px;font-size:10px;margin-inline-end:4px}.pmListMinutes{display:block;font-size:11px;color:#6b6077;margin-top:5px}.pmListPrice{background:#f1eff4;border-radius:8px;text-align:center;padding:8px 1px;direction:ltr}.pmListPrice b{display:block;font-size:17px;font-variant-numeric:tabular-nums;line-height:1.1}.pmListPrice small{display:block;font-size:9px;color:#766d81;margin-top:3px}.pmListEmpty{font-size:11px;color:#81788c;text-align:center}
 @media(max-width:600px){.pmControls{grid-template-columns:1fr 1fr}.pmListGroup{padding:6px 8px}.pmListHeader,.pmListRow{grid-template-columns:minmax(0,1fr) 38px 38px minmax(0,1fr);gap:5px}.pmListName{font-size:16px}.pmListPrice b{font-size:15px}.pmListMinutes{font-size:10px}}
-</style></head>
+</style><style>.pirControls{grid-template-columns:repeat(3,minmax(0,1fr));align-items:end}.pirControls label{min-width:0}.pirControls select,.pirControls input{width:100%;min-width:0}.pirStats{grid-template-columns:repeat(4,minmax(0,1fr));margin:15px 0}.pirNote{font-size:11px;line-height:1.6;margin-top:12px}.pirNote a{color:var(--blue)}.pirChart{overflow-x:auto;overscroll-behavior-x:contain;border:1px solid var(--line);border-radius:12px;background:#0c1118;padding:5px}.pirChart svg{display:block;height:240px;max-width:none}.pirPoint{cursor:pointer;outline:none}.pirPoint:focus circle:last-of-type{stroke:#fff;stroke-width:3}.pirDetail{padding:12px;background:var(--card2);border-radius:10px;font-size:13px;line-height:1.6;margin-top:12px}.pirTable{width:100%;min-width:0;table-layout:fixed}.pirTable th,.pirTable td{padding:12px 5px;font-size:12px;position:static;overflow-wrap:anywhere}.pirTable th:first-child{width:43%}.pirTable small{display:block;font-size:10px;color:var(--muted);margin-top:4px}.pirTable tr{cursor:pointer}.pirTable td:not(:first-child){text-align:center;font-variant-numeric:tabular-nums}@media(max-width:600px){.pirControls{grid-template-columns:repeat(2,minmax(0,1fr))}.pirStats{gap:5px}.pirStats .stat{padding:10px 3px}.pirStats .stat b{font-size:20px}.pirStats .stat span{font-size:9px}}</style></head>
 <body>
 <header><div class="head"><div><div class="eyebrow">EUROLEAGUE FANTASY AGENT • V2</div><h1>EuroFantasy AI</h1></div><div class="badge" id="syncBadge">טוען נתונים…</div></div></header>
 <main>
@@ -67,7 +67,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
 </section>
 
 <nav class="tabs">
-<button class="active" data-tab="market">שוק שחקנים</button><button data-tab="clubMarket">שוק קבוצות</button><button data-tab="team">הסגל שלי</button><button data-tab="captain">קפטן</button><button data-tab="coach">מאמן</button><button data-tab="matchups">מאצ׳אפ קבוצות</button><button data-tab="playerMatchups">מאצ׳אפ שחקנים</button><button data-tab="injuries">פציעות</button><button data-tab="optimizer">אופטימייזר</button><button data-tab="data">נתונים</button>
+<button class="active" data-tab="market">שוק שחקנים</button><button data-tab="clubMarket">שוק קבוצות</button><button data-tab="team">הסגל שלי</button><button data-tab="captain">קפטן</button><button data-tab="coach">מאמן</button><button data-tab="matchups">מאצ׳אפ קבוצות</button><button data-tab="playerMatchups">מאצ׳אפ שחקנים</button><button data-tab="pirGraph">גרף PIR</button><button data-tab="injuries">פציעות</button><button data-tab="optimizer">אופטימייזר</button><button data-tab="data">נתונים</button>
 <button data-tab="learning">למידה ובדיקת תחזיות</button>
 </nav>
 
@@ -93,6 +93,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
 <section id="matchups" class="tab"><div class="card"><h3>מאצ׳אפ קבוצה מול קבוצה</h3><p class="muted">הסתברויות מודל לפי תוצאות, ביתיות, סגל זמין וחוזק יריבות. כיול מופעל רק אחרי בדיקה כרונולוגית; האחוזים אינם יחסי סוכנויות.</p><div id="gameCards" class="grid2"></div></div></section>
 
 <section id="playerMatchups" class="tab"><div class="card"><h3>מאצ׳אפ שחקנים</h3><div class="filters pmControls"><label>קבוצה<select id="pmTeam"></select></label><label>קבוצה להשוואה<select id="pmOpponent"><option value="">היריבה במשחק הבא</option></select></label><label>תצוגה<select id="pmView"><option value="court">מגרש</option><option value="list">רשימה · מחיר ודקות</option></select></label><button class="secondary" id="pmReload">רענן נתונים</button></div><p id="pmSummary" class="pmSummary"></p><p class="muted pmHelp">שתי חמישיות במבנה סנטר, שני פורוורדים ושני גארדים, לפי ממוצע הדקות בעונה. יריבים באותה עמדה מוצמדים לפי דירוג הדקות שלהם. זו השוואה לפי עמדה, ולא שיוך של שומר אישי או חמישייה פותחת מאומתת. שחקנים שמסומנים בחוץ אינם נכללים. כשאין נתוני דקות, הסדר זמני לפי מחיר. הנתונים בטבלה הם ממוצעים בפועל; PIR צפוי מופיע בשורה נפרדת. בתצוגת רשימה המחיר מוצג במרכז והדקות מתחת לשם. לחץ על שחקן לפרטים.</p><p id="pmStatus" class="muted pmHelp"></p><div id="pmCourts"></div></div></section>
+<section id="pirGraph" class="tab"><div class="card"><h3>גרף PIR · משחק אחרי משחק</h3><div class="filters pirControls"><label>סוג<select id="pirKind"><option value="player">שחקן</option><option value="coach">מאמן</option></select></label><label>קבוצה<select id="pirTeam"><option value="">כל הקבוצות</option></select></label><label>חיפוש<input id="pirSearch" placeholder="שם שחקן או מאמן" autocomplete="off"></label><label>בחר שחקן / מאמן<select id="pirPerson"></select></label><label>טווח<select id="pirRange"><option value="0">כל העונה</option><option value="5">5 משחקים אחרונים</option><option value="10">10 משחקים אחרונים</option></select></label><button id="pirReload" class="secondary">רענן נתונים</button></div><p id="pirStatus" class="muted" role="status" aria-live="polite"></p><p id="pirNote" class="muted pirNote"></p><div id="pirStats" class="stats pirStats"></div><p class="muted pirNote">משחקים מהישן לחדש משמאל לימין · לחץ על נקודה לפרטי המשחק · החלק לצדדים לצפייה בכל העונה</p><div id="pirChart" class="pirChart" dir="ltr"></div><p id="pirDetail" class="pirDetail" aria-live="polite"></p><h4>כל המשחקים בטווח שנבחר</h4><div id="pirGames"></div><p class="muted pirNote">מוצגים משחקים שזמינים בדוחות העונה בלבד. היעדרות מרישום המשחק אינה מוצגת כאפס.</p></div></section>
 <section id="injuries" class="tab"><div class="card"><h3>פציעות וזמינות</h3><p class="muted">המודל מוריד דקות לשחקן בספק ומעלה מעט דקות לחברים פעילים באותה עמדה כאשר חסרים שחקנים.</p><div id="injuryCards" class="grid2"></div></div></section>
 
 <section id="optimizer" class="tab"><div class="card"><h3>אופטימייזר סגל</h3><div class="grid3"><label>תקציב<input id="budget" type="number" value="91" step=".1"></label><label>סף איכות נתונים פנימי<input id="optConf" type="number" value="35"></label><label>להחריג שחקנים בספק<select id="excludeQ"><option value="no">לא</option><option value="yes">כן</option></select></label></div><p class="muted">בונה 4 גארדים, 4 פורוורדים ו־2 סנטרים. תקציב ברירת המחדל 91 משאיר 9 למאמן.</p><button id="optBtn">Optimize</button><div id="optResult" style="margin-top:12px"></div></div></section>
@@ -1587,7 +1588,109 @@ if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
   }
 })();
 
-</script><script src="./personal-model-core.js?v=1"></script><script src="./personal-model.js?v=1"></script><script src="./model-stability.js?v=3"></script><script>window.__matchupContextEnabled=true;</script><script src="./matchup-context-core.js?v=1"></script><script src="./matchup-context.js?v=1"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script><script src="./optimizer.js"></script><script src="./coaches-ui.js?v=1"></script><script src="./audit-compact.js?v=1"></script><script src="./rolling-model-version.js"></script><script src="./rolling-learning.js?v=1"></script></body></html>
+</script><script src="./personal-model-core.js?v=1"></script><script src="./personal-model.js?v=1"></script><script src="./model-stability.js?v=3"></script><script>window.__matchupContextEnabled=true;</script><script src="./matchup-context-core.js?v=1"></script><script src="./matchup-context.js?v=1"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script><script src="./optimizer.js"></script><script src="./coaches-ui.js?v=1"></script><script src="./audit-compact.js?v=1"></script><script src="./rolling-model-version.js"></script><script src="./rolling-learning.js?v=1"></script><script>
+/* PIR history: actual box scores only, E2026. Coach scoring follows Fantaking rules. */
+(()=>{
+'use strict';
+const num=v=>v===null||v===undefined||v===''||!Number.isFinite(Number(v))?null:Number(v);
+const key=n=>lastThreeName(n||'');
+const canon=n=>canonicalTeam(n||'');
+const fmt=v=>num(v)===null?'—':Number(v).toFixed(1);
+const dateLabel=d=>Number.isFinite(Date.parse(d))?new Date(d).toLocaleDateString('he-IL',{day:'numeric',month:'numeric',timeZone:'Asia/Jerusalem'}):'—';
+const $=id=>document.getElementById(id);
+function coachPoints(margin,ot=false){if(num(margin)===null||margin===0)return null;return margin>0?(ot||margin<=10?10:margin<=20?20:25):(ot||margin>=-10?-5:margin>=-20?-10:-20)}
+function buildHistory(live,schedule,boxes,now=Date.now()){
+ if(live?.season!=='E2026')throw Error('wrong season');
+ const schedules=new Map((schedule?.data||[]).filter(g=>!g.season?.code||g.season.code==='E2026').map(g=>[Number(g.gameCode),g]));
+ const out={players:new Map(),coaches:new Map(),games:0,missing:0};
+ const add=(map,name,team,row)=>{const k=key(name);if(!k)return;if(!map.has(k))map.set(k,{name,team,games:[]});const entity=map.get(k);entity.team=team;entity.games.push(row)};
+ const seen=new Set();
+ for(const g of Object.values(live.games||{}).slice().sort((a,b)=>String(a.date).localeCompare(String(b.date)))){
+  const code=Number(g.gameCode),s=schedules.get(code),date=s?.utcDate||g.date;
+  if(!Number.isInteger(code)||code<=0||seen.has(code)||!Number.isFinite(Date.parse(date))||Date.parse(date)>=now||s&&s.played!==true)continue;
+  seen.add(code);const box=boxes.get(code);if(!box){out.missing++;continue}
+  const homeScore=num(box.local?.total?.points),awayScore=num(box.road?.total?.points);
+  if(homeScore===null||awayScore===null||homeScore===awayScore){out.missing++;continue}
+  out.games++;
+  const ot=Number(box.local?.total?.timePlayed)>2400||Number(box.road?.total?.timePlayed)>2400||Object.values(s?.local?.partials?.extraPeriods||{}).some(v=>Number(v)>0);
+  for(const side of ['local','road']){
+   const other=side==='local'?'road':'local',part=box[side],opart=box[other];
+   const club=p=>p?.players?.find(r=>r.player?.club)?.player.club;
+   const team=canon(s?.[side]?.club?.name||club(part)?.name||''),opponent=canon(s?.[other]?.club?.name||club(opart)?.name||'');
+   const score=side==='local'?homeScore:awayScore,against=side==='local'?awayScore:homeScore;
+   const base={code,date,round:s?.round??null,team,opponent,home:side==='local',score,against,ot};
+   for(const r of part?.players||[]){
+    const name=r.player?.person?.name,seconds=num(r.stats?.timePlayed);if(!name)continue;
+    add(out.players,name,team,{...base,minutes:seconds===null?null:seconds/60,value:seconds!==null&&seconds>0?num(r.stats?.valuation):null,dnp:seconds===0});
+   }
+   if(part?.coach?.name)add(out.coaches,part.coach.name,team,{...base,value:coachPoints(score-against,ot),minutes:null});
+  }
+ }
+ for(const map of [out.players,out.coaches])for(const entity of map.values())entity.games.sort((a,b)=>Date.parse(a.date)-Date.parse(b.date)||a.code-b.code);
+ return out;
+}
+function svgChart(rows,caption){
+ const valid=rows.map((g,i)=>({...g,index:i})).filter(g=>num(g.value)!==null);
+ if(!valid.length)return '<p class="muted">אין עדיין ערכי ניקוד זמינים לגרף.</p>';
+ const w=Math.max(340,rows.length*58+70),h=240,left=42,right=20,top=30,bottom=36;
+ let lo=Math.min(0,...valid.map(g=>g.value)),hi=Math.max(0,...valid.map(g=>g.value));if(lo===hi)hi=lo+10;
+ const pad=Math.max(2,(hi-lo)*.12);lo-=pad;hi+=pad;
+ const x=i=>rows.length===1?(w+left-right)/2:left+i*(w-left-right)/(rows.length-1),y=v=>top+(hi-v)*(h-top-bottom)/(hi-lo);
+ let svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" style="width:${w}px;min-width:100%" role="img" aria-label="${esc(caption)}. ציר אופקי: משחקים מהישן לחדש; ציר אנכי: ניקוד"><title>${esc(caption)}</title>`;
+ for(let i=0;i<=4;i++){const v=lo+(hi-lo)*i/4,yy=y(v);svg+=`<line x1="${left}" y1="${yy}" x2="${w-right}" y2="${yy}" stroke="#2b333e"/><text x="${left-7}" y="${yy+4}" text-anchor="end" fill="#99a3b0" font-size="11">${Math.round(v)}</text>`}
+ svg+=`<line x1="${left}" y1="${y(0)}" x2="${w-right}" y2="${y(0)}" stroke="#99a3b0" stroke-dasharray="4 4"/>`;
+ // Missing/DNP entries break the line rather than becoming fabricated zeroes.
+ for(let i=1;i<rows.length;i++)if(num(rows[i-1].value)!==null&&num(rows[i].value)!==null)svg+=`<line x1="${x(i-1)}" y1="${y(rows[i-1].value)}" x2="${x(i)}" y2="${y(rows[i].value)}" stroke="#62e6a5" stroke-width="2.5"/>`;
+ for(const g of valid)svg+=`<g class="pirPoint" data-pir-index="${g.index}" role="button" tabindex="0" aria-label="${esc(dateLabel(g.date)+' מול '+g.opponent+': '+fmt(g.value))}"><title>${esc(g.opponent)} · ${fmt(g.value)}</title><circle cx="${x(g.index)}" cy="${y(g.value)}" r="17" fill="transparent"/><circle cx="${x(g.index)}" cy="${y(g.value)}" r="5" fill="${g.value<0?'#ff7878':'#62e6a5'}"/><text x="${x(g.index)}" y="${y(g.value)-12}" text-anchor="middle" fill="#f7f8fa" font-size="12">${fmt(g.value)}</text></g>`;
+ rows.forEach((g,i)=>{svg+=`<text x="${x(i)}" y="${h-14}" text-anchor="middle" fill="#99a3b0" font-size="10">${esc(g.round?'מ׳ '+g.round:dateLabel(g.date))}</text>`});
+ return svg+'</svg>';
+}
+window.PIRHistoryCore={coachPoints,buildHistory,svgChart};
+let data=null,loading=null,errors=0,selectedRows=[];
+function options(){
+ const type=$('pirKind').value,old=$('pirPerson').value,team=$('pirTeam').value,search=key($('pirSearch').value);
+ const map=new Map();
+ if(type==='player')for(const p of players)map.set(key(p.name),{name:p.name,team:canon(p.team)});
+ for(const [k,e] of data?.[type==='player'?'players':'coaches']||[])if(!map.has(k))map.set(k,e);
+ const all=[...map.entries()].sort((a,b)=>a[1].name.localeCompare(b[1].name));
+ const teams=[...new Set(all.map(([,e])=>e.team).filter(Boolean))].sort();
+ $('pirTeam').replaceChildren(new Option('כל הקבוצות',''),...teams.map(t=>new Option(t,t)));if(teams.includes(team))$('pirTeam').value=team;
+ const filtered=all.filter(([,e])=>(!$('pirTeam').value||e.team===$('pirTeam').value)&&(!search||key(e.name).includes(search)||key(e.team).includes(search)));
+ $('pirPerson').replaceChildren(...filtered.map(([k,e])=>new Option(`${e.name} · ${e.team}`,k)));if(filtered.some(([k])=>k===old))$('pirPerson').value=old;
+ render();
+}
+function gameDetail(g){return `${g.round?'מחזור '+g.round+' · ':''}${dateLabel(g.date)} · ${g.home?'בית':'חוץ'} מול ${g.opponent||'—'} · ${g.score}–${g.against}${g.ot?' · הארכה':''}`}
+function render(){
+ const coach=$('pirKind').value==='coach',entity=data?.[coach?'coaches':'players'].get($('pirPerson').value),limit=Number($('pirRange').value)||0;
+ const games=entity?.games||[],rows=limit?games.slice(-limit):games;selectedRows=rows;
+ const values=rows.map(r=>r.value).filter(v=>num(v)!==null),average=values.length?values.reduce((a,b)=>a+b,0)/values.length:null;
+ $('pirNote').innerHTML=coach?'למאמנים מוצגות נקודות פנטזי לפי התוצאה וההפרש, משויכות למאמן שמופיע בדוח המשחק. <a href="https://fantaking.gitbook.io/euroleague-fantasy-challenge-rules/es-2/modo-clasico/puntuacion-del-entrenador" target="_blank" rel="noopener">כללי הניקוד</a>':'PIR בפועל מדוח המשחק, ללא בונוס ניצחון או מכפילי קפטן וספסל. משחק ללא דקות מופיע כ״לא שיחק״ ואינו נכנס לממוצע.';
+ $('pirStatus').textContent=data?`עונת 2026/27 · ${games.length} משחקים ברישומי הנבחר${errors?' · חלק מדוחות המשחק לא נטענו; לחץ על רענון להשלמה':''}`:'בחר בלשונית כדי לטעון נתונים.';
+ $('pirStats').innerHTML=[['משחקים עם ניקוד',values.length],['ממוצע',fmt(average)],['שיא',values.length?fmt(Math.max(...values)):'—'],['משחק אחרון',rows.length?fmt(rows[rows.length-1].value):'—']].map(([label,value])=>`<div class="stat"><b>${value}</b><span>${label}</span></div>`).join('');
+ $('pirChart').innerHTML=svgChart(rows,coach?'נקודות פנטזי למאמן':'PIR למשחק');
+ $('pirDetail').textContent=rows.length?gameDetail(rows[rows.length-1])+' · '+(coach?'נקודות פנטזי: ':'PIR: ')+fmt(rows[rows.length-1].value):'אין משחקים זמינים לבחירה זו.';
+ $('pirGames').innerHTML=rows.length?`<table class="pirTable"><thead><tr><th>משחק</th><th>${coach?'פנטזי':'PIR'}</th>${coach?'':'<th>דקות</th>'}<th>תוצאה</th></tr></thead><tbody>${rows.map((g,i)=>`<tr data-pir-index="${i}"><td><b>${esc(g.opponent||'—')}</b><small>${g.round?'מ׳ '+esc(g.round)+' · ':''}${dateLabel(g.date)} · ${g.home?'בית':'חוץ'}${g.ot?' · הארכה':''}</small></td><td class="${g.value<0?'bad':'good'}">${g.dnp?'לא שיחק':fmt(g.value)}</td>${coach?'':`<td>${fmt(g.minutes)}</td>`}<td dir="ltr">${g.score}–${g.against}</td></tr>`).join('')}</tbody></table>`:'<p class="muted">אין נתוני משחקים זמינים בעונה הנוכחית.</p>';
+}
+async function load(){
+ if(loading)return loading;
+ $('pirReload').disabled=true;$('pirStatus').textContent='טוען היסטוריית משחקים…';
+ loading=(async()=>{try{
+  const [live,schedule]=await Promise.all([lastThreeFetch('./data/euroleague-live-E2026.json'),lastThreeFetch('./data/context/E2026-schedule.json').catch(()=>null)]);
+  if(live.season!=='E2026')throw Error('wrong season');
+  const boxes=new Map(),codes=[...new Set(Object.values(live.games||{}).map(g=>Number(g.gameCode)).filter(c=>Number.isInteger(c)&&c>0))];let cursor=0,done=0;errors=0;
+  await Promise.all(Array.from({length:Math.min(4,codes.length)},async()=>{while(cursor<codes.length){const code=codes[cursor++];try{boxes.set(code,await lastThreeFetch(`./data/backtest/cache/E2026-${code}-stats.json`))}catch{errors++}done++;$('pirStatus').textContent=`טוען דוחות משחק: ${done}/${codes.length}`}}));
+  data=buildHistory(live,schedule,boxes);errors=Math.max(errors,data.missing);options();
+ }catch(error){$('pirStatus').textContent='לא ניתן לטעון נתוני משחקים כרגע. לחץ על רענון כדי לנסות שוב.';console.warn('PIR history unavailable',error)}finally{loading=null;$('pirReload').disabled=false}})();return loading;
+}
+$('pirKind').addEventListener('change',()=>{ $('pirTeam').value='';$('pirSearch').value='';options() });
+$('pirTeam').addEventListener('change',options);$('pirSearch').addEventListener('input',options);$('pirPerson').addEventListener('change',render);$('pirRange').addEventListener('change',render);
+$('pirReload').onclick=()=>{lastThreeRequests.delete('./data/euroleague-live-E2026.json');lastThreeRequests.delete('./data/context/E2026-schedule.json');void load()};
+document.querySelector('[data-tab="pirGraph"]').addEventListener('click',()=>{if(!data)void load();else options()});
+function inspect(event){const el=event.target.closest('[data-pir-index]');if(!el)return;const g=selectedRows[Number(el.dataset.pirIndex)];if(g)$('pirDetail').textContent=gameDetail(g)+' · '+($('pirKind').value==='coach'?'נקודות פנטזי: ':'PIR: ')+fmt(g.value)+(g.minutes!==null?' · דקות: '+fmt(g.minutes):'')}
+$('pirChart').onclick=inspect;$('pirGames').onclick=inspect;$('pirChart').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();inspect(e)}};
+})();
+
+</script></body></html>
 
 
 
