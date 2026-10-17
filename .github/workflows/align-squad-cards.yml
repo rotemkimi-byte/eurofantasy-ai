@@ -1,0 +1,63 @@
+name: Align squad cards and captain badge
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/align-squad-cards.yml'
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: eurofantasy-squad-align
+  cancel-in-progress: false
+jobs:
+  update:
+    if: github.ref_name == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Align paired cards jerseys and captain badge
+        run: |
+          python - <<'PYINSTALL'
+          import base64,zlib
+          source=zlib.decompress(base64.b64decode('eJylV22T2jYQ/s6v0NDpGC5nzhhu7mICfbl2Ou20zc2l33JJR9gCK7ElVxIHhLn/3pVkgw02cMkMYyx7d/Xso5X28UzwFGVYxQmdIppmXCh0D8NWfi9IKxvrBx2HsoiserFKE6c7UmSlxllPEBz9q+873RadISdMsJTjtvxvgaP7BK+J+IdnbQcxrhBlSFsiLpBDo3FbEZzeYRHJ6vughQSmkqCHBVM0Jb8KwUXHeadDohSLz4sMhTFmcxKNwA/AzwkKOVOEKbTEEvEnIpaCKnjgdFsJZZ/Hzhv9B8kkgE2tEyJjQlQbxYLMxu3elcHrAl6+UL1Qyh+exn574uiUBOlJgkUYd4SN8v7j5MMr6/hY9XzUru8/ttGHi7a2upg4lzqjLqRk+NKxFtOvC6Q9bLQWSSSBkJrvN1cxrMCkSmAtf39RKSmbI20PtFhA+gJrmCU4JJ1tMDPXq92w321lPc0osUttUdii2GfO6ZYtnasL9DbLONNrg6ewMiPElwx9IkKSNVIcqZigLF5LGuIECTqPoT5m9qkpHxRChfTQxdUj+25bMKhXKrDNI0MRldo8mAsajWCs/11FUnioiBvyZJEyGaSUpXjV8S77M9FF1162OrQVfCkDvABk5gKW2sZGcOc4C26sF9iZoTcy0wsSKspZkChjjxM6Zy7QkMpAKiwUPHxuzAC2yKbIIC9kedR6YscP9AknmyIFizHooyvk9reJAc7AjD4tpKKztStJMgtCmIIYpEsaqVgz0+l73veXfc1KV7+AnTanLPCQh/q+zRms3JjoNdpPW6jkVIY55rcZYfuQ/QpaHxIY7kisxauxfguC/NUfpgw327BFSeRJ6gqwVKzc6rwFOUenPJJxdX38glw7yQu5zaf5nc348WkGNdO8nM47sxSTyg7cKyL/tS6iOue/cUo2MyhxV9IvJDCFVa6qOh9YOTQtO91mqyY7meIkKdk2mN7hTGHKNgmZ5ass8qpWPLMPplwpngbXAPCLazpfMKgL9SdfwiFVYeOcw2egA5dOlWE90MPox+rYLoMJXargU3EP+D0Dy/46esblx5REFHd222Xo6ULQVXm4BHwh1ANfbnT2ug6e66xewOjQqzJ6fTTkaRqHXkOAA76aZqonqYaKM3bUTb6jDr2/sgD92ypdgwZwX1OB/u0ZwXTTqwcK+J7N2fPIQD68i7Egut3mp7JEkiOCwxiEHxUIuuta2lZBIrSMARFGDJhHS4Ez2aAciuoLQDZ1yqvQvayx/pmwMP4NsG6qfV0QFcajrRKoPWkaJ6qs99FZq5VRPtFlhhkaNIgYUJqFHKqDfV6zrJcYe915F7JZTmQ4ikB+Bq+zFbo2Xfa8xnk4zVl+5S24a+i7PmfF1iwhq31+dlKjUEy5JCu90X6urq9AX/YE4uBALA298xIuWng9tfugDYhdx7YIGqbRkSc9q6jvc7W9KSEcePVnvvUzt78QaJmJ3Fjp4xaN8oTXTwbc1ivvqjeNHXxTIlKfUEXZAKnoiDqADxZS5NLv+dcjc+w+YUEx/LNFSgQNA4WniwQLPa7V14Us0OXKJbVCiMCOovDd8g2atSK9CTNbcic99MdERW5uNQjc54RtXwnM5IyLNDB3erN3oF1fuvrI7e42oN+vCNliuKe84EmhbYYvUHs1p8kpvVAwW4d/YPD7tr+9REI0CJemlt9wOpT3aZMMOQ1/eE57PhbG12H6NzYM/OAT/X9IGmHc')).decode('utf-8')
+          exec(compile(source,'arrange_squad.py','exec'),{'__name__':'__main__'})
+          PYINSTALL
+      - name: Save changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html squad-layout.css
+          if ! git diff --cached --quiet; then
+            git commit -m 'Align squad row heights center opponents and attach captain badge'
+            for attempt in 1 2 3; do
+              git pull --rebase origin "${{ github.ref_name }}"
+              if git push origin "HEAD:${{ github.ref_name }}"; then pushed=yes; break; fi
+            done
+            if [ "${pushed:-no}" != yes ]; then exit 1; fi
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: '.'
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
