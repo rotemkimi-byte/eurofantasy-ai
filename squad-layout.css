@@ -1,126 +1,50 @@
-/* Opponent above; own jersey to the physical right of the player card. */
-#teamCards .squadPlayer{
- display:grid;
- grid-template-columns:minmax(0,1fr) 50px;
- grid-template-rows:auto auto 1fr;
- column-gap:7px;
- row-gap:0;
- direction:ltr;
- align-items:start;
-}
-#teamCards .squadPlayerTop{display:contents}
-#teamCards .squadPlayerTop>.squadRival{
- grid-column:1 / -1;
- grid-row:1;
- justify-self:center;
- width:min(100%,150px);
- margin:0 0 12px;
- min-height:0;
- direction:rtl;
-}
-#teamCards .squadPlayerTop>.squadOpen{
- grid-column:2;
- grid-row:2 / 4;
- align-self:center;
- width:100%;
- direction:rtl;
-}
-#teamCards .squadPlayerTop>.squadOpen .squadJersey{
- width:50px;
- height:auto;
- max-width:100%;
- margin:0;
-}
-#teamCards .squadPlayer>.squadOpen{
- grid-column:1;
- grid-row:2;
- min-width:0;
- direction:rtl;
-}
-#teamCards .squadPlayer>.squadInfo{
- grid-column:1;
- grid-row:3;
- min-width:0;
- width:100%;
- direction:rtl;
-}
-#teamCards .squadCenter>.squadPlayer{width:min(100%,290px)}
-#teamCards .squadName{font-size:12px;min-height:0}
-#teamCards .squadTop b{font-size:18px}
-#teamCards .squadTop small{font-size:8px}
-#teamCards .squadCaptain{left:auto;right:0;top:auto;bottom:5px;z-index:3}
-#teamCards .squadLower .squadPlayer{grid-template-columns:minmax(0,1fr) 35px;column-gap:4px}
-#teamCards .squadLower .squadPlayerTop>.squadOpen .squadJersey{width:35px;height:auto}
-#teamCards .squadLower .squadTop b{font-size:14px}
-#teamCards .squadLower .squadName{font-size:10px}
+/* Each player has one compact opponent header and one self-contained card. */
+#teamCards .squadCourtRow,#teamCards .squadBenchGrid{align-items:start;gap:18px 12px}
+#teamCards .squadPlayer{display:flex;flex-direction:column;gap:8px;direction:rtl;min-width:0;text-align:center}
+#teamCards .squadCenter>.squadPlayer{width:calc(50% - 6px);max-width:290px}
+#teamCards .squadRival{width:100%;padding:0;margin:0;background:#160c35;color:#fff;border:1px solid #fff7;border-radius:12px;overflow:hidden;box-shadow:0 3px 8px #0002}
+#teamCards .squadNextLabel{font-size:10px;color:#d9cff2;margin:0;padding:8px 4px 2px}
+#teamCards .squadNextTeam{font-size:17px;line-height:1.25;font-weight:900;padding:0 5px 7px;color:#fff;overflow-wrap:anywhere}
+#teamCards .squadVenue{background:#64e7aa;color:#102b20;border-radius:0;padding:5px;margin:0;font-size:10px}
+#teamCards .squadRivalDetails{background:#f5f0e9;color:#28193e;padding:7px 5px;font-size:10px}
+#teamCards .squadRivalDetails summary{cursor:pointer;font-weight:700}
+#teamCards .squadRivalOpen{color:#28193e;margin-top:8px}
+#teamCards .squadRivalOpen .squadJersey{width:36px!important;height:45px!important;margin:0 auto 5px}
+#teamCards .squadRivalMissing{margin:0;padding:7px;background:#f5f0e9;color:#62536e;font-size:10px}
+#teamCards .squadOwnCard{position:relative;display:flex;flex-direction:column;min-width:0;width:100%;border-radius:12px;background:#fff;color:#1a0b40;overflow:hidden;box-shadow:0 4px 12px #0002;border:1px solid #fff8}
+#teamCards .squadIdentity{display:flex;align-items:center;gap:7px;padding:12px 8px;background:#160c35;border-bottom:3px solid #00c783;text-align:right;min-height:100px}
+#teamCards .squadIdentity>.squadJersey{position:static;flex:0 0 42px;width:42px;height:55px;max-width:42px;margin:0;filter:drop-shadow(0 2px 2px #0005)}
+#teamCards .squadIdentityText{display:block;min-width:0;flex:1}
+#teamCards .squadName{display:block;background:none;border:0;padding:0;margin:0;font-size:13px;line-height:1.4;min-height:0;border-radius:0;overflow-wrap:anywhere}
+#teamCards .squadName small{display:block;font-size:10px;font-weight:500;color:#cfc5e6}
+#teamCards .squadClub{display:block;color:#64e7aa;font-size:11px;font-weight:700;margin-top:5px;overflow-wrap:anywhere}
+#teamCards .squadInfo{display:flex;flex-direction:column;gap:8px;box-shadow:none;border-radius:0;padding:10px 8px;flex:1;min-width:0}
+#teamCards .squadInfo>.playerPhysical{font-size:10px;line-height:1.5;color:#736b80;min-height:30px}
+#teamCards .squadTop{display:grid;grid-template-columns:1fr 1fr;gap:5px;background:#f3f1f7;border-radius:8px;padding:8px 3px}
+#teamCards .squadTop b{font-size:21px;line-height:1.2;font-variant-numeric:tabular-nums}
+#teamCards .squadTop small{font-size:9px;line-height:1.4;color:#746c80;margin-top:4px}
+#teamCards .squadCreditChange{display:flex;align-items:center;justify-content:space-between;gap:5px;padding:7px 5px;border-bottom:1px solid #e8e4ee;font-size:10px}
+#teamCards .squadCreditChange b{font-size:16px;font-variant-numeric:tabular-nums}
+#teamCards .squadCreditChange .good{color:#087e51}#teamCards .squadCreditChange .bad{color:#c42535}#teamCards .squadCreditChange .muted{color:#71677e}
+#teamCards .squadStatus{margin:0;font-size:10px}
+#teamCards .squadActions{margin:0;font-size:10px}
+#teamCards .squadDetails{margin-top:auto;border-radius:8px;padding:8px 4px;font-size:11px}
+#teamCards .squadCaptain{position:absolute;top:5px;left:5px;right:auto;bottom:auto;transform:none;width:19px;height:19px;font-size:11px;z-index:2}
+#teamCards .squadLower{grid-template-columns:1fr;gap:20px;padding:18px 12px}
+#teamCards .squadReserve{order:2}
+#teamCards .squadSixth{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start}
+#teamCards .squadSixth>h4{grid-column:1/-1;margin:0}
+#teamCards .squadSixth>.squadPlayer,#teamCards .squadSixth>.squadEmpty{grid-column:1/-1;width:calc(50% - 6px);justify-self:center}
+#teamCards .squadCoach .squadJersey{width:52px;height:65px}
+#teamCards .squadCoach .squadName{background:#160c35;padding:8px;border-radius:8px 8px 0 0;font-size:12px}
+#teamCards .squadCoach .squadInfo{border-radius:0 0 8px 8px}
 @media(max-width:400px){
- #teamCards .squadCourtRow{gap:12px}
- #teamCards .squadPlayer{grid-template-columns:minmax(0,1fr) 40px;column-gap:5px}
- #teamCards .squadPlayerTop>.squadOpen .squadJersey{width:40px}
- #teamCards .squadTop b{font-size:15px}
- #teamCards .squadName{font-size:10px}
- #teamCards .squadCenter>.squadPlayer{width:min(100%,270px)}
- #teamCards .squadLower .squadPlayer{grid-template-columns:minmax(0,1fr) 28px;column-gap:3px}
- #teamCards .squadLower .squadPlayerTop>.squadOpen .squadJersey{width:28px}
- #teamCards .squadLower .squadTop{grid-template-columns:1fr}
-}
-
-/* Share row heights so each pair stays aligned when a name wraps. */
-#teamCards .squadCourtRow:not(.squadCenter),
-#teamCards .squadBenchGrid{align-items:stretch;row-gap:0}
-#teamCards .squadCourtRow:not(.squadCenter)>.squadPlayer,
-#teamCards .squadBenchGrid>.squadPlayer{
- grid-row:span 3;
- grid-template-rows:subgrid;
- align-items:stretch;
-}
-#teamCards .squadPlayerTop>.squadRival{
- grid-column:1;
- align-self:stretch;
- width:min(100%,150px);
- padding:9px 5px;
-}
-#teamCards .squadPlayer>.squadOpen{align-self:stretch}
-#teamCards .squadPlayer>.squadOpen .squadName{
- height:100%;
- display:flex;
- align-items:center;
- justify-content:center;
- flex-wrap:wrap;
- column-gap:3px;
- min-height:40px;
-}
-#teamCards .squadPlayer>.squadInfo{
- align-self:stretch;
- display:flex;
- flex-direction:column;
-}
-#teamCards .squadInfo>.playerPhysical{min-height:30px}
-#teamCards .squadInfo>.squadDetails{margin-top:auto}
-#teamCards .squadInfo>.squadActions{margin-bottom:7px}
-#teamCards .squadTop{column-gap:8px;padding:3px 0}
-#teamCards .squadTop b{line-height:1.25;font-variant-numeric:tabular-nums}
-#teamCards .squadCaptain{
- position:relative;
- grid-column:2;
- grid-row:2 / 4;
- align-self:center;
- justify-self:end;
- left:auto;
- right:auto;
- top:auto;
- bottom:auto;
- transform:translate(4px,-28px);
- width:21px;
- height:21px;
- font-size:12px;
- z-index:4;
-}
-#teamCards .squadCenter>.squadPlayer{align-items:stretch}
-#teamCards .squadLower .squadCaptain{transform:translate(3px,-22px)}
-@media(max-width:400px){
- #teamCards .squadTop b{font-size:14px}
- #teamCards .squadPlayer>.squadOpen .squadName{min-height:42px}
- #teamCards .squadCaptain{transform:translate(3px,-24px)}
- #teamCards .squadLower .squadCaptain{transform:translate(2px,-17px)}
+ #teamCards .squadCourt{padding:18px 9px}
+ #teamCards .squadCourtRow,#teamCards .squadBenchGrid{gap:16px 10px}
+ #teamCards .squadIdentity{flex-direction:column;gap:6px;text-align:center;padding:10px 6px;min-height:156px}
+ #teamCards .squadName{font-size:12px}
+ #teamCards .squadNextTeam{font-size:15px}
+ #teamCards .squadTop b{font-size:18px}
+ #teamCards .squadClub{font-size:10px}
+ #teamCards .squadInfo{padding:8px 6px}
 }

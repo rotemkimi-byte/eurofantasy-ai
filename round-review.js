@@ -23,6 +23,18 @@ function price(player) {
  const d=delta(player),label=state.priceRound?`שינוי מחיר במחזור ${state.round}`:'שינוי מחיר';
  return `<span class="rr-price"><span>${fmt(player.price)} <small>cr</small></span><small class="rr-delta ${tone(d)}" dir="ltr" title="${label}" aria-label="${label}: ${signed(d)} קרדיט">${d===null?'—':`${d>0?'▲ ':d<0?'▼ ':''}${signed(d)} cr`}</small></span>`;
 }
+function updateSquadCredits() {
+ if(typeof document.querySelectorAll!=='function')return;
+ document.querySelectorAll('[data-squad-credit]').forEach(el=>{
+  const player=players.find(p=>p.name===el.dataset.squadCredit);
+  const value=player?delta(player):null;
+  el.textContent=signed(value);
+  el.className=tone(value);
+  const priceEl=el.closest('.squadOwnCard')?.querySelector('[data-squad-price]');
+  if(priceEl&&player)priceEl.textContent=fmt(player.price);
+  el.title=value===null?'נתון שינוי קרדיט אינו זמין':`שינוי במחזור ${state.round}`;
+ });
+}
 function roundGames(entity,round) {return (entity?.games||[]).filter(g=>Number(g.round)===round)}
 function totals(games,coach=false) {
  if(!games.length)return {pir:null,points:null};
@@ -55,6 +67,7 @@ async function loadPrices(force=false) {
    if(typeof players!=='undefined')for(const player of players){const value=prices.get(key(player.name));if(value!==undefined)player.price=value}
    state.error=false;state.loaded=true;
    renderMarket();
+   updateSquadCredits();
    if(state.review&&window.PIRHistoryUI.getData())renderReviewBody(window.PIRHistoryUI.getData());
   }catch(error){state.error=true;console.warn('Round prices unavailable',error)}
  })();
@@ -92,7 +105,7 @@ async function renderReview() {
 }
 window.RoundReviewUI={price,delta,selectRound,roundGames,totals,priceBaseline,renderReviewBody,loadPrices};
 const originalTeam=renderTeam;
-renderTeam=function(){originalTeam();if(state.review)void renderReview()};
+renderTeam=function(){originalTeam();updateSquadCredits();if(state.review)void renderReview()};
 document.getElementById('teamView').addEventListener('click',e=>{
  const button=e.target.closest('[data-team-view]');if(!button)return;
  state.review=button.dataset.teamView==='review';
