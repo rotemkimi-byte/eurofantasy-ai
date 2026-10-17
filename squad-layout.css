@@ -1,0 +1,66 @@
+/* Opponent above; own jersey to the physical right of the player card. */
+#teamCards .squadPlayer{
+ display:grid;
+ grid-template-columns:minmax(0,1fr) 50px;
+ grid-template-rows:auto auto 1fr;
+ column-gap:7px;
+ row-gap:0;
+ direction:ltr;
+ align-items:start;
+}
+#teamCards .squadPlayerTop{display:contents}
+#teamCards .squadPlayerTop>.squadRival{
+ grid-column:1 / -1;
+ grid-row:1;
+ justify-self:center;
+ width:min(100%,150px);
+ margin:0 0 12px;
+ min-height:0;
+ direction:rtl;
+}
+#teamCards .squadPlayerTop>.squadOpen{
+ grid-column:2;
+ grid-row:2 / 4;
+ align-self:center;
+ width:100%;
+ direction:rtl;
+}
+#teamCards .squadPlayerTop>.squadOpen .squadJersey{
+ width:50px;
+ height:auto;
+ max-width:100%;
+ margin:0;
+}
+#teamCards .squadPlayer>.squadOpen{
+ grid-column:1;
+ grid-row:2;
+ min-width:0;
+ direction:rtl;
+}
+#teamCards .squadPlayer>.squadInfo{
+ grid-column:1;
+ grid-row:3;
+ min-width:0;
+ width:100%;
+ direction:rtl;
+}
+#teamCards .squadCenter>.squadPlayer{width:min(100%,290px)}
+#teamCards .squadName{font-size:12px;min-height:0}
+#teamCards .squadTop b{font-size:18px}
+#teamCards .squadTop small{font-size:8px}
+#teamCards .squadCaptain{left:auto;right:0;top:auto;bottom:5px;z-index:3}
+#teamCards .squadLower .squadPlayer{grid-template-columns:minmax(0,1fr) 35px;column-gap:4px}
+#teamCards .squadLower .squadPlayerTop>.squadOpen .squadJersey{width:35px;height:auto}
+#teamCards .squadLower .squadTop b{font-size:14px}
+#teamCards .squadLower .squadName{font-size:10px}
+@media(max-width:400px){
+ #teamCards .squadCourtRow{gap:12px}
+ #teamCards .squadPlayer{grid-template-columns:minmax(0,1fr) 40px;column-gap:5px}
+ #teamCards .squadPlayerTop>.squadOpen .squadJersey{width:40px}
+ #teamCards .squadTop b{font-size:15px}
+ #teamCards .squadName{font-size:10px}
+ #teamCards .squadCenter>.squadPlayer{width:min(100%,270px)}
+ #teamCards .squadLower .squadPlayer{grid-template-columns:minmax(0,1fr) 28px;column-gap:3px}
+ #teamCards .squadLower .squadPlayerTop>.squadOpen .squadJersey{width:28px}
+ #teamCards .squadLower .squadTop{grid-template-columns:1fr}
+}
