@@ -1818,7 +1818,14 @@ $('weakReload').onclick=()=>void load(true);
 document.querySelector('[data-tab="pirWeakness"]').addEventListener('click',()=>void load());
 })();
 
-</script><script src="./round-review.js?v=4"></script><script src="./round-lab.js?v=2"></script></body></html>
+</script><script src="./round-review.js?v=4"></script><script src="./round-lab.js?v=2"></script>
+<script>
+// In this RTL navigation, the last buttons appear at the far left.
+for (const id of ['data', 'learning']) {
+  const button = document.querySelector('.tabs > button[data-tab="' + id + '"]');
+  if (button) button.parentElement.appendChild(button);
+}
+</script></body></html>
 
 
 
