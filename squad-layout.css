@@ -64,3 +64,63 @@
  #teamCards .squadLower .squadPlayerTop>.squadOpen .squadJersey{width:28px}
  #teamCards .squadLower .squadTop{grid-template-columns:1fr}
 }
+
+/* Share row heights so each pair stays aligned when a name wraps. */
+#teamCards .squadCourtRow:not(.squadCenter),
+#teamCards .squadBenchGrid{align-items:stretch;row-gap:0}
+#teamCards .squadCourtRow:not(.squadCenter)>.squadPlayer,
+#teamCards .squadBenchGrid>.squadPlayer{
+ grid-row:span 3;
+ grid-template-rows:subgrid;
+ align-items:stretch;
+}
+#teamCards .squadPlayerTop>.squadRival{
+ grid-column:1;
+ align-self:stretch;
+ width:min(100%,150px);
+ padding:9px 5px;
+}
+#teamCards .squadPlayer>.squadOpen{align-self:stretch}
+#teamCards .squadPlayer>.squadOpen .squadName{
+ height:100%;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ flex-wrap:wrap;
+ column-gap:3px;
+ min-height:40px;
+}
+#teamCards .squadPlayer>.squadInfo{
+ align-self:stretch;
+ display:flex;
+ flex-direction:column;
+}
+#teamCards .squadInfo>.playerPhysical{min-height:30px}
+#teamCards .squadInfo>.squadDetails{margin-top:auto}
+#teamCards .squadInfo>.squadActions{margin-bottom:7px}
+#teamCards .squadTop{column-gap:8px;padding:3px 0}
+#teamCards .squadTop b{line-height:1.25;font-variant-numeric:tabular-nums}
+#teamCards .squadCaptain{
+ position:relative;
+ grid-column:2;
+ grid-row:2 / 4;
+ align-self:center;
+ justify-self:end;
+ left:auto;
+ right:auto;
+ top:auto;
+ bottom:auto;
+ transform:translate(4px,-28px);
+ width:21px;
+ height:21px;
+ font-size:12px;
+ z-index:4;
+}
+#teamCards .squadCenter>.squadPlayer{align-items:stretch}
+#teamCards .squadLower .squadCaptain{transform:translate(3px,-22px)}
+@media(max-width:400px){
+ #teamCards .squadTop b{font-size:14px}
+ #teamCards .squadPlayer>.squadOpen .squadName{min-height:42px}
+ #teamCards .squadCaptain{transform:translate(3px,-24px)}
+ #teamCards .squadLower .squadCaptain{transform:translate(2px,-17px)}
+}
