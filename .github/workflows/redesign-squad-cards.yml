@@ -1,0 +1,78 @@
+name: Redesign squad cards
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/redesign-squad-cards.yml'
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: eurofantasy-squad-redesign
+  cancel-in-progress: false
+jobs:
+  update:
+    if: github.ref_name == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Put jersey inside card and show club opponent and credit change
+        run: |
+          python - <<'PYINSTALL'
+          import base64,zlib,subprocess
+          from pathlib import Path
+          patch=zlib.decompress(base64.b64decode('eNrtXFuT20Z2fp9f0Ut5TXKH5JAckjNDDjmWtbO2U74okryplEoVgUBzCAsEuAA4l6VY5Z+wWlsbK/HKG2dj2X7MPuQlT/kTfPcvyTmnu4HGjcOxXc5DXCoNyUb36dPn+vUNlj2ZsHr9zA6ZsWe7Fr9sTMOZw8bajx36yrr7fHzADw4ajeaEN7sdq8lazWav09mp1+uJ1ju7u7tJCm+8wepHvdoB26W/8BOLH1pGaNTDKZ/xYcmxz6Zh6RFrGAvLDuumN5sbZsgaMzsIahtqm/Vzw1nwHbaxju9dsGAxmxn+1WZiMx5OPUvVXZqe4/n9c8Ov1Otj6Ka62mHHe0F45fDRsfhoXHDjydvcmS8nnhvWA/v3vN9qzy8Hju3y+pQj8X6r0euuqOYdqOR7TrA8822rHvLZ3DFCDuN1FjM36Pt8zo2w0qnNbHdmXFaatdbEr1aZsQi9gQGcunUbGgV97lpJgswxxtxZQrv6hW2F035TPjd8azk2zCdnvrdwLTkYE0rb1cHY8y3u91vzSxZ4jm0x8RRZVw/rvmHZi6Df6sKY5oZl2e5Zv9WDHyChM+gt9OY04Lg7Nu1owmg3o7p9aMaaA++c+xPHu6hf+Ma8b7hXF1Puc619I+BmaHvu29ywRpZ9nj+qTLVRMDMcR9dDU7F13/R8vgz5ZVgnKfZN7obcH0wcftlvMrDlVN3ReGnZASjnqj92PPPJQBvQEQxItwzDRGrVgWX7gqG+E/o6rWK+3uOhEXWEzAzOQCSH0AH+EALCP1r3rVaq+9ki5FZViRhVwZox9VEwN9zlDRR9qOm5q/i86wU2jiyImEX7HWw04v2UEdPQDjIUScFZzUSmBrJi+8DTTWwVTS7X5qupztk46+O6rDsZdlkA7uaeFVtHOzb3Lpl7jllo1Mg0iogdZeNImoAwM+5AF9ySeq7nWKdo92uwCBuij+67nUi44neugKU68rxdMATscz94YIcO1y29lzJWIWEpH3Q83cTeNKwzHgnDdmnoQiaROQB33ULt3sRIurmcEesXQtqHTelHdyFeef7McE2OortU6uhQbFPhrI9BOtNgG4dJ+ImI9egrZMbRwMmv1RjGXhh6s4JxauLfj6Qbc3SNzVGvKaPTY33sEqTypWKwqesk9A0XAo8PlpcQMvp5daB5u49dpDyuIEGkmOpkBoaRpO8YAcCHqe1YelBx+CQcXEwhd9aBLZP3XQ9pX0dilAwPKtAnk9vqjRm3bKOChiGSVK8JxdXlNgkfNM7gfyqXjxegXlc0ETX7rb16S8voulnoKY7SxtgI7KB/1E1nNI3vXnHCbkEGWK1SMGeHPZzalsXdR5HhuJ7Lf2HP5p4fGm64avh+fe7bZsaBKa0RX3EkFIMiK0eFpzWVCJm5elOdifSW8tpBbvxTTVh+Oo4e4zeLO5CYU0lX76WHsQG84gkPHxhjh7PQ6rvhVJhNpV3tT42gEtGs9vvGBLIaWBMkNzck2VGXoXd25vB8CKBFyVZPsijqKwMpwnU58GBTZMxSfmj4tgG88yDg1rAU+gteepTtTjlEIo6eCXqOHYQ3QAvtPLQQaQbH9UMj6Y8Bgjt6RO5I5lxjxvPDIKp5m/in4dtCdCw7ui56t5LIvKsJcDTPRJRBatKiTI7awGQIjDeo4Xc1I/qB8K+XdHaB9fTOcmJe/BCjs84NQceNSEAp7kjXGyJKpTtJmY11umwD+G+lGpI6Eo3zwssgSS9HQUrACsZ3BIxHrXshv3ZymclBB4ciBylPLEw/q9VOPQr2QPcJ87kzLFFBMOU8LLGpzyfDUmMv+N3CsOowDG8RNswgODkftkuj470pTsB2dr8/lf2YCjsee9YVfuJv7o+OQcnMhJwcDEtYVKKSRDG/4mOY4pdGpx/e++Dd09tvfXjKfnP7/Qe37/8ju/3W6fsP2Hcff8l+2z7eo5bT1uh04Xu/gaxlBFfs9jvQd2skH4r4x8KrOR+WxI+S6gfmm55roY5p6eABRcwSszFC6gXJ4DkxnEAV0iR9WFq/XH+5frb+mq0/X3+7/mr9fP3H9acMSj5dv1h/vf60NPrus49Z7qPjPcFUQgBjBM6CkeDKNQlHl0brz6D1l+sv2PovQOo5/H2x/vN3H38lRyr/SjGDwGeG7Y5osaZzcIirNeIDCiYLl9IxI919MJ9DXHNDhA6VeW1mhOa0utxhjHEYKbMnlXNwb6sCORxqNRBOdU8axvnZXRviwHJu+8P3F7Mx9xM1VIUBPH+XxFS++849BqJ6Cbx/tf4ShfCH9T+DEORQyquNfb4F0fKkMd/QJ9agCuk+n0Gf30BXrxiIXfX5BfUH3gKmHS58lz0+Bpxl8cg6UDb3bOAjpexP16+AIo7hU6SHo4Avz6VGX6yfYYdfQpefoOZ1vRLJ9yFeEnOg0TxSynAzjR5wY1YavbbkgVmx3YnXCKHg6dMy2MXX6z+jVbyijj8tVwHujQHqAZZKUPktdxecuo3k8Q2Y7L/02WvLc3yGMBEaQSfUgY+jP3msnCgjmA/mHLyJFt8sMRMdljT+qHkDs1x1lZLhX4Hlz9YvmBIZcpDfDnihDv8OpqP8SqsAg8wMkLh6Hxom5KTTkwOM3O615Xx6Fdim4bwLMThFHiN/lv57tgsYLMAuTGcxlnZILWfiUXXFQPmv1n871qVJMD5mgKiPijoB10l1gIa9YmDPiqgy8izJXLG8id2D8tH9noHMP0czRS6fr7/VLFYqYt6Ye0Ekrsf9cgHV9+wggCwMdP8ANPXYxGLin+d4hqRchi7I7UaPBzu7P7vida4o/SwrGbkUBKNUaCpXChn1yso/+/j/dx8HYxf6/am8HXIv24mxiM9dAC7oWRVAHwRbjtoEW+hDhy3JqowBjAtChhOFIQCYwPHC6nBECAaAxC/m1SiqpAPA6WweXpVGStrY8rh7cv/vP7z963+6/+4HD+4/xKJHD1uP+mXhpjjob2Bw8L8cSU7oBPzt+frf1v/O4povoewbKH0V6Y0iCg5ecX05nHkWdyrzas0fXjYEnPmN589q5sLHBbehf9JAkB+E97kReO5wOCyftpvtXvn11xUGasi6ogbioKA6atZmQJDg3NOny1XNDu4Yc9CwOzTF5wn5C9Cb05cBQCEtAPuhbTrJECyWCGU0mNMPFQzmmi9HHZ3k2JF8VGIhri1DmHgFgeKz9Rel0R1lJP0yiDatKtH3A29eyo1VxWFqvjE6YbR+CSaL9vznPssORg9Mc4rmKqjkgmesoU88fgIeszLWo6Oqx6SVpl1fmmUyYmak/w4Et1I6kKI40hWlglJhrSGWzVbKU17BwD6B0XzG1v8KIeLbmI9xpvFlg1/OaTskak+g/isQz/P1i0TTvfRUMqEjHMCsMfVgHlGGmPXH9Sdgam+UV1Kis4YnKz59Ote+l7/7GPM4+5//Ylp7DK/fQntw9efr/yivCvq+HxrhIoCGAX25g49AHuKXtDD6/gBghfZAkctJ97cpCKYy/dcgyGcIfaQ7aZmdrGkEgfqv8PDF+pPjgLaXhCH6Hjph1uy1GAghZF6pPASDqRGpRzUbwmsFfmMo+lUZpSV+oE0BRvHmFKVpJx9p22DXIrhCHfukHMjtLXJ06MuRGU60w/RTrjY+8my3Ukb8lCQ35q451eiVqaCcpgqB+K/w//OIKgiEKsAXIZA8D5XBSUhYuqoMltcEOiV3TInPcIaJpkFf0MTlw3IcPuJsm8eHAnObg8Uohlgy4+jkaTVARnEBrn+U4F4U9eTmfdLxLlys8aPlhIKYKpYx3rGAIRvS+U+RBTJDUL2jG/+oITkrLAiNMSU18dAmLzAMtv4TjOcF2KKYgSjs+CMHecEciVusAlKYz7Oa3GSQRE8/bU6443PLDu9MDReX1gQAJGD3FyTAYm4Ul2N9nCa1ztqWZYPPOCHB+gvbtbyLxj1cyr7Hz21+8eE7J4F95nKrkvesQZtUIO9qnzLOagP3P2eVn7PK/2FWkbE+mV8YWw3iuZhnmNPhnQ9u33n79H5jAuZeMYcjU004RMLx+YTDrMXkQYPqV1Pt3w5nzpC+nWSnbnewPB2al42GIFUDowFRvYSI/hIlVMMtz5xIpodlahgtIeT6nYiQ24FeQa4I+G6KbtTyVAY4SQfjfDWmgwtMf4viHc67c2KenNXGYyMiKz2ziKWCz2XGe+/2gztvf3j3/sO4+qOTLBJOEsC1+68IBX8BZOZmWEAGYt5d3xvr6w3RtgWuOMyz6pXTc2XxUpvHe/NReUArBK3DFu1syE8oeq1SxmMQ97jjGRY4vOeajm0+GVYguJx7tsWwvELWANZmeeZihtsHv1tw/0ocu/L8SlkeKDXGw9Lc9v8BCLo8CEqPgKBhWafn0ORdOwi5C9oqUwflWrKHKpJfVSv4QRtypm/PIUyITxb4Ju6d0T5n3acM0Pgo2jpTlfdo7+x4D8+4ig25Lal0iqkw+mfpJ4VT7dk4XSLPDB9NzHZ3Mj5sNI6O+P6hYewnzwynW4mDw+lS1Ft7v9Zju/C3dZhY2CFvqQjwWWXx0o41lMlRPBEZY4hZjQsPo0x68ljP4C/BaF6g2Tyjr3+C0q9lxuQNYmr1mFZ10i3KGIYiqKzjL3X+I14xmsxCyZTydAXqTD+D5PRVQHUoBTiCyMorVgI+KCCsslgStapSBKoSUFi4HBkFF4xoFoRZd+E4J+S0/cdQMmrCjz/9Jyv3rWP6+t+M0lqCiuk/TmNQsVa3G2lpMQf34PdjGBVUUFm7uNqGG63epMCxbjvOLyC3KkJluTCHc5PCBsoZdeCFfjjx/FMIERUQyAj7lpYiJy7iIxCZZz4czVXm4U4DyQU8bGg4sDqIKQhEIAicJMyuj/KkmkAFjz3cEcd/hlJ81LKqKpCiMb8MScHaQ8kp2supM6SqXsCDsFJu6NOmcvUkPy5pWBskQSRB8pLe669LbuXvBKMZc41GQ/Ymhq7sRi7uygXPNC5mNFmCUjXX+AKMTK+5we2w1xX2vdLXf/EZLV1WxFSqRiVgWdIXZfFJ4wwrPX368BFYge2EEIPPhiOZO89EH1UYhfiidxF6oeEEFWpfExCFdvNFqMG1YnrUcLh7Fk7VsjEuwpPqAVTYbhjQ95VIQN0uBrLegUg+Bu7Wx91hIriLYg4qYK0wMdI6Y5qzSGNF1wCOOdgs4M0qNKnoNs3imtVlwlSpi8YZDytPcHoq9Es4pjoQO+kLDsQj2lXdBITSaeudCSVx3/d8wetAlOBAuDXErEkr13IB/j06L1cRRpQbFQZqpFL9lARef11Of2DK9jZkUc+/gtkPsP9rMG5InIK4mBa9Camrsrk69bEycZm7QqxXl/o4iGkUF0xJGheGD/CfkoXwv4AtXOMccDAe+ivXRHs6F0Cpm2660CZEq9nN1bHOLEVB3NXIm94Nl9RhjSJKTcwaqEItNvyaMNAa1XwTghSeC6ql5VGL7QoRtzAFz7fPbNdwcFNkGO+PDHbq8Y+h4rpSXer1K2QmuoqqBGSSY4O+dreilWsI23UQpwHQ76nD8eubV+9YlTKCyN9CtU0IjItNHyEQMWUZ8kZo+EAsjrES2wG9OvaLERQ9X9SPMpJyBsHuUDyNUofiBmeKogaAhgSmSp+KAiCULpKoqml1xuZRp9VodFpd6+hgMk6iqkwzAasyxYSHa602xKNWrdsEW92p7/2KqaU6Zoy9cz5g3oXLPqLZEoRDPPjE1HIPo8OLGGaoVAQd3FRrsF/t7dRv4aAxLwWsoS0YLnfqLHGKEH5vc5izi8foMnV97yKgg/d02BOPUmMdQaEuL5xgCdSjn80Bda8fL4YC/WYVqNEPoXBVOAKYvUXnA+WB3mBj7VEj3hFdqiGoM45sD9QQDQz47NOvjxZBaE+u6uDTE3UnBorF4T6QTAV0/staC6VSxQf6YeG2GDOeKpVnBFPD9kPnuhFKnnG5NM1yO8FtGwbQiYWYyy/y+kM4kI/EpH0ZkVUmIQdJx31JFOoQpOpXCWdjlxtGnNRPWwlXHdm90chkN7gysLmb/Zxubi7OO6SKUcIDU0bUPkIjymuMaDR99FS3qrw2oDk2Tl8nKKiXPipbUFUuby3xboDQsi+tGk/QUoG8EIOXen5fpzjZ388j9a53AUEqIY1tgs++vC2kokonn9Es9U12LNRApDULvo5uRr5b8JLWY5OaZM4Md8S9FbCsrAq8hQ/w42JJx+nb1J4VRfhtJNppJiXa3UjyejF2mgUEMvIq6ilfSOx7edSB9Cj2Yxlg+zAprv0C5r6PBbYPtyCGSa/4DDnFHoIP96eGzzHdyqgcsMBjHGZObG7YPoKkq0CkCm6xiylwZDC614DXHYIC5KCsr+96YUXXQrWWU/tNXIp/C3hdJvM6QDVzOoiQwOpGHSX0vbHXURrtRBGdlob2C0BMsBgrOJTH9nbJMh9ipLJzTLIYTqjLEkfyvuW2iTPbzVbtdBeME3qc57TbUSn5xFBDISZ1xyp+krpLnQSI+xmw1GluN2CVwvNFm2Y6/wZcfjdIedQQiPquRNtLjcP9Zn7MF+30vRv9pm9RdtFayU091Upm1YPCDL7UBKlfHN+n2yuF6CB5faXdFRdsznHNEj5dmNHBbLUfGuOFY/j4O9gEC9Bc5X3ovs/Bo+xzPvgBmDUBvWHGiWUx9MDJRAJuRhgEvkuBRY/wGizeLRUXYtHZK5Cua3UMudXYAfFWkQZk1c8U8oIShW06N0B7OdHkOrygJJvH/z7x36b8tgsB/5Riu5j8TY2AweSRqdd3qJ0gJi6ZMMO16DlKlvzUwOWleM64WxiQa1tHeZy9EUgBETOBVHaLgErCR4uvqB7SBS4da+uwPHufLW8chaABXNusdJu/ZHXWQ6OI4Rjh8jxiIsprc4H48mE009Guxd1q9ZrmfldeRLw1mUyydx6x9CB927Gt324X13+hymU9mBoWlDTxvQwMxXyr2Wy28ziNDsyn78NJXqwjczJpx1yrgRyKK3qsQH3qSL1O9SBzLU7FFXll96gZ06f3DrCDmBEUSsHNy5z+6TC+fvPwVq/DDwxDUWs12+N2MyXOpv5ajXjIacRZoG4Vz/VOJ91Jkx+pTtuHraN9HnVyIDP3zejHr75Z+AFQpRVsfFGKJsiDZrOQDIGAJENaBjrcwEDh/Ai8Ir5mrmZKnW6iNFr9oFWg7oZu5In0ZcbkDpJXhFPC7bW7+z2+hTDlXswym5G2CDZ6WNHcO8ctE5yC7SrDM5rjTnOz03ZkXBRemx8KDvOGpo6sJcNmDhhT626Jd1ccpriWQSn5Qov9mItm0zw43M+/Kx3jw3wlKE5HCXuKVIIrtbYZv/yngxKV08h2PBvvCj+NZsfthNvSRlLf8r25FG2lieGKKcl2q5s4w3NWqUvGuvKJtVZu6EOInGyYvnAuNdrMSwvJd4OkX6mRWNzJhK/t4+P7W1xUb6beqNCN3ttwy5yYXd7LTaPOIn03WzmoCMAbXtkAYSt18foGIyKsfwO4oHmcppNsKqDL6Op9TzBT0990VcBGZmKw8d0tUdo/2O+ND5uDzCxiNxfXb3HPX766ZCBXb5IhaX/SyuAJfYJwKN7qVNB9YsGG0HAqs28zYdjdasnxKMcLlMQ6PfOwmX73TZ5VamdDrw2O6WkqvdekPubhBeduJMx0Fi96788tfsg7fJvEpDOZXBDrKUe5qTwTJBtnnmep1N88PODd1uqaFmMjamB2IMF2r2tA7zJRTQ5avYODXGcVp12XN4BYyXnvVk0KJtjX2HwnichaBbqS868oYxljUDcMfqAiF81H8Ys2F9Unn/HMjcKPBBNHcXKj76loqWaXuVCe5ofFS4Bkue3EG6s2TcDu8YD753wpUlVuh/fty3B600BEETAzISwkP5p2su9EiV6CUtgqsRa4sQ6dSMx2kT/1y9nzy7UOPIiSB5W7GnjpFYBgvTFhiRxMphls1pxpwgeoKfXqmOv6ogSayoJARhJc7bCb7EYU7IGwmy006kt+RTsa16+EdLZZ6d9Epo1kcPqKgLFg52WZcKojEjf7Xosl5CT4Hk4Z11gxzC9GOLmv8Uliml5yq7DV7RV0l7PHmF8vZ87fLaibvweZJzHEk5lYz/Lhnx7HaTRstfO/1itnSw=='))
+          if subprocess.run(['git','apply','--reverse','--check','-'],input=patch,capture_output=True).returncode==0:
+              print('Redesign already installed')
+          else:
+              subprocess.run(['git','apply','--check','-'],input=patch,check=True)
+              subprocess.run(['git','apply','-'],input=patch,check=True)
+          PYINSTALL
+      - name: Check price updates and JavaScript syntax
+        run: |
+          node --check round-review.js
+          node tests/test_round_review.cjs
+          node - <<'JSCHECK'
+          const fs=require('fs'),vm=require('vm');
+          for(const m of fs.readFileSync('index.html','utf8').matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g))if(m[1].trim())new vm.Script(m[1]);
+          console.log('Inline scripts parse successfully');
+          JSCHECK
+          git diff --check
+      - name: Save changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html squad-layout.css round-review.js
+          if ! git diff --cached --quiet; then
+            git commit -m 'Keep squad jerseys inside cards and highlight opponents clubs and credit changes'
+            for attempt in 1 2 3; do
+              git pull --rebase origin "${{ github.ref_name }}"
+              if git push origin "HEAD:${{ github.ref_name }}"; then pushed=yes; break; fi
+            done
+            if [ "${pushed:-no}" != yes ]; then exit 1; fi
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: '.'
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
