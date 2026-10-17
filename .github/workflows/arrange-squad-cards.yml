@@ -1,0 +1,63 @@
+name: Arrange squad jerseys and opponent cards
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/arrange-squad-cards.yml'
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: eurofantasy-squad-layout
+  cancel-in-progress: false
+jobs:
+  update:
+    if: github.ref_name == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Arrange own jersey beside player card and center opponent above
+        run: |
+          python - <<'PYINSTALL'
+          import base64,zlib
+          source=zlib.decompress(base64.b64decode('eJylVlFv2jAQfudXnJimQNdAoFTrwugmVXvYtK1Vt8dJk5s4xK1je7YpUNT/vrMDLYFA2+0lwc53d9999zkh07IARWzO2RWwQklt4QKXDTVyt1bAREpnndwWPGgPLZ3ZkepoStLf7ner3WAZBAknxoya5s+EpBeczKn+KVUzACEtMAEOCVJDwNJR01JSnBGdmurzuAGaMEPhciIsK+gnraVuBT9cSiiIvpkoyImBJCdiTNMhxiLtMYVECkuFhSk+lLdUTzWzuBG0G5yJm1Hw3t1AU4787JxTk1Nqm5Brmo2ana7nHCJnObGdxJgPt6Ne8zRwbfnAKkXX7Ptuju2fVtnXkv/GjGFiXPJ0QUjKw0fugioqThLaesh46Cq+eVz2EK46riFaqu0u7UY5l03iQXsdGXQP4FwpKZw05AqFGYKcCrim2tA5WAk2p6DyuWEJ4aDZOMcRZeWunyAkOKQOHHR/iVcPM4PO2owXvwSkzDh4PNYsHeLa3UNLC9y0NEwknxTCxAUTBZm1osNepttwHKnZNlbLqYnJBJn5CyIdpswQjomK35ZRiPPLaOjLa5pYJkXMrccTzsYiRBkKExtLtMXN+50doEsXqw6WPjJ70afl+pLdEr5YtVByjHvQhbD30BjyjP3qemIsy+ahoTyLEyxBPdMpS23ulGn1ouj1Yc+p0nYP0OxjJuIIIuj1y54RFebUzWizbW35Ux0uOZ8rKjYp9yts+9jA4FHEWr6O6/8wWD764m24eEi7ssSySeeAUopZWK27EmdvyT0dV+fTX4lbFnmhtssyn0Um95c5qinzcjnP/ChOKydww0T9d85EdcHfSUEXGVo8NOyOxt5Y666qi8HJwdV60Ima7cKZgnC+ht0BPSPKEiYWnGbLKeulq61U5caVtFYW8TESvAv9xyc+qkv1VU7xJVVR4zkvnyOXeO2tMqgnup19n4/LMfjUaw5+Ku+Wvs/gsjnHyId8LGjKSOvxuAwiZwTnyu0RyIm2l3K6cN07H9zXoV6g6CCqKnq8N+XTMg6iHQm29NpVqV6kGimecaLeLk/UdvQ/GrB/UpXraAe5f3Fg/+QZydxHr54o8rv37x78n/IXrkiiOg==')).decode('utf-8')
+          exec(compile(source,'arrange_squad.py','exec'),{'__name__':'__main__'})
+          PYINSTALL
+      - name: Save changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html squad-layout.css
+          if ! git diff --cached --quiet; then
+            git commit -m 'Place squad jersey beside its card and center opponent above'
+            for attempt in 1 2 3; do
+              git pull --rebase origin "${{ github.ref_name }}"
+              if git push origin "HEAD:${{ github.ref_name }}"; then pushed=yes; break; fi
+            done
+            if [ "${pushed:-no}" != yes ]; then exit 1; fi
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: '.'
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
