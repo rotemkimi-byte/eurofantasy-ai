@@ -1,0 +1,67 @@
+name: Sync current round price changes
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/sync-round-prices.yml'
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: eurofantasy-round-prices
+  cancel-in-progress: false
+jobs:
+  update:
+    if: github.ref_name == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Restore current-round price comparison and automatic refresh
+        run: |
+          python - <<'PYINSTALL'
+          import base64,zlib
+          source=zlib.decompress(base64.b64decode('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')).decode('utf-8')
+          exec(compile(source,'install_round_prices.py','exec'),{'__name__':'__main__'})
+          PYINSTALL
+      - name: Check price publication and round rollover
+        run: |
+          node --check round-review.js
+          node tests/test_round_review.cjs
+      - name: Save changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html round-review.js tests/test_round_review.cjs
+          if ! git diff --cached --quiet; then
+            git commit -m 'Keep current round price changes at zero until repricing and refresh automatically'
+            for attempt in 1 2 3; do
+              git pull --rebase origin "${{ github.ref_name }}"
+              if git push origin "HEAD:${{ github.ref_name }}"; then pushed=yes; break; fi
+            done
+            if [ "${pushed:-no}" != yes ]; then exit 1; fi
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: '.'
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
