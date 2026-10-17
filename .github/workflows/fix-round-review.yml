@@ -1,0 +1,68 @@
+name: Fix price changes and round review court
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/fix-round-review.yml'
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: eurofantasy-round-review-fix
+  cancel-in-progress: false
+jobs:
+  update:
+    if: github.ref_name == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install round review presentation
+        run: |
+          python - <<'PYINSTALL'
+          import base64,zlib
+          source=zlib.decompress(base64.b64decode('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')).decode('utf-8')
+          exec(compile(source,'install_round_review.py','exec'),{'__name__':'__main__'})
+          PYINSTALL
+      - name: Check round review sorting and observed results
+        run: |
+          node --check round-review.js
+          node tests/test_round_review.cjs
+      - name: Save round review presentation
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html round-review.js tests/test_round_review.cjs
+          if ! git diff --cached --quiet; then
+            git commit -m 'Fix previous market price comparison and show actual results on court'
+            for attempt in 1 2 3; do
+              git pull --rebase origin "${{ github.ref_name }}"
+              if git push origin "HEAD:${{ github.ref_name }}"; then pushed=yes; break; fi
+            done
+            if [ "${pushed:-no}" != yes ]; then exit 1; fi
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: '.'
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish round review cards
+        id: deployment
+        uses: actions/deploy-pages@v4
