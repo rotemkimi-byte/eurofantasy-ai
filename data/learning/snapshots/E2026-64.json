@@ -1,0 +1,2654 @@
+{
+  "schema": "learning-v1",
+  "season": "E2026",
+  "modelId": "80709a3cfeeee1678f6d",
+  "gameCode": 64,
+  "round": 7,
+  "kickoff": "2026-10-22T17:30:00Z",
+  "created_at": "2026-10-21T17:49:09.603244+00:00",
+  "predictions": [
+    {
+      "name": "Mike James",
+      "team": "Anadolu Efes",
+      "pos": "G",
+      "opponent": "Besiktas",
+      "home": true,
+      "status": "out",
+      "price": 15.4,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 16.40318512711525,
+        "baseMin": 28.339892446808513,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0,
+        "teamPoints": 87.5711,
+        "margin": 0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 39,
+          "historyWeight": 0.4563829787234043,
+          "sameTeam": false,
+          "avgPir": 19.05128205128205,
+          "avgMinutes": 29.935894871794872,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 7,
+              "nextGameAvgPir": 14.428571428571429,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 18,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": null
+      }
+    },
+    {
+      "name": "Dario Saric",
+      "team": "Anadolu Efes",
+      "pos": "F",
+      "opponent": "Besiktas",
+      "home": true,
+      "status": "active",
+      "price": 14.8,
+      "expectedPir": 15.994211878088604,
+      "expectedMinutes": 26.699999999999996,
+      "basePir": 15.994211878088604,
+      "baseMinutes": 26.699999999999996,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 13.764,
+        "baseMin": 27,
+        "injuryBoost": 0.75,
+        "injuryUsagePct": 1.2857142857142856,
+        "missingStars": [
+          "Mike James"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 87.5711,
+        "margin": 0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0088955267280642,
+          "defenseFactor": 1.0030227948800066,
+          "defenseSample": 6,
+          "rival": "Anthony Brown",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 26.903259185842565,
+              "weight": 0.8078508511438041,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 26.605570961731228,
+              "weight": 0.0981822955360563,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 25.051207462323074,
+              "weight": 0.09396685332013967,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Ante Zizic",
+      "team": "Besiktas",
+      "pos": "C",
+      "opponent": "Anadolu Efes",
+      "home": false,
+      "status": "active",
+      "price": 12.9,
+      "expectedPir": 15.630157983538352,
+      "expectedMinutes": 20.833812499999997,
+      "basePir": 15.630157983538352,
+      "baseMinutes": 20.833812499999997,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.997,
+        "baseMin": 23,
+        "injuryBoost": 0.13331249999999997,
+        "injuryUsagePct": 0.22853571428571423,
+        "missingStars": [],
+        "positionMatchPct": -0.490999999999997,
+        "teamPoints": 87.4289,
+        "margin": -0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0377966153507936,
+          "defenseFactor": 0.9979676837126167,
+          "defenseSample": 6,
+          "rival": "Bruno Fernando",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.81740118623501,
+              "weight": 0.8078508511438041,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.09794674372937,
+              "weight": 0.09396685332013968,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.716052267559036,
+              "weight": 0.09818229553605624,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Lonnie Walker IV",
+      "team": "Besiktas",
+      "pos": "G",
+      "opponent": "Anadolu Efes",
+      "home": false,
+      "status": "questionable",
+      "price": 10.7,
+      "expectedPir": 9.01113946587653,
+      "expectedMinutes": 18.768753930555555,
+      "basePir": 9.01113946587653,
+      "baseMinutes": 18.768753930555555,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.11036933112414,
+        "baseMin": 22.888724305555556,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -6.562000000000001,
+        "teamPoints": 87.4289,
+        "margin": -0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 28,
+          "historyWeight": 0.4277777777777778,
+          "sameTeam": false,
+          "avgPir": 12.642857142857142,
+          "avgMinutes": 22.739875,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Matthew Strazel",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.200335162732387,
+              "weight": 0.8078508511438041,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.666553382107388,
+              "weight": 0.09396685332013968,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.229616000024055,
+              "weight": 0.09818229553605624,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Matthew Strazel",
+      "team": "Anadolu Efes",
+      "pos": "G",
+      "opponent": "Besiktas",
+      "home": true,
+      "status": "active",
+      "price": 10.5,
+      "expectedPir": 12.235948758175184,
+      "expectedMinutes": 25.184703655462183,
+      "basePir": 12.235948758175184,
+      "baseMinutes": 25.184703655462183,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.34954331669885,
+        "baseMin": 23.609671764705883,
+        "injuryBoost": 1.6205357142857144,
+        "injuryUsagePct": 1.7678571428571428,
+        "missingStars": [
+          "Mike James"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 87.5711,
+        "margin": 0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 43,
+          "historyWeight": 0.46372549019607845,
+          "sameTeam": false,
+          "avgPir": 11.046511627906977,
+          "avgMinutes": 24.31472558139535,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 11,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0033395807588834,
+          "defenseFactor": 1.0014468166992307,
+          "defenseSample": 6,
+          "rival": "Scottie Wilbekin",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 25.373688548941395,
+              "weight": 0.8078508511438041,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 24.901692037955048,
+              "weight": 0.0981822955360563,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 23.855672487899277,
+              "weight": 0.09396685332013967,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Devon Dotson",
+      "team": "Besiktas",
+      "pos": "G",
+      "opponent": "Anadolu Efes",
+      "home": false,
+      "status": "active",
+      "price": 10.4,
+      "expectedPir": 11.545499464749188,
+      "expectedMinutes": 22.221392857142856,
+      "basePir": 11.545499464749188,
+      "baseMinutes": 22.221392857142856,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.672,
+        "baseMin": 23,
+        "injuryBoost": 0.2863928571428571,
+        "injuryUsagePct": 0.31242857142857133,
+        "missingStars": [],
+        "positionMatchPct": -6.562000000000001,
+        "teamPoints": 87.4289,
+        "margin": -0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9773059805155414,
+          "defenseFactor": 0.9991769777816913,
+          "defenseSample": 6,
+          "rival": "Matthew Strazel",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.958885232225466,
+              "weight": 0.8078508511438041,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 23.70747375294517,
+              "weight": 0.09396685332013968,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.959047871910148,
+              "weight": 0.09818229553605624,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jordan Loyd",
+      "team": "Anadolu Efes",
+      "pos": "G",
+      "opponent": "Besiktas",
+      "home": true,
+      "status": "active",
+      "price": 9.9,
+      "expectedPir": 11.341369902749944,
+      "expectedMinutes": 24.073858333333334,
+      "basePir": 11.341369902749944,
+      "baseMinutes": 24.073858333333334,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.485927759520571,
+        "baseMin": 22.62143333333333,
+        "injuryBoost": 1.44375,
+        "injuryUsagePct": 1.575,
+        "missingStars": [
+          "Mike James"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 87.5711,
+        "margin": 0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.8095238095238095,
+          "sameTeam": true,
+          "avgPir": 10.764705882352942,
+          "avgMinutes": 23.473535294117646,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 0,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0053642610198887,
+          "defenseFactor": 0.9999785470595777,
+          "defenseSample": 6,
+          "rival": "Scottie Wilbekin",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.82638690377484,
+              "weight": 0.8078508511438041,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 25.621376231470116,
+              "weight": 0.0981822955360563,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 24.58447610635731,
+              "weight": 0.09396685332013967,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Bruno Fernando",
+      "team": "Anadolu Efes",
+      "pos": "C",
+      "opponent": "Besiktas",
+      "home": true,
+      "status": "active",
+      "price": 9.8,
+      "expectedPir": 9.941731104072892,
+      "expectedMinutes": 20.642689305555557,
+      "basePir": 9.941731104072892,
+      "baseMinutes": 20.642689305555557,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.439590920314346,
+        "baseMin": 18.238757222222223,
+        "injuryBoost": 0.45000000000000007,
+        "injuryUsagePct": 0.7714285714285716,
+        "missingStars": [
+          "Mike James"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 87.5711,
+        "margin": 0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.45222222222222225,
+          "sameTeam": false,
+          "avgPir": 9.756756756756756,
+          "avgMinutes": 17.316662162162164,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0295703231588906,
+          "defenseFactor": 1.005104232389735,
+          "defenseSample": 6,
+          "rival": "Ante Zizic",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.78068182675282,
+              "weight": 0.8078508511438041,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.41526039039068,
+              "weight": 0.0981822955360563,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.69397303392724,
+              "weight": 0.09396685332013967,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Anthony Brown",
+      "team": "Besiktas",
+      "pos": "F",
+      "opponent": "Anadolu Efes",
+      "home": false,
+      "status": "active",
+      "price": 9.5,
+      "expectedPir": 10.017715424439114,
+      "expectedMinutes": 23.478437499999995,
+      "basePir": 10.017715424439114,
+      "baseMinutes": 23.478437499999995,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.835,
+        "baseMin": 19,
+        "injuryBoost": 0.07593749999999998,
+        "injuryUsagePct": 0.1301785714285714,
+        "missingStars": [],
+        "positionMatchPct": 6.926999999999994,
+        "teamPoints": 87.4289,
+        "margin": -0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9772399666186177,
+          "defenseFactor": 1.0004107229585508,
+          "defenseSample": 6,
+          "rival": "Dario Saric",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.47069292854262,
+              "weight": 0.8078508511438041,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 24.412898991084507,
+              "weight": 0.09396685332013968,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.6478198537409,
+              "weight": 0.09818229553605624,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Eugene Omoruyi",
+      "team": "Besiktas",
+      "pos": "F",
+      "opponent": "Anadolu Efes",
+      "home": false,
+      "status": "active",
+      "price": 9.5,
+      "expectedPir": 7.566052713685022,
+      "expectedMinutes": 17.67476858870967,
+      "basePir": 7.566052713685022,
+      "baseMinutes": 17.67476858870967,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.729317506270107,
+        "baseMin": 19.50032435483871,
+        "injuryBoost": 0.07593749999999998,
+        "injuryUsagePct": 0.1301785714285714,
+        "missingStars": [],
+        "positionMatchPct": 6.926999999999994,
+        "teamPoints": 87.4289,
+        "margin": -0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 23,
+          "historyWeight": 0.4080645161290323,
+          "sameTeam": false,
+          "avgPir": 11.08695652173913,
+          "avgMinutes": 20.226091304347825,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9910127425927058,
+          "defenseFactor": 0.9981243070915025,
+          "defenseSample": 6,
+          "rival": "Dario Saric",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.77615678906247,
+              "weight": 0.8078508511438041,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.459332983369187,
+              "weight": 0.09396685332013968,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.046725236419796,
+              "weight": 0.09818229553605624,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jaylen Nowell",
+      "team": "Besiktas",
+      "pos": "G",
+      "opponent": "Anadolu Efes",
+      "home": false,
+      "status": "active",
+      "price": 9.5,
+      "expectedPir": 9.044524534060457,
+      "expectedMinutes": 21.080660714285713,
+      "basePir": 9.044524534060457,
+      "baseMinutes": 21.080660714285713,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.835,
+        "baseMin": 19,
+        "injuryBoost": 0.23866071428571425,
+        "injuryUsagePct": 0.2603571428571428,
+        "missingStars": [],
+        "positionMatchPct": -6.562000000000001,
+        "teamPoints": 87.4289,
+        "margin": -0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0082342382350034,
+          "defenseFactor": 0.9959122692436534,
+          "defenseSample": 6,
+          "rival": "Matthew Strazel",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.561463442499683,
+              "weight": 0.8078508511438041,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.870475005351736,
+              "weight": 0.09396685332013968,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.23987367715765,
+              "weight": 0.09818229553605624,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Cameron Payne",
+      "team": "Anadolu Efes",
+      "pos": "G",
+      "opponent": "Besiktas",
+      "home": true,
+      "status": "active",
+      "price": 9.2,
+      "expectedPir": 10.62184019440714,
+      "expectedMinutes": 20.425332111111114,
+      "basePir": 10.62184019440714,
+      "baseMinutes": 20.425332111111114,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.230160761842845,
+        "baseMin": 20.324580277777777,
+        "injuryBoost": 1.2374999999999998,
+        "injuryUsagePct": 1.3499999999999999,
+        "missingStars": [
+          "Mike James"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 87.5711,
+        "margin": 0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 10,
+          "historyWeight": 0.3055555555555556,
+          "sameTeam": false,
+          "avgPir": 10.8,
+          "avgMinutes": 23.334989999999998,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9982040335455146,
+          "defenseSample": 6,
+          "rival": "Scottie Wilbekin",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.529129121653394,
+              "weight": 0.8078508511438041,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.606078082288988,
+              "weight": 0.0981822955360563,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.344115127865305,
+              "weight": 0.09396685332013967,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Scottie Wilbekin",
+      "team": "Besiktas",
+      "pos": "G",
+      "opponent": "Anadolu Efes",
+      "home": false,
+      "status": "active",
+      "price": 9.1,
+      "expectedPir": 12.045366327260204,
+      "expectedMinutes": 22.642670624999997,
+      "basePir": 12.045366327260204,
+      "baseMinutes": 22.642670624999997,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.804082541302642,
+        "baseMin": 18.015896785714286,
+        "injuryBoost": 0.2174464285714285,
+        "injuryUsagePct": 0.23721428571428563,
+        "missingStars": [],
+        "positionMatchPct": -6.562000000000001,
+        "teamPoints": 87.4289,
+        "margin": -0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 6,
+          "historyWeight": 0.2357142857142857,
+          "sameTeam": false,
+          "avgPir": 5.833333333333333,
+          "avgMinutes": 14.825016666666668,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.011397646302901,
+          "defenseFactor": 0.9996421730354085,
+          "defenseSample": 6,
+          "rival": "Matthew Strazel",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.787919608730437,
+              "weight": 0.8078508511438041,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.240307491986698,
+              "weight": 0.09396685332013968,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.83263947631995,
+              "weight": 0.09818229553605624,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Daron Russell",
+      "team": "Anadolu Efes",
+      "pos": "G",
+      "opponent": "Besiktas",
+      "home": true,
+      "status": "active",
+      "price": 9,
+      "expectedPir": 5.768818710293651,
+      "expectedMinutes": 14.571904761904763,
+      "basePir": 5.768818710293651,
+      "baseMinutes": 14.571904761904763,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.370000000000001,
+        "baseMin": 19,
+        "injuryBoost": 1.1785714285714286,
+        "injuryUsagePct": 1.2857142857142856,
+        "missingStars": [
+          "Mike James"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 87.5711,
+        "margin": 0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1.0001874478274997,
+          "defenseFactor": 1.0008805338587576,
+          "defenseSample": 6,
+          "rival": "Scottie Wilbekin",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.523667676027022,
+              "weight": 0.8078508511438041,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.705790934645174,
+              "weight": 0.0981822955360563,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.891576648930888,
+              "weight": 0.09396685332013967,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Collin Malcolm",
+      "team": "Anadolu Efes",
+      "pos": "F",
+      "opponent": "Besiktas",
+      "home": true,
+      "status": "active",
+      "price": 8.7,
+      "expectedPir": 10.521827702412503,
+      "expectedMinutes": 23.311222708333336,
+      "basePir": 10.521827702412503,
+      "baseMinutes": 23.311222708333336,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.401768587829052,
+        "baseMin": 21.699390833333332,
+        "injuryBoost": 0.34687499999999993,
+        "injuryUsagePct": 0.5946428571428569,
+        "missingStars": [
+          "Mike James"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 87.5711,
+        "margin": 0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.45833333333333337,
+          "sameTeam": false,
+          "avgPir": 8.5,
+          "avgMinutes": 24.889580000000002,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 11,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0236085564411745,
+          "defenseFactor": 1.0037756738995323,
+          "defenseSample": 6,
+          "rival": "Anthony Brown",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.16617927808622,
+              "weight": 0.8078508511438041,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 25.03780058551555,
+              "weight": 0.0981822955360563,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.75415477452445,
+              "weight": 0.09396685332013967,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kai Jones",
+      "team": "Anadolu Efes",
+      "pos": "C",
+      "opponent": "Besiktas",
+      "home": true,
+      "status": "active",
+      "price": 8.6,
+      "expectedPir": 8.462899299320581,
+      "expectedMinutes": 15.213507386363636,
+      "basePir": 8.462899299320581,
+      "baseMinutes": 15.213507386363636,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.529665544387843,
+        "baseMin": 16.103029545454547,
+        "injuryBoost": 0.33749999999999997,
+        "injuryUsagePct": 0.5785714285714285,
+        "missingStars": [
+          "Mike James"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 87.5711,
+        "margin": 0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.8181818181818182,
+          "sameTeam": true,
+          "avgPir": 7.388888888888889,
+          "avgMinutes": 15.459258333333334,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.06,
+          "defenseFactor": 1.002032017010404,
+          "defenseSample": 6,
+          "rival": "Ante Zizic",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.817636111925035,
+              "weight": 0.8078508511438041,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.87786524536174,
+              "weight": 0.0981822955360563,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.87786524536174,
+              "weight": 0.09396685332013967,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Isaia Cordinier",
+      "team": "Anadolu Efes",
+      "pos": "G",
+      "opponent": "Besiktas",
+      "home": true,
+      "status": "out",
+      "price": 8.5,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 8.556466487828354,
+        "baseMin": 23.108336842105263,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0,
+        "teamPoints": 87.5711,
+        "margin": 0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 30,
+          "historyWeight": 0.7894736842105263,
+          "sameTeam": true,
+          "avgPir": 8.666666666666666,
+          "avgMinutes": 24.203893333333333,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Conor Morgan",
+      "team": "Besiktas",
+      "pos": "F",
+      "opponent": "Anadolu Efes",
+      "home": false,
+      "status": "active",
+      "price": 8.4,
+      "expectedPir": 8.390167421050592,
+      "expectedMinutes": 21.569875000000003,
+      "basePir": 8.390167421050592,
+      "baseMinutes": 21.569875000000003,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.812000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0.05737499999999998,
+        "injuryUsagePct": 0.09835714285714284,
+        "missingStars": [],
+        "positionMatchPct": 6.926999999999994,
+        "teamPoints": 87.4289,
+        "margin": -0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9680852705641907,
+          "defenseFactor": 1.0000739136549268,
+          "defenseSample": 6,
+          "rival": "Dario Saric",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.509541363134257,
+              "weight": 0.8078508511438041,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.797368790479215,
+              "weight": 0.09396685332013968,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.848578040135592,
+              "weight": 0.09818229553605624,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "David Dejulius",
+      "team": "Besiktas",
+      "pos": "G",
+      "opponent": "Anadolu Efes",
+      "home": false,
+      "status": "active",
+      "price": 8.2,
+      "expectedPir": 4.441697496608863,
+      "expectedMinutes": 14.903714285714287,
+      "basePir": 4.441697496608863,
+      "baseMinutes": 14.903714285714287,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.6259999999999994,
+        "baseMin": 19,
+        "injuryBoost": 0.16971428571428565,
+        "injuryUsagePct": 0.18514285714285705,
+        "missingStars": [],
+        "positionMatchPct": -6.562000000000001,
+        "teamPoints": 87.4289,
+        "margin": -0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9977043051898284,
+          "defenseSample": 6,
+          "rival": "Matthew Strazel",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.36238693014714,
+              "weight": 0.8078508511438041,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.594554277085917,
+              "weight": 0.09396685332013968,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.339739991371632,
+              "weight": 0.09818229553605624,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Wenyen Gabriel",
+      "team": "Besiktas",
+      "pos": "C",
+      "opponent": "Anadolu Efes",
+      "home": false,
+      "status": "active",
+      "price": 7.6,
+      "expectedPir": 5.743354539215091,
+      "expectedMinutes": 14.392499687499999,
+      "basePir": 5.743354539215091,
+      "baseMinutes": 14.392499687499999,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.418284346322066,
+        "baseMin": 18.07499875,
+        "injuryBoost": 0.04724999999999998,
+        "injuryUsagePct": 0.08099999999999997,
+        "missingStars": [],
+        "positionMatchPct": -0.490999999999997,
+        "teamPoints": 87.4289,
+        "margin": -0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.45000000000000007,
+          "sameTeam": false,
+          "avgPir": 5.666666666666667,
+          "avgMinutes": 16.944441666666666,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.06,
+          "defenseFactor": 0.9964785310211486,
+          "defenseSample": 6,
+          "rival": "Bruno Fernando",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.42915198323544,
+              "weight": 0.8078508511438041,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.502990391696462,
+              "weight": 0.09396685332013968,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.942240360446464,
+              "weight": 0.09818229553605624,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Ercan Osmani",
+      "team": "Anadolu Efes",
+      "pos": "F",
+      "opponent": "Besiktas",
+      "home": true,
+      "status": "active",
+      "price": 7.6,
+      "expectedPir": 4.086032533032056,
+      "expectedMinutes": 18.29589602272727,
+      "basePir": 4.086032533032056,
+      "baseMinutes": 18.29589602272727,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.50539186749427,
+        "baseMin": 23.446584090909088,
+        "injuryBoost": 0.26249999999999996,
+        "injuryUsagePct": 0.44999999999999996,
+        "missingStars": [
+          "Mike James"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 87.5711,
+        "margin": 0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.8181818181818182,
+          "sameTeam": true,
+          "avgPir": 11.36111111111111,
+          "avgMinutes": 24.434713888888886,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9461331357739149,
+          "defenseFactor": 1.0032778349257854,
+          "defenseSample": 6,
+          "rival": "Anthony Brown",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.392912945341767,
+              "weight": 0.8078508511438041,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.383786785814838,
+              "weight": 0.0981822955360563,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.41485047054887,
+              "weight": 0.09396685332013967,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Furkan Korkmaz",
+      "team": "Besiktas",
+      "pos": "F",
+      "opponent": "Anadolu Efes",
+      "home": false,
+      "status": "active",
+      "price": 7.5,
+      "expectedPir": 5.624031097554451,
+      "expectedMinutes": 15.068678571428572,
+      "basePir": 5.624031097554451,
+      "baseMinutes": 15.068678571428572,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.9750000000000005,
+        "baseMin": 19,
+        "injuryBoost": 0.04724999999999998,
+        "injuryUsagePct": 0.08099999999999997,
+        "missingStars": [],
+        "positionMatchPct": 6.926999999999994,
+        "teamPoints": 87.4289,
+        "margin": -0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9945425833883755,
+          "defenseFactor": 0.9997569356055436,
+          "defenseSample": 6,
+          "rival": "Dario Saric",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.790981964881652,
+              "weight": 0.8078508511438041,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.609466122722004,
+              "weight": 0.09396685332013968,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.836016913861243,
+              "weight": 0.09818229553605624,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Perry Dozier",
+      "team": "Anadolu Efes",
+      "pos": "G",
+      "opponent": "Besiktas",
+      "home": true,
+      "status": "out",
+      "price": 7.2,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form",
+      "features": {
+        "basePir": 6.696000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0,
+        "teamPoints": 87.5711,
+        "margin": 0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "DaQuan Jeffries",
+      "team": "Besiktas",
+      "pos": "F",
+      "opponent": "Anadolu Efes",
+      "home": false,
+      "status": "out",
+      "price": 7.2,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form",
+      "features": {
+        "basePir": 6.696000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.926999999999994,
+        "teamPoints": 87.4289,
+        "margin": -0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.2,
+        "context": null
+      }
+    },
+    {
+      "name": "Santi Yusta",
+      "team": "Anadolu Efes",
+      "pos": "F",
+      "opponent": "Besiktas",
+      "home": true,
+      "status": "active",
+      "price": 7,
+      "expectedPir": 2.6428684503313926,
+      "expectedMinutes": 13.341071428571428,
+      "basePir": 2.6428684503313926,
+      "baseMinutes": 13.341071428571428,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.510000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0.26249999999999996,
+        "injuryUsagePct": 0.44999999999999996,
+        "missingStars": [
+          "Mike James"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 87.5711,
+        "margin": 0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.06,
+          "defenseFactor": 1.0014949814984577,
+          "defenseSample": 6,
+          "rival": "Anthony Brown",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.133324617683515,
+              "weight": 0.8078508511438041,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.235870143884863,
+              "weight": 0.0981822955360563,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.237030858170577,
+              "weight": 0.09396685332013967,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Georgios Papagiannis",
+      "team": "Anadolu Efes",
+      "pos": "C",
+      "opponent": "Besiktas",
+      "home": true,
+      "status": "out",
+      "price": 6.9,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 5.968491975683416,
+        "baseMin": 14.298723076923078,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0,
+        "teamPoints": 87.5711,
+        "margin": 0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 5,
+          "historyWeight": 0.38461538461538464,
+          "sameTeam": true,
+          "avgPir": 5.2,
+          "avgMinutes": 14.776679999999999,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Brice Dessert",
+      "team": "Anadolu Efes",
+      "pos": "C",
+      "opponent": "Besiktas",
+      "home": true,
+      "status": "active",
+      "price": 4.9,
+      "expectedPir": 5.3964155462754935,
+      "expectedMinutes": 13.530496,
+      "basePir": 5.3964155462754935,
+      "baseMinutes": 13.530496,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.201149897841308,
+        "baseMin": 13.267996,
+        "injuryBoost": 0.26249999999999996,
+        "injuryUsagePct": 0.44999999999999996,
+        "missingStars": [
+          "Mike James"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 87.5711,
+        "margin": 0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 17,
+          "historyWeight": 0.68,
+          "sameTeam": true,
+          "avgPir": 5.470588235294118,
+          "avgMinutes": 12.923523529411764,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Ante Zizic",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.843336350160868,
+              "weight": 0.8078508511438041,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.016719390160869,
+              "weight": 0.0981822955360563,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.42263427016087,
+              "weight": 0.09396685332013967,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Metecan Birsen",
+      "team": "Besiktas",
+      "pos": "F",
+      "opponent": "Anadolu Efes",
+      "home": false,
+      "status": "active",
+      "price": 4.7,
+      "expectedPir": 3.2560552684966697,
+      "expectedMinutes": 12.026239125,
+      "basePir": 3.2560552684966697,
+      "baseMinutes": 12.026239125,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.6178294289115422,
+        "baseMin": 12.862472812499998,
+        "injuryBoost": 0.04724999999999998,
+        "injuryUsagePct": 0.08099999999999997,
+        "missingStars": [],
+        "positionMatchPct": 6.926999999999994,
+        "teamPoints": 87.4289,
+        "margin": -0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 24,
+          "historyWeight": 0.41250000000000003,
+          "sameTeam": false,
+          "avgPir": 2.6666666666666665,
+          "avgMinutes": 11.242358333333334,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9993369037726637,
+          "defenseSample": 6,
+          "rival": "Dario Saric",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.9299922962712,
+              "weight": 0.8078508511438041,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.808569537850895,
+              "weight": 0.09396685332013968,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.069423645519302,
+              "weight": 0.09818229553605624,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Berk Ugurlu",
+      "team": "Besiktas",
+      "pos": "G",
+      "opponent": "Anadolu Efes",
+      "home": false,
+      "status": "active",
+      "price": 4.2,
+      "expectedPir": 3.28691848410929,
+      "expectedMinutes": 13.212785714285715,
+      "basePir": 3.28691848410929,
+      "baseMinutes": 13.212785714285715,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.9060000000000006,
+        "baseMin": 14,
+        "injuryBoost": 0.14849999999999997,
+        "injuryUsagePct": 0.16199999999999995,
+        "missingStars": [],
+        "positionMatchPct": -6.562000000000001,
+        "teamPoints": 87.4289,
+        "margin": -0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0189395224684152,
+          "defenseFactor": 0.9995413761649842,
+          "defenseSample": 6,
+          "rival": "Matthew Strazel",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.143661500740924,
+              "weight": 0.8078508511438041,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.370434064677212,
+              "weight": 0.09396685332013968,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.630664875751643,
+              "weight": 0.09818229553605624,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Erkan Yilmaz",
+      "team": "Anadolu Efes",
+      "pos": "F",
+      "opponent": "Besiktas",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 2.1997775118208867,
+      "expectedMinutes": 10.450135483870966,
+      "basePir": 2.1997775118208867,
+      "baseMinutes": 10.450135483870966,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.107815555708756,
+        "baseMin": 10.187635483870967,
+        "injuryBoost": 0.26249999999999996,
+        "injuryUsagePct": 0.44999999999999996,
+        "missingStars": [
+          "Mike James"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 87.5711,
+        "margin": 0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 23,
+          "historyWeight": 0.7419354838709677,
+          "sameTeam": true,
+          "avgPir": 1.6521739130434783,
+          "avgMinutes": 8.861595652173913,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Anthony Brown",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 10.691754419644106,
+              "weight": 0.8078508511438041,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 9.280986129321526,
+              "weight": 0.0981822955360563,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 9.594490193837656,
+              "weight": 0.09396685332013967,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Burakcan Yildizli",
+      "team": "Anadolu Efes",
+      "pos": "F",
+      "opponent": "Besiktas",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.8557439933448445,
+      "expectedMinutes": 14.2625,
+      "basePir": 3.8557439933448445,
+      "baseMinutes": 14.2625,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0.26249999999999996,
+        "injuryUsagePct": 0.44999999999999996,
+        "missingStars": [
+          "Mike James"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 87.5711,
+        "margin": 0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Anthony Brown",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.592265109436447,
+              "weight": 0.8078508511438041,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.666827609436448,
+              "weight": 0.0981822955360563,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.094702609436448,
+              "weight": 0.09396685332013967,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "David Mutaf",
+      "team": "Anadolu Efes",
+      "pos": "G",
+      "opponent": "Besiktas",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 2.719859530347513,
+      "expectedMinutes": 10.935412499999998,
+      "basePir": 2.719859530347513,
+      "baseMinutes": 10.935412499999998,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.4606017350188534,
+        "baseMin": 10.110412499999999,
+        "injuryBoost": 0.8250000000000001,
+        "injuryUsagePct": 0.8999999999999999,
+        "missingStars": [
+          "Mike James"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 87.5711,
+        "margin": 0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 8,
+          "historyWeight": 0.5,
+          "sameTeam": true,
+          "avgPir": 1.375,
+          "avgMinutes": 6.220825,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Scottie Wilbekin",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.18825158850448,
+              "weight": 0.8078508511438041,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 9.71197090100448,
+              "weight": 0.0981822955360563,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.04003327600448,
+              "weight": 0.09396685332013967,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Ruzgar Fenemen",
+      "team": "Anadolu Efes",
+      "pos": "G",
+      "opponent": "Besiktas",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 4.025765377005882,
+      "expectedMinutes": 14.825,
+      "basePir": 4.025765377005882,
+      "baseMinutes": 14.825,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0.8250000000000001,
+        "injuryUsagePct": 0.8999999999999999,
+        "missingStars": [
+          "Mike James"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 87.5711,
+        "margin": 0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Scottie Wilbekin",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.167770744777936,
+              "weight": 0.8078508511438041,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.166395744777937,
+              "weight": 0.0981822955360563,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.611145744777938,
+              "weight": 0.09396685332013967,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Darius Karutasu",
+      "team": "Anadolu Efes",
+      "pos": "F",
+      "opponent": "Besiktas",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.8557439933448445,
+      "expectedMinutes": 14.2625,
+      "basePir": 3.8557439933448445,
+      "baseMinutes": 14.2625,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0.26249999999999996,
+        "injuryUsagePct": 0.44999999999999996,
+        "missingStars": [
+          "Mike James"
+        ],
+        "positionMatchPct": 0,
+        "teamPoints": 87.5711,
+        "margin": 0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Anthony Brown",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.592265109436447,
+              "weight": 0.8078508511438041,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.666827609436448,
+              "weight": 0.0981822955360563,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.094702609436448,
+              "weight": 0.09396685332013967,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Yagiz Aksu",
+      "team": "Besiktas",
+      "pos": "G",
+      "opponent": "Anadolu Efes",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.7244800649587972,
+      "expectedMinutes": 14.1485,
+      "basePir": 3.7244800649587972,
+      "baseMinutes": 14.1485,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0.14849999999999997,
+        "injuryUsagePct": 0.16199999999999995,
+        "missingStars": [],
+        "positionMatchPct": -6.562000000000001,
+        "teamPoints": 87.4289,
+        "margin": -0.1422,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Matthew Strazel",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.473840035148148,
+              "weight": 0.8078508511438041,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.56379253514815,
+              "weight": 0.09396685332013968,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.98824753514815,
+              "weight": 0.09818229553605624,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    }
+  ]
+}
