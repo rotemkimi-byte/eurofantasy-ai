@@ -1,0 +1,2647 @@
+{
+  "schema": "learning-v1",
+  "season": "E2026",
+  "modelId": "80709a3cfeeee1678f6d",
+  "gameCode": 67,
+  "round": 7,
+  "kickoff": "2026-10-22T18:15:00Z",
+  "created_at": "2026-10-21T19:00:42.334795+00:00",
+  "predictions": [
+    {
+      "name": "Mathias Lessort",
+      "team": "Panathinaikos",
+      "pos": "C",
+      "opponent": "Baskonia",
+      "home": true,
+      "status": "questionable",
+      "price": 15.5,
+      "expectedPir": 13.470503265400938,
+      "expectedMinutes": 18.172355454545453,
+      "basePir": 13.470503265400938,
+      "baseMinutes": 18.172355454545453,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.971065148584493,
+        "baseMin": 24.238636363636363,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.16599999999999948,
+        "teamPoints": 91.88475,
+        "margin": 9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 14,
+          "historyWeight": 0.6363636363636364,
+          "sameTeam": true,
+          "avgPir": 12.142857142857142,
+          "avgMinutes": 22.660714285714285,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9683395755401117,
+          "defenseFactor": 1.0001868716605902,
+          "defenseSample": 6,
+          "rival": "Kenneth Faried",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.23289066295851,
+              "weight": 0.6805641713160534,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.115154716531197,
+              "weight": 0.3007650336350905,
+              "observedGames": 5
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.887240814623258,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Sylvain Francisco",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Baskonia",
+      "home": true,
+      "status": "active",
+      "price": 15.2,
+      "expectedPir": 18.554896748529494,
+      "expectedMinutes": 24.603900550000002,
+      "basePir": 18.554896748529494,
+      "baseMinutes": 24.603900550000002,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 16.438883248200852,
+        "baseMin": 27.358602200000004,
+        "injuryBoost": 0.44,
+        "injuryUsagePct": 0.7542857142857143,
+        "missingStars": [
+          "Mathias Lessort"
+        ],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 91.88475,
+        "margin": 9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.462,
+          "sameTeam": false,
+          "avgPir": 19.19047619047619,
+          "avgMinutes": 27.77619523809524,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 5,
+              "nextGameSamples": 9,
+              "nextGameAvgPir": 20.555555555555557,
+              "continuedRate": 0.5555555555555556
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 13,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 15,
+              "continuedRate": 0
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9958925968715854,
+          "defenseFactor": 1.0103793493374043,
+          "defenseSample": 6,
+          "rival": "Dj Stewart",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 24.945148110632605,
+              "weight": 0.6805641713160534,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 23.955847726635824,
+              "weight": 0.3007650336350905,
+              "observedGames": 5
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.604562332134616,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kendrick Nunn",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Baskonia",
+      "home": true,
+      "status": "active",
+      "price": 14,
+      "expectedPir": 16.61797855411436,
+      "expectedMinutes": 29.685177777777778,
+      "basePir": 16.61797855411436,
+      "baseMinutes": 29.685177777777778,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 15.163720912039935,
+        "baseMin": 29.245177777777776,
+        "injuryBoost": 0.44,
+        "injuryUsagePct": 0.7542857142857143,
+        "missingStars": [
+          "Mathias Lessort"
+        ],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 91.88475,
+        "margin": 9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.8222222222222222,
+          "sameTeam": true,
+          "avgPir": 15.64864864864865,
+          "avgMinutes": 29.73062162162162,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 2.5,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 9,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Dj Stewart",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 30.948689165684527,
+              "weight": 0.6805641713160534,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 26.94119016568453,
+              "weight": 0.3007650336350905,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 27.831745499017867,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Guerschon Yabusele",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Baskonia",
+      "home": true,
+      "status": "active",
+      "price": 13.7,
+      "expectedPir": 12.717796014352539,
+      "expectedMinutes": 22.822107142857142,
+      "basePir": 12.717796014352539,
+      "baseMinutes": 22.822107142857142,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.741,
+        "baseMin": 23,
+        "injuryBoost": 0.632857142857143,
+        "injuryUsagePct": 0.9085714285714286,
+        "missingStars": [
+          "Mathias Lessort"
+        ],
+        "positionMatchPct": 4.318,
+        "teamPoints": 91.88475,
+        "margin": 9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9655346869712352,
+          "defenseFactor": 1.0077371957507992,
+          "defenseSample": 6,
+          "rival": "Rodions Kurucs",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.441630181237617,
+              "weight": 0.6805641713160534,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.551815380277706,
+              "weight": 0.3007650336350905,
+              "observedGames": 5
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.70297732409476,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nigel Hayes-davis",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Baskonia",
+      "home": true,
+      "status": "active",
+      "price": 12.7,
+      "expectedPir": 12.397556013129506,
+      "expectedMinutes": 26.889818055555555,
+      "basePir": 12.397556013129506,
+      "baseMinutes": 26.889818055555555,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.597592978270578,
+        "baseMin": 26.702079166666667,
+        "injuryBoost": 0.609125,
+        "injuryUsagePct": 0.8744999999999999,
+        "missingStars": [
+          "Mathias Lessort"
+        ],
+        "positionMatchPct": 4.318,
+        "teamPoints": 91.88475,
+        "margin": 9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 16,
+          "historyWeight": 0.6666666666666666,
+          "sameTeam": true,
+          "avgPir": 12.875,
+          "avgMinutes": 28.55311875,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0124397267146688,
+          "defenseSample": 6,
+          "rival": "Rodions Kurucs",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 26.983507752884474,
+              "weight": 0.6805641713160534,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 26.795519651265653,
+              "weight": 0.3007650336350905,
+              "observedGames": 3
+            },
+            {
+              "id": "big-loss",
+              "minutes": 24.993798716641976,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Juancho Hernangomez",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Baskonia",
+      "home": true,
+      "status": "active",
+      "price": 11.2,
+      "expectedPir": 12.437295623032409,
+      "expectedMinutes": 20.97371967032967,
+      "basePir": 12.437295623032409,
+      "baseMinutes": 20.97371967032967,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.015886966521895,
+        "baseMin": 24.238138461538465,
+        "injuryBoost": 0.4904642857142857,
+        "injuryUsagePct": 0.7041428571428571,
+        "missingStars": [
+          "Mathias Lessort"
+        ],
+        "positionMatchPct": 4.318,
+        "teamPoints": 91.88475,
+        "margin": 9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 44,
+          "historyWeight": 0.8461538461538461,
+          "sameTeam": true,
+          "avgPir": 12.318181818181818,
+          "avgMinutes": 24.463254545454546,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 9,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.004903775548101,
+          "defenseSample": 6,
+          "rival": "Rodions Kurucs",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.542967272472843,
+              "weight": 0.6805641713160534,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.017023875809265,
+              "weight": 0.3007650336350905,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.868529681961686,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tadas Sedekerskis",
+      "team": "Baskonia",
+      "pos": "F",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 10.7,
+      "expectedPir": 10.665599092949671,
+      "expectedMinutes": 19.502558333333333,
+      "basePir": 10.665599092949671,
+      "baseMinutes": 19.502558333333333,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.98422152441182,
+        "baseMin": 23.545233333333332,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -1.878000000000002,
+        "teamPoints": 82.81524999999999,
+        "margin": -9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 13,
+          "historyWeight": 0.6190476190476191,
+          "sameTeam": true,
+          "avgPir": 10,
+          "avgMinutes": 23.880761538461538,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9709493671723904,
+          "defenseFactor": 0.9822608857495482,
+          "defenseSample": 6,
+          "rival": "Nigel Hayes-davis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.79033426663358,
+              "weight": 0.6805641713160534,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.37618298035348,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.184085268149968,
+              "weight": 0.30076503363509044,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kostas Sloukas",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Baskonia",
+      "home": true,
+      "status": "active",
+      "price": 10.1,
+      "expectedPir": 13.13899974246406,
+      "expectedMinutes": 21.89970652173913,
+      "basePir": 13.13899974246406,
+      "baseMinutes": 21.89970652173913,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.046390401119648,
+        "baseMin": 21.61920652173913,
+        "injuryBoost": 0.28049999999999997,
+        "injuryUsagePct": 0.4808571428571428,
+        "missingStars": [
+          "Mathias Lessort"
+        ],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 91.88475,
+        "margin": 9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 12.552631578947368,
+          "avgMinutes": 21.328513157894736,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 13.333333333333334,
+              "continuedRate": 0.3333333333333333
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 3,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Dj Stewart",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.831839345371645,
+              "weight": 0.6805641713160534,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.875378964936864,
+              "weight": 0.3007650336350905,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.53237016058904,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Chris Duarte",
+      "team": "Baskonia",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 10.1,
+      "expectedPir": 10.823117962482723,
+      "expectedMinutes": 20.90675,
+      "basePir": 10.823117962482723,
+      "baseMinutes": 20.90675,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.393,
+        "baseMin": 23,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 82.81524999999999,
+        "margin": -9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0257485252812029,
+          "defenseFactor": 0.9709359266120695,
+          "defenseSample": 6,
+          "rival": "Sylvain Francisco",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.927470593076702,
+              "weight": 0.6805641713160534,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.77964779273975,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.99190948743688,
+              "weight": 0.30076503363509044,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Isaac Bonga",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Baskonia",
+      "home": true,
+      "status": "questionable",
+      "price": 9.8,
+      "expectedPir": 5.408653909064063,
+      "expectedMinutes": 16.282655266666662,
+      "basePir": 5.408653909064063,
+      "baseMinutes": 16.282655266666662,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.399942890224725,
+        "baseMin": 22.99069,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.318,
+        "teamPoints": 91.88475,
+        "margin": 9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.45434782608695656,
+          "sameTeam": false,
+          "avgPir": 14.31578947368421,
+          "avgMinutes": 27.783336842105268,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0060551595375815,
+          "defenseSample": 6,
+          "rival": "Rodions Kurucs",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.48598019676001,
+              "weight": 0.6805641713160534,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.916087262426675,
+              "weight": 0.3007650336350905,
+              "observedGames": 4
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.776301393760013,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kenneth Faried",
+      "team": "Baskonia",
+      "pos": "C",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 9.7,
+      "expectedPir": 10.103906165516754,
+      "expectedMinutes": 19.53713694767442,
+      "basePir": 10.103906165516754,
+      "baseMinutes": 19.53713694767442,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.502703295191408,
+        "baseMin": 16.378547790697674,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.759000000000005,
+        "teamPoints": 82.81524999999999,
+        "margin": -9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 35,
+          "historyWeight": 0.4476744186046512,
+          "sameTeam": false,
+          "avgPir": 7.542857142857143,
+          "avgMinutes": 13.144288571428572,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.99877574336166,
+          "defenseFactor": 0.9861983721473332,
+          "defenseSample": 6,
+          "rival": "Mathias Lessort",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.73130687060573,
+              "weight": 0.6805641713160534,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.27892544133122,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.23795825860007,
+              "weight": 0.30076503363509044,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Aj Lawson",
+      "team": "Baskonia",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 9.2,
+      "expectedPir": 8.704023304427693,
+      "expectedMinutes": 19,
+      "basePir": 8.704023304427693,
+      "baseMinutes": 19,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.556,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 82.81524999999999,
+        "margin": -9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Sylvain Francisco",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.64791683140232,
+              "weight": 0.6805641713160534,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.082916831402322,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.652916831402322,
+              "weight": 0.30076503363509044,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jerian Grant",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Baskonia",
+      "home": true,
+      "status": "active",
+      "price": 8.9,
+      "expectedPir": 9.346993804739848,
+      "expectedMinutes": 17.764668,
+      "basePir": 9.346993804739848,
+      "baseMinutes": 17.764668,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.356982022485989,
+        "baseMin": 22.905672,
+        "injuryBoost": 0.21450000000000002,
+        "injuryUsagePct": 0.36771428571428577,
+        "missingStars": [
+          "Mathias Lessort"
+        ],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 91.88475,
+        "margin": 9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.84,
+          "sameTeam": true,
+          "avgPir": 8.30952380952381,
+          "avgMinutes": 23.649609523809524,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 2,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9680830131190936,
+          "defenseFactor": 1.0065878542494398,
+          "defenseSample": 6,
+          "rival": "Dj Stewart",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.954177777663993,
+              "weight": 0.6805641713160534,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.421930982906,
+              "weight": 0.3007650336350905,
+              "observedGames": 5
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.37799677094025,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Dj Stewart",
+      "team": "Baskonia",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 8.4,
+      "expectedPir": 8.184502485120879,
+      "expectedMinutes": 22.4005,
+      "basePir": 8.184502485120879,
+      "baseMinutes": 22.4005,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.812000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 82.81524999999999,
+        "margin": -9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9846532550832674,
+          "defenseFactor": 0.9728380148473712,
+          "defenseSample": 6,
+          "rival": "Sylvain Francisco",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.216726070462663,
+              "weight": 0.6805641713160534,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.525114803435887,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.932758962330066,
+              "weight": 0.30076503363509044,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Damion Baugh",
+      "team": "Baskonia",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 8.3,
+      "expectedPir": 8.246439534147603,
+      "expectedMinutes": 17.730999999999998,
+      "basePir": 8.246439534147603,
+      "baseMinutes": 17.730999999999998,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.719000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 82.81524999999999,
+        "margin": -9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0344358518552066,
+          "defenseFactor": 0.9817263934670656,
+          "defenseSample": 6,
+          "rival": "Sylvain Francisco",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.41547199827137,
+              "weight": 0.6805641713160534,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.502460197685817,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.32053514888946,
+              "weight": 0.30076503363509044,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Marcio Santos",
+      "team": "Baskonia",
+      "pos": "C",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 8.2,
+      "expectedPir": 8.197351277817841,
+      "expectedMinutes": 16.41621055555555,
+      "basePir": 8.197351277817841,
+      "baseMinutes": 16.41621055555555,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.9069164797338685,
+        "baseMin": 16.768631666666664,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.759000000000005,
+        "teamPoints": 82.81524999999999,
+        "margin": -9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.45222222222222225,
+          "sameTeam": false,
+          "avgPir": 5.972972972972973,
+          "avgMinutes": 14.065770270270269,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9883237076871276,
+          "defenseSample": 6,
+          "rival": "Mathias Lessort",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.555817540157385,
+              "weight": 0.6805641713160534,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.65507434743435,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.147560664101018,
+              "weight": 0.30076503363509044,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kobi Simmons",
+      "team": "Baskonia",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 8,
+      "expectedPir": 5.6590315704481515,
+      "expectedMinutes": 20.28841153846154,
+      "basePir": 5.6590315704481515,
+      "baseMinutes": 20.28841153846154,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.091207808161844,
+        "baseMin": 21.525646153846154,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 82.81524999999999,
+        "margin": -9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 31,
+          "historyWeight": 0.7948717948717948,
+          "sameTeam": true,
+          "avgPir": 10.838709677419354,
+          "avgMinutes": 22.177425806451613,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.007512438902171,
+          "defenseFactor": 0.9724576774706275,
+          "defenseSample": 6,
+          "rival": "Sylvain Francisco",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.970063876212077,
+              "weight": 0.6805641713160534,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.358775172404826,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.865771718646194,
+              "weight": 0.30076503363509044,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Moustapha Fall",
+      "team": "Panathinaikos",
+      "pos": "C",
+      "opponent": "Baskonia",
+      "home": true,
+      "status": "active",
+      "price": 7.6,
+      "expectedPir": 8.282341746721528,
+      "expectedMinutes": 14.6465,
+      "basePir": 8.282341746721528,
+      "baseMinutes": 14.6465,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.068,
+        "baseMin": 19,
+        "injuryBoost": 0.41650000000000004,
+        "injuryUsagePct": 0.474,
+        "missingStars": [
+          "Mathias Lessort"
+        ],
+        "positionMatchPct": -0.16599999999999948,
+        "teamPoints": 91.88475,
+        "margin": 9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0000702452093162,
+          "defenseSample": 6,
+          "rival": "Kenneth Faried",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.331460168618298,
+              "weight": 0.6805641713160534,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.406628203313838,
+              "weight": 0.3007650336350905,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.885141802685126,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Brancou Badio",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Baskonia",
+      "home": true,
+      "status": "active",
+      "price": 7.6,
+      "expectedPir": 7.266412190555251,
+      "expectedMinutes": 21.212396901041668,
+      "basePir": 7.266412190555251,
+      "baseMinutes": 21.212396901041668,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.181699987452891,
+        "baseMin": 19.685587604166663,
+        "injuryBoost": 0.154,
+        "injuryUsagePct": 0.264,
+        "missingStars": [
+          "Mathias Lessort"
+        ],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 91.88475,
+        "margin": 9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.45833333333333337,
+          "sameTeam": false,
+          "avgPir": 9.575,
+          "avgMinutes": 20.495827499999997,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0303486808656879,
+          "defenseFactor": 1.0070643527938452,
+          "defenseSample": 6,
+          "rival": "Dj Stewart",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.731260851669333,
+              "weight": 0.6805641713160534,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.15928133736825,
+              "weight": 0.3007650336350905,
+              "observedGames": 5
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.26390587215824,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Rodions Kurucs",
+      "team": "Baskonia",
+      "pos": "F",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 6.4,
+      "expectedPir": 6.5550009058687175,
+      "expectedMinutes": 18.582147794117645,
+      "basePir": 6.5550009058687175,
+      "baseMinutes": 18.582147794117645,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.9288521609451905,
+        "baseMin": 19.470591176470585,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -1.878000000000002,
+        "teamPoints": 82.81524999999999,
+        "margin": -9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 26,
+          "historyWeight": 0.7647058823529411,
+          "sameTeam": true,
+          "avgPir": 7.076923076923077,
+          "avgMinutes": 21.15385,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0005690772065667,
+          "defenseFactor": 0.9837874474128179,
+          "defenseSample": 6,
+          "rival": "Nigel Hayes-davis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.705857082861467,
+              "weight": 0.6805641713160534,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.633684701666137,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.423177338208113,
+              "weight": 0.30076503363509044,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Konstantinos Mitoglou",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Baskonia",
+      "home": true,
+      "status": "active",
+      "price": 6.2,
+      "expectedPir": 7.614690695054292,
+      "expectedMinutes": 13.729991025641025,
+      "basePir": 7.614690695054292,
+      "baseMinutes": 13.729991025641025,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.439507619447027,
+        "baseMin": 13.158964102564102,
+        "injuryBoost": 0.22150000000000003,
+        "injuryUsagePct": 0.318,
+        "missingStars": [
+          "Mathias Lessort"
+        ],
+        "positionMatchPct": 4.318,
+        "teamPoints": 91.88475,
+        "margin": 9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 31,
+          "historyWeight": 0.7948717948717948,
+          "sameTeam": true,
+          "avgPir": 5.354838709677419,
+          "avgMinutes": 12.94192258064516,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0080129373177842,
+          "defenseFactor": 1.0011496836748959,
+          "defenseSample": 6,
+          "rival": "Rodions Kurucs",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.401791163671529,
+              "weight": 0.6805641713160534,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.510054497710415,
+              "weight": 0.3007650336350905,
+              "observedGames": 5
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.12719134315871,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Matteo Spagnolo",
+      "team": "Baskonia",
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 5.4,
+      "expectedPir": 4.49820312765924,
+      "expectedMinutes": 14.19571365079365,
+      "basePir": 4.49820312765924,
+      "baseMinutes": 14.19571365079365,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.038339709141024,
+        "baseMin": 15.209997777777776,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.1879999999999935,
+        "teamPoints": 82.81524999999999,
+        "margin": -9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.8222222222222222,
+          "sameTeam": true,
+          "avgPir": 6.27027027027027,
+          "avgMinutes": 15.471618918918917,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.06,
+          "defenseFactor": 0.9882898926810659,
+          "defenseSample": 6,
+          "rival": "Sylvain Francisco",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.612005671917748,
+              "weight": 0.6805641713160534,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.957060476082118,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.593407296943795,
+              "weight": 0.30076503363509044,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nikos Rogkavopoulos",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Baskonia",
+      "home": true,
+      "status": "questionable",
+      "price": 5,
+      "expectedPir": 3.9804939713541514,
+      "expectedMinutes": 11.479999999999999,
+      "basePir": 3.9804939713541514,
+      "baseMinutes": 11.479999999999999,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.65,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.318,
+        "teamPoints": 91.88475,
+        "margin": 9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Rodions Kurucs",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.968631425479552,
+              "weight": 0.6805641713160534,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 10.418831425479553,
+              "weight": 0.3007650336350905,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.763231425479553,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Eleftherios Mantzoukas",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Baskonia",
+      "home": true,
+      "status": "active",
+      "price": 4.9,
+      "expectedPir": 7.019773841242334,
+      "expectedMinutes": 16.81435714285714,
+      "basePir": 7.019773841242334,
+      "baseMinutes": 16.81435714285714,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.557,
+        "baseMin": 14,
+        "injuryBoost": 0.22150000000000003,
+        "injuryUsagePct": 0.318,
+        "missingStars": [
+          "Mathias Lessort"
+        ],
+        "positionMatchPct": 4.318,
+        "teamPoints": 91.88475,
+        "margin": 9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.012220671915323,
+          "defenseFactor": 1.0085359955526507,
+          "defenseSample": 6,
+          "rival": "Rodions Kurucs",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.178488330635922,
+              "weight": 0.6805641713160534,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.313535589228387,
+              "weight": 0.3007650336350905,
+              "observedGames": 5
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.842201187778779,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Clement Frisch",
+      "team": "Baskonia",
+      "pos": "F",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 4.8,
+      "expectedPir": 5.574397806619625,
+      "expectedMinutes": 11.668332222222222,
+      "basePir": 5.574397806619625,
+      "baseMinutes": 11.668332222222222,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.79288253420269,
+        "baseMin": 12.476664444444443,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -1.878000000000002,
+        "teamPoints": 82.81524999999999,
+        "margin": -9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.8222222222222222,
+          "sameTeam": true,
+          "avgPir": 4.837837837837838,
+          "avgMinutes": 12.147294594594594,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.993056163409256,
+          "defenseSample": 6,
+          "rival": "Nigel Hayes-davis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.177290066232967,
+              "weight": 0.6805641713160534,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 10.427040232899634,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.593730693217093,
+              "weight": 0.30076503363509044,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Panagiotis Kalaitzakis",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Baskonia",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 2.729539858889232,
+      "expectedMinutes": 13.918994117647058,
+      "basePir": 2.729539858889232,
+      "baseMinutes": 13.918994117647058,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 1.5280479396954985,
+        "baseMin": 7.200976470588236,
+        "injuryBoost": 0.154,
+        "injuryUsagePct": 0.264,
+        "missingStars": [
+          "Mathias Lessort"
+        ],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 91.88475,
+        "margin": 9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 26,
+          "historyWeight": 0.7647058823529411,
+          "sameTeam": true,
+          "avgPir": 1,
+          "avgMinutes": 5.108969230769231,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0074251996954129,
+          "defenseFactor": 1.0060200369329235,
+          "defenseSample": 6,
+          "rival": "Dj Stewart",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.056008595367034,
+              "weight": 0.6805641713160534,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.675695111640497,
+              "weight": 0.3007650336350905,
+              "observedGames": 5
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.843983079802653,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Dimitris Moraitis",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Baskonia",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 2.317687881936326,
+      "expectedMinutes": 13.344000000000001,
+      "basePir": 2.317687881936326,
+      "baseMinutes": 13.344000000000001,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0.154,
+        "injuryUsagePct": 0.264,
+        "missingStars": [
+          "Mathias Lessort"
+        ],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 91.88475,
+        "margin": 9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0059849143282653,
+          "defenseSample": 6,
+          "rival": "Dj Stewart",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.804305979156165,
+              "weight": 0.6805641713160534,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.615277407727595,
+              "weight": 0.3007650336350905,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.537425979156167,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Ioannis Kouzeloglou",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "opponent": "Baskonia",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.957394449181628,
+      "expectedMinutes": 14.2215,
+      "basePir": 3.957394449181628,
+      "baseMinutes": 14.2215,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0.22150000000000003,
+        "injuryUsagePct": 0.318,
+        "missingStars": [
+          "Mathias Lessort"
+        ],
+        "positionMatchPct": 4.318,
+        "teamPoints": 91.88475,
+        "margin": 9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": true,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Rodions Kurucs",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.826819844726261,
+              "weight": 0.6805641713160534,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.906917344726262,
+              "weight": 0.3007650336350905,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.333562344726262,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Stefan Joksimovic",
+      "team": "Baskonia",
+      "pos": "F",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 1.7496333573816083,
+      "expectedMinutes": 9.475682105263157,
+      "basePir": 1.7496333573816083,
+      "baseMinutes": 9.475682105263157,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 0.6308404537857639,
+        "baseMin": 9.334205263157894,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -1.878000000000002,
+        "teamPoints": 82.81524999999999,
+        "margin": -9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 11,
+          "historyWeight": 0.5789473684210527,
+          "sameTeam": true,
+          "avgPir": -0.45454545454545453,
+          "avgMinutes": 5.9409,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 0.9996213507278657,
+          "defenseFactor": 0.9935444416737551,
+          "defenseSample": 6,
+          "rival": "Nigel Hayes-davis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 9.350474564250172,
+              "weight": 0.6805641713160534,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 8.399226238982996,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 9.825822718278197,
+              "weight": 0.30076503363509044,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Pedro Souza",
+      "team": "Baskonia",
+      "pos": "F",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.6797865563485566,
+      "expectedMinutes": 14,
+      "basePir": 3.6797865563485566,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -1.878000000000002,
+        "teamPoints": 82.81524999999999,
+        "margin": -9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Nigel Hayes-davis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.477412402085921,
+              "weight": 0.6805641713160534,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.587412402085922,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.007412402085924,
+              "weight": 0.30076503363509044,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Thierry Henry Alves de Souza",
+      "team": "Baskonia",
+      "pos": "C",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.603542517699918,
+      "expectedMinutes": 14,
+      "basePir": 3.603542517699918,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.759000000000005,
+        "teamPoints": 82.81524999999999,
+        "margin": -9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Mathias Lessort",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.477412402085921,
+              "weight": 0.6805641713160534,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.587412402085922,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.007412402085924,
+              "weight": 0.30076503363509044,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Iason Varvaritis",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "opponent": "Baskonia",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 4.040755909385767,
+      "expectedMinutes": 14.154,
+      "basePir": 4.040755909385767,
+      "baseMinutes": 14.154,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0.154,
+        "injuryUsagePct": 0.264,
+        "missingStars": [
+          "Mathias Lessort"
+        ],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 91.88475,
+        "margin": 9.0695,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Dj Stewart",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.756446794097352,
+              "weight": 0.6805641713160534,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.845656794097353,
+              "weight": 0.3007650336350905,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.270276794097354,
+              "weight": 0.01867079504885618,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    }
+  ]
+}

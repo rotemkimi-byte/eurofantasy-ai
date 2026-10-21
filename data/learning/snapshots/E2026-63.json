@@ -1,0 +1,2454 @@
+{
+  "schema": "learning-v1",
+  "season": "E2026",
+  "modelId": "80709a3cfeeee1678f6d",
+  "gameCode": 63,
+  "round": 7,
+  "kickoff": "2026-10-22T18:30:00Z",
+  "created_at": "2026-10-21T19:00:42.316478+00:00",
+  "predictions": [
+    {
+      "name": "Moses Wright",
+      "team": "Milano",
+      "pos": "C",
+      "opponent": "Barcelona",
+      "home": true,
+      "status": "active",
+      "price": 14.7,
+      "expectedPir": 17.97330197408693,
+      "expectedMinutes": 23.289812225,
+      "basePir": 17.97330197408693,
+      "baseMinutes": 23.289812225,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 15.458001252140086,
+        "baseMin": 25.4462489,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.105000000000003,
+        "teamPoints": 86.7539,
+        "margin": 0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.462,
+          "sameTeam": false,
+          "avgPir": 17.142857142857142,
+          "avgMinutes": 23.63690238095238,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 6,
+              "nextGameAvgPir": 15.5,
+              "continuedRate": 0.16666666666666666
+            },
+            {
+              "threshold": 25,
+              "longestRun": 3,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 15.666666666666666,
+              "continuedRate": 0.3333333333333333
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.013487211104546,
+          "defenseFactor": 1.0029124481790592,
+          "defenseSample": 6,
+          "rival": "Josh Nebo",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.242954880255187,
+              "weight": 0.8068418315319108,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.90302152272804,
+              "weight": 0.10826253631333793,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 25.503635714478847,
+              "weight": 0.0848956321547513,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kevin Punter",
+      "team": "Barcelona",
+      "pos": "G",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 13.7,
+      "expectedPir": 14.84350035227146,
+      "expectedMinutes": 24.365279787234044,
+      "basePir": 14.84350035227146,
+      "baseMinutes": 24.365279787234044,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 13.207652439114478,
+        "baseMin": 26.46311914893617,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.66,
+        "teamPoints": 85.9661,
+        "margin": -0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 39,
+          "historyWeight": 0.8297872340425532,
+          "sameTeam": true,
+          "avgPir": 13.256410256410257,
+          "avgMinutes": 27.173502564102563,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 12,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 12,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9936797962612461,
+          "defenseFactor": 1.03,
+          "defenseSample": 6,
+          "rival": "Devon Hall",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 24.75155099002449,
+              "weight": 0.8068418315319108,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.34209237839017,
+              "weight": 0.0848956321547513,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 23.073050772007193,
+              "weight": 0.10826253631333796,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Justin Robinson",
+      "team": "Barcelona",
+      "pos": "G",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 12.3,
+      "expectedPir": 13.561796494204687,
+      "expectedMinutes": 20.0344265625,
+      "basePir": 13.561796494204687,
+      "baseMinutes": 20.0344265625,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 13.012697838623652,
+        "baseMin": 21.187706249999998,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.66,
+        "teamPoints": 85.9661,
+        "margin": -0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.45000000000000007,
+          "sameTeam": false,
+          "avgPir": 14.36111111111111,
+          "avgMinutes": 18.972680555555556,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": -2.5,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": -1,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9950454168288722,
+          "defenseFactor": 1.0285819346638838,
+          "defenseSample": 6,
+          "rival": "Devon Hall",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.403618766694386,
+              "weight": 0.8068418315319108,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.155401450100193,
+              "weight": 0.0848956321547513,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.756434246975193,
+              "weight": 0.10826253631333796,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Josh Nebo",
+      "team": "Barcelona",
+      "pos": "C",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 12,
+      "expectedPir": 11.506094739166125,
+      "expectedMinutes": 20.391521117647056,
+      "basePir": 11.506094739166125,
+      "baseMinutes": 20.391521117647056,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.29507646495044,
+        "baseMin": 22.388802794117645,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.452,
+        "teamPoints": 85.9661,
+        "margin": -0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 26,
+          "historyWeight": 0.42058823529411765,
+          "sameTeam": false,
+          "avgPir": 13.73076923076923,
+          "avgMinutes": 21.546803846153846,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0143115621798127,
+          "defenseSample": 6,
+          "rival": "Moses Wright",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.71917087091886,
+              "weight": 0.8068418315319108,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.680018759154155,
+              "weight": 0.0848956321547513,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.291764392683564,
+              "weight": 0.10826253631333796,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Alec Peters",
+      "team": "Milano",
+      "pos": "F",
+      "opponent": "Barcelona",
+      "home": true,
+      "status": "active",
+      "price": 11.6,
+      "expectedPir": 10.808998272155753,
+      "expectedMinutes": 22.813142794117645,
+      "basePir": 10.808998272155753,
+      "baseMinutes": 22.813142794117645,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.896509813725654,
+        "baseMin": 19.375571176470586,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.096000000000002,
+        "teamPoints": 86.7539,
+        "margin": 0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 43,
+          "historyWeight": 0.46372549019607845,
+          "sameTeam": false,
+          "avgPir": 8.488372093023257,
+          "avgMinutes": 15.184106976744186,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9664839362318354,
+          "defenseFactor": 1.0048162654199624,
+          "defenseSample": 6,
+          "rival": "Joel Parra",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.793427189275352,
+              "weight": 0.8068418315319108,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.394309143751492,
+              "weight": 0.10826253631333793,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 24.809875723876274,
+              "weight": 0.0848956321547513,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Umoja Gibson",
+      "team": "Barcelona",
+      "pos": "G",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 10.4,
+      "expectedPir": 11.764787367272103,
+      "expectedMinutes": 19.362499999999997,
+      "basePir": 11.764787367272103,
+      "baseMinutes": 19.362499999999997,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.672,
+        "baseMin": 23,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.66,
+        "teamPoints": 85.9661,
+        "margin": -0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0183857739402369,
+          "defenseFactor": 1.0288308511702307,
+          "defenseSample": 6,
+          "rival": "Devon Hall",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.63286212665048,
+              "weight": 0.8068418315319108,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.907596609409104,
+              "weight": 0.0848956321547513,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.488471609409103,
+              "weight": 0.10826253631333796,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Devin Booker",
+      "team": "Milano",
+      "pos": "C",
+      "opponent": "Barcelona",
+      "home": true,
+      "status": "active",
+      "price": 9.2,
+      "expectedPir": 8.588394965046252,
+      "expectedMinutes": 17.00019545454545,
+      "basePir": 8.588394965046252,
+      "baseMinutes": 17.00019545454545,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.39229650750812,
+        "baseMin": 19.778781818181816,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.105000000000003,
+        "teamPoints": 86.7539,
+        "margin": 0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.8181818181818182,
+          "sameTeam": true,
+          "avgPir": 9.583333333333334,
+          "avgMinutes": 19.951844444444443,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 13,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 13,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9833659201067021,
+          "defenseFactor": 1.0036523303742746,
+          "defenseSample": 6,
+          "rival": "Josh Nebo",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.47686080834469,
+              "weight": 0.8068418315319108,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.808903646735654,
+              "weight": 0.10826253631333793,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.264431971420139,
+              "weight": 0.0848956321547513,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Devon Hall",
+      "team": "Milano",
+      "pos": "G",
+      "opponent": "Barcelona",
+      "home": true,
+      "status": "active",
+      "price": 9,
+      "expectedPir": 11.647439892698923,
+      "expectedMinutes": 25.373506366279067,
+      "basePir": 11.647439892698923,
+      "baseMinutes": 25.373506366279067,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.561257941117741,
+        "baseMin": 21.79902546511628,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.507000000000005,
+        "teamPoints": 86.7539,
+        "margin": 0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 35,
+          "historyWeight": 0.4476744186046512,
+          "sameTeam": false,
+          "avgPir": 8.428571428571429,
+          "avgMinutes": 25.252368571428573,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0358454735380926,
+          "defenseFactor": 1.007168473295872,
+          "defenseSample": 6,
+          "rival": "Kevin Punter",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 25.668116083393468,
+              "weight": 0.8068418315319108,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 23.064906819101378,
+              "weight": 0.10826253631333793,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 25.51758207730391,
+              "weight": 0.0848956321547513,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Garrison Mathews",
+      "team": "Milano",
+      "pos": "G",
+      "opponent": "Barcelona",
+      "home": true,
+      "status": "active",
+      "price": 8.8,
+      "expectedPir": 9.022296863004101,
+      "expectedMinutes": 18.985714285714284,
+      "basePir": 9.022296863004101,
+      "baseMinutes": 18.985714285714284,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.184000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.507000000000005,
+        "teamPoints": 86.7539,
+        "margin": 0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.01712098626465,
+          "defenseFactor": 1.0073097721354578,
+          "defenseSample": 6,
+          "rival": "Kevin Punter",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.202897011932073,
+              "weight": 0.8068418315319108,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.26801198186173,
+              "weight": 0.10826253631333793,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.11211300818478,
+              "weight": 0.0848956321547513,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tosan Evbuomwan",
+      "team": "Barcelona",
+      "pos": "F",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 8.7,
+      "expectedPir": 7.433198211200557,
+      "expectedMinutes": 17.631999999999998,
+      "basePir": 7.433198211200557,
+      "baseMinutes": 17.631999999999998,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.091,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.7699999999999956,
+        "teamPoints": 85.9661,
+        "margin": -0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0241718656110814,
+          "defenseSample": 6,
+          "rival": "Alec Peters",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.915309931434628,
+              "weight": 0.8068418315319108,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.15210993143463,
+              "weight": 0.0848956321547513,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.68106993143463,
+              "weight": 0.10826253631333796,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Marko Guduric",
+      "team": "Milano",
+      "pos": "G",
+      "opponent": "Barcelona",
+      "home": true,
+      "status": "active",
+      "price": 8.5,
+      "expectedPir": 7.6742427234364285,
+      "expectedMinutes": 21.878405315614618,
+      "basePir": 7.6742427234364285,
+      "baseMinutes": 21.878405315614618,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.499253203036124,
+        "baseMin": 21.474418604651163,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.507000000000005,
+        "teamPoints": 86.7539,
+        "margin": 0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 35,
+          "historyWeight": 0.813953488372093,
+          "sameTeam": true,
+          "avgPir": 11.142857142857142,
+          "avgMinutes": 22.04,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 5,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0047628111612097,
+          "defenseFactor": 1.0081133025641995,
+          "defenseSample": 6,
+          "rival": "Kevin Punter",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.021874796034744,
+              "weight": 0.8068418315319108,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.15587285423936,
+              "weight": 0.10826253631333793,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.711528916962052,
+              "weight": 0.0848956321547513,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tyrese Martin",
+      "team": "Barcelona",
+      "pos": "F",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 8.4,
+      "expectedPir": 8.090956509955072,
+      "expectedMinutes": 21.743499999999997,
+      "basePir": 8.090956509955072,
+      "baseMinutes": 21.743499999999997,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.812000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.7699999999999956,
+        "teamPoints": 85.9661,
+        "margin": -0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0122491974317818,
+          "defenseFactor": 1.03,
+          "defenseSample": 6,
+          "rival": "Alec Peters",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.12448231592762,
+              "weight": 0.8068418315319108,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.78648898507814,
+              "weight": 0.0848956321547513,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.438793985078142,
+              "weight": 0.10826253631333796,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Rj Cole",
+      "team": "Milano",
+      "pos": "G",
+      "opponent": "Barcelona",
+      "home": true,
+      "status": "active",
+      "price": 8.3,
+      "expectedPir": 7.913365669189893,
+      "expectedMinutes": 17.384499999999996,
+      "basePir": 7.913365669189893,
+      "baseMinutes": 17.384499999999996,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.719000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.507000000000005,
+        "teamPoints": 86.7539,
+        "margin": 0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0098221895255568,
+          "defenseFactor": 1.0056900203737267,
+          "defenseSample": 6,
+          "rival": "Kevin Punter",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.695091452299945,
+              "weight": 0.8068418315319108,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.551816705168301,
+              "weight": 0.10826253631333793,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.769777744570472,
+              "weight": 0.0848956321547513,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Aleksander Balcerowski",
+      "team": "Barcelona",
+      "pos": "C",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 8.2,
+      "expectedPir": 7.560307128779236,
+      "expectedMinutes": 19,
+      "basePir": 7.560307128779236,
+      "baseMinutes": 19,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.6259999999999994,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.452,
+        "teamPoints": 85.9661,
+        "margin": -0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Moses Wright",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.433741056422047,
+              "weight": 0.8068418315319108,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.86874105642205,
+              "weight": 0.0848956321547513,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.43874105642205,
+              "weight": 0.10826253631333796,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jason Burnell",
+      "team": "Milano",
+      "pos": "F",
+      "opponent": "Barcelona",
+      "home": true,
+      "status": "active",
+      "price": 8.1,
+      "expectedPir": 5.5752284719392815,
+      "expectedMinutes": 15.92575,
+      "basePir": 5.5752284719392815,
+      "baseMinutes": 15.92575,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.5329999999999995,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.096000000000002,
+        "teamPoints": 86.7539,
+        "margin": 0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9521291635648379,
+          "defenseFactor": 1.0043093795051812,
+          "defenseSample": 6,
+          "rival": "Joel Parra",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.260778313389096,
+              "weight": 0.8068418315319108,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.130304241584877,
+              "weight": 0.10826253631333793,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.031294720693737,
+              "weight": 0.0848956321547513,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Leandro Bolmaro",
+      "team": "Milano",
+      "pos": "G",
+      "opponent": "Barcelona",
+      "home": true,
+      "status": "active",
+      "price": 8,
+      "expectedPir": 8.381184325947945,
+      "expectedMinutes": 22.20871891891892,
+      "basePir": 8.381184325947945,
+      "baseMinutes": 22.20871891891892,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.911259068349633,
+        "baseMin": 21.823875675675673,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.507000000000005,
+        "teamPoints": 86.7539,
+        "margin": 0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 29,
+          "historyWeight": 0.7837837837837838,
+          "sameTeam": true,
+          "avgPir": 10.655172413793103,
+          "avgMinutes": 22.602875862068963,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.06,
+          "defenseFactor": 1.0068366617359954,
+          "defenseSample": 6,
+          "rival": "Kevin Punter",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.374862069407797,
+              "weight": 0.8068418315319108,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.399745025786697,
+              "weight": 0.10826253631333793,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.93658743688389,
+              "weight": 0.0848956321547513,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Stanley Umude",
+      "team": "Barcelona",
+      "pos": "G",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 8,
+      "expectedPir": 6.923032221727439,
+      "expectedMinutes": 16.75,
+      "basePir": 6.923032221727439,
+      "baseMinutes": 16.75,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.44,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.66,
+        "teamPoints": 85.9661,
+        "margin": -0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0129870129870129,
+          "defenseFactor": 1.023247209043282,
+          "defenseSample": 6,
+          "rival": "Devon Hall",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.027913955214192,
+              "weight": 0.8068418315319108,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.30747995883083,
+              "weight": 0.0848956321547513,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.80997995883083,
+              "weight": 0.10826253631333796,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Darius Thompson",
+      "team": "Milano",
+      "pos": "G",
+      "opponent": "Barcelona",
+      "home": true,
+      "status": "active",
+      "price": 7.6,
+      "expectedPir": 5.48666944574762,
+      "expectedMinutes": 17.38681463942308,
+      "basePir": 5.48666944574762,
+      "baseMinutes": 17.38681463942308,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.385979961596158,
+        "baseMin": 18.92225855769231,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.507000000000005,
+        "teamPoints": 86.7539,
+        "margin": 0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 44,
+          "historyWeight": 0.4653846153846154,
+          "sameTeam": false,
+          "avgPir": 9.886363636363637,
+          "avgMinutes": 18.832952272727272,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 17,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9826800530447947,
+          "defenseFactor": 1.0040123632927866,
+          "defenseSample": 6,
+          "rival": "Kevin Punter",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.501560546280295,
+              "weight": 0.8068418315319108,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.005968071405107,
+              "weight": 0.10826253631333793,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.05719252129085,
+              "weight": 0.0848956321547513,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Olivier Nkamhoua",
+      "team": "Barcelona",
+      "pos": "F",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 6.9,
+      "expectedPir": 6.020103899252846,
+      "expectedMinutes": 13.521428571428572,
+      "basePir": 6.020103899252846,
+      "baseMinutes": 13.521428571428572,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.417000000000001,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.7699999999999956,
+        "teamPoints": 85.9661,
+        "margin": -0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0296993096993097,
+          "defenseFactor": 1.0148657558845713,
+          "defenseSample": 6,
+          "rival": "Alec Peters",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.585256206756771,
+              "weight": 0.8068418315319108,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.02745655099085,
+              "weight": 0.0848956321547513,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.433099408133709,
+              "weight": 0.10826253631333796,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Joel Parra",
+      "team": "Barcelona",
+      "pos": "F",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 6.8,
+      "expectedPir": 7.151958181921369,
+      "expectedMinutes": 23.8418015625,
+      "basePir": 7.151958181921369,
+      "baseMinutes": 23.8418015625,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.817008709945952,
+        "baseMin": 17.88020625,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.7699999999999956,
+        "teamPoints": 85.9661,
+        "margin": -0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.8333333333333334,
+          "sameTeam": true,
+          "avgPir": 6.85,
+          "avgMinutes": 18.6562475,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0033809632256003,
+          "defenseFactor": 1.03,
+          "defenseSample": 6,
+          "rival": "Alec Peters",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 24.20763972582861,
+              "weight": 0.8068418315319108,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.912767165857588,
+              "weight": 0.0848956321547513,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.628021212732587,
+              "weight": 0.10826253631333796,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Justin Minaya",
+      "team": "Barcelona",
+      "pos": "F",
+      "opponent": "Milano",
+      "home": false,
+      "status": "questionable",
+      "price": 6.7,
+      "expectedPir": 4.317999852068393,
+      "expectedMinutes": 12.021199999999999,
+      "basePir": 4.317999852068393,
+      "baseMinutes": 12.021199999999999,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.231000000000001,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -3.7699999999999956,
+        "teamPoints": 85.9661,
+        "margin": -0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0085015515479339,
+          "defenseSample": 6,
+          "rival": "Alec Peters",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.095729987485386,
+              "weight": 0.8068418315319108,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.507748871118311,
+              "weight": 0.0848956321547513,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.86838487111831,
+              "weight": 0.10826253631333796,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Yoan Makoundou",
+      "team": "Barcelona",
+      "pos": "C",
+      "opponent": "Milano",
+      "home": false,
+      "status": "out",
+      "price": 6.4,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 6.939105519348393,
+        "baseMin": 12.624297692307692,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.452,
+        "teamPoints": 85.9661,
+        "margin": -0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 5,
+          "historyWeight": 0.21153846153846156,
+          "sameTeam": false,
+          "avgPir": 7.6,
+          "avgMinutes": 7.4966800000000005,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Dario Brizuela",
+      "team": "Barcelona",
+      "pos": "G",
+      "opponent": "Milano",
+      "home": false,
+      "status": "out",
+      "price": 5.9,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 5.805262104448386,
+        "baseMin": 15.273545652173912,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.66,
+        "teamPoints": 85.9661,
+        "margin": -0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 5.868421052631579,
+          "avgMinutes": 15.541660526315788,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": null
+      }
+    },
+    {
+      "name": "Agustin Ubal",
+      "team": "Barcelona",
+      "pos": "G",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 5.8,
+      "expectedPir": 7.3860105611816085,
+      "expectedMinutes": 13.966666666666667,
+      "basePir": 7.3860105611816085,
+      "baseMinutes": 13.966666666666667,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.394,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.66,
+        "teamPoints": 85.9661,
+        "margin": -0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Devon Hall",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.191082239245143,
+              "weight": 0.8068418315319108,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.794415572578476,
+              "weight": 0.0848956321547513,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.213415572578477,
+              "weight": 0.10826253631333796,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Juan Nunez",
+      "team": "Barcelona",
+      "pos": "G",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 4.1,
+      "expectedPir": 4.4138336616124985,
+      "expectedMinutes": 12.956666666666667,
+      "basePir": 4.4138336616124985,
+      "baseMinutes": 12.956666666666667,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.8129999999999997,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.66,
+        "teamPoints": 85.9661,
+        "margin": -0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": true,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Devon Hall",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.289987919219403,
+              "weight": 0.8068418315319108,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.346487919219403,
+              "weight": 0.0848956321547513,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.735187919219403,
+              "weight": 0.10826253631333796,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Stefano Tonut",
+      "team": "Milano",
+      "pos": "G",
+      "opponent": "Barcelona",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 2.281134450418557,
+      "expectedMinutes": 11.205549999999999,
+      "basePir": 2.281134450418557,
+      "baseMinutes": 11.205549999999999,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.2949427746120716,
+        "baseMin": 11.205549999999999,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.507000000000005,
+        "teamPoints": 86.7539,
+        "margin": 0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 10,
+          "historyWeight": 0.5555555555555556,
+          "sameTeam": true,
+          "avgPir": 1.4,
+          "avgMinutes": 8.96999,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Kevin Punter",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.469210806954722,
+              "weight": 0.8068418315319108,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 9.956461556954723,
+              "weight": 0.10826253631333793,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.292628056954724,
+              "weight": 0.0848956321547513,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Ousmane Diop",
+      "team": "Milano",
+      "pos": "C",
+      "opponent": "Barcelona",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.8108572054872845,
+      "expectedMinutes": 14,
+      "basePir": 3.8108572054872845,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 4.105000000000003,
+        "teamPoints": 86.7539,
+        "margin": 0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": true,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Josh Nebo",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.234765270350328,
+              "weight": 0.8068418315319108,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.834765270350328,
+              "weight": 0.10826253631333793,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.25476527035033,
+              "weight": 0.0848956321547513,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Giampaolo Ricci",
+      "team": "Milano",
+      "pos": "F",
+      "opponent": "Barcelona",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.8812702646014707,
+      "expectedMinutes": 11.072554782608695,
+      "basePir": 3.8812702646014707,
+      "baseMinutes": 11.072554782608695,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.297884615993315,
+        "baseMin": 15.99638695652174,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.096000000000002,
+        "teamPoints": 86.7539,
+        "margin": 0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 4.421052631578948,
+          "avgMinutes": 16.41667894736842,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0018144871025794,
+          "defenseSample": 6,
+          "rival": "Joel Parra",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.233462574506104,
+              "weight": 0.8068418315319108,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 9.992264901294321,
+              "weight": 0.10826253631333793,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.92093078628731,
+              "weight": 0.0848956321547513,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Diego Flaccadori",
+      "team": "Milano",
+      "pos": "G",
+      "opponent": "Barcelona",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 2.1283183498957188,
+      "expectedMinutes": 10.219993333333333,
+      "basePir": 2.1283183498957188,
+      "baseMinutes": 10.219993333333333,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.141201636874693,
+        "baseMin": 10.219993333333333,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.507000000000005,
+        "teamPoints": 86.7539,
+        "margin": 0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 7,
+          "historyWeight": 0.4666666666666667,
+          "sameTeam": true,
+          "avgPir": 0.8571428571428571,
+          "avgMinutes": 5.899985714285714,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Kevin Punter",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 10.399730205061335,
+              "weight": 0.8068418315319108,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 9.020031105061335,
+              "weight": 0.10826253631333793,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.042030438394669,
+              "weight": 0.0848956321547513,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nicola Akele",
+      "team": "Milano",
+      "pos": "F",
+      "opponent": "Barcelona",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.4953561645235744,
+      "expectedMinutes": 12.260430142857142,
+      "basePir": 3.4953561645235744,
+      "baseMinutes": 12.260430142857142,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.5491909497962433,
+        "baseMin": 12.260430142857142,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.096000000000002,
+        "teamPoints": 86.7539,
+        "margin": 0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 27,
+          "historyWeight": 0.4242857142857143,
+          "sameTeam": false,
+          "avgPir": 3.185185185185185,
+          "avgMinutes": 9.900003703703703,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Joel Parra",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.54891173502154,
+              "weight": 0.8068418315319108,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 10.893753665735826,
+              "weight": 0.10826253631333793,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.261566570021541,
+              "weight": 0.0848956321547513,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Abdu Kone",
+      "team": "Barcelona",
+      "pos": "C",
+      "opponent": "Milano",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.6879546969654813,
+      "expectedMinutes": 14,
+      "basePir": 3.6879546969654813,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.452,
+        "teamPoints": 85.9661,
+        "margin": -0.7878,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Moses Wright",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.319598673153084,
+              "weight": 0.8068418315319108,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.429598673153086,
+              "weight": 0.0848956321547513,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.849598673153087,
+              "weight": 0.10826253631333796,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2646 @@
+{
+  "schema": "learning-v1",
+  "season": "E2026",
+  "modelId": "80709a3cfeeee1678f6d",
+  "gameCode": 62,
+  "round": 7,
+  "kickoff": "2026-10-22T18:05:00Z",
+  "created_at": "2026-10-21T19:00:42.353210+00:00",
+  "predictions": [
+    {
+      "name": "Walter Tavares",
+      "team": "Real Madrid",
+      "pos": "C",
+      "opponent": "Maccabi Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 14.7,
+      "expectedPir": 15.750215432635121,
+      "expectedMinutes": 21.587695212765958,
+      "basePir": 15.750215432635121,
+      "baseMinutes": 21.587695212765958,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 15.260464267590054,
+        "baseMin": 23.47978085106383,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 5.800000000000005,
+        "teamPoints": 89.1834,
+        "margin": 1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 39,
+          "historyWeight": 0.8297872340425532,
+          "sameTeam": true,
+          "avgPir": 15.461538461538462,
+          "avgMinutes": 22.757684615384616,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 5,
+              "nextGameAvgPir": 14.2,
+              "continuedRate": 0.2
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 8,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.000047516850244,
+          "defenseFactor": 1.007899923752877,
+          "defenseSample": 6,
+          "rival": "Daniel Theis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.865427368011204,
+              "weight": 0.8049742879667898,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.77236019819031,
+              "weight": 0.11705691984217276,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.944388514434753,
+              "weight": 0.07796879219103744,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jaylen Hoard",
+      "team": "Maccabi Tel Aviv",
+      "pos": "F",
+      "opponent": "Real Madrid",
+      "home": true,
+      "status": "active",
+      "price": 13.7,
+      "expectedPir": 11.386808673979628,
+      "expectedMinutes": 25.776211627906978,
+      "basePir": 11.386808673979628,
+      "baseMinutes": 25.776211627906978,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 15.504368981808907,
+        "baseMin": 27.72984651162791,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -10.907999999999996,
+        "teamPoints": 87.8666,
+        "margin": -1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 35,
+          "historyWeight": 0.813953488372093,
+          "sameTeam": true,
+          "avgPir": 16.142857142857142,
+          "avgMinutes": 28.81095428571429,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 15.5,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.998457730529349,
+          "defenseFactor": 0.9941286489182832,
+          "defenseSample": 6,
+          "rival": "Mikael Jantunen",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 25.89913194968776,
+              "weight": 0.8049742879667898,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 25.933070345511208,
+              "weight": 0.0779687921910375,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 24.826436224553852,
+              "weight": 0.11705691984217276,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Roman Sorkin",
+      "team": "Maccabi Tel Aviv",
+      "pos": "C",
+      "opponent": "Real Madrid",
+      "home": true,
+      "status": "active",
+      "price": 12.9,
+      "expectedPir": 11.242004723876967,
+      "expectedMinutes": 17.90545652173913,
+      "basePir": 11.242004723876967,
+      "baseMinutes": 17.90545652173913,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 13.739872532626693,
+        "baseMin": 22.922826086956523,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 87.8666,
+        "margin": -1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 14.105263157894736,
+          "avgMinutes": 22.906578947368423,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 16,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9911014946379993,
+          "defenseFactor": 0.9958886333821058,
+          "defenseSample": 6,
+          "rival": "Walter Tavares",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.16506813010274,
+              "weight": 0.8049742879667898,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.39777631756745,
+              "weight": 0.0779687921910375,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.12439492209956,
+              "weight": 0.11705691984217276,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Facundo Campazzo",
+      "team": "Real Madrid",
+      "pos": "G",
+      "opponent": "Maccabi Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 12.8,
+      "expectedPir": 12.36772158743264,
+      "expectedMinutes": 21.25133894230769,
+      "basePir": 12.36772158743264,
+      "baseMinutes": 21.25133894230769,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 14.029517931753512,
+        "baseMin": 24.17435576923077,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 10.800999999999995,
+        "teamPoints": 89.1834,
+        "margin": 1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 44,
+          "historyWeight": 0.8461538461538461,
+          "sameTeam": true,
+          "avgPir": 14.431818181818182,
+          "avgMinutes": 24.387874999999998,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 12,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9932880168507277,
+          "defenseFactor": 1.0192465140762974,
+          "defenseSample": 6,
+          "rival": "Yam Madar",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.472229838955556,
+              "weight": 0.8049742879667898,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.755152324210293,
+              "weight": 0.11705691984217276,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.715732044964547,
+              "weight": 0.07796879219103744,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Theo Maledon",
+      "team": "Real Madrid",
+      "pos": "G",
+      "opponent": "Maccabi Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 12.3,
+      "expectedPir": 19.12949064091804,
+      "expectedMinutes": 21.763108152173913,
+      "basePir": 19.12949064091804,
+      "baseMinutes": 21.763108152173913,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.389167984584107,
+        "baseMin": 18.055432608695654,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 10.800999999999995,
+        "teamPoints": 89.1834,
+        "margin": 1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 11.210526315789474,
+          "avgMinutes": 17.014471052631578,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9996200421916339,
+          "defenseFactor": 1.012053149312016,
+          "defenseSample": 6,
+          "rival": "Yam Madar",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.853737074189684,
+              "weight": 0.8049742879667898,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.0461569397494,
+              "weight": 0.11705691984217276,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.402476953122402,
+              "weight": 0.07796879219103744,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Daniel Theis",
+      "team": "Maccabi Tel Aviv",
+      "pos": "C",
+      "opponent": "Real Madrid",
+      "home": true,
+      "status": "active",
+      "price": 11.6,
+      "expectedPir": 10.230347543620802,
+      "expectedMinutes": 19.9214549068323,
+      "basePir": 10.230347543620802,
+      "baseMinutes": 19.9214549068323,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.48610808998369,
+        "baseMin": 21.875092173913043,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 87.8666,
+        "margin": -1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.45434782608695656,
+          "sameTeam": false,
+          "avgPir": 12.157894736842104,
+          "avgMinutes": 20.524126315789474,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 22,
+              "continuedRate": 0.5
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9690396345805307,
+          "defenseFactor": 0.997686700888803,
+          "defenseSample": 6,
+          "rival": "Walter Tavares",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.04839241445658,
+              "weight": 0.8049742879667898,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.776268857187596,
+              "weight": 0.0779687921910375,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.81131484242009,
+              "weight": 0.11705691984217276,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Bonzie Colson",
+      "team": "Maccabi Tel Aviv",
+      "pos": "F",
+      "opponent": "Real Madrid",
+      "home": true,
+      "status": "active",
+      "price": 11.2,
+      "expectedPir": 10.631122921068094,
+      "expectedMinutes": 19.48848544270833,
+      "basePir": 10.631122921068094,
+      "baseMinutes": 19.48848544270833,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.711213160003904,
+        "baseMin": 20.19194177083333,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -10.907999999999996,
+        "teamPoints": 87.8666,
+        "margin": -1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.45833333333333337,
+          "sameTeam": false,
+          "avgPir": 8.675,
+          "avgMinutes": 16.8733275,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.022341293019568,
+          "defenseFactor": 0.9987625079574562,
+          "defenseSample": 6,
+          "rival": "Mikael Jantunen",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.12087923679347,
+              "weight": 0.8049742879667898,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.970369881897135,
+              "weight": 0.0779687921910375,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.6954595926142,
+              "weight": 0.11705691984217276,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Oshae Brissett",
+      "team": "Maccabi Tel Aviv",
+      "pos": "F",
+      "opponent": "Real Madrid",
+      "home": true,
+      "status": "active",
+      "price": 10.7,
+      "expectedPir": 9.70431800778847,
+      "expectedMinutes": 23,
+      "basePir": 9.70431800778847,
+      "baseMinutes": 23,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.951,
+        "baseMin": 23,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -10.907999999999996,
+        "teamPoints": 87.8666,
+        "margin": -1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Mikael Jantunen",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.524785561172017,
+              "weight": 0.8049742879667898,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.419785561172016,
+              "weight": 0.0779687921910375,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.109785561172018,
+              "weight": 0.11705691984217276,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Yam Madar",
+      "team": "Maccabi Tel Aviv",
+      "pos": "G",
+      "opponent": "Real Madrid",
+      "home": true,
+      "status": "active",
+      "price": 10.3,
+      "expectedPir": 12.196035091146904,
+      "expectedMinutes": 20.86115682291667,
+      "basePir": 12.196035091146904,
+      "baseMinutes": 20.86115682291667,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.963532372190625,
+        "baseMin": 18.125627291666667,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -2.685000000000004,
+        "teamPoints": 87.8666,
+        "margin": -1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 16,
+          "historyWeight": 0.3666666666666667,
+          "sameTeam": false,
+          "avgPir": 3.1875,
+          "avgMinutes": 9.70625625,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9969199385329781,
+          "defenseFactor": 0.9981084451108694,
+          "defenseSample": 6,
+          "rival": "Theo Maledon",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.116974418181137,
+              "weight": 0.8049742879667898,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.509083520605614,
+              "weight": 0.0779687921910375,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.336463906905127,
+              "weight": 0.11705691984217276,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Timothé Luwawu-Cabarrot",
+      "team": "Real Madrid",
+      "pos": "F",
+      "opponent": "Maccabi Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 10,
+      "expectedPir": 4.344446712949547,
+      "expectedMinutes": 18.5266453125,
+      "basePir": 4.344446712949547,
+      "baseMinutes": 18.5266453125,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 12.346462146782523,
+        "baseMin": 24.08458125,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 7.211999999999996,
+        "teamPoints": 89.1834,
+        "margin": 1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.45000000000000007,
+          "sameTeam": false,
+          "avgPir": 16.38888888888889,
+          "avgMinutes": 25.410180555555556,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 4,
+              "nextGameAvgPir": 15.75,
+              "continuedRate": 0.25
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 17,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0267795518037692,
+          "defenseFactor": 1.0268967858593827,
+          "defenseSample": 6,
+          "rival": "Jaylen Hoard",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.92233062760662,
+              "weight": 0.8049742879667898,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.041577017657943,
+              "weight": 0.11705691984217276,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.671044111407944,
+              "weight": 0.07796879219103744,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jimmy Clark III",
+      "team": "Maccabi Tel Aviv",
+      "pos": "G",
+      "opponent": "Real Madrid",
+      "home": true,
+      "status": "active",
+      "price": 9.7,
+      "expectedPir": 9.638380234183415,
+      "expectedMinutes": 19.743370555555558,
+      "basePir": 9.638380234183415,
+      "baseMinutes": 19.743370555555558,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.674495074505232,
+        "baseMin": 19.591482222222226,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -2.685000000000004,
+        "teamPoints": 87.8666,
+        "margin": -1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.8222222222222222,
+          "sameTeam": true,
+          "avgPir": 8.594594594594595,
+          "avgMinutes": 19.71937027027027,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9950362433645108,
+          "defenseFactor": 0.9947545871698704,
+          "defenseSample": 6,
+          "rival": "Theo Maledon",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.489229799481905,
+              "weight": 0.8049742879667898,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.953801822652547,
+              "weight": 0.0779687921910375,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.350876567866976,
+              "weight": 0.11705691984217276,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Keaton Wallace",
+      "team": "Maccabi Tel Aviv",
+      "pos": "G",
+      "opponent": "Real Madrid",
+      "home": true,
+      "status": "active",
+      "price": 9.2,
+      "expectedPir": 5.400713316887134,
+      "expectedMinutes": 15.63925,
+      "basePir": 5.400713316887134,
+      "baseMinutes": 15.63925,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.556,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -2.685000000000004,
+        "teamPoints": 87.8666,
+        "margin": -1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9690517704741803,
+          "defenseFactor": 0.999002974133024,
+          "defenseSample": 6,
+          "rival": "Theo Maledon",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.23962215340976,
+              "weight": 0.8049742879667898,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.399887877932052,
+              "weight": 0.0779687921910375,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.880758874292383,
+              "weight": 0.11705691984217276,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Chuma Okeke",
+      "team": "Real Madrid",
+      "pos": "F",
+      "opponent": "Maccabi Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 9,
+      "expectedPir": 9.190171486994462,
+      "expectedMinutes": 16.350700840336135,
+      "basePir": 9.190171486994462,
+      "baseMinutes": 16.350700840336135,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.019352935948445,
+        "baseMin": 18.07745294117647,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 7.211999999999996,
+        "teamPoints": 89.1834,
+        "margin": 1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 43,
+          "historyWeight": 0.8431372549019608,
+          "sameTeam": true,
+          "avgPir": 7.953488372093023,
+          "avgMinutes": 17.905816279069768,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9701345613375956,
+          "defenseFactor": 1.018218281931183,
+          "defenseSample": 6,
+          "rival": "Jaylen Hoard",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.30421826312386,
+              "weight": 0.8049742879667898,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.219744592046233,
+              "weight": 0.11705691984217276,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.525879735869282,
+              "weight": 0.07796879219103744,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "TJ Leaf",
+      "team": "Maccabi Tel Aviv",
+      "pos": "F",
+      "opponent": "Real Madrid",
+      "home": true,
+      "status": "active",
+      "price": 8.7,
+      "expectedPir": 4.165169864441588,
+      "expectedMinutes": 12.558183035714286,
+      "basePir": 4.165169864441588,
+      "baseMinutes": 12.558183035714286,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.46822206642455,
+        "baseMin": 18.403640625,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -10.907999999999996,
+        "teamPoints": 87.8666,
+        "margin": -1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 24,
+          "historyWeight": 0.75,
+          "sameTeam": true,
+          "avgPir": 12.541666666666666,
+          "avgMinutes": 18.204854166666667,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9968162189855815,
+          "defenseFactor": 0.9970726831976325,
+          "defenseSample": 6,
+          "rival": "Mikael Jantunen",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.381058267542517,
+              "weight": 0.8049742879667898,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.266313150903638,
+              "weight": 0.0779687921910375,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.970637991464862,
+              "weight": 0.11705691984217276,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Olivier Sarr",
+      "team": "Real Madrid",
+      "pos": "C",
+      "opponent": "Maccabi Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 8.5,
+      "expectedPir": 8.21597513390316,
+      "expectedMinutes": 19,
+      "basePir": 8.21597513390316,
+      "baseMinutes": 19,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.905,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 5.800000000000005,
+        "teamPoints": 89.1834,
+        "margin": 1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Daniel Theis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.326106641314208,
+              "weight": 0.8049742879667898,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.42610664131421,
+              "weight": 0.11705691984217276,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.99610664131421,
+              "weight": 0.07796879219103744,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jaime Pradilla",
+      "team": "Real Madrid",
+      "pos": "F",
+      "opponent": "Maccabi Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 8.4,
+      "expectedPir": 9.568104450461167,
+      "expectedMinutes": 17.01754151098901,
+      "basePir": 9.568104450461167,
+      "baseMinutes": 17.01754151098901,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.494119514182833,
+        "baseMin": 19.236395288461537,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 7.211999999999996,
+        "teamPoints": 89.1834,
+        "margin": 1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 44,
+          "historyWeight": 0.4653846153846154,
+          "sameTeam": false,
+          "avgPir": 9.295454545454545,
+          "avgMinutes": 19.507956818181817,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0500921896895052,
+          "defenseFactor": 1.0126090134069738,
+          "defenseSample": 6,
+          "rival": "Jaylen Hoard",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.006841146386655,
+              "weight": 0.8049742879667898,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.71485448971053,
+              "weight": 0.11705691984217276,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.08111824436388,
+              "weight": 0.07796879219103744,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Damian Jones",
+      "team": "Real Madrid",
+      "pos": "C",
+      "opponent": "Maccabi Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 8.3,
+      "expectedPir": 6.602942803194462,
+      "expectedMinutes": 13.177,
+      "basePir": 6.602942803194462,
+      "baseMinutes": 13.177,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.719000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 5.800000000000005,
+        "teamPoints": 89.1834,
+        "margin": 1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0304187790818806,
+          "defenseFactor": 1.0103463289516292,
+          "defenseSample": 6,
+          "rival": "Daniel Theis",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.305342105468819,
+              "weight": 0.8049742879667898,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.919653000725415,
+              "weight": 0.11705691984217276,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.238318691190042,
+              "weight": 0.07796879219103744,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Andres Feliz",
+      "team": "Real Madrid",
+      "pos": "G",
+      "opponent": "Maccabi Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 8.2,
+      "expectedPir": 12.370586593797597,
+      "expectedMinutes": 18.7499414893617,
+      "basePir": 12.370586593797597,
+      "baseMinutes": 18.7499414893617,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.873193901751866,
+        "baseMin": 17.051765957446808,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 10.800999999999995,
+        "teamPoints": 89.1834,
+        "margin": 1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 39,
+          "historyWeight": 0.8297872340425532,
+          "sameTeam": true,
+          "avgPir": 6.717948717948718,
+          "avgMinutes": 16.652128205128204,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0066583915988792,
+          "defenseFactor": 1.0200001617033962,
+          "defenseSample": 6,
+          "rival": "Yam Madar",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.642614465345506,
+              "weight": 0.8049742879667898,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.07574911492317,
+              "weight": 0.11705691984217276,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.86754405468181,
+              "weight": 0.07796879219103744,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Iffe Lundberg",
+      "team": "Maccabi Tel Aviv",
+      "pos": "G",
+      "opponent": "Real Madrid",
+      "home": true,
+      "status": "out",
+      "price": 8,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 10.59129805300035,
+        "baseMin": 22.591662499999998,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -2.685000000000004,
+        "teamPoints": 87.8666,
+        "margin": -1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 16,
+          "historyWeight": 0.6666666666666666,
+          "sameTeam": true,
+          "avgPir": 12.375,
+          "avgMinutes": 24.38749375,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": null
+      }
+    },
+    {
+      "name": "Nick Smith Jr",
+      "team": "Real Madrid",
+      "pos": "G",
+      "opponent": "Maccabi Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 7.6,
+      "expectedPir": 6.05863825423276,
+      "expectedMinutes": 15.67142857142857,
+      "basePir": 6.05863825423276,
+      "baseMinutes": 15.67142857142857,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.068,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 10.800999999999995,
+        "teamPoints": 89.1834,
+        "margin": 1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 1.0026013633657391,
+          "defenseFactor": 1.0160285934536881,
+          "defenseSample": 6,
+          "rival": "Yam Madar",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.97440221762582,
+              "weight": 0.8049742879667898,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.54620079669026,
+              "weight": 0.11705691984217276,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.232772225261689,
+              "weight": 0.07796879219103744,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Gabriel Deck",
+      "team": "Real Madrid",
+      "pos": "F",
+      "opponent": "Maccabi Tel Aviv",
+      "home": false,
+      "status": "out",
+      "price": 7.5,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 8.433232900993369,
+        "baseMin": 20.174144897959184,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 7.211999999999996,
+        "teamPoints": 89.1834,
+        "margin": 1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 41,
+          "historyWeight": 0.8367346938775511,
+          "sameTeam": true,
+          "avgPir": 8.731707317073171,
+          "avgMinutes": 20.403246341463415,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": null
+      }
+    },
+    {
+      "name": "Max Shulga",
+      "team": "Real Madrid",
+      "pos": "G",
+      "opponent": "Maccabi Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 7.4,
+      "expectedPir": 7.275438175518705,
+      "expectedMinutes": 19,
+      "basePir": 7.275438175518705,
+      "baseMinutes": 19,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.882000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 10.800999999999995,
+        "teamPoints": 89.1834,
+        "margin": 1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Yam Madar",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.45579873981629,
+              "weight": 0.8049742879667898,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.890798739816294,
+              "weight": 0.11705691984217276,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.460798739816294,
+              "weight": 0.07796879219103744,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Mikael Jantunen",
+      "team": "Real Madrid",
+      "pos": "F",
+      "opponent": "Maccabi Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 6.2,
+      "expectedPir": 7.114349370319961,
+      "expectedMinutes": 18.3744790625,
+      "basePir": 7.114349370319961,
+      "baseMinutes": 18.3744790625,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.561727099676188,
+        "baseMin": 16.06291625,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 7.211999999999996,
+        "teamPoints": 89.1834,
+        "margin": 1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 36,
+          "historyWeight": 0.45000000000000007,
+          "sameTeam": false,
+          "avgPir": 4.944444444444445,
+          "avgMinutes": 18.58425833333333,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9789504158332456,
+          "defenseFactor": 1.0117148842500634,
+          "defenseSample": 6,
+          "rival": "Jaylen Hoard",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.520615560633154,
+              "weight": 0.8049742879667898,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.207194634608072,
+              "weight": 0.11705691984217276,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.11686917899875,
+              "weight": 0.07796879219103744,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Armando Bacot",
+      "team": "Maccabi Tel Aviv",
+      "pos": "C",
+      "opponent": "Real Madrid",
+      "home": true,
+      "status": "active",
+      "price": 6.1,
+      "expectedPir": 5.510384192943841,
+      "expectedMinutes": 14,
+      "basePir": 5.510384192943841,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 5.673,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 87.8666,
+        "margin": -1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Walter Tavares",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.319434689409054,
+              "weight": 0.8049742879667898,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.429434689409055,
+              "weight": 0.0779687921910375,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.849434689409057,
+              "weight": 0.11705691984217276,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Usman Garuba",
+      "team": "Real Madrid",
+      "pos": "C",
+      "opponent": "Maccabi Tel Aviv",
+      "home": false,
+      "status": "out",
+      "price": 5.5,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 6.21655248967459,
+        "baseMin": 12.745145833333332,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 5.800000000000005,
+        "teamPoints": 89.1834,
+        "margin": 1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.8333333333333334,
+          "sameTeam": true,
+          "avgPir": 6.4,
+          "avgMinutes": 12.494175,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Shane Hunter",
+      "team": "Maccabi Tel Aviv",
+      "pos": "C",
+      "opponent": "Real Madrid",
+      "home": true,
+      "status": "active",
+      "price": 5.3,
+      "expectedPir": 4.78771085616432,
+      "expectedMinutes": 14,
+      "basePir": 4.78771085616432,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.929,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 87.8666,
+        "margin": -1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Walter Tavares",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.319434689409054,
+              "weight": 0.8049742879667898,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.429434689409055,
+              "weight": 0.0779687921910375,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.849434689409057,
+              "weight": 0.11705691984217276,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Alberto Abalde",
+      "team": "Real Madrid",
+      "pos": "F",
+      "opponent": "Maccabi Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 4.4,
+      "expectedPir": 4.374279747743867,
+      "expectedMinutes": 16.2194175,
+      "basePir": 4.374279747743867,
+      "baseMinutes": 16.2194175,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.825434939003582,
+        "baseMin": 15.32067,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 7.211999999999996,
+        "teamPoints": 89.1834,
+        "margin": 1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.84,
+          "sameTeam": true,
+          "avgPir": 3.761904761904762,
+          "avgMinutes": 15.57222619047619,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.022286941468833,
+          "defenseFactor": 1.0123991618992807,
+          "defenseSample": 6,
+          "rival": "Jaylen Hoard",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.133989252209094,
+              "weight": 0.8049742879667898,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.323029050889517,
+              "weight": 0.11705691984217276,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.444519951714254,
+              "weight": 0.07796879219103744,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Gabriele Procida",
+      "team": "Real Madrid",
+      "pos": "F",
+      "opponent": "Maccabi Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 4.2,
+      "expectedPir": 2.9454110323410543,
+      "expectedMinutes": 10.241875,
+      "basePir": 2.9454110323410543,
+      "baseMinutes": 10.241875,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.1571632127192983,
+        "baseMin": 9.49375,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 7.211999999999996,
+        "teamPoints": 89.1834,
+        "margin": 1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 8,
+          "historyWeight": 0.5,
+          "sameTeam": true,
+          "avgPir": 0.875,
+          "avgMinutes": 4.9875,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1.0094704408367647,
+          "defenseSample": 6,
+          "rival": "Jaylen Hoard",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 10.066620949649929,
+              "weight": 0.8049742879667898,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.456589699649928,
+              "weight": 0.11705691984217276,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.227564699649928,
+              "weight": 0.07796879219103744,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Sergio Llull",
+      "team": "Real Madrid",
+      "pos": "G",
+      "opponent": "Maccabi Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 2.286378771187368,
+      "expectedMinutes": 11.213547916666666,
+      "basePir": 2.286378771187368,
+      "baseMinutes": 11.213547916666666,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.1627369133941747,
+        "baseMin": 11.213547916666666,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 10.800999999999995,
+        "teamPoints": 89.1834,
+        "margin": 1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.8333333333333334,
+          "sameTeam": true,
+          "avgPir": 1.9,
+          "avgMinutes": 10.656257499999999,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Yam Madar",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.48255428557647,
+              "weight": 0.8049742879667898,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 9.96872531682647,
+              "weight": 0.11705691984217276,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.30513175432647,
+              "weight": 0.07796879219103744,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "John Dibartolomeo",
+      "team": "Maccabi Tel Aviv",
+      "pos": "G",
+      "opponent": "Real Madrid",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 1.9604041792205151,
+      "expectedMinutes": 12.026184761904764,
+      "basePir": 1.9604041792205151,
+      "baseMinutes": 12.026184761904764,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.304695265489598,
+        "baseMin": 14.254277142857143,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -2.685000000000004,
+        "teamPoints": 87.8666,
+        "margin": -1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 27,
+          "historyWeight": 0.7714285714285715,
+          "sameTeam": true,
+          "avgPir": 4.481481481481482,
+          "avgMinutes": 14.329618518518519,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Theo Maledon",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.21849384215766,
+              "weight": 0.8049742879667898,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.015875365967183,
+              "weight": 0.0779687921910375,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.376660908824327,
+              "weight": 0.11705691984217276,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "William Rayman",
+      "team": "Maccabi Tel Aviv",
+      "pos": "F",
+      "opponent": "Real Madrid",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 1.6766439478865525,
+      "expectedMinutes": 10.27286195652174,
+      "basePir": 1.6766439478865525,
+      "baseMinutes": 10.27286195652174,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.919392436830075,
+        "baseMin": 12.325723913043479,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -10.907999999999996,
+        "teamPoints": 87.8666,
+        "margin": -1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 2.763157894736842,
+          "avgMinutes": 11.973244736842105,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 0.94,
+          "defenseFactor": 0.9991950424701393,
+          "defenseSample": 6,
+          "rival": "Mikael Jantunen",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 10.519685598146571,
+              "weight": 0.8049742879667898,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 9.99794938428331,
+              "weight": 0.0779687921910375,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 8.75862354845713,
+              "weight": 0.11705691984217276,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Gur Lavi",
+      "team": "Maccabi Tel Aviv",
+      "pos": "F",
+      "opponent": "Real Madrid",
+      "home": true,
+      "status": "out",
+      "price": 4,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 3.4868259039359666,
+        "baseMin": 12.208695652173914,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -10.907999999999996,
+        "teamPoints": 87.8666,
+        "margin": -1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 15,
+          "historyWeight": 0.6521739130434783,
+          "sameTeam": true,
+          "avgPir": 3.3333333333333335,
+          "avgMinutes": 11.253333333333334,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Amit Ebo",
+      "team": "Maccabi Tel Aviv",
+      "pos": "G",
+      "opponent": "Real Madrid",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.7363361904860883,
+      "expectedMinutes": 14,
+      "basePir": 3.7363361904860883,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -2.685000000000004,
+        "teamPoints": 87.8666,
+        "margin": -1.3168,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Theo Maledon",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.319434689409054,
+              "weight": 0.8049742879667898,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.429434689409055,
+              "weight": 0.0779687921910375,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.849434689409057,
+              "weight": 0.11705691984217276,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    }
+  ]
+}
