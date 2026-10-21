@@ -3,12 +3,417 @@
   "round": 7,
   "complete": false,
   "scheduledGames": 10,
-  "playedGames": 0,
-  "gradedGames": 0,
+  "playedGames": 1,
+  "gradedGames": 1,
   "metrics": {
-    "n": 0
+    "n": 23,
+    "mae": 6.617,
+    "rmse": 8.041,
+    "bias": 2.384,
+    "within3": 0.2609,
+    "within5": 0.3478,
+    "correlation": 0.3785,
+    "byPosition": {
+      "G": {
+        "n": 11,
+        "mae": 6.877,
+        "bias": 4.602
+      },
+      "F": {
+        "n": 6,
+        "mae": 6.047,
+        "bias": -0.171
+      },
+      "C": {
+        "n": 6,
+        "mae": 6.711,
+        "bias": 0.872
+      }
+    }
   },
-  "largestMisses": [],
-  "comparisons": [],
-  "updated_at": "2026-10-21T12:58:12.515151+00:00"
+  "largestMisses": [
+    {
+      "name": "Zach Leday",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "price": 13.5,
+      "predictedPir": 14.345,
+      "actualPir": 33.0,
+      "error": -18.655,
+      "absoluteError": 18.655
+    },
+    {
+      "name": "Antonio Blakeney",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "price": 10.3,
+      "predictedPir": 12.173,
+      "actualPir": -4.0,
+      "error": 16.173,
+      "absoluteError": 16.173
+    },
+    {
+      "name": "Marcus Carr",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "price": 11.1,
+      "predictedPir": 13.524,
+      "actualPir": 1.0,
+      "error": 12.524,
+      "absoluteError": 12.524
+    },
+    {
+      "name": "Tai Odiase",
+      "team": "Hapoel Tel Aviv",
+      "pos": "C",
+      "price": 6.0,
+      "predictedPir": 4.617,
+      "actualPir": 15.0,
+      "error": -10.383,
+      "absoluteError": 10.383
+    },
+    {
+      "name": "Elijah Bryant",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "price": 17.4,
+      "predictedPir": 22.728,
+      "actualPir": 13.0,
+      "error": 9.728,
+      "absoluteError": 9.728
+    },
+    {
+      "name": "Derrick Alston Jr.",
+      "team": "Virtus Bologna",
+      "pos": "F",
+      "price": 8.6,
+      "predictedPir": 9.21,
+      "actualPir": 1.0,
+      "error": 8.21,
+      "absoluteError": 8.21
+    },
+    {
+      "name": "Bruno Caboclo",
+      "team": "Hapoel Tel Aviv",
+      "pos": "C",
+      "price": 7.0,
+      "predictedPir": 6.002,
+      "actualPir": -2.0,
+      "error": 8.002,
+      "absoluteError": 8.002
+    },
+    {
+      "name": "Wendell Moore",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "price": 9.9,
+      "predictedPir": 12.419,
+      "actualPir": 5.0,
+      "error": 7.419,
+      "absoluteError": 7.419
+    },
+    {
+      "name": "Aliou Diarra",
+      "team": "Virtus Bologna",
+      "pos": "C",
+      "price": 9.3,
+      "predictedPir": 14.867,
+      "actualPir": 22.0,
+      "error": -7.133,
+      "absoluteError": 7.133
+    },
+    {
+      "name": "Dan Oturu",
+      "team": "Hapoel Tel Aviv",
+      "pos": "C",
+      "price": 13.5,
+      "predictedPir": 13.065,
+      "actualPir": 6.0,
+      "error": 7.065,
+      "absoluteError": 7.065
+    },
+    {
+      "name": "Mouhamet Diouf",
+      "team": "Virtus Bologna",
+      "pos": "C",
+      "price": 8.8,
+      "predictedPir": 7.839,
+      "actualPir": 1.0,
+      "error": 6.839,
+      "absoluteError": 6.839
+    },
+    {
+      "name": "Tomas Satoransky",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "price": 9.1,
+      "predictedPir": 8.343,
+      "actualPir": 2.0,
+      "error": 6.343,
+      "absoluteError": 6.343
+    },
+    {
+      "name": "Rasheed Bello",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "price": 9.3,
+      "predictedPir": 5.13,
+      "actualPir": -1.0,
+      "error": 6.13,
+      "absoluteError": 6.13
+    },
+    {
+      "name": "Daniel Hackett",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "price": 4.3,
+      "predictedPir": 2.663,
+      "actualPir": 8.0,
+      "error": -5.337,
+      "absoluteError": 5.337
+    },
+    {
+      "name": "Jacob Toppin",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "price": 9.2,
+      "predictedPir": 10.05,
+      "actualPir": 5.0,
+      "error": 5.05,
+      "absoluteError": 5.05
+    }
+  ],
+  "comparisons": [
+    {
+      "name": "Zach Leday",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "price": 13.5,
+      "predictedPir": 14.345,
+      "actualPir": 33.0,
+      "error": -18.655,
+      "absoluteError": 18.655
+    },
+    {
+      "name": "Antonio Blakeney",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "price": 10.3,
+      "predictedPir": 12.173,
+      "actualPir": -4.0,
+      "error": 16.173,
+      "absoluteError": 16.173
+    },
+    {
+      "name": "Marcus Carr",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "price": 11.1,
+      "predictedPir": 13.524,
+      "actualPir": 1.0,
+      "error": 12.524,
+      "absoluteError": 12.524
+    },
+    {
+      "name": "Tai Odiase",
+      "team": "Hapoel Tel Aviv",
+      "pos": "C",
+      "price": 6.0,
+      "predictedPir": 4.617,
+      "actualPir": 15.0,
+      "error": -10.383,
+      "absoluteError": 10.383
+    },
+    {
+      "name": "Elijah Bryant",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "price": 17.4,
+      "predictedPir": 22.728,
+      "actualPir": 13.0,
+      "error": 9.728,
+      "absoluteError": 9.728
+    },
+    {
+      "name": "Derrick Alston Jr.",
+      "team": "Virtus Bologna",
+      "pos": "F",
+      "price": 8.6,
+      "predictedPir": 9.21,
+      "actualPir": 1.0,
+      "error": 8.21,
+      "absoluteError": 8.21
+    },
+    {
+      "name": "Bruno Caboclo",
+      "team": "Hapoel Tel Aviv",
+      "pos": "C",
+      "price": 7.0,
+      "predictedPir": 6.002,
+      "actualPir": -2.0,
+      "error": 8.002,
+      "absoluteError": 8.002
+    },
+    {
+      "name": "Wendell Moore",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "price": 9.9,
+      "predictedPir": 12.419,
+      "actualPir": 5.0,
+      "error": 7.419,
+      "absoluteError": 7.419
+    },
+    {
+      "name": "Aliou Diarra",
+      "team": "Virtus Bologna",
+      "pos": "C",
+      "price": 9.3,
+      "predictedPir": 14.867,
+      "actualPir": 22.0,
+      "error": -7.133,
+      "absoluteError": 7.133
+    },
+    {
+      "name": "Dan Oturu",
+      "team": "Hapoel Tel Aviv",
+      "pos": "C",
+      "price": 13.5,
+      "predictedPir": 13.065,
+      "actualPir": 6.0,
+      "error": 7.065,
+      "absoluteError": 7.065
+    },
+    {
+      "name": "Mouhamet Diouf",
+      "team": "Virtus Bologna",
+      "pos": "C",
+      "price": 8.8,
+      "predictedPir": 7.839,
+      "actualPir": 1.0,
+      "error": 6.839,
+      "absoluteError": 6.839
+    },
+    {
+      "name": "Tomas Satoransky",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "price": 9.1,
+      "predictedPir": 8.343,
+      "actualPir": 2.0,
+      "error": 6.343,
+      "absoluteError": 6.343
+    },
+    {
+      "name": "Rasheed Bello",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "price": 9.3,
+      "predictedPir": 5.13,
+      "actualPir": -1.0,
+      "error": 6.13,
+      "absoluteError": 6.13
+    },
+    {
+      "name": "Daniel Hackett",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "price": 4.3,
+      "predictedPir": 2.663,
+      "actualPir": 8.0,
+      "error": -5.337,
+      "absoluteError": 5.337
+    },
+    {
+      "name": "Jacob Toppin",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "price": 9.2,
+      "predictedPir": 10.05,
+      "actualPir": 5.0,
+      "error": 5.05,
+      "absoluteError": 5.05
+    },
+    {
+      "name": "Trent Frazier",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "price": 9.3,
+      "predictedPir": 6.817,
+      "actualPir": 2.0,
+      "error": 4.817,
+      "absoluteError": 4.817
+    },
+    {
+      "name": "Kessler Edwards",
+      "team": "Virtus Bologna",
+      "pos": "F",
+      "price": 9.3,
+      "predictedPir": 8.063,
+      "actualPir": 5.0,
+      "error": 3.063,
+      "absoluteError": 3.063
+    },
+    {
+      "name": "Eugene German",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "price": 6.5,
+      "predictedPir": 3.246,
+      "actualPir": 6.0,
+      "error": -2.754,
+      "absoluteError": 2.754
+    },
+    {
+      "name": "Tommaso Baldasso",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "price": 4.1,
+      "predictedPir": 4.698,
+      "actualPir": 7.0,
+      "error": -2.302,
+      "absoluteError": 2.302
+    },
+    {
+      "name": "Vasilije Micic",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "price": 11.3,
+      "predictedPir": 9.88,
+      "actualPir": 12.0,
+      "error": -2.12,
+      "absoluteError": 2.12
+    },
+    {
+      "name": "Ish Wainright",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "price": 6.0,
+      "predictedPir": 4.255,
+      "actualPir": 3.0,
+      "error": 1.255,
+      "absoluteError": 1.255
+    },
+    {
+      "name": "Kevin Kokila",
+      "team": "Virtus Bologna",
+      "pos": "C",
+      "price": 8.0,
+      "predictedPir": 4.842,
+      "actualPir": 4.0,
+      "error": 0.842,
+      "absoluteError": 0.842
+    },
+    {
+      "name": "Amir Coffey",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "price": 12.2,
+      "predictedPir": 12.051,
+      "actualPir": 12.0,
+      "error": 0.051,
+      "absoluteError": 0.051
+    }
+  ],
+  "updated_at": "2026-10-21T18:54:37.615291+00:00"
 }
