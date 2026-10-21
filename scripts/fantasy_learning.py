@@ -93,6 +93,18 @@ def diagnosis(row):
     row['reason']=reason
     row['error']=actual-pred
     row['servedError']=actual-row['servedPir']
+    # A small total error can hide large opposing errors in minutes and efficiency.
+    hit=abs(row['error'])<=5
+    mc=row['minutesContribution'];ec=row['efficiencyContribution']
+    if m==0 and actual_m==0:
+        outcome='availability-hit'
+    elif hit and mc is not None and mc*ec<0 and min(abs(mc),abs(ec))>5:
+        outcome='offsetting-errors'
+    elif hit and mc is not None and abs(mc)<=5 and abs(ec)<=5:
+        outcome='components-aligned'
+    elif hit: outcome='within-tolerance'
+    else: outcome='miss'
+    row['outcome']=outcome
     return row
 
 def collect(schedule):
@@ -147,6 +159,7 @@ def metrics(rows):
     return {'n':len(rows),'mae':statistics.mean(abs(r['error']) for r in rows) if rows else None,'bias':statistics.mean(r['error'] for r in rows) if rows else None,'minutesMae':statistics.mean(abs(r['actualMinutes']-r['baseMinutes']) for r in rows) if rows else None,'hits':sum(abs(r['error'])<=5 for r in rows),'hitRate':sum(abs(r['error'])<=5 for r in rows)/len(rows)*100 if rows else None,'over':sum(r['error'] < -5 for r in rows),'under':sum(r['error'] > 5 for r in rows)}
 
 def validate(rows):
+    rows=[r for r in rows if r.get('status')=='active' and r.get('baseMinutes',0)>=5]
     games=sorted(set((r['start'],r['gameCode']) for r in rows))
     scored=[];history=[]
     for _,code in games:
@@ -162,7 +175,10 @@ def validate(rows):
     heldout_games=len({r['gameCode'] for r in scored})
     if not scored:return {'n':0,'games':0,'active':False,'reason':'collecting'}
     before=statistics.mean(r['baseError'] for r in scored);after=statistics.mean(r['candidateError'] for r in scored)
-    active=heldout_games>=6 and len(scored)>=60 and after<before*.98
+    codes=list(dict.fromkeys(r['gameCode'] for r in scored))
+    tail=[r for r in scored if r['gameCode'] in codes[len(codes)//2:]]
+    recent_ok=bool(tail) and sum(r['candidateError'] for r in tail)<sum(r['baseError'] for r in tail)
+    active=heldout_games>=6 and len(scored)>=60 and after<before*.98 and recent_ok
     return {'n':len(scored),'games':heldout_games,'baselineMae':before,'candidateMae':after,'improvementPct':(before-after)/max(before,.001)*100,'active':active,'reason':'validated' if active else 'not-yet-validated'}
 
 def group_metrics(rows, field):
@@ -187,6 +203,20 @@ def team_audit(schedule):
     n=len(rows)
     return {'games':sorted(rows,key=lambda r:r['start'],reverse=True),'n':n,'winnerAccuracy':sum(r['winnerHit'] for r in rows)/n*100 if n else None,'marginMae':statistics.mean(abs(r['marginError']) for r in rows) if n else None,'totalMae':statistics.mean(abs(r['totalError']) for r in rows) if n else None,'brier':statistics.mean(r['brier'] for r in rows) if n else None}
 
+def round_reviews(rows,schedule):
+    reports=[]
+    for rnd in sorted({r['round'] for r in rows}):
+        sample=[r for r in rows if r['round']==rnd]
+        games=[g for g in schedule.values() if g['round']==rnd]
+        served=[{**r,'error':r['servedError'],'baseMinutes':r.get('servedMinutes',r['baseMinutes'])} for r in sample]
+        reports.append({'round':rnd,'complete':bool(games) and all(g['played'] for g in games),
+            'scheduledGames':len(games),'gradedGames':len({r['gameCode'] for r in sample}),
+            'baseline':metrics(sample),'served':metrics(served),
+            'outcomes':group_metrics(sample,'outcome'),
+            'missReasons':group_metrics([r for r in sample if r['outcome']=='miss'],'reason'),
+            'modelIds':sorted({r['modelId'] for r in sample})})
+    return reports
+
 def grade():
     schedule=load(OUT/'schedule.json',{})
     rows,warnings=collect(schedule)
@@ -200,6 +230,8 @@ def grade():
     now=datetime.now(timezone.utc).isoformat()
     payload={'schema':VERSION,'season':'E2026','modelId':ident,'updated_at':now,'metrics':metrics(rows),'eligibleMetrics':metrics(eligible),'legacyCount':len(rows)-len(eligible),'validation':validation,'coefficients':coeff,'active':validation['active'],'players':players,'largestMisses':sorted(rows,key=lambda r:abs(r['error']),reverse=True)[:20],'byPosition':{pos:metrics([r for r in rows if r['pos']==pos]) for pos in ['G','F','C']},'warnings':warnings}
     payload.update({'rows':sorted(rows,key=lambda r:r['start'],reverse=True),'bestHits':sorted(rows,key=lambda r:abs(r['error']))[:20],'breakdowns':{'position':group_metrics(rows,'pos'),'team':group_metrics(rows,'team'),'round':group_metrics(rows,'round'),'home':group_metrics(rows,'home'),'reason':group_metrics(rows,'reason')},'teamAudit':team_audit(schedule),'reportVersion':2})
+    payload['roundReviews']=round_reviews(rows,schedule)
+    payload['servedMetrics']=metrics([{**r,'error':r['servedError'],'baseMinutes':r.get('servedMinutes',r['baseMinutes'])} for r in rows])
     save(OUT/'latest.json',payload)
     print(json.dumps({'diagnosticRows':len(rows),'eligibleRows':len(eligible),'validation':validation}))
 

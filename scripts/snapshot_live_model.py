@@ -27,7 +27,7 @@ try:
         browser=pw.chromium.launch(headless=True)
         page=browser.new_page()
         page.goto(f'http://127.0.0.1:{server.server_port}/index.html',wait_until='networkidle',timeout=60000)
-        page.wait_for_function('window.__stabilityModelPatched && window.__learningReady && window.__recentFormPatched && (!window.__matchupContextEnabled || window.__matchupContextReady)',timeout=45000)
+        page.wait_for_function('window.__stabilityModelPatched && window.__learningReady && window.__recentFormPatched && (!window.__matchupContextEnabled || window.__matchupContextReady) && (!window.__replayCaptureReady || window.__rollingReady)',timeout=45000)
         if page.evaluate('window.__learningModelId')!=model_id(): raise RuntimeError('Browser model version does not match source')
         forecasts=page.evaluate('''() => players.filter(p=>['G','F','C'].includes(p.pos)).map(p=>{
           const x=model(p),b=x.learning;
