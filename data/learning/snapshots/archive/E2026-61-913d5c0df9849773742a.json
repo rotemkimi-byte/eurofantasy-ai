@@ -1,0 +1,2896 @@
+{
+  "schema": "learning-v1",
+  "season": "E2026",
+  "modelId": "913d5c0df9849773742a",
+  "gameCode": 61,
+  "round": 7,
+  "kickoff": "2026-10-21T16:00:00Z",
+  "created_at": "2026-10-20T16:51:34.041853+00:00",
+  "predictions": [
+    {
+      "name": "Elijah Bryant",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 17.4,
+      "expectedPir": 22.72773281081792,
+      "expectedMinutes": 30.061206521739127,
+      "basePir": 22.72773281081792,
+      "baseMinutes": 30.061206521739127,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 18.965083772982748,
+        "baseMin": 29.047826086956523,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 88.92660000000001,
+        "margin": 6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 19.57894736842105,
+          "avgMinutes": 29.478947368421053,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 5,
+              "nextGameSamples": 8,
+              "nextGameAvgPir": 23.375,
+              "continuedRate": 0.625
+            },
+            {
+              "threshold": 25,
+              "longestRun": 3,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 23,
+              "continuedRate": 0.3333333333333333
+            },
+            {
+              "threshold": 30,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 23,
+              "continuedRate": 0
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0005276091129343,
+          "defenseFactor": 0.990906613222862,
+          "defenseSample": 6,
+          "rival": "Wendell Moore",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 30.411805994536664,
+              "weight": 0.7487391031007589,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 29.19141357542545,
+              "weight": 0.21739356422675096,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 27.893331455178338,
+              "weight": 0.033867332672490216,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Zach Leday",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 13.5,
+      "expectedPir": 14.34526017224798,
+      "expectedMinutes": 21.141406315789474,
+      "basePir": 14.34526017224798,
+      "baseMinutes": 21.141406315789474,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 13.619267916062876,
+        "baseMin": 23.704625263157894,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.3160000000000105,
+        "teamPoints": 88.92660000000001,
+        "margin": 6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 30,
+          "historyWeight": 0.4342105263157895,
+          "sameTeam": false,
+          "avgPir": 15.066666666666666,
+          "avgMinutes": 24.62277333333333,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 15,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9971607192844479,
+          "defenseFactor": 0.988747360211174,
+          "defenseSample": 6,
+          "rival": "Kessler Edwards",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.214027945286187,
+              "weight": 0.7487391031007589,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.141360115315592,
+              "weight": 0.21739356422675096,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.536183649595863,
+              "weight": 0.033867332672490216,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Dan Oturu",
+      "team": "Hapoel Tel Aviv",
+      "pos": "C",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 13.5,
+      "expectedPir": 13.064867507841697,
+      "expectedMinutes": 21.6904995,
+      "basePir": 13.064867507841697,
+      "baseMinutes": 21.6904995,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 16.070119037982387,
+        "baseMin": 23.749997999999998,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.671000000000005,
+        "teamPoints": 88.92660000000001,
+        "margin": 6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.84,
+          "sameTeam": true,
+          "avgPir": 16.761904761904763,
+          "avgMinutes": 23.89285476190476,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 15.5,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9957848624005261,
+          "defenseFactor": 0.9879762180439293,
+          "defenseSample": 6,
+          "rival": "Aliou Diarra",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.950500614622623,
+              "weight": 0.7487391031007589,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.056166014764994,
+              "weight": 0.21739356422675096,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.014164825133882,
+              "weight": 0.033867332672490216,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Amir Coffey",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 12.2,
+      "expectedPir": 12.050897014701667,
+      "expectedMinutes": 21.865000000000002,
+      "basePir": 12.050897014701667,
+      "baseMinutes": 21.865000000000002,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.346,
+        "baseMin": 23,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.3160000000000105,
+        "teamPoints": 88.92660000000001,
+        "margin": 6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Kessler Edwards",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.50771926363028,
+              "weight": 0.7487391031007589,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 23.25363834187251,
+              "weight": 0.21739356422675096,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.850128802751396,
+              "weight": 0.033867332672490216,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Vasilije Micic",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 11.3,
+      "expectedPir": 9.879722209121592,
+      "expectedMinutes": 26.560461458333332,
+      "basePir": 9.879722209121592,
+      "baseMinutes": 26.560461458333332,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.124981517190603,
+        "baseMin": 23.912845833333332,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 88.92660000000001,
+        "margin": 6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.8333333333333334,
+          "sameTeam": true,
+          "avgPir": 11.25,
+          "avgMinutes": 24.095415,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9737586381795157,
+          "defenseFactor": 0.9782321841942884,
+          "defenseSample": 6,
+          "rival": "Wendell Moore",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 27.019648064150566,
+              "weight": 0.7487391031007589,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 25.383274035135052,
+              "weight": 0.21739356422675096,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 23.965099179481705,
+              "weight": 0.033867332672490216,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Marcus Carr",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "opponent": "Hapoel Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 11.1,
+      "expectedPir": 13.523550100971308,
+      "expectedMinutes": 22.856749999999998,
+      "basePir": 13.523550100971308,
+      "baseMinutes": 22.856749999999998,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.323,
+        "baseMin": 23,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.47199999999999465,
+        "teamPoints": 82.8834,
+        "margin": -6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0064457220915404,
+          "defenseFactor": 0.9922397325971896,
+          "defenseSample": 6,
+          "rival": "Elijah Bryant",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.281983440045977,
+              "weight": 0.7487391031007589,
+              "observedGames": 6
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.99630844004598,
+              "weight": 0.03386733267249023,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.682010940045977,
+              "weight": 0.2173935642267509,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Antonio Blakeney",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 10.3,
+      "expectedPir": 12.173366463826538,
+      "expectedMinutes": 24.546112244897955,
+      "basePir": 12.173366463826538,
+      "baseMinutes": 24.546112244897955,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.32106453678563,
+        "baseMin": 22.722448979591835,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 88.92660000000001,
+        "margin": 6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 41,
+          "historyWeight": 0.8367346938775511,
+          "sameTeam": true,
+          "avgPir": 10.463414634146341,
+          "avgMinutes": 22.66829268292683,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9979734998296941,
+          "defenseFactor": 0.9818829340610753,
+          "defenseSample": 6,
+          "rival": "Wendell Moore",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 24.61498689100665,
+              "weight": 0.7487391031007589,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 24.521018003231738,
+              "weight": 0.21739356422675096,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 23.18451065193052,
+              "weight": 0.033867332672490216,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Wendell Moore",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "opponent": "Hapoel Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 9.9,
+      "expectedPir": 12.41915769954601,
+      "expectedMinutes": 23.029,
+      "basePir": 12.41915769954601,
+      "baseMinutes": 23.029,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.207,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.47199999999999465,
+        "teamPoints": 82.8834,
+        "margin": -6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0078353282933377,
+          "defenseFactor": 0.9911152618764865,
+          "defenseSample": 6,
+          "rival": "Elijah Bryant",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.45743802775193,
+              "weight": 0.7487391031007589,
+              "observedGames": 6
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.154538027751926,
+              "weight": 0.03386733267249023,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.84540802775193,
+              "weight": 0.2173935642267509,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Aliou Diarra",
+      "team": "Virtus Bologna",
+      "pos": "C",
+      "opponent": "Hapoel Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 9.3,
+      "expectedPir": 14.866990386853494,
+      "expectedMinutes": 18.006731944444443,
+      "basePir": 14.866990386853494,
+      "baseMinutes": 18.006731944444443,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.136828460331219,
+        "baseMin": 12.500927777777775,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.737000000000005,
+        "teamPoints": 82.8834,
+        "margin": -6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 28,
+          "historyWeight": 0.7777777777777778,
+          "sameTeam": true,
+          "avgPir": 6.428571428571429,
+          "avgMinutes": 10.644049999999998,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.054669284896089,
+          "defenseFactor": 0.9922441619833329,
+          "defenseSample": 6,
+          "rival": "Dan Oturu",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.341734277178624,
+              "weight": 0.7487391031007589,
+              "observedGames": 6
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.54106108273418,
+              "weight": 0.03386733267249023,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.081263041067512,
+              "weight": 0.2173935642267509,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kessler Edwards",
+      "team": "Virtus Bologna",
+      "pos": "F",
+      "opponent": "Hapoel Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 9.3,
+      "expectedPir": 8.063300718850654,
+      "expectedMinutes": 21.007011904761903,
+      "basePir": 8.063300718850654,
+      "baseMinutes": 21.007011904761903,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.580087162762736,
+        "baseMin": 16.999047619047616,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.7140000000000035,
+        "teamPoints": 82.8834,
+        "margin": -6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 13,
+          "historyWeight": 0.3404761904761905,
+          "sameTeam": false,
+          "avgPir": 5.615384615384615,
+          "avgMinutes": 13.123076923076923,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0284015206150912,
+          "defenseFactor": 0.9960196874106894,
+          "defenseSample": 6,
+          "rival": "Amir Coffey",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.397832294246353,
+              "weight": 0.7487391031007589,
+              "observedGames": 6
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.297131103770162,
+              "weight": 0.03386733267249023,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.92734146091302,
+              "weight": 0.2173935642267509,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Rasheed Bello",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "opponent": "Hapoel Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 9.3,
+      "expectedPir": 5.129561477315176,
+      "expectedMinutes": 13.551999999999998,
+      "basePir": 5.129561477315176,
+      "baseMinutes": 13.551999999999998,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.649000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.47199999999999465,
+        "teamPoints": 82.8834,
+        "margin": -6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9966481352154396,
+          "defenseFactor": 0.9940342141320574,
+          "defenseSample": 6,
+          "rival": "Elijah Bryant",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.804125240005822,
+              "weight": 0.7487391031007589,
+              "observedGames": 6
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.448925240005822,
+              "weight": 0.03386733267249023,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.855485240005823,
+              "weight": 0.2173935642267509,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Trent Frazier",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "opponent": "Hapoel Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 9.3,
+      "expectedPir": 6.816977948938065,
+      "expectedMinutes": 20.1025,
+      "basePir": 6.816977948938065,
+      "baseMinutes": 20.1025,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.649000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.47199999999999465,
+        "teamPoints": 82.8834,
+        "margin": -6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9669724486089304,
+          "defenseFactor": 0.9948912301256703,
+          "defenseSample": 6,
+          "rival": "Elijah Bryant",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.476492594245652,
+              "weight": 0.7487391031007589,
+              "observedGames": 6
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.466242594245653,
+              "weight": 0.03386733267249023,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.069317594245653,
+              "weight": 0.2173935642267509,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jacob Toppin",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 9.2,
+      "expectedPir": 10.050233203390697,
+      "expectedMinutes": 19.130000000000003,
+      "basePir": 10.050233203390697,
+      "baseMinutes": 19.130000000000003,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.556,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.3160000000000105,
+        "teamPoints": 88.92660000000001,
+        "margin": 6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9943519577497391,
+          "defenseSample": 6,
+          "rival": "Kessler Edwards",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.468386818854025,
+              "weight": 0.7487391031007589,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.04427632060067,
+              "weight": 0.21739356422675096,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.61817632060067,
+              "weight": 0.033867332672490216,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tomas Satoransky",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 9.1,
+      "expectedPir": 8.343486375361076,
+      "expectedMinutes": 22.01660236111111,
+      "basePir": 8.343486375361076,
+      "baseMinutes": 22.01660236111111,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.59467618027,
+        "baseMin": 21.673409444444445,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 88.92660000000001,
+        "margin": 6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.45222222222222225,
+          "sameTeam": false,
+          "avgPir": 10.945945945945946,
+          "avgMinutes": 24.911716216216217,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9783732117758532,
+          "defenseFactor": 0.9924558118748796,
+          "defenseSample": 6,
+          "rival": "Wendell Moore",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.07415216382614,
+              "weight": 0.7487391031007589,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.041549534530898,
+              "weight": 0.21739356422675096,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.58415584739449,
+              "weight": 0.033867332672490216,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Bobi Klintman",
+      "team": "Virtus Bologna",
+      "pos": "C",
+      "opponent": "Hapoel Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 9.1,
+      "expectedPir": 8.200728186328456,
+      "expectedMinutes": 19,
+      "basePir": 8.200728186328456,
+      "baseMinutes": 19,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.463000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.737000000000005,
+        "teamPoints": 82.8834,
+        "margin": -6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Dan Oturu",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.520569868937304,
+              "weight": 0.7487391031007589,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.955569868937307,
+              "weight": 0.03386733267249023,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.525569868937307,
+              "weight": 0.2173935642267509,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Mouhamet Diouf",
+      "team": "Virtus Bologna",
+      "pos": "C",
+      "opponent": "Hapoel Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 8.8,
+      "expectedPir": 7.83945087408934,
+      "expectedMinutes": 14.749903048780485,
+      "basePir": 7.83945087408934,
+      "baseMinutes": 14.749903048780485,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.021250743847482,
+        "baseMin": 18.62561219512195,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.737000000000005,
+        "teamPoints": 82.8834,
+        "margin": -6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 33,
+          "historyWeight": 0.8048780487804879,
+          "sameTeam": true,
+          "avgPir": 10.454545454545455,
+          "avgMinutes": 18.534851515151512,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.025717005808856,
+          "defenseFactor": 0.9943564499865892,
+          "defenseSample": 6,
+          "rival": "Dan Oturu",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.024314415828625,
+              "weight": 0.7487391031007589,
+              "observedGames": 6
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.549324110950579,
+              "weight": 0.03386733267249023,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.991821202413993,
+              "weight": 0.2173935642267509,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Derrick Alston Jr.",
+      "team": "Virtus Bologna",
+      "pos": "F",
+      "opponent": "Hapoel Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 8.6,
+      "expectedPir": 9.209902339023781,
+      "expectedMinutes": 21.72493611111111,
+      "basePir": 9.209902339023781,
+      "baseMinutes": 21.72493611111111,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.593952775470479,
+        "baseMin": 21.820744444444443,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.7140000000000035,
+        "teamPoints": 82.8834,
+        "margin": -6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.8222222222222222,
+          "sameTeam": true,
+          "avgPir": 8.702702702702704,
+          "avgMinutes": 22.430635135135134,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0134675465971383,
+          "defenseFactor": 0.9910593368228442,
+          "defenseSample": 6,
+          "rival": "Amir Coffey",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 22.129112965532972,
+              "weight": 0.7487391031007589,
+              "observedGames": 6
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.956619354421864,
+              "weight": 0.03386733267249023,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.6083674377552,
+              "weight": 0.2173935642267509,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kevin Kokila",
+      "team": "Virtus Bologna",
+      "pos": "C",
+      "opponent": "Hapoel Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 8,
+      "expectedPir": 4.842105779642186,
+      "expectedMinutes": 12.214,
+      "basePir": 4.842105779642186,
+      "baseMinutes": 12.214,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.44,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -7.737000000000005,
+        "teamPoints": 82.8834,
+        "margin": -6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9989250380926836,
+          "defenseSample": 6,
+          "rival": "Dan Oturu",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.441232709668768,
+              "weight": 0.7487391031007589,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.219832709668768,
+              "weight": 0.03386733267249023,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.586252709668768,
+              "weight": 0.2173935642267509,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tamir Blatt",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "out",
+      "price": 7.1,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 7.608871779226063,
+        "baseMin": 19.19528945652174,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 88.92660000000001,
+        "margin": 6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.45434782608695656,
+          "sameTeam": false,
+          "avgPir": 8.842105263157896,
+          "avgMinutes": 19.429823684210525,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Bruno Caboclo",
+      "team": "Hapoel Tel Aviv",
+      "pos": "C",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 7,
+      "expectedPir": 6.001609258488131,
+      "expectedMinutes": 11.739438210526316,
+      "basePir": 6.001609258488131,
+      "baseMinutes": 11.739438210526316,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.948016064410561,
+        "baseMin": 17.003595526315788,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.671000000000005,
+        "teamPoints": 88.92660000000001,
+        "margin": 6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 11,
+          "historyWeight": 0.318421052631579,
+          "sameTeam": false,
+          "avgPir": 7,
+          "avgMinutes": 12.7303,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9941271482049024,
+          "defenseSample": 6,
+          "rival": "Aliou Diarra",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.147701120451105,
+              "weight": 0.7487391031007589,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 10.554491649022534,
+              "weight": 0.21739356422675096,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.319702884812008,
+              "weight": 0.033867332672490216,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Khadeen Carrington",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 6.5,
+      "expectedPir": 5.163241527772819,
+      "expectedMinutes": 11.226666666666667,
+      "basePir": 5.163241527772819,
+      "baseMinutes": 11.226666666666667,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.045,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 88.92660000000001,
+        "margin": 6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Wendell Moore",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.49734238260812,
+              "weight": 0.7487391031007589,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 10.374675715941454,
+              "weight": 0.21739356422675096,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.711475715941454,
+              "weight": 0.033867332672490216,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Eugene German",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 6.5,
+      "expectedPir": 3.2462678219887957,
+      "expectedMinutes": 11.84,
+      "basePir": 3.2462678219887957,
+      "baseMinutes": 11.84,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.045,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 88.92660000000001,
+        "margin": 6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9934363019043104,
+          "defenseSample": 6,
+          "rival": "Wendell Moore",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.290394277405909,
+              "weight": 0.7487391031007589,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 10.449980748369535,
+              "weight": 0.21739356422675096,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.805180748369535,
+              "weight": 0.033867332672490216,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tai Odiase",
+      "team": "Hapoel Tel Aviv",
+      "pos": "C",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 6,
+      "expectedPir": 4.617377506746603,
+      "expectedMinutes": 13.100606756756756,
+      "basePir": 4.617377506746603,
+      "baseMinutes": 13.100606756756756,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.263330007391708,
+        "baseMin": 12.373427027027027,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.671000000000005,
+        "teamPoints": 88.92660000000001,
+        "margin": 6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 29,
+          "historyWeight": 0.7837837837837838,
+          "sameTeam": true,
+          "avgPir": 3.9310344827586206,
+          "avgMinutes": 11.92471724137931,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.022094963592233,
+          "defenseFactor": 0.9927420928098895,
+          "defenseSample": 6,
+          "rival": "Aliou Diarra",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.778589481722923,
+              "weight": 0.7487391031007589,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.272093614415018,
+              "weight": 0.21739356422675096,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.700020803604207,
+              "weight": 0.033867332672490216,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Ish Wainright",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 6,
+      "expectedPir": 4.254875685753618,
+      "expectedMinutes": 18.821248999999995,
+      "basePir": 4.254875685753618,
+      "baseMinutes": 18.821248999999995,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.676233470374555,
+        "baseMin": 21.596995999999997,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.3160000000000105,
+        "teamPoints": 88.92660000000001,
+        "margin": 6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.84,
+          "sameTeam": true,
+          "avgPir": 4.190476190476191,
+          "avgMinutes": 23.044042857142855,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9648480766149075,
+          "defenseFactor": 0.9938375044760638,
+          "defenseSample": 6,
+          "rival": "Kessler Edwards",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.68834839791959,
+              "weight": 0.7487391031007589,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.43326861461136,
+              "weight": 0.21739356422675096,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.830877301166378,
+              "weight": 0.033867332672490216,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Max Heidegger",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 5.2,
+      "expectedPir": 4.931520161998149,
+      "expectedMinutes": 14,
+      "basePir": 4.931520161998149,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.836,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 88.92660000000001,
+        "margin": 6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Wendell Moore",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.46065881541712,
+              "weight": 0.7487391031007589,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.57065881541712,
+              "weight": 0.21739356422675096,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.990658815417122,
+              "weight": 0.033867332672490216,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tyler Ennis",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "out",
+      "price": 5.1,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 3.946045724998093,
+        "baseMin": 10.874072222222221,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 88.92660000000001,
+        "margin": 6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 10,
+          "historyWeight": 0.5555555555555556,
+          "sameTeam": true,
+          "avgPir": 3.2,
+          "avgMinutes": 8.37333,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Davide Casarin",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "opponent": "Hapoel Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 4.9,
+      "expectedPir": 3.7027147022010833,
+      "expectedMinutes": 11.133333333333335,
+      "basePir": 3.7027147022010833,
+      "baseMinutes": 11.133333333333335,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.557,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.47199999999999465,
+        "teamPoints": 82.8834,
+        "margin": -6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Elijah Bryant",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.340461014762756,
+              "weight": 0.7487391031007589,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 10.227127681429423,
+              "weight": 0.03386733267249023,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.561127681429422,
+              "weight": 0.2173935642267509,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Francesco Ferrari",
+      "team": "Virtus Bologna",
+      "pos": "F",
+      "opponent": "Hapoel Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 4.4,
+      "expectedPir": 3.5106271538272855,
+      "expectedMinutes": 9.296663333333335,
+      "basePir": 3.5106271538272855,
+      "baseMinutes": 9.296663333333335,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.7544344545390684,
+        "baseMin": 11.354995,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.7140000000000035,
+        "teamPoints": 82.8834,
+        "margin": -6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 12,
+          "historyWeight": 0.6,
+          "sameTeam": true,
+          "avgPir": 3.4166666666666665,
+          "avgMinutes": 9.591658333333333,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9995447443143421,
+          "defenseSample": 6,
+          "rival": "Amir Coffey",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 9.469621086740212,
+              "weight": 0.7487391031007589,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 8.53995475340688,
+              "weight": 0.03386733267249023,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 8.81885465340688,
+              "weight": 0.2173935642267509,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Frederic Bourdillon",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 4.4,
+      "expectedPir": 4.172824752459973,
+      "expectedMinutes": 14,
+      "basePir": 4.172824752459973,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.0920000000000005,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 88.92660000000001,
+        "margin": 6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Wendell Moore",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.46065881541712,
+              "weight": 0.7487391031007589,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.57065881541712,
+              "weight": 0.21739356422675096,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.990658815417122,
+              "weight": 0.033867332672490216,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Daniel Hackett",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "opponent": "Hapoel Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 4.3,
+      "expectedPir": 2.6626001137876103,
+      "expectedMinutes": 13.04024761904762,
+      "basePir": 2.6626001137876103,
+      "baseMinutes": 13.04024761904762,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.402393051710191,
+        "baseMin": 14.540866666666666,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.47199999999999465,
+        "teamPoints": 82.8834,
+        "margin": -6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.8095238095238095,
+          "sameTeam": true,
+          "avgPir": 4.5,
+          "avgMinutes": 14.668129411764706,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9975208752472466,
+          "defenseFactor": 0.9992298749266161,
+          "defenseSample": 6,
+          "rival": "Elijah Bryant",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.282852073053505,
+              "weight": 0.7487391031007589,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.978827311148743,
+              "weight": 0.03386733267249023,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.370034739720172,
+              "weight": 0.2173935642267509,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tommaso Baldasso",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "opponent": "Hapoel Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 4.1,
+      "expectedPir": 4.697575615011767,
+      "expectedMinutes": 12.788,
+      "basePir": 4.697575615011767,
+      "baseMinutes": 12.788,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.8129999999999997,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.47199999999999465,
+        "teamPoints": 82.8834,
+        "margin": -6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9976194316308825,
+          "defenseSample": 6,
+          "rival": "Elijah Bryant",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.025911567974799,
+              "weight": 0.7487391031007589,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.747111567974798,
+              "weight": 0.03386733267249023,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.1307515679748,
+              "weight": 0.2173935642267509,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tomer Ginat",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "out",
+      "price": 4,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 3.3534792886216467,
+        "baseMin": 11.329540909090909,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.3160000000000105,
+        "teamPoints": 88.92660000000001,
+        "margin": 6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 14,
+          "historyWeight": 0.6363636363636364,
+          "sameTeam": true,
+          "avgPir": 3.0714285714285716,
+          "avgMinutes": 9.803564285714286,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Guy Palatin",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 1.0884574955096444,
+      "expectedMinutes": 7.425927777777777,
+      "basePir": 1.0884574955096444,
+      "baseMinutes": 7.425927777777777,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 1.067374820617557,
+        "baseMin": 7.425927777777777,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 88.92660000000001,
+        "margin": 6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 10,
+          "historyWeight": 0.5555555555555556,
+          "sameTeam": true,
+          "avgPir": 0.1,
+          "avgMinutes": 2.16667,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Wendell Moore",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 7.670271998740934,
+              "weight": 0.7487391031007589,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 6.667771748740935,
+              "weight": 0.21739356422675096,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 6.890549582074269,
+              "weight": 0.033867332672490216,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Oz Blayzer",
+      "team": "Hapoel Tel Aviv",
+      "pos": "F",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.8696698353632835,
+      "expectedMinutes": 14,
+      "basePir": 3.8696698353632835,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.3160000000000105,
+        "teamPoints": 88.92660000000001,
+        "margin": 6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Kessler Edwards",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.46065881541712,
+              "weight": 0.7487391031007589,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.57065881541712,
+              "weight": 0.21739356422675096,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.990658815417122,
+              "weight": 0.033867332672490216,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Bar Timor",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 2.8001315873268267,
+      "expectedMinutes": 9.43426111111111,
+      "basePir": 2.8001315873268267,
+      "baseMinutes": 9.43426111111111,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.7458949596640863,
+        "baseMin": 9.43426111111111,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 88.92660000000001,
+        "margin": 6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 10,
+          "historyWeight": 0.5555555555555556,
+          "sameTeam": true,
+          "avgPir": 1.8,
+          "avgMinutes": 5.78167,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Wendell Moore",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 9.744687935952555,
+              "weight": 0.7487391031007589,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 8.471062685952557,
+              "weight": 0.21739356422675096,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 8.75409051928589,
+              "weight": 0.033867332672490216,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Itay Segev",
+      "team": "Hapoel Tel Aviv",
+      "pos": "C",
+      "opponent": "Virtus Bologna",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.8743739118195797,
+      "expectedMinutes": 14,
+      "basePir": 3.8743739118195797,
+      "baseMinutes": 14,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 6.671000000000005,
+        "teamPoints": 88.92660000000001,
+        "margin": 6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": true,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Aliou Diarra",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.46065881541712,
+              "weight": 0.7487391031007589,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.57065881541712,
+              "weight": 0.21739356422675096,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.990658815417122,
+              "weight": 0.033867332672490216,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Matteo Baiocchi",
+      "team": "Virtus Bologna",
+      "pos": "G",
+      "opponent": "Hapoel Tel Aviv",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 1.4443279669691647,
+      "expectedMinutes": 12.424353846153847,
+      "basePir": 1.4443279669691647,
+      "baseMinutes": 12.424353846153847,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 1.4525568750383324,
+        "baseMin": 12.424353846153847,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.47199999999999465,
+        "teamPoints": 82.8834,
+        "margin": -6.0432,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 5,
+          "historyWeight": 0.38461538461538464,
+          "sameTeam": true,
+          "avgPir": -1.2,
+          "avgMinutes": 9.903319999999999,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Elijah Bryant",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.764761438434006,
+              "weight": 0.7487391031007589,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.087473669203236,
+              "weight": 0.03386733267249023,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.460204284587853,
+              "weight": 0.2173935642267509,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    }
+  ]
+}

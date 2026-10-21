@@ -1,11 +1,11 @@
 {
   "schema": "learning-v1",
   "season": "E2026",
-  "modelId": "913d5c0df9849773742a",
+  "modelId": "80709a3cfeeee1678f6d",
   "gameCode": 61,
   "round": 7,
   "kickoff": "2026-10-21T16:00:00Z",
-  "created_at": "2026-10-20T16:51:34.041853+00:00",
+  "created_at": "2026-10-21T07:06:30.693640+00:00",
   "predictions": [
     {
       "name": "Elijah Bryant",
@@ -2412,14 +2412,14 @@
       "pos": "F",
       "opponent": "Virtus Bologna",
       "home": true,
-      "status": "out",
+      "status": "active",
       "price": 4,
-      "expectedPir": 0,
-      "expectedMinutes": 0,
-      "basePir": 0,
-      "baseMinutes": 0,
+      "expectedPir": 3.4884025931975025,
+      "expectedMinutes": 11.329540909090909,
+      "basePir": 3.4884025931975025,
+      "baseMinutes": 11.329540909090909,
       "correctionActive": false,
-      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
       "features": {
         "basePir": 3.3534792886216467,
         "baseMin": 11.329540909090909,
@@ -2466,7 +2466,33 @@
           ]
         },
         "currentSeasonWeight": 0,
-        "context": null
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Kessler Edwards",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.702330401548167,
+              "weight": 0.7487391031007589,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 10.172842378820896,
+              "weight": 0.21739356422675096,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.512728606093622,
+              "weight": 0.033867332672490216,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
       }
     },
     {
