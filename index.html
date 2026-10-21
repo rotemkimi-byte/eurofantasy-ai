@@ -1835,6 +1835,9 @@ for (const id of ['data', 'learning']) {
 #teamCards.squadOptimizing .squadRival{grid-column:1;grid-row:1}
 #teamCards.squadOptimizing .squadOwnCard{grid-column:1;grid-row:2}
 #teamCards.squadOptimizing .squadAlternatives{grid-column:2;grid-row:1 / span 2;min-width:0;background:#f7f4ff;border:1px solid #c5b9dd;border-radius:12px;padding:10px 7px;color:#25133c;text-align:right;cursor:default}
+#teamCards.squadOptimizing #squadCoachSelect{grid-column:1/-1}
+#teamCards.squadOptimizing .squadCoach{grid-column:1;min-width:0}
+#teamCards.squadOptimizing .squadCoachAlternatives{grid-column:2;grid-row:auto}
 .squadAlternatives h4{color:#25133c!important;margin:0 0 6px!important;font-size:13px!important}
 .squadAlternatives p{font-size:11px;line-height:1.5;margin:0 0 8px}
 .squadAlt{display:block;width:100%;text-align:right;background:white;color:#25133c;border:1px solid #ded7ea;border-radius:9px;margin-top:8px;padding:10px 7px;overflow-wrap:anywhere}
@@ -1852,7 +1855,13 @@ for (const id of ['data', 'learning']) {
   return pool.filter(q=>q.p.name!==source.name&&!owned.has(q.p.name)&&q.p.pos===source.pos&&q.p.status!=='out'&&q.price!==null&&q.price>0&&q.price<=budget+1e-8&&q.score!==null)
    .sort((a,b)=>b.score-a.score||a.price-b.price||a.p.name.localeCompare(b.p.name)).slice(0,3);
  }
- window.SquadAlternativesCore={rank};
+ function coachPool(){
+  return COACHES.map(c=>{
+   const team=canonicalTeam(c.team),match=MATCHUPS[team];
+   return {p:{...c,pos:'coach'},price:num(c.price),score:match?num(coachExpected(team)):null,match};
+  });
+ }
+ window.SquadAlternativesCore={rank,coachPool};
  function paint(){
   const root=document.getElementById('teamCards');
   root.classList.toggle('squadOptimizing',enabled);
@@ -1868,6 +1877,19 @@ for (const id of ['data', 'learning']) {
    panel.addEventListener('click',e=>{if(!e.target.closest('[data-details]'))e.stopPropagation()});
    card.appendChild(panel);
   }
+  paintCoach(root);
+ }
+ function paintCoach(root){
+  const source=COACHES.find(c=>c.name===squadPreferences.coach),card=root.querySelector('.squadCoach');
+  if(!source||!card)return;
+  const options=rank({...source,pos:'coach'},coachPool(),new Set()),panel=document.createElement('aside');
+  panel.className='squadAlternatives squadCoachAlternatives';
+  panel.setAttribute('aria-label','חלופות למאמן '+source.name);
+  panel.innerHTML=`<h4>חלופות למאמן</h4><p>עד ${num(source.price)===null?'—':Number(source.price).toFixed(1)} קרדיט<br>לפי נקודות פנטזי צפויות</p>`+options.map((q,i)=>{
+   const win=num(q.match?.winProb),venue=q.match?.home===true?'בית':q.match?.home===false?'חוץ':'';
+   return `<article class="squadAlt"><b>${i+1}. ${esc(q.p.name)}</b><small>${esc(q.p.team)}</small><span>${q.price.toFixed(1)} קרדיט</span><span>${q.score.toFixed(1)} נק׳ צפויות</span><small>מול ${esc(q.match?.opponent||'טרם נקבעה')}${venue?' · '+venue:''}</small><small>סיכוי לניצחון: ${win===null?'—':Math.round(win*100)+'%'}</small></article>`;
+  }).join('')+(options.length?'':'<p>אין חלופות למאמן עם תחזית זמינה במחיר הזה.</p>');
+  card.after(panel);
  }
  const original=renderTeam;renderTeam=function(){original.apply(this,arguments);paint()};
  button.addEventListener('click',()=>{
