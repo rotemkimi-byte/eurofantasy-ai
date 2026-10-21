@@ -106,7 +106,7 @@ html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method sum
 </section>
 
 <nav class="tabs">
-<button class="active" data-tab="market">שוק שחקנים</button><button data-tab="clubMarket">שוק קבוצות</button><button data-tab="team">הסגל שלי</button><button data-tab="captain">קפטן</button><button data-tab="coach">מאמן</button><button data-tab="matchups">מאצ׳אפ קבוצות</button><button data-tab="playerMatchups">מאצ׳אפ שחקנים</button><button data-tab="pirGraph">גרף PIR</button><button data-tab="pirWeakness">חולשת PIR</button><button data-tab="injuries">פציעות</button><button data-tab="optimizer">אופטימייזר</button><button data-tab="data">נתונים</button>
+<button class="active" data-tab="market">שוק שחקנים</button><button data-tab="clubMarket">שוק קבוצות</button><button data-tab="team">הסגל שלי</button><button data-tab="captain">קפטן</button><button data-tab="coach">מאמן</button><button data-tab="matchups">מאצ׳אפ קבוצות</button><button data-tab="playerMatchups">מאצ׳אפ שחקנים</button><button data-tab="pirGraph">גרף PIR</button><button data-tab="pirWeakness">חולשת PIR</button><button data-tab="injuries">פציעות</button><button data-tab="optimizer">בניית סגל מלא</button><button data-tab="data">נתונים</button>
 <button data-tab="learning">למידה ובדיקת תחזיות</button>
 </nav>
 
@@ -122,7 +122,7 @@ html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method sum
 </section>
 
 <section id="clubMarket" class="tab"><div class="card"><h3>שוק קבוצות</h3><div class="filters"><label>קבוצה<select id="clubSelect"></select></label><label>מיון<select id="clubSort"><option value="price">מחיר: מהגבוה לנמוך</option><option value="minutes">דקות במשחק האחרון</option><option value="pir">PIR במשחק האחרון</option></select></label><label>תצוגה<select id="clubView"><option value="court">מגרש</option><option value="list">רשימה</option></select></label></div><p class="muted">נתונים בפועל · 2026/27. החמישייה בתצוגת המגרש נבחרת לפי דקות במשחק האחרון, במבנה 2 גארדים, 2 פורוורדים וסנטר; זו אינה חמישייה פותחת מאומתת. גם החמישייה השנייה נבחרת באותו מבנה מתוך השחקנים שנותרו, לפי דקות במשחק האחרון. שאר הסגל מופיע מתחת לשני המגרשים. — מציין נתון חסר.</p><p id="clubSummary" class="muted"></p><div id="clubRoster"></div></div></section>
-<section id="team" class="tab"><div class="card"><div class="sectionHead"><div><h3>הסגל שלי</h3><p class="muted">הוסף שחקנים מהשוק. לחץ על גופייה לפרטים; בחר הרכב וקפטן בכרטיס השחקן.</p></div><button class="secondary" id="clearTeam">נקה</button></div><div id="teamView" class="rr-toggle" role="group" aria-label="תצוגת הסגל"><button data-team-view="forecast" aria-pressed="true">לקראת המחזור</button><button data-team-view="review" aria-pressed="false">מה היה</button></div><div id="roundReview" hidden></div><div id="teamCards" class="grid2"></div></div>
+<section id="team" class="tab"><div class="card"><div class="sectionHead"><div><h3>הסגל שלי</h3><p class="muted">הוסף שחקנים מהשוק. לחץ על גופייה לפרטים; בחר הרכב וקפטן בכרטיס השחקן.</p></div><button class="secondary" id="clearTeam">נקה</button></div><div id="teamView" class="rr-toggle" role="group" aria-label="תצוגת הסגל"><button data-team-view="forecast" aria-pressed="true">לקראת המחזור</button><button data-team-view="review" aria-pressed="false">מה היה</button><button id="squadOptimizer" aria-pressed="false" aria-controls="teamCards">אופטימייזר</button></div><div id="roundReview" hidden></div><div id="teamCards" class="grid2"></div></div>
 <div class="card"><h3>איפה הקרדיט הבא נותן הכי הרבה?</h3><div class="grid3"><label>קרדיט נוסף<input id="extraCredit" type="number" step=".1" value="0"></label><label>סף איכות נתונים פנימי<input id="minConf" type="number" value="45"></label><div style="align-self:end"><button id="findUpgrade">מצא שדרוג</button></div></div><div id="upgradeList" class="rank" style="margin-top:12px"></div></div></section>
 
 <section id="captain" class="tab"><div class="card"><h3>דירוג קפטן</h3><p class="muted">מדורג לפי תחזית PIR למשחק הקרוב. הגבול העליון מציג תרחיש אפשרי ואינו מגדיל את ציון הדירוג. מאמנים ושחקנים בחוץ אינם מועמדים.</p><div id="captainList" class="rank"></div></div></section>
@@ -1825,7 +1825,65 @@ for (const id of ['data', 'learning']) {
   const button = document.querySelector('.tabs > button[data-tab="' + id + '"]');
   if (button) button.parentElement.appendChild(button);
 }
-</script></body></html>
+</script>
+<style>
+#teamView{display:flex;flex-wrap:wrap;gap:6px}
+#teamView button{font-size:12px;padding:10px;white-space:nowrap}
+#teamView #squadOptimizer[aria-pressed="true"]{background:#087e51;color:white}
+#teamCards.squadOptimizing .squadCourtRow,#teamCards.squadOptimizing .squadBenchGrid{display:grid;grid-template-columns:1fr}
+#teamCards.squadOptimizing .squadPlayer{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;width:100%;max-width:none;align-items:start}
+#teamCards.squadOptimizing .squadRival{grid-column:1;grid-row:1}
+#teamCards.squadOptimizing .squadOwnCard{grid-column:1;grid-row:2}
+#teamCards.squadOptimizing .squadAlternatives{grid-column:2;grid-row:1 / span 2;min-width:0;background:#f7f4ff;border:1px solid #c5b9dd;border-radius:12px;padding:10px 7px;color:#25133c;text-align:right;cursor:default}
+.squadAlternatives h4{color:#25133c!important;margin:0 0 6px!important;font-size:13px!important}
+.squadAlternatives p{font-size:11px;line-height:1.5;margin:0 0 8px}
+.squadAlt{display:block;width:100%;text-align:right;background:white;color:#25133c;border:1px solid #ded7ea;border-radius:9px;margin-top:8px;padding:10px 7px;overflow-wrap:anywhere}
+.squadAlt b,.squadAlt span,.squadAlt small{display:block;line-height:1.5}
+.squadAlt b{font-size:12px}.squadAlt small{font-size:10px;color:#61536f}.squadAlt span{font-size:12px;color:#087e51}
+</style>
+<script>
+(()=>{
+ const button=document.getElementById('squadOptimizer');
+ let enabled=false;
+ const num=v=>v===null||v===undefined||v===''||!Number.isFinite(Number(v))?null:Number(v);
+ function rank(source,pool,owned){
+  const budget=num(source.price);
+  if(budget===null||budget<=0)return [];
+  return pool.filter(q=>q.p.name!==source.name&&!owned.has(q.p.name)&&q.p.pos===source.pos&&q.p.status!=='out'&&q.price!==null&&q.price>0&&q.price<=budget+1e-8&&q.score!==null)
+   .sort((a,b)=>b.score-a.score||a.price-b.price||a.p.name.localeCompare(b.p.name)).slice(0,3);
+ }
+ window.SquadAlternativesCore={rank};
+ function paint(){
+  const root=document.getElementById('teamCards');
+  root.classList.toggle('squadOptimizing',enabled);
+  root.querySelectorAll('.squadAlternatives').forEach(el=>el.remove());
+  if(!enabled)return;
+  const owned=new Set(myTeam);
+  const pool=players.map(p=>({p,price:num(p.price),score:num(model(p).expected)}));
+  for(const card of root.querySelectorAll('.squadPlayer[data-player]')){
+   const source=players.find(p=>p.name===card.dataset.player);if(!source)continue;
+   const options=rank(source,pool,owned),panel=document.createElement('aside');panel.className='squadAlternatives';
+   panel.setAttribute('aria-label','חלופות עבור '+source.name);
+   panel.innerHTML=`<h4>החלופות המובילות</h4><p>עמדה ${esc(source.pos)} · עד ${num(source.price)===null?'—':Number(source.price).toFixed(1)} קרדיט<br>לפי PIR צפוי למחזור הבא</p>`+options.map((q,i)=>`<button class="squadAlt" data-details="${esc(q.p.name)}"><b>${i+1}. ${esc(q.p.name)}</b><small>${esc(q.p.team)} · ${esc(q.p.pos)} · ${esc(statusText(q.p.status))}</small><span>${q.price.toFixed(1)} קרדיט</span><span>${q.score.toFixed(1)} PIR צפוי</span><small>לפרטי השחקן</small></button>`).join('')+(options.length?'':'<p>אין חלופות זמינות בעמדה ובמחיר הזה.</p>');
+   panel.addEventListener('click',e=>{if(!e.target.closest('[data-details]'))e.stopPropagation()});
+   card.appendChild(panel);
+  }
+ }
+ const original=renderTeam;renderTeam=function(){original.apply(this,arguments);paint()};
+ button.addEventListener('click',()=>{
+  enabled=!enabled;button.setAttribute('aria-pressed',String(enabled));
+  if(enabled)document.querySelector('[data-team-view="forecast"]').click();
+  paint();
+ });
+ // Refresh suggestions when live prices change, as well as on squad rerenders.
+ const observer=new MutationObserver(records=>{
+  if(enabled&&records.some(r=>r.target.nodeType===1&&r.target.matches('[data-squad-price]')))paint();
+ });
+ observer.observe(document.getElementById('teamCards'),{childList:true,subtree:true});
+})();
+</script>
+</body></html>
+
 
 
 
