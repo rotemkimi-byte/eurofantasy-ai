@@ -1,0 +1,67 @@
+name: Official EuroLeague offensive metrics
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/official-offense.yml'
+      - 'scripts/build_official_metrics.py'
+      - 'official-offense-core.js'
+  schedule:
+    - cron: '19,49 * * * *'
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: eurofantasy-official-offense
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fetch official box scores and verify derived metrics
+        run: |
+          python scripts/build_official_metrics.py
+          python tests/test_official_metrics.py
+          node tests/test_official_offense.cjs
+          node tests/test_algorithm_ui.cjs
+      - name: Save only official offensive observations
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/official-offense.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh offensive metrics from official EuroLeague box scores'
+            for attempt in 1 2 3; do
+              git pull --rebase origin "${{ github.ref_name }}"
+              if git push origin "HEAD:${{ github.ref_name }}"; then pushed=yes; break; fi
+            done
+            if [ "${pushed:-no}" != yes ]; then exit 1; fi
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: '.'
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish verified official metrics
+        id: deployment
+        uses: actions/deploy-pages@v4

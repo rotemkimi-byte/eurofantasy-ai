@@ -30,9 +30,6 @@ jobs:
       - name: Refresh observed stats, available rosters and pregame strength
         run: |
           python scripts/build_matchup_context.py
-          python scripts/build_official_metrics.py
-          python tests/test_official_metrics.py
-          node tests/test_official_offense.cjs
           python scripts/fantasy_learning.py prepare
           python scripts/fantasy_learning.py grade
       - name: Verify data handling, bounded effects and chronological calibration
@@ -51,7 +48,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add scripts/build_official_metrics.py data/official-offense.json index.html matchup-context-core.js matchup-context.js learning.js learning-model-version.js scripts/build_matchup_context.py scripts/fantasy_learning.py scripts/forecast_players.cjs scripts/snapshot_live_model.py tests/test_matchup_context.py tests/test_matchup_context.cjs tests/test_context_browser.cjs data/context data/matchup-context.json data/learning data/backtest/cache
+          git add index.html matchup-context-core.js matchup-context.js learning.js learning-model-version.js scripts/build_matchup_context.py scripts/fantasy_learning.py scripts/forecast_players.cjs scripts/snapshot_live_model.py tests/test_matchup_context.py tests/test_matchup_context.cjs tests/test_context_browser.cjs data/context data/matchup-context.json data/learning data/backtest/cache
           if ! git diff --cached --quiet; then
             git commit -m 'Add attack involvement defense minute scenarios and calibrated team context'
             for attempt in 1 2 3; do

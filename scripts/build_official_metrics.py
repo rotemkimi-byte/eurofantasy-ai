@@ -25,9 +25,12 @@ def metrics(stats, total, player_seconds, game_seconds):
       'tsPct':100*v('points')/(2*(fga+.44*ft)) if fga is not None and ft is not None and fga+.44*ft>0 and v('points') is not None else None}
 
 def build(root=ROOT,offline=False):
+    warnings=[]
     payload=load(root/'data/context/E2026-schedule.json',{})
-    if not payload.get('data') and not offline:payload=api('E2026','games?limit=500')
-    profiles={};warnings=[];now=datetime.now(timezone.utc)
+    if not offline:
+        try:payload=api('E2026','games?limit=500')
+        except Exception:warnings.append('Official schedule refresh failed; using cached official schedule')
+    profiles={};now=datetime.now(timezone.utc)
     for g in payload.get('data',[]):
         date=stamp(g.get('utcDate'))
         if not g.get('played') or not date or date>=now or g.get('season',{}).get('code')!='E2026':continue
