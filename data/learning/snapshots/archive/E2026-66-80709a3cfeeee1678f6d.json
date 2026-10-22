@@ -1,0 +1,2847 @@
+{
+  "schema": "learning-v1",
+  "season": "E2026",
+  "modelId": "80709a3cfeeee1678f6d",
+  "gameCode": 66,
+  "round": 7,
+  "kickoff": "2026-10-22T18:45:00Z",
+  "created_at": "2026-10-21T19:00:42.296283+00:00",
+  "predictions": [
+    {
+      "name": "Chima Moneke",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 15.4,
+      "expectedPir": 16.44148899821582,
+      "expectedMinutes": 22.6937023255814,
+      "basePir": 16.44148899821582,
+      "baseMinutes": 22.6937023255814,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 17.736530578077126,
+        "baseMin": 26.924809302325585,
+        "injuryBoost": 0.19,
+        "injuryUsagePct": 0.32571428571428573,
+        "missingStars": [],
+        "positionMatchPct": 4.760999999999993,
+        "teamPoints": 83.11580000000001,
+        "margin": -0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 35,
+          "historyWeight": 0.813953488372093,
+          "sameTeam": true,
+          "avgPir": 18.514285714285716,
+          "avgMinutes": 26.907622857142858,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 5,
+              "nextGameSamples": 6,
+              "nextGameAvgPir": 20.333333333333332,
+              "continuedRate": 0.5
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0191032570852914,
+          "defenseFactor": 0.9982410170206074,
+          "defenseSample": 6,
+          "rival": "Lamar Stevens",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.072015720528245,
+              "weight": 0.8074502880968054,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.40047124041761,
+              "weight": 0.08873685174580334,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 20.85662737769606,
+              "weight": 0.1038128601573912,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Carlik Jones",
+      "team": "Partizan",
+      "pos": "G",
+      "opponent": "Crvena Zvezda",
+      "home": true,
+      "status": "active",
+      "price": 14.2,
+      "expectedPir": 15.47020777841559,
+      "expectedMinutes": 26.65954891304348,
+      "basePir": 15.47020777841559,
+      "baseMinutes": 26.65954891304348,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 15.480565827035326,
+        "baseMin": 27.694195652173914,
+        "injuryBoost": 0.14,
+        "injuryUsagePct": 0.24000000000000005,
+        "missingStars": [],
+        "positionMatchPct": 0.11600000000000499,
+        "teamPoints": 83.6242,
+        "margin": 0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 15,
+          "historyWeight": 0.6521739130434783,
+          "sameTeam": true,
+          "avgPir": 16.733333333333334,
+          "avgMinutes": 28.064433333333334,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 17,
+              "continuedRate": 0.3333333333333333
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9905362611055265,
+          "defenseFactor": 0.9750619092192794,
+          "defenseSample": 6,
+          "rival": "Nick Weiler-Babb",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 26.696461675200233,
+              "weight": 0.8074502880968054,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 26.54909188401425,
+              "weight": 0.1038128601573912,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 26.45288888432804,
+              "weight": 0.08873685174580334,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Jordan Nwora",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 12.9,
+      "expectedPir": 13.842062759266597,
+      "expectedMinutes": 23.226087500000002,
+      "basePir": 13.842062759266597,
+      "baseMinutes": 23.226087500000002,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 15.124768100384028,
+        "baseMin": 26.34285,
+        "injuryBoost": 0.18762500000000001,
+        "injuryUsagePct": 0.3216428571428572,
+        "missingStars": [],
+        "positionMatchPct": 4.760999999999993,
+        "teamPoints": 83.11580000000001,
+        "margin": -0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 34,
+          "historyWeight": 0.8095238095238095,
+          "sameTeam": true,
+          "avgPir": 15.911764705882353,
+          "avgMinutes": 27.12940294117647,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 19,
+              "continuedRate": 0.5
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.016048517404515,
+          "defenseFactor": 0.9966191667318256,
+          "defenseSample": 6,
+          "rival": "Lamar Stevens",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 23.34902745937873,
+              "weight": 0.8074502880968054,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 23.708100812121344,
+              "weight": 0.08873685174580334,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.857853841657207,
+              "weight": 0.1038128601573912,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Chris Jones",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 12.2,
+      "expectedPir": 11.38201902032561,
+      "expectedMinutes": 19.6990451,
+      "basePir": 11.38201902032561,
+      "baseMinutes": 19.6990451,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 11.613394288559743,
+        "baseMin": 21.8231804,
+        "injuryBoost": 0.17099999999999999,
+        "injuryUsagePct": 0.29314285714285715,
+        "missingStars": [],
+        "positionMatchPct": 1.7409999999999926,
+        "teamPoints": 83.11580000000001,
+        "margin": -0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.462,
+          "sameTeam": false,
+          "avgPir": 11.80952380952381,
+          "avgMinutes": 20.452771428571427,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 4,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 19.333333333333332,
+              "continuedRate": 0.6666666666666666
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 21,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9687813603301296,
+          "defenseFactor": 0.997830756563471,
+          "defenseSample": 6,
+          "rival": "Carlik Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.68709622805137,
+              "weight": 0.8074502880968054,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.901977619669175,
+              "weight": 0.08873685174580334,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.763743592908046,
+              "weight": 0.1038128601573912,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Christian Koloko",
+      "team": "Crvena Zvezda",
+      "pos": "C",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "questionable",
+      "price": 9.8,
+      "expectedPir": 7.681748891501465,
+      "expectedMinutes": 15.579999999999998,
+      "basePir": 7.681748891501465,
+      "baseMinutes": 15.579999999999998,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.114,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.899999999999997,
+        "teamPoints": 83.11580000000001,
+        "margin": -0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Nikola Tanaskovic",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.936467678208423,
+              "weight": 0.8074502880968054,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.833167678208426,
+              "weight": 0.08873685174580334,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 14.300567678208427,
+              "weight": 0.1038128601573912,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Patrick Baldwin Jr",
+      "team": "Crvena Zvezda",
+      "pos": "C",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 9.7,
+      "expectedPir": 9.479744917940256,
+      "expectedMinutes": 19.35082142857143,
+      "basePir": 9.479744917940256,
+      "baseMinutes": 19.35082142857143,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.020999999999999,
+        "baseMin": 19,
+        "injuryBoost": 0.3508214285714286,
+        "injuryUsagePct": 0.3827142857142857,
+        "missingStars": [],
+        "positionMatchPct": 8.899999999999997,
+        "teamPoints": 83.11580000000001,
+        "margin": -0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Nikola Tanaskovic",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.793564842311394,
+              "weight": 0.8074502880968054,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.181203949454254,
+              "weight": 0.08873685174580334,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.761728592311396,
+              "weight": 0.1038128601573912,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tonye Jekiri",
+      "team": "Partizan",
+      "pos": "C",
+      "opponent": "Crvena Zvezda",
+      "home": true,
+      "status": "out",
+      "price": 9.4,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 9.472242159537622,
+        "baseMin": 19.17971739130435,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -2.9939999999999967,
+        "teamPoints": 83.6242,
+        "margin": 0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 15,
+          "historyWeight": 0.6521739130434783,
+          "sameTeam": true,
+          "avgPir": 9.866666666666667,
+          "avgMinutes": 19.27556666666667,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": null
+      }
+    },
+    {
+      "name": "Jared Butler",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 9.2,
+      "expectedPir": 7.653871744748043,
+      "expectedMinutes": 17.520938125,
+      "basePir": 7.653871744748043,
+      "baseMinutes": 17.520938125,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.346703126585785,
+        "baseMin": 19.8037525,
+        "injuryBoost": 0.09974999999999998,
+        "injuryUsagePct": 0.17099999999999999,
+        "missingStars": [],
+        "positionMatchPct": 1.7409999999999926,
+        "teamPoints": 83.11580000000001,
+        "margin": -0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 32,
+          "historyWeight": 0.8,
+          "sameTeam": true,
+          "avgPir": 10.8125,
+          "avgMinutes": 20.004690625,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.990098718458148,
+          "defenseFactor": 0.9978784125482311,
+          "defenseSample": 6,
+          "rival": "Carlik Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.491132789264284,
+              "weight": 0.8074502880968054,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.721902256308855,
+              "weight": 0.08873685174580334,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.726205670656,
+              "weight": 0.1038128601573912,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Johnathan Motley",
+      "team": "Crvena Zvezda",
+      "pos": "C",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "out",
+      "price": 9,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 8.363267476585118,
+        "baseMin": 17.04792465116279,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 8.899999999999997,
+        "teamPoints": 83.11580000000001,
+        "margin": -0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 35,
+          "historyWeight": 0.4476744186046512,
+          "sameTeam": false,
+          "avgPir": 8.085714285714285,
+          "avgMinutes": 14.63952,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": null
+      }
+    },
+    {
+      "name": "Ethan Thompson",
+      "team": "Partizan",
+      "pos": "G",
+      "opponent": "Crvena Zvezda",
+      "home": true,
+      "status": "active",
+      "price": 8.9,
+      "expectedPir": 6.1715688022517385,
+      "expectedMinutes": 17.97775,
+      "basePir": 6.1715688022517385,
+      "baseMinutes": 17.97775,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.277000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0.06825000000000002,
+        "injuryUsagePct": 0.11700000000000003,
+        "missingStars": [],
+        "positionMatchPct": 0.11600000000000499,
+        "teamPoints": 83.6242,
+        "margin": 0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9988328346497548,
+          "defenseFactor": 0.9785153858526136,
+          "defenseSample": 6,
+          "rival": "Nick Weiler-Babb",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.43511476530574,
+              "weight": 0.8074502880968054,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.714216841912133,
+              "weight": 0.1038128601573912,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 16.464112118254832,
+              "weight": 0.08873685174580334,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Semi Ojeleye",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 8.7,
+      "expectedPir": 11.552939769117206,
+      "expectedMinutes": 24.229429255319147,
+      "basePir": 11.552939769117206,
+      "baseMinutes": 24.229429255319147,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.934224590461077,
+        "baseMin": 22.259217021276594,
+        "injuryBoost": 0.08787499999999998,
+        "injuryUsagePct": 0.15064285714285713,
+        "missingStars": [],
+        "positionMatchPct": 4.760999999999993,
+        "teamPoints": 83.11580000000001,
+        "margin": -0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 39,
+          "historyWeight": 0.8297872340425532,
+          "sameTeam": true,
+          "avgPir": 7.846153846153846,
+          "avgMinutes": 22.927774358974357,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0349837039993963,
+          "defenseFactor": 0.9981473702430322,
+          "defenseSample": 6,
+          "rival": "Lamar Stevens",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 24.50517595556305,
+              "weight": 0.8074502880968054,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 23.724440840323773,
+              "weight": 0.08873685174580334,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 22.51634023947598,
+              "weight": 0.1038128601573912,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Kyle Allman",
+      "team": "Partizan",
+      "pos": "G",
+      "opponent": "Crvena Zvezda",
+      "home": true,
+      "status": "active",
+      "price": 8.7,
+      "expectedPir": 6.044620575166769,
+      "expectedMinutes": 18.698749999999997,
+      "basePir": 6.044620575166769,
+      "baseMinutes": 18.698749999999997,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.091,
+        "baseMin": 19,
+        "injuryBoost": 0.06475,
+        "injuryUsagePct": 0.111,
+        "missingStars": [],
+        "positionMatchPct": 0.11600000000000499,
+        "teamPoints": 83.6242,
+        "margin": 0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0173887462595859,
+          "defenseFactor": 0.9780719897962242,
+          "defenseSample": 6,
+          "rival": "Nick Weiler-Babb",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.75826499249129,
+              "weight": 0.8074502880968054,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.541667604925152,
+              "weight": 0.1038128601573912,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.340970514978064,
+              "weight": 0.08873685174580334,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Ebuka Izundu",
+      "team": "Crvena Zvezda",
+      "pos": "C",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 8.5,
+      "expectedPir": 8.19702534346085,
+      "expectedMinutes": 16.784394715447153,
+      "basePir": 8.19702534346085,
+      "baseMinutes": 16.784394715447153,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 10.078195551786955,
+        "baseMin": 15.289434146341463,
+        "injuryBoost": 0.2612500000000001,
+        "injuryUsagePct": 0.28500000000000003,
+        "missingStars": [],
+        "positionMatchPct": 8.899999999999997,
+        "teamPoints": 83.11580000000001,
+        "margin": -0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 33,
+          "historyWeight": 0.8048780487804879,
+          "sameTeam": true,
+          "avgPir": 10.333333333333334,
+          "avgMinutes": 14.389903030303032,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9965406234816805,
+          "defenseSample": 6,
+          "rival": "Nikola Tanaskovic",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.864829181784405,
+              "weight": 0.8074502880968054,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.176595709779562,
+              "weight": 0.08873685174580334,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.823535777986745,
+              "weight": 0.1038128601573912,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nick Weiler-Babb",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 8.3,
+      "expectedPir": 5.212626782529071,
+      "expectedMinutes": 21.09366636111111,
+      "basePir": 5.212626782529071,
+      "baseMinutes": 21.09366636111111,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 9.251781938255426,
+        "baseMin": 23.431165444444446,
+        "injuryBoost": 0.07837500000000003,
+        "injuryUsagePct": 0.1343571428571429,
+        "missingStars": [],
+        "positionMatchPct": 1.7409999999999926,
+        "teamPoints": 83.11580000000001,
+        "margin": -0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 37,
+          "historyWeight": 0.45222222222222225,
+          "sameTeam": false,
+          "avgPir": 10.972972972972974,
+          "avgMinutes": 28.798645945945946,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 15,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 14,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9685921625544267,
+          "defenseFactor": 0.9989403282653005,
+          "defenseSample": 6,
+          "rival": "Carlik Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.293015688894222,
+              "weight": 0.8074502880968054,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.932202974822587,
+              "weight": 0.08873685174580334,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.68115427583958,
+              "weight": 0.1038128601573912,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Lamar Stevens",
+      "team": "Partizan",
+      "pos": "F",
+      "opponent": "Crvena Zvezda",
+      "home": true,
+      "status": "active",
+      "price": 8.3,
+      "expectedPir": 9.165531854865781,
+      "expectedMinutes": 21.10825198924731,
+      "basePir": 9.165531854865781,
+      "baseMinutes": 21.10825198924731,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.817692017958774,
+        "baseMin": 19.391505967741935,
+        "injuryBoost": 0.05775000000000002,
+        "injuryUsagePct": 0.09900000000000003,
+        "missingStars": [],
+        "positionMatchPct": -1.0140000000000038,
+        "teamPoints": 83.6242,
+        "margin": 0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 23,
+          "historyWeight": 0.4080645161290323,
+          "sameTeam": false,
+          "avgPir": 7.956521739130435,
+          "avgMinutes": 19.959421739130434,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9746907896875316,
+          "defenseSample": 6,
+          "rival": "Semi Ojeleye",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.000311405575623,
+              "weight": 0.8074502880968054,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 21.471974244413627,
+              "weight": 0.1038128601573912,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.664927223938264,
+              "weight": 0.08873685174580334,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Luca Vildoza",
+      "team": "Partizan",
+      "pos": "G",
+      "opponent": "Crvena Zvezda",
+      "home": true,
+      "status": "active",
+      "price": 7.8,
+      "expectedPir": 8.403892569029825,
+      "expectedMinutes": 18.770777660256407,
+      "basePir": 8.403892569029825,
+      "baseMinutes": 18.770777660256407,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 8.365306822272503,
+        "baseMin": 19.99611064102564,
+        "injuryBoost": 0.049,
+        "injuryUsagePct": 0.084,
+        "missingStars": [],
+        "positionMatchPct": 0.11600000000000499,
+        "teamPoints": 83.6242,
+        "margin": 0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 31,
+          "historyWeight": 0.4371794871794872,
+          "sameTeam": false,
+          "avgPir": 9.903225806451612,
+          "avgMinutes": 21.278493548387097,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 11,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0170053950188456,
+          "defenseFactor": 0.9764145834103624,
+          "defenseSample": 6,
+          "rival": "Nick Weiler-Babb",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.829513857378338,
+              "weight": 0.8074502880968054,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.587708352693088,
+              "weight": 0.1038128601573912,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.45048670668451,
+              "weight": 0.08873685174580334,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nikola Tanaskovic",
+      "team": "Partizan",
+      "pos": "C",
+      "opponent": "Crvena Zvezda",
+      "home": true,
+      "status": "active",
+      "price": 7.7,
+      "expectedPir": 7.0883375288112855,
+      "expectedMinutes": 18.32075,
+      "basePir": 7.0883375288112855,
+      "baseMinutes": 18.32075,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.1610000000000005,
+        "baseMin": 19,
+        "injuryBoost": 0.15400000000000003,
+        "injuryUsagePct": 0.168,
+        "missingStars": [],
+        "positionMatchPct": -2.9939999999999967,
+        "teamPoints": 83.6242,
+        "margin": 0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0124955563916602,
+          "defenseFactor": 0.9814199962364326,
+          "defenseSample": 6,
+          "rival": "Ebuka Izundu",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.402363844396508,
+              "weight": 0.8074502880968054,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 18.77599967161924,
+              "weight": 0.1038128601573912,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.045520031380924,
+              "weight": 0.08873685174580334,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Derek Willis",
+      "team": "Partizan",
+      "pos": "F",
+      "opponent": "Crvena Zvezda",
+      "home": true,
+      "status": "out",
+      "price": 7.5,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 7.482504061287086,
+        "baseMin": 17.810877083333335,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -1.0140000000000038,
+        "teamPoints": 83.6242,
+        "margin": 0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 28,
+          "historyWeight": 0.4277777777777778,
+          "sameTeam": false,
+          "avgPir": 7.964285714285714,
+          "avgMinutes": 16.220232142857142,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Kevarrius Hayes",
+      "team": "Partizan",
+      "pos": "C",
+      "opponent": "Crvena Zvezda",
+      "home": true,
+      "status": "active",
+      "price": 7.5,
+      "expectedPir": 7.61191628819259,
+      "expectedMinutes": 18.229864973958332,
+      "basePir": 7.61191628819259,
+      "baseMinutes": 18.229864973958332,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 7.120124658726122,
+        "baseMin": 18.279459895833334,
+        "injuryBoost": 0.15400000000000003,
+        "injuryUsagePct": 0.168,
+        "missingStars": [],
+        "positionMatchPct": -2.9939999999999967,
+        "teamPoints": 83.6242,
+        "margin": 0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 40,
+          "historyWeight": 0.45833333333333337,
+          "sameTeam": false,
+          "avgPir": 7.25,
+          "avgMinutes": 17.427912499999998,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0056738767605005,
+          "defenseFactor": 0.9840843320301327,
+          "defenseSample": 6,
+          "rival": "Ebuka Izundu",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.24769424124888,
+              "weight": 0.8074502880968054,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.827066610987757,
+              "weight": 0.1038128601573912,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.53886177266075,
+              "weight": 0.08873685174580334,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Joffrey Lauvergne",
+      "team": "Partizan",
+      "pos": "C",
+      "opponent": "Crvena Zvezda",
+      "home": true,
+      "status": "active",
+      "price": 7.3,
+      "expectedPir": 1.4217323147133927,
+      "expectedMinutes": 12.565999999999999,
+      "basePir": 1.4217323147133927,
+      "baseMinutes": 12.565999999999999,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.789000000000001,
+        "baseMin": 19,
+        "injuryBoost": 0.15400000000000003,
+        "injuryUsagePct": 0.168,
+        "missingStars": [],
+        "positionMatchPct": -2.9939999999999967,
+        "teamPoints": 83.6242,
+        "margin": 0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9932375997826147,
+          "defenseSample": 6,
+          "rival": "Ebuka Izundu",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.487452929817758,
+              "weight": 0.8074502880968054,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.026725044034041,
+              "weight": 0.1038128601573912,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.911625044034041,
+              "weight": 0.08873685174580334,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Alessandro Pajola",
+      "team": "Partizan",
+      "pos": "G",
+      "opponent": "Crvena Zvezda",
+      "home": true,
+      "status": "active",
+      "price": 7.2,
+      "expectedPir": 6.803718458961172,
+      "expectedMinutes": 20.197736835937498,
+      "basePir": 6.803718458961172,
+      "baseMinutes": 20.197736835937498,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 6.769677050663419,
+        "baseMin": 19.034947343749998,
+        "injuryBoost": 0.049,
+        "injuryUsagePct": 0.084,
+        "missingStars": [],
+        "positionMatchPct": 0.11600000000000499,
+        "teamPoints": 83.6242,
+        "margin": 0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 24,
+          "historyWeight": 0.41250000000000003,
+          "sameTeam": false,
+          "avgPir": 6.875,
+          "avgMinutes": 19.084720833333332,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0225956574220851,
+          "defenseFactor": 0.9792322501676062,
+          "defenseSample": 6,
+          "rival": "Nick Weiler-Babb",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.46032136045849,
+              "weight": 0.8074502880968054,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.562006095009608,
+              "weight": 0.1038128601573912,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.55211925321273,
+              "weight": 0.08873685174580334,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Tyson Carter",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 6.6,
+      "expectedPir": 5.544075599286373,
+      "expectedMinutes": 16.374811842105263,
+      "basePir": 5.544075599286373,
+      "baseMinutes": 16.374811842105263,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.7930000023744723,
+        "baseMin": 14.398247368421053,
+        "injuryBoost": 0.0665,
+        "injuryUsagePct": 0.114,
+        "missingStars": [],
+        "positionMatchPct": 1.7409999999999926,
+        "teamPoints": 83.11580000000001,
+        "margin": -0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 11,
+          "historyWeight": 0.5789473684210527,
+          "sameTeam": true,
+          "avgPir": 2,
+          "avgMinutes": 14.687881818181818,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0030209111324262,
+          "defenseFactor": 0.9986731663492556,
+          "defenseSample": 6,
+          "rival": "Carlik Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 16.49444726398382,
+              "weight": 0.8074502880968054,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.48942404041133,
+              "weight": 0.08873685174580334,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.346326726196766,
+              "weight": 0.1038128601573912,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "David Kramer",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 5.5,
+      "expectedPir": 1.9987370745075317,
+      "expectedMinutes": 12.314729374999999,
+      "basePir": 1.9987370745075317,
+      "baseMinutes": 12.314729374999999,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.4492034685565365,
+        "baseMin": 13.067917499999998,
+        "injuryBoost": 0.0665,
+        "injuryUsagePct": 0.114,
+        "missingStars": [],
+        "positionMatchPct": 1.7409999999999926,
+        "teamPoints": 83.11580000000001,
+        "margin": -0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 14,
+          "historyWeight": 0.35000000000000003,
+          "sameTeam": false,
+          "avgPir": 0.8571428571428571,
+          "avgMinutes": 11.336907142857143,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 0.9463454977773184,
+          "defenseFactor": 0.9994894356491607,
+          "defenseSample": 6,
+          "rival": "Carlik Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.43612267960284,
+              "weight": 0.8074502880968054,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.186226649313376,
+              "weight": 0.08873685174580334,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.480380611994292,
+              "weight": 0.1038128601573912,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Ognjen Dobric",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 4.8,
+      "expectedPir": 5.932690806265787,
+      "expectedMinutes": 13.034546464646464,
+      "basePir": 5.932690806265787,
+      "baseMinutes": 13.034546464646464,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.487004496988563,
+        "baseMin": 12.864139393939393,
+        "injuryBoost": 0.0665,
+        "injuryUsagePct": 0.114,
+        "missingStars": [],
+        "positionMatchPct": 4.760999999999993,
+        "teamPoints": 83.11580000000001,
+        "margin": -0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 25,
+          "historyWeight": 0.7575757575757576,
+          "sameTeam": true,
+          "avgPir": 4.48,
+          "avgMinutes": 12.500663999999999,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 0.9913603017130957,
+          "defenseFactor": 0.999181486717725,
+          "defenseSample": 6,
+          "rival": "Lamar Stevens",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.308142725837666,
+              "weight": 0.8074502880968054,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.027781473839731,
+              "weight": 0.08873685174580334,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 11.767090544546804,
+              "weight": 0.1038128601573912,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Mario Nakic",
+      "team": "Partizan",
+      "pos": "F",
+      "opponent": "Crvena Zvezda",
+      "home": true,
+      "status": "active",
+      "price": 4.7,
+      "expectedPir": 3.644421058744111,
+      "expectedMinutes": 10.959,
+      "basePir": 3.644421058744111,
+      "baseMinutes": 10.959,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.371,
+        "baseMin": 14,
+        "injuryBoost": 0.049,
+        "injuryUsagePct": 0.084,
+        "missingStars": [],
+        "positionMatchPct": -1.0140000000000038,
+        "teamPoints": 83.6242,
+        "margin": 0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": true,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9935442617097023,
+          "defenseSample": 6,
+          "rival": "Semi Ojeleye",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 11.246021712781465,
+              "weight": 0.8074502880968054,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 9.603870579941017,
+              "weight": 0.1038128601573912,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 9.932640579941017,
+              "weight": 0.08873685174580334,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Dejan Davidovac",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 4.6,
+      "expectedPir": 5.502858967348489,
+      "expectedMinutes": 14.087461379310346,
+      "basePir": 5.502858967348489,
+      "baseMinutes": 14.087461379310346,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.700300610747931,
+        "baseMin": 14.172403448275862,
+        "injuryBoost": 0.0665,
+        "injuryUsagePct": 0.114,
+        "missingStars": [],
+        "positionMatchPct": 4.760999999999993,
+        "teamPoints": 83.11580000000001,
+        "margin": -0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 21,
+          "historyWeight": 0.7241379310344828,
+          "sameTeam": true,
+          "avgPir": 3.4761904761904763,
+          "avgMinutes": 14.238080952380953,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9992505211791062,
+          "defenseSample": 6,
+          "rival": "Lamar Stevens",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.146304291804949,
+              "weight": 0.8074502880968054,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 14.46484882769868,
+              "weight": 0.08873685174580334,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.3072025502811,
+              "weight": 0.1038128601573912,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Nikola Djurisic",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 4.5,
+      "expectedPir": 4.6338307146669955,
+      "expectedMinutes": 13.536499999999998,
+      "basePir": 4.6338307146669955,
+      "baseMinutes": 13.536499999999998,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 4.1850000000000005,
+        "baseMin": 14,
+        "injuryBoost": 0.0665,
+        "injuryUsagePct": 0.114,
+        "missingStars": [],
+        "positionMatchPct": 1.7409999999999926,
+        "teamPoints": 83.11580000000001,
+        "margin": -0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Carlik Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 13.75498703407214,
+              "weight": 0.8074502880968054,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.40133703407214,
+              "weight": 0.08873685174580334,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.807432034072141,
+              "weight": 0.1038128601573912,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Vanja Marinkovic",
+      "team": "Partizan",
+      "pos": "G",
+      "opponent": "Crvena Zvezda",
+      "home": true,
+      "status": "out",
+      "price": 4.4,
+      "expectedPir": 0,
+      "expectedMinutes": 0,
+      "basePir": 0,
+      "baseMinutes": 0,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form",
+      "features": {
+        "basePir": 4.259362935311195,
+        "baseMin": 18.56851851851852,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.11600000000000499,
+        "teamPoints": 83.6242,
+        "margin": 0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 19,
+          "historyWeight": 0.7037037037037037,
+          "sameTeam": true,
+          "avgPir": 4.157894736842105,
+          "avgMinutes": 20.492105263157896,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": null
+      }
+    },
+    {
+      "name": "Bandja Sy",
+      "team": "Partizan",
+      "pos": "F",
+      "opponent": "Crvena Zvezda",
+      "home": true,
+      "status": "active",
+      "price": 4.2,
+      "expectedPir": 3.4114096524492363,
+      "expectedMinutes": 12.357,
+      "basePir": 3.4114096524492363,
+      "baseMinutes": 12.357,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.9060000000000006,
+        "baseMin": 14,
+        "injuryBoost": 0.049,
+        "injuryUsagePct": 0.084,
+        "missingStars": [],
+        "positionMatchPct": -1.0140000000000038,
+        "teamPoints": 83.6242,
+        "margin": 0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.42857142857142855,
+          "minutesWeight": 0.6,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.42857142857142855,
+        "context": {
+          "involvementFactor": 0.9720922403635751,
+          "defenseFactor": 0.9927652731182194,
+          "defenseSample": 6,
+          "rival": "Semi Ojeleye",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 12.372614322077695,
+              "weight": 0.8074502880968054,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 11.437310333039937,
+              "weight": 0.1038128601573912,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.290860333039937,
+              "weight": 0.08873685174580334,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Arijan Lakic",
+      "team": "Partizan",
+      "pos": "F",
+      "opponent": "Crvena Zvezda",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 2.768799589126217,
+      "expectedMinutes": 15.275120454545455,
+      "basePir": 2.768799589126217,
+      "baseMinutes": 15.275120454545455,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.9531509352814185,
+        "baseMin": 13.34848181818182,
+        "injuryBoost": 0.049,
+        "injuryUsagePct": 0.084,
+        "missingStars": [],
+        "positionMatchPct": -1.0140000000000038,
+        "teamPoints": 83.6242,
+        "margin": 0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 25,
+          "historyWeight": 0.7575757575757576,
+          "sameTeam": true,
+          "avgPir": 2.72,
+          "avgMinutes": 13.139996000000002,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6,
+        "context": {
+          "involvementFactor": 1.0203211104479741,
+          "defenseFactor": 0.979965711316841,
+          "defenseSample": 6,
+          "rival": "Semi Ojeleye",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.109233366699552,
+              "weight": 0.8074502880968054,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.548808506226383,
+              "weight": 0.1038128601573912,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.294507859502648,
+              "weight": 0.08873685174580334,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Stefan Miljenovic",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "questionable",
+      "price": 4,
+      "expectedPir": 1.3452681138656997,
+      "expectedMinutes": 6.7354982222222235,
+      "basePir": 1.3452681138656997,
+      "baseMinutes": 6.7354982222222235,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + early-season stability + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 2.8294565293504075,
+        "baseMin": 9.596033333333335,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 1.7409999999999926,
+        "teamPoints": 83.11580000000001,
+        "margin": -0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 13,
+          "historyWeight": 0.6190476190476191,
+          "sameTeam": true,
+          "avgPir": 2.1538461538461537,
+          "avgMinutes": 6.8859,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.2,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9998233880442168,
+          "defenseSample": 6,
+          "rival": "Carlik Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 6.8442131063925435,
+              "weight": 0.8074502880968054,
+              "observedGames": 3
+            },
+            {
+              "id": "big-win",
+              "minutes": 6.170663284170321,
+              "weight": 0.08873685174580334,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 6.372728230836988,
+              "weight": 0.1038128601573912,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Aleksej Nedeljkovic",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.7921751156539667,
+      "expectedMinutes": 14.0665,
+      "basePir": 3.7921751156539667,
+      "baseMinutes": 14.0665,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0.0665,
+        "injuryUsagePct": 0.114,
+        "missingStars": [],
+        "positionMatchPct": 4.760999999999993,
+        "teamPoints": 83.11580000000001,
+        "margin": -0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Lamar Stevens",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.38833906261353,
+              "weight": 0.8074502880968054,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.489361562613533,
+              "weight": 0.08873685174580334,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.911356562613532,
+              "weight": 0.1038128601573912,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Uros Danilovic",
+      "team": "Partizan",
+      "pos": "F",
+      "opponent": "Crvena Zvezda",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.7178594883871496,
+      "expectedMinutes": 14.049,
+      "basePir": 3.7178594883871496,
+      "baseMinutes": 14.049,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0.049,
+        "injuryUsagePct": 0.084,
+        "missingStars": [],
+        "positionMatchPct": -1.0140000000000038,
+        "teamPoints": 83.6242,
+        "margin": 0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Semi Ojeleye",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.376792750935973,
+              "weight": 0.8074502880968054,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.480177750935974,
+              "weight": 0.1038128601573912,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.901647750935975,
+              "weight": 0.08873685174580334,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Andrej Bjelic",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.7527488050089373,
+      "expectedMinutes": 14.0665,
+      "basePir": 3.7527488050089373,
+      "baseMinutes": 14.0665,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0.0665,
+        "injuryUsagePct": 0.114,
+        "missingStars": [],
+        "positionMatchPct": 1.7409999999999926,
+        "teamPoints": 83.11580000000001,
+        "margin": -0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Carlik Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.38833906261353,
+              "weight": 0.8074502880968054,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.489361562613533,
+              "weight": 0.08873685174580334,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 12.911356562613532,
+              "weight": 0.1038128601573912,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Vojin Medarevic",
+      "team": "Crvena Zvezda",
+      "pos": "C",
+      "opponent": "Partizan",
+      "home": false,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 3.889597949617537,
+      "expectedMinutes": 14.209,
+      "basePir": 3.889597949617537,
+      "baseMinutes": 14.209,
+      "correctionActive": false,
+      "modelSource": "price prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": 3.72,
+        "baseMin": 14,
+        "injuryBoost": 0.20900000000000002,
+        "injuryUsagePct": 0.228,
+        "missingStars": [],
+        "positionMatchPct": 8.899999999999997,
+        "teamPoints": 83.11580000000001,
+        "margin": -0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Nikola Tanaskovic",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 14.534099437719096,
+              "weight": 0.8074502880968054,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 12.615884437719098,
+              "weight": 0.08873685174580334,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 13.042154437719098,
+              "weight": 0.1038128601573912,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    },
+    {
+      "name": "Uros Mijailovic",
+      "team": "Partizan",
+      "pos": "F",
+      "opponent": "Crvena Zvezda",
+      "home": true,
+      "status": "active",
+      "price": 4,
+      "expectedPir": 0,
+      "expectedMinutes": 9.602846153846155,
+      "basePir": 0,
+      "baseMinutes": 9.602846153846155,
+      "correctionActive": false,
+      "modelSource": "2025/26 personal prior + 2026/27 form + attack / defense / minute scenarios",
+      "features": {
+        "basePir": -0.24494746615301483,
+        "baseMin": 9.553846153846155,
+        "injuryBoost": 0.049,
+        "injuryUsagePct": 0.084,
+        "missingStars": [],
+        "positionMatchPct": -1.0140000000000038,
+        "teamPoints": 83.6242,
+        "margin": 0.5084,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 5,
+          "historyWeight": 0.38461538461538464,
+          "sameTeam": true,
+          "avgPir": -1.2,
+          "avgMinutes": 2.44,
+          "currentSeasonWeight": 0,
+          "minutesWeight": 0,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 6,
+          "rival": "Semi Ojeleye",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 9.826900773931866,
+              "weight": 0.8074502880968054,
+              "observedGames": 0
+            },
+            {
+              "id": "big-win",
+              "minutes": 8.530516543162635,
+              "weight": 0.1038128601573912,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 8.81860192777802,
+              "weight": 0.08873685174580334,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      }
+    }
+  ]
+}
