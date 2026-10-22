@@ -1,6 +1,6 @@
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
 const A=require('../algorithm-core.js'),storage=new Map();
-async function boot(withHistory=false){
+async function boot(withHistory=false,withOfficial=false){
  const elements=new Map();
  const get=id=>{if(!elements.has(id))elements.set(id,{value:'',textContent:'',innerHTML:'',classList:{add(){},remove(){}},addEventListener(event,fn){this[event]=fn;}});return elements.get(id);};
  const inputs=A.definitions.flatMap(d=>['weight','slider'].map(kind=>Object.assign(get(kind+d.id),{dataset:{[kind]:d.id},value:String(d.weight)})));
@@ -13,6 +13,11 @@ async function boot(withHistory=false){
  sandbox.window.__matchupContextData={players:{b:{name:'Elijah Bryant',logs:[{gameCode:10,date:'2026-10-10T18:00:00Z',team:'A',opponent:'B',minutes:25,valuation:12},{gameCode:2,date:'2026-10-01T18:00:00Z',team:'A',minutes:20,valuation:10}]}}};
  sandbox.fetch=async()=>({ok:true,json:async()=>({season:'E2026',gameCode:10,created_at:'2026-10-09T18:00:00Z',predictions:[{name:'Elijah Bryant',team:'A',pos:'G',status:'active',opponent:'B',expectedPir:18,features:{basePir:20,baseMin:30}}]})});
  }
+ if(withOfficial){
+  sandbox.window.OfficialOffense=require('../official-offense-core.js');sandbox.AbortSignal=AbortSignal;
+  sandbox.players[0].team='Hapoel Tel Aviv';sandbox.model=()=>({basePir:20,baseMin:30,expected:24,minutes:25});
+  sandbox.fetch=async()=>({ok:true,json:async()=>JSON.parse(fs.readFileSync('data/official-offense.json'))});
+ }
  vm.createContext(sandbox);await vm.runInContext(fs.readFileSync('algorithm-lab.js','utf8'),sandbox);return {get,inputs};
 }
 (async()=>{
@@ -21,5 +26,6 @@ async function boot(withHistory=false){
  ui.get('alSave').onclick();assert.equal(JSON.parse(storage.get('eurofantasy-algorithm-v1')).weights.venue,20);
  ui=await boot();ui.get('alVenue').value='home';ui.get('alVenue').onchange();assert(ui.get('alResult').innerHTML.includes('24.0'));assert(ui.get('alSaved').textContent.includes('נטענו'));
  ui=await boot(true);ui.get('alGame').value='10';await ui.get('alGame').onchange();assert(ui.get('alHistoryActual').innerHTML.includes('12.0'));assert(ui.get('alHistoryActual').innerHTML.includes('18.0'));assert(ui.get('alHistoryStatus').textContent.includes('פירוק חלקי'));assert(!ui.get('alResult').innerHTML.includes('NaN'));assert(ui.get('alResult').innerHTML.includes('<strong>25</strong>'));assert(!ui.get('alResult').innerHTML.includes('% משקל</span>'));assert(ui.get('alResult').innerHTML.includes('מה הושג במשחק?'));ui.get('alGame').value='next';await ui.get('alGame').onchange();assert.equal(ui.get('alHistoryActual').innerHTML,'');assert(ui.get('alHistoryStatus').textContent.includes('עתידית'));
- console.log('PASS: past/future game selection, actual and saved forecast display; UI weight edits update experimental forecast and survive reload via local storage');
+ ui=await boot(false,true);assert(ui.get('alOfficial').innerHTML.includes('Usage'));assert(ui.get('alOfficial').innerHTML.includes('צפי זריקות לשלוש'));assert(ui.get('alOfficial').innerHTML.includes('api-live.euroleague.net'));assert(!ui.get('alOfficial').innerHTML.includes('NaN'));
+ console.log('PASS: official offensive metrics render with source links; past/future game selection, actual and saved forecast display; UI weight edits update experimental forecast and survive reload via local storage');
 })();
