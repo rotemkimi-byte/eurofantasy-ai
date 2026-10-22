@@ -28,7 +28,7 @@ function evaluate(player,x,weights,overrides={}){
  const logs=(profile?.logs||[]).filter(g=>num(g.minutes)>0&&num(g.valuation??g.pir)!==null).slice().sort((a,b)=>Date.parse(a.date)-Date.parse(b.date));
  const latest=logs.slice(-3),count=Number(recent?.currentSeasonGames||profile?.games||0),reliability=count/(count+4);
  const rate=base/baseMinutes,seasonRate=num(recent?.season?.pirPerMinute),signals={};
- const set=(id,value,note)=>signals[id]={signal:value==null?null:clip(value,-1,1),note};
+ const set=(id,value,note)=>signals[id]={signal:value==null||!Number.isFinite(value)?null:clip(value,-1,1),note};
  const lastMinutes=latest.length?latest.reduce((s,g)=>s+g.minutes,0)/latest.length:null;
  const manual=num(overrides.minutes),target=manual!==null?clip(manual,0,40):lastMinutes;
  set('minutes',target==null?null:(target/baseMinutes-1)/.30,manual!==null?'תרחיש דקות ידני: '+target.toFixed(1):lastMinutes==null?'אין משחקים אחרונים זמינים':`ממוצע ${latest.length} משחקים: ${lastMinutes.toFixed(1)} דקות; בסיס ${baseMinutes.toFixed(1)}`);
@@ -52,5 +52,21 @@ function evaluate(player,x,weights,overrides={}){
  const beforeAvailability=Math.max(0,base+bounded),expected=out?0:beforeAvailability*availability;
  return {base,baseMinutes,rows,rawChange:raw,capChange:bounded-raw,availabilityChange:expected-beforeAvailability,expected,live:num(x.expected),coverage:rows.filter(r=>r.signal!==null).reduce((s,r)=>s+r.weight,0),out,questionable:player.status==='questionable',targetMinutes:target};
 }
-const api={definitions,defaults,valid,normalize,evaluate};if(typeof module!=='undefined'&&module.exports)module.exports=api;root.AlgorithmLab=api;
+// Historical inputs are isolated from today's status, opponent and availability.
+function historical(player,game,snapshot,logs=[]){
+ const key=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9 ]/g,' ').split(/\s+/).filter(Boolean).sort().join(' ');
+ const when=Date.parse(snapshot?.created_at),kickoff=Date.parse(game.date||game.start);
+ const saved=snapshot?.season==='E2026'&&Number(snapshot.gameCode)===Number(game.gameCode)&&when<kickoff?snapshot.predictions?.find(p=>key(p.name)===key(player.name)&&p.team===(game.team||player.team)):null;
+ if(!saved)return {missing:true,actual:game.valuation??game.pir,actualMinutes:game.minutes};
+ const prior=logs.filter(g=>Date.parse(g.date)+4*3600000<when&&Number(g.gameCode)!==Number(game.gameCode)).sort((a,b)=>Date.parse(a.date)-Date.parse(b.date));
+ const f=saved.features||{},x=saved.algorithmInputs?JSON.parse(JSON.stringify(saved.algorithmInputs)):{basePir:f.basePir,baseMin:f.baseMin,injuryBoost:f.injuryBoost,injuryUsagePct:f.injuryUsagePct,missingStars:f.missingStars,positionMatchPct:f.positionMatchPct,positionMatchup:f.positionMatchPct!=null?{}:null,minutes:saved.expectedMinutes,context:{}};
+ if(!saved.algorithmInputs){
+  const mins=prior.reduce((s,g)=>s+Number(g.minutes||0),0),pir=prior.reduce((s,g)=>s+Number(g.valuation??g.pir??0),0);
+  x.recentForm={currentSeasonGames:prior.length,season:{pirPerMinute:mins?pir/mins:null}};
+  x.context={profile:{games:prior.length,logs:prior}};
+ }
+ x.expected=saved.expectedPir;x.match={opponent:saved.opponent,home:saved.home};
+ return {player:{...saved},x,savedAt:snapshot.created_at,partial:!saved.algorithmInputs,actual:game.valuation??game.pir,actualMinutes:game.minutes,savedExpected:saved.expectedPir};
+}
+const api={definitions,defaults,valid,normalize,evaluate,historical};if(typeof module!=='undefined'&&module.exports)module.exports=api;root.AlgorithmLab=api;
 })(typeof window!=='undefined'?window:globalThis);

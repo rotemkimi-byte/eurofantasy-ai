@@ -12,3 +12,16 @@ const fixture={...x,recentForm:{season:{pirPerMinute:.8},currentSeasonGames:6},c
 const original=JSON.stringify(fixture);r=A.evaluate(player,fixture,A.defaults);assert.equal(JSON.stringify(fixture),original);assert(r.rows.find(r=>r.id==='streak').change<0);assert.equal(r.rows.find(r=>r.id==='rest').signal,null);
 assert.equal(A.evaluate(player,x,A.defaults).expected,20);
 console.log('PASS: 100% budget, unknown data neutral, venue exclusivity, minutes sensitivity, zero minutes/out, caps, decomposition and immutable live forecast');
+const fs=require('node:fs');
+const snapshot=JSON.parse(fs.readFileSync('data/learning/snapshots/E2026-42.json'));
+const saved=snapshot.predictions[0],game={gameCode:42,date:snapshot.kickoff,team:saved.team,valuation:12,minutes:25};
+const historyLogs=[{gameCode:1,date:'2026-09-24T12:00:00Z',minutes:20,valuation:10},{...game,valuation:999},{gameCode:99,date:'2026-12-01T12:00:00Z',minutes:40,valuation:999}];
+const historical=A.historical({...saved,status:'out'},game,snapshot,historyLogs);
+assert.equal(historical.player.status,saved.status);assert.equal(historical.x.context.profile.logs.length,1);assert.equal(historical.x.expected,saved.expectedPir);
+assert.equal(historical.x.recentForm.season.pirPerMinute,.5);assert.equal(historical.partial,true);
+assert(A.historical(saved,game,{...snapshot,created_at:'2026-12-01'},historyLogs).missing);
+assert(A.historical(saved,game,{...snapshot,gameCode:43},historyLogs).missing);
+const full={...snapshot,predictions:[{...saved,algorithmInputs:{basePir:20,baseMin:30,recentForm:{currentSeasonGames:2},context:{profile:{logs:[]}}}}]};
+const exact=A.historical(saved,game,full,historyLogs);assert.equal(exact.partial,false);assert.equal(exact.x.basePir,20);
+assert.equal(A.evaluate(historical.player,historical.x,A.defaults).error,undefined);
+console.log('PASS: historical cutoff excludes selected/future games; frozen status and forecast; wrong/late snapshots rejected; complete inputs preserved');
