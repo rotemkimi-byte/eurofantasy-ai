@@ -11,7 +11,7 @@ state.round='';state.sort='error';assert.equal(ui.select(rows,state,'new')[0].na
 assert.equal(ui.current(rows[3],'new'),false);assert.equal(ui.metrics([]).mae,null);
 let html=ui.card({...rows[0],team:'<img>',opponent:'Rival',home:false,baseMinutes:20,actualMinutes:25},'new');assert(html.includes('&lt;img&gt;'));assert(html.includes('תחזית אתר מגרסה קודמת'));assert(html.includes('<details>'));assert(!html.includes('<details open'));
 assert.equal(ui.metrics([{basePir:12,actualPir:15,error:null}]).mae,3);
-const elements={};for(const id of ['learningReport','acPlayers','acTeams','acScope','acMetrics','acRows','acPage','acPrev','acNext','acSearch','acRound','acSource','acResult','acSort'])elements[id]={innerHTML:'',classList:{add(){}},querySelectorAll(){return []},addEventListener(type,fn){this.listener=fn;}};
+const elements={};for(const id of ['acClarityStyle','acTeam','acGameTeam','acGameRound','acGameResult','acTeamScope','acTeamMetrics','acTeamRows','learningReport','acPlayers','acTeams','acScope','acMetrics','acRows','acPage','acPrev','acNext','acSearch','acRound','acSource','acResult','acSort'])elements[id]={innerHTML:'',classList:{add(){}},querySelectorAll(){return []},addEventListener(type,fn){this.listener=fn;}};
 sandbox.document={getElementById:id=>elements[id],querySelector(){return null;}};
 sandbox.window.__learningModelId='new';
 const archive=Array.from({length:13},(_,i)=>({...rows[2],name:'Player '+i}));
@@ -22,3 +22,22 @@ assert.equal((elements.acRows.innerHTML.match(/<article /g)||[]).length,5);
 elements.acNext.onclick();assert(elements.acPage.textContent.includes('2 / 3'));assert.equal((elements.acRows.innerHTML.match(/<article /g)||[]).length,5);
 elements.acSource.listener({target:{value:'current'}});assert(elements.acRows.innerHTML.includes('אין עדיין תוצאות'));assert(elements.acNext.disabled);
 console.log('PASS: latest-round filtering, strict model separation, filtered summary, sorting, empty sample, escaped compact cards, collapsed detail and five-row pagination');
+
+for(const [round,error,expected] of [[7,5,true],[8,3,true],[8,-3,true],[8,3.01,false],[8,-4,false]]){
+ const r={round,basePir:10,actualPir:10+error};assert.equal(ui.metrics([r]).hit,expected?100:0);
+ assert.equal(ui.select([r],{source:'all',result:'hit',sort:'error'},'').length,expected?1:0);
+}
+const games=[{home:'A',away:'B',round:7,forecast:{margin:6,total:170},actualMargin:9,homeScore:90,awayScore:81,winnerHit:true},{home:'B',away:'C',round:8,forecast:{margin:6},actualMargin:10},{home:'A',away:'C',round:8,forecast:{margin:6},actualMargin:8}];
+assert.deepEqual(Array.from(ui.selectTeams(games,{result:'all'}),g=>g.actualMargin),[10,9,8]);
+assert.deepEqual(Array.from(ui.selectTeams(games,{result:'hit'}),g=>g.actualMargin),[8,9]);
+assert.equal(ui.selectTeams(games,{team:'B',round:'8',result:'miss'}).length,1);
+assert.equal(ui.selectTeams(games,{team:'A',round:'8',result:'miss'}).length,0);
+assert(ui.teamCard(games[0],'B').includes('-6.0'));
+ui.install({schema:'learning-v1',season:'E2026',rows:archive,teamAudit:{games},validation:{}});
+assert(elements.acTeamRows.innerHTML.includes('10.0'));
+elements.acGameResult.listener({target:{value:'hit'}});
+assert(elements.acTeamRows.innerHTML.includes('9.0'));
+elements.acGameTeam.listener({target:{value:'A'}});
+elements.acGameRound.listener({target:{value:'8'}});
+assert.equal((elements.acTeamRows.innerHTML.match(/<article /g)||[]).length,1);
+console.log('PASS: round 8 threshold boundaries, team sorting, combined filters and away perspective');

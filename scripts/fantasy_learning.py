@@ -79,6 +79,9 @@ def actuals(g):
             rows[key(p.get('person',{}).get('name'))]={'actualPir':pir,'actualMinutes':seconds/60,'fouls':num(stats.get('foulsCommited')),'team':canon(p.get('club',{}).get('name')),'actualStats':{k:num(stats.get(k)) for k in ['points','totalRebounds','assistances','turnovers','foulsCommited','fieldGoalsMadeTotal','fieldGoalsAttemptedTotal']}}
     return rows
 
+def tolerance(row):
+    return 3 if (num(row.get('round')) or 0)>=8 else 5
+
 def diagnosis(row):
     m=row['baseMinutes'];pred=row['basePir'];actual_m=row['actualMinutes'];actual=row['actualPir']
     if m>0:
@@ -94,13 +97,14 @@ def diagnosis(row):
     row['error']=actual-pred
     row['servedError']=actual-row['servedPir']
     # A small total error can hide large opposing errors in minutes and efficiency.
-    hit=abs(row['error'])<=5
+    limit=tolerance(row)
+    hit=abs(row['error'])<=limit
     mc=row['minutesContribution'];ec=row['efficiencyContribution']
     if m==0 and actual_m==0:
         outcome='availability-hit'
-    elif hit and mc is not None and mc*ec<0 and min(abs(mc),abs(ec))>5:
+    elif hit and mc is not None and mc*ec<0 and min(abs(mc),abs(ec))>limit:
         outcome='offsetting-errors'
-    elif hit and mc is not None and abs(mc)<=5 and abs(ec)<=5:
+    elif hit and mc is not None and abs(mc)<=limit and abs(ec)<=limit:
         outcome='components-aligned'
     elif hit: outcome='within-tolerance'
     else: outcome='miss'
@@ -156,7 +160,7 @@ def adjusted(row,coeff):
     return new_p,new_m
 
 def metrics(rows):
-    return {'n':len(rows),'mae':statistics.mean(abs(r['error']) for r in rows) if rows else None,'bias':statistics.mean(r['error'] for r in rows) if rows else None,'minutesMae':statistics.mean(abs(r['actualMinutes']-r['baseMinutes']) for r in rows) if rows else None,'hits':sum(abs(r['error'])<=5 for r in rows),'hitRate':sum(abs(r['error'])<=5 for r in rows)/len(rows)*100 if rows else None,'over':sum(r['error'] < -5 for r in rows),'under':sum(r['error'] > 5 for r in rows)}
+    return {'n':len(rows),'mae':statistics.mean(abs(r['error']) for r in rows) if rows else None,'bias':statistics.mean(r['error'] for r in rows) if rows else None,'minutesMae':statistics.mean(abs(r['actualMinutes']-r['baseMinutes']) for r in rows) if rows else None,'hits':sum(abs(r['error'])<=tolerance(r) for r in rows),'hitRate':sum(abs(r['error'])<=tolerance(r) for r in rows)/len(rows)*100 if rows else None,'over':sum(r['error'] < -tolerance(r) for r in rows),'under':sum(r['error'] > tolerance(r) for r in rows)}
 
 def validate(rows):
     rows=[r for r in rows if r.get('status')=='active' and r.get('baseMinutes',0)>=5]

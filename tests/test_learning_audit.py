@@ -7,6 +7,11 @@ import test_rolling_learning
 class AuditTests(unittest.TestCase):
     def row(self,minutes,pir):
         return learning.diagnosis(dict(baseMinutes=20,basePir=20,actualMinutes=minutes,actualPir=pir,servedPir=22))
+    def test_round_eight_accuracy_threshold(self):
+        for rnd,error,hit in [(7,5,True),(8,3,True),(8,-3,True),(8,3.01,False),(8,-4,False)]:
+            r=learning.diagnosis(dict(round=rnd,baseMinutes=20,basePir=20,actualMinutes=20,actualPir=20+error,servedPir=20))
+            self.assertEqual(r['outcome']!='miss',hit)
+            self.assertEqual(learning.metrics([r])['hits'],int(hit))
     def test_error_decomposition(self):
         for minutes,pir in [(0,0),(10,-3),(30,20),(25,38)]:
             r=self.row(minutes,pir)
