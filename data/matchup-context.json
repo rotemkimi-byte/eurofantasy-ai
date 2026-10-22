@@ -2,7 +2,7 @@
   "schema": "matchup-context-v1",
   "modelVersion": "matchup-context-v1:6a88055834544831",
   "season": "E2026",
-  "updated_at": "2026-10-22T07:07:17.513788+00:00",
+  "updated_at": "2026-10-22T07:59:23.063662+00:00",
   "players": {
     "antonio blakeney": {
       "name": "Antonio Blakeney",
@@ -41056,80 +41056,61 @@
     "rate3": 0.353629274145171
   },
   "teams": {
-    "Virtus Bologna": {
+    "Partizan": {
       "availability": {
-        "missing": [],
-        "marginPenalty": 0,
-        "available": 15,
-        "rosterCount": 15
+        "missing": [
+          {
+            "name": "Tonye Jekiri",
+            "status": "out",
+            "missingProbability": 1,
+            "avgMinutes": 17.39,
+            "sampleGames": 6,
+            "impactProxy": 0.306
+          },
+          {
+            "name": "Derek Willis",
+            "status": "out",
+            "missingProbability": 1,
+            "avgMinutes": 3.15,
+            "sampleGames": 1,
+            "impactProxy": 0.032
+          },
+          {
+            "name": "Vanja Marinkovic",
+            "status": "out",
+            "missingProbability": 1,
+            "avgMinutes": 14,
+            "sampleGames": 0,
+            "impactProxy": 0.0
+          }
+        ],
+        "marginPenalty": 0.338,
+        "available": 14,
+        "rosterCount": 17
       },
-      "rating": -2.266492355843441,
-      "currentGames": 7,
-      "hardGames": 6,
-      "hardWins": 3,
+      "rating": 0.10963555848963805,
+      "currentGames": 6,
+      "hardGames": 2,
+      "hardWins": 0,
       "hardHistory": [
         {
-          "opponent": "Fenerbahce",
-          "gameCode": 9,
-          "date": "2026-09-25T17:45:00+00:00",
+          "opponent": "Real Madrid",
+          "gameCode": 35,
+          "date": "2026-10-08T18:45:00+00:00",
           "home": false,
-          "pregameWinProb": 0.19496,
-          "opponentRatingBefore": 1.146,
+          "pregameWinProb": 0.36255,
+          "opponentRatingBefore": 3.323,
           "hard": true,
           "won": false,
           "margin": -10.0
         },
         {
-          "opponent": "Milano",
-          "gameCode": 16,
-          "date": "2026-09-29T18:30:00+00:00",
+          "opponent": "Fenerbahce",
+          "gameCode": 54,
+          "date": "2026-10-15T17:45:00+00:00",
           "home": false,
-          "pregameWinProb": 0.28975,
-          "opponentRatingBefore": -2.588,
-          "hard": true,
-          "won": false,
-          "margin": -2.0
-        },
-        {
-          "opponent": "Olympiacos",
-          "gameCode": 23,
-          "date": "2026-10-01T18:30:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.17797,
-          "opponentRatingBefore": 8.819,
-          "hard": true,
-          "won": true,
-          "margin": 2.0
-        },
-        {
-          "opponent": "Bayern Munich",
-          "gameCode": 33,
-          "date": "2026-10-08T18:00:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.34619,
-          "opponentRatingBefore": -2.718,
-          "hard": true,
-          "won": true,
-          "margin": 7.0
-        },
-        {
-          "opponent": "Paris",
-          "gameCode": 50,
-          "date": "2026-10-14T18:45:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.37366,
-          "opponentRatingBefore": -2.419,
-          "hard": true,
-          "won": true,
-          "margin": 2.0
-        },
-        {
-          "opponent": "Hapoel Tel Aviv",
-          "gameCode": 61,
-          "date": "2026-10-21T16:00:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.22599,
-          "opponentRatingBefore": 3.411,
+          "pregameWinProb": 0.28401,
+          "opponentRatingBefore": 3.802,
           "hard": true,
           "won": false,
           "margin": -9.0
@@ -41137,428 +41118,225 @@
       ],
       "recentHistory": [
         {
-          "opponent": "Olympiacos",
-          "gameCode": 23,
-          "date": "2026-10-01T18:30:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.17797,
-          "opponentRatingBefore": 8.819,
-          "hard": true,
+          "opponent": "Paris",
+          "gameCode": 18,
+          "date": "2026-09-29T18:45:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.44162,
+          "opponentRatingBefore": -0.523,
+          "hard": false,
           "won": true,
-          "margin": 2.0
+          "margin": 13.0
         },
         {
           "opponent": "Bayern Munich",
-          "gameCode": 33,
-          "date": "2026-10-08T18:00:00+00:00",
+          "gameCode": 28,
+          "date": "2026-10-02T18:00:00+00:00",
           "home": false,
-          "pregameWinProb": 0.34619,
-          "opponentRatingBefore": -2.718,
-          "hard": true,
-          "won": true,
-          "margin": 7.0
-        },
-        {
-          "opponent": "Paris",
-          "gameCode": 50,
-          "date": "2026-10-14T18:45:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.37366,
-          "opponentRatingBefore": -2.419,
-          "hard": true,
+          "pregameWinProb": 0.56807,
+          "opponentRatingBefore": -2.716,
+          "hard": false,
           "won": true,
           "margin": 2.0
         },
         {
-          "opponent": "Baskonia",
-          "gameCode": 59,
-          "date": "2026-10-16T18:30:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.72171,
-          "opponentRatingBefore": -6.028,
-          "hard": false,
-          "won": true,
-          "margin": 8.0
-        },
-        {
-          "opponent": "Hapoel Tel Aviv",
-          "gameCode": 61,
-          "date": "2026-10-21T16:00:00+00:00",
+          "opponent": "Real Madrid",
+          "gameCode": 35,
+          "date": "2026-10-08T18:45:00+00:00",
           "home": false,
-          "pregameWinProb": 0.22599,
-          "opponentRatingBefore": 3.411,
+          "pregameWinProb": 0.36255,
+          "opponentRatingBefore": 3.323,
           "hard": true,
           "won": false,
-          "margin": -9.0
-        }
-      ],
-      "opponent": "Hapoel Tel Aviv",
-      "home": false,
-      "baseMargin": -6.1,
-      "strengthDelta": -0.3757,
-      "rosterDelta": 0.166,
-      "margin": -6.3097,
-      "rawWinProb": 0.29393477279750335,
-      "winProb": 0.29393477279750335
-    },
-    "Baskonia": {
-      "availability": {
-        "missing": [],
-        "marginPenalty": 0,
-        "available": 14,
-        "rosterCount": 14
-      },
-      "rating": -6.141837496495694,
-      "currentGames": 6,
-      "hardGames": 3,
-      "hardWins": 0,
-      "hardHistory": [
+          "margin": -10.0
+        },
         {
-          "opponent": "Olympiacos",
-          "gameCode": 5,
-          "date": "2026-09-24T18:30:00+00:00",
+          "opponent": "Panathinaikos",
+          "gameCode": 47,
+          "date": "2026-10-13T18:30:00+00:00",
           "home": true,
-          "pregameWinProb": 0.26853,
-          "opponentRatingBefore": 8.074,
-          "hard": true,
+          "pregameWinProb": 0.43851,
+          "opponentRatingBefore": 6.846,
+          "hard": false,
           "won": false,
           "margin": -17.0
         },
         {
-          "opponent": "Valencia",
-          "gameCode": 15,
-          "date": "2026-09-29T18:30:00+00:00",
+          "opponent": "Fenerbahce",
+          "gameCode": 54,
+          "date": "2026-10-15T17:45:00+00:00",
           "home": false,
-          "pregameWinProb": 0.20188,
-          "opponentRatingBefore": 3.378,
+          "pregameWinProb": 0.28401,
+          "opponentRatingBefore": 3.802,
           "hard": true,
           "won": false,
-          "margin": -23.0
-        },
-        {
-          "opponent": "Virtus Bologna",
-          "gameCode": 59,
-          "date": "2026-10-16T18:30:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.27829,
-          "opponentRatingBefore": -2.367,
-          "hard": true,
-          "won": false,
-          "margin": -8.0
+          "margin": -9.0
         }
       ],
-      "recentHistory": [
+      "opponent": "Crvena Zvezda",
+      "home": true,
+      "baseMargin": 0.27,
+      "strengthDelta": 0.1964,
+      "rosterDelta": 0.042,
+      "margin": 0.5084,
+      "rawWinProb": 0.5176470115179627,
+      "winProb": 0.5176470115179627
+    },
+    "Anadolu Efes": {
+      "availability": {
+        "missing": [
+          {
+            "name": "Mike James",
+            "status": "out",
+            "missingProbability": 1,
+            "avgMinutes": 28.56,
+            "sampleGames": 3,
+            "impactProxy": 1.188
+          },
+          {
+            "name": "Isaia Cordinier",
+            "status": "out",
+            "missingProbability": 1,
+            "avgMinutes": 19,
+            "sampleGames": 0,
+            "impactProxy": 0.266
+          },
+          {
+            "name": "Perry Dozier",
+            "status": "out",
+            "missingProbability": 1,
+            "avgMinutes": 19,
+            "sampleGames": 0,
+            "impactProxy": 0.167
+          },
+          {
+            "name": "Georgios Papagiannis",
+            "status": "out",
+            "missingProbability": 1,
+            "avgMinutes": 14,
+            "sampleGames": 0,
+            "impactProxy": 0.106
+          }
+        ],
+        "marginPenalty": 1.727,
+        "available": 16,
+        "rosterCount": 20
+      },
+      "rating": -0.9170844309460482,
+      "currentGames": 6,
+      "hardGames": 4,
+      "hardWins": 2,
+      "hardHistory": [
         {
-          "opponent": "Valencia",
-          "gameCode": 15,
-          "date": "2026-09-29T18:30:00+00:00",
+          "opponent": "Barcelona",
+          "gameCode": 4,
+          "date": "2026-09-24T18:30:00+00:00",
           "home": false,
-          "pregameWinProb": 0.20188,
-          "opponentRatingBefore": 3.378,
+          "pregameWinProb": 0.34334,
+          "opponentRatingBefore": -0.033,
           "hard": true,
           "won": false,
-          "margin": -23.0
+          "margin": -7.0
         },
         {
-          "opponent": "Milano",
-          "gameCode": 27,
-          "date": "2026-10-02T18:30:00+00:00",
+          "opponent": "Real Madrid",
+          "gameCode": 11,
+          "date": "2026-09-29T17:00:00+00:00",
           "home": true,
-          "pregameWinProb": 0.55546,
-          "opponentRatingBefore": -3.034,
-          "hard": false,
+          "pregameWinProb": 0.37326,
+          "opponentRatingBefore": 5.197,
+          "hard": true,
           "won": true,
           "margin": 10.0
         },
         {
-          "opponent": "Besiktas",
-          "gameCode": 38,
-          "date": "2026-10-09T18:30:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.49338,
-          "opponentRatingBefore": -0.4,
-          "hard": false,
-          "won": false,
-          "margin": -8.0
-        },
-        {
-          "opponent": "Dubai",
-          "gameCode": 42,
-          "date": "2026-10-13T18:30:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.5197,
-          "opponentRatingBefore": -1.939,
-          "hard": false,
-          "won": false,
-          "margin": -14.0
-        },
-        {
-          "opponent": "Virtus Bologna",
-          "gameCode": 59,
-          "date": "2026-10-16T18:30:00+00:00",
+          "opponent": "Olympiacos",
+          "gameCode": 40,
+          "date": "2026-10-09T18:15:00+00:00",
           "home": false,
-          "pregameWinProb": 0.27829,
-          "opponentRatingBefore": -2.367,
-          "hard": true,
-          "won": false,
-          "margin": -8.0
-        }
-      ],
-      "opponent": "Panathinaikos",
-      "home": false,
-      "baseMargin": -8.84,
-      "strengthDelta": -0.8565,
-      "rosterDelta": 0.627,
-      "margin": -9.0695,
-      "rawWinProb": 0.22103278622106623,
-      "winProb": 0.22103278622106623
-    },
-    "ASVEL": {
-      "availability": {
-        "missing": [
-          {
-            "name": "Mathis Dossou-yovo",
-            "status": "out",
-            "missingProbability": 1,
-            "avgMinutes": 19,
-            "sampleGames": 0,
-            "impactProxy": 0.289
-          }
-        ],
-        "marginPenalty": 0.289,
-        "available": 15,
-        "rosterCount": 16
-      },
-      "rating": -4.969847183569249,
-      "currentGames": 6,
-      "hardGames": 4,
-      "hardWins": 1,
-      "hardHistory": [
-        {
-          "opponent": "Panathinaikos",
-          "gameCode": 20,
-          "date": "2026-09-30T18:15:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.21011,
-          "opponentRatingBefore": 3.23,
+          "pregameWinProb": 0.17131,
+          "opponentRatingBefore": 7.517,
           "hard": true,
           "won": false,
           "margin": -23.0
         },
         {
-          "opponent": "Valencia",
-          "gameCode": 26,
-          "date": "2026-10-02T18:00:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.30473,
-          "opponentRatingBefore": 4.688,
-          "hard": true,
-          "won": false,
-          "margin": -13.0
-        },
-        {
-          "opponent": "Paris",
-          "gameCode": 31,
-          "date": "2026-10-07T18:45:00+00:00",
+          "opponent": "Zalgiris",
+          "gameCode": 57,
+          "date": "2026-10-16T17:00:00+00:00",
           "home": false,
-          "pregameWinProb": 0.27944,
-          "opponentRatingBefore": -1.537,
+          "pregameWinProb": 0.27218,
+          "opponentRatingBefore": 0.757,
           "hard": true,
           "won": true,
-          "margin": 2.0
-        },
-        {
-          "opponent": "Real Madrid",
-          "gameCode": 53,
-          "date": "2026-10-15T19:00:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.1661,
-          "opponentRatingBefore": 4.186,
-          "hard": true,
-          "won": false,
-          "margin": -19.0
+          "margin": 15.0
         }
       ],
       "recentHistory": [
         {
-          "opponent": "Panathinaikos",
-          "gameCode": 20,
-          "date": "2026-09-30T18:15:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.21011,
-          "opponentRatingBefore": 3.23,
-          "hard": true,
-          "won": false,
-          "margin": -23.0
-        },
-        {
-          "opponent": "Valencia",
-          "gameCode": 26,
-          "date": "2026-10-02T18:00:00+00:00",
+          "opponent": "Real Madrid",
+          "gameCode": 11,
+          "date": "2026-09-29T17:00:00+00:00",
           "home": true,
-          "pregameWinProb": 0.30473,
-          "opponentRatingBefore": 4.688,
-          "hard": true,
-          "won": false,
-          "margin": -13.0
-        },
-        {
-          "opponent": "Paris",
-          "gameCode": 31,
-          "date": "2026-10-07T18:45:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.27944,
-          "opponentRatingBefore": -1.537,
+          "pregameWinProb": 0.37326,
+          "opponentRatingBefore": 5.197,
           "hard": true,
           "won": true,
-          "margin": 2.0
+          "margin": 10.0
         },
         {
           "opponent": "Crvena Zvezda",
-          "gameCode": 41,
-          "date": "2026-10-13T18:00:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.41613,
-          "opponentRatingBefore": 1.363,
-          "hard": false,
-          "won": false,
-          "margin": -2.0
-        },
-        {
-          "opponent": "Real Madrid",
-          "gameCode": 53,
-          "date": "2026-10-15T19:00:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.1661,
-          "opponentRatingBefore": 4.186,
-          "hard": true,
-          "won": false,
-          "margin": -19.0
-        }
-      ],
-      "opponent": "Zalgiris",
-      "home": false,
-      "baseMargin": -7.69,
-      "strengthDelta": 0.1215,
-      "rosterDelta": 0.172,
-      "margin": -7.3965,
-      "rawWinProb": 0.26360825200130267,
-      "winProb": 0.26360825200130267
-    },
-    "Crvena Zvezda": {
-      "availability": {
-        "missing": [
-          {
-            "name": "Christian Koloko",
-            "status": "questionable",
-            "missingProbability": 0.5,
-            "avgMinutes": 19,
-            "sampleGames": 0,
-            "impactProxy": 0.182
-          },
-          {
-            "name": "Johnathan Motley",
-            "status": "out",
-            "missingProbability": 1,
-            "avgMinutes": 12.37,
-            "sampleGames": 3,
-            "impactProxy": 0.198
-          },
-          {
-            "name": "Stefan Miljenovic",
-            "status": "questionable",
-            "missingProbability": 0.5,
-            "avgMinutes": 2.96,
-            "sampleGames": 3,
-            "impactProxy": 0.0
-          }
-        ],
-        "marginPenalty": 0.38,
-        "available": 16,
-        "rosterCount": 19
-      },
-      "rating": 1.4680745997622546,
-      "currentGames": 6,
-      "hardGames": 1,
-      "hardWins": 1,
-      "hardHistory": [
-        {
-          "opponent": "Dubai",
-          "gameCode": 37,
-          "date": "2026-10-08T16:00:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.34478,
-          "opponentRatingBefore": 0.424,
-          "hard": true,
-          "won": true,
-          "margin": 19.0
-        }
-      ],
-      "recentHistory": [
-        {
-          "opponent": "Hapoel Tel Aviv",
-          "gameCode": 12,
-          "date": "2026-09-29T18:00:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.60756,
-          "opponentRatingBefore": -0.802,
-          "hard": false,
-          "won": false,
-          "margin": -1.0
-        },
-        {
-          "opponent": "Anadolu Efes",
           "gameCode": 21,
           "date": "2026-10-01T18:00:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.57889,
-          "opponentRatingBefore": -0.361,
+          "home": false,
+          "pregameWinProb": 0.42111,
+          "opponentRatingBefore": -1.27,
           "hard": false,
-          "won": true,
-          "margin": 5.0
+          "won": false,
+          "margin": -5.0
         },
         {
-          "opponent": "Dubai",
-          "gameCode": 37,
-          "date": "2026-10-08T16:00:00+00:00",
+          "opponent": "Olympiacos",
+          "gameCode": 40,
+          "date": "2026-10-09T18:15:00+00:00",
           "home": false,
-          "pregameWinProb": 0.34478,
-          "opponentRatingBefore": 0.424,
+          "pregameWinProb": 0.17131,
+          "opponentRatingBefore": 7.517,
+          "hard": true,
+          "won": false,
+          "margin": -23.0
+        },
+        {
+          "opponent": "Bayern Munich",
+          "gameCode": 49,
+          "date": "2026-10-14T17:30:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.6755,
+          "opponentRatingBefore": -3.876,
+          "hard": false,
+          "won": false,
+          "margin": -8.0
+        },
+        {
+          "opponent": "Zalgiris",
+          "gameCode": 57,
+          "date": "2026-10-16T17:00:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.27218,
+          "opponentRatingBefore": 0.757,
           "hard": true,
           "won": true,
-          "margin": 19.0
-        },
-        {
-          "opponent": "ASVEL",
-          "gameCode": 41,
-          "date": "2026-10-13T18:00:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.58387,
-          "opponentRatingBefore": -4.275,
-          "hard": false,
-          "won": true,
-          "margin": 2.0
-        },
-        {
-          "opponent": "Paris",
-          "gameCode": 56,
-          "date": "2026-10-16T18:00:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.73945,
-          "opponentRatingBefore": -2.991,
-          "hard": false,
-          "won": true,
-          "margin": 9.0
+          "margin": 15.0
         }
       ],
-      "opponent": "Partizan",
-      "home": false,
-      "baseMargin": -0.27,
-      "strengthDelta": -0.1964,
-      "rosterDelta": -0.042,
-      "margin": -0.5084,
-      "rawWinProb": 0.48235298848203734,
-      "winProb": 0.48235298848203734
+      "opponent": "Besiktas",
+      "home": true,
+      "baseMargin": 1.34,
+      "strengthDelta": 0.2192,
+      "rosterDelta": -1.417,
+      "margin": 0.1422,
+      "rawWinProb": 0.5049362198211,
+      "winProb": 0.5049362198211
     },
     "Milano": {
       "availability": {
@@ -41660,6 +41438,582 @@
       "margin": 0.7878,
       "rawWinProb": 0.5273279277202968,
       "winProb": 0.5273279277202968
+    },
+    "Dubai": {
+      "availability": {
+        "missing": [
+          {
+            "name": "Dzanan Musa",
+            "status": "out",
+            "missingProbability": 1,
+            "avgMinutes": 23,
+            "sampleGames": 0,
+            "impactProxy": 0.708
+          },
+          {
+            "name": "Mam Jaiteh",
+            "status": "out",
+            "missingProbability": 1,
+            "avgMinutes": 14,
+            "sampleGames": 0,
+            "impactProxy": 0.067
+          },
+          {
+            "name": "Justin Anderson",
+            "status": "out",
+            "missingProbability": 1,
+            "avgMinutes": 14,
+            "sampleGames": 0,
+            "impactProxy": 0.05
+          },
+          {
+            "name": "Klemen Prepelic",
+            "status": "out",
+            "missingProbability": 1,
+            "avgMinutes": 14,
+            "sampleGames": 0,
+            "impactProxy": 0.0
+          }
+        ],
+        "marginPenalty": 0.825,
+        "available": 14,
+        "rosterCount": 18
+      },
+      "rating": -0.2996456743503661,
+      "currentGames": 6,
+      "hardGames": 1,
+      "hardWins": 0,
+      "hardHistory": [
+        {
+          "opponent": "Fenerbahce",
+          "gameCode": 29,
+          "date": "2026-10-02T17:45:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.32333,
+          "opponentRatingBefore": 3.009,
+          "hard": true,
+          "won": false,
+          "margin": -10.0
+        }
+      ],
+      "recentHistory": [
+        {
+          "opponent": "Barcelona",
+          "gameCode": 13,
+          "date": "2026-09-29T16:00:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.62069,
+          "opponentRatingBefore": 0.2,
+          "hard": false,
+          "won": true,
+          "margin": 7.0
+        },
+        {
+          "opponent": "Fenerbahce",
+          "gameCode": 29,
+          "date": "2026-10-02T17:45:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.32333,
+          "opponentRatingBefore": 3.009,
+          "hard": true,
+          "won": false,
+          "margin": -10.0
+        },
+        {
+          "opponent": "Crvena Zvezda",
+          "gameCode": 37,
+          "date": "2026-10-08T16:00:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.65522,
+          "opponentRatingBefore": -0.999,
+          "hard": false,
+          "won": false,
+          "margin": -19.0
+        },
+        {
+          "opponent": "Baskonia",
+          "gameCode": 42,
+          "date": "2026-10-13T18:30:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.4803,
+          "opponentRatingBefore": -4.571,
+          "hard": false,
+          "won": true,
+          "margin": 14.0
+        },
+        {
+          "opponent": "Milano",
+          "gameCode": 51,
+          "date": "2026-10-15T18:30:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.57501,
+          "opponentRatingBefore": -5.859,
+          "hard": false,
+          "won": true,
+          "margin": 4.0
+        }
+      ],
+      "opponent": "Bayern Munich",
+      "home": false,
+      "baseMargin": -1.45,
+      "strengthDelta": 0.1049,
+      "rosterDelta": -0.825,
+      "margin": -2.1701,
+      "rawWinProb": 0.42521359333469044,
+      "winProb": 0.42521359333469044
+    },
+    "Olympiacos": {
+      "availability": {
+        "missing": [
+          {
+            "name": "Jean Montero",
+            "status": "questionable",
+            "missingProbability": 0.5,
+            "avgMinutes": 23.97,
+            "sampleGames": 6,
+            "impactProxy": 0.465
+          },
+          {
+            "name": "Evan Fournier",
+            "status": "questionable",
+            "missingProbability": 0.75,
+            "avgMinutes": 24.39,
+            "sampleGames": 6,
+            "impactProxy": 0.293
+          },
+          {
+            "name": "Nikolaos Plotas",
+            "status": "out",
+            "missingProbability": 1,
+            "avgMinutes": 14,
+            "sampleGames": 0,
+            "impactProxy": 0.0
+          }
+        ],
+        "marginPenalty": 0.758,
+        "available": 15,
+        "rosterCount": 18
+      },
+      "rating": 9.103334185559813,
+      "currentGames": 6,
+      "hardGames": 0,
+      "hardWins": 0,
+      "hardHistory": [],
+      "recentHistory": [
+        {
+          "opponent": "Zalgiris",
+          "gameCode": 14,
+          "date": "2026-09-29T17:00:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.64607,
+          "opponentRatingBefore": 1.519,
+          "hard": false,
+          "won": true,
+          "margin": 2.0
+        },
+        {
+          "opponent": "Virtus Bologna",
+          "gameCode": 23,
+          "date": "2026-10-01T18:30:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.82203,
+          "opponentRatingBefore": -5.398,
+          "hard": false,
+          "won": false,
+          "margin": -2.0
+        },
+        {
+          "opponent": "Anadolu Efes",
+          "gameCode": 40,
+          "date": "2026-10-09T18:15:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.82869,
+          "opponentRatingBefore": -0.632,
+          "hard": false,
+          "won": true,
+          "margin": 23.0
+        },
+        {
+          "opponent": "Valencia",
+          "gameCode": 45,
+          "date": "2026-10-13T19:00:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.49432,
+          "opponentRatingBefore": 5.646,
+          "hard": false,
+          "won": true,
+          "margin": 5.0
+        },
+        {
+          "opponent": "Barcelona",
+          "gameCode": 58,
+          "date": "2026-10-16T18:30:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.6957,
+          "opponentRatingBefore": 0.045,
+          "hard": false,
+          "won": true,
+          "margin": 5.0
+        }
+      ],
+      "opponent": "Fenerbahce",
+      "home": true,
+      "baseMargin": 5.59,
+      "strengthDelta": 0.3347,
+      "rosterDelta": -0.758,
+      "margin": 5.1667,
+      "rawWinProb": 0.6720774445168767,
+      "winProb": 0.6720774445168767
+    },
+    "Barcelona": {
+      "availability": {
+        "missing": [
+          {
+            "name": "Justin Minaya",
+            "status": "questionable",
+            "missingProbability": 0.5,
+            "avgMinutes": 15.1,
+            "sampleGames": 3,
+            "impactProxy": 0.051
+          },
+          {
+            "name": "Yoan Makoundou",
+            "status": "out",
+            "missingProbability": 1,
+            "avgMinutes": 14,
+            "sampleGames": 0,
+            "impactProxy": 0.078
+          },
+          {
+            "name": "Dario Brizuela",
+            "status": "out",
+            "missingProbability": 1,
+            "avgMinutes": 19.22,
+            "sampleGames": 6,
+            "impactProxy": 0.069
+          }
+        ],
+        "marginPenalty": 0.198,
+        "available": 13,
+        "rosterCount": 16
+      },
+      "rating": 0.14042160111744945,
+      "currentGames": 6,
+      "hardGames": 3,
+      "hardWins": 1,
+      "hardHistory": [
+        {
+          "opponent": "Dubai",
+          "gameCode": 13,
+          "date": "2026-09-29T16:00:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.37931,
+          "opponentRatingBefore": 0.546,
+          "hard": true,
+          "won": false,
+          "margin": -7.0
+        },
+        {
+          "opponent": "Besiktas",
+          "gameCode": 25,
+          "date": "2026-10-02T17:00:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.34183,
+          "opponentRatingBefore": 1.372,
+          "hard": true,
+          "won": true,
+          "margin": 13.0
+        },
+        {
+          "opponent": "Olympiacos",
+          "gameCode": 58,
+          "date": "2026-10-16T18:30:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.3043,
+          "opponentRatingBefore": 9.199,
+          "hard": true,
+          "won": false,
+          "margin": -5.0
+        }
+      ],
+      "recentHistory": [
+        {
+          "opponent": "Dubai",
+          "gameCode": 13,
+          "date": "2026-09-29T16:00:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.37931,
+          "opponentRatingBefore": 0.546,
+          "hard": true,
+          "won": false,
+          "margin": -7.0
+        },
+        {
+          "opponent": "Besiktas",
+          "gameCode": 25,
+          "date": "2026-10-02T17:00:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.34183,
+          "opponentRatingBefore": 1.372,
+          "hard": true,
+          "won": true,
+          "margin": 13.0
+        },
+        {
+          "opponent": "Zalgiris",
+          "gameCode": 39,
+          "date": "2026-10-09T18:30:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.62012,
+          "opponentRatingBefore": 1.298,
+          "hard": false,
+          "won": false,
+          "margin": -7.0
+        },
+        {
+          "opponent": "Maccabi Tel Aviv",
+          "gameCode": 44,
+          "date": "2026-10-13T18:30:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.75973,
+          "opponentRatingBefore": -4.515,
+          "hard": false,
+          "won": true,
+          "margin": 3.0
+        },
+        {
+          "opponent": "Olympiacos",
+          "gameCode": 58,
+          "date": "2026-10-16T18:30:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.3043,
+          "opponentRatingBefore": 9.199,
+          "hard": true,
+          "won": false,
+          "margin": -5.0
+        }
+      ],
+      "opponent": "Milano",
+      "home": false,
+      "baseMargin": -1.1,
+      "strengthDelta": 0.5102,
+      "rosterDelta": -0.198,
+      "margin": -0.7878,
+      "rawWinProb": 0.47267207227970315,
+      "winProb": 0.47267207227970315
+    },
+    "Paris": {
+      "availability": {
+        "missing": [
+          {
+            "name": "Nadir Hifi",
+            "status": "questionable",
+            "missingProbability": 0.5,
+            "avgMinutes": 26.07,
+            "sampleGames": 4,
+            "impactProxy": 0.49
+          },
+          {
+            "name": "Frank Ntilikina",
+            "status": "questionable",
+            "missingProbability": 0.5,
+            "avgMinutes": 10.05,
+            "sampleGames": 1,
+            "impactProxy": 0.038
+          }
+        ],
+        "marginPenalty": 0.528,
+        "available": 15,
+        "rosterCount": 17
+      },
+      "rating": -3.140312210755726,
+      "currentGames": 6,
+      "hardGames": 2,
+      "hardWins": 0,
+      "hardHistory": [
+        {
+          "opponent": "Panathinaikos",
+          "gameCode": 7,
+          "date": "2026-09-24T18:15:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.36647,
+          "opponentRatingBefore": 1.724,
+          "hard": true,
+          "won": false,
+          "margin": -19.0
+        },
+        {
+          "opponent": "Crvena Zvezda",
+          "gameCode": 56,
+          "date": "2026-10-16T18:00:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.26055,
+          "opponentRatingBefore": 1.319,
+          "hard": true,
+          "won": false,
+          "margin": -9.0
+        }
+      ],
+      "recentHistory": [
+        {
+          "opponent": "Partizan",
+          "gameCode": 18,
+          "date": "2026-09-29T18:45:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.55838,
+          "opponentRatingBefore": 0.988,
+          "hard": false,
+          "won": false,
+          "margin": -13.0
+        },
+        {
+          "opponent": "Zalgiris",
+          "gameCode": 24,
+          "date": "2026-10-01T18:45:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.4811,
+          "opponentRatingBefore": 1.753,
+          "hard": false,
+          "won": true,
+          "margin": 4.0
+        },
+        {
+          "opponent": "ASVEL",
+          "gameCode": 31,
+          "date": "2026-10-07T18:45:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.72056,
+          "opponentRatingBefore": -5.157,
+          "hard": false,
+          "won": false,
+          "margin": -2.0
+        },
+        {
+          "opponent": "Virtus Bologna",
+          "gameCode": 50,
+          "date": "2026-10-14T18:45:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.62634,
+          "opponentRatingBefore": -2.939,
+          "hard": false,
+          "won": false,
+          "margin": -2.0
+        },
+        {
+          "opponent": "Crvena Zvezda",
+          "gameCode": 56,
+          "date": "2026-10-16T18:00:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.26055,
+          "opponentRatingBefore": 1.319,
+          "hard": true,
+          "won": false,
+          "margin": -9.0
+        }
+      ],
+      "opponent": "Valencia",
+      "home": true,
+      "baseMargin": -0.48,
+      "strengthDelta": -0.3823,
+      "rosterDelta": -0.528,
+      "margin": -1.3903,
+      "rawWinProb": 0.4518756591760075,
+      "winProb": 0.4518756591760075
+    },
+    "Real Madrid": {
+      "availability": {
+        "missing": [
+          {
+            "name": "Gabriel Deck",
+            "status": "out",
+            "missingProbability": 1,
+            "avgMinutes": 17.1,
+            "sampleGames": 3,
+            "impactProxy": 0.171
+          },
+          {
+            "name": "Usman Garuba",
+            "status": "out",
+            "missingProbability": 1,
+            "avgMinutes": 14,
+            "sampleGames": 0,
+            "impactProxy": 0.028
+          }
+        ],
+        "marginPenalty": 0.199,
+        "available": 15,
+        "rosterCount": 17
+      },
+      "rating": 4.9239635947643565,
+      "currentGames": 6,
+      "hardGames": 0,
+      "hardWins": 0,
+      "hardHistory": [],
+      "recentHistory": [
+        {
+          "opponent": "Anadolu Efes",
+          "gameCode": 11,
+          "date": "2026-09-29T17:00:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.62674,
+          "opponentRatingBefore": -1.735,
+          "hard": false,
+          "won": false,
+          "margin": -10.0
+        },
+        {
+          "opponent": "Hapoel Tel Aviv",
+          "gameCode": 22,
+          "date": "2026-10-01T16:00:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.53506,
+          "opponentRatingBefore": -0.388,
+          "hard": false,
+          "won": false,
+          "margin": -4.0
+        },
+        {
+          "opponent": "Partizan",
+          "gameCode": 35,
+          "date": "2026-10-08T18:45:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.63745,
+          "opponentRatingBefore": 2.46,
+          "hard": false,
+          "won": true,
+          "margin": 10.0
+        },
+        {
+          "opponent": "Milano",
+          "gameCode": 43,
+          "date": "2026-10-13T18:30:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.70594,
+          "opponentRatingBefore": -5.589,
+          "hard": false,
+          "won": true,
+          "margin": 9.0
+        },
+        {
+          "opponent": "ASVEL",
+          "gameCode": 53,
+          "date": "2026-10-15T19:00:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.8339,
+          "opponentRatingBefore": -4.232,
+          "hard": false,
+          "won": true,
+          "margin": 19.0
+        }
+      ],
+      "opponent": "Maccabi Tel Aviv",
+      "home": false,
+      "baseMargin": 0.82,
+      "strengthDelta": 0.4198,
+      "rosterDelta": 0.077,
+      "margin": 1.3168,
+      "rawWinProb": 0.5455945531551295,
+      "winProb": 0.5455945531551295
     },
     "Panathinaikos": {
       "availability": {
@@ -41763,101 +42117,6 @@
       "margin": 9.0695,
       "rawWinProb": 0.7789672137789337,
       "winProb": 0.7789672137789337
-    },
-    "Real Madrid": {
-      "availability": {
-        "missing": [
-          {
-            "name": "Gabriel Deck",
-            "status": "out",
-            "missingProbability": 1,
-            "avgMinutes": 17.1,
-            "sampleGames": 3,
-            "impactProxy": 0.171
-          },
-          {
-            "name": "Usman Garuba",
-            "status": "out",
-            "missingProbability": 1,
-            "avgMinutes": 14,
-            "sampleGames": 0,
-            "impactProxy": 0.028
-          }
-        ],
-        "marginPenalty": 0.199,
-        "available": 15,
-        "rosterCount": 17
-      },
-      "rating": 4.9239635947643565,
-      "currentGames": 6,
-      "hardGames": 0,
-      "hardWins": 0,
-      "hardHistory": [],
-      "recentHistory": [
-        {
-          "opponent": "Anadolu Efes",
-          "gameCode": 11,
-          "date": "2026-09-29T17:00:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.62674,
-          "opponentRatingBefore": -1.735,
-          "hard": false,
-          "won": false,
-          "margin": -10.0
-        },
-        {
-          "opponent": "Hapoel Tel Aviv",
-          "gameCode": 22,
-          "date": "2026-10-01T16:00:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.53506,
-          "opponentRatingBefore": -0.388,
-          "hard": false,
-          "won": false,
-          "margin": -4.0
-        },
-        {
-          "opponent": "Partizan",
-          "gameCode": 35,
-          "date": "2026-10-08T18:45:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.63745,
-          "opponentRatingBefore": 2.46,
-          "hard": false,
-          "won": true,
-          "margin": 10.0
-        },
-        {
-          "opponent": "Milano",
-          "gameCode": 43,
-          "date": "2026-10-13T18:30:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.70594,
-          "opponentRatingBefore": -5.589,
-          "hard": false,
-          "won": true,
-          "margin": 9.0
-        },
-        {
-          "opponent": "ASVEL",
-          "gameCode": 53,
-          "date": "2026-10-15T19:00:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.8339,
-          "opponentRatingBefore": -4.232,
-          "hard": false,
-          "won": true,
-          "margin": 19.0
-        }
-      ],
-      "opponent": "Maccabi Tel Aviv",
-      "home": false,
-      "baseMargin": 0.82,
-      "strengthDelta": 0.4198,
-      "rosterDelta": 0.077,
-      "margin": 1.3168,
-      "rawWinProb": 0.5455945531551295,
-      "winProb": 0.5455945531551295
     },
     "Hapoel Tel Aviv": {
       "availability": {
@@ -42082,272 +42341,6 @@
       "margin": -0.1422,
       "rawWinProb": 0.4950637801789,
       "winProb": 0.4950637801789
-    },
-    "Maccabi Tel Aviv": {
-      "availability": {
-        "missing": [
-          {
-            "name": "Iffe Lundberg",
-            "status": "out",
-            "missingProbability": 1,
-            "avgMinutes": 23.04,
-            "sampleGames": 6,
-            "impactProxy": 0.276
-          },
-          {
-            "name": "Gur Lavi",
-            "status": "out",
-            "missingProbability": 1,
-            "avgMinutes": 14,
-            "sampleGames": 0,
-            "impactProxy": 0.0
-          }
-        ],
-        "marginPenalty": 0.276,
-        "available": 14,
-        "rosterCount": 16
-      },
-      "rating": -2.4542855013479876,
-      "currentGames": 6,
-      "hardGames": 3,
-      "hardWins": 1,
-      "hardHistory": [
-        {
-          "opponent": "Panathinaikos",
-          "gameCode": 30,
-          "date": "2026-10-02T18:15:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.14105,
-          "opponentRatingBefore": 4.577,
-          "hard": true,
-          "won": false,
-          "margin": -23.0
-        },
-        {
-          "opponent": "Barcelona",
-          "gameCode": 44,
-          "date": "2026-10-13T18:30:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.24027,
-          "opponentRatingBefore": 0.574,
-          "hard": true,
-          "won": false,
-          "margin": -3.0
-        },
-        {
-          "opponent": "Valencia",
-          "gameCode": 52,
-          "date": "2026-10-15T18:30:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.1531,
-          "opponentRatingBefore": 5.129,
-          "hard": true,
-          "won": true,
-          "margin": 3.0
-        }
-      ],
-      "recentHistory": [
-        {
-          "opponent": "Besiktas",
-          "gameCode": 19,
-          "date": "2026-09-30T18:05:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.49118,
-          "opponentRatingBefore": -0.202,
-          "hard": false,
-          "won": false,
-          "margin": -16.0
-        },
-        {
-          "opponent": "Panathinaikos",
-          "gameCode": 30,
-          "date": "2026-10-02T18:15:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.14105,
-          "opponentRatingBefore": 4.577,
-          "hard": true,
-          "won": false,
-          "margin": -23.0
-        },
-        {
-          "opponent": "Milano",
-          "gameCode": 32,
-          "date": "2026-10-08T16:00:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.52924,
-          "opponentRatingBefore": -3.873,
-          "hard": false,
-          "won": true,
-          "margin": 18.0
-        },
-        {
-          "opponent": "Barcelona",
-          "gameCode": 44,
-          "date": "2026-10-13T18:30:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.24027,
-          "opponentRatingBefore": 0.574,
-          "hard": true,
-          "won": false,
-          "margin": -3.0
-        },
-        {
-          "opponent": "Valencia",
-          "gameCode": 52,
-          "date": "2026-10-15T18:30:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.1531,
-          "opponentRatingBefore": 5.129,
-          "hard": true,
-          "won": true,
-          "margin": 3.0
-        }
-      ],
-      "opponent": "Real Madrid",
-      "home": true,
-      "baseMargin": -0.82,
-      "strengthDelta": -0.4198,
-      "rosterDelta": -0.077,
-      "margin": -1.3168,
-      "rawWinProb": 0.4544054468448705,
-      "winProb": 0.4544054468448705
-    },
-    "Barcelona": {
-      "availability": {
-        "missing": [
-          {
-            "name": "Justin Minaya",
-            "status": "questionable",
-            "missingProbability": 0.5,
-            "avgMinutes": 15.1,
-            "sampleGames": 3,
-            "impactProxy": 0.051
-          },
-          {
-            "name": "Yoan Makoundou",
-            "status": "out",
-            "missingProbability": 1,
-            "avgMinutes": 14,
-            "sampleGames": 0,
-            "impactProxy": 0.078
-          },
-          {
-            "name": "Dario Brizuela",
-            "status": "out",
-            "missingProbability": 1,
-            "avgMinutes": 19.22,
-            "sampleGames": 6,
-            "impactProxy": 0.069
-          }
-        ],
-        "marginPenalty": 0.198,
-        "available": 13,
-        "rosterCount": 16
-      },
-      "rating": 0.14042160111744945,
-      "currentGames": 6,
-      "hardGames": 3,
-      "hardWins": 1,
-      "hardHistory": [
-        {
-          "opponent": "Dubai",
-          "gameCode": 13,
-          "date": "2026-09-29T16:00:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.37931,
-          "opponentRatingBefore": 0.546,
-          "hard": true,
-          "won": false,
-          "margin": -7.0
-        },
-        {
-          "opponent": "Besiktas",
-          "gameCode": 25,
-          "date": "2026-10-02T17:00:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.34183,
-          "opponentRatingBefore": 1.372,
-          "hard": true,
-          "won": true,
-          "margin": 13.0
-        },
-        {
-          "opponent": "Olympiacos",
-          "gameCode": 58,
-          "date": "2026-10-16T18:30:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.3043,
-          "opponentRatingBefore": 9.199,
-          "hard": true,
-          "won": false,
-          "margin": -5.0
-        }
-      ],
-      "recentHistory": [
-        {
-          "opponent": "Dubai",
-          "gameCode": 13,
-          "date": "2026-09-29T16:00:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.37931,
-          "opponentRatingBefore": 0.546,
-          "hard": true,
-          "won": false,
-          "margin": -7.0
-        },
-        {
-          "opponent": "Besiktas",
-          "gameCode": 25,
-          "date": "2026-10-02T17:00:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.34183,
-          "opponentRatingBefore": 1.372,
-          "hard": true,
-          "won": true,
-          "margin": 13.0
-        },
-        {
-          "opponent": "Zalgiris",
-          "gameCode": 39,
-          "date": "2026-10-09T18:30:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.62012,
-          "opponentRatingBefore": 1.298,
-          "hard": false,
-          "won": false,
-          "margin": -7.0
-        },
-        {
-          "opponent": "Maccabi Tel Aviv",
-          "gameCode": 44,
-          "date": "2026-10-13T18:30:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.75973,
-          "opponentRatingBefore": -4.515,
-          "hard": false,
-          "won": true,
-          "margin": 3.0
-        },
-        {
-          "opponent": "Olympiacos",
-          "gameCode": 58,
-          "date": "2026-10-16T18:30:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.3043,
-          "opponentRatingBefore": 9.199,
-          "hard": true,
-          "won": false,
-          "margin": -5.0
-        }
-      ],
-      "opponent": "Milano",
-      "home": false,
-      "baseMargin": -1.1,
-      "strengthDelta": 0.5102,
-      "rosterDelta": -0.198,
-      "margin": -0.7878,
-      "rawWinProb": 0.47267207227970315,
-      "winProb": 0.47267207227970315
     },
     "Bayern Munich": {
       "availability": {
@@ -42640,410 +42633,638 @@
       "rawWinProb": 0.3279225554831233,
       "winProb": 0.3279225554831233
     },
-    "Dubai": {
+    "Crvena Zvezda": {
       "availability": {
         "missing": [
           {
-            "name": "Dzanan Musa",
-            "status": "out",
-            "missingProbability": 1,
-            "avgMinutes": 23,
+            "name": "Christian Koloko",
+            "status": "questionable",
+            "missingProbability": 0.5,
+            "avgMinutes": 19,
             "sampleGames": 0,
-            "impactProxy": 0.708
+            "impactProxy": 0.182
           },
           {
-            "name": "Mam Jaiteh",
+            "name": "Johnathan Motley",
             "status": "out",
             "missingProbability": 1,
-            "avgMinutes": 14,
-            "sampleGames": 0,
-            "impactProxy": 0.067
+            "avgMinutes": 12.37,
+            "sampleGames": 3,
+            "impactProxy": 0.198
           },
           {
-            "name": "Justin Anderson",
-            "status": "out",
-            "missingProbability": 1,
-            "avgMinutes": 14,
-            "sampleGames": 0,
-            "impactProxy": 0.05
-          },
-          {
-            "name": "Klemen Prepelic",
-            "status": "out",
-            "missingProbability": 1,
-            "avgMinutes": 14,
-            "sampleGames": 0,
+            "name": "Stefan Miljenovic",
+            "status": "questionable",
+            "missingProbability": 0.5,
+            "avgMinutes": 2.96,
+            "sampleGames": 3,
             "impactProxy": 0.0
           }
         ],
-        "marginPenalty": 0.825,
-        "available": 14,
-        "rosterCount": 18
+        "marginPenalty": 0.38,
+        "available": 16,
+        "rosterCount": 19
       },
-      "rating": -0.2996456743503661,
+      "rating": 1.4680745997622546,
       "currentGames": 6,
       "hardGames": 1,
-      "hardWins": 0,
+      "hardWins": 1,
       "hardHistory": [
         {
-          "opponent": "Fenerbahce",
-          "gameCode": 29,
-          "date": "2026-10-02T17:45:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.32333,
-          "opponentRatingBefore": 3.009,
-          "hard": true,
-          "won": false,
-          "margin": -10.0
-        }
-      ],
-      "recentHistory": [
-        {
-          "opponent": "Barcelona",
-          "gameCode": 13,
-          "date": "2026-09-29T16:00:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.62069,
-          "opponentRatingBefore": 0.2,
-          "hard": false,
-          "won": true,
-          "margin": 7.0
-        },
-        {
-          "opponent": "Fenerbahce",
-          "gameCode": 29,
-          "date": "2026-10-02T17:45:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.32333,
-          "opponentRatingBefore": 3.009,
-          "hard": true,
-          "won": false,
-          "margin": -10.0
-        },
-        {
-          "opponent": "Crvena Zvezda",
+          "opponent": "Dubai",
           "gameCode": 37,
           "date": "2026-10-08T16:00:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.65522,
-          "opponentRatingBefore": -0.999,
-          "hard": false,
-          "won": false,
-          "margin": -19.0
-        },
-        {
-          "opponent": "Baskonia",
-          "gameCode": 42,
-          "date": "2026-10-13T18:30:00+00:00",
           "home": false,
-          "pregameWinProb": 0.4803,
-          "opponentRatingBefore": -4.571,
-          "hard": false,
-          "won": true,
-          "margin": 14.0
-        },
-        {
-          "opponent": "Milano",
-          "gameCode": 51,
-          "date": "2026-10-15T18:30:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.57501,
-          "opponentRatingBefore": -5.859,
-          "hard": false,
-          "won": true,
-          "margin": 4.0
-        }
-      ],
-      "opponent": "Bayern Munich",
-      "home": false,
-      "baseMargin": -1.45,
-      "strengthDelta": 0.1049,
-      "rosterDelta": -0.825,
-      "margin": -2.1701,
-      "rawWinProb": 0.42521359333469044,
-      "winProb": 0.42521359333469044
-    },
-    "Partizan": {
-      "availability": {
-        "missing": [
-          {
-            "name": "Tonye Jekiri",
-            "status": "out",
-            "missingProbability": 1,
-            "avgMinutes": 17.39,
-            "sampleGames": 6,
-            "impactProxy": 0.306
-          },
-          {
-            "name": "Derek Willis",
-            "status": "out",
-            "missingProbability": 1,
-            "avgMinutes": 3.15,
-            "sampleGames": 1,
-            "impactProxy": 0.032
-          },
-          {
-            "name": "Vanja Marinkovic",
-            "status": "out",
-            "missingProbability": 1,
-            "avgMinutes": 14,
-            "sampleGames": 0,
-            "impactProxy": 0.0
-          }
-        ],
-        "marginPenalty": 0.338,
-        "available": 14,
-        "rosterCount": 17
-      },
-      "rating": 0.10963555848963805,
-      "currentGames": 6,
-      "hardGames": 2,
-      "hardWins": 0,
-      "hardHistory": [
-        {
-          "opponent": "Real Madrid",
-          "gameCode": 35,
-          "date": "2026-10-08T18:45:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.36255,
-          "opponentRatingBefore": 3.323,
+          "pregameWinProb": 0.34478,
+          "opponentRatingBefore": 0.424,
           "hard": true,
-          "won": false,
-          "margin": -10.0
-        },
-        {
-          "opponent": "Fenerbahce",
-          "gameCode": 54,
-          "date": "2026-10-15T17:45:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.28401,
-          "opponentRatingBefore": 3.802,
-          "hard": true,
-          "won": false,
-          "margin": -9.0
+          "won": true,
+          "margin": 19.0
         }
       ],
       "recentHistory": [
         {
-          "opponent": "Paris",
-          "gameCode": 18,
-          "date": "2026-09-29T18:45:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.44162,
-          "opponentRatingBefore": -0.523,
+          "opponent": "Hapoel Tel Aviv",
+          "gameCode": 12,
+          "date": "2026-09-29T18:00:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.60756,
+          "opponentRatingBefore": -0.802,
           "hard": false,
-          "won": true,
-          "margin": 13.0
+          "won": false,
+          "margin": -1.0
         },
         {
-          "opponent": "Bayern Munich",
-          "gameCode": 28,
-          "date": "2026-10-02T18:00:00+00:00",
+          "opponent": "Anadolu Efes",
+          "gameCode": 21,
+          "date": "2026-10-01T18:00:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.57889,
+          "opponentRatingBefore": -0.361,
+          "hard": false,
+          "won": true,
+          "margin": 5.0
+        },
+        {
+          "opponent": "Dubai",
+          "gameCode": 37,
+          "date": "2026-10-08T16:00:00+00:00",
           "home": false,
-          "pregameWinProb": 0.56807,
-          "opponentRatingBefore": -2.716,
+          "pregameWinProb": 0.34478,
+          "opponentRatingBefore": 0.424,
+          "hard": true,
+          "won": true,
+          "margin": 19.0
+        },
+        {
+          "opponent": "ASVEL",
+          "gameCode": 41,
+          "date": "2026-10-13T18:00:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.58387,
+          "opponentRatingBefore": -4.275,
           "hard": false,
           "won": true,
           "margin": 2.0
         },
         {
-          "opponent": "Real Madrid",
-          "gameCode": 35,
-          "date": "2026-10-08T18:45:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.36255,
-          "opponentRatingBefore": 3.323,
-          "hard": true,
-          "won": false,
-          "margin": -10.0
-        },
-        {
-          "opponent": "Panathinaikos",
-          "gameCode": 47,
-          "date": "2026-10-13T18:30:00+00:00",
+          "opponent": "Paris",
+          "gameCode": 56,
+          "date": "2026-10-16T18:00:00+00:00",
           "home": true,
-          "pregameWinProb": 0.43851,
-          "opponentRatingBefore": 6.846,
+          "pregameWinProb": 0.73945,
+          "opponentRatingBefore": -2.991,
           "hard": false,
-          "won": false,
-          "margin": -17.0
-        },
-        {
-          "opponent": "Fenerbahce",
-          "gameCode": 54,
-          "date": "2026-10-15T17:45:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.28401,
-          "opponentRatingBefore": 3.802,
-          "hard": true,
-          "won": false,
-          "margin": -9.0
+          "won": true,
+          "margin": 9.0
         }
       ],
-      "opponent": "Crvena Zvezda",
-      "home": true,
-      "baseMargin": 0.27,
-      "strengthDelta": 0.1964,
-      "rosterDelta": 0.042,
-      "margin": 0.5084,
-      "rawWinProb": 0.5176470115179627,
-      "winProb": 0.5176470115179627
+      "opponent": "Partizan",
+      "home": false,
+      "baseMargin": -0.27,
+      "strengthDelta": -0.1964,
+      "rosterDelta": -0.042,
+      "margin": -0.5084,
+      "rawWinProb": 0.48235298848203734,
+      "winProb": 0.48235298848203734
     },
-    "Anadolu Efes": {
+    "ASVEL": {
       "availability": {
         "missing": [
           {
-            "name": "Mike James",
-            "status": "out",
-            "missingProbability": 1,
-            "avgMinutes": 28.56,
-            "sampleGames": 3,
-            "impactProxy": 1.188
-          },
-          {
-            "name": "Isaia Cordinier",
+            "name": "Mathis Dossou-yovo",
             "status": "out",
             "missingProbability": 1,
             "avgMinutes": 19,
             "sampleGames": 0,
-            "impactProxy": 0.266
-          },
-          {
-            "name": "Perry Dozier",
-            "status": "out",
-            "missingProbability": 1,
-            "avgMinutes": 19,
-            "sampleGames": 0,
-            "impactProxy": 0.167
-          },
-          {
-            "name": "Georgios Papagiannis",
-            "status": "out",
-            "missingProbability": 1,
-            "avgMinutes": 14,
-            "sampleGames": 0,
-            "impactProxy": 0.106
+            "impactProxy": 0.289
           }
         ],
-        "marginPenalty": 1.727,
-        "available": 16,
-        "rosterCount": 20
+        "marginPenalty": 0.289,
+        "available": 15,
+        "rosterCount": 16
       },
-      "rating": -0.9170844309460482,
+      "rating": -4.969847183569249,
       "currentGames": 6,
       "hardGames": 4,
-      "hardWins": 2,
+      "hardWins": 1,
       "hardHistory": [
         {
-          "opponent": "Barcelona",
-          "gameCode": 4,
-          "date": "2026-09-24T18:30:00+00:00",
+          "opponent": "Panathinaikos",
+          "gameCode": 20,
+          "date": "2026-09-30T18:15:00+00:00",
           "home": false,
-          "pregameWinProb": 0.34334,
-          "opponentRatingBefore": -0.033,
-          "hard": true,
-          "won": false,
-          "margin": -7.0
-        },
-        {
-          "opponent": "Real Madrid",
-          "gameCode": 11,
-          "date": "2026-09-29T17:00:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.37326,
-          "opponentRatingBefore": 5.197,
-          "hard": true,
-          "won": true,
-          "margin": 10.0
-        },
-        {
-          "opponent": "Olympiacos",
-          "gameCode": 40,
-          "date": "2026-10-09T18:15:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.17131,
-          "opponentRatingBefore": 7.517,
+          "pregameWinProb": 0.21011,
+          "opponentRatingBefore": 3.23,
           "hard": true,
           "won": false,
           "margin": -23.0
         },
         {
-          "opponent": "Zalgiris",
-          "gameCode": 57,
-          "date": "2026-10-16T17:00:00+00:00",
+          "opponent": "Valencia",
+          "gameCode": 26,
+          "date": "2026-10-02T18:00:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.30473,
+          "opponentRatingBefore": 4.688,
+          "hard": true,
+          "won": false,
+          "margin": -13.0
+        },
+        {
+          "opponent": "Paris",
+          "gameCode": 31,
+          "date": "2026-10-07T18:45:00+00:00",
           "home": false,
-          "pregameWinProb": 0.27218,
-          "opponentRatingBefore": 0.757,
+          "pregameWinProb": 0.27944,
+          "opponentRatingBefore": -1.537,
           "hard": true,
           "won": true,
-          "margin": 15.0
+          "margin": 2.0
+        },
+        {
+          "opponent": "Real Madrid",
+          "gameCode": 53,
+          "date": "2026-10-15T19:00:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.1661,
+          "opponentRatingBefore": 4.186,
+          "hard": true,
+          "won": false,
+          "margin": -19.0
         }
       ],
       "recentHistory": [
         {
-          "opponent": "Real Madrid",
-          "gameCode": 11,
-          "date": "2026-09-29T17:00:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.37326,
-          "opponentRatingBefore": 5.197,
-          "hard": true,
-          "won": true,
-          "margin": 10.0
-        },
-        {
-          "opponent": "Crvena Zvezda",
-          "gameCode": 21,
-          "date": "2026-10-01T18:00:00+00:00",
+          "opponent": "Panathinaikos",
+          "gameCode": 20,
+          "date": "2026-09-30T18:15:00+00:00",
           "home": false,
-          "pregameWinProb": 0.42111,
-          "opponentRatingBefore": -1.27,
-          "hard": false,
-          "won": false,
-          "margin": -5.0
-        },
-        {
-          "opponent": "Olympiacos",
-          "gameCode": 40,
-          "date": "2026-10-09T18:15:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.17131,
-          "opponentRatingBefore": 7.517,
+          "pregameWinProb": 0.21011,
+          "opponentRatingBefore": 3.23,
           "hard": true,
           "won": false,
           "margin": -23.0
         },
         {
-          "opponent": "Bayern Munich",
-          "gameCode": 49,
-          "date": "2026-10-14T17:30:00+00:00",
+          "opponent": "Valencia",
+          "gameCode": 26,
+          "date": "2026-10-02T18:00:00+00:00",
           "home": true,
-          "pregameWinProb": 0.6755,
-          "opponentRatingBefore": -3.876,
+          "pregameWinProb": 0.30473,
+          "opponentRatingBefore": 4.688,
+          "hard": true,
+          "won": false,
+          "margin": -13.0
+        },
+        {
+          "opponent": "Paris",
+          "gameCode": 31,
+          "date": "2026-10-07T18:45:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.27944,
+          "opponentRatingBefore": -1.537,
+          "hard": true,
+          "won": true,
+          "margin": 2.0
+        },
+        {
+          "opponent": "Crvena Zvezda",
+          "gameCode": 41,
+          "date": "2026-10-13T18:00:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.41613,
+          "opponentRatingBefore": 1.363,
+          "hard": false,
+          "won": false,
+          "margin": -2.0
+        },
+        {
+          "opponent": "Real Madrid",
+          "gameCode": 53,
+          "date": "2026-10-15T19:00:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.1661,
+          "opponentRatingBefore": 4.186,
+          "hard": true,
+          "won": false,
+          "margin": -19.0
+        }
+      ],
+      "opponent": "Zalgiris",
+      "home": false,
+      "baseMargin": -7.69,
+      "strengthDelta": 0.1215,
+      "rosterDelta": 0.172,
+      "margin": -7.3965,
+      "rawWinProb": 0.26360825200130267,
+      "winProb": 0.26360825200130267
+    },
+    "Baskonia": {
+      "availability": {
+        "missing": [],
+        "marginPenalty": 0,
+        "available": 14,
+        "rosterCount": 14
+      },
+      "rating": -6.141837496495694,
+      "currentGames": 6,
+      "hardGames": 3,
+      "hardWins": 0,
+      "hardHistory": [
+        {
+          "opponent": "Olympiacos",
+          "gameCode": 5,
+          "date": "2026-09-24T18:30:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.26853,
+          "opponentRatingBefore": 8.074,
+          "hard": true,
+          "won": false,
+          "margin": -17.0
+        },
+        {
+          "opponent": "Valencia",
+          "gameCode": 15,
+          "date": "2026-09-29T18:30:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.20188,
+          "opponentRatingBefore": 3.378,
+          "hard": true,
+          "won": false,
+          "margin": -23.0
+        },
+        {
+          "opponent": "Virtus Bologna",
+          "gameCode": 59,
+          "date": "2026-10-16T18:30:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.27829,
+          "opponentRatingBefore": -2.367,
+          "hard": true,
+          "won": false,
+          "margin": -8.0
+        }
+      ],
+      "recentHistory": [
+        {
+          "opponent": "Valencia",
+          "gameCode": 15,
+          "date": "2026-09-29T18:30:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.20188,
+          "opponentRatingBefore": 3.378,
+          "hard": true,
+          "won": false,
+          "margin": -23.0
+        },
+        {
+          "opponent": "Milano",
+          "gameCode": 27,
+          "date": "2026-10-02T18:30:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.55546,
+          "opponentRatingBefore": -3.034,
+          "hard": false,
+          "won": true,
+          "margin": 10.0
+        },
+        {
+          "opponent": "Besiktas",
+          "gameCode": 38,
+          "date": "2026-10-09T18:30:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.49338,
+          "opponentRatingBefore": -0.4,
           "hard": false,
           "won": false,
           "margin": -8.0
         },
         {
-          "opponent": "Zalgiris",
-          "gameCode": 57,
-          "date": "2026-10-16T17:00:00+00:00",
+          "opponent": "Dubai",
+          "gameCode": 42,
+          "date": "2026-10-13T18:30:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.5197,
+          "opponentRatingBefore": -1.939,
+          "hard": false,
+          "won": false,
+          "margin": -14.0
+        },
+        {
+          "opponent": "Virtus Bologna",
+          "gameCode": 59,
+          "date": "2026-10-16T18:30:00+00:00",
           "home": false,
-          "pregameWinProb": 0.27218,
-          "opponentRatingBefore": 0.757,
+          "pregameWinProb": 0.27829,
+          "opponentRatingBefore": -2.367,
           "hard": true,
-          "won": true,
-          "margin": 15.0
+          "won": false,
+          "margin": -8.0
         }
       ],
-      "opponent": "Besiktas",
+      "opponent": "Panathinaikos",
+      "home": false,
+      "baseMargin": -8.84,
+      "strengthDelta": -0.8565,
+      "rosterDelta": 0.627,
+      "margin": -9.0695,
+      "rawWinProb": 0.22103278622106623,
+      "winProb": 0.22103278622106623
+    },
+    "Maccabi Tel Aviv": {
+      "availability": {
+        "missing": [
+          {
+            "name": "Iffe Lundberg",
+            "status": "out",
+            "missingProbability": 1,
+            "avgMinutes": 23.04,
+            "sampleGames": 6,
+            "impactProxy": 0.276
+          },
+          {
+            "name": "Gur Lavi",
+            "status": "out",
+            "missingProbability": 1,
+            "avgMinutes": 14,
+            "sampleGames": 0,
+            "impactProxy": 0.0
+          }
+        ],
+        "marginPenalty": 0.276,
+        "available": 14,
+        "rosterCount": 16
+      },
+      "rating": -2.4542855013479876,
+      "currentGames": 6,
+      "hardGames": 3,
+      "hardWins": 1,
+      "hardHistory": [
+        {
+          "opponent": "Panathinaikos",
+          "gameCode": 30,
+          "date": "2026-10-02T18:15:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.14105,
+          "opponentRatingBefore": 4.577,
+          "hard": true,
+          "won": false,
+          "margin": -23.0
+        },
+        {
+          "opponent": "Barcelona",
+          "gameCode": 44,
+          "date": "2026-10-13T18:30:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.24027,
+          "opponentRatingBefore": 0.574,
+          "hard": true,
+          "won": false,
+          "margin": -3.0
+        },
+        {
+          "opponent": "Valencia",
+          "gameCode": 52,
+          "date": "2026-10-15T18:30:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.1531,
+          "opponentRatingBefore": 5.129,
+          "hard": true,
+          "won": true,
+          "margin": 3.0
+        }
+      ],
+      "recentHistory": [
+        {
+          "opponent": "Besiktas",
+          "gameCode": 19,
+          "date": "2026-09-30T18:05:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.49118,
+          "opponentRatingBefore": -0.202,
+          "hard": false,
+          "won": false,
+          "margin": -16.0
+        },
+        {
+          "opponent": "Panathinaikos",
+          "gameCode": 30,
+          "date": "2026-10-02T18:15:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.14105,
+          "opponentRatingBefore": 4.577,
+          "hard": true,
+          "won": false,
+          "margin": -23.0
+        },
+        {
+          "opponent": "Milano",
+          "gameCode": 32,
+          "date": "2026-10-08T16:00:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.52924,
+          "opponentRatingBefore": -3.873,
+          "hard": false,
+          "won": true,
+          "margin": 18.0
+        },
+        {
+          "opponent": "Barcelona",
+          "gameCode": 44,
+          "date": "2026-10-13T18:30:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.24027,
+          "opponentRatingBefore": 0.574,
+          "hard": true,
+          "won": false,
+          "margin": -3.0
+        },
+        {
+          "opponent": "Valencia",
+          "gameCode": 52,
+          "date": "2026-10-15T18:30:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.1531,
+          "opponentRatingBefore": 5.129,
+          "hard": true,
+          "won": true,
+          "margin": 3.0
+        }
+      ],
+      "opponent": "Real Madrid",
       "home": true,
-      "baseMargin": 1.34,
-      "strengthDelta": 0.2192,
-      "rosterDelta": -1.417,
-      "margin": 0.1422,
-      "rawWinProb": 0.5049362198211,
-      "winProb": 0.5049362198211
+      "baseMargin": -0.82,
+      "strengthDelta": -0.4198,
+      "rosterDelta": -0.077,
+      "margin": -1.3168,
+      "rawWinProb": 0.4544054468448705,
+      "winProb": 0.4544054468448705
+    },
+    "Virtus Bologna": {
+      "availability": {
+        "missing": [],
+        "marginPenalty": 0,
+        "available": 15,
+        "rosterCount": 15
+      },
+      "rating": -2.266492355843441,
+      "currentGames": 7,
+      "hardGames": 6,
+      "hardWins": 3,
+      "hardHistory": [
+        {
+          "opponent": "Fenerbahce",
+          "gameCode": 9,
+          "date": "2026-09-25T17:45:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.19496,
+          "opponentRatingBefore": 1.146,
+          "hard": true,
+          "won": false,
+          "margin": -10.0
+        },
+        {
+          "opponent": "Milano",
+          "gameCode": 16,
+          "date": "2026-09-29T18:30:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.28975,
+          "opponentRatingBefore": -2.588,
+          "hard": true,
+          "won": false,
+          "margin": -2.0
+        },
+        {
+          "opponent": "Olympiacos",
+          "gameCode": 23,
+          "date": "2026-10-01T18:30:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.17797,
+          "opponentRatingBefore": 8.819,
+          "hard": true,
+          "won": true,
+          "margin": 2.0
+        },
+        {
+          "opponent": "Bayern Munich",
+          "gameCode": 33,
+          "date": "2026-10-08T18:00:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.34619,
+          "opponentRatingBefore": -2.718,
+          "hard": true,
+          "won": true,
+          "margin": 7.0
+        },
+        {
+          "opponent": "Paris",
+          "gameCode": 50,
+          "date": "2026-10-14T18:45:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.37366,
+          "opponentRatingBefore": -2.419,
+          "hard": true,
+          "won": true,
+          "margin": 2.0
+        },
+        {
+          "opponent": "Hapoel Tel Aviv",
+          "gameCode": 61,
+          "date": "2026-10-21T16:00:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.22599,
+          "opponentRatingBefore": 3.411,
+          "hard": true,
+          "won": false,
+          "margin": -9.0
+        }
+      ],
+      "recentHistory": [
+        {
+          "opponent": "Olympiacos",
+          "gameCode": 23,
+          "date": "2026-10-01T18:30:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.17797,
+          "opponentRatingBefore": 8.819,
+          "hard": true,
+          "won": true,
+          "margin": 2.0
+        },
+        {
+          "opponent": "Bayern Munich",
+          "gameCode": 33,
+          "date": "2026-10-08T18:00:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.34619,
+          "opponentRatingBefore": -2.718,
+          "hard": true,
+          "won": true,
+          "margin": 7.0
+        },
+        {
+          "opponent": "Paris",
+          "gameCode": 50,
+          "date": "2026-10-14T18:45:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.37366,
+          "opponentRatingBefore": -2.419,
+          "hard": true,
+          "won": true,
+          "margin": 2.0
+        },
+        {
+          "opponent": "Baskonia",
+          "gameCode": 59,
+          "date": "2026-10-16T18:30:00+00:00",
+          "home": true,
+          "pregameWinProb": 0.72171,
+          "opponentRatingBefore": -6.028,
+          "hard": false,
+          "won": true,
+          "margin": 8.0
+        },
+        {
+          "opponent": "Hapoel Tel Aviv",
+          "gameCode": 61,
+          "date": "2026-10-21T16:00:00+00:00",
+          "home": false,
+          "pregameWinProb": 0.22599,
+          "opponentRatingBefore": 3.411,
+          "hard": true,
+          "won": false,
+          "margin": -9.0
+        }
+      ],
+      "opponent": "Hapoel Tel Aviv",
+      "home": false,
+      "baseMargin": -6.1,
+      "strengthDelta": -0.3757,
+      "rosterDelta": 0.166,
+      "margin": -6.3097,
+      "rawWinProb": 0.29393477279750335,
+      "winProb": 0.29393477279750335
     },
     "Zalgiris": {
       "availability": {
@@ -43173,227 +43394,6 @@
       "margin": 7.3965,
       "rawWinProb": 0.7363917479986973,
       "winProb": 0.7363917479986973
-    },
-    "Paris": {
-      "availability": {
-        "missing": [
-          {
-            "name": "Nadir Hifi",
-            "status": "questionable",
-            "missingProbability": 0.5,
-            "avgMinutes": 26.07,
-            "sampleGames": 4,
-            "impactProxy": 0.49
-          },
-          {
-            "name": "Frank Ntilikina",
-            "status": "questionable",
-            "missingProbability": 0.5,
-            "avgMinutes": 10.05,
-            "sampleGames": 1,
-            "impactProxy": 0.038
-          }
-        ],
-        "marginPenalty": 0.528,
-        "available": 15,
-        "rosterCount": 17
-      },
-      "rating": -3.140312210755726,
-      "currentGames": 6,
-      "hardGames": 2,
-      "hardWins": 0,
-      "hardHistory": [
-        {
-          "opponent": "Panathinaikos",
-          "gameCode": 7,
-          "date": "2026-09-24T18:15:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.36647,
-          "opponentRatingBefore": 1.724,
-          "hard": true,
-          "won": false,
-          "margin": -19.0
-        },
-        {
-          "opponent": "Crvena Zvezda",
-          "gameCode": 56,
-          "date": "2026-10-16T18:00:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.26055,
-          "opponentRatingBefore": 1.319,
-          "hard": true,
-          "won": false,
-          "margin": -9.0
-        }
-      ],
-      "recentHistory": [
-        {
-          "opponent": "Partizan",
-          "gameCode": 18,
-          "date": "2026-09-29T18:45:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.55838,
-          "opponentRatingBefore": 0.988,
-          "hard": false,
-          "won": false,
-          "margin": -13.0
-        },
-        {
-          "opponent": "Zalgiris",
-          "gameCode": 24,
-          "date": "2026-10-01T18:45:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.4811,
-          "opponentRatingBefore": 1.753,
-          "hard": false,
-          "won": true,
-          "margin": 4.0
-        },
-        {
-          "opponent": "ASVEL",
-          "gameCode": 31,
-          "date": "2026-10-07T18:45:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.72056,
-          "opponentRatingBefore": -5.157,
-          "hard": false,
-          "won": false,
-          "margin": -2.0
-        },
-        {
-          "opponent": "Virtus Bologna",
-          "gameCode": 50,
-          "date": "2026-10-14T18:45:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.62634,
-          "opponentRatingBefore": -2.939,
-          "hard": false,
-          "won": false,
-          "margin": -2.0
-        },
-        {
-          "opponent": "Crvena Zvezda",
-          "gameCode": 56,
-          "date": "2026-10-16T18:00:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.26055,
-          "opponentRatingBefore": 1.319,
-          "hard": true,
-          "won": false,
-          "margin": -9.0
-        }
-      ],
-      "opponent": "Valencia",
-      "home": true,
-      "baseMargin": -0.48,
-      "strengthDelta": -0.3823,
-      "rosterDelta": -0.528,
-      "margin": -1.3903,
-      "rawWinProb": 0.4518756591760075,
-      "winProb": 0.4518756591760075
-    },
-    "Olympiacos": {
-      "availability": {
-        "missing": [
-          {
-            "name": "Jean Montero",
-            "status": "questionable",
-            "missingProbability": 0.5,
-            "avgMinutes": 23.97,
-            "sampleGames": 6,
-            "impactProxy": 0.465
-          },
-          {
-            "name": "Evan Fournier",
-            "status": "questionable",
-            "missingProbability": 0.75,
-            "avgMinutes": 24.39,
-            "sampleGames": 6,
-            "impactProxy": 0.293
-          },
-          {
-            "name": "Nikolaos Plotas",
-            "status": "out",
-            "missingProbability": 1,
-            "avgMinutes": 14,
-            "sampleGames": 0,
-            "impactProxy": 0.0
-          }
-        ],
-        "marginPenalty": 0.758,
-        "available": 15,
-        "rosterCount": 18
-      },
-      "rating": 9.103334185559813,
-      "currentGames": 6,
-      "hardGames": 0,
-      "hardWins": 0,
-      "hardHistory": [],
-      "recentHistory": [
-        {
-          "opponent": "Zalgiris",
-          "gameCode": 14,
-          "date": "2026-09-29T17:00:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.64607,
-          "opponentRatingBefore": 1.519,
-          "hard": false,
-          "won": true,
-          "margin": 2.0
-        },
-        {
-          "opponent": "Virtus Bologna",
-          "gameCode": 23,
-          "date": "2026-10-01T18:30:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.82203,
-          "opponentRatingBefore": -5.398,
-          "hard": false,
-          "won": false,
-          "margin": -2.0
-        },
-        {
-          "opponent": "Anadolu Efes",
-          "gameCode": 40,
-          "date": "2026-10-09T18:15:00+00:00",
-          "home": true,
-          "pregameWinProb": 0.82869,
-          "opponentRatingBefore": -0.632,
-          "hard": false,
-          "won": true,
-          "margin": 23.0
-        },
-        {
-          "opponent": "Valencia",
-          "gameCode": 45,
-          "date": "2026-10-13T19:00:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.49432,
-          "opponentRatingBefore": 5.646,
-          "hard": false,
-          "won": true,
-          "margin": 5.0
-        },
-        {
-          "opponent": "Barcelona",
-          "gameCode": 58,
-          "date": "2026-10-16T18:30:00+00:00",
-          "home": false,
-          "pregameWinProb": 0.6957,
-          "opponentRatingBefore": 0.045,
-          "hard": false,
-          "won": true,
-          "margin": 5.0
-        }
-      ],
-      "opponent": "Fenerbahce",
-      "home": true,
-      "baseMargin": 5.59,
-      "strengthDelta": 0.3347,
-      "rosterDelta": -0.758,
-      "margin": 5.1667,
-      "rawWinProb": 0.6720774445168767,
-      "winProb": 0.6720774445168767
     }
   },
   "calibration": {
