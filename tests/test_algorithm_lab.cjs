@@ -25,3 +25,12 @@ const full={...snapshot,predictions:[{...saved,algorithmInputs:{basePir:20,baseM
 const exact=A.historical(saved,game,full,historyLogs);assert.equal(exact.partial,false);assert.equal(exact.x.basePir,20);
 assert.equal(A.evaluate(historical.player,historical.x,A.defaults).error,undefined);
 console.log('PASS: historical cutoff excludes selected/future games; frozen status and forecast; wrong/late snapshots rejected; complete inputs preserved');
+
+const facts=A.answers(player,{minutes:28,match:{home:true},missingStars:[]},{game:{minutes:25,valuation:12,date:'2026-10-10',margin:17},home:true});
+assert.equal(facts.find(r=>r.id==='venue').value,'כן');assert.equal(facts.find(r=>r.id==='minutes').value,'25');assert.equal(facts.find(r=>r.id==='minutes').kind,'בפועל');
+assert.equal(facts.find(r=>r.id==='injuries').kind,'הערכה לפני המשחק');
+const future=A.answers(player,{minutes:28,match:{home:false}},{minutes:''});
+assert.equal(future.find(r=>r.id==='venue').value,'לא');assert.equal(future.find(r=>r.id==='minutes').value,'28');assert.equal(future.find(r=>r.id==='minutes').kind,'צפי');
+assert.equal(future.find(r=>r.id==='crowd').value,'לא ידוע');
+assert.equal(A.answers(player,{minutes:28},{minutes:24}).find(r=>r.id==='minutes').value,'24');
+console.log('PASS: plain factor answers distinguish actual minutes from projected minutes and unknown crowd from confirmed venue');

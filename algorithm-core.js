@@ -68,5 +68,37 @@ function historical(player,game,snapshot,logs=[]){
  x.expected=saved.expectedPir;x.match={opponent:saved.opponent,home:saved.home};
  return {player:{...saved},x,savedAt:snapshot.created_at,partial:!saved.algorithmInputs,actual:game.valuation??game.pir,actualMinutes:game.minutes,savedExpected:saved.expectedPir};
 }
-const api={definitions,defaults,valid,normalize,evaluate,historical};if(typeof module!=='undefined'&&module.exports)module.exports=api;root.AlgorithmLab=api;
+// Plain answers distinguish observed game facts from pregame estimates.
+function answers(player,x={},options={}){
+ const game=options.game,past=!!game,logs=(options.logs||x.context?.profile?.logs||[]).slice().sort((a,b)=>Date.parse(a.date)-Date.parse(b.date));
+ const prefix=past?'בפועל':'צפי',n=v=>num(v)==null?'אין נתון':Number(v).toFixed(1).replace(/\.0$/,''),pct=v=>(v>0?'+':'')+n(v)+'%',rows=[];
+ const add=(id,label,value,note)=>rows.push({id,label,value,note});
+ const home=past?(options.home??x.match?.home):x.match?.home;
+ add('venue','משחק בית',home===true?'כן':home===false?'לא':'לא ידוע',past?'מיקום המשחק שנבחר':'לפי לוח המשחק הבא');
+ add('crowd','משחק ללא קהל',!past&&options.venue&&options.venue!=='unknown'?({empty:'כן — תרחיש ידני',home:'לא — תרחיש ידני',away:'לא ידוע',neutral:'לא ידוע'}[options.venue]||'לא ידוע'):'לא ידוע','אין נתון קהל מאומת');
+ const mins=past?game.minutes:num(options.minutes)??(player.status==='out'?0:x.minutes);
+ add('minutes','דקות משחק',n(mins),past?'דקות שנרשמו במשחק':num(options.minutes)!=null?'צפי בתרחיש ידני':'צפי דקות של המודל');
+ add('position','עמדה',({G:'גארד',F:'פורוורד',C:'סנטר'})[player.pos]||'לא ידוע',`מול ${game?.opponent||x.match?.opponent||player.opponent||'לא ידוע'}`);
+ const missing=x.missingStars;
+ add('injuries','חיסורים משפיעים בסגל',Array.isArray(missing)?(missing.length?missing.join(', '):'אין חיסורים מסומנים'):'אין נתון',past?'לפי הנתונים שנשמרו לפני המשחק; לא אישור של הסגל בפועל':'חיסורים ידועים המשמשים לצפי');
+ const before=past?logs.filter(g=>Date.parse(g.date)+4*3600000<Date.parse(game.date)):logs;
+ const totalMin=before.reduce((s,g)=>s+Number(g.minutes||0),0),avgRate=totalMin?before.reduce((s,g)=>s+Number(g.valuation??g.pir??0),0)/totalMin:null;
+ const gameRate=past&&num(game.minutes)>0?Number(game.valuation??game.pir)/game.minutes:null;
+ const rate=gameRate??num(x.recentForm?.season?.pirPerMinute),baseRate=num(x.baseMin)>0?x.basePir/x.baseMin:null,reference=past?avgRate:baseRate;
+ add('form','רמת הביצוע',rate!=null&&reference>0?(rate>reference*1.15?'מעל הרמה הרגילה':rate<reference*.85?'מתחת לרמה הרגילה':'סביב הרמה הרגילה'):'אין מדגם מספיק',past?'ביצוע לדקה במשחק לעומת המשחקים הקודמים':'הערכת כושר לפי הביצוע לדקה בעונה');
+ const events=g=>num(g.fieldGoalsAttempted2)!=null&&num(g.fieldGoalsAttempted3)!=null&&num(g.freeThrowsAttempted)!=null&&num(g.turnovers)!=null?g.fieldGoalsAttempted2+g.fieldGoalsAttempted3+.44*g.freeThrowsAttempted+g.turnovers:null;
+ const volume=past?events(game):num(x.context?.profile?.recentEventsPerMinute);
+ add('involvement','מעורבות בהתקפה',volume==null?'אין נתון':past?n(volume)+' אירועי התקפה':n(volume)+' אירועים לדקה',past?'זריקות מהשדה + 0.44 × זריקות עונשין + איבודים':'צפי לפי נפח המעורבות האחרון; אינו USG% רשמי');
+ const positionPct=num(x.positionMatchPct);
+ add('defense','התאמת היריבה לעמדה',positionPct==null?'אין נתון':positionPct>1?'נוחה יחסית':positionPct< -1?'קשה יחסית':'ממוצעת',positionPct==null?'לא נשמרה הערכת יריבה':`${past?'הערכת המודל לפני המשחק':'הערכת המודל למשחק הבא'} · ${pct(positionPct)}`);
+ const recent=(past?[...before,game]:logs).filter(g=>num(g.minutes)>0).slice(-2),baseline=past?avgRate:num(x.recentForm?.season?.pirPerMinute);
+ const ratios=baseline>0?recent.map(g=>Number(g.valuation??g.pir)/g.minutes/baseline):[];
+ add('streak','רצף משחקים טובים',ratios.length<2?'אין מדגם מספיק':ratios.every(v=>v>=1.15)?'כן — 2 משחקים רצופים': 'לא',past?'כולל המשחק שנבחר, ביחס לרמת הביצוע הקודמת':'צפי לפי שני המשחקים האחרונים; הרצף העתידי עדיין לא ידוע');
+ if(past){const margin=num(game.margin);add('blowout','משחק בהפרש גדול',margin==null?'אין נתון':Math.abs(margin)>=15?'כן — הפרש '+n(Math.abs(margin)):'לא — הפרש '+n(Math.abs(margin)),'תוצאת המשחק; הפרש גדול מוגדר 15 נקודות ומעלה');}
+ else{const scenarios=x.context?.scenarios,large=scenarios?.filter(g=>g.id==='big-win'||g.id==='big-loss').reduce((s,g)=>s+g.weight,0);add('blowout','סיכון למשחק בהפרש גדול',large==null?'אין נתון':n(large*100)+'%','צפי לפי תרחישי המודל');}
+ const previous=before.filter(g=>!past||Number(g.gameCode)!==Number(game.gameCode)).at(-1),nextDate=game?.date||options.nextDate,days=previous&&nextDate?(Date.parse(nextDate)-Date.parse(previous.date))/86400000:null;
+ add('rest','מרווח מהמשחק הקודם',days!=null&&days>=0?n(days)+' ימים':'אין נתון','ביורוליג בלבד; אינו כולל עומס בליגה המקומית');
+ return rows.map(r=>({...r,kind:past&&['injuries','defense'].includes(r.id)?'הערכה לפני המשחק':past&&r.id==='crowd'?'לא אומת':prefix}));
+}
+const api={definitions,defaults,valid,normalize,evaluate,historical,answers};if(typeof module!=='undefined'&&module.exports)module.exports=api;root.AlgorithmLab=api;
 })(typeof window!=='undefined'?window:globalThis);
