@@ -1,0 +1,14 @@
+const assert=require('node:assert/strict'),A=require('../algorithm-core.js');
+const player={name:'Example',team:'A',pos:'G',status:'active'},x={basePir:20,baseMin:30,expected:24,injuryBoost:0,injuryUsagePct:0};
+assert(A.valid(A.defaults));assert(A.valid(A.normalize({minutes:10,venue:10})));assert.equal(A.normalize({minutes:10,venue:10}).venue,50);
+const venue={...Object.fromEntries(A.definitions.map(d=>[d.id,0])),venue:100};
+for(const [v,result] of [['unknown',20],['neutral',20],['home',32],['away',8],['empty',25]])assert.equal(A.evaluate(player,x,venue,{venue:v}).expected,result);
+let r=A.evaluate(player,x,A.defaults,{venue:'home'});assert.equal(r.expected,22);assert.equal(r.rows.find(r=>r.id==='venue').change,2);
+assert.equal(A.evaluate(player,x,A.defaults,{minutes:0}).expected,0);assert.equal(A.evaluate({...player,status:'out'},x,A.defaults).expected,0);
+assert(A.evaluate(player,x,{...A.defaults,minutes:31}).error);assert(A.evaluate(player,x,A.defaults,{minutes:41}).error);
+const minutes={...venue,venue:0,minutes:100};r=A.evaluate(player,x,minutes,{minutes:24});assert(r.expected<20);
+assert.equal(r.expected,r.base+r.rows.reduce((s,r)=>s+r.change,0)+r.capChange+r.availabilityChange);
+const fixture={...x,recentForm:{season:{pirPerMinute:.8},currentSeasonGames:6},context:{profile:{logs:[{date:'2026-10-01',minutes:20,valuation:5},{date:'2026-10-03',minutes:24,valuation:6}]}}};
+const original=JSON.stringify(fixture);r=A.evaluate(player,fixture,A.defaults);assert.equal(JSON.stringify(fixture),original);assert(r.rows.find(r=>r.id==='streak').change<0);assert.equal(r.rows.find(r=>r.id==='rest').signal,null);
+assert.equal(A.evaluate(player,x,A.defaults).expected,20);
+console.log('PASS: 100% budget, unknown data neutral, venue exclusivity, minutes sensitivity, zero minutes/out, caps, decomposition and immutable live forecast');

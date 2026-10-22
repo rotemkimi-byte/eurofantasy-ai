@@ -60,3 +60,11 @@ host.querySelectorAll('[data-ac-view]').forEach(button=>{button.onclick=()=>{sta
 window.AuditCompact={select,metrics,current,card,install,tolerance,selectTeams,teamCard};
 let attempts=0;function ready(){if(window.__learningReady){install(window.__learningReport);return;}if(++attempts>=320){install(window.__learningReport);return;}setTimeout(ready,150);}ready();
 })();
+
+// Load the independent algorithm laboratory without changing the live model identity.
+(()=>{
+ if(typeof document==='undefined'||!document.head||document.getElementById('algorithmLabLoader'))return;
+ const style=document.createElement('link');style.rel='stylesheet';style.href='./algorithm-lab.css?v=1';document.head.appendChild(style);
+ const core=document.createElement('script');core.id='algorithmLabLoader';core.src='./algorithm-core.js?v=1';
+ core.onload=()=>{const ui=document.createElement('script');ui.src='./algorithm-lab.js?v=1';document.head.appendChild(ui);};document.head.appendChild(core);
+})();
