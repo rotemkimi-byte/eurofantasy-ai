@@ -1,0 +1,16 @@
+const A=require('../algorithm-core.js'),assert=require('node:assert/strict'),fs=require('node:fs');
+const logs=[{gameCode:1,date:'2026-10-01T12:00:00Z',minutes:20,valuation:20},{gameCode:2,date:'2026-10-02T12:00:00Z',minutes:10,valuation:-2},{gameCode:3,date:'2026-10-03T12:00:00Z',minutes:20,valuation:999}];
+const p=A.performance(logs,logs[1]);assert.equal(p.pirDelta,-22);assert.equal(p.rateDeltaPct,-120);assert.equal(p.pair.length,2);assert.equal(p.last.pir,-2);
+assert.equal(A.performance([logs[0]]).rateDeltaPct,null);
+assert.deepEqual(A.shooting({fieldGoalsAttempted2:6,fieldGoalsMade2:1,fieldGoalsAttempted3:4,fieldGoalsMade3:1,freeThrowsAttempted:0,freeThrowsMade:0,turnovers:0}).field,{made:2,attempts:10,missed:8,pct:20});
+assert.equal(A.shooting({}).field,null);assert.equal(A.shooting({freeThrowsAttempted:0,freeThrowsMade:0}).free.pct,null);
+const news=JSON.parse(fs.readFileSync('data/crowd-evidence.json')),game={gameCode:84,date:'2026-10-30T16:00:00Z'};
+assert(A.crowdEvidence(news,game,'2026-10-22T12:00:00Z').withoutCrowd);
+assert.equal(A.crowdEvidence(news,game,'2026-10-19T12:00:00Z'),null);
+assert.equal(A.crowdEvidence(news,{...game,gameCode:3}),null);
+assert.equal(A.crowdEvidence(news,{...game,date:'2027-10-30'}),null);
+const data=JSON.parse(fs.readFileSync('data/official-offense.json'));
+const e=A.opponentEvidence(data,'Virtus Bologna','2026-10-21T16:00:00Z');assert.equal(e.allowed.games,6);
+const changed=JSON.parse(JSON.stringify(data));for(const p of Object.values(changed.players))for(const g of p.games)if(g.date>='2026-10-21T16:00:00')g.stats.points=999;
+assert.deepEqual(A.opponentEvidence(changed,'Virtus Bologna','2026-10-21T16:00:00Z'),e);
+console.log('PASS: negative PIR, missing shots, zero attempts, exact game/date crowd match, publication time and historical defensive isolation');

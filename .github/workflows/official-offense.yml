@@ -6,6 +6,12 @@ on:
       - '.github/workflows/official-offense.yml'
       - 'scripts/build_official_metrics.py'
       - 'official-offense-core.js'
+      - 'algorithm-core.js'
+      - 'algorithm-lab.js'
+      - 'algorithm-lab.css'
+      - 'audit-compact.js'
+      - 'data/crowd-evidence.json'
+      - 'tests/test_algorithm_evidence.cjs'
   schedule:
     - cron: '19,49 * * * *'
 permissions:
@@ -35,6 +41,7 @@ jobs:
           python tests/test_official_metrics.py
           node tests/test_official_offense.cjs
           node tests/test_algorithm_ui.cjs
+          node tests/test_algorithm_evidence.cjs
       - name: Save only official offensive observations
         run: |
           git config user.name 'github-actions[bot]'

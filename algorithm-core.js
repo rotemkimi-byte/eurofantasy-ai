@@ -85,7 +85,7 @@ function answers(player,x={},options={}){
  const totalMin=before.reduce((s,g)=>s+Number(g.minutes||0),0),avgRate=totalMin?before.reduce((s,g)=>s+Number(g.valuation??g.pir??0),0)/totalMin:null;
  const gameRate=past&&num(game.minutes)>0?Number(game.valuation??game.pir)/game.minutes:null;
  const rate=gameRate??num(x.recentForm?.season?.pirPerMinute),baseRate=num(x.baseMin)>0?x.basePir/x.baseMin:null,reference=past?avgRate:baseRate;
- add('form','רמת הביצוע',rate!=null&&reference>0?(rate>reference*1.15?'מעל הרמה הרגילה':rate<reference*.85?'מתחת לרמה הרגילה':'סביב הרמה הרגילה'):'אין מדגם מספיק',past?'ביצוע לדקה במשחק לעומת המשחקים הקודמים':'הערכת כושר לפי הביצוע לדקה בעונה');
+ add('form','רמת הביצוע',(()=>{const f=performance(logs,game);return f.rateDeltaPct===null||f.rateDeltaPct===undefined?'אין מדגם מספיק':f.rateDeltaPct>15?'מעל הרמה הרגילה':f.rateDeltaPct< -15?'מתחת לרמה הרגילה':'סביב הרמה הרגילה';})(),(()=>{const f=performance(logs,game);return f.last?`משחק אחרון: ${n(f.last.pir)} PIR ב־${n(f.last.minutes)} דקות · ${n(f.rate)} PIR לדקה`+(f.rateDeltaPct!==null?` · ${pct(f.rateDeltaPct)} מול ${f.priorGames} משחקים קודמים`: ' · אין מדגם קודם להשוואה'):'אין משחק אחרון להשוואה';})());
  const events=g=>num(g.fieldGoalsAttempted2)!=null&&num(g.fieldGoalsAttempted3)!=null&&num(g.freeThrowsAttempted)!=null&&num(g.turnovers)!=null?g.fieldGoalsAttempted2+g.fieldGoalsAttempted3+.44*g.freeThrowsAttempted+g.turnovers:null;
  const volume=past?events(game):num(x.context?.profile?.recentEventsPerMinute);
  add('involvement','מעורבות בהתקפה',volume==null?'אין נתון':past?n(volume)+' אירועי התקפה':n(volume)+' אירועים לדקה',past?'זריקות מהשדה + 0.44 × זריקות עונשין + איבודים':'צפי לפי נפח המעורבות האחרון; אינו USG% רשמי');
@@ -98,7 +98,54 @@ function answers(player,x={},options={}){
  else{const scenarios=x.context?.scenarios,large=scenarios?.filter(g=>g.id==='big-win'||g.id==='big-loss').reduce((s,g)=>s+g.weight,0);add('blowout','סיכון למשחק בהפרש גדול',large==null?'אין נתון':n(large*100)+'%','צפי לפי תרחישי המודל');}
  const previous=before.filter(g=>!past||Number(g.gameCode)!==Number(game.gameCode)).at(-1),nextDate=game?.date||options.nextDate,days=previous&&nextDate?(Date.parse(nextDate)-Date.parse(previous.date))/86400000:null;
  add('rest','מרווח מהמשחק הקודם',days!=null&&days>=0?n(days)+' ימים':'אין נתון','ביורוליג בלבד; אינו כולל עומס בליגה המקומית');
- return rows.map(r=>({...r,kind:past&&['injuries','defense'].includes(r.id)?'הערכה לפני המשחק':past&&r.id==='crowd'?'לא אומת':prefix}));
+ return rows.map(r=>({...r,kind:!past&&r.id==='form'?'במשחק האחרון':past&&['injuries','defense'].includes(r.id)?'הערכה לפני המשחק':past&&r.id==='crowd'?'לא אומת':prefix}));
 }
-const api={definitions,defaults,valid,normalize,evaluate,historical,answers};if(typeof module!=='undefined'&&module.exports)module.exports=api;root.AlgorithmLab=api;
+
+// All descriptive comparisons stop at the selected game. Future observations cannot leak into history.
+function performance(logs=[],game=null){
+ const rows=logs.filter(g=>num(g.minutes)>0&&num(g.valuation??g.pir??g.stats?.valuation)!==null)
+  .map(g=>({...g,pir:num(g.valuation??g.pir??g.stats?.valuation)})).sort((a,b)=>Date.parse(a.date)-Date.parse(b.date)||Number(a.gameCode)-Number(b.gameCode));
+ const played=rows.filter(g=>!game||Date.parse(g.date)<=Date.parse(game.date));
+ const last=game?played.find(g=>Number(g.gameCode)===Number(game.gameCode)):played.at(-1);
+ if(!last)return {pair:[],last:null};
+ const prior=played.filter(g=>Date.parse(g.date)<Date.parse(last.date)&&Number(g.gameCode)!==Number(last.gameCode));
+ const totalMinutes=prior.reduce((s,g)=>s+g.minutes,0),previous=prior.at(-1),rate=last.pir/last.minutes;
+ const normalRate=totalMinutes?prior.reduce((s,g)=>s+g.pir,0)/totalMinutes:null;
+ return {last,previous,pair:[...prior.slice(-1),last],rate,normalRate,priorGames:prior.length,
+  rateDeltaPct:normalRate>0?100*(rate/normalRate-1):null,
+  pirDelta:previous?last.pir-previous.pir:null,
+  pirDeltaPct:previous?.pir>0?100*(last.pir/previous.pir-1):null};
+}
+function shooting(stats={}){
+ const a2=num(stats.fieldGoalsAttempted2),a3=num(stats.fieldGoalsAttempted3),m2=num(stats.fieldGoalsMade2),m3=num(stats.fieldGoalsMade3);
+ const row=(made,attempts)=>made!==null&&attempts!==null&&made>=0&&attempts>=made?{made,attempts,missed:attempts-made,pct:attempts?100*made/attempts:null}:null;
+ return {field:row(m2!==null&&m3!==null?m2+m3:null,a2!==null&&a3!==null?a2+a3:null),two:row(m2,a2),three:row(m3,a3),free:row(num(stats.freeThrowsMade),num(stats.freeThrowsAttempted)),turnovers:num(stats.turnovers),points:num(stats.points),assists:num(stats.assistances)};
+}
+// Opponent evidence is built from box scores available before the selected game's start.
+function opponentEvidence(data,opponent,cutoff){
+ const games=new Map();
+ for(const p of Object.values(data?.players||{}))for(const g of p.games||[]){
+  if(!(Date.parse(g.date)+4*3600000<Date.parse(cutoff)))continue;
+  const id=Number(g.gameCode),s=g.stats||{};
+  if(!games.has(id))games.set(id,new Map());
+  const sides=games.get(id);if(!sides.has(g.team))sides.set(g.team,{opponent:g.opponent,points:0,a2:0,m2:0,a3:0,m3:0,complete:true});
+  const t=sides.get(g.team);for(const [k,f] of Object.entries({points:'points',a2:'fieldGoalsAttempted2',m2:'fieldGoalsMade2',a3:'fieldGoalsAttempted3',m3:'fieldGoalsMade3'})){
+   if(num(s[f])===null)t.complete=false;else t[k]+=Number(s[f]);
+  }
+ }
+ const all=[],allowed=[];let wins=0;
+ for(const sides of games.values()){
+  if(sides.size!==2||[...sides.values()].some(s=>!s.complete))continue;
+  for(const [name,s] of sides){all.push(s);if(s.opponent===opponent){allowed.push(s);if(sides.get(opponent)?.points>s.points)wins++;}}
+ }
+ const avg=rows=>{const sum=k=>rows.reduce((s,g)=>s+g[k],0);return {games:rows.length,points:rows.length?sum('points')/rows.length:null,rate2:sum('a2')?100*sum('m2')/sum('a2'):null,rate3:sum('a3')?100*sum('m3')/sum('a3'):null,a2:sum('a2'),m2:sum('m2'),a3:sum('a3'),m3:sum('m3')};};
+ return {opponent,allowed:avg(allowed),league:avg(all),wins,cutoff};
+}
+function crowdEvidence(data,game,asOf=new Date().toISOString()){
+ if(data?.season!=='E2026'||!game)return null;
+ const matches=(data.games||[]).filter(r=>Number(r.gameCode)===Number(game.gameCode)&&r.date?.slice(0,10)===game.date?.slice(0,10)&&Date.parse(r.publishedAt)<=Date.parse(asOf)&&/^https:\/\//.test(r.source||''));
+ const latest=matches.sort((a,b)=>Date.parse(b.publishedAt)-Date.parse(a.publishedAt))[0];
+ return latest&&typeof latest.withoutCrowd==='boolean'?latest:null;
+}
+const api={definitions,defaults,valid,normalize,evaluate,historical,answers,performance,shooting,opponentEvidence,crowdEvidence};if(typeof module!=='undefined'&&module.exports)module.exports=api;root.AlgorithmLab=api;
 })(typeof window!=='undefined'?window:globalThis);
