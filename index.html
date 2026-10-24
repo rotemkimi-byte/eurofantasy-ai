@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0b0d10">
 <title>EuroFantasy AI v2</title>
-<script>try{if(localStorage.getItem('eurofantasy-theme')==='light')document.documentElement.dataset.theme='light'}catch{}</script>
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('eurofantasy-theme')==='dark'?'dark':'light'}catch{document.documentElement.dataset.theme='light'}</script>
 
 <style>
 :root{--bg:#090b0e;--card:#15191f;--card2:#1c222a;--line:#2b333e;--text:#f7f8fa;--muted:#99a3b0;--accent:#62e6a5;--warn:#ffc857;--bad:#ff7878;--blue:#7db4ff}
@@ -387,9 +387,9 @@ window.showPlayer=function(name){
     actualMetric("משחקים בעונה",recent.currentSeasonGames,0),
     `<div class="miniCard lastThreeCard"><h4>3 המשחקים האחרונים</h4><p class="muted">טוען משחקים…</p></div>`
   ].join(""):'<p class="muted">אין עדיין נתוני משחק מאומתים לעונת 2026/27.</p>';
-  document.getElementById("modalBody").innerHTML=`<h2>${esc(p.name)}</h2><p class="muted">${esc(p.team)} • ${p.pos} • ${n1(p.price)} קרדיט • ${statusText(p.status)}</p>
-  <section class="playerSection actual-results" aria-label="נתוני עבר"><h3 class="sectionTitle">בפועל · עונת 2026/27</h3><p class="muted sectionNote">תוצאות ממשחקים שכבר שוחקו</p><div class="detailGrid">${actualCards}</div></section>
-  <section class="playerSection forecast-results" aria-label="תחזית למשחק הבא"><h3 class="sectionTitle">תחזית · המשחק הבא</h3><p class="muted sectionNote">הערכות המודל, לא תוצאות בפועל</p>
+  document.getElementById("modalBody").innerHTML=`<div class="ef-player-hero"><div class="ef-player-identity"><div class="ef-player-avatar" aria-hidden="true">${esc(p.name.split(/\s+/).filter(Boolean).slice(0,2).map(s=>s[0]).join(''))}</div><div><h2 dir="auto">${esc(p.name)}</h2><p>${esc(p.team)} • ${esc(p.pos)} • ${esc(statusText(p.status))}</p></div></div><div class="ef-player-stats"><div><small>מחיר נוכחי · קרדיט</small><b>${n1(p.price)}</b></div><div><small>PIR במשחק האחרון</small><b>${hasCurrent&&recent.lastGame?.pir!=null?n1(recent.lastGame.pir):'—'}</b></div><div><small>דקות במשחק האחרון</small><b>${hasCurrent&&recent.lastGame?.minutes!=null?n1(recent.lastGame.minutes):'—'}</b></div><div><small>ממוצע PIR · ${hasCurrent?recent.last5?.games||0:0} אחרונים</small><b>${hasCurrent&&recent.last5?.avgPir!=null?n1(recent.last5.avgPir):'—'}</b></div></div></div><nav class="ef-player-jumps" aria-label="נתוני שחקן"><a href="#efPlayerActual">ביצועים בפועל</a><a href="#efPlayerForecast">צפי למשחק הבא</a></nav>
+  <section id="efPlayerActual" class="playerSection actual-results" aria-label="נתוני עבר"><h3 class="sectionTitle">בפועל · עונת 2026/27</h3><p class="muted sectionNote">תוצאות ממשחקים שכבר שוחקו</p><div class="detailGrid">${actualCards}</div></section>
+  <section id="efPlayerForecast" class="playerSection forecast-results" aria-label="תחזית למשחק הבא"><h3 class="sectionTitle">תחזית · המשחק הבא</h3><p class="muted sectionNote">הערכות המודל, לא תוצאות בפועל</p>
   <div class="detailGrid">
   <div class="miniCard"><b>${n1(x.expected)}</b><small>PIR צפוי</small></div><div class="miniCard"><b>${n1(x.minutes)}</b><small>דקות צפויות</small></div>
   <div class="miniCard"><b>${n1(x.floor)}–${n1(x.ceiling)}</b><small>${x.rangeSample?"טווח שגיאות עבר*":"טווח נוסחתי*"}</small></div><div class="miniCard"><b>${x.matchPct>=0?"+":""}${x.matchPct.toFixed(1)}%</b><small>סביבת מאצ׳אפ</small></div>
@@ -1910,12 +1910,7 @@ for (const id of ['data', 'learning']) {
 <script src="./usage-core.js?v=1"></script><script src="./usage-ui.js?v=2"></script>
 <script src="./defense-core.js?v=1"></script><script src="./defense-ui.js?v=1"></script>
 <script src="./team-metrics-core.js?v=1"></script><script src="./team-metrics-ui.js?v=1"></script>
+<link rel="stylesheet" href="./app-design.css?v=1">
+<script src="./app-navigation.js?v=1"></script>
+<script src="./app-player.js?v=1"></script>
 </body></html>
-
-
-
-
-
-
-
-
