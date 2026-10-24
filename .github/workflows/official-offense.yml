@@ -1,4 +1,4 @@
-name: Official EuroLeague offensive metrics
+name: Official EuroLeague player metrics
 on:
   workflow_dispatch:
   push:
@@ -6,6 +6,11 @@ on:
       - '.github/workflows/official-offense.yml'
       - 'scripts/build_official_metrics.py'
       - 'official-offense-core.js'
+      - 'defense-core.js'
+      - 'defense-ui.js'
+      - 'defense.css'
+      - 'tests/test_defense.cjs'
+      - 'tests/test_algorithm_ui.cjs'
       - 'algorithm-core.js'
       - 'algorithm-lab.js'
       - 'algorithm-lab.css'
@@ -42,13 +47,14 @@ jobs:
           node tests/test_official_offense.cjs
           node tests/test_algorithm_ui.cjs
           node tests/test_algorithm_evidence.cjs
-      - name: Save only official offensive observations
+          node tests/test_defense.cjs
+      - name: Save official player observations
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/official-offense.json
           if ! git diff --cached --quiet; then
-            git commit -m 'Refresh offensive metrics from official EuroLeague box scores'
+            git commit -m 'Refresh player metrics from official EuroLeague box scores'
             for attempt in 1 2 3; do
               git pull --rebase origin "${{ github.ref_name }}"
               if git push origin "HEAD:${{ github.ref_name }}"; then pushed=yes; break; fi
@@ -72,3 +78,4 @@ jobs:
       - name: Publish verified official metrics
         id: deployment
         uses: actions/deploy-pages@v4
+
