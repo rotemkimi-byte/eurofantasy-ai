@@ -5,6 +5,7 @@ on:
     paths:
       - '.github/workflows/official-offense.yml'
       - 'scripts/build_official_metrics.py'
+      - 'scripts/build_player_media.py'
       - 'official-offense-core.js'
       - 'team-metrics-core.js'
       - 'team-metrics-ui.js'
@@ -48,6 +49,7 @@ jobs:
       - name: Fetch official box scores and verify derived metrics
         run: |
           python scripts/build_official_metrics.py
+          python scripts/build_player_media.py
           python tests/test_official_metrics.py
           python tests/test_team_export.py
           node tests/test_official_offense.cjs
@@ -59,7 +61,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/official-offense.json
+          git add data/official-offense.json data/player-media.json
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh player metrics from official EuroLeague box scores'
             for attempt in 1 2 3; do

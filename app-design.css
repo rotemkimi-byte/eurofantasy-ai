@@ -96,3 +96,24 @@ html.ef-redesign .ef-player-history .pirChart{background:var(--card);border:0;pa
 html.ef-redesign .ef-chart-status,html.ef-redesign .ef-chart-detail{font-size:12px;margin:10px 0 0}
 html.ef-redesign .ef-chart-ranges button{color:var(--text)}
 html.ef-redesign .ef-chart-ranges button[aria-pressed="true"]{color:#fff}
+/* Full player dashboard, with a shared game range across all four panels. */
+.ef-dashboard [hidden]{display:none!important}
+.ef-player-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;padding:4px;background:var(--card2);border:1px solid var(--line);border-radius:14px;margin:16px 0 10px}
+html.ef-redesign .ef-player-tabs button{min-height:42px;padding:7px 3px;border:0;border-radius:10px;background:transparent;color:var(--muted);font-size:13px}
+html.ef-redesign .ef-player-tabs button[aria-selected=true]{background:var(--accent);color:white}
+.ef-dashboard .ef-chart-ranges{gap:5px;flex-wrap:wrap;margin:10px 0}
+.ef-player-pane{min-width:0}.ef-data-status{font-size:12px;margin:12px 0}
+.ef-player-avatar{overflow:hidden;background:#ffffff13}.ef-player-avatar img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.ef-club-crest{display:inline-flex;width:25px;height:25px;vertical-align:middle;margin-inline-end:7px}.ef-club-crest:empty{display:none}.ef-club-crest img{width:100%;height:100%;object-fit:contain}
+.ef-trend-svg{display:block;width:100%;height:auto;color:var(--accent);overflow:visible;direction:ltr}
+.ef-trend-svg text{font-size:11px;fill:var(--muted);font-family:inherit}.ef-gridline{stroke:var(--line);stroke-dasharray:3 3}.ef-trend-svg .pirPoint{cursor:pointer;stroke:var(--card);stroke-width:2}.ef-trend-svg .pirPoint:focus{stroke:var(--text);stroke-width:3;outline:none}
+.ef-metric-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}
+.ef-metric{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px 12px;min-width:0}.ef-metric small{display:block;font-size:12px;color:var(--muted)}.ef-metric strong{display:block;font-size:28px;line-height:1.4;color:var(--accent);font-variant-numeric:tabular-nums;direction:ltr;text-align:right}.ef-metric span{display:block;font-size:11px;color:var(--muted);line-height:1.5}
+.ef-method{font-size:12px;color:var(--muted);line-height:1.7;margin:12px 0 20px}
+.ef-game-card{padding:15px;border:1px solid var(--line);border-radius:16px;background:var(--card);margin:12px 0 18px}
+.ef-game-card header{display:flex;justify-content:space-between;gap:8px;align-items:center;position:static;background:none;padding:0;border:0;color:var(--text)}.ef-game-card header b{font-size:16px}.ef-game-card header small{display:block;font-size:11px;color:var(--muted);margin-top:3px}.ef-game-card header a{color:var(--accent);font-size:11px;white-space:nowrap}
+.ef-game-numbers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:12px}.ef-game-numbers .ef-metric{border:0;border-inline-start:1px solid var(--line);border-radius:0;padding:0 8px}.ef-game-numbers .ef-metric:first-child{border:0}.ef-game-numbers strong{font-size:24px;color:var(--text)}
+.ef-extra-stats{margin-top:15px}.ef-extra-stats summary{cursor:pointer;padding:14px;color:var(--muted)}
+@media(max-width:420px){.ef-dashboard .ef-player-hero{padding:16px}.ef-dashboard .ef-player-identity{gap:12px}.ef-dashboard .ef-player-avatar{flex-basis:76px;height:76px}.ef-dashboard .ef-player-identity h2{font-size:22px}.ef-dashboard .ef-player-stats b{font-size:25px}.ef-dashboard .ef-chart-ranges button{font-size:11px;padding:8px 10px}.ef-metric strong{font-size:26px}.ef-game-card header b{font-size:14px}}
+.ef-dashboard .ef-player-identity>div:last-child{min-width:0;flex:1}
+html.ef-redesign[data-theme="dark"] .ef-player-tabs button[aria-selected=true],html.ef-redesign[data-theme="dark"] .ef-dashboard .ef-chart-ranges button[aria-pressed=true]{color:#073629}
