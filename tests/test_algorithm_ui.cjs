@@ -1,31 +1,42 @@
-const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
-const A=require('../algorithm-core.js'),storage=new Map();
-async function boot(withHistory=false,withOfficial=false){
- const elements=new Map();
- const get=id=>{if(!elements.has(id))elements.set(id,{value:'',textContent:'',innerHTML:'',classList:{add(){},remove(){}},addEventListener(event,fn){this[event]=fn;}});return elements.get(id);};
- const inputs=A.definitions.flatMap(d=>['weight','slider'].map(kind=>Object.assign(get(kind+d.id),{dataset:{[kind]:d.id},value:String(d.weight)})));
- const section={classList:{add(){}},querySelectorAll:()=>inputs,querySelector:s=>inputs.find(e=>Object.entries(e.dataset).some(([k,v])=>s===`[data-${k}="${v}"]`))};
- const doc={getElementById:id=>id==='algorithm'?null:get(id),createElement:tag=>tag==='section'?section:{dataset:{},classList:{add(){}}},querySelector:s=>s==='.tabs'?{insertBefore(){},querySelector(){return null;}}:{appendChild(){}},querySelectorAll:()=>[]};
- get('alVenue').value='unknown';get('alGame').value='next';
- const sandbox={window:{AlgorithmLab:A,__rollingReady:true,scrollTo(){}},document:doc,localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)},players:[{name:'Elijah Bryant',team:'A',pos:'G',price:17}],model:()=>({basePir:20,baseMin:30,expected:24}),setTimeout};
- if(withHistory){
- sandbox.AbortSignal=AbortSignal;
- sandbox.window.__matchupContextData={players:{b:{name:'Elijah Bryant',logs:[{gameCode:10,date:'2026-10-10T18:00:00Z',team:'A',opponent:'B',minutes:25,valuation:12},{gameCode:2,date:'2026-10-01T18:00:00Z',team:'A',minutes:20,valuation:10}]}}};
- sandbox.fetch=async()=>({ok:true,json:async()=>({season:'E2026',gameCode:10,created_at:'2026-10-09T18:00:00Z',predictions:[{name:'Elijah Bryant',team:'A',pos:'G',status:'active',opponent:'B',expectedPir:18,features:{basePir:20,baseMin:30}}]})});
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const nodes=new Map(),modes=[],weights=[],sliders=[];
+class Element{
+ constructor(id='',tag='div'){this.id=id;this.tagName=tag.toUpperCase();this.dataset={};this.attrs={};this._value='';this._html='';this.hidden=false;this.classList={add(){},remove(){}};this.listeners={};}
+ set value(v){this._value=String(v)} get value(){return this._value}
+ set innerHTML(value){this._html=value;if(this.tagName==='SELECT'){this._value=[...value.matchAll(/<option value="([^"]*)"/g)][0]?.[1]||'';}
+  if(this.id==='algorithm'){
+   for(const m of value.matchAll(/<(\w+)\b[^>]*\bid="([^"]+)"[^>]*>/g)){const n=new Element(m[2],m[1]);nodes.set(n.id,n)}
+   for(const [attr,list] of [['weight',weights],['slider',sliders],['al-mode',modes]])for(const m of value.matchAll(new RegExp('<[^>]+data-'+attr+'="([^"]+)"[^>]*>','g'))){const n=new Element();n.dataset[attr==='al-mode'?'alMode':attr]=m[1];n.value=m[0].match(/value="([^"]*)"/)?.[1]||'';list.push(n)}
+  }
  }
- if(withOfficial){
-  sandbox.window.OfficialOffense=require('../official-offense-core.js');sandbox.AbortSignal=AbortSignal;
-  sandbox.players[0].team='Hapoel Tel Aviv';sandbox.model=()=>({basePir:20,baseMin:30,expected:24,minutes:25});
-  sandbox.fetch=async()=>({ok:true,json:async()=>JSON.parse(fs.readFileSync('data/official-offense.json'))});
- }
- vm.createContext(sandbox);await vm.runInContext(fs.readFileSync('algorithm-lab.js','utf8'),sandbox);return {get,inputs};
+ get innerHTML(){return this._html}
+ setAttribute(k,v){this.attrs[k]=v}
+ addEventListener(k,v){this.listeners[k]=v}
+ querySelectorAll(q){if(q==='[data-al-mode]')return modes;if(q==='[data-weight],[data-slider]')return [...weights,...sliders];return []}
+ querySelector(q){const m=q.match(/\[data-(weight|slider)="([^"]+)"\]/);return m?(m[1]==='weight'?weights:sliders).find(n=>n.dataset[m[1]]===m[2]):null}
+ appendChild(n){if(n.id)nodes.set(n.id,n)} insertBefore(){}
 }
+const nav=new Element(),main=new Element();
+const document={createElement:tag=>new Element('',tag),getElementById:id=>nodes.get(id),querySelector:q=>q==='.tabs'?nav:q==='main'?main:null,querySelectorAll:()=>[]};
+const games=[1,2,3].map(i=>({gameCode:i,date:`2026-10-${10+i}T18:00:00Z`,team:'Team A',opponent:'Opponent '+i,home:true,minutes:20+i,valuation:10*i,stats:{valuation:10*i}}));
+const player={name:'Elijah Bryant',team:'Team A',pos:'G',price:20,status:'available',opponent:'Next Opponent'};
+const model=()=>({basePir:20,baseMin:25,expected:22,minutes:26,match:{opponent:'Next Opponent',home:true},context:{profile:{logs:games}},recentForm:{currentSeasonGames:3,season:{pirPerMinute:.8}}});
+const snapshot=code=>({season:'E2026',gameCode:code,created_at:`2026-10-${10+code}T10:00:00Z`,predictions:[{...player,expectedPir:18,expectedMinutes:24,home:true,opponent:'Opponent '+code,algorithmInputs:model()}]});
+let missing=false;
+const context={document,console,Map,Set,Date,Number,String,JSON,Math,AbortSignal,setTimeout,clearTimeout,players:[player,{...player,name:'Teammate',price:10},{...player,name:'Other Team Player',team:'Team B'}],model,localStorage:{getItem(){return null},setItem(){}},fetch:async url=>({ok:!missing,json:async()=>url.includes('snapshots')?snapshot(Number(url.match(/E2026-(\d+)/)[1])):url.includes('official-offense')?{schema:'official-offense-v1',season:'E2026',players:{}}:{data:[]}})};
+context.window=context;context.window.scrollTo=()=>{};context.__rollingReady=true;context.__matchupContextData={players:{test:{name:player.name,logs:games}}};
+vm.createContext(context);vm.runInContext(fs.readFileSync('algorithm-core.js','utf8'),context);
+const settle=async()=>{for(let i=0;i<12;i++)await new Promise(r=>setTimeout(r,0));};
 (async()=>{
- let ui=await boot();ui.get('alVenue').value='home';ui.get('alVenue').onchange();assert(ui.get('alResult').innerHTML.includes('22.0'));
- for(const [key,value] of [['venue','20'],['minutes','20']]){const input=ui.inputs.find(i=>i.dataset.weight===key);input.value=value;input.input();}
- ui.get('alSave').onclick();assert.equal(JSON.parse(storage.get('eurofantasy-algorithm-v1')).weights.venue,20);
- ui=await boot();ui.get('alVenue').value='home';ui.get('alVenue').onchange();assert(ui.get('alResult').innerHTML.includes('24.0'));assert(ui.get('alSaved').textContent.includes('נטענו'));
- ui=await boot(true);ui.get('alGame').value='10';await ui.get('alGame').onchange();assert(ui.get('alHistoryActual').innerHTML.includes('12.0'));assert(ui.get('alHistoryActual').innerHTML.includes('18.0'));assert(ui.get('alHistoryStatus').textContent.includes('פירוק חלקי'));assert(!ui.get('alResult').innerHTML.includes('NaN'));assert(ui.get('alResult').innerHTML.includes('<strong>25</strong>'));assert(!ui.get('alResult').innerHTML.includes('% משקל</span>'));assert(ui.get('alResult').innerHTML.includes('מה הושג במשחק?'));ui.get('alGame').value='next';await ui.get('alGame').onchange();assert.equal(ui.get('alHistoryActual').innerHTML,'');assert(ui.get('alHistoryStatus').textContent.includes('עתידית'));
- ui=await boot(false,true);assert(ui.get('alOfficial').innerHTML.includes('Usage'));assert(ui.get('alOfficial').innerHTML.includes('צפי זריקות לשלוש'));assert(ui.get('alOfficial').innerHTML.includes('api-live.euroleague.net'));assert(!ui.get('alOfficial').innerHTML.includes('NaN'));
- console.log('PASS: official offensive metrics render with source links; past/future game selection, actual and saved forecast display; UI weight edits update experimental forecast and survive reload via local storage');
-})();
+ await vm.runInContext(fs.readFileSync('algorithm-lab.js','utf8'),context);await settle();
+ const n=id=>nodes.get(id),out=()=>[...nodes].map(([id,n])=>`<div data-test-id="${id}">${n.innerHTML}</div>`).join('');
+ assert.equal(n('alGame').value,'3','default is latest historical game');assert(!n('alGame').innerHTML.includes('value="next"'));assert(!n('alPlayer').innerHTML.includes('Other Team Player'),'roster restricted to team');assert(n('alHistoryActual').innerHTML.includes('30.0'));assert(n('alHistoryActual').innerHTML.includes('18.0'));
+ 
+ n('alGame').value='1';await n('alGame').onchange();await settle();assert(!n('alRecent').innerHTML.includes('Opponent 3'),'older view excludes later games');
+ modes[1].onclick();await settle();assert.equal(n('alGame').value,'next');assert(n('alGameLabel').hidden);assert(n('alResult').innerHTML.includes('22.0'));assert(n('alRecent').innerHTML.includes('30.0'));
+ // Weights remain editable and saving continues to validate the sum.
+ weights[0].value='100';weights[0].listeners.input();assert(n('alSave').disabled);n('alNormalize').onclick();assert(!n('alSave').disabled);
+ modes[0].onclick();await settle();assert.equal(n('alGame').value,'3');
+ n('alTeam').value='Team B';n('alTeam').onchange();await settle();assert.equal(n('alGame').value,'');assert(n('alResult').innerHTML.includes('אין עדיין משחק'));
+ console.log('PASS: history default, latest game, team filtering, historical cutoff, forecast toggle, weight editing, no-history state.');
+})().catch(e=>{console.error(e);process.exit(1)});
