@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 from build_matchup_context import ROOT, load, save, number, key, team, stamp, api
 SOURCE='https://api-live.euroleague.net/v2/competitions/E/seasons/E2026/'
 METHOD='https://mediagamecenter.euroleague.net/'
-FIELDS=['points','fieldGoalsAttempted2','fieldGoalsMade2','fieldGoalsAttempted3','fieldGoalsMade3','freeThrowsAttempted','freeThrowsMade','turnovers','assistances','valuation']
+FIELDS=['points','fieldGoalsAttempted2','fieldGoalsMade2','fieldGoalsAttempted3','fieldGoalsMade3','freeThrowsAttempted','freeThrowsMade','turnovers','assistances','valuation','steals','blocksFavour','totalRebounds','offensiveRebounds','defensiveRebounds','foulsCommited']
 
 def metrics(stats, total, player_seconds, game_seconds):
     def v(k):return number(stats.get(k))
@@ -30,7 +30,7 @@ def build(root=ROOT,offline=False):
     if not offline:
         try:payload=api('E2026','games?limit=500')
         except Exception:warnings.append('Official schedule refresh failed; using cached official schedule')
-    profiles={};now=datetime.now(timezone.utc)
+    profiles={};team_games={};now=datetime.now(timezone.utc)
     for g in payload.get('data',[]):
         date=stamp(g.get('utcDate'))
         if not g.get('played') or not date or date>=now or g.get('season',{}).get('code')!='E2026':continue
@@ -39,12 +39,14 @@ def build(root=ROOT,offline=False):
             try:box=api('E2026',f'games/{code}/stats');save(path,box)
             except Exception:warnings.append(f'Missing official box score {code}');continue
         if not box:continue
+        team_games[str(code)]={'date':date.isoformat()}
         for side,other in [('local','road'),('road','local')]:
             part=box.get(side) or {};rows=part.get('players') or [];total=part.get('total') or {}
             seconds=[number((r.get('stats') or {}).get('timePlayed')) for r in rows]
             game_seconds=sum(seconds)/5 if seconds and all(n is not None and n>=0 for n in seconds) else None
             # Incomplete player minutes cannot support Usage, including overtime.
             if game_seconds is not None and (game_seconds<2400 or abs((game_seconds-2400)%300)>.01):game_seconds=None
+            team_games[str(code)][side]={'team':team((g.get(side) or {}).get('club',{}).get('name')),'gameMinutes':game_seconds/60 if game_seconds else None,'stats':{f:number(total.get(f)) for f in FIELDS}}
             for r in rows:
                 p=r.get('player') or {};person=p.get('person') or {};stats=r.get('stats') or {};name=person.get('name');secs=number(stats.get('timePlayed'))
                 if not name or secs is None:continue
@@ -59,9 +61,10 @@ def build(root=ROOT,offline=False):
     if not profiles:raise RuntimeError('No official box scores; previous dataset preserved')
     result={'schema':'official-offense-v1','season':'E2026','updated_at':now.isoformat(),'source':SOURCE,'methodSource':METHOD,
       'method':'USG=100*(FGA+0.44*FTA+TO)/(playerSeconds/gameSeconds*(teamFGA+0.44*teamFTA+teamTO)); eFG=100*(2PM+1.5*3PM)/FGA; TS=100*PTS/(2*(FGA+0.44*FTA))',
-      'players':profiles,'warnings':warnings}
+      'players':profiles,'defenseVersion':1,'teamGames':team_games,'warnings':warnings}
     save(root/'data/official-offense.json',result);print(f'Official offense: {len(profiles)} players; {sum(len(p["games"]) for p in profiles.values())} player games')
     return result
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--offline',action='store_true');args=parser.parse_args();build(offline=args.offline)
+
