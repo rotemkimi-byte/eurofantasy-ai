@@ -1,0 +1,20 @@
+#teamMetrics .tm-heading{display:flex;justify-content:space-between;align-items:center;gap:12px}
+#teamMetrics h3{font-size:20px;margin:0 0 5px}#teamMetrics h4{font-size:16px;margin:16px 0 8px}
+#teamMetrics p,#teamMetrics label{font-size:13px;line-height:1.5}
+#teamMetrics .tm-controls{display:grid;grid-template-columns:1fr 1.5fr;gap:10px;margin:14px 0}
+#teamMetrics label{min-width:0}#teamMetrics select{display:block;min-width:0;width:100%;font-size:16px;margin-top:5px}
+#teamMetrics .tm-team-head{display:flex;flex-wrap:wrap;gap:6px 15px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--card2)}
+#teamMetrics .tm-team-head h4{margin:0;font-size:18px;flex-basis:100%}#teamMetrics .tm-team-head span{font-size:13px}
+#teamMetrics .tm-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;margin:12px 0}
+#teamMetrics .tm-table{width:100%;min-width:0;table-layout:fixed}#teamMetrics .tm-wide{min-width:660px}
+#teamMetrics .tm-table th,#teamMetrics .tm-table td{position:static;background:transparent;vertical-align:top;font-size:14px;padding:9px 8px;overflow-wrap:anywhere;text-align:center;font-variant-numeric:tabular-nums}
+#teamMetrics .tm-table th{background:var(--card2);font-size:12px;color:var(--muted)}
+#teamMetrics .tm-table th:first-child{width:42%}#teamMetrics .tm-table th:first-child,#teamMetrics .tm-table td:first-child{text-align:right}
+#teamMetrics .tm-wide th:first-child{width:auto}#teamMetrics #tmStandings th:nth-child(2){width:25%}
+#teamMetrics .tm-table tr:last-child td{border-bottom:0}#teamMetrics small{display:block;font-size:12px;color:var(--muted)}
+#teamMetrics .tm-note,#teamMetrics #tmStatus{font-size:12px;color:var(--muted);margin:8px 0}
+#teamMetrics .tm-gap{font-size:14px;padding:10px;background:var(--card2);border-radius:8px}
+#teamMetrics details{padding:11px 12px;border:1px solid var(--line);border-radius:10px;margin:12px 0}#teamMetrics summary{cursor:pointer;font-size:14px;font-weight:600}
+#teamMetrics a{color:var(--blue)}#teamMetrics .tm-link{background:none;color:var(--blue);padding:0;font-size:13px;text-align:inherit}
+#teamMetrics #tmReload{font-size:13px}#teamMetrics #tmReload:disabled{opacity:.5}
+@media(max-width:600px){#teamMetrics .card{padding:12px}#teamMetrics .tm-controls{grid-template-columns:minmax(0,1fr)}#teamMetrics .tm-table th,#teamMetrics .tm-table td{padding:8px 5px;font-size:13px}#teamMetrics .tm-table th{font-size:12px}}

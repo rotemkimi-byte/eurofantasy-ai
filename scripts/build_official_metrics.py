@@ -1,10 +1,54 @@
 """Derived metrics from the official EuroLeague v2 box scores only."""
-import argparse
+import argparse, json, urllib.request
 from datetime import datetime, timezone
 from build_matchup_context import ROOT, load, save, number, key, team, stamp, api
 SOURCE='https://api-live.euroleague.net/v2/competitions/E/seasons/E2026/'
 METHOD='https://mediagamecenter.euroleague.net/'
 FIELDS=['points','fieldGoalsAttempted2','fieldGoalsMade2','fieldGoalsAttempted3','fieldGoalsMade3','freeThrowsAttempted','freeThrowsMade','turnovers','assistances','valuation','steals','blocksFavour','totalRebounds','offensiveRebounds','defensiveRebounds','foulsCommited']
+
+def standings_rows(payload):
+    found={}
+    def visit(value):
+        if isinstance(value,list):
+            for row in value:visit(row)
+        elif isinstance(value,dict):
+            rank=next((number(value.get(k)) for k in ['position','rank','ranking','place'] if number(value.get(k)) is not None),None)
+            club=value.get('club') or value.get('team') or {}
+            name=(club.get('name') if isinstance(club,dict) else club) or value.get('clubName') or value.get('teamName')
+            if name and rank is not None and rank>=1 and rank==int(rank):found[team(name)]={'team':team(name),'rank':int(rank)}
+            for child in value.values():
+                if isinstance(child,(list,dict)):visit(child)
+    visit(payload)
+    return sorted(found.values(),key=lambda r:r['rank'])
+
+def team_results(payload,now):
+    result=[]
+    for g in payload.get('data',[]):
+        date=stamp(g.get('utcDate'))
+        if g.get('season',{}).get('code')!='E2026' or not g.get('played') or not date or date>=now:continue
+        phase=(g.get('phaseType') or {}).get('code')
+        if phase and phase!='RS':continue
+        home,away=g.get('local') or {},g.get('road') or {}
+        hp,ap=number(home.get('score')),number(away.get('score'))
+        if hp is None or ap is None or hp==ap:continue
+        result.append({'gameCode':int(g['gameCode']),'date':date.isoformat(),'round':g.get('roundNumber') or g.get('round'),
+          'home':team((home.get('club') or {}).get('name')),'away':team((away.get('club') or {}).get('name')),
+          'homeScore':hp,'awayScore':ap,'homeStandingsScore':number(home.get('standingsScore')),'awayStandingsScore':number(away.get('standingsScore'))})
+    return result
+
+def fetch_standings(results,offline,warnings):
+    rounds=[int(r['round']) for r in results if isinstance(r.get('round'),(int,float))]
+    if offline or not rounds:return None
+    latest=max(rounds)
+    paths=[SOURCE+f'rounds/{latest}/standings',SOURCE.replace('/v2/','/v3/')+f'rounds/{latest}/basicstandings']
+    for url in paths:
+        try:
+            req=urllib.request.Request(url,headers={'Accept':'application/json','User-Agent':'EuroFantasy-Teams/1.0'})
+            with urllib.request.urlopen(req,timeout=20) as response:rows=standings_rows(json.load(response))
+            if rows:return {'round':latest,'source':url,'rows':rows}
+        except Exception:continue
+    warnings.append('Official standings unavailable; team rankings are calculated from completed regular-season results')
+    return None
 
 def metrics(stats, total, player_seconds, game_seconds):
     def v(k):return number(stats.get(k))
@@ -59,9 +103,11 @@ def build(root=ROOT,offline=False):
                   'source':SOURCE+f'games/{code}/stats'})
     for p in profiles.values():p['games'].sort(key=lambda g:g['date'])
     if not profiles:raise RuntimeError('No official box scores; previous dataset preserved')
+    results=team_results(payload,now)
+    standings=fetch_standings(results,offline,warnings)
     result={'schema':'official-offense-v1','season':'E2026','updated_at':now.isoformat(),'source':SOURCE,'methodSource':METHOD,
       'method':'USG=100*(FGA+0.44*FTA+TO)/(playerSeconds/gameSeconds*(teamFGA+0.44*teamFTA+teamTO)); eFG=100*(2PM+1.5*3PM)/FGA; TS=100*PTS/(2*(FGA+0.44*FTA))',
-      'players':profiles,'defenseVersion':1,'teamGames':team_games,'warnings':warnings}
+      'players':profiles,'defenseVersion':1,'teamGames':team_games,'teamMetricsVersion':1,'teamResults':results,'officialStandings':standings,'warnings':warnings}
     save(root/'data/official-offense.json',result);print(f'Official offense: {len(profiles)} players; {sum(len(p["games"]) for p in profiles.values())} player games')
     return result
 

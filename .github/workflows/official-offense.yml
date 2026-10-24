@@ -6,6 +6,11 @@ on:
       - '.github/workflows/official-offense.yml'
       - 'scripts/build_official_metrics.py'
       - 'official-offense-core.js'
+      - 'team-metrics-core.js'
+      - 'team-metrics-ui.js'
+      - 'team-metrics.css'
+      - 'tests/test_team_metrics.cjs'
+      - 'tests/test_team_export.py'
       - 'defense-core.js'
       - 'defense-ui.js'
       - 'defense.css'
@@ -44,10 +49,12 @@ jobs:
         run: |
           python scripts/build_official_metrics.py
           python tests/test_official_metrics.py
+          python tests/test_team_export.py
           node tests/test_official_offense.cjs
           node tests/test_algorithm_ui.cjs
           node tests/test_algorithm_evidence.cjs
           node tests/test_defense.cjs
+          node tests/test_team_metrics.cjs
       - name: Save official player observations
         run: |
           git config user.name 'github-actions[bot]'
