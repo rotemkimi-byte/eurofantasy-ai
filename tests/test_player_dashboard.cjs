@@ -15,6 +15,15 @@ for(const id of ['usage','defense','games','overview']){await page.locator(`[dat
 for(const range of ['1','3','0']){await page.locator(`[data-range="${range}"]`).click();const expected=U.selectGames(source.players['bryant elijah'],range).filter(g=>g.minutes>0&&g.stats.valuation!==null).length;assert.equal(await page.locator('.ef-player-history .pirPoint').count(),expected);}
 await page.locator('[data-range="3"]').click();await page.locator('.pirPoint').first().click();assert((await page.locator('.ef-chart-detail').textContent()).includes('PIR'));
 assert(!(await page.evaluate(()=>document.getElementById('playerModal').scrollWidth>document.getElementById('playerModal').clientWidth+2)));
+// Mobile player view fills the viewport, keeps four metrics in one row, and closes accessibly.
+for(const width of [320,390,650]){
+ await page.setViewportSize({width,height:844});
+ const layout=await page.evaluate(()=>{const modal=document.getElementById('playerModal'),r=modal.getBoundingClientRect(),stats=[...document.querySelectorAll('.ef-player-stats>div')].map(el=>el.getBoundingClientRect());return {x:r.x,y:r.y,width:r.width,height:r.height,overflow:modal.scrollWidth>modal.clientWidth+2,rows:stats.map(r=>r.y)};});
+ assert.equal(layout.x,0);assert.equal(layout.y,0);assert.equal(layout.width,width);assert.equal(layout.height,844);assert.equal(layout.overflow,false);assert(layout.rows.every(y=>y===layout.rows[0]));
+}
+await page.setViewportSize({width:390,height:844});
+assert.equal(await page.locator('#playerModal .close').getAttribute('aria-label'),'סגור כרטיס שחקן');
+
 if(process.env.MEDIA_FIXTURE)await page.locator('.ef-player-avatar img').waitFor();
 if(process.env.SCREENSHOT_DIR)await page.screenshot({path:path.join(process.env.SCREENSHOT_DIR,'player-dashboard-mobile.png')});
 await page.locator('#playerModal .close').click();await page.locator('#themeToggle').click();await open('Sasha Vezenkov');await page.locator('[data-player-tab=defense]').click();if(process.env.SCREENSHOT_DIR)await page.screenshot({path:path.join(process.env.SCREENSHOT_DIR,'player-defense-dark.png')});

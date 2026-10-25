@@ -117,3 +117,51 @@ html.ef-redesign .ef-player-tabs button[aria-selected=true]{background:var(--acc
 @media(max-width:420px){.ef-dashboard .ef-player-hero{padding:16px}.ef-dashboard .ef-player-identity{gap:12px}.ef-dashboard .ef-player-avatar{flex-basis:76px;height:76px}.ef-dashboard .ef-player-identity h2{font-size:22px}.ef-dashboard .ef-player-stats b{font-size:25px}.ef-dashboard .ef-chart-ranges button{font-size:11px;padding:8px 10px}.ef-metric strong{font-size:26px}.ef-game-card header b{font-size:14px}}
 .ef-dashboard .ef-player-identity>div:last-child{min-width:0;flex:1}
 html.ef-redesign[data-theme="dark"] .ef-player-tabs button[aria-selected=true],html.ef-redesign[data-theme="dark"] .ef-dashboard .ef-chart-ranges button[aria-pressed=true]{color:#073629}
+/* Compact player workspace: keep identity, trends and metrics together. */
+html.ef-redesign #playerModal .modal{position:relative}
+html.ef-redesign #playerModal .close{position:absolute;top:24px;left:24px;margin:0;z-index:4;background:#102334;color:white;border-color:#ffffff40}
+.ef-dashboard .ef-player-hero{padding:18px;margin-bottom:12px}
+.ef-dashboard .ef-player-identity{margin-bottom:14px;padding-left:44px;gap:12px}
+.ef-dashboard .ef-player-stats{grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid #ffffff25;padding-top:12px}
+.ef-dashboard .ef-player-stats>div{border:0;border-inline-start:1px solid #ffffff25;border-radius:0;background:none;padding:0 10px}
+.ef-dashboard .ef-player-stats>div:first-child{border-inline-start:0;padding-inline-start:0}
+.ef-dashboard .ef-player-stats small{font-size:10px;line-height:1.5;min-height:30px}
+.ef-dashboard .ef-player-stats b{font-size:25px}
+.ef-dashboard .ef-player-tabs{margin:0 0 8px;border:0;background:var(--card2)}
+.ef-dashboard .ef-chart-ranges{margin:8px 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+html.ef-redesign .ef-dashboard .ef-chart-ranges button{padding:6px 3px;font-size:11px}
+html.ef-redesign .ef-dashboard .ef-data-status{font-size:10px;margin:6px 0;line-height:1.5}
+html.ef-redesign .ef-dashboard .ef-player-history{margin-top:8px;padding:12px 12px 4px;border:0;border-radius:14px 14px 0 0}
+html.ef-redesign .ef-dashboard .ef-player-history .sectionTitle{font-size:15px;margin-bottom:0}
+html.ef-redesign .ef-dashboard .ef-player-history>p.muted{font-size:10px;margin:2px 0}
+.ef-dashboard .ef-trend-svg{max-height:210px}
+.ef-dashboard .ef-usage-preview{gap:0;margin:0;background:var(--card);border-radius:0 0 14px 14px;padding:10px 12px;border-top:1px solid var(--line)}
+.ef-dashboard .ef-usage-preview .ef-metric{border:0;border-radius:0;padding:0 10px;background:none}
+.ef-dashboard .ef-usage-preview .ef-metric+ .ef-metric{border-inline-start:1px solid var(--line)}
+.ef-dashboard .ef-usage-preview .ef-metric strong{font-size:25px}
+.ef-dashboard .ef-usage-preview .ef-metric small{font-size:11px}
+.ef-dashboard .ef-usage-preview .ef-metric span{font-size:10px}
+.ef-dashboard .ef-method{font-size:11px;margin:8px 0 14px;line-height:1.6}
+html.ef-redesign .ef-dashboard .ef-last-title{font-size:15px;margin:12px 0 6px}
+.ef-dashboard .ef-game-card{padding:12px;margin:6px 0 12px}
+html:has(#playerModal[open]),body:has(#playerModal[open]){overflow:hidden}
+@media(max-width:650px){
+ html.ef-redesign #playerModal{position:fixed;inset:0;margin:0;width:100%;max-width:100%;height:100%;height:100dvh;max-height:100%;max-height:100dvh;border:0;border-radius:0;overscroll-behavior:contain}
+ html.ef-redesign #playerModal .modal{padding:calc(10px + env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) calc(20px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left))}
+ html.ef-redesign #playerModal .close{top:calc(20px + env(safe-area-inset-top));left:calc(22px + env(safe-area-inset-left));width:40px;height:40px}
+ .ef-dashboard .ef-player-hero{padding:14px;border-radius:16px;margin-bottom:10px}
+ .ef-dashboard .ef-player-identity{gap:10px;margin-bottom:12px;min-height:64px}
+ .ef-dashboard .ef-player-avatar{flex-basis:62px;height:62px;border-width:2px}
+ html.ef-redesign .ef-dashboard .ef-player-identity h2{font-size:21px;margin-bottom:4px}
+ .ef-dashboard .ef-player-identity p{font-size:11px}
+ .ef-dashboard .ef-player-stats>div{padding:0 7px}
+ .ef-dashboard .ef-player-stats b{font-size:22px}
+ .ef-dashboard .ef-player-stats small{font-size:9px;min-height:28px}
+ .ef-dashboard .ef-club-crest{width:20px;height:20px;margin-inline-end:4px}
+}
+@media(max-width:350px){
+ .ef-dashboard .ef-player-avatar{flex-basis:48px;height:48px}
+ html.ef-redesign .ef-dashboard .ef-player-identity h2{font-size:18px}
+ .ef-dashboard .ef-player-stats b{font-size:20px}
+ .ef-dashboard .ef-player-stats>div{padding:0 4px}
+}
