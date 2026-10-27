@@ -28,6 +28,28 @@
 #usage #usStatus{font-size:12px;color:var(--muted)}
 #usage #usReload{font-size:13px;white-space:nowrap}
 #usage #usReload:disabled{opacity:.5}
+#usage #usRankingTitle{font-size:16px;margin:18px 0 6px}
+#usage #usRankingNote{font-size:12px}
+#usage .us-ranking-wrap{max-height:540px;overflow:auto;overscroll-behavior:contain}
+#usage .us-ranking{table-layout:fixed;min-width:0}
+#usage .us-ranking .us-rank-col{width:7%}
+#usage .us-ranking .us-name-col{width:39%}
+#usage .us-ranking .us-value-col{width:22%}
+#usage .us-ranking .us-min-col,#usage .us-ranking .us-games-col{width:16%}
+#usage .us-ranking th{position:sticky;top:0;z-index:1;background:var(--card2)}
+#usage .us-ranking th:first-child{width:auto}
+#usage .us-ranking td:nth-child(2),#usage .us-ranking th:nth-child(2){text-align:right}
+#usage .us-ranking td:first-child,#usage .us-ranking th:first-child{text-align:center}
+#usage .us-ranking td{vertical-align:middle}
+#usage .us-player-link{display:block;background:transparent;border:0;color:var(--text);padding:2px 0;text-align:right;font-size:14px;line-height:1.4;overflow-wrap:anywhere;width:100%}
+#usage .us-player-link:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#usage .us-ranking small{font-size:10px}
+#usage .us-ranking strong{color:var(--accent);white-space:nowrap}
+#usage .us-selected{background:color-mix(in srgb,var(--accent) 10%,transparent)}
+#usage .us-usage-bar{display:block;height:5px;border-radius:4px;background:var(--line);margin-top:6px;overflow:hidden}
+#usage .us-usage-bar i{display:block;height:100%;background:var(--accent);border-radius:4px}
+#usage #usResult{scroll-margin-top:130px}
+#usage .us-sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media(max-width:600px){
  #usage .card{padding:12px}
  #usage .us-switch button{flex:1;padding:9px 5px}
@@ -35,4 +57,9 @@
  #usage .us-table th,#usage .us-table td{padding:8px 5px;font-size:13px}
  #usage .us-table th{font-size:12px}
  #usage .us-score{padding:12px}
+ #usage .us-ranking-wrap{max-height:480px}
+ #usage .us-player-link{font-size:12px}
+ #usage .us-ranking th{font-size:10px;padding:9px 3px}
+ #usage .us-ranking td{font-size:12px;padding:10px 3px}
+ #usage .us-ranking small{font-size:9px}
 }

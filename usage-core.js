@@ -30,6 +30,16 @@ function summarize(games){
 }
 // Both percentages use the same box-score estimate of team plays during a player's minutes.
 // Combined involvement adds assists; an assist and a teammate's shot can describe the same play.
-const api={num,key,events,selectGames,summarize};
+function rankPlayers(records,profiles,{team='',position='',range='1',metric='regular',asOf=Date.now()}={}){
+ return records.filter(p=>(!team||p.team===team)&&(!position||p.pos===position)).map(p=>{
+  const games=selectGames(profiles?.[p.id],range,asOf),stats=summarize(games);
+  return {...p,stats,value:stats[metric].value};
+ }).sort((a,b)=>{
+  if(a.value===null&&b.value!==null)return 1;
+  if(a.value!==null&&b.value===null)return -1;
+  return (b.value??0)-(a.value??0)||a.name.localeCompare(b.name)||a.id.localeCompare(b.id);
+ });
+}
+const api={num,key,events,selectGames,summarize,rankPlayers};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;root.UsageCore=api;
 })(typeof window!=='undefined'?window:globalThis);

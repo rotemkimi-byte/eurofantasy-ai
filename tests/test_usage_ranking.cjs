@@ -1,0 +1,11 @@
+const assert=require('node:assert/strict'),U=require('../usage-core.js');
+const game=(code,base,exposure,assists=0)=>({gameCode:code,date:`2026-10-${10+code}T12:00:00Z`,minutes:20,metrics:{usageEvents:base,usageExposure:exposure,assists}});
+const records=[{id:'a',name:'A',team:'One',pos:'G'},{id:'b',name:'B',team:'One',pos:'F'},{id:'c',name:'C',team:'Two',pos:'G'},{id:'d',name:'D',team:'One',pos:'G'},{id:'e',name:'E',team:'One',pos:'G'}];
+const profiles={a:{games:[game(1,2,10,30),game(2,10,100)]},b:{games:[game(2,2,10)]},c:{games:[game(2,3,10)]},d:{games:[game(2,0,10)]}};
+assert.deepEqual(U.rankPlayers(records,profiles).map(p=>p.id),['c','b','a','d','e']);
+assert.deepEqual(U.rankPlayers(records,profiles,{team:'One',position:'G'}).map(p=>p.id),['a','d','e']);
+assert.equal(U.rankPlayers(records,profiles,{range:'0'}).find(p=>p.id==='a').value,100*12/110);
+assert.equal(U.rankPlayers(records,profiles,{range:'0',metric:'combined'})[0].id,'a');
+assert.equal(U.rankPlayers(records,profiles).at(-1).value,null);
+assert.equal(U.rankPlayers(records,profiles,{position:'C'}).length,0);
+console.log('PASS: usage order, team/position intersection, weighted multi-game aggregation, metric switch, zero vs missing and empty filters');
