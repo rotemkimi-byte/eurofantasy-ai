@@ -8,9 +8,21 @@ const server=http.createServer((req,res)=>{const file=path.join(root,decodeURICo
  page.on('pageerror',e=>errors.push(e.message));await page.route('**/*',r=>r.request().url().startsWith('http://127.0.0.1:')?r.continue():r.abort());
  await page.goto(`http://127.0.0.1:${server.address().port}`,{waitUntil:'domcontentloaded'});
  await page.evaluate(()=>document.querySelector('.tabs [data-tab=teamMetrics]').click());
- await page.locator('#tmStandings tbody tr').first().waitFor();
- assert.equal(await page.locator('#tmStandings tbody tr').count(),report.teams.length);assert(await page.locator('#tmLeagueView').isVisible());assert(!(await page.locator('#tmDetail').isVisible()));
- const team=report.teams[2];await page.locator('#tmStandings tbody tr').nth(2).locator('button').click();
+ await page.locator('#tmStandings .tm-identities tbody tr').first().waitFor();
+ assert.equal(await page.locator('#tmStandings .tm-identities tbody tr').count(),report.teams.length);assert(await page.locator('#tmLeagueView').isVisible());assert(!(await page.locator('#tmDetail').isVisible()));
+
+ // Horizontal scrolling must move only metrics; names/ranks stay outside the scroller.
+ for(const width of [320,390,1280]){
+  await page.setViewportSize({width,height:844});
+  const geometry=()=>page.evaluate(()=>({identity:[...document.querySelectorAll('.tm-identities tbody tr')].map(tr=>({cells:[...tr.cells].map(c=>({x:c.getBoundingClientRect().x,width:c.getBoundingClientRect().width})),y:tr.getBoundingClientRect().y,height:tr.getBoundingClientRect().height})),values:[...document.querySelectorAll('.tm-league-values tbody tr')].map(tr=>({y:tr.getBoundingClientRect().y,height:tr.getBoundingClientRect().height})),scroll:document.querySelector('.tm-metrics-scroll').scrollLeft}));
+  const before=await geometry();await page.locator('.tm-metrics-scroll').evaluate(el=>el.scrollLeft=-300);const after=await geometry();
+  assert.deepEqual(after.identity,before.identity,'identity shifted at '+width);
+  before.identity.forEach((r,i)=>{assert(Math.abs(r.y-before.values[i].y)<1,'row offset');assert.equal(r.height,before.values[i].height);});
+  if(width<600)assert.notEqual(after.scroll,before.scroll,'metrics did not scroll');
+  await page.locator('.tm-metrics-scroll').evaluate(el=>el.scrollLeft=0);
+ }
+ await page.setViewportSize({width:390,height:844});
+ const team=report.teams[2];await page.locator('#tmStandings .tm-identities tbody tr').nth(2).locator('button').click();
  assert(await page.locator('#tmDetail').isVisible());assert(!(await page.locator('#tmLeagueView').isVisible()));assert.equal(await page.locator('#tmTeamTitle').textContent(),team.team);
  assert.equal(await page.locator('#tmChart g[role=button]').count(),team.games.length);
  const latest=team.games[0];assert((await page.locator('#tmGameInsight').textContent()).includes(String(latest.points)));

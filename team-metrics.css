@@ -57,4 +57,24 @@
 #teamMetrics .tm-result-heading{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14px}#teamMetrics .tm-result-heading small{flex-basis:100%}
 #teamMetrics .tm-scoreline{display:flex;justify-content:center;align-items:center;gap:20px;margin:16px 0;text-align:center}#teamMetrics .tm-scoreline>div{flex:1;min-width:0}#teamMetrics .tm-scoreline strong{display:block;font-size:38px;line-height:1.3}#teamMetrics .tm-scoreline small{font-size:11px;overflow-wrap:anywhere}
 #teamMetrics .tm-result-meta{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;font-size:12px}#teamMetrics .tm-result-meta span{padding:6px 10px;background:var(--card2);border-radius:8px}
-@media(max-width:600px){#teamMetrics .tm-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}#teamMetrics .tm-chart-card{padding:10px}#teamMetrics .tm-section-heading{flex-wrap:wrap}#teamMetrics .tm-chart-tabs{gap:4px}#teamMetrics .tm-chart-tabs button{font-size:11px;padding:9px 7px}#teamMetrics .tm-chart-scroll svg{max-height:none;height:285px;width:auto}#teamMetrics .tm-standings th:nth-child(2),#teamMetrics .tm-standings td:nth-child(2){position:sticky;right:0;background:var(--card);z-index:1;width:185px;min-width:185px}#teamMetrics .tm-team-head h4{font-size:20px}#teamMetrics .tm-kpis b{font-size:23px}}
+@media(max-width:600px){#teamMetrics .tm-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}#teamMetrics .tm-chart-card{padding:10px}#teamMetrics .tm-section-heading{flex-wrap:wrap}#teamMetrics .tm-chart-tabs{gap:4px}#teamMetrics .tm-chart-tabs button{font-size:11px;padding:9px 7px}#teamMetrics .tm-chart-scroll svg{max-height:none;height:285px;width:auto}#teamMetrics .tm-team-head h4{font-size:20px}#teamMetrics .tm-kpis b{font-size:23px}}
+
+/* Identity is a separate panel: it never participates in horizontal scrolling. */
+#teamMetrics .tm-league-grid{display:grid;grid-template-columns:240px minmax(0,1fr);direction:rtl;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:12px 0;background:var(--card)}
+#teamMetrics .tm-identity-panel{min-width:0;border-left:1px solid var(--line);background:var(--card)}
+#teamMetrics .tm-metrics-scroll{min-width:0;overflow-x:auto;overscroll-behavior-x:contain;direction:rtl;background:var(--card);scrollbar-width:thin}
+#teamMetrics .tm-league-grid table{border-collapse:separate;border-spacing:0;table-layout:fixed;width:100%;min-width:0;margin:0}
+#teamMetrics .tm-league-grid .tm-league-values{min-width:502px}
+#teamMetrics .tm-league-grid thead tr{height:44px}#teamMetrics .tm-league-grid tbody tr{height:80px}
+#teamMetrics .tm-league-grid th,#teamMetrics .tm-league-grid td{position:static;vertical-align:middle;padding:8px 6px;height:80px;box-sizing:border-box;text-align:center;font-size:13px}
+#teamMetrics .tm-league-grid th{height:44px;font-size:11px;white-space:nowrap;background:var(--card2)}
+#teamMetrics .tm-league-grid th:first-child{width:auto;text-align:center}
+#teamMetrics .tm-identities td:nth-child(2){text-align:right}#teamMetrics .tm-identities .tm-club{width:100%;min-height:60px;font-size:13px;line-height:1.35;gap:7px}
+#teamMetrics .tm-identities .tm-club>span:last-child{min-width:0;overflow-wrap:anywhere}
+#teamMetrics .tm-identities .tm-club small{font-size:9px}#teamMetrics .tm-identities .tm-crest{width:30px;height:34px;font-size:10px}
+#teamMetrics .tm-league-grid tbody tr{cursor:pointer}#teamMetrics .tm-league-grid tbody tr:hover{background:var(--card2)}
+#teamMetrics .tm-identities tr:nth-child(-n+6) .tm-rank{color:var(--accent);border-color:var(--accent)}
+#teamMetrics .tm-identities .tm-rank{min-width:27px;min-height:29px}
+@media(max-width:600px){#teamMetrics .tm-league-grid{grid-template-columns:174px minmax(0,1fr)}#teamMetrics .tm-identities .tm-crest{display:none}#teamMetrics .tm-league-grid td{padding:8px 4px}#teamMetrics .tm-identities .tm-club{font-size:12px}}
+#teamMetrics #tmStandings th:nth-child(2){width:auto}
+#teamMetrics #tmStandings .tm-identities th:first-child{width:38px}
