@@ -43,6 +43,15 @@
     const p=probability(value),display=p===null?'—':Math.round(p*100)+'%';
     return `<div class="coach-prob ${kind}"><div><span>${label}</span><b dir="ltr">${display}</b></div><div class="coach-track" role="img" aria-label="${label}: ${display}"><i style="width:${p===null?0:p*100}%"></i></div></div>`;
   }
+  function rosterHTML(m){
+    const data=window.__matchupContextData,core=window.MatchupContext;
+    const audit=core?.teamExplanation?.(m,data);
+    if(!audit)return '<p class="coach-roster-note">תחזית בסיס · שקלול החיסורים למשחק הזה אינו מאומת.</p>';
+    const pct=p=>(p*100).toFixed(1)+'%',signed=n=>(n>0?'+':'')+n.toFixed(1);
+    const list=(label,a)=>`<p><b>${e(label)}</b>: ${a?.missing?.length?a.missing.map(p=>`${e(p.name)} — ${p.status==='out'?'בחוץ':'בספק'} (${Number(p.avgMinutes).toFixed(1)} דק׳${p.sampleGames?' בממוצע':' משוערות'})`).join(' · '):'אין חיסורים מסומנים במקור'}</p>`;
+    const updated=new Date(audit.updated_at).toLocaleString('he-IL',{day:'numeric',month:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Jerusalem'});
+    return `<div class="coach-roster"><b>כולל שקלול חיסורים בשתי הקבוצות</b><span>השפעת החיסורים: <bdi>${signed(audit.change*100)}</bdi> נקודות אחוז</span><details><summary>מי חסר ואיך זה שינה את התחזית?</summary><p>לפני חיסורים: <bdi>${pct(audit.before)}</bdi> · אחרי חיסורים: <bdi>${pct(audit.after)}</bdi></p><p>שינוי בהפרש הצפוי: <bdi>${signed(audit.marginDelta)}</bdi> נקודות.</p>${list('הקבוצה',audit.own)}${list('היריבה — '+m.opponent,audit.opponent)}<small>עדכון: ${e(updated)} · ההשפעה היא אומדן לפי מחיר, דקות וסיכוי לשחק; טרם אומתה היסטורית. חיסורים שכבר השפיעו על תוצאות העבר עשויים להיות מגולמים גם בבסיס.</small></details></div>`;
+  }
   function render(){
     const target=document.getElementById('coachList');if(!target)return;
     const input=document.getElementById('coachBudget'),raw=number(input?.value),budget=raw===null?10:Math.max(0,raw);
@@ -56,6 +65,7 @@
       return `<article class="coach-card" dir="rtl"><header><div><span class="coach-team">${e(team)}</span><h4>${e(c.name)}</h4></div><span class="coach-price"><b>${Number(c.price).toFixed(1)}</b> קרדיט</span></header>
       <div class="coach-fixture"><div><small>המשחק הבא</small><b>${opponent?'מול '+e(opponent):'יריבה לא זמינה'}</b></div><span class="coach-venue">${opponent?venue(m.home):'מועד לא זמין'}</span></div>
       <div class="coach-probabilities">${metric('סיכוי לניצחון',win,'main')}${metric('ניצחון בהפרש 11+',p11,'margin')}${metric('ניצחון בהפרש 20+',p20,'margin large')}</div>
+      ${rosterHTML(m)}
       <div class="coach-form-head"><b>שלושת המשחקים האחרונים</b><span>${streak(h.games,h.complete)}</span></div><div class="coach-results">${recent.map(resultHTML).join('')||'<p class="muted">אין תוצאות משחקים זמינות.</p>'}</div>
       ${recent.length&&recent.length<3?`<small class="coach-sample">זמינים ${recent.length} משחקים בעונה הנוכחית.</small>`:''}${!h.complete&&recent.length?'<small class="coach-sample">הרצף מבוסס על מדגם התוצאות הזמין.</small>':''}
       <footer><span>נקודות פנטזי צפויות</span><b dir="ltr">${expected===null?'—':expected.toFixed(1)}</b><small>ממוצע משוקלל של ניצחונות והפסדים, כולל ניקוד שלילי בהפסד.</small></footer></article>`;

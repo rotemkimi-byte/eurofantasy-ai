@@ -49,10 +49,31 @@ function project(x,p,data){
   scenarios:[{id:'close',minutes:values[0],weight:weights[0],observedGames:groups[0].length},{id:'big-win',minutes:values[1],weight:weights[1],observedGames:groups[1].length},{id:'big-loss',minutes:values[2],weight:weights[2],observedGames:groups[2].length}],minutesCorrectionActive:(profile?.games||0)>=8};
  y.source=(x.source||'model')+' + attack / defense / minute scenarios';return y;
 }
-function applyTeams(matches,data){
+// A status change must not silently reuse yesterday's roster adjustment.
+function rosterMatches(info, roster, team){
+ if(!Array.isArray(roster))return true;
+ const rows=roster.filter(p=>p.team===team&&['G','F','C'].includes(p.pos));
+ if(!rows.length)return false;
+ const missing=rows.filter(p=>['out','questionable'].includes(p.status));
+ const saved=info?.availability?.missing;
+ if(!Array.isArray(saved)||missing.length!==saved.length)return false;
+ return missing.every(p=>saved.some(m=>key(m.name)===key(p.name)&&m.status===p.status&&
+  Math.abs((num(m.missingProbability)??0)-(p.status==='out'?1:1-clip(num(p.probability_of_playing)??.5,0,1)))<.001));
+}
+const matchFields=['margin','winProb','teamPoints','p20','p11_20','p1_10','l1_10','l11_20','l20','source'];
+function applyTeams(matches,data,roster){
+ // Restore the raw forecast first: repeated calls never compound adjustments.
+ for(const m of Object.values(matches)){
+  if(m.contextBase)Object.assign(m,m.contextBase);
+  delete m.context;delete m.contextBase;
+ }
  if(!valid(data))return false;
  for(const [t,info] of Object.entries(data.teams||{})){
-  const m=matches[t];if(!m||m.opponent!==info.opponent||!!m.home!==info.home||num(info.margin)==null)continue;
+  const m=matches[t],rival=data.teams?.[info.opponent];
+  if(!m||m.opponent!==info.opponent||!!m.home!==info.home||num(info.margin)==null||num(info.winProb)==null)continue;
+  if(num(info.baseMargin)!=null&&Math.abs(info.baseMargin-m.margin)>.02)continue;
+  if(!rosterMatches(info,roster,t)||!rosterMatches(rival,roster,info.opponent))continue;
+  m.contextBase=Object.fromEntries(matchFields.map(k=>[k,m[k]]));
   m.margin=info.margin;m.winProb=info.winProb;m.teamPoints=(m.total+m.margin)/2;
   const cdfAt=v=>cdf((v-m.margin)/11.5);
   m.p20=1-cdfAt(20);m.p11_20=cdfAt(20)-cdfAt(10);m.p1_10=cdfAt(10)-cdfAt(0);
@@ -64,5 +85,17 @@ function applyTeams(matches,data){
  }
  return true;
 }
-const api={project,applyTeams,valid,key,tails};if(typeof module!=='undefined'&&module.exports)module.exports=api;root.MatchupContext=api;
+function teamExplanation(m,data){
+ const info=m?.context;
+ if(!valid(data)||!info||!Object.values(data.teams||{}).includes(info)||m.opponent!==info.opponent||m.home!==info.home)return null;
+ if(!info.availability||num(info.rosterDelta)==null)return null;
+ const probability=margin=>{
+  const c=data.calibration,logit=margin/7.2;
+  return 1/(1+Math.exp(-(c?.active?(info.home?c.coefficients.intercept:-c.coefficients.intercept)+c.coefficients.slope*logit:logit)));
+ };
+ const before=probability(info.margin-info.rosterDelta);
+ return {before,after:m.winProb,change:m.winProb-before,marginDelta:info.rosterDelta,
+  own:info.availability,opponent:data.teams?.[info.opponent]?.availability,updated_at:data.updated_at};
+}
+const api={project,applyTeams,valid,key,tails,rosterMatches,teamExplanation};if(typeof module!=='undefined'&&module.exports)module.exports=api;root.MatchupContext=api;
 })(typeof window!=='undefined'?window:globalThis);

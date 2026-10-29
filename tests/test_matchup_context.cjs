@@ -20,6 +20,23 @@ for(const m of Object.values(matches)){
  assert.ok(Math.abs(m.p1_10+m.p11_20+m.p20-m.winProb)<1e-8);
  assert.ok(Math.abs(m.l1_10+m.l11_20+m.l20-(1-m.winProb))<1e-8);
 }
-const once=JSON.stringify(matches);core.applyTeams(matches,data);assert.equal(JSON.stringify(matches),once);
-const staleFixture={...data,teams:{A:{opponent:'OTHER',home:true,margin:20,winProb:.9}}};core.applyTeams(matches,staleFixture);assert.equal(matches.A.margin,3);
+const once=JSON.stringify(matches);core.applyTeams(matches,data);assert.deepEqual(JSON.parse(JSON.stringify(matches)),JSON.parse(once));
+const staleFixture={...data,teams:{A:{opponent:'OTHER',home:true,margin:20,winProb:.9}}};core.applyTeams(matches,staleFixture);assert.equal(matches.A.margin,5);
 console.log('Context core: bounded effects, missing/stale fallback, coherent probabilities and idempotence passed');
+
+// Live roster changes invalidate both sides; the untouched baseline is restored.
+const roster=[{name:'X',team:'A',pos:'C',status:'out'},{name:'Y',team:'B',pos:'G',status:'active'}];
+data.teams.A.availability={missing:[{name:'X',status:'out',missingProbability:1,avgMinutes:25,sampleGames:5}]};
+data.teams.B.availability={missing:[]};
+data.teams.A.baseMargin=5;data.teams.B.baseMargin=-5;
+data.teams.A.rosterDelta=-2;data.teams.B.rosterDelta=2;
+core.applyTeams(matches,data,roster);
+assert.equal(matches.A.margin,3);
+let explanation=core.teamExplanation(matches.A,data);assert.ok(explanation.change<0);assert.equal(explanation.own.missing[0].name,'X');
+core.applyTeams(matches,data,roster);assert.equal(matches.A.margin,3);
+roster[0].status='active';core.applyTeams(matches,data,roster);
+assert.equal(matches.A.margin,5);assert.equal(matches.B.margin,-5);assert.equal(core.teamExplanation(matches.A,data),null);
+core.applyTeams(matches,{...data,updated_at:'2000-01-01'},roster);assert.equal(matches.A.margin,5);
+const changed={A:{opponent:'B',home:true,margin:10,total:170}};
+core.applyTeams(changed,data);assert.equal(changed.A.margin,10);
+console.log('Roster mismatch, stale data, newer baseline and injury explanation checks passed');

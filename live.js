@@ -27,10 +27,11 @@
   try {
     const t = Date.now();
 
-    const [playersResponse, metaResponse, matchupsResponse] = await Promise.all([
+    const [playersResponse, metaResponse, matchupsResponse, contextResponse] = await Promise.all([
       fetch("./data/players.json?t=" + t, { cache: "no-store" }),
       fetch("./data/meta.json?t=" + t, { cache: "no-store" }),
-      fetch("./data/matchups.json?t=" + t, { cache: "no-store" })
+      fetch("./data/matchups.json?t=" + t, { cache: "no-store" }),
+      fetch("./data/matchup-context.json?t=" + t, { cache: "no-store" }).catch(() => null)
     ]);
 
     if (!playersResponse.ok) {
@@ -94,6 +95,8 @@
       if (m && (m.opponent !== p.opponent || !!m.home !== !!p.home)) delete MATCHUPS[p.team];
     }
     GAMES.splice(0, GAMES.length, ...GAMES.filter(g => MATCHUPS[g.home] && MATCHUPS[g.away]));
+    const context = contextResponse?.ok ? await contextResponse.json().catch(() => null) : null;
+    window.refreshMatchupContext?.(context);
     renderAll();
     document.dispatchEvent(new Event("fantasy-live-updated"));
     const badge = document.getElementById("syncBadge");

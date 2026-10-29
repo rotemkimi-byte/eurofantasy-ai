@@ -6,12 +6,17 @@ try{const res=await fetch('./data/matchup-context.json?t='+Date.now(),{cache:'no
 for(let i=0;i<450&&!window.__stabilityModelPatched;i++)await pause(100);
 window.__matchupContextData=data;
 if(!window.MatchupContext||typeof model!=='function'){window.__matchupContextReady=true;return;}
-if(!MatchupContext.valid(data)){window.__matchupContextReady=true;console.warn('No fresh matchup context; existing model preserved');return;}
+if(!MatchupContext.valid(data))console.warn('No fresh matchup context; existing model preserved');
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const n=v=>v==null||!Number.isFinite(Number(v))?'—':Number(v).toFixed(1);
 const percent=v=>v==null?'—':Math.round(v*100)+'%';
-MatchupContext.applyTeams(MATCHUPS,data);
-for(const g of GAMES){const m=MATCHUPS[g.home];if(m?.context){g.homeMargin=m.margin;g.homeWinProb=m.winProb;g.awayWinProb=1-m.winProb;g.total=m.total;}}
+window.refreshMatchupContext=next=>{
+ if(MatchupContext.valid(next)&&(!MatchupContext.valid(data)||Date.parse(next.updated_at)>=Date.parse(data.updated_at))){data=next;window.__matchupContextData=data;}
+ const roster=typeof canonicalTeam==='function'?players.map(p=>({...p,team:canonicalTeam(p.team)})):players;
+ MatchupContext.applyTeams(MATCHUPS,data,roster);
+ for(const g of GAMES){const m=MATCHUPS[g.home];if(m){g.homeMargin=m.margin;g.homeWinProb=m.winProb;g.awayWinProb=1-m.winProb;g.total=m.total;}}
+};
+window.refreshMatchupContext();
 const previous=model;model=p=>MatchupContext.project(previous(p),p,data);
 const originalShow=window.showPlayer;
 window.showPlayer=name=>{
@@ -29,7 +34,7 @@ const originalGames=renderGames;
 renderGames=function(){
  originalGames();const cards=document.querySelectorAll('#gameCards .gameCard');
  GAMES.forEach((g,i)=>{
- const card=cards[i],h=data.teams[g.home],a=data.teams[g.away];if(!card||!h||!a||MATCHUPS[g.home]?.context!==h)return;
+ const card=cards[i],h=data?.teams?.[g.home],a=data?.teams?.[g.away];if(!card||!h||!a||MATCHUPS[g.home]?.context!==h)return;
  const details=document.createElement('details');details.className='secondaryDetails';
  const roster=t=>`<p><b>${escape(t===h?g.home:g.away)}</b>: ${t.availability.available} פעילים מתוך ${t.availability.rosterCount}. ${t.availability.missing.length?t.availability.missing.map(m=>`${escape(m.name)} (${m.status==='out'?'בחוץ':'בספק'}, ${n(m.avgMinutes)} דק׳)`).join(' · '):'אין חיסורים מסומנים'}.</p>`;
  const history=(t,name)=>`<p><b>${escape(name)}</b>: ${t.hardWins} ניצחונות מתוך ${t.hardGames} משחקים קשים בעונה.</p>${t.hardHistory.length?`<ul>${t.hardHistory.map(r=>`<li>${escape(r.opponent)} · ${r.home?'בית':'חוץ'} · ${r.won?'ניצחון':'הפסד'} · הפרש ${n(r.margin)} · סיכוי מוקדם ${percent(r.pregameWinProb)}</li>`).join('')}</ul>`:''}`;

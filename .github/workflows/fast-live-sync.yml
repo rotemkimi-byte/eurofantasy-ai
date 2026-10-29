@@ -388,6 +388,9 @@ jobs:
           )
           PY
 
+      - name: Refresh roster adjustments against the new live fixtures
+        run: python scripts/build_matchup_context.py --offline
+
       - name: Save live data
         run: |
           git config user.name "eurofantasy-bot"

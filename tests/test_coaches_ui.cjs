@@ -16,3 +16,11 @@ assert.equal(histories.A.length,3);assert.equal(histories.B.length,3);assert.equ
 assert.equal(ui.streak(histories.A.slice(0,2),false),'2+ ניצחונות ברצף');
 sandbox.window.__matchupContextData={teams:{A:{recentHistory:histories.A}}};budget='10';ui.render();assert(html.includes('שלושת המשחקים האחרונים'));assert(html.includes('80–90'));assert.equal((html.match(/class="coach-result /g)||[]).length,3);
 console.log('PASS: price sorting, budget, probabilities, home/away, chronological latest results, deduplication, future exclusion and streak bounds');
+
+const core=require('../matchup-context-core.js');
+const context={schema:'matchup-context-v1',season:'E2026',updated_at:new Date().toISOString(),teams:{A:{opponent:'B',home:true,margin:3,winProb:.6,rosterDelta:-2,availability:{missing:[{name:'Injured <star>',status:'out',avgMinutes:25,sampleGames:6}]}},B:{opponent:'A',home:false,availability:{missing:[]}}}};
+sandbox.window.MatchupContext=core;sandbox.window.__matchupContextData=context;
+sandbox.MATCHUPS.A.context=context.teams.A;sandbox.MATCHUPS.A.winProb=.6;
+ui.render();assert(html.includes('כולל שקלול חיסורים'));assert(html.includes('לפני חיסורים'));assert(html.includes('60.0%'));assert(html.includes('Injured &lt;star&gt;'));assert(html.includes('שקלול החיסורים למשחק הזה אינו מאומת'));
+context.updated_at='2000-01-01';ui.render();assert(!html.includes('כולל שקלול חיסורים'));
+console.log('PASS: injury breakdown, escaped names, before/after probabilities and stale fallback');
