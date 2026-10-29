@@ -1,6 +1,10 @@
 name: EuroFantasy Fast Live Sync
 
 on:
+  push:
+    paths:
+      - '.github/workflows/fast-live-sync.yml'
+      - 'sync.py'
   workflow_dispatch:
   schedule:
     - cron: "*/5 * * * *"
@@ -395,6 +399,14 @@ jobs:
             echo "No live-data changes"
           else
             git commit -m "Fast live sync"
-            git pull --rebase origin main
-            git push
+            # Generated data may also be updated by the slower sync jobs.
+            # During rebase, "theirs" is this freshly generated commit.
+            for attempt in 1 2 3; do
+              git pull --rebase -X theirs origin main
+              if git push; then
+                exit 0
+              fi
+            done
+            echo "Unable to publish live data after three attempts" >&2
+            exit 1
           fi
