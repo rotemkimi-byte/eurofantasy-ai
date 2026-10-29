@@ -1,4 +1,4 @@
-(async () => {
+(() => {
   const aliases = {
     "Anadolu Efes Istanbul": "Anadolu Efes",
     "Armani Olimpia Milan": "Milano",
@@ -22,12 +22,15 @@
 
   const teamName = name => aliases[name] || name || "";
 
+  let pending = null;
+  async function refresh() {
   try {
     const t = Date.now();
 
-    const [playersResponse, metaResponse] = await Promise.all([
+    const [playersResponse, metaResponse, matchupsResponse] = await Promise.all([
       fetch("./data/players.json?t=" + t, { cache: "no-store" }),
-      fetch("./data/meta.json?t=" + t, { cache: "no-store" })
+      fetch("./data/meta.json?t=" + t, { cache: "no-store" }),
+      fetch("./data/matchups.json?t=" + t, { cache: "no-store" })
     ]);
 
     if (!playersResponse.ok) {
@@ -63,8 +66,8 @@
 
     localStorage.setItem(LS.team, JSON.stringify(myTeam));
 
-    if (metaResponse.ok) {
-      const meta = await metaResponse.json();
+    const meta = metaResponse.ok ? await metaResponse.json() : null;
+    if (meta) {
 
       localStorage.setItem(
         "efa2_fantasy_sync",
@@ -72,16 +75,33 @@
       );
     }
 
+    if (matchupsResponse.ok) {
+      const data = await matchupsResponse.json();
+      const schedule = new Map(players.map(p => [p.team, p]));
+      const coherent = Object.entries(data.matchups || {}).every(([team, m]) => {
+        const p = schedule.get(team);
+        return p && p.opponent === m.opponent && !!p.home === !!m.home;
+      });
+      if (coherent && Object.keys(data.matchups || {}).length) {
+        for (const team of Object.keys(MATCHUPS)) delete MATCHUPS[team];
+        Object.assign(MATCHUPS, data.matchups);
+        GAMES.splice(0, GAMES.length, ...(data.games || []));
+      }
+    }
+    // Never label an old fixture as the next game after the player feed advances.
+    for (const p of players) {
+      const m = MATCHUPS[p.team];
+      if (m && (m.opponent !== p.opponent || !!m.home !== !!p.home)) delete MATCHUPS[p.team];
+    }
+    GAMES.splice(0, GAMES.length, ...GAMES.filter(g => MATCHUPS[g.home] && MATCHUPS[g.away]));
     renderAll();
-
     const badge = document.getElementById("syncBadge");
-
     if (badge) {
-      badge.textContent = "Fantasy live ✓";
-
-      setTimeout(() => {
-        badge.textContent = "Fantasy live ✓";
-      }, 3000);
+      const time = Date.parse(meta?.updated_at);
+      const stale = !Number.isFinite(time) || Date.now() - time > 30 * 60 * 1000;
+      badge.textContent = (meta?.matchday_number ? "מחזור " + meta.matchday_number : "Fantasy") +
+        (stale ? " · נתונים בעיכוב" : " · מעודכן ✓");
+      badge.title = Number.isFinite(time) ? "עדכון נתונים: " + new Date(time).toLocaleString("he-IL") : "מועד העדכון לא ידוע";
     }
 
     console.log(
@@ -99,4 +119,16 @@
       badge.textContent = "Fantasy cache";
     }
   }
+  }
+  window.refreshFantasyLive = () => {
+    if (!pending) pending = refresh().finally(() => { pending = null; });
+    return pending;
+  };
+  void window.refreshFantasyLive();
+  setInterval(() => { if (!document.hidden) void window.refreshFantasyLive(); }, 5 * 60 * 1000);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) void window.refreshFantasyLive();
+  });
+  window.addEventListener('focus', () => void window.refreshFantasyLive());
+  document.getElementById('pmReload')?.addEventListener('click', () => void window.refreshFantasyLive());
 })();
