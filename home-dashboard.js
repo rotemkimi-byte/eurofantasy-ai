@@ -18,7 +18,7 @@ const hero=document.querySelector('main>.hero');if(!hero)return;
 // Keep the existing model's stat targets available without showing the old hero.
 hero.hidden=true;
 const panel=document.createElement('section');panel.id='efDashboard';
-panel.innerHTML=`<section class="card hd-fixtures" aria-labelledby="hdTitle"><div class="hd-heading"><div><span class="hd-eyebrow">EUROLEAGUE · 2026/27</span><h2 id="hdTitle">משחקי המחזור</h2></div><button id="hdRefresh" class="secondary" type="button">רענון</button></div><div class="hd-controls"><label>מחזור<select id="hdRound" aria-label="בחירת מחזור"></select></label><button class="secondary" id="hdToday" type="button">המחזור הנוכחי</button><span>שעות ישראל</span></div><p id="hdGamesStatus" class="hd-note" role="status" aria-live="polite">טוען לוח משחקים…</p><div id="hdGames"></div></section><section class="card hd-league" aria-labelledby="hdLeagueTitle"><div class="hd-heading"><h2 id="hdLeagueTitle">טבלת הליגה</h2><button class="secondary" type="button" id="hdTeams">מדד קבוצות ←</button></div><p id="hdTableStatus" class="hd-note" role="status" aria-live="polite">טוען דירוג…</p><div id="hdStandings"></div></section>`;
+panel.innerHTML=`<section class="card hd-fixtures" aria-labelledby="hdTitle"><div class="hd-heading"><h2 id="hdTitle"><span class="hd-live-dot"></span>משחקי המחזור</h2><select id="hdRound" aria-label="בחירת מחזור"></select><button id="hdRefresh" class="secondary" type="button" aria-label="רענון משחקים וטבלה">↻</button></div><p id="hdGamesStatus" class="hd-note" role="status" aria-live="polite">טוען לוח משחקים…</p><div id="hdPreview"></div><details class="hd-expand"><summary>כל משחקי המחזור <span>⌄</span></summary><div class="hd-controls"><button class="secondary" id="hdToday" type="button">המחזור הנוכחי</button><span>שעות ישראל</span></div><div id="hdGames"></div></details><details class="hd-league"><summary><span>טבלת הליגה</span><span id="hdLeaders">20 קבוצות</span><span>⌄</span></summary><p id="hdTableStatus" class="hd-note" role="status" aria-live="polite">טוען דירוג…</p><div id="hdStandings"></div><button class="secondary" type="button" id="hdTeams">מדד קבוצות ←</button></details></section>`;
 hero.before(panel);
 const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const date=value=>new Date(value).toLocaleDateString('he-IL',{timeZone:zone,weekday:'long',day:'numeric',month:'numeric',year:'numeric'});
@@ -28,7 +28,9 @@ function club(c){return typeof canonicalTeam==='function'?canonicalTeam(c.name):
 function renderGames(){
  const selected=Number($('hdRound').value),rows=games.filter(g=>g.round===selected),days=[...new Set(rows.map(g=>g.day))],today=dayKey(Date.now());
  const halfway=Math.max(...games.map(g=>g.round))/2;
- $('hdGamesStatus').textContent=`מחזור ${selected} · סיבוב ${selected<=halfway?'ראשון':'שני'} של העונה · ${rows.length} משחקים`;
+ const activeDay=days.find(d=>d>=today)||days.at(-1),preview=rows.filter(g=>g.day===activeDay),dayIndex=days.indexOf(activeDay);
+ $('hdGamesStatus').textContent=preview.length?`${date(preview[0].utcDate)} · יום ${dayIndex+1} במחזור · שעות ישראל`:'';
+ $('hdPreview').innerHTML=preview.map(g=>`<article class="hd-match"><div class="hd-match-top"><time datetime="${esc(g.utcDate)}">${g.confirmedHour===false?'טרם נקבעה':time(g.utcDate)}</time><span>${g.played?'הסתיים':g.day===today?'היום':'המשחק הבא'}</span></div><div class="hd-side"><b>${esc(club(g.local.club))}</b><small>בית</small></div><div class="hd-side"><b>${esc(club(g.road.club))}</b><small>חוץ</small></div>${g.played?`<bdi class="hd-score">${g.local.score}–${g.road.score}</bdi>`:''}</article>`).join('');
  $('hdGames').innerHTML=days.map((day,i)=>{
   const list=rows.filter(g=>g.day===day),label=i===0?'ראשון':i===1?'שני':String(i+1);
   return `<section class="hd-day"><h3><span>${day===today?'היום · ':''}${date(list[0].utcDate)}</span><small>יום ${label} של המחזור</small></h3><table class="hd-games-table"><thead><tr><th>שעה</th><th>בית</th><th>חוץ</th><th>תוצאה</th></tr></thead><tbody>${list.map(g=>`<tr><td><time datetime="${esc(g.utcDate)}">${g.confirmedHour===false?'טרם נקבעה':time(g.utcDate)}</time></td><td>${esc(club(g.local.club))}</td><td>${esc(club(g.road.club))}</td><td>${g.played?`<bdi>${g.local.score}–${g.road.score}</bdi>`:'—'}</td></tr>`).join('')}</tbody></table></section>`;
@@ -49,6 +51,7 @@ async function loadTable(){
   const data=await json('./data/official-offense.json');if(data.season!=='E2026')throw Error('Wrong season');
   const report=root.TeamMetricsCore.build(data);if(!report.teams.length)throw Error('No standings');
   $('hdTableStatus').textContent=`${report.official?'דירוג רשמי':'דירוג מחושב לפי מאזן והפרש נקודות'} · עודכן ${new Date(data.updated_at).toLocaleString('he-IL',{timeZone:zone,day:'numeric',month:'numeric',hour:'2-digit',minute:'2-digit'})}`;
+  $('hdLeaders').textContent=report.teams.slice(0,3).map(t=>`${t.rank}. ${t.team}`).join(' · ');
   $('hdStandings').innerHTML=`<table class="hd-standings-table"><thead><tr><th>מקום</th><th>קבוצה</th><th>מש׳</th><th>ניצ׳</th><th>הפ׳</th></tr></thead><tbody>${report.teams.map(t=>`<tr><td><span class="hd-rank">${t.rank}</span></td><td>${esc(t.team)}</td><td>${t.played}</td><td>${t.wins}</td><td>${t.losses}</td></tr>`).join('')}</tbody></table>`;
  }catch{ $('hdTableStatus').textContent=$('hdStandings').children.length?'הרענון נכשל · מוצגת הטבלה הקודמת':'טבלת הדירוג לא נטענה. לחץ על רענון.'; }
 }
