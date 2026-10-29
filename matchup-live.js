@@ -27,8 +27,6 @@
         MATCHUPS[team] = {};
       }
 
-      delete MATCHUPS[team].context;
-      delete MATCHUPS[team].contextBase;
       Object.assign(
         MATCHUPS[team],
         value
@@ -46,7 +44,6 @@
       );
     }
 
-    window.refreshMatchupContext?.();
     renderAll();
 
     console.log(
