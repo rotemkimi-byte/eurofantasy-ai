@@ -96,7 +96,7 @@ html[data-theme="light"] .audit-compact .miss,html[data-theme="light"] .ac-value
 html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method summary{color:var(--blue)}
 </style><style>.weakHelp{font-size:12px;line-height:1.65}.weakControls{grid-template-columns:repeat(4,minmax(0,1fr)) auto;align-items:end}.weakControls label{min-width:0}.weakCard{background:var(--card2);border:1px solid var(--line);border-radius:15px;padding:16px;margin-top:12px}.weakCard h4{font-size:20px;margin:6px 0;overflow-wrap:anywhere}.weakCard .sectionHead>div{min-width:0}.weakCard .sectionHead>div>small{font-size:10px}.weakScore{text-align:center;flex:0 0 110px}.weakScore>b{display:block;font-size:29px;color:var(--accent);direction:ltr}.weakScore>small{font-size:10px}.weakMeta{display:flex;gap:8px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin:12px 0}.weakMeta>span{border:1px solid var(--line);border-radius:8px;padding:5px}.weakPositions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.weakPositions>div{text-align:center;padding:10px 3px;border:1px solid var(--line);border-radius:10px;background:var(--card)}.weakPositions b{color:var(--blue);font-size:14px}.weakPositions strong{display:block;font-size:22px;margin:5px 0;direction:ltr}.weakPositions small{display:block;font-size:9px;line-height:1.6}.weakPositions .weakSelected{border-color:var(--accent)}.weakDetails{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}.weakCard .weakPlayersTitle{font-size:16px;color:var(--blue);margin:0 0 5px}.weakPosBadge{display:inline-block;padding:1px 5px;background:var(--card);border:1px solid var(--line);border-radius:5px;color:var(--blue);font-weight:800}.weakPerformances{max-height:420px;overflow:auto}.weakPerformance{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}.weakPerformance small{display:block;font-size:10px;line-height:1.6;margin-top:4px}.weakPlayer{padding:0;background:transparent;color:var(--text);text-align:right;font-size:14px;overflow-wrap:anywhere;line-height:1.4}.weakPerformance>div:last-child{text-align:left;white-space:nowrap}.weakPerformance>div:last-child>b{color:var(--accent);font-size:20px}@media(max-width:600px){.weakControls{grid-template-columns:1fr 1fr}.weakControls button{grid-column:1/-1}.weakCard{padding:12px}.weakScore{flex-basis:95px}.weakScore>b{font-size:26px}.weakCard h4{font-size:18px}}</style><style>
 [hidden]{display:none!important}.rr-price{display:inline-flex;flex-direction:column;gap:4px;text-align:left;direction:ltr;white-space:nowrap}.rr-price>span{font-weight:800;color:var(--accent)}.rr-price small{font-size:10px}.rr-price .rr-delta{font-size:11px;font-weight:600}.marketTable td:nth-child(2):has(.rr-price)::after{content:none}.rr-toggle{display:flex;gap:8px;margin:0 0 16px}.rr-toggle button{background:var(--card2);color:var(--muted);border:1px solid var(--line)}.rr-toggle button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}.rr-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.rr-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:14px}.rr-name{padding:0;background:none;color:var(--text);text-align:right;min-width:0;overflow-wrap:anywhere}.rr-name small{display:block;font-size:11px;margin-top:5px}.rr-card>p{grid-column:1/-1;font-size:12px;margin:0}.rr-metrics,.rr-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;text-align:center}.rr-metrics{grid-column:1/-1}.rr-metrics>div,.rr-summary>div{background:var(--card);border-radius:9px;padding:10px 4px}.rr-metrics b,.rr-summary b{display:block;font-size:21px}.rr-metrics small,.rr-summary small{font-size:10px;display:block;margin-top:5px}.rr-summary{margin:14px 0}.rr-note{font-size:12px;line-height:1.65}@media(max-width:780px){.rr-list{grid-template-columns:1fr}}
-</style><link rel="stylesheet" href="./squad-layout.css?v=3"><link rel="stylesheet" href="./round-lab.css?v=2"><link rel="stylesheet" href="./usage.css?v=2"><link rel="stylesheet" href="./defense.css?v=2"><link rel="stylesheet" href="./team-metrics.css?v=3"></head>
+</style><link rel="stylesheet" href="./squad-layout.css?v=3"><link rel="stylesheet" href="./round-lab.css?v=2"><link rel="stylesheet" href="./usage.css?v=2"><link rel="stylesheet" href="./defense.css?v=2"><link rel="stylesheet" href="./team-metrics.css?v=3"><style>#market>.filters{grid-template-columns:2fr repeat(5,minmax(0,1fr))}.clubPlayer>.squadJersey{width:65px;height:72px;margin:auto}@media(max-width:780px){#market>.filters{grid-template-columns:1fr 1fr}#market>.filters #search{grid-column:1/-1}}</style></head>
 <body>
 <header><div class="head"><div><div class="eyebrow">EUROLEAGUE FANTASY AGENT • V2</div><h1>EuroFantasy AI</h1></div><button type="button" class="secondary themeToggle" id="themeToggle" aria-pressed="false" aria-label="מעבר לתצוגה בהירה">☀ תצוגה בהירה</button><div class="badge" id="syncBadge">טוען נתונים…</div></div></header>
 <main>
@@ -113,6 +113,7 @@ html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method sum
 <section id="market" class="tab active">
 <div class="card filters">
 <input id="search" placeholder="חיפוש שחקן / קבוצה">
+<select id="marketTeam" aria-label="סינון לפי קבוצה"><option value="">כל הקבוצות</option></select>
 <select id="pos"><option value="">כל העמדות</option><option>G</option><option>F</option><option>C</option></select>
 <input id="maxPrice" type="number" step=".1" placeholder="מחיר מקס׳">
 <select id="statusFilter"><option value="">כל הסטטוסים</option><option value="active">פעיל</option><option value="questionable">בספק</option><option value="out">בחוץ</option></select>
@@ -330,9 +331,14 @@ window.toggle=toggle;
 function statusText(s){return s==="out"?"בחוץ":s==="questionable"?"בספק":"פעיל"}
 function statusClass(s){return s==="out"?"bad":s==="questionable"?"warn":"good"}
 function renderMarket(){
+  const teamSelect=document.getElementById('marketTeam'),selectedTeam=teamSelect.value;
+  const marketTeams=[...new Set(players.map(p=>canonicalTeam(p.team)).filter(Boolean))].sort();
+  const teamSignature=JSON.stringify(marketTeams);
+  if(teamSelect.dataset.teams!==teamSignature){teamSelect.replaceChildren(new Option('כל הקבוצות',''),...marketTeams.map(t=>new Option(t,t)));teamSelect.dataset.teams=teamSignature;if(marketTeams.includes(selectedTeam))teamSelect.value=selectedTeam;}
+  const tf=teamSelect.value;
   const q=document.getElementById("search").value.toLowerCase(), pf=document.getElementById("pos").value, sf=document.getElementById("statusFilter").value;
   const mp=Number(document.getElementById("maxPrice").value||999), sort=document.getElementById("sort").value;
-  let arr=players.filter(p=>(!q||(p.name+" "+p.team).toLowerCase().includes(q))&&(!pf||p.pos===pf)&&(!sf||p.status===sf)&&+p.price<=mp);
+  let arr=players.filter(p=>(!tf||canonicalTeam(p.team)===tf)&&(!q||(p.name+" "+p.team).toLowerCase().includes(q))&&(!pf||p.pos===pf)&&(!sf||p.status===sf)&&+p.price<=mp);
   arr.sort((a,b)=>{const A=model(a),B=model(b);if(sort==="confidence")return B.confidence-A.confidence;if(sort==="minutes")return B.minutes-A.minutes;if(sort==="price")return +b.price-+a.price||a.name.localeCompare(b.name);return B.expected-A.expected});
   document.getElementById("rows").innerHTML=arr.map(p=>{const x=model(p);return `<tr>
   <td class="name" onclick='showPlayer(${JSON.stringify(p.name)})' style="cursor:pointer"><b>${esc(p.name)}</b><small>${esc(p.team)} • ${p.pos} • ${p.home==1?"בית":"חוץ"} מול ${esc(p.opponent)}</small></td>
@@ -448,11 +454,36 @@ function squadArrangement(selected){
  slots.forEach((p,i)=>{if(p)return;const pos=SQUAD_SLOTS[i][0];const next=selected.find(p=>!used.has(p.name)&&(pos==='*'||p.pos===pos));if(next){slots[i]=next;used.add(next.name)}});
  return {slots,bench:selected.filter(p=>!used.has(p.name))};
 }
+// Club identity colours; these icons do not predict the kit worn in a specific game.
+const TEAM_KITS={
+ 'Panathinaikos':['PAO','#007a4b','#ffffff'],
+ 'Olympiacos':['OLY','#da192b','#ffffff','#ffffff'],
+ 'Crvena Zvezda':['CZV','#d71920','#ffffff','#ffffff'],
+ 'Hapoel Tel Aviv':['HTA','#d71920','#ffffff'],
+ 'Besiktas':['BJK','#f7f7f7','#171717','#171717'],
+ 'Virtus Bologna':['VIR','#171717','#ffffff'],
+ 'Valencia':['VBC','#f58220','#171717'],
+ 'Real Madrid':['RMB','#ffffff','#173c72'],
+ 'Fenerbahce':['FEN','#ffdb00','#142e63','#142e63'],
+ 'Maccabi Tel Aviv':['MTA','#ffdf00','#064494'],
+ 'Barcelona':['BAR','#004d98','#ffdf75','#a50044'],
+ 'Bayern Munich':['BAY','#dc052d','#ffffff'],
+ 'Anadolu Efes':['EFS','#005ca9','#ffffff'],
+ 'ASVEL':['ASV','#151515','#ffffff'],
+ 'Baskonia':['BAS','#003b71','#ffffff','#c8102e'],
+ 'Dubai':['DUB','#101820','#cfb77b'],
+ 'Milano':['MIL','#e31837','#ffffff'],
+ 'Paris':['PRS','#111111','#ffffff'],
+ 'Partizan':['PAR','#171717','#ffffff','#ffffff'],
+ 'Zalgiris':['ZAL','#007a3d','#ffffff']
+};
 function squadJersey(p,coach=false){
- const teams={'Panathinaikos':['PAO','#00634a','#fff'],'Olympiacos':['OLY','#d51b31','#fff'],'Crvena Zvezda':['CZV','#9a002e','#fff'],'Hapoel Tel Aviv':['HTA','#cf102b','#fff'],'Besiktas':['BJK','#eee','#171717'],'Virtus Bologna':['VIR','#171717','#fff'],'Valencia':['VBC','#ed7418','#111'],'Real Madrid':['RMB','#eee','#537872'],'Fenerbahce':['FEN','#e7c324','#143b74'],'Maccabi Tel Aviv':['MTA','#f6d526','#183f90']};
- const [abbr,color,ink]=teams[p.team]||[String(p.team||'').split(/\s+/).map(w=>w[0]).join('').slice(0,3).toUpperCase(),'#273c75','#fff'];
+ const team=canonicalTeam(p.team),[abbr,color,ink,stripe]=TEAM_KITS[team]||['—','#89929e','#ffffff'];
  const number=p.jerseyNumber??p.shirtNumber??p.number??p.pos;
- return `<svg class="squadJersey" viewBox="0 0 100 112" aria-hidden="true"><path d="${coach?'M22 5L40 0 50 10 60 0 78 5 94 35 80 44 80 108 20 108 20 44 6 35Z':'M25 3L38 0Q50 23 62 0L75 3 85 26 80 108 20 108 15 26Z'}" fill="${coach?'#fafafa':color}" stroke="#111" stroke-width="2"/><path d="M25 3Q28 20 17 28M75 3Q72 20 83 28M38 0Q50 23 62 0" fill="none" stroke="${coach?'#ddd':ink}" stroke-width="3"/>${coach?'<path d="M45 13L55 13 53 22 60 69 50 80 40 69 47 22Z" fill="#e12c42"/>':`<text x="50" y="43" text-anchor="middle" fill="${ink}" font-size="14" font-weight="bold">${esc(abbr)}</text><text x="50" y="79" text-anchor="middle" fill="${ink}" font-size="26" font-weight="bold">${esc(number)}</text>`}</svg>`;
+ const shape=coach?'M22 5L40 0 50 10 60 0 78 5 94 35 80 44 80 108 20 108 20 44 6 35Z':'M25 3L38 0Q50 23 62 0L75 3 85 26 80 108 20 108 15 26Z';
+ const stripes=!coach&&stripe?[29,45,61].map(x=>`<path d="M${x} 25h10v80h-10Z" fill="${stripe}"/>`).join(''):'';
+ const textStyle=`paint-order="stroke" stroke="${color}" stroke-width="3" stroke-linejoin="round"`;
+ return `<svg class="squadJersey" data-kit-team="${esc(team)}" viewBox="0 0 100 112" role="img" aria-label="${coach?'מאמן':('חולצת '+esc(team))}"><path d="${shape}" fill="${coach?'#fafafa':color}" stroke="#303846" stroke-width="1.5"/>${stripes}<path d="M25 3Q28 20 17 28M75 3Q72 20 83 28M38 0Q50 23 62 0" fill="none" stroke="${coach?'#ddd':ink}" stroke-width="3"/>${coach?'<path d="M45 13L55 13 53 22 60 69 50 80 40 69 47 22Z" fill="#e12c42"/>':`<text x="50" y="43" text-anchor="middle" fill="${ink}" ${textStyle} font-size="14" font-weight="bold">${esc(abbr)}</text><text x="50" y="79" text-anchor="middle" fill="${ink}" ${textStyle} font-size="26" font-weight="bold">${esc(number)}</text>`}</svg>`;
 }
 function squadOpponentFor(p,match){
  const team=match?.opponent||p.opponent;
@@ -586,8 +617,8 @@ function renderClubMarket(){
  const open=e=>{const el=e.target.closest('[data-player]');if(el)showPlayer(el.dataset.player)};root.onclick=open;
  if(document.getElementById('clubView').value==='list'){
  root.innerHTML=`<table class="clubList"><thead><tr><th>שחקן</th><th>עמדה</th><th>דק׳ אחרון</th><th>PIR אחרון</th><th>קרדיט</th></tr></thead><tbody>${roster.map(p=>{const r=clubRecent(p);return `<tr><td class="clubName"><button class="secondary" data-player="${esc(p.name)}">${esc(p.name)}</button></td><td>${esc(p.pos)}</td><td>${clubNumber(r?.minutes)}</td><td>${clubNumber(r?.pir)}</td><td>${clubNumber(p.price)}</td></tr>`}).join('')}</tbody></table>`;return;}
- const palette=['#ca2035','#133c67','#07815c','#e6a820','#642b83'];let hash=0;for(const ch of select.value)hash+=ch.charCodeAt(0);const color=palette[hash%palette.length];
- const card=p=>{const r=clubRecent(p);return `<button class="clubPlayer" data-player="${esc(p.name)}" aria-label="${esc(p.name)}: פרטי שחקן"><span class="clubJersey" style="--jersey:${color}">${esc(p.pos)}</span><span class="clubPlayerBox"><b class="clubPlayerName">${esc(p.name)}</b><span class="clubMetrics"><span><b>${clubNumber(r?.minutes)}</b><small>דקות אחרון</small></span><span><b>${clubNumber(r?.pir)}</b><small>PIR אחרון</small></span><span><b>${clubNumber(p.price)}</b><small>קרדיט</small></span></span></span></button>`};
+
+ const card=p=>{const r=clubRecent(p);return `<button class="clubPlayer" data-player="${esc(p.name)}" aria-label="${esc(p.name)}: פרטי שחקן">${squadJersey(p)}<span class="clubPlayerBox"><b class="clubPlayerName">${esc(p.name)}</b><span class="clubMetrics"><span><b>${clubNumber(r?.minutes)}</b><small>דקות אחרון</small></span><span><b>${clubNumber(r?.pir)}</b><small>PIR אחרון</small></span><span><b>${clubNumber(p.price)}</b><small>קרדיט</small></span></span></span></button>`};
  const byMinutes=[...roster].sort((a,b)=>(clubRecent(b)?.minutes??-1)-(clubRecent(a)?.minutes??-1)||Number(b.price)-Number(a.price));
  const pickFive=pool=>['C','F','G'].map(pos=>pool.filter(p=>p.pos===pos).slice(0,pos==='C'?1:2));
  const first=pickFive(byMinutes),firstPlayers=first.flat();
@@ -703,7 +734,7 @@ document.querySelector('[data-tab="playerMatchups"]').addEventListener('click',(
 
 function renderAll(){renderClubMarket();renderPlayerMatchups();document.getElementById("cntPlayers").textContent=players.length;renderMarket();renderTeam();renderCaptain();renderCoaches();renderGames();renderInjuries();}
 document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tabs button,.tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.getElementById(b.dataset.tab).classList.add("active");window.scrollTo({top:70,behavior:"smooth"})})
-for(const id of ["search","pos","maxPrice","statusFilter","sort"])document.getElementById(id).addEventListener("input",renderMarket);
+for(const id of ["search","marketTeam","pos","maxPrice","statusFilter","sort"])document.getElementById(id).addEventListener("input",renderMarket);
 document.getElementById('injuryTeam').addEventListener('change',renderInjuries);
 document.getElementById("coachBudget").addEventListener("input",renderCoaches);
 document.getElementById("clearTeam").onclick=()=>{myTeam=[];save();renderAll()};
@@ -1916,3 +1947,4 @@ for (const id of ['data', 'learning']) {
 <link rel="stylesheet" href="./home-dashboard.css?v=2">
 <script src="./home-dashboard.js?v=2"></script>
 </body></html>
+
