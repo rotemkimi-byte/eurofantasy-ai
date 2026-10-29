@@ -25,3 +25,35 @@ html.ef-redesign .ef-on-home main>.hero{display:none!important}
 .hd-rank{display:inline-grid;place-items:center;width:27px;height:27px;border-radius:8px;background:var(--card2);font-weight:750;color:var(--accent)}
 @media(min-width:800px){#efDashboard .hd-games-table td,#efDashboard .hd-standings-table td{font-size:14px}#efDashboard .card{padding:22px}}
 @media(max-width:360px){#efDashboard .card{padding:12px}#efDashboard td,#efDashboard th{padding:10px 3px;font-size:12px}#efDashboard .hd-day h3{align-items:start;flex-direction:column}}
+/* Compact home strip: expanded details never block tools by default. */
+html.ef-redesign #efDashboard .card{padding:12px 14px;margin-bottom:10px;border-radius:16px;background:var(--card);box-shadow:0 3px 12px #101b2b06}
+#efDashboard .hd-heading{gap:8px;margin:0 0 4px}
+#efDashboard h2{font-size:15px;display:flex;align-items:center;gap:7px;flex:1}
+.hd-live-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px #008b6012}
+html.ef-redesign #efDashboard select{min-height:30px;width:98px;padding:4px 7px;font-size:12px;border-radius:8px}
+html.ef-redesign #efDashboard .hd-heading button{min-height:30px;height:30px;width:30px;padding:0;font-size:19px;border-radius:8px}
+#efDashboard .hd-note{margin:3px 0 9px;font-size:10px;line-height:1.5}
+#hdPreview{display:flex;gap:7px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x proximity;padding:2px 0 7px;scrollbar-width:thin}
+.hd-match{position:relative;flex:0 0 174px;scroll-snap-align:start;background:var(--card2);border:1px solid var(--line);border-top:2px solid var(--accent);border-radius:10px;padding:8px 10px}
+.hd-match-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;font-size:11px;color:var(--accent);font-weight:750}
+.hd-match-top>span{font-size:9px;color:var(--muted);font-weight:400}
+.hd-side{display:flex;align-items:center;justify-content:space-between;gap:6px;min-height:21px}
+.hd-side b{font-size:11px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hd-side small{font-size:8px;border-radius:4px;background:var(--card);border:1px solid var(--line);padding:0 4px;color:var(--muted);flex-shrink:0}
+.hd-score{font-size:10px;color:var(--accent)}
+html.ef-redesign #efDashboard summary{display:flex;align-items:center;gap:8px;min-height:30px;padding:5px 0;font-size:11px;list-style:none;font-weight:650}
+#efDashboard summary::-webkit-details-marker{display:none}
+#efDashboard summary>span:last-child{margin-inline-start:auto;color:var(--muted)}
+#efDashboard details[open]>summary>span:last-child{transform:rotate(180deg)}
+.hd-league{border-top:1px solid var(--line)}
+#hdLeaders{font-weight:400;color:var(--muted);font-size:9px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;flex:1;min-width:0}
+#efDashboard th,#efDashboard td{padding:7px 4px;font-size:11px}
+#efDashboard .hd-day h3{font-size:12px;padding:7px;margin-top:8px}
+#efDashboard .hd-day h3 small{font-size:9px}
+.hd-rank{width:22px;height:22px;font-size:11px}
+html.ef-redesign .ef-on-home #efHome .ef-intro{margin:4px 0 8px;padding:0}
+html.ef-redesign .ef-on-home #efHome .ef-kicker,html.ef-redesign .ef-on-home #efPageDescription{display:none}
+html.ef-redesign .ef-on-home #efPageTitle{font-size:18px;margin:0 0 8px}
+html.ef-redesign .ef-on-home #efToolbar{margin-bottom:6px}
+html.ef-redesign .ef-on-home .ef-search{margin-bottom:12px}
+@media(max-width:600px){html.ef-redesign #efDashboard .card{padding:10px}#efDashboard h2{font-size:14px}.hd-match{flex-basis:158px;padding:7px 8px}#hdLeaders{max-width:160px}}
