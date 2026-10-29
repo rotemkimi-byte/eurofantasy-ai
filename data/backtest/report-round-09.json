@@ -3,12 +3,877 @@
   "round": 9,
   "complete": false,
   "scheduledGames": 10,
-  "playedGames": 0,
-  "gradedGames": 0,
+  "playedGames": 3,
+  "gradedGames": 3,
   "metrics": {
-    "n": 0
+    "n": 69,
+    "mae": 5.263,
+    "rmse": 6.752,
+    "bias": 0.018,
+    "within3": 0.3623,
+    "within5": 0.5507,
+    "correlation": 0.6363,
+    "byPosition": {
+      "G": {
+        "n": 28,
+        "mae": 5.944,
+        "bias": -0.492
+      },
+      "F": {
+        "n": 27,
+        "mae": 4.134,
+        "bias": -0.67
+      },
+      "C": {
+        "n": 14,
+        "mae": 6.08,
+        "bias": 2.366
+      }
+    }
   },
-  "largestMisses": [],
-  "comparisons": [],
-  "updated_at": "2026-10-29T13:05:30.172519+00:00"
+  "largestMisses": [
+    {
+      "name": "Theo Maledon",
+      "team": "Real Madrid",
+      "pos": "G",
+      "price": 12.1,
+      "predictedPir": 15.638,
+      "actualPir": 35.0,
+      "error": -19.362,
+      "absoluteError": 19.362
+    },
+    {
+      "name": "Chima Moneke",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "price": 14.5,
+      "predictedPir": 13.366,
+      "actualPir": 29.0,
+      "error": -15.634,
+      "absoluteError": 15.634
+    },
+    {
+      "name": "Alize Johnson",
+      "team": "Paris",
+      "pos": "F",
+      "price": 8.5,
+      "predictedPir": 6.239,
+      "actualPir": 21.0,
+      "error": -14.761,
+      "absoluteError": 14.761
+    },
+    {
+      "name": "Facundo Campazzo",
+      "team": "Real Madrid",
+      "pos": "G",
+      "price": 13.1,
+      "predictedPir": 11.6,
+      "actualPir": 25.0,
+      "error": -13.4,
+      "absoluteError": 13.4
+    },
+    {
+      "name": "David Kramer",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "price": 5.3,
+      "predictedPir": 2.456,
+      "actualPir": 15.0,
+      "error": -12.544,
+      "absoluteError": 12.544
+    },
+    {
+      "name": "Nadir Hifi",
+      "team": "Paris",
+      "pos": "G",
+      "price": 14.4,
+      "predictedPir": 17.962,
+      "actualPir": 30.0,
+      "error": -12.038,
+      "absoluteError": 12.038
+    },
+    {
+      "name": "Austin Wiley",
+      "team": "Bayern Munich",
+      "pos": "C",
+      "price": 10.1,
+      "predictedPir": 8.565,
+      "actualPir": -3.0,
+      "error": 11.565,
+      "absoluteError": 11.565
+    },
+    {
+      "name": "Andreas Obst",
+      "team": "Bayern Munich",
+      "pos": "G",
+      "price": 9.6,
+      "predictedPir": 9.153,
+      "actualPir": -2.0,
+      "error": 11.153,
+      "absoluteError": 11.153
+    },
+    {
+      "name": "Daniel Theis",
+      "team": "Maccabi Tel Aviv",
+      "pos": "C",
+      "price": 11.3,
+      "predictedPir": 11.034,
+      "actualPir": 0.0,
+      "error": 11.034,
+      "absoluteError": 11.034
+    },
+    {
+      "name": "Tyson Etienne",
+      "team": "Paris",
+      "pos": "G",
+      "price": 10.9,
+      "predictedPir": 12.034,
+      "actualPir": 1.0,
+      "error": 11.034,
+      "absoluteError": 11.034
+    },
+    {
+      "name": "Christian Koloko",
+      "team": "Crvena Zvezda",
+      "pos": "C",
+      "price": 9.6,
+      "predictedPir": 8.888,
+      "actualPir": 19.0,
+      "error": -10.112,
+      "absoluteError": 10.112
+    },
+    {
+      "name": "Sertac Sanli",
+      "team": "Fenerbahce",
+      "pos": "C",
+      "price": 4.1,
+      "predictedPir": 2.817,
+      "actualPir": -7.0,
+      "error": 9.817,
+      "absoluteError": 9.817
+    },
+    {
+      "name": "Rokas Jokubaitis",
+      "team": "Bayern Munich",
+      "pos": "G",
+      "price": 8.5,
+      "predictedPir": 7.914,
+      "actualPir": -1.0,
+      "error": 8.914,
+      "absoluteError": 8.914
+    },
+    {
+      "name": "Shane Larkin",
+      "team": "Fenerbahce",
+      "pos": "G",
+      "price": 12.3,
+      "predictedPir": 9.578,
+      "actualPir": 1.0,
+      "error": 8.578,
+      "absoluteError": 8.578
+    },
+    {
+      "name": "Miles Norris",
+      "team": "Bayern Munich",
+      "pos": "F",
+      "price": 8.1,
+      "predictedPir": 6.56,
+      "actualPir": 15.0,
+      "error": -8.44,
+      "absoluteError": 8.44
+    }
+  ],
+  "comparisons": [
+    {
+      "name": "Theo Maledon",
+      "team": "Real Madrid",
+      "pos": "G",
+      "price": 12.1,
+      "predictedPir": 15.638,
+      "actualPir": 35.0,
+      "error": -19.362,
+      "absoluteError": 19.362
+    },
+    {
+      "name": "Chima Moneke",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "price": 14.5,
+      "predictedPir": 13.366,
+      "actualPir": 29.0,
+      "error": -15.634,
+      "absoluteError": 15.634
+    },
+    {
+      "name": "Alize Johnson",
+      "team": "Paris",
+      "pos": "F",
+      "price": 8.5,
+      "predictedPir": 6.239,
+      "actualPir": 21.0,
+      "error": -14.761,
+      "absoluteError": 14.761
+    },
+    {
+      "name": "Facundo Campazzo",
+      "team": "Real Madrid",
+      "pos": "G",
+      "price": 13.1,
+      "predictedPir": 11.6,
+      "actualPir": 25.0,
+      "error": -13.4,
+      "absoluteError": 13.4
+    },
+    {
+      "name": "David Kramer",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "price": 5.3,
+      "predictedPir": 2.456,
+      "actualPir": 15.0,
+      "error": -12.544,
+      "absoluteError": 12.544
+    },
+    {
+      "name": "Nadir Hifi",
+      "team": "Paris",
+      "pos": "G",
+      "price": 14.4,
+      "predictedPir": 17.962,
+      "actualPir": 30.0,
+      "error": -12.038,
+      "absoluteError": 12.038
+    },
+    {
+      "name": "Austin Wiley",
+      "team": "Bayern Munich",
+      "pos": "C",
+      "price": 10.1,
+      "predictedPir": 8.565,
+      "actualPir": -3.0,
+      "error": 11.565,
+      "absoluteError": 11.565
+    },
+    {
+      "name": "Andreas Obst",
+      "team": "Bayern Munich",
+      "pos": "G",
+      "price": 9.6,
+      "predictedPir": 9.153,
+      "actualPir": -2.0,
+      "error": 11.153,
+      "absoluteError": 11.153
+    },
+    {
+      "name": "Daniel Theis",
+      "team": "Maccabi Tel Aviv",
+      "pos": "C",
+      "price": 11.3,
+      "predictedPir": 11.034,
+      "actualPir": 0.0,
+      "error": 11.034,
+      "absoluteError": 11.034
+    },
+    {
+      "name": "Tyson Etienne",
+      "team": "Paris",
+      "pos": "G",
+      "price": 10.9,
+      "predictedPir": 12.034,
+      "actualPir": 1.0,
+      "error": 11.034,
+      "absoluteError": 11.034
+    },
+    {
+      "name": "Christian Koloko",
+      "team": "Crvena Zvezda",
+      "pos": "C",
+      "price": 9.6,
+      "predictedPir": 8.888,
+      "actualPir": 19.0,
+      "error": -10.112,
+      "absoluteError": 10.112
+    },
+    {
+      "name": "Sertac Sanli",
+      "team": "Fenerbahce",
+      "pos": "C",
+      "price": 4.1,
+      "predictedPir": 2.817,
+      "actualPir": -7.0,
+      "error": 9.817,
+      "absoluteError": 9.817
+    },
+    {
+      "name": "Rokas Jokubaitis",
+      "team": "Bayern Munich",
+      "pos": "G",
+      "price": 8.5,
+      "predictedPir": 7.914,
+      "actualPir": -1.0,
+      "error": 8.914,
+      "absoluteError": 8.914
+    },
+    {
+      "name": "Shane Larkin",
+      "team": "Fenerbahce",
+      "pos": "G",
+      "price": 12.3,
+      "predictedPir": 9.578,
+      "actualPir": 1.0,
+      "error": 8.578,
+      "absoluteError": 8.578
+    },
+    {
+      "name": "Miles Norris",
+      "team": "Bayern Munich",
+      "pos": "F",
+      "price": 8.1,
+      "predictedPir": 6.56,
+      "actualPir": 15.0,
+      "error": -8.44,
+      "absoluteError": 8.44
+    },
+    {
+      "name": "Chris Jones",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "price": 12.8,
+      "predictedPir": 14.692,
+      "actualPir": 7.0,
+      "error": 7.692,
+      "absoluteError": 7.692
+    },
+    {
+      "name": "Dejan Davidovac",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "price": 4.4,
+      "predictedPir": 4.374,
+      "actualPir": 12.0,
+      "error": -7.626,
+      "absoluteError": 7.626
+    },
+    {
+      "name": "Duane Washington",
+      "team": "Bayern Munich",
+      "pos": "G",
+      "price": 9.7,
+      "predictedPir": 8.951,
+      "actualPir": 16.0,
+      "error": -7.049,
+      "absoluteError": 7.049
+    },
+    {
+      "name": "Marcus Bingham",
+      "team": "Fenerbahce",
+      "pos": "C",
+      "price": 10.3,
+      "predictedPir": 6.602,
+      "actualPir": 0.0,
+      "error": 6.602,
+      "absoluteError": 6.602
+    },
+    {
+      "name": "Johnathan Motley",
+      "team": "Crvena Zvezda",
+      "pos": "C",
+      "price": 8.8,
+      "predictedPir": 2.585,
+      "actualPir": -4.0,
+      "error": 6.585,
+      "absoluteError": 6.585
+    },
+    {
+      "name": "Nick Weiler-Babb",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "price": 8.1,
+      "predictedPir": 5.416,
+      "actualPir": 12.0,
+      "error": -6.584,
+      "absoluteError": 6.584
+    },
+    {
+      "name": "Timothé Luwawu-Cabarrot",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 10.1,
+      "predictedPir": 5.576,
+      "actualPir": -1.0,
+      "error": 6.576,
+      "absoluteError": 6.576
+    },
+    {
+      "name": "Roman Sorkin",
+      "team": "Maccabi Tel Aviv",
+      "pos": "C",
+      "price": 12.3,
+      "predictedPir": 11.606,
+      "actualPir": 18.0,
+      "error": -6.394,
+      "absoluteError": 6.394
+    },
+    {
+      "name": "Johannes Voigtmann",
+      "team": "Bayern Munich",
+      "pos": "C",
+      "price": 7.2,
+      "predictedPir": 7.369,
+      "actualPir": 1.0,
+      "error": 6.369,
+      "absoluteError": 6.369
+    },
+    {
+      "name": "Tyson Carter",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "price": 7.3,
+      "predictedPir": 7.013,
+      "actualPir": 13.0,
+      "error": -5.987,
+      "absoluteError": 5.987
+    },
+    {
+      "name": "Will Clyburn",
+      "team": "Fenerbahce",
+      "pos": "F",
+      "price": 11.4,
+      "predictedPir": 10.372,
+      "actualPir": 16.0,
+      "error": -5.628,
+      "absoluteError": 5.628
+    },
+    {
+      "name": "Mikael Jantunen",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 6.5,
+      "predictedPir": 7.59,
+      "actualPir": 2.0,
+      "error": 5.59,
+      "absoluteError": 5.59
+    },
+    {
+      "name": "Andres Feliz",
+      "team": "Real Madrid",
+      "pos": "G",
+      "price": 8.6,
+      "predictedPir": 11.413,
+      "actualPir": 6.0,
+      "error": 5.413,
+      "absoluteError": 5.413
+    },
+    {
+      "name": "Jeremy Morgan",
+      "team": "Paris",
+      "pos": "F",
+      "price": 5.0,
+      "predictedPir": 3.373,
+      "actualPir": -2.0,
+      "error": 5.373,
+      "absoluteError": 5.373
+    },
+    {
+      "name": "Vladimir Lucic",
+      "team": "Bayern Munich",
+      "pos": "F",
+      "price": 8.6,
+      "predictedPir": 7.866,
+      "actualPir": 13.0,
+      "error": -5.134,
+      "absoluteError": 5.134
+    },
+    {
+      "name": "Allan Dokossi",
+      "team": "Paris",
+      "pos": "C",
+      "price": 8.5,
+      "predictedPir": 10.944,
+      "actualPir": 16.0,
+      "error": -5.056,
+      "absoluteError": 5.056
+    },
+    {
+      "name": "Sebastian Herrera",
+      "team": "Paris",
+      "pos": "G",
+      "price": 5.7,
+      "predictedPir": 7.201,
+      "actualPir": 12.0,
+      "error": -4.799,
+      "absoluteError": 4.799
+    },
+    {
+      "name": "Ignas Sargiunas",
+      "team": "Fenerbahce",
+      "pos": "G",
+      "price": 5.7,
+      "predictedPir": 4.787,
+      "actualPir": 0.0,
+      "error": 4.787,
+      "absoluteError": 4.787
+    },
+    {
+      "name": "Leopold Cavaliere",
+      "team": "Paris",
+      "pos": "F",
+      "price": 4.5,
+      "predictedPir": 4.768,
+      "actualPir": 0.0,
+      "error": 4.768,
+      "absoluteError": 4.768
+    },
+    {
+      "name": "TJ Leaf",
+      "team": "Maccabi Tel Aviv",
+      "pos": "F",
+      "price": 8.2,
+      "predictedPir": 4.241,
+      "actualPir": 0.0,
+      "error": 4.241,
+      "absoluteError": 4.241
+    },
+    {
+      "name": "Ognjen Dobric",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "price": 4.8,
+      "predictedPir": 6.18,
+      "actualPir": 2.0,
+      "error": 4.18,
+      "absoluteError": 4.18
+    },
+    {
+      "name": "Damian Jones",
+      "team": "Real Madrid",
+      "pos": "C",
+      "price": 8.3,
+      "predictedPir": 7.1,
+      "actualPir": 3.0,
+      "error": 4.1,
+      "absoluteError": 4.1
+    },
+    {
+      "name": "Frank Ntilikina",
+      "team": "Paris",
+      "pos": "G",
+      "price": 6.7,
+      "predictedPir": 0.0,
+      "actualPir": -4.0,
+      "error": 4.0,
+      "absoluteError": 4.0
+    },
+    {
+      "name": "Shavon Shields",
+      "team": "Fenerbahce",
+      "pos": "F",
+      "price": 13.4,
+      "predictedPir": 14.897,
+      "actualPir": 11.0,
+      "error": 3.897,
+      "absoluteError": 3.897
+    },
+    {
+      "name": "Amit Ebo",
+      "team": "Maccabi Tel Aviv",
+      "pos": "G",
+      "price": 4.0,
+      "predictedPir": 3.875,
+      "actualPir": 0.0,
+      "error": 3.875,
+      "absoluteError": 3.875
+    },
+    {
+      "name": "Maozinha Pereira",
+      "team": "Paris",
+      "pos": "F",
+      "price": 8.3,
+      "predictedPir": 6.517,
+      "actualPir": 10.0,
+      "error": -3.483,
+      "absoluteError": 3.483
+    },
+    {
+      "name": "Yam Madar",
+      "team": "Maccabi Tel Aviv",
+      "pos": "G",
+      "price": 10.2,
+      "predictedPir": 13.795,
+      "actualPir": 17.0,
+      "error": -3.205,
+      "absoluteError": 3.205
+    },
+    {
+      "name": "William Rayman",
+      "team": "Maccabi Tel Aviv",
+      "pos": "F",
+      "price": 4.1,
+      "predictedPir": 3.08,
+      "actualPir": 0.0,
+      "error": 3.08,
+      "absoluteError": 3.08
+    },
+    {
+      "name": "Gabriele Procida",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 4.1,
+      "predictedPir": 2.987,
+      "actualPir": 6.0,
+      "error": -3.013,
+      "absoluteError": 3.013
+    },
+    {
+      "name": "Johannes Thiemann",
+      "team": "Bayern Munich",
+      "pos": "C",
+      "price": 10.5,
+      "predictedPir": 10.014,
+      "actualPir": 13.0,
+      "error": -2.986,
+      "absoluteError": 2.986
+    },
+    {
+      "name": "Jimmy Clark III",
+      "team": "Maccabi Tel Aviv",
+      "pos": "G",
+      "price": 9.9,
+      "predictedPir": 10.808,
+      "actualPir": 8.0,
+      "error": 2.808,
+      "absoluteError": 2.808
+    },
+    {
+      "name": "Talen Horton-Tucker",
+      "team": "Fenerbahce",
+      "pos": "G",
+      "price": 11.8,
+      "predictedPir": 10.353,
+      "actualPir": 13.0,
+      "error": -2.647,
+      "absoluteError": 2.647
+    },
+    {
+      "name": "Jared Butler",
+      "team": "Crvena Zvezda",
+      "pos": "G",
+      "price": 9.2,
+      "predictedPir": 8.472,
+      "actualPir": 6.0,
+      "error": 2.472,
+      "absoluteError": 2.472
+    },
+    {
+      "name": "Sergio Llull",
+      "team": "Real Madrid",
+      "pos": "G",
+      "price": 4.0,
+      "predictedPir": 2.088,
+      "actualPir": 0.0,
+      "error": 2.088,
+      "absoluteError": 2.088
+    },
+    {
+      "name": "Nicolo Melli",
+      "team": "Fenerbahce",
+      "pos": "F",
+      "price": 8.2,
+      "predictedPir": 7.866,
+      "actualPir": 6.0,
+      "error": 1.866,
+      "absoluteError": 1.866
+    },
+    {
+      "name": "Bonzie Colson",
+      "team": "Maccabi Tel Aviv",
+      "pos": "F",
+      "price": 11.5,
+      "predictedPir": 11.848,
+      "actualPir": 10.0,
+      "error": 1.848,
+      "absoluteError": 1.848
+    },
+    {
+      "name": "Justus Hollatz",
+      "team": "Bayern Munich",
+      "pos": "G",
+      "price": 4.2,
+      "predictedPir": 1.737,
+      "actualPir": 0.0,
+      "error": 1.737,
+      "absoluteError": 1.737
+    },
+    {
+      "name": "Chris Silva",
+      "team": "Fenerbahce",
+      "pos": "C",
+      "price": 6.1,
+      "predictedPir": 1.652,
+      "actualPir": 0.0,
+      "error": 1.652,
+      "absoluteError": 1.652
+    },
+    {
+      "name": "Niels Giffey",
+      "team": "Bayern Munich",
+      "pos": "F",
+      "price": 4.0,
+      "predictedPir": 2.558,
+      "actualPir": 1.0,
+      "error": 1.558,
+      "absoluteError": 1.558
+    },
+    {
+      "name": "Keaton Wallace",
+      "team": "Maccabi Tel Aviv",
+      "pos": "G",
+      "price": 8.3,
+      "predictedPir": 3.487,
+      "actualPir": 2.0,
+      "error": 1.487,
+      "absoluteError": 1.487
+    },
+    {
+      "name": "Walter Tavares",
+      "team": "Real Madrid",
+      "pos": "C",
+      "price": 15.1,
+      "predictedPir": 15.55,
+      "actualPir": 17.0,
+      "error": -1.45,
+      "absoluteError": 1.45
+    },
+    {
+      "name": "Mouhamed Faye",
+      "team": "Paris",
+      "pos": "C",
+      "price": 7.9,
+      "predictedPir": 10.392,
+      "actualPir": 9.0,
+      "error": 1.392,
+      "absoluteError": 1.392
+    },
+    {
+      "name": "Jaime Pradilla",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 8.2,
+      "predictedPir": 7.342,
+      "actualPir": 6.0,
+      "error": 1.342,
+      "absoluteError": 1.342
+    },
+    {
+      "name": "Jaylen Hoard",
+      "team": "Maccabi Tel Aviv",
+      "pos": "F",
+      "price": 13.2,
+      "predictedPir": 12.214,
+      "actualPir": 11.0,
+      "error": 1.214,
+      "absoluteError": 1.214
+    },
+    {
+      "name": "Alberto Abalde",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 5.4,
+      "predictedPir": 6.068,
+      "actualPir": 5.0,
+      "error": 1.068,
+      "absoluteError": 1.068
+    },
+    {
+      "name": "Trent Forrest",
+      "team": "Fenerbahce",
+      "pos": "G",
+      "price": 8.4,
+      "predictedPir": 4.99,
+      "actualPir": 6.0,
+      "error": -1.01,
+      "absoluteError": 1.01
+    },
+    {
+      "name": "Chuma Okeke",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 8.9,
+      "predictedPir": 8.03,
+      "actualPir": 9.0,
+      "error": -0.97,
+      "absoluteError": 0.97
+    },
+    {
+      "name": "Tobias Jensen",
+      "team": "Bayern Munich",
+      "pos": "G",
+      "price": 6.0,
+      "predictedPir": 5.082,
+      "actualPir": 6.0,
+      "error": -0.918,
+      "absoluteError": 0.918
+    },
+    {
+      "name": "Terry Tarpey",
+      "team": "Paris",
+      "pos": "G",
+      "price": 6.5,
+      "predictedPir": 6.434,
+      "actualPir": 7.0,
+      "error": -0.566,
+      "absoluteError": 0.566
+    },
+    {
+      "name": "Joel Ayayi",
+      "team": "Paris",
+      "pos": "G",
+      "price": 5.0,
+      "predictedPir": 5.282,
+      "actualPir": 5.0,
+      "error": 0.282,
+      "absoluteError": 0.282
+    },
+    {
+      "name": "Jordan Nwora",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "price": 13.4,
+      "predictedPir": 15.152,
+      "actualPir": 15.0,
+      "error": 0.152,
+      "absoluteError": 0.152
+    },
+    {
+      "name": "Semi Ojeleye",
+      "team": "Crvena Zvezda",
+      "pos": "F",
+      "price": 8.7,
+      "predictedPir": 10.85,
+      "actualPir": 11.0,
+      "error": -0.15,
+      "absoluteError": 0.15
+    },
+    {
+      "name": "Oscar Da Silva",
+      "team": "Bayern Munich",
+      "pos": "F",
+      "price": 7.7,
+      "predictedPir": 8.988,
+      "actualPir": 9.0,
+      "error": -0.012,
+      "absoluteError": 0.012
+    },
+    {
+      "name": "Braxton Key",
+      "team": "Fenerbahce",
+      "pos": "F",
+      "price": 7.8,
+      "predictedPir": 7.006,
+      "actualPir": 7.0,
+      "error": 0.006,
+      "absoluteError": 0.006
+    }
+  ],
+  "updated_at": "2026-10-29T22:46:54.839586+00:00"
 }
