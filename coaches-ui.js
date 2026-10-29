@@ -43,14 +43,22 @@
     const p=probability(value),display=p===null?'—':Math.round(p*100)+'%';
     return `<div class="coach-prob ${kind}"><div><span>${label}</span><b dir="ltr">${display}</b></div><div class="coach-track" role="img" aria-label="${label}: ${display}"><i style="width:${p===null?0:p*100}%"></i></div></div>`;
   }
-  function rosterHTML(m){
-    const data=window.__matchupContextData,core=window.MatchupContext;
-    const audit=core?.teamExplanation?.(m,data);
-    if(!audit)return '<p class="coach-roster-note">תחזית בסיס · שקלול החיסורים למשחק הזה אינו מאומת.</p>';
-    const pct=p=>(p*100).toFixed(1)+'%',signed=n=>(n>0?'+':'')+n.toFixed(1);
-    const list=(label,a)=>`<p><b>${e(label)}</b>: ${a?.missing?.length?a.missing.map(p=>`${e(p.name)} — ${p.status==='out'?'בחוץ':'בספק'} (${Number(p.avgMinutes).toFixed(1)} דק׳${p.sampleGames?' בממוצע':' משוערות'})`).join(' · '):'אין חיסורים מסומנים במקור'}</p>`;
-    const updated=new Date(audit.updated_at).toLocaleString('he-IL',{day:'numeric',month:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Jerusalem'});
-    return `<div class="coach-roster"><b>כולל שקלול חיסורים בשתי הקבוצות</b><span>השפעת החיסורים: <bdi>${signed(audit.change*100)}</bdi> נקודות אחוז</span><details><summary>מי חסר ואיך זה שינה את התחזית?</summary><p>לפני חיסורים: <bdi>${pct(audit.before)}</bdi> · אחרי חיסורים: <bdi>${pct(audit.after)}</bdi></p><p>שינוי בהפרש הצפוי: <bdi>${signed(audit.marginDelta)}</bdi> נקודות.</p>${list('הקבוצה',audit.own)}${list('היריבה — '+m.opponent,audit.opponent)}<small>עדכון: ${e(updated)} · ההשפעה היא אומדן לפי מחיר, דקות וסיכוי לשחק; טרם אומתה היסטורית. חיסורים שכבר השפיעו על תוצאות העבר עשויים להיות מגולמים גם בבסיס.</small></details></div>`;
+  function rosterHTML(m,team){
+    const audit=window.MatchupContext?.teamExplanation?.(m,window.__matchupContextData);
+    const pct=p=>(p*100).toFixed(1)+'%',signed=n=>Math.abs(n)<.05?'0.0':(n>0?'+':'')+n.toFixed(1);
+    const liveMissing=t=>typeof players==='undefined'?null:players.filter(p=>canonical(p.team)===t&&['G','F','C'].includes(p.pos)&&['out','questionable'].includes(p.status));
+    const group=(name,missing)=>{
+      const known=Array.isArray(missing),list=missing||[];
+      return `<div class="coach-absence-team"><div class="coach-absence-heading"><b>${e(name)}</b><span>${known?(list.length===1?'חיסור אחד':list.length+' חיסורים'):'בהמתנה'}</span></div><div class="coach-absence-players">${list.map(p=>{
+        const out=p.status==='out',initials=String(p.name).split(/\s+/).map(n=>n[0]).slice(0,2).join(''),minutes=number(p.avgMinutes);
+        return `<div class="coach-absence-player ${out?'is-out':'is-doubtful'}"><span class="coach-absence-avatar" aria-hidden="true">${e(initials)}</span><span class="coach-absence-person"><b dir="auto">${e(p.name)}</b><small>${out?'בחוץ':'בספק'}${minutes!==null?' · '+Math.round(minutes)+' דק׳'+(p.sampleGames?' בממוצע':' משוערות'):''}</small></span><i class="coach-absence-dot" aria-hidden="true"></i></div>`;
+      }).join('')||`<span class="coach-absence-empty">${known?'אין חיסורים מסומנים':'נתוני הזמינות טרם נטענו'}</span>`}</div></div>`;
+    };
+    const own=audit?.own?.missing||liveMissing(team),rival=audit?.opponent?.missing||liveMissing(m?.opponent);
+    const updated=audit?new Date(audit.updated_at).toLocaleTimeString('he-IL',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Jerusalem'}):'';
+    return `<section class="coach-availability ${audit?'is-verified':'is-pending'}" aria-label="חיסורים והשפעתם על התחזית"><div class="coach-availability-title"><b>חיסורים וזמינות</b><span class="coach-auto-status"><i aria-hidden="true"></i>${audit?'משוקלל אוטומטית':'ממתין לשקלול עדכני'}</span></div>
+    ${audit?`<div class="coach-impact"><div class="coach-impact-title"><span>השפעה על סיכויי הניצחון</span><b class="${audit.change<0?'negative':audit.change>0?'positive':'neutral'}"><bdi>${signed(audit.change*100)}</bdi> נק׳ אחוז</b></div><div class="coach-impact-row before"><span>לפני חיסורים</span><div class="coach-impact-track"><i style="width:${Math.max(0,Math.min(100,audit.before*100))}%"></i></div><b dir="ltr">${pct(audit.before)}</b></div><div class="coach-impact-row after"><span>אחרי שקלול</span><div class="coach-impact-track"><i style="width:${Math.max(0,Math.min(100,audit.after*100))}%"></i></div><b dir="ltr">${pct(audit.after)}</b></div></div>`:'<p class="coach-roster-note">תחזית בסיס · שקלול החיסורים למשחק הזה אינו מאומת.</p>'}
+    ${group(team,own)}${m?.opponent?group(m.opponent,rival):''}<p class="coach-availability-foot">${audit?'מחושב לפי זמינות, דקות ומחיר בשתי הקבוצות · '+e(updated):'השקלול יתעדכן אוטומטית כשיתקבלו נתונים תואמים למשחק.'}</p></section>`;
   }
   function render(){
     const target=document.getElementById('coachList');if(!target)return;
@@ -65,7 +73,7 @@
       return `<article class="coach-card" dir="rtl"><header><div><span class="coach-team">${e(team)}</span><h4>${e(c.name)}</h4></div><span class="coach-price"><b>${Number(c.price).toFixed(1)}</b> קרדיט</span></header>
       <div class="coach-fixture"><div><small>המשחק הבא</small><b>${opponent?'מול '+e(opponent):'יריבה לא זמינה'}</b></div><span class="coach-venue">${opponent?venue(m.home):'מועד לא זמין'}</span></div>
       <div class="coach-probabilities">${metric('סיכוי לניצחון',win,'main')}${metric('ניצחון בהפרש 11+',p11,'margin')}${metric('ניצחון בהפרש 20+',p20,'margin large')}</div>
-      ${rosterHTML(m)}
+      ${rosterHTML(m,team)}
       <div class="coach-form-head"><b>שלושת המשחקים האחרונים</b><span>${streak(h.games,h.complete)}</span></div><div class="coach-results">${recent.map(resultHTML).join('')||'<p class="muted">אין תוצאות משחקים זמינות.</p>'}</div>
       ${recent.length&&recent.length<3?`<small class="coach-sample">זמינים ${recent.length} משחקים בעונה הנוכחית.</small>`:''}${!h.complete&&recent.length?'<small class="coach-sample">הרצף מבוסס על מדגם התוצאות הזמין.</small>':''}
       <footer><span>נקודות פנטזי צפויות</span><b dir="ltr">${expected===null?'—':expected.toFixed(1)}</b><small>ממוצע משוקלל של ניצחונות והפסדים, כולל ניקוד שלילי בהפסד.</small></footer></article>`;

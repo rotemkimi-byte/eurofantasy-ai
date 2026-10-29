@@ -21,6 +21,6 @@ const core=require('../matchup-context-core.js');
 const context={schema:'matchup-context-v1',season:'E2026',updated_at:new Date().toISOString(),teams:{A:{opponent:'B',home:true,margin:3,winProb:.6,rosterDelta:-2,availability:{missing:[{name:'Injured <star>',status:'out',avgMinutes:25,sampleGames:6}]}},B:{opponent:'A',home:false,availability:{missing:[]}}}};
 sandbox.window.MatchupContext=core;sandbox.window.__matchupContextData=context;
 sandbox.MATCHUPS.A.context=context.teams.A;sandbox.MATCHUPS.A.winProb=.6;
-ui.render();assert(html.includes('כולל שקלול חיסורים'));assert(html.includes('לפני חיסורים'));assert(html.includes('60.0%'));assert(html.includes('Injured &lt;star&gt;'));assert(html.includes('שקלול החיסורים למשחק הזה אינו מאומת'));
-context.updated_at='2000-01-01';ui.render();assert(!html.includes('כולל שקלול חיסורים'));
+ui.render();assert(html.includes('משוקלל אוטומטית'));assert(!html.includes('<details'));assert(html.includes('coach-absence-player'));assert(html.includes('coach-impact-track'));assert(html.includes('לפני חיסורים'));assert(html.includes('60.0%'));assert(html.includes('Injured &lt;star&gt;'));assert(html.includes('שקלול החיסורים למשחק הזה אינו מאומת'));
+context.updated_at='2000-01-01';ui.render();assert(!html.includes('משוקלל אוטומטית'));
 console.log('PASS: injury breakdown, escaped names, before/after probabilities and stale fallback');
