@@ -79,7 +79,23 @@
       <footer><span>נקודות פנטזי צפויות</span><b dir="ltr">${expected===null?'—':expected.toFixed(1)}</b><small>ממוצע משוקלל של ניצחונות והפסדים, כולל ניקוד שלילי בהפסד.</small></footer></article>`;
     }).join('')||'<p class="muted">אין מאמנים במחיר שמתאים לתקציב.</p>';
   }
-  window.CoachesUI={buildHistories,streak,render};
+  window.CoachesUI={buildHistories,streak,render,rosterHTML};
+  // Share the same live availability view with the team matchup screen.
+  if(typeof renderGames==='function'&&typeof GAMES!=='undefined'){
+    const previousGames=renderGames;
+    renderGames=function(){
+      previousGames();
+      const cards=document.querySelectorAll('#gameCards .gameCard');
+      GAMES.forEach((game,i)=>{
+        const card=cards[i];if(!card)return;
+        const html=rosterHTML(MATCHUPS[game.home],game.home);
+        const details=card.querySelector('.secondaryDetails');
+        if(details)details.insertAdjacentHTML('beforebegin',html);
+        else card.insertAdjacentHTML('beforeend',html);
+      });
+    };
+    renderGames();
+  }
   const section=document.getElementById('coach'),head=section?.querySelector('.sectionHead');
   if(head){
     const title=head.querySelector('h3'),description=head.querySelector('p');
