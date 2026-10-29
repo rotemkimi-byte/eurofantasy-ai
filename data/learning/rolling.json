@@ -2,17 +2,17 @@
   "schema": "rolling-learning-v1",
   "season": "E2026",
   "engineId": "9a5d757bb0f7a4c9ca9e",
-  "updated_at": "2026-10-29T19:54:28.828000+00:00",
+  "updated_at": "2026-10-29T23:59:15.932391+00:00",
   "exactCount": 916,
   "diagnostic": {
-    "n": 365,
-    "mae": 5.174146696094897,
-    "bias": -0.8794739762044771,
-    "minutesMae": 4.586570572646562,
-    "hits": 216,
-    "hitRate": 59.178082191780824,
-    "over": 93,
-    "under": 56
+    "n": 434,
+    "mae": 5.191151955094332,
+    "bias": -0.7420456157274071,
+    "minutesMae": 4.614632464635846,
+    "hits": 242,
+    "hitRate": 55.76036866359447,
+    "over": 116,
+    "under": 76
   },
   "missingInputs": 347,
   "validation": {
@@ -468,6 +468,30 @@
       "hitRate": null,
       "over": 0,
       "under": 0
+    },
+    {
+      "round": 9,
+      "kind": "exact-frozen-input",
+      "n": 0,
+      "mae": null,
+      "bias": null,
+      "minutesMae": null,
+      "hits": 0,
+      "hitRate": null,
+      "over": 0,
+      "under": 0
+    },
+    {
+      "round": 9,
+      "kind": "partial-reconstruction",
+      "n": 69,
+      "mae": 5.281107310671058,
+      "bias": -0.015069505957399287,
+      "minutesMae": 4.76307580631829,
+      "hits": 26,
+      "hitRate": 37.68115942028986,
+      "over": 23,
+      "under": 20
     }
   ],
   "largestMisses": [
