@@ -1,0 +1,27 @@
+#efDashboard{display:none}
+html.ef-redesign .ef-on-home #efDashboard{display:block}
+html.ef-redesign .ef-on-home main>.hero{display:none!important}
+#efDashboard .hd-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+#efDashboard h2{font-size:22px;margin:0}
+#efDashboard .hd-eyebrow{font-size:10px;letter-spacing:1px;color:var(--accent);display:block;margin-bottom:4px}
+#efDashboard .hd-heading button{font-size:12px;white-space:nowrap;padding:8px 12px}
+.hd-controls{display:flex;align-items:end;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.hd-controls label{width:130px}.hd-controls select{margin-top:4px}
+.hd-controls>span,.hd-note{color:var(--muted);font-size:11px;margin:8px 0 14px}
+#efDashboard .hd-day h3{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:14px;margin:18px 0 0;padding:10px;background:var(--card2);border-radius:10px 10px 0 0}
+#efDashboard .hd-day h3 small{font-size:10px;font-weight:500;white-space:nowrap}
+#efDashboard table{width:100%;min-width:0;table-layout:fixed;border-collapse:collapse}
+#efDashboard th,#efDashboard td{position:static;padding:12px 6px;font-size:13px;border-bottom:1px solid var(--line);overflow-wrap:anywhere}
+#efDashboard th{background:transparent;color:var(--muted);font-size:11px}
+#efDashboard .hd-games-table th:first-child{width:17%}
+#efDashboard .hd-games-table th:last-child{width:16%}
+#efDashboard .hd-games-table td:first-child{font-weight:750;font-variant-numeric:tabular-nums;white-space:nowrap;font-size:12px}
+#efDashboard .hd-games-table td:nth-child(2){font-weight:650}
+#efDashboard .hd-games-table td:last-child,#efDashboard .hd-games-table th:last-child{text-align:center}
+#efDashboard .hd-standings-table th:first-child{width:13%}
+#efDashboard .hd-standings-table th:nth-child(2){width:48%}
+#efDashboard .hd-standings-table td:nth-child(n+3),#efDashboard .hd-standings-table th:nth-child(n+3){text-align:center}
+#efDashboard .hd-standings-table td:nth-child(2){font-weight:650}
+.hd-rank{display:inline-grid;place-items:center;width:27px;height:27px;border-radius:8px;background:var(--card2);font-weight:750;color:var(--accent)}
+@media(min-width:800px){#efDashboard .hd-games-table td,#efDashboard .hd-standings-table td{font-size:14px}#efDashboard .card{padding:22px}}
+@media(max-width:360px){#efDashboard .card{padding:12px}#efDashboard td,#efDashboard th{padding:10px 3px;font-size:12px}#efDashboard .hd-day h3{align-items:start;flex-direction:column}}
