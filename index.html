@@ -747,7 +747,7 @@ for(const id of ['clubSelect','clubSort','clubView'])document.getElementById(id)
 renderAll();
 if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
 </script>
-<script src="./live.js"></script><script src="./roster-live.js"></script><script src="./position-matchups.js"></script><script>
+<script src="./live.js?v=next-fixture-1"></script><script src="./roster-live.js"></script><script src="./position-matchups.js"></script><script>
 (async () => {
   try {
     const response = await fetch(
@@ -1852,7 +1852,7 @@ $('weakReload').onclick=()=>void load(true);
 document.querySelector('[data-tab="pirWeakness"]').addEventListener('click',()=>void load());
 })();
 
-</script><script src="./round-review.js?v=4"></script><script src="./round-lab.js?v=3"></script>
+</script><script src="./round-review.js?v=4"></script><script src="./round-lab.js?v=4"></script>
 <script>
 // In this RTL navigation, the last buttons appear at the far left.
 for (const id of ['data', 'learning']) {
@@ -1947,4 +1947,5 @@ for (const id of ['data', 'learning']) {
 <link rel="stylesheet" href="./home-dashboard.css?v=2">
 <script src="./home-dashboard.js?v=2"></script>
 </body></html>
+
 

@@ -12,3 +12,13 @@ assert.deepEqual(filter({sort:'price'}),['a','b','c']);
 assert.deepEqual(filter({min:4,max:4}),['a']);
 assert(!filter({minPir:-100}).includes('absent'));
 console.log('PASS: bargains enforce under 10, inclusive ranges, historical/current prices, PIR, position and no DNP/coaches');
+
+
+const fixture=context.window.RoundLabCore.nextFixture;
+const faye={name:'Mouhamed Faye',opponents:[{name:'Dubai',home:false}]};
+assert.equal(fixture(faye,[{name:'Mouhamed Faye',opponent:'Maccabi Tel Aviv',home:0}]).name,'Maccabi Tel Aviv');
+assert.equal(fixture(faye,[{name:'Mouhamed Faye',opponent:'Maccabi Tel Aviv',home:0}]).home,false);
+assert.equal(fixture(faye,[{name:'Mouhamed Faye',opponent:'Maccabi Tel Aviv',home:1}]).home,true);
+assert.equal(fixture(faye,[]),null);
+assert.equal(faye.opponents[0].name,'Dubai');
+console.log('PASS: next fixture follows live market and preserves historical opponent');

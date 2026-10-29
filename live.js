@@ -95,6 +95,7 @@
     }
     GAMES.splice(0, GAMES.length, ...GAMES.filter(g => MATCHUPS[g.home] && MATCHUPS[g.away]));
     renderAll();
+    document.dispatchEvent(new Event("fantasy-live-updated"));
     const badge = document.getElementById("syncBadge");
     if (badge) {
       const time = Date.parse(meta?.updated_at);
@@ -132,3 +133,4 @@
   window.addEventListener('focus', () => void window.refreshFantasyLive());
   document.getElementById('pmReload')?.addEventListener('click', () => void window.refreshFantasyLive());
 })();
+
