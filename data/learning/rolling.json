@@ -2,8 +2,8 @@
   "schema": "rolling-learning-v1",
   "season": "E2026",
   "engineId": "9a5d757bb0f7a4c9ca9e",
-  "updated_at": "2026-10-30T18:39:53.266972+00:00",
-  "exactCount": 939,
+  "updated_at": "2026-10-30T22:40:50.995195+00:00",
+  "exactCount": 1075,
   "diagnostic": {
     "n": 434,
     "mae": 5.191151955094332,
@@ -16,10 +16,10 @@
   },
   "missingInputs": 347,
   "validation": {
-    "n": 696,
-    "games": 31,
-    "baselineMae": 5.787139522959739,
-    "candidateMae": 5.753150476100239,
+    "n": 827,
+    "games": 37,
+    "baselineMae": 5.696136788581726,
+    "candidateMae": 5.659118134164574,
     "active": false,
     "reason": "collecting-or-no-improvement",
     "folds": [
@@ -301,33 +301,87 @@
         "testN": 23,
         "baselineMae": 7.441023531999623,
         "candidateMae": 7.341847315188604
+      },
+      {
+        "gameCode": 88,
+        "round": 9,
+        "trainingN": 900,
+        "trainingGames": 40,
+        "testN": 24,
+        "baselineMae": 5.6274809800543295,
+        "candidateMae": 5.4779730010911205
+      },
+      {
+        "gameCode": 86,
+        "round": 9,
+        "trainingN": 900,
+        "trainingGames": 40,
+        "testN": 24,
+        "baselineMae": 4.640656150295119,
+        "candidateMae": 4.635009178715235
+      },
+      {
+        "gameCode": 85,
+        "round": 9,
+        "trainingN": 900,
+        "trainingGames": 40,
+        "testN": 21,
+        "baselineMae": 4.697002493666747,
+        "candidateMae": 4.623079224507111
+      },
+      {
+        "gameCode": 90,
+        "round": 9,
+        "trainingN": 900,
+        "trainingGames": 40,
+        "testN": 20,
+        "baselineMae": 6.499973251704944,
+        "candidateMae": 6.377322020859069
+      },
+      {
+        "gameCode": 87,
+        "round": 9,
+        "trainingN": 900,
+        "trainingGames": 40,
+        "testN": 21,
+        "baselineMae": 4.672585804345775,
+        "candidateMae": 4.7467842674736955
+      },
+      {
+        "gameCode": 89,
+        "round": 9,
+        "trainingN": 900,
+        "trainingGames": 40,
+        "testN": 21,
+        "baselineMae": 5.221900274112416,
+        "candidateMae": 5.184419977343134
       }
     ],
-    "intervalCoverage": 0.7887931034482759
+    "intervalCoverage": 0.8004836759371221
   },
   "coefficients": {
     "G": {
-      "n": 375,
-      "minutes": -0.5433952412045413,
-      "efficiencyPir": -0.24903875583795282
+      "n": 429,
+      "minutes": -0.5571047893024531,
+      "efficiencyPir": -0.18911072073789323
     },
     "F": {
-      "n": 330,
-      "minutes": -0.4656380041923771,
-      "efficiencyPir": 0.09814869685659126
+      "n": 373,
+      "minutes": -0.43237523397793365,
+      "efficiencyPir": -0.031935106560366425
     },
     "C": {
-      "n": 170,
-      "minutes": -1.130656718961935,
-      "efficiencyPir": 0.2983538003853452
+      "n": 194,
+      "minutes": -1.024040621760922,
+      "efficiencyPir": 0.359673998086871
     }
   },
   "interval": {
     "active": true,
     "targetCoverage": 0.8,
-    "coverage": 0.7887931034482759,
-    "n": 696,
-    "radius": 9.12824205745709
+    "coverage": 0.8004836759371221,
+    "n": 827,
+    "radius": 9.008640389690882
   },
   "limitations": [
     "Partial historical reconstructions exclude unrecoverable pregame defensive context and momentum configuration; never activate live corrections.",
@@ -481,14 +535,14 @@
     {
       "round": 9,
       "kind": "exact-frozen-input",
-      "n": 23,
-      "mae": 7.441023531999623,
-      "bias": -1.916963717173669,
-      "minutesMae": 5.288473055067071,
-      "hits": 7,
-      "hitRate": 30.434782608695656,
-      "over": 10,
-      "under": 6
+      "n": 159,
+      "mae": 5.8739342310863245,
+      "bias": -0.4943381147139831,
+      "minutesMae": 5.291863108308996,
+      "hits": 50,
+      "hitRate": 31.446540880503143,
+      "over": 65,
+      "under": 44
     },
     {
       "round": 9,
@@ -504,6 +558,94 @@
     }
   ],
   "largestMisses": [
+    {
+      "name": "Lonnie Walker IV",
+      "key": "iv lonnie walker",
+      "team": "Besiktas",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "gameCode": 89,
+      "round": 9,
+      "start": "2026-10-30T19:30:00Z",
+      "basePir": 0,
+      "baseMinutes": 0,
+      "servedPir": 0,
+      "servedMinutes": 0,
+      "status": "out",
+      "modelId": "bbc96cbf4cfc30046947",
+      "eligible": true,
+      "snapshotAt": "2026-10-29T19:54:52.877127+00:00",
+      "home": false,
+      "features": {
+        "basePir": 10.898532529073012,
+        "baseMin": 22.888724305555556,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 85.89085,
+        "margin": -2.5683,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 28,
+          "historyWeight": 0.4277777777777778,
+          "sameTeam": false,
+          "avgPir": 12.642857142857142,
+          "avgMinutes": 22.739875,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.2,
+        "context": null
+      },
+      "actualPir": 36,
+      "actualMinutes": 28.383333333333333,
+      "fouls": 2,
+      "actualStats": {
+        "points": 30,
+        "totalRebounds": 4,
+        "assistances": 5,
+        "turnovers": 0,
+        "foulsCommited": 2,
+        "fieldGoalsMadeTotal": 9,
+        "fieldGoalsAttemptedTotal": 15
+      },
+      "minutesContribution": null,
+      "efficiencyContribution": null,
+      "reason": "availability",
+      "error": 36,
+      "servedError": 36,
+      "outcome": "miss",
+      "replayKind": "exact-frozen-input",
+      "baseFloor": 0,
+      "baseCeiling": 0
+    },
     {
       "name": "Elijah Bryant",
       "key": "bryant elijah",
@@ -1412,120 +1554,6 @@
       "replayKind": "exact-frozen-input",
       "baseFloor": 2.79674941926625,
       "baseCeiling": 7.544719363601978
-    },
-    {
-      "name": "Carlik Jones",
-      "key": "carlik jones",
-      "team": "Partizan",
-      "pos": "G",
-      "opponent": "Panathinaikos",
-      "gameCode": 47,
-      "round": 5,
-      "start": "2026-10-13T18:30:00Z",
-      "basePir": 20.409087959614105,
-      "baseMinutes": 26.611398550724637,
-      "servedPir": 20.409087959614105,
-      "servedMinutes": 26.611398550724637,
-      "status": "active",
-      "modelId": "b3fc6df40846537dcb24",
-      "eligible": true,
-      "snapshotAt": "2026-10-12T18:42:57.942890+00:00",
-      "home": true,
-      "features": {
-        "basePir": 15.845540540750932,
-        "baseMin": 27.694195652173914,
-        "injuryBoost": 0,
-        "injuryUsagePct": 0,
-        "missingStars": [],
-        "positionMatchPct": 6.1879999999999935,
-        "teamPoints": 84.605,
-        "margin": -0.2,
-        "lastGameWeight": null,
-        "personalPrior": {
-          "historicalGames": 15,
-          "historyWeight": 0.6521739130434783,
-          "sameTeam": true,
-          "avgPir": 16.733333333333334,
-          "avgMinutes": 28.064433333333334,
-          "currentSeasonWeight": 0.5,
-          "minutesWeight": 0.6666666666666666,
-          "momentumPir": 0,
-          "momentumEnabled": false,
-          "hot": false,
-          "streaks": [
-            {
-              "threshold": 20,
-              "longestRun": 3,
-              "nextGameSamples": 3,
-              "nextGameAvgPir": 17,
-              "continuedRate": 0.3333333333333333
-            },
-            {
-              "threshold": 25,
-              "longestRun": 1,
-              "nextGameSamples": 0,
-              "nextGameAvgPir": null,
-              "continuedRate": null
-            },
-            {
-              "threshold": 30,
-              "longestRun": 1,
-              "nextGameSamples": 0,
-              "nextGameAvgPir": null,
-              "continuedRate": null
-            }
-          ]
-        },
-        "currentSeasonWeight": 0.5,
-        "context": {
-          "involvementFactor": 1,
-          "defenseFactor": 0.9847047784816676,
-          "defenseSample": 4,
-          "rival": "Sylvain Francisco",
-          "scenarios": [
-            {
-              "id": "close",
-              "minutes": 26.839885438439808,
-              "weight": 0.8078175858002358,
-              "observedGames": 2
-            },
-            {
-              "id": "big-win",
-              "minutes": 26.680522408570074,
-              "weight": 0.09312638775933452,
-              "observedGames": 1
-            },
-            {
-              "id": "big-loss",
-              "minutes": 24.68306578719423,
-              "weight": 0.09905602644042973,
-              "observedGames": 0
-            }
-          ],
-          "minutesCorrectionActive": false
-        }
-      },
-      "actualPir": 0,
-      "actualMinutes": 26.3,
-      "fouls": 3,
-      "actualStats": {
-        "points": 8,
-        "totalRebounds": 1,
-        "assistances": 3,
-        "turnovers": 3,
-        "foulsCommited": 3,
-        "fieldGoalsMadeTotal": 2,
-        "fieldGoalsAttemptedTotal": 11
-      },
-      "minutesContribution": -0.2388209849294973,
-      "efficiencyContribution": -20.17026697468461,
-      "reason": "efficiency",
-      "error": -20.409087959614105,
-      "servedError": -20.409087959614105,
-      "outcome": "miss",
-      "replayKind": "exact-frozen-input",
-      "baseFloor": 10.363049111573934,
-      "baseCeiling": 31.296408316953286
     }
   ]
 }
