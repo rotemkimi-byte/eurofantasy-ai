@@ -2,8 +2,8 @@
   "schema": "rolling-learning-v1",
   "season": "E2026",
   "engineId": "9a5d757bb0f7a4c9ca9e",
-  "updated_at": "2026-10-30T13:07:31.485353+00:00",
-  "exactCount": 916,
+  "updated_at": "2026-10-30T18:39:53.266972+00:00",
+  "exactCount": 939,
   "diagnostic": {
     "n": 434,
     "mae": 5.191151955094332,
@@ -16,10 +16,10 @@
   },
   "missingInputs": 347,
   "validation": {
-    "n": 673,
-    "games": 30,
-    "baselineMae": 5.730617484017812,
-    "candidateMae": 5.698856230485035,
+    "n": 696,
+    "games": 31,
+    "baselineMae": 5.787139522959739,
+    "candidateMae": 5.753150476100239,
     "active": false,
     "reason": "collecting-or-no-improvement",
     "folds": [
@@ -292,33 +292,42 @@
         "testN": 23,
         "baselineMae": 3.8745777056626007,
         "candidateMae": 3.862806145234694
+      },
+      {
+        "gameCode": 84,
+        "round": 9,
+        "trainingN": 900,
+        "trainingGames": 40,
+        "testN": 23,
+        "baselineMae": 7.441023531999623,
+        "candidateMae": 7.341847315188604
       }
     ],
-    "intervalCoverage": 0.7919762258543833
+    "intervalCoverage": 0.7887931034482759
   },
   "coefficients": {
     "G": {
-      "n": 367,
-      "minutes": -0.5334446638477757,
-      "efficiencyPir": -0.22870616834333474
+      "n": 375,
+      "minutes": -0.5433952412045413,
+      "efficiencyPir": -0.24903875583795282
     },
     "F": {
-      "n": 322,
-      "minutes": -0.4730229004417074,
-      "efficiencyPir": 0.08082467422221125
+      "n": 330,
+      "minutes": -0.4656380041923771,
+      "efficiencyPir": 0.09814869685659126
     },
     "C": {
-      "n": 165,
-      "minutes": -1.0322627308137986,
-      "efficiencyPir": 0.30717250939478075
+      "n": 170,
+      "minutes": -1.130656718961935,
+      "efficiencyPir": 0.2983538003853452
     }
   },
   "interval": {
     "active": true,
     "targetCoverage": 0.8,
-    "coverage": 0.7919762258543833,
-    "n": 673,
-    "radius": 9.095339186439547
+    "coverage": 0.7887931034482759,
+    "n": 696,
+    "radius": 9.12824205745709
   },
   "limitations": [
     "Partial historical reconstructions exclude unrecoverable pregame defensive context and momentum configuration; never activate live corrections.",
@@ -472,14 +481,14 @@
     {
       "round": 9,
       "kind": "exact-frozen-input",
-      "n": 0,
-      "mae": null,
-      "bias": null,
-      "minutesMae": null,
-      "hits": 0,
-      "hitRate": null,
-      "over": 0,
-      "under": 0
+      "n": 23,
+      "mae": 7.441023531999623,
+      "bias": -1.916963717173669,
+      "minutesMae": 5.288473055067071,
+      "hits": 7,
+      "hitRate": 30.434782608695656,
+      "over": 10,
+      "under": 6
     },
     {
       "round": 9,
@@ -495,6 +504,120 @@
     }
   ],
   "largestMisses": [
+    {
+      "name": "Elijah Bryant",
+      "key": "bryant elijah",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Dubai",
+      "gameCode": 84,
+      "round": 9,
+      "start": "2026-10-30T16:00:00Z",
+      "basePir": 22.131459306487805,
+      "baseMinutes": 28.852799093522467,
+      "servedPir": 22.131459306487805,
+      "servedMinutes": 28.852799093522467,
+      "status": "active",
+      "modelId": "bbc96cbf4cfc30046947",
+      "eligible": true,
+      "snapshotAt": "2026-10-29T19:54:52.877127+00:00",
+      "home": false,
+      "features": {
+        "basePir": 19.069487553701084,
+        "baseMin": 29.047826086956523,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.10900000000000354,
+        "teamPoints": 86.93405,
+        "margin": -0.8919,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 19.57894736842105,
+          "avgMinutes": 29.478947368421053,
+          "currentSeasonWeight": 0.6666666666666666,
+          "minutesWeight": 0.8,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 5,
+              "nextGameSamples": 8,
+              "nextGameAvgPir": 23.375,
+              "continuedRate": 0.625
+            },
+            {
+              "threshold": 25,
+              "longestRun": 3,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 23,
+              "continuedRate": 0.3333333333333333
+            },
+            {
+              "threshold": 30,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 23,
+              "continuedRate": 0
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6666666666666666,
+        "context": {
+          "involvementFactor": 1.0061696165992036,
+          "defenseFactor": 0.9995694559830255,
+          "defenseSample": 8,
+          "rival": "Elie Okobo",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 29.16396338382844,
+              "weight": 0.8065482630263883,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 28.38040223714904,
+              "weight": 0.08349719718859966,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 26.929047652173914,
+              "weight": 0.10995453978501214,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": true
+        }
+      },
+      "actualPir": -6,
+      "actualMinutes": 22.383333333333333,
+      "fouls": 4,
+      "actualStats": {
+        "points": 3,
+        "totalRebounds": 2,
+        "assistances": 1,
+        "turnovers": 2,
+        "foulsCommited": 4,
+        "fieldGoalsMadeTotal": 1,
+        "fieldGoalsAttemptedTotal": 8
+      },
+      "minutesContribution": -4.962385720090708,
+      "efficiencyContribution": -23.169073586397097,
+      "reason": "efficiency",
+      "error": -28.131459306487805,
+      "servedError": -28.131459306487805,
+      "outcome": "miss",
+      "replayKind": "exact-frozen-input",
+      "baseFloor": 12.146150551303869,
+      "baseCeiling": 31.57999143339006
+    },
     {
       "name": "Antonio Blakeney",
       "key": "antonio blakeney",
@@ -1403,120 +1526,6 @@
       "replayKind": "exact-frozen-input",
       "baseFloor": 10.363049111573934,
       "baseCeiling": 31.296408316953286
-    },
-    {
-      "name": "Andres Feliz",
-      "key": "andres feliz",
-      "team": "Real Madrid",
-      "pos": "G",
-      "opponent": "ASVEL",
-      "gameCode": 53,
-      "round": 6,
-      "start": "2026-10-15T19:00:00Z",
-      "basePir": 9.680028309380711,
-      "baseMinutes": 18.036218844984802,
-      "servedPir": 9.680028309380711,
-      "servedMinutes": 18.036218844984802,
-      "status": "active",
-      "modelId": "b3fc6df40846537dcb24",
-      "eligible": true,
-      "snapshotAt": "2026-10-15T07:07:11.590683+00:00",
-      "home": true,
-      "features": {
-        "basePir": 6.731127676977616,
-        "baseMin": 17.051765957446808,
-        "injuryBoost": 0,
-        "injuryUsagePct": 0,
-        "missingStars": [],
-        "positionMatchPct": 8.426,
-        "teamPoints": 89.89004999999999,
-        "margin": 9.0801,
-        "lastGameWeight": null,
-        "personalPrior": {
-          "historicalGames": 39,
-          "historyWeight": 0.8297872340425532,
-          "sameTeam": true,
-          "avgPir": 6.717948717948718,
-          "avgMinutes": 16.652128205128204,
-          "currentSeasonWeight": 0.5555555555555556,
-          "minutesWeight": 0.7142857142857143,
-          "momentumPir": 0,
-          "momentumEnabled": false,
-          "hot": false,
-          "streaks": [
-            {
-              "threshold": 20,
-              "longestRun": 0,
-              "nextGameSamples": 0,
-              "nextGameAvgPir": null,
-              "continuedRate": null
-            },
-            {
-              "threshold": 25,
-              "longestRun": 0,
-              "nextGameSamples": 0,
-              "nextGameAvgPir": null,
-              "continuedRate": null
-            },
-            {
-              "threshold": 30,
-              "longestRun": 0,
-              "nextGameSamples": 0,
-              "nextGameAvgPir": null,
-              "continuedRate": null
-            }
-          ]
-        },
-        "currentSeasonWeight": 0.5555555555555556,
-        "context": {
-          "involvementFactor": 1.0029913792835763,
-          "defenseFactor": 1.015802744623378,
-          "defenseSample": 5,
-          "rival": "Patty Mills",
-          "scenarios": [
-            {
-              "id": "close",
-              "minutes": 18.602772490501174,
-              "weight": 0.6802908209778795,
-              "observedGames": 5
-            },
-            {
-              "id": "big-win",
-              "minutes": 16.799150606002698,
-              "weight": 0.30107846983706965,
-              "observedGames": 0
-            },
-            {
-              "id": "big-loss",
-              "minutes": 17.340237171352243,
-              "weight": 0.018630709185050828,
-              "observedGames": 0
-            }
-          ],
-          "minutesCorrectionActive": false
-        }
-      },
-      "actualPir": 30,
-      "actualMinutes": 25.15,
-      "fouls": 2,
-      "actualStats": {
-        "points": 26,
-        "totalRebounds": 4,
-        "assistances": 5,
-        "turnovers": 1,
-        "foulsCommited": 2,
-        "fieldGoalsMadeTotal": 9,
-        "fieldGoalsAttemptedTotal": 12
-      },
-      "minutesContribution": 3.8179622657680246,
-      "efficiencyContribution": 16.502009424851266,
-      "reason": "efficiency",
-      "error": 20.31997169061929,
-      "servedError": 20.31997169061929,
-      "outcome": "miss",
-      "replayKind": "exact-frozen-input",
-      "baseFloor": 4.869270652403494,
-      "baseCeiling": 14.156513701621867
     }
   ]
 }
