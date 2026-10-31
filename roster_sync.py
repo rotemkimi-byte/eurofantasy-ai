@@ -1,3 +1,4 @@
+import math
 import os
 import json
 import urllib.request
@@ -64,6 +65,24 @@ def current_matchday():
     }
 
 
+
+def available_credits(*sources):
+    """Accept only explicit unspent-balance fields, never total team value."""
+    for source in sources:
+        if not isinstance(source, dict):
+            continue
+        for key in ("available_credits", "remaining_credits", "credits_remaining", "credits_available", "remaining_budget"):
+            value = source.get(key)
+            if value is None or isinstance(value, bool) or value == "":
+                continue
+            try:
+                value = float(value)
+            except (ValueError, TypeError):
+                continue
+            if math.isfinite(value) and value >= 0:
+                return round(value, 2)
+    return None
+
 def fetch_roster(team_id, matchday_id):
     errors = []
 
@@ -78,7 +97,7 @@ def fetch_roster(team_id, matchday_id):
             players = roster.get("players", [])
 
             if isinstance(players, list) and players:
-                return players
+                return players, roster
 
         except Exception as e:
             errors.append(str(e))
@@ -117,7 +136,7 @@ def main():
             continue
 
         try:
-            roster = fetch_roster(team_id, md["id"])
+            roster, roster_metadata = fetch_roster(team_id, md["id"])
 
             names = [
                 player_name(p)
@@ -130,6 +149,7 @@ def main():
                 "team_name": team.get("name") or f"Team {team_id}",
                 "players": names,
                 "player_count": len(names),
+                "available_credits": available_credits(roster_metadata, team),
             })
 
         except Exception as e:
@@ -165,6 +185,7 @@ def main():
             "team_name": primary["team_name"],
             "players": primary["players"],
             "player_count": primary["player_count"],
+            "available_credits": primary["available_credits"],
         },
     )
 
@@ -177,3 +198,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
