@@ -1789,7 +1789,7 @@ $('pirChart').onclick=inspect;$('pirGames').onclick=inspect;$('pirChart').onkeyd
   button.textContent=light?'☾ תצוגה כהה':'☀ תצוגה בהירה';
   button.setAttribute('aria-pressed',String(light));
   button.setAttribute('aria-label',light?'מעבר לתצוגה כהה':'מעבר לתצוגה בהירה');
-  const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.setAttribute('content',light?'#f2f5f8':'#0b0d10');
+  const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.setAttribute('content',light?'#f4f5f8':'#101b2b');
  }
  apply(root.dataset.theme==='light');
  button.addEventListener('click',()=>{const light=root.dataset.theme!=='light';apply(light);try{localStorage.setItem('eurofantasy-theme',light?'light':'dark')}catch{}});
@@ -1941,7 +1941,7 @@ for (const id of ['data', 'learning']) {
 <script src="./usage-core.js?v=2"></script><script src="./usage-ui.js?v=3"></script>
 <script src="./defense-core.js?v=1"></script><script src="./defense-ui.js?v=1"></script>
 <script src="./team-metrics-core.js?v=1"></script><script src="./team-metrics-ui.js?v=3"></script>
-<link rel="stylesheet" href="./app-design.css?v=3">
+<link rel="stylesheet" href="./app-design.css?v=4">
 <script src="./app-navigation.js?v=1"></script>
 <script src="./app-player.js?v=2"></script>
 <link rel="stylesheet" href="./home-dashboard.css?v=3">
