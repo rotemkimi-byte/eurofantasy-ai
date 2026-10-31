@@ -6,21 +6,24 @@ const key=n=>lastThreeName(n||'');
 const fmt=v=>num(v)===null?'—':Number(v).toFixed(1);
 const signed=v=>num(v)===null?'—':`${v>0?'+':''}${Number(v).toFixed(1)}`;
 const tone=v=>v>0?'good':v<0?'bad':'muted';
-const state={round:null,priceRound:null,prices:null,schedule:[],loading:null,loaded:false,error:false,review:false};
+const state={round:null,priceRound:null,baselineRound:null,prices:null,schedule:[],loading:null,loaded:false,error:false,review:false};
 
 function selectRound(schedule,now=Date.now()) {
  const games=(schedule?.data||[]).filter(g=>(!g.season?.code||g.season.code==='E2026')&&g.played===true&&Date.parse(g.utcDate||g.date)<now);
  return games.length?Math.max(...games.map(g=>Number(g.round)).filter(Number.isFinite)):null;
 }
 function priceBaseline(meta,round=state.round) {
- const value=num(round);return Number.isInteger(value)&&value>0?value:null;
+ const value=num(round),marketRound=num(meta?.matchday_number);
+ // Market rollover is independent of the official schedule's delayed played flags.
+ const published=Number.isInteger(marketRound)&&marketRound>1?marketRound-1:null;
+ return published===null?(Number.isInteger(value)&&value>0?value:null):Math.max(published,value||0);
 }
 function delta(player,prices=state.prices) {
  const before=prices?.get(key(player.name)),after=num(player.price);
  return before==null||after===null?null:Math.round((after-before)*10)/10;
 }
 function price(player) {
- const d=delta(player),label=state.priceRound?`שינוי מחיר במחזור ${state.round}`:'שינוי מחיר';
+ const d=delta(player),label=state.baselineRound?`שינוי מחיר במחזור ${state.baselineRound}`:'שינוי מחיר';
  return `<span class="rr-price"><span>${fmt(player.price)} <small>cr</small></span><small class="rr-delta ${tone(d)}" dir="ltr" title="${label}" aria-label="${label}: ${signed(d)} קרדיט">${d===null?'—':`${d>0?'▲ ':d<0?'▼ ':''}${signed(d)} cr`}</small></span>`;
 }
 function updateSquadCredits() {
@@ -32,7 +35,7 @@ function updateSquadCredits() {
   el.className=tone(value);
   const priceEl=el.closest('.squadOwnCard')?.querySelector('[data-squad-price]');
   if(priceEl&&player)priceEl.textContent=fmt(player.price);
-  el.title=value===null?'נתון שינוי קרדיט אינו זמין':`שינוי במחזור ${state.round}`;
+  el.title=value===null?'נתון שינוי קרדיט אינו זמין':`שינוי במחזור ${state.baselineRound}`;
  });
 }
 function roundGames(entity,round) {return (entity?.games||[]).filter(g=>Number(g.round)===round)}
@@ -61,7 +64,7 @@ async function loadPrices(force=false) {
    const start=Math.min(...(schedule.data||[]).filter(g=>Number(g.round)===baseline).map(g=>Date.parse(g.utcDate||g.date)).filter(Number.isFinite));
    if(!(Date.parse(snapshot.created_at)<start))throw Error('Snapshot is not pre-round');
    if(!Array.isArray(market)||!market.length)throw Error('No market prices');
-   state.schedule=schedule.data||[];state.round=round;state.priceRound=num(meta.matchday_number);
+   state.schedule=schedule.data||[];state.round=round;state.baselineRound=baseline;state.priceRound=num(meta.matchday_number);
    state.prices=new Map((snapshot.predictions||[]).filter(p=>num(p.price)!==null).map(p=>[key(p.name),Number(p.price)]));
    const prices=new Map(market.filter(p=>num(p.price)!==null).map(p=>[key(p.name),Number(p.price)]));
    if(typeof players!=='undefined')for(const player of players){const value=prices.get(key(player.name));if(value!==undefined)player.price=value}
@@ -86,14 +89,14 @@ function renderReviewBody(history) {
   if(!coach&&t.pir!==null){pir+=t.pir;pirCount++}if(t.points!==null){points+=t.points;pointsCount++}if(d!==null){change+=d;priceCount++}
   const fixture=state.schedule.find(g=>Number(g.round)===round&&[g.local?.club?.name,g.road?.club?.name].some(n=>canonicalTeam(n)===canonicalTeam(p.team)));
   const status=games.length?(games.every(g=>g.dnp)?'לא שיחק':games.map(g=>`${g.home?'בית':'חוץ'} מול ${g.opponent}`).join(' · ')):(fixture?.played?'אין נתוני שחקן למחזור הזה':'טרם שיחק במחזור הזה');
-  return [p.name,`<article class="rr-card"><button class="rr-name" ${coach?'':`data-rr-player="${esc(p.name)}"`}><b>${squadJersey(p,coach)}${esc(p.name)}</b><small>${esc(p.team)} · ${coach?'מאמן':esc(p.pos)}</small></button><div>${price(p)}</div><p class="muted">${esc(status)}</p><div class="rr-metrics"><div><b>${coach?'—':fmt(t.pir)}</b><small>PIR בפועל</small></div><div><b>${fmt(t.points)}</b><small>נק׳ פנטזי בסיס</small></div><div><b class="${tone(d)}" dir="ltr">${signed(d)}</b><small>שינוי קרדיט</small></div></div></article>`];
+  return [p.name,`<article class="rr-card"><button class="rr-name" ${coach?'':`data-rr-player="${esc(p.name)}"`}><b>${squadJersey(p,coach)}${esc(p.name)}</b><small>${esc(p.team)} · ${coach?'מאמן':esc(p.pos)}</small></button><div>${price(p)}</div><p class="muted">${esc(status)}</p><div class="rr-metrics"><div><b>${coach?'—':fmt(t.pir)}</b><small>PIR בפועל</small></div><div><b>${fmt(t.points)}</b><small>נק׳ פנטזי בסיס</small></div><div><b class="${tone(d)}" dir="ltr">${signed(d)}</b><small>שינוי קרדיט · מחזור ${state.baselineRound}</small></div></div></article>`];
  }));
  const basket=selected.filter(p=>['G','F','C'].includes(p.pos));
  const {slots,bench}=squadArrangement(basket);
  const tile=(p,slot)=>p?cards.get(p.name):`<div class="squadEmpty"><span>${slot<5?SQUAD_SLOTS[slot][1]:'שחקן שישי'}</span></div>`;
  const court=`<div class="rr-board"><div class="squadCourt rr-court"><div class="squadCourtLines" aria-hidden="true"></div><div class="squadCourtRow squadCenter">${tile(slots[0],0)}</div><div class="squadCourtRow">${tile(slots[1],1)}${tile(slots[2],2)}</div><div class="squadCourtRow">${tile(slots[3],3)}${tile(slots[4],4)}</div></div><div class="rr-lower"><section><h4>שחקן שישי</h4>${tile(slots[5],5)}<h4>מאמן</h4>${coach?cards.get(coach.name):'<p class="muted">לא נבחר מאמן</p>'}</section><section><h4>ספסל</h4><div class="rr-bench">${bench.map(p=>tile(p,'bench')).join('')||'<p class="muted">אין שחקני ספסל</p>'}</div></section></div></div>`;
  const fixtures=state.schedule.filter(g=>Number(g.round)===round),complete=fixtures.length>0&&fixtures.every(g=>g.played);
- root.innerHTML=`<h3>מה היה · מחזור ${round}${complete?'':' · בתהליך'}</h3><p class="muted rr-note">הסגל הנוכחי מול תוצאות המחזור. נק׳ פנטזי בסיס כוללות בונוס ניצחון 10%, לפני מכפילי הרכב וקפטן. ${state.prices?`שינוי המחיר במחזור ${round}, ביחס למחיר בתחילתו. ${state.priceRound<=round?'כל עוד לא פורסם שינוי מחיר יוצג 0.0; הנתונים מתרעננים אוטומטית.':''}`:'נתוני שינוי המחיר אינם זמינים כרגע.'} סידור השחקנים הוא לפי ההרכב הנוכחי.</p><div class="rr-summary"><div><b>${pirCount?fmt(pir):'—'}</b><small>סך PIR · ${pirCount}/${selected.length} שחקנים</small></div><div><b>${pointsCount?fmt(points):'—'}</b><small>נק׳ בסיס · ${pointsCount}/${rows.length}</small></div><div><b class="${tone(change)}" dir="ltr">${priceCount?signed(change):'—'}</b><small>שינוי קרדיט · ${priceCount}/${selected.length} שחקנים</small></div></div>${priceCount<selected.length?'<p class="muted rr-note">— מציין נתון חסר; הסיכומים כוללים רק נתונים זמינים.</p>':''}${rows.length?court:'<p class="notice">הוסף שחקנים לסגל כדי לראות את תוצאותיהם.</p>'}`;
+ root.innerHTML=`<h3>מה היה · מחזור ${round}${complete?'':' · בתהליך'}</h3><p class="muted rr-note">הסגל הנוכחי מול תוצאות המחזור. נק׳ פנטזי בסיס כוללות בונוס ניצחון 10%, לפני מכפילי הרכב וקפטן. ${state.prices?`שינוי המחיר במחזור ${state.baselineRound}, ביחס למחיר בתחילתו. ${state.priceRound<=round?'כל עוד לא פורסם שינוי מחיר יוצג 0.0; הנתונים מתרעננים אוטומטית.':''}`:'נתוני שינוי המחיר אינם זמינים כרגע.'} סידור השחקנים הוא לפי ההרכב הנוכחי.</p><div class="rr-summary"><div><b>${pirCount?fmt(pir):'—'}</b><small>סך PIR · ${pirCount}/${selected.length} שחקנים</small></div><div><b>${pointsCount?fmt(points):'—'}</b><small>נק׳ בסיס · ${pointsCount}/${rows.length}</small></div><div><b class="${tone(change)}" dir="ltr">${priceCount?signed(change):'—'}</b><small>שינוי קרדיט · מחזור ${state.baselineRound} · ${priceCount}/${selected.length} שחקנים</small></div></div>${priceCount<selected.length?'<p class="muted rr-note">— מציין נתון חסר; הסיכומים כוללים רק נתונים זמינים.</p>':''}${rows.length?court:'<p class="notice">הוסף שחקנים לסגל כדי לראות את תוצאותיהם.</p>'}`;
 }
 async function renderReview() {
  const root=document.getElementById('roundReview');

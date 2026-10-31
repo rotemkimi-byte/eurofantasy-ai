@@ -1,6 +1,6 @@
 const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict');
 (async()=>{
-let marketPrice=17.5,marketRound=6,timer,hidden=false;
+let marketPrice=17.5,marketRound=6,snapshotRound=6,snapshotPrice=17.5,timer,hidden=false;
 const elements=new Map(),element=id=>{if(!elements.has(id))elements.set(id,{innerHTML:'',addEventListener(){}});return elements.get(id)};
 const p={name:'Sasha Vezenkov',team:'Olympiacos',pos:'F',price:17.5};
 const schedule={data:[{season:{code:'E2026'},round:6,played:true,utcDate:'2026-10-16T16:00:00Z'}]};
@@ -11,7 +11,7 @@ const sandbox={window:{PIRHistoryUI:{getData:()=>null}},document:{getElementById
  if(url.startsWith('./data/context/'))data=schedule;
  else if(url.startsWith('./data/meta'))data={matchday_number:marketRound};
  else if(url.startsWith('./data/players'))data=[{...p,price:marketPrice}];
- else {assert(url.includes('predictions-round-06.json'));data={season:'E2026',round:6,created_at:'2026-10-15T05:00:00Z',predictions:[{...p,price:17.5}]}}
+ else {assert(url.includes(`predictions-round-${String(snapshotRound).padStart(2,'0')}.json`));data={season:'E2026',round:snapshotRound,created_at:'2026-10-15T05:00:00Z',predictions:[{...p,price:snapshotPrice}]}}
  return {ok:true,json:async()=>data};}};
 vm.createContext(sandbox);vm.runInContext(fs.readFileSync('round-review.js','utf8'),sandbox);
 const ui=sandbox.window.RoundReviewUI;await ui.loadPrices();
@@ -22,6 +22,15 @@ assert.equal(p.price,18);assert.equal(ui.delta(p),.5);assert(ui.price(p).include
 marketPrice=17.2;await ui.loadPrices(true);assert.equal(ui.delta(p),-.3);
 assert.equal(ui.delta({name:'Missing',price:10}),null);
 assert.equal(ui.priceBaseline({matchday_number:7},6),6);
+// Regression: market has rolled to 10 while official played flags stop at 8.
+// Bryant's latest change must use round 9's 18.0, never round 8's 17.2.
+schedule.data=[{season:{code:'E2026'},round:8,played:true,utcDate:'2026-10-28T18:00:00Z'},
+ {season:{code:'E2026'},round:9,played:false,utcDate:'2026-10-30T16:00:00Z'}];
+p.name='Elijah Bryant';marketPrice=17;marketRound=10;snapshotRound=9;snapshotPrice=18;
+await ui.loadPrices(true);
+assert.equal(ui.priceBaseline({matchday_number:10},8),9);
+assert.equal(ui.delta(p),-1);assert(ui.price(p).includes('-1.0 cr'));
+assert(ui.price(p).includes('שינוי מחיר במחזור 9'));
 const source=fs.readFileSync('round-review.js','utf8');assert(source.includes('squadCourt rr-court'));assert(source.includes('rr-bench'));
 assert(!source.includes('שינוי המחיר האחרון שפורסם'));
 console.log('PASS: current round stays 0.0 before repricing; automatic refresh displays published +0.5/-0.3 without rollover reset; missing data stays unknown; court preserved');
