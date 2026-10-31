@@ -57,3 +57,30 @@ html.ef-redesign .ef-on-home #efPageTitle{font-size:18px;margin:0 0 8px}
 html.ef-redesign .ef-on-home #efToolbar{margin-bottom:6px}
 html.ef-redesign .ef-on-home .ef-search{margin-bottom:12px}
 @media(max-width:600px){html.ef-redesign #efDashboard .card{padding:10px}#efDashboard h2{font-size:14px}.hd-match{flex-basis:158px;padding:7px 8px}#hdLeaders{max-width:160px}}
+
+
+/* An always-open miniature table in the tools area; only its rows scroll. */
+#efCompactLeague{display:none}
+html.ef-redesign .ef-on-home #efCompactLeague{display:block;padding:10px 12px;margin:0 0 12px;border-radius:14px;background:var(--card);border:1px solid var(--line);box-shadow:0 3px 12px #101b2b06}
+#efCompactLeague .hd-league-heading{display:flex;align-items:center;justify-content:space-between;gap:8px}
+#efCompactLeague h3{font-size:13px;line-height:1.4;margin:0}
+html.ef-redesign #efCompactLeague #hdTeams{font-size:10px;padding:4px 7px;min-height:28px;border-radius:7px}
+#efCompactLeague .hd-note{font-size:9px;line-height:1.4;margin:4px 0 7px}
+#efCompactLeague #hdStandings{max-height:185px;overflow:auto;overscroll-behavior-y:contain;scrollbar-width:thin;border:1px solid var(--line);border-radius:9px}
+#efCompactLeague #hdStandings:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#efCompactLeague table{width:100%;min-width:0;table-layout:fixed;border-collapse:separate;border-spacing:0;font-variant-numeric:tabular-nums}
+#efCompactLeague th,#efCompactLeague td{font-size:10px;line-height:1.25;height:25px;padding:3px 5px;border:0;border-bottom:1px solid var(--line);text-align:center;position:static;background:transparent;color:var(--text)}
+#efCompactLeague thead th{position:sticky;top:0;z-index:1;background:var(--card2);font-size:9px;color:var(--muted);height:24px}
+#efCompactLeague thead th:first-child{width:28px}
+#efCompactLeague thead th:nth-child(n+3){width:34px}
+#efCompactLeague th:nth-child(2){text-align:start}
+#efCompactLeague tbody th{font-weight:650}
+#efCompactLeague tbody tr:nth-child(even){background:var(--card2)}
+#efCompactLeague tbody tr:last-child>*{border-bottom:0}
+#efCompactLeague .hd-team-name{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:10px}
+#efCompactLeague .hd-rank{height:18px;width:18px;border-radius:5px;font-size:10px;background:var(--card2);color:var(--muted)}
+#efCompactLeague .hd-zone-playoff .hd-rank{background:#13b98120;color:#059669}
+#efCompactLeague .hd-zone-playin .hd-rank{background:#4778ff20;color:#668dff}
+#efCompactLeague .hd-wins{font-weight:750;color:var(--accent)}
+#efCompactLeague .hd-win-track{display:block;height:2px;margin-top:3px;border-radius:3px;overflow:hidden;background:var(--line);width:100%}
+#efCompactLeague .hd-win-track i{display:block;height:100%;background:var(--accent);border-radius:3px;opacity:.7}

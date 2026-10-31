@@ -18,8 +18,15 @@ const hero=document.querySelector('main>.hero');if(!hero)return;
 // Keep the existing model's stat targets available without showing the old hero.
 hero.hidden=true;
 const panel=document.createElement('section');panel.id='efDashboard';
-panel.innerHTML=`<section class="card hd-fixtures" aria-labelledby="hdTitle"><div class="hd-heading"><h2 id="hdTitle"><span class="hd-live-dot"></span>משחקי המחזור</h2><select id="hdRound" aria-label="בחירת מחזור"></select><button id="hdRefresh" class="secondary" type="button" aria-label="רענון משחקים וטבלה">↻</button></div><p id="hdGamesStatus" class="hd-note" role="status" aria-live="polite">טוען לוח משחקים…</p><div id="hdPreview"></div><details class="hd-expand"><summary>כל משחקי המחזור <span>⌄</span></summary><div class="hd-controls"><button class="secondary" id="hdToday" type="button">המחזור הנוכחי</button><span>שעות ישראל</span></div><div id="hdGames"></div></details><details class="hd-league"><summary><span>טבלת הליגה</span><span id="hdLeaders">20 קבוצות</span><span>⌄</span></summary><p id="hdTableStatus" class="hd-note" role="status" aria-live="polite">טוען דירוג…</p><div id="hdStandings"></div><button class="secondary" type="button" id="hdTeams">מדד קבוצות ←</button></details></section>`;
+panel.innerHTML=`<section class="card hd-fixtures" aria-labelledby="hdTitle"><div class="hd-heading"><h2 id="hdTitle"><span class="hd-live-dot"></span>משחקי המחזור</h2><select id="hdRound" aria-label="בחירת מחזור"></select><button id="hdRefresh" class="secondary" type="button" aria-label="רענון משחקים וטבלה">↻</button></div><p id="hdGamesStatus" class="hd-note" role="status" aria-live="polite">טוען לוח משחקים…</p><div id="hdPreview"></div><details class="hd-expand"><summary>כל משחקי המחזור <span>⌄</span></summary><div class="hd-controls"><button class="secondary" id="hdToday" type="button">המחזור הנוכחי</button><span>שעות ישראל</span></div><div id="hdGames"></div></details></section>`;
 hero.before(panel);
+// Keep standings open beside the tools, independently of the fixtures accordion.
+const standings=document.createElement('section');standings.id='efCompactLeague';
+standings.className='card hd-compact-league';
+standings.setAttribute('aria-labelledby','hdLeagueTitle');
+standings.innerHTML=`<div class="hd-league-heading"><h3 id="hdLeagueTitle">טבלת הליגה</h3><button class="secondary" type="button" id="hdTeams">מדד קבוצות ←</button></div><p id="hdTableStatus" class="hd-note" role="status" aria-live="polite">טוען דירוג…</p><div id="hdStandings" tabindex="0" role="region" aria-label="טבלת הליגה, גלול לכל הקבוצות"></div>`;
+const search=document.querySelector('#efHome .ef-search');
+if(search)search.after(standings);else panel.after(standings);
 const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const date=value=>new Date(value).toLocaleDateString('he-IL',{timeZone:zone,weekday:'long',day:'numeric',month:'numeric',year:'numeric'});
 const time=value=>new Date(value).toLocaleTimeString('he-IL',{timeZone:zone,hour:'2-digit',minute:'2-digit',hour12:false});
@@ -51,8 +58,10 @@ async function loadTable(){
   const data=await json('./data/official-offense.json');if(data.season!=='E2026')throw Error('Wrong season');
   const report=root.TeamMetricsCore.build(data);if(!report.teams.length)throw Error('No standings');
   $('hdTableStatus').textContent=`${report.official?'דירוג רשמי':'דירוג מחושב לפי מאזן והפרש נקודות'} · עודכן ${new Date(data.updated_at).toLocaleString('he-IL',{timeZone:zone,day:'numeric',month:'numeric',hour:'2-digit',minute:'2-digit'})}`;
-  $('hdLeaders').textContent=report.teams.slice(0,3).map(t=>`${t.rank}. ${t.team}`).join(' · ');
-  $('hdStandings').innerHTML=`<table class="hd-standings-table"><thead><tr><th>מקום</th><th>קבוצה</th><th>מש׳</th><th>ניצ׳</th><th>הפ׳</th></tr></thead><tbody>${report.teams.map(t=>`<tr><td><span class="hd-rank">${t.rank}</span></td><td>${esc(t.team)}</td><td>${t.played}</td><td>${t.wins}</td><td>${t.losses}</td></tr>`).join('')}</tbody></table>`;
+  $('hdStandings').innerHTML=`<table class="hd-standings-table"><thead><tr><th scope="col">#</th><th scope="col">קבוצה</th><th scope="col">מש׳</th><th scope="col">ניצ׳</th><th scope="col">הפ׳</th></tr></thead><tbody>${report.teams.map(t=>{
+   const zone=t.rank<=6?'playoff':t.rank<=10?'playin':'other',rate=t.played>0?Math.max(0,Math.min(100,t.wins/t.played*100)):0;
+   return `<tr class="hd-zone-${zone}"><td><span class="hd-rank">${t.rank}</span></td><th scope="row"><span class="hd-team-name">${esc(t.team)}</span><span class="hd-win-track" aria-hidden="true"><i style="width:${rate.toFixed(1)}%"></i></span></th><td>${t.played}</td><td class="hd-wins">${t.wins}</td><td>${t.losses}</td></tr>`;
+  }).join('')}</tbody></table>`;
  }catch{ $('hdTableStatus').textContent=$('hdStandings').children.length?'הרענון נכשל · מוצגת הטבלה הקודמת':'טבלת הדירוג לא נטענה. לחץ על רענון.'; }
 }
 async function load(){if(busy)return;busy=true;$('hdRefresh').disabled=true;await Promise.allSettled([loadGames(),loadTable()]);busy=false;$('hdRefresh').disabled=false;}
