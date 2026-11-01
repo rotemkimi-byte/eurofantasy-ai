@@ -31,20 +31,32 @@ const standings=document.createElement('section');standings.id='efCompactLeague'
 standings.className='card hd-compact-league';
 standings.setAttribute('aria-labelledby','hdLeagueTitle');
 standings.innerHTML=`<div class="hd-league-heading"><h3 id="hdLeagueTitle">טבלת הליגה</h3><button class="secondary" type="button" id="hdTeams">מדד קבוצות ←</button></div><p id="hdTableStatus" class="hd-note" role="status" aria-live="polite">טוען דירוג…</p><div id="hdStandings" tabindex="0" role="region" aria-label="טבלת הליגה, גלול לכל הקבוצות"></div>`;
+const summary=document.createElement('div');summary.className='hd-summary';
+panel.append(summary);
+const todayCard=document.createElement('section');todayCard.className='hd-today-card';todayCard.innerHTML='<h3>משחקים היום</h3><div id="hdTodayList" role="status">טוען משחקים…</div>';
+summary.append(todayCard,standings);
 const search=document.querySelector('#efHome .ef-search');
-if(search)search.after(standings);else panel.after(standings);
+
 const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const date=value=>new Date(value).toLocaleDateString('he-IL',{timeZone:zone,weekday:'long',day:'numeric',month:'numeric',year:'numeric'});
 const time=value=>new Date(value).toLocaleTimeString('he-IL',{timeZone:zone,hour:'2-digit',minute:'2-digit',hour12:false});
 let games=[],busy=false,manual=false,selectedRound=null;
 function club(c){return typeof canonicalTeam==='function'?canonicalTeam(c.name):c.abbreviatedName||c.name;}
+function crest(c){
+ const raw=c.images?.crest||c.crest||c.logo;
+ const url=typeof raw==='string'&&/^https:\/\//i.test(raw)?raw:null;
+ return url?`<img class="hd-crest" src="${esc(url)}" alt="" loading="lazy">`:`<span class="hd-club-mark" aria-hidden="true">${esc(c.code||c.abbreviatedName||c.name.slice(0,3))}</span>`;
+}
 function renderGames(){
  const rows=games.filter(g=>Number(g.round)===selectedRound),days=[...new Set(rows.map(g=>g.day))],today=dayKey(Date.now());
  $('hdGamesStatus').textContent=`מחזור ${selectedRound} · ${days.length} סיבובי משחקים · שעות ישראל · גללו לצדדים ↔`;
+ const todayGames=games.filter(g=>g.day===today);
+ todayCard.querySelector('h3').textContent=`משחקים היום (${todayGames.length})`;
+ $('hdTodayList').innerHTML=todayGames.map(g=>`<div class="hd-today-row"><span>${esc(club(g.local.club))}<small>מול ${esc(club(g.road.club))}</small></span><time>${g.played?`${g.local.score}–${g.road.score}`:g.confirmedHour===false?'טרם נקבעה':time(g.utcDate)}</time></div>`).join('')||'<p class="hd-note">אין משחקים היום</p>';
  $('hdPreview').innerHTML=rows.map(g=>{
   const turn=days.indexOf(g.day)+1,past=Date.parse(g.utcDate)<Date.now(),status=g.played?'הסתיים':past?'תוצאה טרם עודכנה':g.day===today?'היום':'טרם שוחק';
   const shortDate=new Date(g.utcDate).toLocaleDateString('he-IL',{timeZone:zone,weekday:'short',day:'numeric',month:'numeric'});
-  return `<article class="hd-match ${g.played?'hd-finished':''}"><div class="hd-turn"><b>סיבוב ${turn}</b><span>${esc(shortDate)}</span></div><div class="hd-match-top"><time datetime="${esc(g.utcDate)}">${g.confirmedHour===false?'טרם נקבעה':time(g.utcDate)}</time><span>${status}</span></div><div class="hd-side"><b>${esc(club(g.local.club))}</b><small>בית</small>${g.played?`<strong class="${g.local.score>g.road.score?'hd-winner':''}">${g.local.score}</strong>`:''}</div><div class="hd-side"><b>${esc(club(g.road.club))}</b><small>חוץ</small>${g.played?`<strong class="${g.road.score>g.local.score?'hd-winner':''}">${g.road.score}</strong>`:''}</div></article>`;
+  return `<article class="hd-match ${g.played?'hd-finished':''}"><div class="hd-turn"><b>סיבוב ${turn}</b><span>${esc(shortDate)}</span></div><div class="hd-match-top"><time datetime="${esc(g.utcDate)}">${g.confirmedHour===false?'טרם נקבעה':time(g.utcDate)}</time><span>${status}</span></div><div class="hd-side"><b>${crest(g.local.club)}${esc(club(g.local.club))}</b><small>בית</small>${g.played?`<strong class="${g.local.score>g.road.score?'hd-winner':''}">${g.local.score}</strong>`:''}</div><span class="hd-vs" aria-hidden="true">VS</span><div class="hd-side"><b>${crest(g.road.club)}${esc(club(g.road.club))}</b><small>חוץ</small>${g.played?`<strong class="${g.road.score>g.local.score?'hd-winner':''}">${g.road.score}</strong>`:''}</div></article>`;
  }).join('')||'<p class="hd-note">אין משחקים זמינים למחזור הזה.</p>';
  for(const button of $('hdRounds').querySelectorAll('button'))button.setAttribute('aria-current',Number(button.dataset.round)===selectedRound?'true':'false');
  $('hdPreview').scrollLeft=0;

@@ -11,6 +11,8 @@ const groups=[
  {id:'fantasy',title:'פנטזי',description:'בניית סגל, מציאות וקפטנים',tabs:['negativeSurprises','absencePicks','optimizer','superSquad','bargains','captain','coach'],icon:'M7 3h10v7a5 5 0 0 1-10 0V3M7 5H3v3a4 4 0 0 0 4 4m10-7h4v3a4 4 0 0 1-4 4M12 15v6m-5 0h10'}
 ];
 const icon=g=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${g.icon}"/></svg>`;
+const toolPaths={team:'M8 3l4 2 4-2 6 5-4 4-2-2v12H8V10l-2 2-4-4 6-5',data:'M4 20V12h3v8M11 20V7h3v13M18 20V3h3v17',market:'M3 6c0-4 18-4 18 0s-18 4-18 0m0 0v12c0 4 18 4 18 0V6M3 12c0 4 18 4 18 0',pirGraph:'M3 18l6-7 5 3 7-10M3 21h18',usage:'M3 19a10 10 0 1 1 18 0M12 13l5-6M6 14h1m10 0h1M12 5v2',defense:'M12 3l8 3v7c0 5-8 9-8 9s-8-4-8-9V6l8-3',injuries:'M8 3l13 13-5 5L3 8zM16 3 3 16l5 5L21 8z',learning:'M9 3h6m-5 0v7L4 20h16l-6-10V3',algorithm:'M6 6h12v12H6zM9 9h6v6H9zM9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4',matchups:'M7 3h10v7a5 5 0 0 1-10 0V3M7 5H3v3a4 4 0 0 0 4 4m10-7h4v3a4 4 0 0 1-4 4M12 15v6m-5 0h10',playerMatchups:'M3 3l18 18M3 7V3h4M21 3 3 21m14-18h4v4',clubMarket:'M12 3 2 8l10 5 10-5-10-5M2 13l10 5 10-5M2 18l10 5 10-5',teamMetrics:'M4 20V12h3v8M11 20V7h3v13M18 20V3h3v17',pirWeakness:'M20 12a8 8 0 1 1-8-8M16 12a4 4 0 1 1-4-4M12 12 22 2m-5 0h5v5'};
+const toolIcon=(b,g)=>icon({icon:toolPaths[b.dataset.tab]||g.icon});
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const buttons=()=>Array.from(original.querySelectorAll('button[data-tab]'));
 const groupFor=id=>groups.find(g=>g.tabs.includes(id))||groups[0];
@@ -31,7 +33,7 @@ function renderLanding(){
  document.getElementById('efToolGroups').innerHTML=shown.map(g=>{
   const list=tools(g).filter(b=>!filter||(b.textContent+' '+g.title).toLocaleLowerCase().includes(filter));count+=list.length;
   if(!list.length)return '';
-  return `<article class="ef-tool-card"><h3>${icon(g)}${esc(g.title)}</h3><div class="ef-tool-grid">${list.map(b=>`<button type="button" data-ef-tool="${esc(b.dataset.tab)}"><span>${esc(b.textContent)}</span><span aria-hidden="true">‹</span></button>`).join('')}</div></article>`;
+  return `<article class="ef-tool-card" data-category="${g.id}"><h3>${icon(g)}${esc(g.title)}</h3><div class="ef-tool-grid">${list.map(b=>`<button type="button" data-ef-tool="${esc(b.dataset.tab)}">${toolIcon(b,g)}<span>${esc(b.textContent)}</span><span aria-hidden="true">‹</span></button>`).join('')}</div></article>`;
  }).join('');document.getElementById('efNoTools').hidden=count>0;
 }
 function paint(){
