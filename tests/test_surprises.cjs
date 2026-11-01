@@ -1,0 +1,16 @@
+const assert=require('node:assert/strict');
+const C=require('../surprises.js');
+const base={pos:'G',played:true,price:13,pir:10};
+assert.equal(C.players({players:[base]}).length,1);
+assert.equal(C.players({players:[{...base,pir:-4}]}).length,1);
+for(const patch of [{price:12.9},{pir:10.1},{pir:null},{price:null},{played:false},{pos:'H'}])assert.equal(C.players({players:[{...base,...patch}]}).length,0);
+const game=(gameCode,date,home,away,homeScore,awayScore,round=1)=>({gameCode,date,home,away,homeScore,awayScore,round});
+const a=game(1,'2026-01-01T10:00:00Z','A','B',80,70);
+const b=game(2,'2026-01-02T10:00:00Z','A','B',60,70,2);
+let result=C.teams({teamResults:[b,a,a]});assert.equal(result.rows.length,1);assert.equal(result.rows[0].loser,'A');assert.equal(result.rows[0].loserBefore.wins,1);assert.equal(result.rows[0].winnerBefore.wins,0);
+assert.equal(C.teams({teamResults:[a]}).rows.length,0);
+assert.equal(C.teams({teamResults:[a,{...b,homeScore:null}]}).rows.length,0);
+assert.equal(C.teams({teamResults:[a,{...b,date:a.date}]}).rows.length,0);
+const fs=require('node:fs');const lab=JSON.parse(fs.readFileSync('data/round-lab.json'));const data=JSON.parse(fs.readFileSync('data/official-offense.json'));
+console.log('Passed boundary, DNP, missing data, pre-game ordering, duplicate and simultaneous-game tests.');
+console.log('Existing data:',lab.rounds.map(r=>({round:r.round,players:C.players(r).length})), 'team surprises:',C.teams(data).rows.length);
