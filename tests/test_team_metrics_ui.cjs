@@ -8,25 +8,41 @@ const server=http.createServer((req,res)=>{const file=path.join(root,decodeURICo
  page.on('pageerror',e=>errors.push(e.message));await page.route('**/*',r=>r.request().url().startsWith('http://127.0.0.1:')?r.continue():r.abort());
  await page.goto(`http://127.0.0.1:${server.address().port}`,{waitUntil:'domcontentloaded'});
  await page.evaluate(()=>document.querySelector('.tabs [data-tab=teamMetrics]').click());
- await page.locator('#tmStandings .tm-identities tbody tr').first().waitFor();
- assert.equal(await page.locator('#tmStandings .tm-identities tbody tr').count(),report.teams.length);assert(await page.locator('#tmLeagueView').isVisible());assert(!(await page.locator('#tmDetail').isVisible()));
+ await page.locator('#tmStandings .tm-league-table tbody tr').first().waitFor();
+ assert.equal(await page.locator('#tmStandings .tm-league-table tbody tr').count(),report.teams.length);assert(await page.locator('#tmLeagueView').isVisible());assert(!(await page.locator('#tmDetail').isVisible()));
 
- // Horizontal scrolling must move only metrics; names/ranks stay outside the scroller.
+ // League tabs keep every team visible and swap the metric in place.
  for(const width of [320,390,1280]){
   await page.setViewportSize({width,height:844});
-  const geometry=()=>page.evaluate(()=>({identity:[...document.querySelectorAll('.tm-identities tbody tr')].map(tr=>({cells:[...tr.cells].map(c=>({x:c.getBoundingClientRect().x,width:c.getBoundingClientRect().width})),y:tr.getBoundingClientRect().y,height:tr.getBoundingClientRect().height})),values:[...document.querySelectorAll('.tm-league-values tbody tr')].map(tr=>({y:tr.getBoundingClientRect().y,height:tr.getBoundingClientRect().height})),scroll:document.querySelector('.tm-metrics-scroll').scrollLeft}));
-  const before=await geometry();await page.locator('.tm-metrics-scroll').evaluate(el=>el.scrollLeft=-300);const after=await geometry();
-  assert.deepEqual(after.identity,before.identity,'identity shifted at '+width);
-  before.identity.forEach((r,i)=>{assert(Math.abs(r.y-before.values[i].y)<1,'row offset');assert.equal(r.height,before.values[i].height);});
-  if(width<600)assert.notEqual(after.scroll,before.scroll,'metrics did not scroll');
-  await page.locator('.tm-metrics-scroll').evaluate(el=>el.scrollLeft=0);
+  for(const metric of ['for','against','streak','recent','difference','record']){
+   const tab=page.locator(`[data-tm-league=${metric}]`);
+   await tab.click();
+   assert.equal(await tab.getAttribute('aria-pressed'),'true');
+   assert.equal(await page.locator('.tm-league-table tbody tr').count(),report.teams.length);
+   assert(await page.locator('.tm-league-table').evaluate(el=>el.getBoundingClientRect().left>=0&&el.getBoundingClientRect().right<=innerWidth));
+   const first=page.locator('.tm-league-table tbody tr').first();
+   if(metric==='for'||metric==='against')assert.equal(await first.locator('td b').textContent(),String(report.teams[0][metric]));
+   if(metric==='recent')assert.equal(await first.locator('.tm-form span').count(),Math.min(5,report.teams[0].games.length));
+  }
  }
  await page.setViewportSize({width:390,height:844});
- const team=report.teams[2];await page.locator('#tmStandings .tm-identities tbody tr').nth(2).locator('button').click();
+ const team=report.teams[2];await page.locator('#tmStandings .tm-league-table tbody tr').nth(2).locator('button').click();
  assert(await page.locator('#tmDetail').isVisible());assert(!(await page.locator('#tmLeagueView').isVisible()));assert.equal(await page.locator('#tmTeamTitle').textContent(),team.team);
  assert.equal(await page.locator('#tmChart g[role=button]').count(),team.games.length);
  const latest=team.games[0];assert((await page.locator('#tmGameInsight').textContent()).includes(String(latest.points)));
  assert.deepEqual(await page.locator('#tmChart .tm-dot-own').evaluateAll(nodes=>nodes.map(n=>Number(n.nextElementSibling.textContent))),[...team.games].reverse().map(g=>g.points));
+ assert((await page.locator('#tmBack').boundingBox()).height>=48);
+ await page.locator('#tmChart').evaluate(el=>el.scrollIntoView());
+ const back=await page.locator('#tmBack').boundingBox();
+ assert(back.y>=0&&back.y<100,'back button should stay visible while scrolling');
+ await page.locator('[data-tm-metric=against]').click();
+ assert.deepEqual(await page.locator('#tmChart .tm-value').allTextContents(),[...team.games].reverse().map(g=>String(g.against)));
+ await page.locator('[data-tm-metric=recent]').click();
+ assert.equal(await page.locator('#tmChart button[data-tm-game]').count(),Math.min(5,team.games.length));
+ await page.locator('#tmChart button[data-tm-game]').last().click();
+ assert.equal(await page.locator('#tmGame').inputValue(),String(team.games.slice(0,5).at(-1).code));
+ await page.locator('[data-tm-metric=streak]').click();
+ assert(await page.locator('.tm-current-streak').isVisible());
  await page.locator('[data-tm-metric=difference]').click();assert.deepEqual(await page.locator('#tmChart .tm-value').allTextContents(),[...team.games].reverse().map(g=>(g.points>g.against?'+':'')+(g.points-g.against)));
  await page.selectOption('#tmRange','5');assert.equal(await page.locator('#tmChart g[role=button]').count(),Math.min(5,team.games.length));
  await page.selectOption('#tmRange','home');assert.equal(await page.locator('#tmChart g[role=button]').count(),team.games.filter(g=>g.home).length);

@@ -10,7 +10,7 @@
 #teamMetrics .tm-table th,#teamMetrics .tm-table td{position:static;background:transparent;vertical-align:top;font-size:14px;padding:9px 8px;overflow-wrap:anywhere;text-align:center;font-variant-numeric:tabular-nums}
 #teamMetrics .tm-table th{background:var(--card2);font-size:12px;color:var(--muted)}
 #teamMetrics .tm-table th:first-child{width:42%}#teamMetrics .tm-table th:first-child,#teamMetrics .tm-table td:first-child{text-align:right}
-#teamMetrics .tm-wide th:first-child{width:auto}#teamMetrics #tmStandings th:nth-child(2){width:25%}
+#teamMetrics .tm-wide th:first-child{width:auto}
 #teamMetrics .tm-table tr:last-child td{border-bottom:0}#teamMetrics small{display:block;font-size:12px;color:var(--muted)}
 #teamMetrics .tm-note,#teamMetrics #tmStatus{font-size:12px;color:var(--muted);margin:8px 0}
 #teamMetrics .tm-gap{font-size:14px;padding:10px;background:var(--card2);border-radius:8px}
@@ -22,18 +22,8 @@
 #teamMetrics [hidden]{display:none!important}
 #teamMetrics .tm-section-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:16px 0 8px}
 #teamMetrics .tm-section-heading h4{margin:0}#teamMetrics .tm-section-heading label{display:flex;align-items:center;gap:8px}#teamMetrics .tm-section-heading select{margin:0;width:auto}
-#teamMetrics .tm-standings{min-width:780px;table-layout:auto}
-#teamMetrics .tm-standings th:first-child{width:44px}#teamMetrics .tm-standings th:nth-child(2){width:28%}
-#teamMetrics .tm-standings td{vertical-align:middle;padding:14px 10px}
-#teamMetrics .tm-standings tr[data-tm-team]{cursor:pointer}#teamMetrics .tm-standings tr[data-tm-team]:hover{background:var(--card2)}
 #teamMetrics .tm-rank{display:inline-grid;place-items:center;border:1px solid var(--line);border-radius:9px;min-width:30px;min-height:30px;font-weight:800}
-#teamMetrics .tm-standings tr:nth-child(-n+6) .tm-rank{border-color:var(--accent);color:var(--accent)}
 #teamMetrics .tm-club{display:flex;align-items:center;gap:10px;text-align:right;background:none;color:var(--text);padding:0;font-size:14px}
-#teamMetrics .tm-club small{margin-top:4px;font-size:10px;font-weight:400}
-#teamMetrics .tm-crest{display:inline-grid;place-items:center;flex-shrink:0;width:36px;height:40px;background:var(--card2);border:1px solid var(--line);border-radius:10px 10px 16px 16px;direction:ltr;color:var(--blue);font-size:12px}
-#teamMetrics .tm-win-track{height:4px;background:var(--line);border-radius:5px;overflow:hidden;min-width:50px;margin-top:7px;direction:ltr}#teamMetrics .tm-win-track i{display:block;background:var(--accent);height:100%}
-#teamMetrics .tm-diff-track{position:relative;height:4px;background:var(--line);border-radius:5px;width:62px;margin:7px auto 0}
-#teamMetrics .tm-diff-track i{position:absolute;height:100%}#teamMetrics .tm-plus{left:50%;background:var(--accent)}#teamMetrics .tm-minus{right:50%;background:var(--bad,#e45769)}
 #teamMetrics .tm-positive{color:var(--accent)}#teamMetrics .tm-negative{color:var(--bad,#e45769)}
 #teamMetrics .tm-form{display:flex;gap:4px;justify-content:center}
 #teamMetrics .tm-w,#teamMetrics .tm-l{display:inline-grid;place-items:center;min-width:22px;min-height:24px;padding:3px 5px;border-radius:6px;font-size:11px;font-weight:800;border:1px solid currentColor}
@@ -59,22 +49,89 @@
 #teamMetrics .tm-result-meta{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;font-size:12px}#teamMetrics .tm-result-meta span{padding:6px 10px;background:var(--card2);border-radius:8px}
 @media(max-width:600px){#teamMetrics .tm-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}#teamMetrics .tm-chart-card{padding:10px}#teamMetrics .tm-section-heading{flex-wrap:wrap}#teamMetrics .tm-chart-tabs{gap:4px}#teamMetrics .tm-chart-tabs button{font-size:11px;padding:9px 7px}#teamMetrics .tm-chart-scroll svg{max-height:none;height:285px;width:auto}#teamMetrics .tm-team-head h4{font-size:20px}#teamMetrics .tm-kpis b{font-size:23px}}
 
-/* Identity is a separate panel: it never participates in horizontal scrolling. */
-#teamMetrics .tm-league-grid{display:grid;grid-template-columns:240px minmax(0,1fr);direction:rtl;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:12px 0;background:var(--card)}
-#teamMetrics .tm-identity-panel{min-width:0;border-left:1px solid var(--line);background:var(--card)}
-#teamMetrics .tm-metrics-scroll{min-width:0;overflow-x:auto;overscroll-behavior-x:contain;direction:rtl;background:var(--card);scrollbar-width:thin}
-#teamMetrics .tm-league-grid table{border-collapse:separate;border-spacing:0;table-layout:fixed;width:100%;min-width:0;margin:0}
-#teamMetrics .tm-league-grid .tm-league-values{min-width:502px}
-#teamMetrics .tm-league-grid thead tr{height:44px}#teamMetrics .tm-league-grid tbody tr{height:80px}
-#teamMetrics .tm-league-grid th,#teamMetrics .tm-league-grid td{position:static;vertical-align:middle;padding:8px 6px;height:80px;box-sizing:border-box;text-align:center;font-size:13px}
-#teamMetrics .tm-league-grid th{height:44px;font-size:11px;white-space:nowrap;background:var(--card2)}
-#teamMetrics .tm-league-grid th:first-child{width:auto;text-align:center}
-#teamMetrics .tm-identities td:nth-child(2){text-align:right}#teamMetrics .tm-identities .tm-club{width:100%;min-height:60px;font-size:13px;line-height:1.35;gap:7px}
-#teamMetrics .tm-identities .tm-club>span:last-child{min-width:0;overflow-wrap:anywhere}
-#teamMetrics .tm-identities .tm-club small{font-size:9px}#teamMetrics .tm-identities .tm-crest{width:30px;height:34px;font-size:10px}
-#teamMetrics .tm-league-grid tbody tr{cursor:pointer}#teamMetrics .tm-league-grid tbody tr:hover{background:var(--card2)}
-#teamMetrics .tm-identities tr:nth-child(-n+6) .tm-rank{color:var(--accent);border-color:var(--accent)}
-#teamMetrics .tm-identities .tm-rank{min-width:27px;min-height:29px}
-@media(max-width:600px){#teamMetrics .tm-league-grid{grid-template-columns:174px minmax(0,1fr)}#teamMetrics .tm-identities .tm-crest{display:none}#teamMetrics .tm-league-grid td{padding:8px 4px}#teamMetrics .tm-identities .tm-club{font-size:12px}}
-#teamMetrics #tmStandings th:nth-child(2){width:auto}
-#teamMetrics #tmStandings .tm-identities th:first-child{width:38px}
+#teamMetrics .tm-tabs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 90px), 1fr));
+  gap: 5px;
+  margin-block: 12px;
+  padding: 5px;
+  border-radius: 14px;
+  background: var(--card2);
+}
+#teamMetrics .tm-tabs button {
+  min-height: 44px;
+  padding: 6px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--text);
+  font-size: 12px;
+  line-height: 1.3;
+}
+#teamMetrics .tm-tabs button[aria-pressed=true] {
+  color: var(--text);
+  background: var(--card);
+  border-color: var(--accent);
+}
+#teamMetrics .tm-league-grid {border: 1px solid var(--line); border-radius: 16px; overflow: hidden}
+#teamMetrics .tm-league-table thead th {height: 42px; padding: 8px 6px}
+#teamMetrics .tm-league-table :is(th,td):first-child {width: 40px; text-align: center}
+#teamMetrics .tm-league-table :is(th,td):last-child {width: clamp(108px, 30vw, 180px)}
+#teamMetrics .tm-league-table thead th:nth-child(2) {text-align: start}
+#teamMetrics .tm-league-table tbody :is(th,td) {background: transparent; vertical-align: middle; height: 57px; padding: 4px}
+#teamMetrics .tm-league-table tbody tr:nth-child(even) {background: color-mix(in srgb,var(--card2) 48%,var(--card))}
+#teamMetrics .tm-league-table tbody tr:hover {background: var(--card2); cursor: pointer}
+#teamMetrics .tm-league-table tbody tr:last-child th {border-bottom: 0}
+#teamMetrics .tm-league-table .tm-club {width: 100%; min-height: 46px; justify-content: space-between; gap: 4px; line-height: 1.25}
+#teamMetrics .tm-club span:last-child {color: var(--accent); font-size: 20px; padding-inline-end: 3px}
+#teamMetrics .tm-rank {background: var(--card2); border: 0; min-width: 27px; min-height: 27px}
+#teamMetrics tr:nth-child(-n+6) .tm-rank {color: var(--accent)}
+#teamMetrics .tm-form {gap: 3px}
+#teamMetrics .tm-form span {min-width: 17px; min-height: 22px; padding: 1px 2px}
+#teamMetrics .tm-team-head {
+  background: linear-gradient(120deg,#101b2b,#20394b);
+  color: #fff;
+  border-color: transparent;
+  border-radius: 16px;
+}
+#teamMetrics .tm-team-head small {color: #c7d7e2}
+#teamMetrics .tm-team-head .tm-record {border: 1px solid #ffffff40; padding: 7px 10px; border-radius: 9px}
+#teamMetrics #tmBack {
+  position: sticky;
+  top: max(8px,env(safe-area-inset-top));
+  z-index: 10;
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #16314a;
+  color: #fff;
+  font-size: 16px;
+  box-shadow: 0 3px 12px #101b2b36;
+  scroll-margin-top: 12px;
+}
+#teamMetrics .tm-results {display: grid; gap: 6px}
+#teamMetrics .tm-results button {
+  display: grid;
+  grid-template-columns: auto minmax(0,1fr) auto;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 8px;
+  text-align: start;
+  background: var(--card2);
+  color: var(--text);
+  border: 1px solid var(--line);
+  font-size: 13px;
+}
+#teamMetrics .tm-results button[aria-pressed=true] {border-color: var(--accent)}
+#teamMetrics .tm-results bdi {font-variant-numeric: tabular-nums}
+#teamMetrics .tm-current-streak {display: flex; align-items: center; gap: 8px}
+#teamMetrics button:focus-visible {outline: 2px solid var(--blue); outline-offset: -2px}
+@media(max-width: 420px) {
+  #teamMetrics .tm-league-table .tm-club {font-size: 12px}
+  #teamMetrics .tm-league-table :is(th,td):first-child {width: 32px}
+}
+
+#teamMetrics #tmSummary {margin-top: 12px}
