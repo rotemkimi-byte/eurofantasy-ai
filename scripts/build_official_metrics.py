@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 from build_matchup_context import ROOT, load, save, number, key, team, stamp, api
 SOURCE='https://api-live.euroleague.net/v2/competitions/E/seasons/E2026/'
 METHOD='https://mediagamecenter.euroleague.net/'
-FIELDS=['points','fieldGoalsAttempted2','fieldGoalsMade2','fieldGoalsAttempted3','fieldGoalsMade3','freeThrowsAttempted','freeThrowsMade','turnovers','assistances','valuation','steals','blocksFavour','totalRebounds','offensiveRebounds','defensiveRebounds','foulsCommited']
+FIELDS=['points','fieldGoalsAttempted2','fieldGoalsMade2','fieldGoalsAttempted3','fieldGoalsMade3','freeThrowsAttempted','freeThrowsMade','turnovers','assistances','valuation','steals','blocksFavour','totalRebounds','offensiveRebounds','defensiveRebounds','foulsCommited','foulsReceived']
 
 def standings_rows(payload):
     found={}
