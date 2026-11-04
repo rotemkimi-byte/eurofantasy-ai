@@ -127,9 +127,15 @@ def solve(rows,budget=None,time_limit=20):
 
 def build(root=ROOT,budgets=BUDGETS):
     current=read(root/'data/players.json',[]);schedule=read(root/'data/context/E2026-schedule.json',{}).get('data',[])
+    confirmed=read(root/'data/learning/schedule.json',{})
     now=dt.datetime.now(dt.timezone.utc);groups=collections.defaultdict(list)
     for g in schedule:
-        if g.get('season',{}).get('code',SEASON)==SEASON and date(g.get('utcDate')):groups[int(g['round'])].append(g)
+        if g.get('season',{}).get('code',SEASON)!=SEASON or not date(g.get('utcDate')):continue
+        round_no=int(g['round'])
+        result=confirmed.get(str(g['gameCode']),{})
+        if result.get('round')==round_no and result.get('played') is True:
+            g={**g,'played':True}
+        groups[round_no].append(g)
     old=read(root/'data/round-lab.json',{});cached={r['round']:r for r in old.get('rounds',[])};rounds=[]
     for rn,fixtures in sorted(groups.items()):
         if not any(g.get('played') is True and date(g['utcDate'])<now for g in fixtures):continue
