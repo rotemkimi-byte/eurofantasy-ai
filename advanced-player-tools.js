@@ -60,23 +60,33 @@ attacks:'סימוני מתפרצת, הזדמנות שנייה ונקודות ל�
 for(const [id,title,kind] of tools){
  const b=document.createElement('button');b.dataset.tab=id;b.textContent=title;document.querySelector('nav.tabs').append(b);
  const section=document.createElement('section');section.id=id;section.className='tab ap-screen';
- section.innerHTML='<div class="ap-shell"><div class="ap-top"><h3>'+title+'</h3><button type="button" data-refresh>רענן</button></div><div class="ap-controls"><label>בחירה לפי קבוצה<select data-team><option value="">כל הקבוצות</option></select></label><label>חיפוש שחקן<input data-search type="search" placeholder="שם שחקן"></label><label>בחר שחקן<select data-player><option value="">בחר שחקן</option></select></label><label>טווח<select data-range><option value="1">משחק אחרון</option><option value="3">3 משחקים אחרונים</option><option value="0">כל העונה · 2026/27</option></select></label>'+(kind==='shots'?'<label>הצג במפה<select data-shot><option value="all">הכול</option><option value="made">קליעות</option><option value="missed">החטאות</option></select></label>':'')+'</div><p class="ap-status" role="status"></p><div data-output></div><details><summary>הסבר הנתונים</summary><p>'+help[kind]+'</p><a class="ap-link" href="https://mediagamecenter.euroleague.net/" target="_blank" rel="noopener">מקור: EuroLeague Game Center</a></details></div>';
+ section.innerHTML='<div class="ap-shell"><div class="ap-top"><h3>'+title+'</h3><button type="button" data-refresh>רענן</button></div><div class="ap-controls"><label class="ap-search-control">חיפוש שחקן<input data-search type="search" placeholder="הקלד שם שחקן…" autocomplete="off"></label><label>קבוצה<select data-team><option value="">כל הקבוצות</option></select></label><label>טווח נתונים<select data-range><option value="1">משחק אחרון</option><option value="3">3 משחקים אחרונים</option><option value="0">כל העונה · 2026/27</option></select></label><label>מיון שחקנים<select data-sort><option value="name">שם · א–ת</option><option value="team">לפי קבוצה</option><option value="minutes">דקות · מהגבוה</option>'+(kind==='plus'?'<option value="plus">פלוס־מינוס · מהגבוה</option>':'')+'</select></label>'+(kind==='shots'?'<label>הצג במפה<select data-shot><option value="all">הכול</option><option value="made">קליעות</option><option value="missed">החטאות</option></select></label>':'')+'</div><p class="ap-status" role="status"></p><div data-picked hidden></div><div data-browser aria-label="רשימת שחקנים"></div><div data-output hidden></div><details class="ap-help"><summary>הסבר הנתונים</summary><p>'+help[kind]+'</p><a class="ap-link" href="https://mediagamecenter.euroleague.net/" target="_blank" rel="noopener">מקור: EuroLeague Game Center</a></details></div>';
  document.querySelector('main').append(section);
- const $=s=>section.querySelector(s);let records=[],selected='';
- function controls(){
-  const q=$('[data-search]').value.trim().toLowerCase(),team=$('[data-team]').value;
-  const list=records.filter(p=>(!team||p.team===team)&&p.name.toLowerCase().includes(q));
-  if(selected&&!list.some(p=>p.id===selected))selected='';
-  $('[data-player]').innerHTML='<option value="">בחר שחקן · '+list.length+' תוצאות</option>'+list.map(p=>'<option value="'+esc(p.id)+'">'+esc(p.name)+' · '+esc(p.team)+'</option>').join('');
-  $('[data-player]').value=selected;
+ const $=s=>section.querySelector(s);let records=[],selected='',browseOpen=true,shown=36;
+ function renderBrowser(){
+  const host=$('[data-browser]');host.hidden=!browseOpen;if(!browseOpen)return;
+  const q=$('[data-search]').value.trim().toLocaleLowerCase(),team=$('[data-team]').value,range=$('[data-range]').value,sort=$('[data-sort]').value;
+  const rows=records.filter(p=>(!team||p.team===team)&&(!q||(p.name+' '+p.team).toLocaleLowerCase().includes(q))).map(p=>{
+   const games=C.select(p.games,range).filter(g=>g.minutes>0),minutes=games.reduce((sum,g)=>sum+(Number(g.minutes)||0),0);
+   return {p,games:games.length,minutes,pm:kind==='plus'?C.plus(games).total:null};
+  });
+  const cmpName=(a,b)=>a.p.name.localeCompare(b.p.name,'he');
+  rows.sort((a,b)=>sort==='minutes'?b.minutes-a.minutes||cmpName(a,b):sort==='plus'&&kind==='plus'?(b.pm??-Infinity)-(a.pm??-Infinity)||cmpName(a,b):sort==='team'?a.p.team.localeCompare(b.p.team,'he')||cmpName(a,b):cmpName(a,b));
+  const visible=rows.slice(0,shown),metricLabel=kind==='plus'?'פלוס־מינוס':'דקות';
+  const pickRows=visible.map(({p,games,minutes,pm})=>'<button type="button" class="ap-player-row'+(p.id===selected?' is-selected':'')+'" data-pick="'+esc(p.id)+'" aria-label="בחר '+esc(p.name)+'"><span class="ap-row-name"><strong><bdi>'+esc(p.name)+'</bdi></strong><small>'+esc(p.team)+'</small></span><span class="ap-row-appearances"><b>'+games+'</b><small>הופעות</small></span><span class="ap-row-stat"><b>'+fmt(minutes)+'</b><small>דקות</small></span>'+(kind==='plus'?'<span class="ap-row-stat ap-plus-value"><b>'+fmt(pm)+'</b><small>+/−</small></span>':'')+'<span class="ap-row-arrow" aria-hidden="true">‹</span></button>').join('');
+  host.innerHTML='<div class="ap-browser-head"><div><h4>בחר שחקן</h4><p>'+rows.length+' שחקנים'+(team?' · '+esc(team):' מכל הקבוצות')+' · לחיצה על שורה מציגה ניתוח</p></div></div><div class="ap-player-list">'+(rows.length?pickRows:empty('לא נמצאו שחקנים. אפשר לשנות קבוצה או חיפוש.'))+'</div>'+(rows.length>shown?'<button type="button" class="ap-show-more" data-more>הצג עוד '+Math.min(36,rows.length-shown)+' שחקנים · '+visible.length+'/'+rows.length+'</button>':'');
  }
+ function controls(){renderBrowser();}
  function ranges(){
   const old=$('[data-range]').value,p=records.find(p=>p.id===selected);
   $('[data-range]').innerHTML='<option value="1">משחק אחרון</option><option value="3">3 משחקים אחרונים</option><option value="0">כל העונה · 2026/27</option>'+(p?.games||[]).map(g=>'<option value="game:'+g.gameCode+'">'+esc(date(g.date)+' · '+(g.opponent||'משחק '+g.gameCode)+(g.minutes===0?' · לא שיחק':''))+'</option>').join('');
   if([...$('[data-range]').options].some(o=>o.value===old))$('[data-range]').value=old;
  }
  function render(){
-  const p=records.find(p=>p.id===selected);if(!p){$('[data-output]').innerHTML=empty('בחר שחקן מהרשימה הכללית, או בחר קבוצה כדי לצמצם את הרשימה.');return;}
+  const p=records.find(p=>p.id===selected),picked=$('[data-picked]'),output=$('[data-output]');
+  picked.hidden=!p;output.hidden=!p;
+  if(!p){output.innerHTML='';return;}
+  picked.innerHTML='<div class="ap-picked-inner"><span><b><bdi>'+esc(p.name)+'</bdi></b><small>'+esc(p.team)+'</small></span><button type="button" data-change>החלף שחקן</button></div>';
   const selectedGames=C.select(p.games,$('[data-range]').value),games=selectedGames.filter(g=>g.minutes>0),latest=selectedGames[0];
   const header='<div class="ap-profile"><h3><bdi>'+esc(p.name)+'</bdi></h3><small>'+esc(p.team)+' · '+games.length+' הופעות בטווח</small>'+(latest?'<small>הרישום האחרון בטווח: '+esc(latest.opponent||'')+' · '+date(latest.date)+' · מחזור '+esc(latest.round??'—')+'</small>':'')+'</div>';
   const show=gs=>kind==='negative'?negative(gs):kind==='plus'?plus(gs):kind==='shots'?shots(gs,$('[data-shot]').value):kind==='lineups'?lineups(gs):attacks(gs);
@@ -93,8 +103,20 @@ for(const [id,title,kind] of tools){
  }
  b.onclick=()=>{document.querySelectorAll('.tabs button,.tab').forEach(e=>e.classList.remove('active'));b.classList.add('active');section.classList.add('active');void open();};
  $('[data-refresh]').onclick=()=>void open(true);
- for(const field of ['[data-team]','[data-search]'])$(field).addEventListener(field.includes('search')?'input':'change',()=>{controls();ranges();render();});
- $('[data-player]').onchange=()=>{selected=$('[data-player]').value;ranges();render();};
- $('[data-range]').onchange=render;if($('[data-shot]'))$('[data-shot]').onchange=render;
+ $('[data-team]').onchange=()=>{
+  const team=$('[data-team]').value;
+  if(team&&selected&&records.find(p=>p.id===selected)?.team!==team)selected='';
+  browseOpen=true;shown=36;controls();ranges();render();
+ };
+ $('[data-search]').oninput=()=>{browseOpen=true;shown=36;controls();};
+ $('[data-sort]').onchange=()=>{shown=36;controls();};
+ $('[data-range]').onchange=()=>{shown=36;renderBrowser();render();};
+ if($('[data-shot]'))$('[data-shot]').onchange=render;
+ section.addEventListener('click',e=>{
+  const row=e.target.closest('[data-pick]');
+  if(row){selected=row.dataset.pick;browseOpen=false;ranges();render();renderBrowser();return;}
+  if(e.target.closest('[data-change]')){browseOpen=true;shown=36;renderBrowser();return;}
+  if(e.target.closest('[data-more]')){shown+=36;renderBrowser();}
+ });
 }
 })();
