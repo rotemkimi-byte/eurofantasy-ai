@@ -67,3 +67,6 @@ html[data-theme="dark"] .ap-screen{--ap-bg:#152237;--ap-soft:#20324a;--ap-ink:#f
  .ap-screen .ap-row-arrow{font-size:18px}
  .ap-screen .ap-controls{gap:8px}
 }
+
+.ap-screen .ap-player-row.ap-no-plus{grid-template-columns:minmax(0,1fr) 78px 80px 16px}
+@media(max-width:430px){.ap-screen .ap-player-row.ap-no-plus{grid-template-columns:minmax(0,1fr) 58px 70px 12px}}
