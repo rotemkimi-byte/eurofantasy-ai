@@ -29,7 +29,7 @@ console.log(`PASS: ${seen} official appearances; Stocks, block/rebound rates, we
 // A new round or a pregame box must not displace the last completed game.
 const bryant=data.players['bryant elijah'];
 assert(bryant);
-const last=D.selectGames(bryant,data,'1')[0];
+const last=D.selectGames(bryant,data,'1',Date.parse('2026-11-01T00:00:00Z'))[0];
 assert.equal(last.gameCode,84);
 assert.equal(D.summarize([last],data,env).stocks,0,'Bryant really recorded zero steals and blocks against Dubai');
 const pregame={...last,gameCode:999,date:'2026-11-04T17:00:00Z',stats:{...last.stats,steals:0,blocksFavour:0}};
