@@ -72,9 +72,9 @@ for(const [id,title,kind] of tools){
   });
   const cmpName=(a,b)=>a.p.name.localeCompare(b.p.name,'he');
   rows.sort((a,b)=>sort==='minutes'?b.minutes-a.minutes||cmpName(a,b):sort==='pir'?(b.pir??-Infinity)-(a.pir??-Infinity)||cmpName(a,b):sort==='plus'&&kind==='plus'?(b.pm??-Infinity)-(a.pm??-Infinity)||cmpName(a,b):sort==='team'?a.p.team.localeCompare(b.p.team,'he')||cmpName(a,b):cmpName(a,b));
-  const visible=rows.slice(0,shown),metricLabel=kind==='plus'?'פלוס־מינוס':'דקות';
-  const pickRows=visible.map(({p,games,minutes,pm})=>'<button type="button" class="ap-player-row'+(kind==='plus'?'':' ap-no-plus')+(p.id===selected?' is-selected':'')+'" data-pick="'+esc(p.id)+'" aria-label="בחר '+esc(p.name)+'"><span class="ap-row-name"><strong><bdi>'+esc(p.name)+'</bdi></strong><small>'+esc(p.team)+'</small></span><span class="ap-row-appearances"><b>'+games+'</b><small>הופעות</small></span><span class="ap-row-stat"><b>'+fmt(minutes)+'</b><small>דקות</small></span>'+(kind==='plus'?'<span class="ap-row-stat ap-plus-value"><b>'+fmt(pm)+'</b><small>+/−</small></span>':'')+'<span class="ap-row-arrow" aria-hidden="true">‹</span></button>').join('');
-  host.innerHTML='<div class="ap-browser-head"><div><h4>בחר שחקן</h4><p>'+rows.length+' שחקנים'+(team?' · '+esc(team):' מכל הקבוצות')+' · לחיצה על שורה מציגה ניתוח</p></div></div><div class="ap-player-list">'+(rows.length?pickRows:empty('לא נמצאו שחקנים. אפשר לשנות קבוצה או חיפוש.'))+'</div>'+(rows.length>shown?'<button type="button" class="ap-show-more" data-more>הצג עוד '+Math.min(36,rows.length-shown)+' שחקנים · '+visible.length+'/'+rows.length+'</button>':'');
+  const visible=rows.slice(0,shown);
+  const pickRows=visible.map(({p,games,minutes,pm})=>'<button type="button" class="ap-player-row'+(kind==='plus'?'':' ap-no-plus')+(p.id===selected?' is-selected':'')+'" data-pick="'+esc(p.id)+'" aria-label="בחר '+esc(p.name)+'"><span class="ap-row-name"><strong><bdi>'+esc(p.name)+'</bdi></strong><small>'+esc(p.team)+'</small></span><span class="ap-row-appearances"><b>'+games+'</b><small>הופעות</small></span><span class="ap-row-stat"><b>'+fmt(minutes)+'</b><small>דקות</small></span>'+(kind==='plus'?'<span class="ap-row-stat ap-plus-value"><b>'+(pm>0?'+':'')+fmt(pm)+'</b><small>+/−</small></span>':'')+'<span class="ap-row-arrow" aria-hidden="true">‹</span></button>').join('');
+  host.innerHTML='<div class="ap-browser-head"><div><h4>בחר שחקן</h4><p>'+rows.length+' שחקנים'+(team?' · '+esc(team):' מכל הקבוצות')+' · '+esc($('[data-sort]').selectedOptions[0].textContent)+'</p></div></div><div class="ap-player-list">'+(rows.length?pickRows:empty('לא נמצאו שחקנים. אפשר לשנות קבוצה או חיפוש.'))+'</div>'+(rows.length>shown?'<button type="button" class="ap-show-more" data-more>הצג עוד '+Math.min(36,rows.length-shown)+' שחקנים · '+visible.length+'/'+rows.length+'</button>':'');
  }
  function controls(){renderBrowser();}
  function ranges(){
@@ -84,7 +84,8 @@ for(const [id,title,kind] of tools){
  }
  function render(){
   const p=records.find(p=>p.id===selected),picked=$('[data-picked]'),output=$('[data-output]');
-  picked.hidden=!p;output.hidden=!p||browseOpen;
+  picked.hidden=!p||browseOpen;output.hidden=!p||browseOpen;
+  section.classList.toggle('ap-detail-open',!!p&&!browseOpen);
   if(!p){output.innerHTML='';return;}
   picked.innerHTML='<div class="ap-picked-inner"><span><b><bdi>'+esc(p.name)+'</bdi></b><small>'+esc(p.team)+'</small></span><button type="button" data-change>החלף שחקן</button></div>';
   const selectedGames=C.select(p.games,$('[data-range]').value),games=selectedGames.filter(g=>g.minutes>0),latest=selectedGames[0];
@@ -106,16 +107,16 @@ for(const [id,title,kind] of tools){
  $('[data-team]').onchange=()=>{
   const team=$('[data-team]').value;
   if(team&&selected&&records.find(p=>p.id===selected)?.team!==team)selected='';
-  browseOpen=true;shown=36;controls();ranges();render();
+  $('[data-search]').value='';browseOpen=true;shown=36;ranges();controls();render();
  };
- $('[data-search]').oninput=()=>{browseOpen=true;shown=36;controls();};
+ $('[data-search]').oninput=()=>{browseOpen=true;shown=36;controls();render();};
  $('[data-sort]').onchange=()=>{shown=36;controls();};
  $('[data-range]').onchange=()=>{shown=36;renderBrowser();render();};
  if($('[data-shot]'))$('[data-shot]').onchange=render;
  section.addEventListener('click',e=>{
   const row=e.target.closest('[data-pick]');
   if(row){selected=row.dataset.pick;browseOpen=false;ranges();render();renderBrowser();return;}
-  if(e.target.closest('[data-change]')){browseOpen=true;shown=36;renderBrowser();return;}
+  if(e.target.closest('[data-change]')){browseOpen=true;renderBrowser();render();$('[data-search]').focus();return;}
   if(e.target.closest('[data-more]')){shown+=36;renderBrowser();}
  });
 }
