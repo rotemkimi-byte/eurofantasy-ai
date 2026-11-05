@@ -3,12 +3,417 @@
   "round": 10,
   "complete": false,
   "scheduledGames": 10,
-  "playedGames": 0,
-  "gradedGames": 0,
+  "playedGames": 1,
+  "gradedGames": 1,
   "metrics": {
-    "n": 0
+    "n": 23,
+    "mae": 7.189,
+    "rmse": 8.7,
+    "bias": -2.132,
+    "within3": 0.2174,
+    "within5": 0.3913,
+    "correlation": 0.5497,
+    "byPosition": {
+      "G": {
+        "n": 8,
+        "mae": 7.058,
+        "bias": -4.181
+      },
+      "F": {
+        "n": 10,
+        "mae": 6.837,
+        "bias": -0.186
+      },
+      "C": {
+        "n": 5,
+        "mae": 8.102,
+        "bias": -2.747
+      }
+    }
   },
-  "largestMisses": [],
-  "comparisons": [],
-  "updated_at": "2026-11-04T19:47:52.739171+00:00"
+  "largestMisses": [
+    {
+      "name": "Alberto Abalde",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 5.4,
+      "predictedPir": 6.194,
+      "actualPir": 23.0,
+      "error": -16.806,
+      "absoluteError": 16.806
+    },
+    {
+      "name": "Kendrick Nunn",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "price": 14.0,
+      "predictedPir": 14.39,
+      "actualPir": 31.0,
+      "error": -16.61,
+      "absoluteError": 16.61
+    },
+    {
+      "name": "Andres Feliz",
+      "team": "Real Madrid",
+      "pos": "G",
+      "price": 8.5,
+      "predictedPir": 12.371,
+      "actualPir": 28.0,
+      "error": -15.629,
+      "absoluteError": 15.629
+    },
+    {
+      "name": "Damian Jones",
+      "team": "Real Madrid",
+      "pos": "C",
+      "price": 8.1,
+      "predictedPir": 6.536,
+      "actualPir": 20.0,
+      "error": -13.464,
+      "absoluteError": 13.464
+    },
+    {
+      "name": "Mathias Lessort",
+      "team": "Panathinaikos",
+      "pos": "C",
+      "price": 16.1,
+      "predictedPir": 16.538,
+      "actualPir": 30.0,
+      "error": -13.462,
+      "absoluteError": 13.462
+    },
+    {
+      "name": "Nigel Hayes-davis",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "price": 12.7,
+      "predictedPir": 10.747,
+      "actualPir": 0.0,
+      "error": 10.747,
+      "absoluteError": 10.747
+    },
+    {
+      "name": "Gabriele Procida",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 4.2,
+      "predictedPir": 3.519,
+      "actualPir": 11.0,
+      "error": -7.481,
+      "absoluteError": 7.481
+    },
+    {
+      "name": "Isaac Bonga",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "price": 8.9,
+      "predictedPir": 4.752,
+      "actualPir": 12.0,
+      "error": -7.248,
+      "absoluteError": 7.248
+    },
+    {
+      "name": "Jerian Grant",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "price": 8.2,
+      "predictedPir": 7.142,
+      "actualPir": 0.0,
+      "error": 7.142,
+      "absoluteError": 7.142
+    },
+    {
+      "name": "Moustapha Fall",
+      "team": "Panathinaikos",
+      "pos": "C",
+      "price": 6.9,
+      "predictedPir": 6.771,
+      "actualPir": 0.0,
+      "error": 6.771,
+      "absoluteError": 6.771
+    },
+    {
+      "name": "Sergio Llull",
+      "team": "Real Madrid",
+      "pos": "G",
+      "price": 4.0,
+      "predictedPir": 2.363,
+      "actualPir": 9.0,
+      "error": -6.637,
+      "absoluteError": 6.637
+    },
+    {
+      "name": "Olivier Sarr",
+      "team": "Real Madrid",
+      "pos": "C",
+      "price": 8.2,
+      "predictedPir": 7.616,
+      "actualPir": 1.0,
+      "error": 6.616,
+      "absoluteError": 6.616
+    },
+    {
+      "name": "Jaime Pradilla",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 8.1,
+      "predictedPir": 7.546,
+      "actualPir": 1.0,
+      "error": 6.546,
+      "absoluteError": 6.546
+    },
+    {
+      "name": "Timothé Luwawu-Cabarrot",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 9.6,
+      "predictedPir": 5.175,
+      "actualPir": -1.0,
+      "error": 6.175,
+      "absoluteError": 6.175
+    },
+    {
+      "name": "Juancho Hernangomez",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "price": 10.6,
+      "predictedPir": 8.88,
+      "actualPir": 4.0,
+      "error": 4.88,
+      "absoluteError": 4.88
+    }
+  ],
+  "comparisons": [
+    {
+      "name": "Alberto Abalde",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 5.4,
+      "predictedPir": 6.194,
+      "actualPir": 23.0,
+      "error": -16.806,
+      "absoluteError": 16.806
+    },
+    {
+      "name": "Kendrick Nunn",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "price": 14.0,
+      "predictedPir": 14.39,
+      "actualPir": 31.0,
+      "error": -16.61,
+      "absoluteError": 16.61
+    },
+    {
+      "name": "Andres Feliz",
+      "team": "Real Madrid",
+      "pos": "G",
+      "price": 8.5,
+      "predictedPir": 12.371,
+      "actualPir": 28.0,
+      "error": -15.629,
+      "absoluteError": 15.629
+    },
+    {
+      "name": "Damian Jones",
+      "team": "Real Madrid",
+      "pos": "C",
+      "price": 8.1,
+      "predictedPir": 6.536,
+      "actualPir": 20.0,
+      "error": -13.464,
+      "absoluteError": 13.464
+    },
+    {
+      "name": "Mathias Lessort",
+      "team": "Panathinaikos",
+      "pos": "C",
+      "price": 16.1,
+      "predictedPir": 16.538,
+      "actualPir": 30.0,
+      "error": -13.462,
+      "absoluteError": 13.462
+    },
+    {
+      "name": "Nigel Hayes-davis",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "price": 12.7,
+      "predictedPir": 10.747,
+      "actualPir": 0.0,
+      "error": 10.747,
+      "absoluteError": 10.747
+    },
+    {
+      "name": "Gabriele Procida",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 4.2,
+      "predictedPir": 3.519,
+      "actualPir": 11.0,
+      "error": -7.481,
+      "absoluteError": 7.481
+    },
+    {
+      "name": "Isaac Bonga",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "price": 8.9,
+      "predictedPir": 4.752,
+      "actualPir": 12.0,
+      "error": -7.248,
+      "absoluteError": 7.248
+    },
+    {
+      "name": "Jerian Grant",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "price": 8.2,
+      "predictedPir": 7.142,
+      "actualPir": 0.0,
+      "error": 7.142,
+      "absoluteError": 7.142
+    },
+    {
+      "name": "Moustapha Fall",
+      "team": "Panathinaikos",
+      "pos": "C",
+      "price": 6.9,
+      "predictedPir": 6.771,
+      "actualPir": 0.0,
+      "error": 6.771,
+      "absoluteError": 6.771
+    },
+    {
+      "name": "Sergio Llull",
+      "team": "Real Madrid",
+      "pos": "G",
+      "price": 4.0,
+      "predictedPir": 2.363,
+      "actualPir": 9.0,
+      "error": -6.637,
+      "absoluteError": 6.637
+    },
+    {
+      "name": "Olivier Sarr",
+      "team": "Real Madrid",
+      "pos": "C",
+      "price": 8.2,
+      "predictedPir": 7.616,
+      "actualPir": 1.0,
+      "error": 6.616,
+      "absoluteError": 6.616
+    },
+    {
+      "name": "Jaime Pradilla",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 8.1,
+      "predictedPir": 7.546,
+      "actualPir": 1.0,
+      "error": 6.546,
+      "absoluteError": 6.546
+    },
+    {
+      "name": "Timothé Luwawu-Cabarrot",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 9.6,
+      "predictedPir": 5.175,
+      "actualPir": -1.0,
+      "error": 6.175,
+      "absoluteError": 6.175
+    },
+    {
+      "name": "Juancho Hernangomez",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "price": 10.6,
+      "predictedPir": 8.88,
+      "actualPir": 4.0,
+      "error": 4.88,
+      "absoluteError": 4.88
+    },
+    {
+      "name": "Brancou Badio",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "price": 7.2,
+      "predictedPir": 5.666,
+      "actualPir": 10.0,
+      "error": -4.334,
+      "absoluteError": 4.334
+    },
+    {
+      "name": "Guerschon Yabusele",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "price": 12.8,
+      "predictedPir": 10.205,
+      "actualPir": 6.0,
+      "error": 4.205,
+      "absoluteError": 4.205
+    },
+    {
+      "name": "Konstantinos Mitoglou",
+      "team": "Panathinaikos",
+      "pos": "F",
+      "price": 6.1,
+      "predictedPir": 6.423,
+      "actualPir": 10.0,
+      "error": -3.577,
+      "absoluteError": 3.577
+    },
+    {
+      "name": "Kostas Sloukas",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "price": 9.7,
+      "predictedPir": 10.363,
+      "actualPir": 8.0,
+      "error": 2.363,
+      "absoluteError": 2.363
+    },
+    {
+      "name": "Nick Smith Jr",
+      "team": "Real Madrid",
+      "pos": "G",
+      "price": 7.2,
+      "predictedPir": 0.0,
+      "actualPir": -2.0,
+      "error": 2.0,
+      "absoluteError": 2.0
+    },
+    {
+      "name": "Sylvain Francisco",
+      "team": "Panathinaikos",
+      "pos": "G",
+      "price": 14.1,
+      "predictedPir": 13.253,
+      "actualPir": 15.0,
+      "error": -1.747,
+      "absoluteError": 1.747
+    },
+    {
+      "name": "Chuma Okeke",
+      "team": "Real Madrid",
+      "pos": "F",
+      "price": 8.9,
+      "predictedPir": 8.704,
+      "actualPir": 8.0,
+      "error": 0.704,
+      "absoluteError": 0.704
+    },
+    {
+      "name": "Walter Tavares",
+      "team": "Real Madrid",
+      "pos": "C",
+      "price": 15.2,
+      "predictedPir": 15.805,
+      "actualPir": 16.0,
+      "error": -0.195,
+      "absoluteError": 0.195
+    }
+  ],
+  "updated_at": "2026-11-05T06:51:25.531522+00:00"
 }
