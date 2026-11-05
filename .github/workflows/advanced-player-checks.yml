@@ -1,0 +1,40 @@
+name: Verify advanced player tools
+on:
+  push:
+    branches: ['codex/advanced-player-tools-20261105']
+permissions:
+  contents: write
+concurrency:
+  group: advanced-player-checks
+  cancel-in-progress: true
+jobs:
+  verify:
+    if: "!startsWith(github.event.head_commit.message, 'Refresh verified advanced player data')"
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test calculations and build real event data
+        run: |
+          node tests/test_advanced_players.cjs
+          node scripts/build_advanced_players.cjs
+      - name: Install browser for verification
+        run: |
+          npm install --no-save --package-lock=false playwright
+          npx playwright install --with-deps chromium
+      - name: Verify all tools on mobile and desktop
+        run: node tests/test_advanced_players_browser.cjs
+      - name: Save verified data
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/advanced-players.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh verified advanced player data'
+            git push origin "HEAD:${{ github.ref_name }}"
+          fi

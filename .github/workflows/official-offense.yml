@@ -5,6 +5,10 @@ on:
     paths:
       - '.github/workflows/official-offense.yml'
       - 'scripts/build_official_metrics.py'
+      - 'scripts/build_advanced_players.cjs'
+      - 'advanced-player-core.js'
+      - 'advanced-player-tools.js'
+      - 'advanced-player-tools.css'
       - 'scripts/build_player_media.py'
       - 'official-offense-core.js'
       - 'surprises.js'
@@ -38,6 +42,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   update:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
@@ -54,6 +59,8 @@ jobs:
         run: |
           python scripts/build_official_metrics.py
           python scripts/build_player_media.py
+          node tests/test_advanced_players.cjs
+          node scripts/build_advanced_players.cjs
           python tests/test_official_metrics.py
           python tests/test_team_export.py
           node tests/test_official_offense.cjs
@@ -66,7 +73,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/official-offense.json data/player-media.json
+          git add data/official-offense.json data/player-media.json data/advanced-players.json
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh player metrics from official EuroLeague box scores'
             for attempt in 1 2 3; do
