@@ -1,0 +1,10 @@
+const assert=require('node:assert/strict');
+const {summarize}=require('../pir-compare.js');
+const games=[{code:1,date:'2026-10-01',value:30},{code:2,date:'2026-10-02',value:-6},{code:3,date:'2026-10-03',value:0},{code:4,date:'2026-10-04',value:null,dnp:true}];
+assert.equal(summarize(games,1).average,null);
+assert.equal(summarize(games,3).average,-3);
+assert.equal(summarize(games,0).average,8);
+assert.equal(summarize([...games,games[0]],0).count,3);
+assert.equal(summarize([],3).average,null);
+assert.equal(summarize([{code:1,date:'2026-10-01',value:null}],1).count,0);
+console.log('PIR compare calculations passed');

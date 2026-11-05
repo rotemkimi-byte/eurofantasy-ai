@@ -63,5 +63,11 @@ function summarize(games,data,env){
  const perRows=rows.filter(r=>r.m.per!==null),minutes=perRows.reduce((s,r)=>s+r.g.minutes,0);
  return {...rates,per:{value:minutes>0?perRows.reduce((s,r)=>s+r.m.per*r.g.minutes,0)/minutes:null,covered:perRows.length,missing:played.length-perRows.length},stocks:total('stocks'),steals:total('steals'),blocks:total('blocks'),rebounds:total('rebounds'),offensiveRebounds:total('offensiveRebounds'),defensiveRebounds:total('defensiveRebounds'),played:played.length,registered:games.length};
 }
-const api={num,possessions,environment,gameMetrics,summarize};if(typeof module!=='undefined'&&module.exports)module.exports=api;root.DefenseCore=api;
+function selectGames(profile,data,range='1',asOf=Date.now()){
+ const completed=new Set((data.teamResults||[]).map(g=>Number(g.gameCode)));
+ const rows=(profile?.games||[]).filter(g=>completed.has(Number(g.gameCode))&&Date.parse(g.date)<=asOf);
+ const unique=[...new Map(rows.map(g=>[Number(g.gameCode),g])).values()].sort((a,b)=>Date.parse(b.date)-Date.parse(a.date)||Number(b.gameCode)-Number(a.gameCode));
+ return Number(range)>0?unique.slice(0,Number(range)):unique;
+}
+const api={selectGames,num,possessions,environment,gameMetrics,summarize};if(typeof module!=='undefined'&&module.exports)module.exports=api;root.DefenseCore=api;
 })(typeof window!=='undefined'?window:globalThis);

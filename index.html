@@ -673,7 +673,7 @@ function pmGame(){
 async function pmLoadStats(){
  const request=++playerMatchRequest;playerMatchLoading=true;playerMatchErrors=0;renderPlayerMatchups();
  try{
-  const {team,opponent}=pmGame();const keys=new Set(players.filter(p=>[canonicalTeam(team),canonicalTeam(opponent)].includes(canonicalTeam(p.team))).map(p=>lastThreeName(p.name)));
+  const {team,opponent}=pmGame();const keys=new Set(players.filter(p=>(team==='__all__'||[canonicalTeam(team),canonicalTeam(opponent)].includes(canonicalTeam(p.team)))).map(p=>lastThreeName(p.name)));
   const live=await lastThreeFetch('./data/euroleague-live-E2026.json');if(live.season!=='E2026')throw Error('wrong season');
   const codes=Object.values(live.games||{}).filter(g=>(g.rows||[]).some(r=>r.season==='E2026'&&keys.has(lastThreeName(r.name)))).map(g=>Number(g.gameCode)).filter(c=>Number.isInteger(c)&&c>0&&!playerMatchBoxes.has(c));
   let index=0,errors=0;
@@ -702,9 +702,11 @@ function renderPlayerMatchups(){
  const select=document.getElementById('pmTeam');if(!select)return;
  const teams=[...new Set(players.filter(p=>['G','F','C'].includes(p.pos)).map(p=>canonicalTeam(p.team)))].sort();
  const signature=JSON.stringify(teams);
- if(select.dataset.teams!==signature){const value=select.value;select.replaceChildren(...teams.map(t=>new Option(t,t)));if(teams.includes(value))select.value=value;select.dataset.teams=signature;
+ if(select.dataset.teams!==signature){const value=select.value;select.replaceChildren(new Option('כללי · כל המשחקים','__all__'),...teams.map(t=>new Option(t,t)));if(value==='__all__'||teams.includes(value))select.value=value;else if(teams.length)select.value=teams[0];select.dataset.teams=signature;
   const opp=document.getElementById('pmOpponent'),old=opp.value;opp.replaceChildren(new Option('היריבה במשחק הבא',''),...teams.map(t=>new Option(t,t)));if(teams.includes(old))opp.value=old;
  }
+ const all=select.value==='__all__';document.getElementById('pmOpponent').disabled=all;
+ if(all)document.getElementById('pmView').value='list';
  const {team,opponent,match,manual}=pmGame(),aRoster=pmRoster(team),bRoster=opponent?pmRoster(opponent):[];
  const isNext=opponent&&canonicalTeam(opponent)===canonicalTeam(match?.opponent);
  const venue=isNext?(match?.home?'בית':'חוץ'):'השוואה ידנית';
@@ -713,6 +715,13 @@ function renderPlayerMatchups(){
  document.getElementById('pmStatus').textContent=playerMatchLoading?'טוען נתוני המשחקים…':playerMatchErrors?'חלק מנתוני המשחקים לא נטענו. הנתונים הזמינים מוצגים; אפשר לנסות שוב.':'ממוצעים למשחק בעונת 2026/27 · — מציין נתון חסר.';
  const listRoot=document.getElementById('pmCourts');
  listRoot.onclick=e=>{const target=e.target.closest('[data-pm-player]');if(target)showPlayer(target.dataset.pmPlayer)};
+ if(all){
+  const seen=new Set(),games=[];
+  for(const t of teams){const m=MATCHUPS[canonicalTeam(t)];const o=m?.opponent&&canonicalTeam(m.opponent);if(!o||o===t||!teams.includes(o))continue;const key=[t,o].sort().join('|');if(seen.has(key))continue;seen.add(key);games.push({team:t,opponent:o,match:m});}
+  document.getElementById('pmSummary').textContent=`כללי · ${games.length} מפגשים הבאים · החלק ימינה או שמאלה`;
+  listRoot.innerHTML=games.length?`<div class="pmBrowse"><button type="button" data-pm-scroll="-1" aria-label="המשחק הקודם">→ הקודם</button><span>כל המשחקים</span><button type="button" data-pm-scroll="1" aria-label="המשחק הבא">הבא ←</button></div><div class="pmAllGames" tabindex="0" role="region" aria-label="כל המשחקים · גלילה אופקית">${games.map(g=>`<article class="pmGameSlide"><h3>${esc(g.team)} מול ${esc(g.opponent)}</h3><p class="muted">המשחק הבא · ${g.match.home?'בית':'חוץ'} עבור ${esc(g.team)}</p>${pmListMarkup(pmRoster(g.team),pmRoster(g.opponent),g.team,g.opponent)}</article>`).join('')}</div>`:'<p>אין כרגע מפגשים זמינים.</p>';
+  listRoot.onclick=e=>{const b=e.target.closest('[data-pm-scroll]');if(b){const strip=listRoot.querySelector('.pmAllGames');strip.scrollBy({left:-Number(b.dataset.pmScroll)*(strip.clientWidth+16),behavior:'smooth'});return;}const target=e.target.closest('[data-pm-player]');if(target)showPlayer(target.dataset.pmPlayer);};return;
+ }
  if(document.getElementById('pmView').value==='list'){
   listRoot.innerHTML=teams.length?pmListMarkup(aRoster,bRoster,team,opponent):'<p class="muted">אין כרגע קבוצות במאגר.</p>';return;
  }
@@ -733,7 +742,7 @@ function renderPlayerMatchups(){
 document.getElementById('pmTeam').addEventListener('change',()=>{document.getElementById('pmOpponent').value='';void pmLoadStats()});
 document.getElementById('pmOpponent').addEventListener('change',()=>void pmLoadStats());
 try{const saved=localStorage.getItem('pmView');if(saved==='list'||saved==='court')document.getElementById('pmView').value=saved}catch{}
-document.getElementById('pmView').addEventListener('change',()=>{try{localStorage.setItem('pmView',document.getElementById('pmView').value)}catch{}renderPlayerMatchups()});
+document.getElementById('pmView').addEventListener('change',()=>{if(document.getElementById('pmView').value==='court'&&document.getElementById('pmTeam').value==='__all__'){document.getElementById('pmTeam').selectedIndex=1;void pmLoadStats();}try{localStorage.setItem('pmView',document.getElementById('pmView').value)}catch{}renderPlayerMatchups()});
 document.getElementById('pmReload').onclick=()=>void pmLoadStats();
 document.querySelector('[data-tab="playerMatchups"]').addEventListener('click',()=>void pmLoadStats());
 
@@ -1974,12 +1983,13 @@ for (const id of ['data', 'learning']) {
 })();
 </script>
 <script src="./usage-core.js?v=2"></script><script src="./usage-ui.js?v=3"></script>
-<script src="./defense-core.js?v=1"></script><script src="./defense-ui.js?v=1"></script>
+<script src="./defense-core.js?v=2"></script><script src="./defense-ui.js?v=2"></script>
 <script src="./team-metrics-core.js?v=1"></script><script src="./team-metrics-ui.js?v=4"></script>
 <link rel="stylesheet" href="./app-design.css?v=4">
 <script src="./surprises.js?v=2"></script>
 <script src="./free-throws.js?v=1"></script>
-<script src="./app-navigation.js?v=free-throws-1"></script>
+<script src="./pir-compare.js?v=1"></script>
+<script src="./app-navigation.js?v=pir-compare-1"></script>
 <script src="./app-player.js?v=2"></script>
 <link rel="stylesheet" href="./home-dashboard.css?v=reference-6">
 <script src="./home-dashboard.js?v=reference-5"></script>
@@ -2144,4 +2154,12 @@ new MutationObserver(records=>{
 })();
 </script>
 
-</body></html>
+<style id="matchup-readability-fix">
+/* Keep the comparison's light card palette coherent in either site theme. */
+html.ef-redesign #playerMatchups .pmCompare th,html.ef-redesign #playerMatchups .pmCompare td{background:#fff;color:#201040}
+html.ef-redesign #playerMatchups .pmCompare thead th{background:#eeeaf4;color:#4c3c61;font-weight:700}
+html.ef-redesign #playerMatchups .pmCompare .pmForecast th,html.ef-redesign #playerMatchups .pmCompare .pmForecast td{color:#08754b;background:#f1fff8}
+.pmBrowse{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:12px 0}.pmBrowse button{min-height:44px}
+.pmAllGames{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;align-items:flex-start;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;padding-bottom:12px}
+.pmGameSlide{flex:0 0 100%;min-width:0;scroll-snap-align:start}.pmGameSlide>h3{margin:12px 0 6px}.pmGameSlide .pmList{width:100%}
+</style></body></html>

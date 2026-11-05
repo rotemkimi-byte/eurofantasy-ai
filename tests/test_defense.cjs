@@ -26,3 +26,15 @@ assert.equal(D.summarize([{...g,minutes:0}],data,env).per.value,null);
 const future=JSON.parse(JSON.stringify(data));future.teamGames.future={...Object.values(data.teamGames)[0],date:'2099-01-01'};
 assert.equal(D.environment(future).games,env.games,'future games excluded from league baseline');
 console.log(`PASS: ${seen} official appearances; Stocks, block/rebound rates, weighted aggregate, missing data, DNP, future isolation and normalized PER.`);
+// A new round or a pregame box must not displace the last completed game.
+const bryant=data.players['bryant elijah'];
+assert(bryant);
+const last=D.selectGames(bryant,data,'1')[0];
+assert.equal(last.gameCode,84);
+assert.equal(D.summarize([last],data,env).stocks,0,'Bryant really recorded zero steals and blocks against Dubai');
+const pregame={...last,gameCode:999,date:'2026-11-04T17:00:00Z',stats:{...last.stats,steals:0,blocksFavour:0}};
+assert.equal(D.selectGames({...bryant,games:[...bryant.games,pregame]},data,'1',Date.parse('2026-11-05')).at(0).gameCode,84);
+const completed={...data,teamResults:[...data.teamResults,{gameCode:999}]};
+assert.equal(D.selectGames({...bryant,games:[...bryant.games,pregame]},completed,'1',Date.parse('2026-11-05')).at(0).gameCode,999);
+assert.equal(D.selectGames({...bryant,games:[...bryant.games,pregame]},completed,'1',Date.parse('2026-11-04T16:00Z')).at(0).gameCode,84);
+console.log('PASS: last completed selection, pregame protection and actual zero preserved');
