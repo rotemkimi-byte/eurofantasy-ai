@@ -2,8 +2,8 @@
   "schema": "rolling-learning-v1",
   "season": "E2026",
   "engineId": "9a5d757bb0f7a4c9ca9e",
-  "updated_at": "2026-11-05T15:35:09.065624+00:00",
-  "exactCount": 1098,
+  "updated_at": "2026-11-05T21:35:57.357325+00:00",
+  "exactCount": 1189,
   "diagnostic": {
     "n": 434,
     "mae": 5.191151955094332,
@@ -16,10 +16,10 @@
   },
   "missingInputs": 347,
   "validation": {
-    "n": 849,
-    "games": 38,
-    "baselineMae": 5.740920600759471,
-    "candidateMae": 5.706332409400325,
+    "n": 938,
+    "games": 42,
+    "baselineMae": 5.783133559191422,
+    "candidateMae": 5.746087954533302,
     "active": false,
     "reason": "collecting-or-no-improvement",
     "folds": [
@@ -364,33 +364,69 @@
         "testN": 22,
         "baselineMae": 7.42438481307738,
         "candidateMae": 7.481159937580576
+      },
+      {
+        "gameCode": 95,
+        "round": 10,
+        "trainingN": 1054,
+        "trainingGames": 47,
+        "testN": 24,
+        "baselineMae": 6.491790522337913,
+        "candidateMae": 6.384253935800634
+      },
+      {
+        "gameCode": 92,
+        "round": 10,
+        "trainingN": 1054,
+        "trainingGames": 47,
+        "testN": 19,
+        "baselineMae": 4.414500865181873,
+        "candidateMae": 4.340775561597121
+      },
+      {
+        "gameCode": 93,
+        "round": 10,
+        "trainingN": 1076,
+        "trainingGames": 48,
+        "testN": 23,
+        "baselineMae": 7.559981383333832,
+        "candidateMae": 7.5317317986984715
+      },
+      {
+        "gameCode": 94,
+        "round": 10,
+        "trainingN": 1076,
+        "trainingGames": 48,
+        "testN": 23,
+        "baselineMae": 5.9556359863269845,
+        "candidateMae": 5.922940185727687
       }
     ],
-    "intervalCoverage": 0.7985865724381626
+    "intervalCoverage": 0.7942430703624733
   },
   "coefficients": {
     "G": {
-      "n": 435,
-      "minutes": -0.5184638005948832,
-      "efficiencyPir": -0.12567362074823274
+      "n": 468,
+      "minutes": -0.48443851354112477,
+      "efficiencyPir": -0.08251683076241775
     },
     "F": {
-      "n": 383,
-      "minutes": -0.3323927323321655,
-      "efficiencyPir": -0.06487611748380741
+      "n": 418,
+      "minutes": -0.4263265361228956,
+      "efficiencyPir": -0.09353250070403135
     },
     "C": {
-      "n": 198,
-      "minutes": -1.0001214127158178,
-      "efficiencyPir": 0.4201215112887891
+      "n": 213,
+      "minutes": -0.9253585169888087,
+      "efficiencyPir": 0.4190288490362071
     }
   },
   "interval": {
     "active": true,
     "targetCoverage": 0.8,
-    "coverage": 0.7985865724381626,
-    "n": 849,
-    "radius": 9.04977007929328
+    "coverage": 0.7942430703624733,
+    "n": 938,
+    "radius": 9.084769258471518
   },
   "limitations": [
     "Partial historical reconstructions exclude unrecoverable pregame defensive context and momentum configuration; never activate live corrections.",
@@ -568,14 +604,14 @@
     {
       "round": 10,
       "kind": "exact-frozen-input",
-      "n": 23,
-      "mae": 7.188541995117494,
-      "bias": 2.1321796106014412,
-      "minutesMae": 6.535215087831548,
-      "hits": 5,
-      "hitRate": 21.73913043478261,
-      "over": 8,
-      "under": 10
+      "n": 114,
+      "mae": 6.434712415727651,
+      "bias": 0.14128803397001083,
+      "minutesMae": 5.316498968489965,
+      "hits": 30,
+      "hitRate": 26.31578947368421,
+      "over": 51,
+      "under": 33
     },
     {
       "round": 10,
@@ -906,6 +942,98 @@
       "replayKind": "exact-frozen-input",
       "baseFloor": 5.665302732528796,
       "baseCeiling": 15.283142255193965
+    },
+    {
+      "name": "Austin Wiley",
+      "key": "austin wiley",
+      "team": "Bayern Munich",
+      "pos": "C",
+      "opponent": "ASVEL",
+      "gameCode": 94,
+      "round": 10,
+      "start": "2026-11-05T19:00:00Z",
+      "basePir": 7.663331559384326,
+      "baseMinutes": 15.12421818135133,
+      "servedPir": 7.663331559384326,
+      "servedMinutes": 15.12421818135133,
+      "status": "active",
+      "modelId": "c03f7a7ef1e565c4f132",
+      "eligible": true,
+      "snapshotAt": "2026-11-04T23:57:26.832631+00:00",
+      "home": false,
+      "features": {
+        "basePir": 8.835,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 84.07545,
+        "margin": -2.4791,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6923076923076923,
+          "minutesWeight": 0.8181818181818182,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6923076923076923,
+        "context": {
+          "involvementFactor": 0.9942349989157708,
+          "defenseFactor": 1.0038328149256206,
+          "defenseSample": 8,
+          "rival": "Joel Bolomboy",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.190364844116298,
+              "weight": 0.7976159044930506,
+              "observedGames": 6
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.739972727272725,
+              "weight": 0.06428083018027608,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.38649160859646,
+              "weight": 0.13810326532667325,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": true
+        }
+      },
+      "actualPir": 32,
+      "actualMinutes": 23.65,
+      "fouls": 2,
+      "actualStats": {
+        "points": 22,
+        "totalRebounds": 9,
+        "assistances": 2,
+        "turnovers": 3,
+        "foulsCommited": 2,
+        "fieldGoalsMadeTotal": 8,
+        "fieldGoalsAttemptedTotal": 9
+      },
+      "minutesContribution": 4.31995175524754,
+      "efficiencyContribution": 20.01671668536813,
+      "reason": "efficiency",
+      "error": 24.336668440615675,
+      "servedError": 24.336668440615675,
+      "outcome": "miss",
+      "replayKind": "exact-frozen-input",
+      "baseFloor": 4.340358824949953,
+      "baseCeiling": 10.959406032998634
     },
     {
       "name": "Vladimir Lucic",
@@ -1410,183 +1538,118 @@
       "baseCeiling": 9.382340168368575
     },
     {
-      "name": "Both Gach",
-      "key": "both gach",
-      "team": "ASVEL",
-      "pos": "F",
-      "opponent": "Paris",
-      "gameCode": 31,
-      "round": 4,
-      "start": "2026-10-07T18:45:00Z",
-      "basePir": 4.367313070645767,
-      "baseMinutes": 17.576,
-      "servedPir": 4.044599274048014,
-      "servedMinutes": 17.506500000000003,
+      "name": "Nadir Hifi",
+      "key": "hifi nadir",
+      "team": "Paris",
+      "pos": "G",
+      "opponent": "Anadolu Efes",
+      "gameCode": 95,
+      "round": 10,
+      "start": "2026-11-05T17:15:00Z",
+      "basePir": 18.31314323326228,
+      "baseMinutes": 24.52412722222222,
+      "servedPir": 18.31314323326228,
+      "servedMinutes": 24.52412722222222,
       "status": "active",
-      "modelId": "c9d03cdbf2c56829b3d4",
+      "modelId": "c03f7a7ef1e565c4f132",
       "eligible": true,
-      "snapshotAt": "2026-10-07T17:27:15.004896+00:00",
+      "snapshotAt": "2026-11-04T18:41:25.544682+00:00",
       "home": false,
       "features": {
-        "basePir": 7.1610000000000005,
-        "baseMin": 19,
-        "injuryBoost": 0.13849999999999996,
-        "injuryUsagePct": 0.16199999999999992,
+        "basePir": 17.12696404346072,
+        "baseMin": 23.108508888888885,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
         "missingStars": [],
-        "positionMatchPct": 8.681000000000004,
-        "teamPoints": 83.65,
-        "margin": -5.82,
+        "positionMatchPct": -6.562000000000001,
+        "teamPoints": 86.25805,
+        "margin": -1.2439,
         "lastGameWeight": null,
         "personalPrior": {
-          "historicalGames": 0,
-          "historyWeight": 0,
-          "sameTeam": false,
-          "avgPir": null,
-          "avgMinutes": null,
-          "currentSeasonWeight": 0.42857142857142855,
-          "minutesWeight": 0.6,
-          "momentumPir": 0,
-          "momentumEnabled": false,
-          "hot": false,
-          "streaks": []
-        },
-        "currentSeasonWeight": 0.42857142857142855
-      },
-      "actualPir": 25,
-      "actualMinutes": 26.3,
-      "fouls": 1,
-      "actualStats": {
-        "points": 17,
-        "totalRebounds": 5,
-        "assistances": 6,
-        "turnovers": 0,
-        "foulsCommited": 1,
-        "fieldGoalsMadeTotal": 6,
-        "fieldGoalsAttemptedTotal": 8
-      },
-      "minutesContribution": 2.1677537112149334,
-      "efficiencyContribution": 18.4649332181393,
-      "reason": "efficiency",
-      "error": 20.632686929354232,
-      "servedError": 20.955400725951986,
-      "outcome": "miss",
-      "replayKind": "partial-reconstruction",
-      "baseFloor": 2.0744737085567393,
-      "baseCeiling": 6.769335259500939
-    },
-    {
-      "name": "Tyson Carter",
-      "key": "carter tyson",
-      "team": "Crvena Zvezda",
-      "pos": "G",
-      "opponent": "Maccabi Tel Aviv",
-      "gameCode": 71,
-      "round": 8,
-      "start": "2026-10-27T19:00:00Z",
-      "basePir": 5.49736101053413,
-      "baseMinutes": 15.557916081871344,
-      "servedPir": 5.49736101053413,
-      "servedMinutes": 15.557916081871344,
-      "status": "active",
-      "modelId": "bca9e3688fc32a46592e",
-      "eligible": true,
-      "snapshotAt": "2026-10-26T19:36:36.770854+00:00",
-      "home": true,
-      "features": {
-        "basePir": 3.7124564231105235,
-        "baseMin": 14.398247368421053,
-        "injuryBoost": 0.02974999999999998,
-        "injuryUsagePct": 0.05099999999999997,
-        "missingStars": [],
-        "positionMatchPct": 10.800999999999995,
-        "teamPoints": 90.82785000000001,
-        "margin": 6.3557,
-        "lastGameWeight": null,
-        "personalPrior": {
-          "historicalGames": 11,
-          "historyWeight": 0.5789473684210527,
+          "historicalGames": 37,
+          "historyWeight": 0.8222222222222222,
           "sameTeam": true,
-          "avgPir": 2,
-          "avgMinutes": 14.687881818181818,
-          "currentSeasonWeight": 0.6363636363636364,
-          "minutesWeight": 0.7777777777777778,
+          "avgPir": 17.56756756756757,
+          "avgMinutes": 22.267105405405403,
+          "currentSeasonWeight": 0.6,
+          "minutesWeight": 0.75,
           "momentumPir": 0,
           "momentumEnabled": false,
           "hot": false,
           "streaks": [
             {
               "threshold": 20,
-              "longestRun": 0,
-              "nextGameSamples": 0,
-              "nextGameAvgPir": null,
-              "continuedRate": null
+              "longestRun": 4,
+              "nextGameSamples": 7,
+              "nextGameAvgPir": 17.571428571428573,
+              "continuedRate": 0.42857142857142855
             },
             {
               "threshold": 25,
-              "longestRun": 0,
-              "nextGameSamples": 0,
-              "nextGameAvgPir": null,
-              "continuedRate": null
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 23,
+              "continuedRate": 0
             },
             {
               "threshold": 30,
-              "longestRun": 0,
+              "longestRun": 1,
               "nextGameSamples": 0,
               "nextGameAvgPir": null,
               "continuedRate": null
             }
           ]
         },
-        "currentSeasonWeight": 0.6363636363636364,
+        "currentSeasonWeight": 0.6,
         "context": {
-          "involvementFactor": 1.0368749458058026,
-          "defenseFactor": 1.018949802043482,
-          "defenseSample": 7,
-          "rival": "Yam Madar",
+          "involvementFactor": 1.0235241330573994,
+          "defenseFactor": 1.0126058094603907,
+          "defenseSample": 8,
+          "rival": "Jordan Loyd",
           "scenarios": [
             {
               "id": "close",
-              "minutes": 15.542991329708672,
-              "weight": 0.742719266602054,
-              "observedGames": 6
+              "minutes": 24.77136831864019,
+              "weight": 0.8052870858163792,
+              "observedGames": 3
             },
             {
               "id": "big-win",
-              "minutes": 15.752933706295803,
-              "weight": 0.22536841221882323,
-              "observedGames": 1
+              "minutes": 22.27485344037909,
+              "weight": 0.0788966845061654,
+              "observedGames": 0
             },
             {
               "id": "big-loss",
-              "minutes": 14.528034513361373,
-              "weight": 0.03191232117912276,
-              "observedGames": 0
+              "minutes": 24.337281059515394,
+              "weight": 0.11581622967745536,
+              "observedGames": 1
             }
           ],
           "minutesCorrectionActive": false
         }
       },
-      "actualPir": 26,
-      "actualMinutes": 22.483333333333334,
+      "actualPir": 39,
+      "actualMinutes": 24.716666666666665,
       "fouls": 2,
       "actualStats": {
-        "points": 24,
-        "totalRebounds": 5,
-        "assistances": 3,
-        "turnovers": 1,
+        "points": 28,
+        "totalRebounds": 6,
+        "assistances": 9,
+        "turnovers": 4,
         "foulsCommited": 2,
-        "fieldGoalsMadeTotal": 8,
-        "fieldGoalsAttemptedTotal": 12
+        "fieldGoalsMadeTotal": 9,
+        "fieldGoalsAttemptedTotal": 14
       },
-      "minutesContribution": 2.447083438393778,
-      "efficiencyContribution": 18.055555551072093,
+      "minutesContribution": 0.14377687704086115,
+      "efficiencyContribution": 20.54307988969686,
       "reason": "efficiency",
-      "error": 20.502638989465872,
-      "servedError": 20.502638989465872,
+      "error": 20.68685676673772,
+      "servedError": 20.68685676673772,
       "outcome": "miss",
       "replayKind": "exact-frozen-input",
-      "baseFloor": 2.79674941926625,
-      "baseCeiling": 7.544719363601978
+      "baseFloor": 9.2764902796103,
+      "baseCeiling": 25.97417278290885
     }
   ]
 }
