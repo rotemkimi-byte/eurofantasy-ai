@@ -3,36 +3,56 @@
   "round": 10,
   "complete": false,
   "scheduledGames": 10,
-  "playedGames": 1,
-  "gradedGames": 1,
+  "playedGames": 3,
+  "gradedGames": 3,
   "metrics": {
-    "n": 23,
-    "mae": 7.189,
-    "rmse": 8.7,
-    "bias": -2.132,
-    "within3": 0.2174,
-    "within5": 0.3913,
-    "correlation": 0.5497,
+    "n": 67,
+    "mae": 6.088,
+    "rmse": 7.616,
+    "bias": -0.279,
+    "within3": 0.2687,
+    "within5": 0.5075,
+    "correlation": 0.6221,
     "byPosition": {
       "G": {
-        "n": 8,
-        "mae": 7.058,
-        "bias": -4.181
+        "n": 26,
+        "mae": 6.705,
+        "bias": -1.418
       },
       "F": {
-        "n": 10,
-        "mae": 6.837,
-        "bias": -0.186
+        "n": 28,
+        "mae": 4.931,
+        "bias": 0.729
       },
       "C": {
-        "n": 5,
-        "mae": 8.102,
-        "bias": -2.747
+        "n": 13,
+        "mae": 7.348,
+        "bias": -0.17
       }
     }
   },
   "largestMisses": [
     {
+      "name": "Nadir Hifi",
+      "team": "Paris",
+      "pos": "G",
+      "price": 15.1,
+      "predictedPir": 18.317,
+      "actualPir": 39.0,
+      "error": -20.683,
+      "absoluteError": 20.683
+    },
+    {
+      "name": "Cameron Payne",
+      "team": "Anadolu Efes",
+      "pos": "G",
+      "price": 9.5,
+      "predictedPir": 11.659,
+      "actualPir": 29.0,
+      "error": -17.341,
+      "absoluteError": 17.341
+    },
+    {
       "name": "Alberto Abalde",
       "team": "Real Madrid",
       "pos": "F",
@@ -83,6 +103,26 @@
       "absoluteError": 13.462
     },
     {
+      "name": "Bruno Fernando",
+      "team": "Anadolu Efes",
+      "pos": "C",
+      "price": 9.8,
+      "predictedPir": 11.557,
+      "actualPir": 23.0,
+      "error": -11.443,
+      "absoluteError": 11.443
+    },
+    {
+      "name": "Shavon Shields",
+      "team": "Fenerbahce",
+      "pos": "F",
+      "price": 13.3,
+      "predictedPir": 16.022,
+      "actualPir": 5.0,
+      "error": 11.022,
+      "absoluteError": 11.022
+    },
+    {
       "name": "Nigel Hayes-davis",
       "team": "Panathinaikos",
       "pos": "F",
@@ -93,98 +133,78 @@
       "absoluteError": 10.747
     },
     {
-      "name": "Gabriele Procida",
-      "team": "Real Madrid",
-      "pos": "F",
-      "price": 4.2,
-      "predictedPir": 3.519,
-      "actualPir": 11.0,
-      "error": -7.481,
-      "absoluteError": 7.481
-    },
-    {
-      "name": "Isaac Bonga",
-      "team": "Panathinaikos",
-      "pos": "F",
-      "price": 8.9,
-      "predictedPir": 4.752,
-      "actualPir": 12.0,
-      "error": -7.248,
-      "absoluteError": 7.248
-    },
-    {
-      "name": "Jerian Grant",
-      "team": "Panathinaikos",
+      "name": "Talen Horton-Tucker",
+      "team": "Fenerbahce",
       "pos": "G",
-      "price": 8.2,
-      "predictedPir": 7.142,
-      "actualPir": 0.0,
-      "error": 7.142,
-      "absoluteError": 7.142
+      "price": 11.8,
+      "predictedPir": 11.596,
+      "actualPir": 22.0,
+      "error": -10.404,
+      "absoluteError": 10.404
     },
     {
-      "name": "Moustapha Fall",
-      "team": "Panathinaikos",
+      "name": "Kenneth Faried",
+      "team": "Baskonia",
       "pos": "C",
-      "price": 6.9,
-      "predictedPir": 6.771,
-      "actualPir": 0.0,
-      "error": 6.771,
-      "absoluteError": 6.771
+      "price": 10.4,
+      "predictedPir": 11.698,
+      "actualPir": 22.0,
+      "error": -10.302,
+      "absoluteError": 10.302
     },
     {
-      "name": "Sergio Llull",
-      "team": "Real Madrid",
+      "name": "Joel Ayayi",
+      "team": "Paris",
       "pos": "G",
-      "price": 4.0,
-      "predictedPir": 2.363,
-      "actualPir": 9.0,
-      "error": -6.637,
-      "absoluteError": 6.637
+      "price": 5.0,
+      "predictedPir": 4.786,
+      "actualPir": -5.0,
+      "error": 9.786,
+      "absoluteError": 9.786
     },
     {
-      "name": "Olivier Sarr",
-      "team": "Real Madrid",
-      "pos": "C",
-      "price": 8.2,
-      "predictedPir": 7.616,
-      "actualPir": 1.0,
-      "error": 6.616,
-      "absoluteError": 6.616
-    },
-    {
-      "name": "Jaime Pradilla",
-      "team": "Real Madrid",
-      "pos": "F",
-      "price": 8.1,
-      "predictedPir": 7.546,
-      "actualPir": 1.0,
-      "error": 6.546,
-      "absoluteError": 6.546
-    },
-    {
-      "name": "Timothé Luwawu-Cabarrot",
-      "team": "Real Madrid",
-      "pos": "F",
-      "price": 9.6,
-      "predictedPir": 5.175,
-      "actualPir": -1.0,
-      "error": 6.175,
-      "absoluteError": 6.175
-    },
-    {
-      "name": "Juancho Hernangomez",
-      "team": "Panathinaikos",
-      "pos": "F",
+      "name": "Matthew Strazel",
+      "team": "Anadolu Efes",
+      "pos": "G",
       "price": 10.6,
-      "predictedPir": 8.88,
+      "predictedPir": 13.477,
       "actualPir": 4.0,
-      "error": 4.88,
-      "absoluteError": 4.88
+      "error": 9.477,
+      "absoluteError": 9.477
+    },
+    {
+      "name": "Allan Dokossi",
+      "team": "Paris",
+      "pos": "C",
+      "price": 8.8,
+      "predictedPir": 11.085,
+      "actualPir": 2.0,
+      "error": 9.085,
+      "absoluteError": 9.085
     }
   ],
   "comparisons": [
     {
+      "name": "Nadir Hifi",
+      "team": "Paris",
+      "pos": "G",
+      "price": 15.1,
+      "predictedPir": 18.317,
+      "actualPir": 39.0,
+      "error": -20.683,
+      "absoluteError": 20.683
+    },
+    {
+      "name": "Cameron Payne",
+      "team": "Anadolu Efes",
+      "pos": "G",
+      "price": 9.5,
+      "predictedPir": 11.659,
+      "actualPir": 29.0,
+      "error": -17.341,
+      "absoluteError": 17.341
+    },
+    {
       "name": "Alberto Abalde",
       "team": "Real Madrid",
       "pos": "F",
@@ -235,6 +255,26 @@
       "absoluteError": 13.462
     },
     {
+      "name": "Bruno Fernando",
+      "team": "Anadolu Efes",
+      "pos": "C",
+      "price": 9.8,
+      "predictedPir": 11.557,
+      "actualPir": 23.0,
+      "error": -11.443,
+      "absoluteError": 11.443
+    },
+    {
+      "name": "Shavon Shields",
+      "team": "Fenerbahce",
+      "pos": "F",
+      "price": 13.3,
+      "predictedPir": 16.022,
+      "actualPir": 5.0,
+      "error": 11.022,
+      "absoluteError": 11.022
+    },
+    {
       "name": "Nigel Hayes-davis",
       "team": "Panathinaikos",
       "pos": "F",
@@ -245,6 +285,76 @@
       "absoluteError": 10.747
     },
     {
+      "name": "Talen Horton-Tucker",
+      "team": "Fenerbahce",
+      "pos": "G",
+      "price": 11.8,
+      "predictedPir": 11.596,
+      "actualPir": 22.0,
+      "error": -10.404,
+      "absoluteError": 10.404
+    },
+    {
+      "name": "Kenneth Faried",
+      "team": "Baskonia",
+      "pos": "C",
+      "price": 10.4,
+      "predictedPir": 11.698,
+      "actualPir": 22.0,
+      "error": -10.302,
+      "absoluteError": 10.302
+    },
+    {
+      "name": "Joel Ayayi",
+      "team": "Paris",
+      "pos": "G",
+      "price": 5.0,
+      "predictedPir": 4.786,
+      "actualPir": -5.0,
+      "error": 9.786,
+      "absoluteError": 9.786
+    },
+    {
+      "name": "Matthew Strazel",
+      "team": "Anadolu Efes",
+      "pos": "G",
+      "price": 10.6,
+      "predictedPir": 13.477,
+      "actualPir": 4.0,
+      "error": 9.477,
+      "absoluteError": 9.477
+    },
+    {
+      "name": "Allan Dokossi",
+      "team": "Paris",
+      "pos": "C",
+      "price": 8.8,
+      "predictedPir": 11.085,
+      "actualPir": 2.0,
+      "error": 9.085,
+      "absoluteError": 9.085
+    },
+    {
+      "name": "Jordan Loyd",
+      "team": "Anadolu Efes",
+      "pos": "G",
+      "price": 9.7,
+      "predictedPir": 9.973,
+      "actualPir": 2.0,
+      "error": 7.973,
+      "absoluteError": 7.973
+    },
+    {
+      "name": "Kai Jones",
+      "team": "Anadolu Efes",
+      "pos": "C",
+      "price": 8.7,
+      "predictedPir": 8.94,
+      "actualPir": 1.0,
+      "error": 7.94,
+      "absoluteError": 7.94
+    },
+    {
       "name": "Gabriele Procida",
       "team": "Real Madrid",
       "pos": "F",
@@ -253,6 +363,16 @@
       "actualPir": 11.0,
       "error": -7.481,
       "absoluteError": 7.481
+    },
+    {
+      "name": "Collin Malcolm",
+      "team": "Anadolu Efes",
+      "pos": "F",
+      "price": 9.4,
+      "predictedPir": 13.622,
+      "actualPir": 21.0,
+      "error": -7.378,
+      "absoluteError": 7.378
     },
     {
       "name": "Isaac Bonga",
@@ -273,6 +393,26 @@
       "actualPir": 0.0,
       "error": 7.142,
       "absoluteError": 7.142
+    },
+    {
+      "name": "Mouhamed Faye",
+      "team": "Paris",
+      "pos": "C",
+      "price": 8.0,
+      "predictedPir": 9.999,
+      "actualPir": 3.0,
+      "error": 6.999,
+      "absoluteError": 6.999
+    },
+    {
+      "name": "Clement Frisch",
+      "team": "Baskonia",
+      "pos": "F",
+      "price": 5.0,
+      "predictedPir": 6.061,
+      "actualPir": 13.0,
+      "error": -6.939,
+      "absoluteError": 6.939
     },
     {
       "name": "Moustapha Fall",
@@ -305,6 +445,16 @@
       "absoluteError": 6.616
     },
     {
+      "name": "Maozinha Pereira",
+      "team": "Paris",
+      "pos": "F",
+      "price": 8.4,
+      "predictedPir": 7.385,
+      "actualPir": 14.0,
+      "error": -6.615,
+      "absoluteError": 6.615
+    },
+    {
       "name": "Jaime Pradilla",
       "team": "Real Madrid",
       "pos": "F",
@@ -325,6 +475,56 @@
       "absoluteError": 6.175
     },
     {
+      "name": "Jared Rhoden",
+      "team": "Paris",
+      "pos": "G",
+      "price": 9.4,
+      "predictedPir": 10.003,
+      "actualPir": 16.0,
+      "error": -5.997,
+      "absoluteError": 5.997
+    },
+    {
+      "name": "Santi Yusta",
+      "team": "Anadolu Efes",
+      "pos": "F",
+      "price": 7.5,
+      "predictedPir": 6.299,
+      "actualPir": 1.0,
+      "error": 5.299,
+      "absoluteError": 5.299
+    },
+    {
+      "name": "Shane Larkin",
+      "team": "Fenerbahce",
+      "pos": "G",
+      "price": 11.8,
+      "predictedPir": 9.169,
+      "actualPir": 4.0,
+      "error": 5.169,
+      "absoluteError": 5.169
+    },
+    {
+      "name": "Dj Stewart",
+      "team": "Baskonia",
+      "pos": "G",
+      "price": 8.3,
+      "predictedPir": 6.898,
+      "actualPir": 12.0,
+      "error": -5.102,
+      "absoluteError": 5.102
+    },
+    {
+      "name": "Johnny Juzang",
+      "team": "Fenerbahce",
+      "pos": "F",
+      "price": 8.7,
+      "predictedPir": 8.948,
+      "actualPir": 4.0,
+      "error": 4.948,
+      "absoluteError": 4.948
+    },
+    {
       "name": "Juancho Hernangomez",
       "team": "Panathinaikos",
       "pos": "F",
@@ -333,6 +533,56 @@
       "actualPir": 4.0,
       "error": 4.88,
       "absoluteError": 4.88
+    },
+    {
+      "name": "Daron Russell",
+      "team": "Anadolu Efes",
+      "pos": "G",
+      "price": 8.5,
+      "predictedPir": 4.866,
+      "actualPir": 0.0,
+      "error": 4.866,
+      "absoluteError": 4.866
+    },
+    {
+      "name": "Georgios Papagiannis",
+      "team": "Anadolu Efes",
+      "pos": "C",
+      "price": 6.5,
+      "predictedPir": 4.838,
+      "actualPir": 0.0,
+      "error": 4.838,
+      "absoluteError": 4.838
+    },
+    {
+      "name": "Jeremy Morgan",
+      "team": "Paris",
+      "pos": "F",
+      "price": 4.7,
+      "predictedPir": 2.821,
+      "actualPir": -2.0,
+      "error": 4.821,
+      "absoluteError": 4.821
+    },
+    {
+      "name": "Tyson Etienne",
+      "team": "Paris",
+      "pos": "G",
+      "price": 10.5,
+      "predictedPir": 10.655,
+      "actualPir": 6.0,
+      "error": 4.655,
+      "absoluteError": 4.655
+    },
+    {
+      "name": "Nicolo Melli",
+      "team": "Fenerbahce",
+      "pos": "F",
+      "price": 8.1,
+      "predictedPir": 8.397,
+      "actualPir": 4.0,
+      "error": 4.397,
+      "absoluteError": 4.397
     },
     {
       "name": "Brancou Badio",
@@ -355,6 +605,36 @@
       "absoluteError": 4.205
     },
     {
+      "name": "Thierry Henry Alves de Souza",
+      "team": "Baskonia",
+      "pos": "C",
+      "price": 4.0,
+      "predictedPir": 3.775,
+      "actualPir": 0.0,
+      "error": 3.775,
+      "absoluteError": 3.775
+    },
+    {
+      "name": "Pedro Souza",
+      "team": "Baskonia",
+      "pos": "F",
+      "price": 4.0,
+      "predictedPir": 3.676,
+      "actualPir": 0.0,
+      "error": 3.676,
+      "absoluteError": 3.676
+    },
+    {
+      "name": "Damion Baugh",
+      "team": "Baskonia",
+      "pos": "G",
+      "price": 8.1,
+      "predictedPir": 7.599,
+      "actualPir": 4.0,
+      "error": 3.599,
+      "absoluteError": 3.599
+    },
+    {
       "name": "Konstantinos Mitoglou",
       "team": "Panathinaikos",
       "pos": "F",
@@ -363,6 +643,66 @@
       "actualPir": 10.0,
       "error": -3.577,
       "absoluteError": 3.577
+    },
+    {
+      "name": "Sebastian Herrera",
+      "team": "Paris",
+      "pos": "G",
+      "price": 6.0,
+      "predictedPir": 7.319,
+      "actualPir": 4.0,
+      "error": 3.319,
+      "absoluteError": 3.319
+    },
+    {
+      "name": "Ignas Sargiunas",
+      "team": "Fenerbahce",
+      "pos": "G",
+      "price": 5.6,
+      "predictedPir": 5.182,
+      "actualPir": 2.0,
+      "error": 3.182,
+      "absoluteError": 3.182
+    },
+    {
+      "name": "Will Clyburn",
+      "team": "Fenerbahce",
+      "pos": "F",
+      "price": 11.5,
+      "predictedPir": 12.016,
+      "actualPir": 9.0,
+      "error": 3.016,
+      "absoluteError": 3.016
+    },
+    {
+      "name": "Chris Duarte",
+      "team": "Baskonia",
+      "pos": "G",
+      "price": 9.8,
+      "predictedPir": 0.0,
+      "actualPir": -3.0,
+      "error": 3.0,
+      "absoluteError": 3.0
+    },
+    {
+      "name": "Braxton Key",
+      "team": "Fenerbahce",
+      "pos": "F",
+      "price": 7.7,
+      "predictedPir": 7.221,
+      "actualPir": 10.0,
+      "error": -2.779,
+      "absoluteError": 2.779
+    },
+    {
+      "name": "Erkan Yilmaz",
+      "team": "Anadolu Efes",
+      "pos": "F",
+      "price": 4.0,
+      "predictedPir": 3.756,
+      "actualPir": 1.0,
+      "error": 2.756,
+      "absoluteError": 2.756
     },
     {
       "name": "Kostas Sloukas",
@@ -385,6 +725,16 @@
       "absoluteError": 2.0
     },
     {
+      "name": "Trent Forrest",
+      "team": "Fenerbahce",
+      "pos": "G",
+      "price": 8.3,
+      "predictedPir": 5.804,
+      "actualPir": 4.0,
+      "error": 1.804,
+      "absoluteError": 1.804
+    },
+    {
       "name": "Sylvain Francisco",
       "team": "Panathinaikos",
       "pos": "G",
@@ -393,6 +743,66 @@
       "actualPir": 15.0,
       "error": -1.747,
       "absoluteError": 1.747
+    },
+    {
+      "name": "Stefan Joksimovic",
+      "team": "Baskonia",
+      "pos": "F",
+      "price": 4.3,
+      "predictedPir": 3.489,
+      "actualPir": 2.0,
+      "error": 1.489,
+      "absoluteError": 1.489
+    },
+    {
+      "name": "Dario Saric",
+      "team": "Anadolu Efes",
+      "pos": "F",
+      "price": 14.4,
+      "predictedPir": 16.243,
+      "actualPir": 15.0,
+      "error": 1.243,
+      "absoluteError": 1.243
+    },
+    {
+      "name": "Matteo Spagnolo",
+      "team": "Baskonia",
+      "pos": "G",
+      "price": 5.2,
+      "predictedPir": 3.884,
+      "actualPir": 5.0,
+      "error": -1.116,
+      "absoluteError": 1.116
+    },
+    {
+      "name": "Ercan Osmani",
+      "team": "Anadolu Efes",
+      "pos": "F",
+      "price": 7.1,
+      "predictedPir": 4.073,
+      "actualPir": 3.0,
+      "error": 1.073,
+      "absoluteError": 1.073
+    },
+    {
+      "name": "Leopold Cavaliere",
+      "team": "Paris",
+      "pos": "F",
+      "price": 4.3,
+      "predictedPir": 4.021,
+      "actualPir": 3.0,
+      "error": 1.021,
+      "absoluteError": 1.021
+    },
+    {
+      "name": "Alize Johnson",
+      "team": "Paris",
+      "pos": "F",
+      "price": 9.1,
+      "predictedPir": 7.841,
+      "actualPir": 7.0,
+      "error": 0.841,
+      "absoluteError": 0.841
     },
     {
       "name": "Chuma Okeke",
@@ -405,6 +815,36 @@
       "absoluteError": 0.704
     },
     {
+      "name": "Marcus Bingham",
+      "team": "Fenerbahce",
+      "pos": "C",
+      "price": 9.9,
+      "predictedPir": 6.633,
+      "actualPir": 6.0,
+      "error": 0.633,
+      "absoluteError": 0.633
+    },
+    {
+      "name": "Kobi Simmons",
+      "team": "Baskonia",
+      "pos": "G",
+      "price": 8.0,
+      "predictedPir": 6.39,
+      "actualPir": 6.0,
+      "error": 0.39,
+      "absoluteError": 0.39
+    },
+    {
+      "name": "Tj Warren",
+      "team": "Paris",
+      "pos": "F",
+      "price": 10.9,
+      "predictedPir": 11.377,
+      "actualPir": 11.0,
+      "error": 0.377,
+      "absoluteError": 0.377
+    },
+    {
       "name": "Walter Tavares",
       "team": "Real Madrid",
       "pos": "C",
@@ -415,5 +855,5 @@
       "absoluteError": 0.195
     }
   ],
-  "updated_at": "2026-11-05T06:51:25.531522+00:00"
+  "updated_at": "2026-11-05T19:58:48.323263+00:00"
 }
