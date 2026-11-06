@@ -44,16 +44,16 @@ html[data-theme="dark"] #pirCompare{--pc-bg:#162237;--pc-soft:#203149;--pc-text:
 #pirCompare .pc-value,#pirCompare .pc-table .pc-current{color:var(--pc-accent)}#pirCompare .pc-value.negative{color:var(--pc-negative)}
 #pirCompare .pc-table th,#pirCompare .pc-table td{background:var(--pc-soft);color:var(--pc-text);border-color:var(--pc-border)}
 #pirCompare [data-results]{scroll-margin-top:110px}
-.pc-chart{--pc-chart-bg:#f6f8fc;--pc-chart-grid:#a2b1c5;--pc-chart-guide:#60728d;--pc-line-1:#1b59ce;--pc-line-2:#08783d;--pc-line-3:#ad4e08;--pc-line-4:#823bc2;--pc-line-5:#ad235b;--pc-line-6:#007685;max-width:640px;margin:14px auto 0;padding:14px 10px 8px;border:1px solid var(--pc-border);border-radius:16px;background:var(--pc-chart-bg)}
+.pc-chart{--pc-chart-bg:#f6f8fc;--pc-chart-grid:#a2b1c5;--pc-chart-guide:#60728d;--pc-line-1:#1b59ce;--pc-line-2:#08783d;--pc-line-3:#ad4e08;--pc-line-4:#823bc2;--pc-line-5:#ad235b;--pc-line-6:#007685;max-width:640px;margin:14px auto 0;padding:14px 10px 8px;border:1px solid var(--pc-border,var(--line));border-radius:16px;background:var(--pc-chart-bg)}
 html[data-theme="dark"] .pc-chart{--pc-chart-bg:#080b10;--pc-chart-grid:#536175;--pc-chart-guide:#a8b7cb;--pc-line-1:#5b96ff;--pc-line-2:#59c475;--pc-line-3:#f2a750;--pc-line-4:#c59aff;--pc-line-5:#ff8cbc;--pc-line-6:#54d7e8}
-.pc-chart h4{margin:0 4px 14px;font-size:clamp(17px,4vw,23px);color:var(--pc-text)}
+.pc-chart h4{margin:0 4px 14px;font-size:clamp(17px,4vw,23px);color:var(--pc-text,var(--text))}
 .pc-chart-legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 4px 10px}
-.pc-chart-legend div{border-inline-start:4px solid var(--pc-series);padding-inline-start:8px;line-height:1.25;overflow-wrap:anywhere;color:var(--pc-text)}
+.pc-chart-legend div{border-inline-start:4px solid var(--pc-series);padding-inline-start:8px;line-height:1.25;overflow-wrap:anywhere;color:var(--pc-text,var(--text))}
 .pc-chart-legend strong{display:block;font-size:24px}
 .pc-chart svg{display:block;width:100%;height:auto;cursor:crosshair;direction:ltr}
-.pc-chart svg:focus-visible{outline:2px solid var(--pc-accent);outline-offset:2px}
-.pc-chart svg text{fill:var(--pc-muted);font-size:12px}
-.pc-chart svg .pc-chart-round{fill:var(--pc-text);font-weight:800}
+.pc-chart svg:focus-visible{outline:2px solid var(--pc-accent,var(--accent));outline-offset:2px}
+.pc-chart svg text{fill:var(--pc-muted,var(--muted));font-size:12px}
+.pc-chart svg .pc-chart-round{fill:var(--pc-text,var(--text));font-weight:800}
 .pc-chart svg .pc-zero{stroke:var(--pc-chart-guide)}
 .pc-summary{margin-top:8px}
 #pirCompare .pc-game{border-color:var(--pc-border)}
@@ -102,16 +102,16 @@ function roundSeries(picks,range){
  return {series,rounds:Array.from({length:latest-first+1},(_,i)=>first+i)};
 }
 
-function drawComparisonChart(container,picks,range){
+function drawComparisonChart(container,picks,range,{label='PIR',format=String}={}){
  const {series,rounds}=roundSeries(picks,range);
- if(!rounds.length){
-  container.textContent='אין נתוני PIR לפי מחזור לשחקנים שנבחרו.';
+ const values=series.flatMap(s=>rounds.filter(round=>s.values.has(round)).map(round=>s.values.get(round)));
+ if(!values.length){
+  container.textContent=`אין נתוני ${label} זמינים להשוואה בטווח שנבחר.`;
   return;
  }
  const w=360,h=292,left=34,right=14,top=24,bottom=40,plotWidth=w-left-right;
  const last=rounds.length-1,stepX=plotWidth/Math.max(last,1);
  const x=i=>last?left+i*stepX:left+plotWidth/2;
- const values=series.flatMap(s=>rounds.filter(round=>s.values.has(round)).map(round=>s.values.get(round)));
  const min=Math.min(0,...values),max=Math.max(0,...values);
  const tickStep=Math.max(5,Math.ceil((max-min)/25)*5);
  const low=Math.floor((min-1)/tickStep)*tickStep,high=Math.ceil((max+1)/tickStep)*tickStep;
@@ -138,9 +138,9 @@ function drawComparisonChart(container,picks,range){
   return `<path d="${path}" fill="none" stroke="${colors[n]}" stroke-width="2.2" stroke-linecap="round" vector-effect="non-scaling-stroke"/>${isolated}`;
  }).join('');
 
- container.innerHTML=`<h4>PIR לפי מחזור – עונת <bdi>2026/27</bdi></h4>
+ container.innerHTML=`<h4>${esc(label)} לפי מחזור · עונת <bdi>2026/27</bdi></h4>
   <div class="pc-chart-legend" data-round-values aria-live="polite"></div>
-  <svg dir="ltr" viewBox="0 0 ${w} ${h}" tabindex="0" role="slider" aria-label="מחזור להשוואת PIR" aria-valuemin="${rounds[0]}" aria-valuemax="${rounds[last]}">
+  <svg dir="ltr" viewBox="0 0 ${w} ${h}" tabindex="0" role="slider" aria-label="מחזור להשוואת ${esc(label)}" aria-valuemin="${rounds[0]}" aria-valuemax="${rounds[last]}">
    ${grid.map(v=>`<line x1="${left}" y1="${y(v)}" x2="${w-right}" y2="${y(v)}" stroke="var(--pc-chart-grid)" stroke-dasharray="2 4" class="${v===0?'pc-zero':''}"/><text x="${left-7}" y="${y(v)+4}" text-anchor="end">${v}</text>`).join('')}
    ${rounds.map((r,i)=>i===0||i===last||(i%labelEvery===0&&i<last-labelEvery/2)?`<text x="${x(i)}" y="${h-23}" text-anchor="middle">${r}</text>`:'').join('')}
    <text x="${left+plotWidth/2}" y="${h-5}" text-anchor="middle">מחזור</text>
@@ -155,7 +155,7 @@ function drawComparisonChart(container,picks,range){
   const round=rounds[active],xx=x(active);
   svg.setAttribute('aria-valuenow',round);
   svg.setAttribute('aria-valuetext',`מחזור ${round}`);
-  legend.innerHTML=series.map(({player,values},n)=>`<div style="--pc-series:${colors[n]}"><bdi>${esc(name(player))}</bdi><strong><bdi>${values.get(round)??'—'}</bdi></strong></div>`).join('');
+  legend.innerHTML=series.map(({player,values},n)=>`<div style="--pc-series:${colors[n]}"><bdi>${esc(name(player))}</bdi><strong><bdi>${values.has(round)?esc(format(values.get(round))):'—'}</bdi></strong></div>`).join('');
   cursor.innerHTML=`<line x1="${xx}" y1="${top}" x2="${xx}" y2="${h-bottom}" stroke="var(--pc-chart-guide)"/><text class="pc-chart-round" x="${xx}" y="15" text-anchor="middle">${round}</text>`
    +series.map(({values},n)=>{
     const v=values.get(round);
@@ -175,6 +175,7 @@ function drawComparisonChart(container,picks,range){
  });
  selectRound(last);
 }
+root.drawRoundComparisonChart=drawComparisonChart;
 
 function render(){if(!data)return;const range=$('[data-range]').value;const playersById=new Map(catalog().map(r=>[r.id,r]));const picks=selected.map(id=>playersById.get(id)).filter(Boolean);
  $('[data-count]').textContent=`נבחרו ${picks.length} מתוך 6`;$('[data-compare]').disabled=picks.length<2;$('[data-clear]').disabled=!picks.length;

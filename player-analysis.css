@@ -21,3 +21,13 @@ html[data-theme=light] #playerFreeThrows .pa-views button[aria-pressed=true],htm
 html[data-theme] .tab :is(.pa-views,.pa-sort) button[aria-pressed=false],
 html[data-theme] .tab .pa-panel .pa-picks button,
 html[data-theme] .tab .pa-panel button[data-pa-more]{color:var(--text)}
+.pa-ranking-chart{margin:14px 0;padding:12px;border:1px solid var(--line);border-radius:16px;background:var(--card2)}
+.pa-ranking-chart h4{margin:0 0 12px}
+.pa-ranking-chart ol{display:grid;gap:9px;list-style:none;padding:0;margin:0}
+.pa-ranking-chart li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 10px;font-size:13px}
+.pa-ranking-chart strong{font-variant-numeric:tabular-nums}
+.pa-bar-track{position:relative;grid-column:1/-1;height:8px;background:var(--line);border-radius:8px;direction:ltr}
+.pa-bar-track::after{content:"";position:absolute;left:var(--bar-zero);top:-2px;bottom:-2px;border-left:1px solid var(--muted)}
+.pa-bar-track span{position:absolute;height:100%;border-radius:8px;background:var(--accent)}
+.pa-bar-track span.negative{background:var(--bad)}
+.pa-panel [data-pa-ranking-table]>summary{cursor:pointer;padding:10px 0}
