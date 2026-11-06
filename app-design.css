@@ -209,4 +209,4 @@ html[data-theme="light"] .tab .player-picker-modes button[aria-pressed="true"]{b
 @media(max-width:600px){
  #pirCompare .player-picker-controls,.ap-screen .player-picker-controls,.ft-screen .player-picker-controls{display:grid;grid-template-columns:minmax(0,1fr)}
 }
-#pirGraph .pirControls{grid-template-columns:repeat(auto-fit,minmax(min(100%,130px),1fr))}
+:is(#pirGraph,#minutesGraph) .pirControls{grid-template-columns:repeat(auto-fit,minmax(min(100%,130px),1fr))}
