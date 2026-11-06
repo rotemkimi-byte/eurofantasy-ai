@@ -11,15 +11,22 @@ const button=document.createElement('button');button.type='button';button.datase
 const section=document.createElement('section');section.id='usage';section.className='tab';
 section.innerHTML=`<div class="card"><div class="us-heading"><div><h3>מדד Usage</h3><p class="muted">סיומי התקפה ומעורבות כוללת · נתוני עבר בפועל</p></div><button type="button" id="usReload" class="secondary">רענן</button></div>
 <div class="player-picker-modes" role="group" aria-label="בחירת רשימת שחקנים"><button type="button" data-us-scope="all" aria-pressed="true">כל השחקנים · לפי מחיר</button><button type="button" data-us-scope="team" aria-pressed="false">לפי קבוצה</button></div><div class="player-picker-controls"><label id="usTeamLabel" hidden>קבוצה<select id="usTeam"></select></label></div>
-<label class="player-result-picker player-picker-controls">שחקן · מהמחיר הגבוה לנמוך<select id="usPlayer"></select></label>
-<div id="usResult" class="player-result-summary" aria-live="polite"></div>
-<div class="us-controls player-picker-controls"><label>עמדה<select id="usPosition"><option value="">כל העמדות</option><option value="G">גארדים · G</option><option value="F">פורוורדים · F</option><option value="C">סנטרים · C</option></select></label><label>טווח משחקים<select id="usRange"><option value="1">משחק אחרון</option><option value="3">3 משחקים אחרונים</option><option value="0">כל העונה · 2026/27</option></select></label></div>
-<div class="us-switch" role="group" aria-label="סוג מדד Usage"><button type="button" data-us-metric="regular" aria-pressed="true">Usage רגיל</button><button type="button" data-us-metric="combined" aria-pressed="false">Usage כולל · אמיתי</button></div>
-<p id="usMetricNote" class="muted"></p><p id="usStatus" role="status" aria-live="polite">בחר בלשונית לטעינת הנתונים.</p><details id="usGameDetails" class="us-explain" hidden><summary>פירוט לפי משחק · מהחדש לישן</summary><div id="usGames"></div></details>
-<details class="us-explain"><summary id="usRankingTitle">דירוג Usage · מהגבוה לנמוך</summary><p id="usRankingNote" class="muted"></p><div id="usRanking"></div></details>
+<div class="us-view-picker player-result-picker">
+<label class="player-picker-controls">שחקן · מהמחיר הגבוה לנמוך<select id="usPlayer"></select></label>
+<div class="us-switch" role="group" aria-label="תצוגת Usage">
+<button type="button" data-us-view="regular" aria-pressed="true" aria-controls="usSummaryPanel">Usage רגיל</button>
+<button type="button" data-us-view="combined" aria-pressed="false" aria-controls="usSummaryPanel">Usage כולל · אמיתי</button>
+<button type="button" data-us-view="games" aria-pressed="false" aria-controls="usGamesPanel">פירוט לפי משחק</button>
+<button type="button" data-us-view="ranking" aria-pressed="false" aria-controls="usRankingPanel">דירוג Usage</button>
+</div></div>
+<div class="us-controls"><label>עמדה<select id="usPosition"><option value="">כל העמדות</option><option value="G">גארדים · G</option><option value="F">פורוורדים · F</option><option value="C">סנטרים · C</option></select></label><label>טווח משחקים<select id="usRange"><option value="1">משחק אחרון</option><option value="3">3 משחקים אחרונים</option><option value="0">כל העונה · 2026/27</option></select></label></div>
+<p id="usStatus" role="status" aria-live="polite">בחר בלשונית לטעינת הנתונים.</p>
+<div id="usSummaryPanel"><div id="usResult" class="player-result-summary" aria-live="polite"></div><p id="usMetricNote" class="muted"></p></div>
+<div id="usGamesPanel" hidden><h4 id="usGamesTitle"></h4><div id="usGames"></div></div>
+<div id="usRankingPanel" hidden><h4 id="usRankingTitle">דירוג Usage · מהגבוה לנמוך</h4><p id="usRankingNote" class="muted"></p><div id="usRanking"></div></div>
 <details class="us-explain"><summary>מה ההבדל ואיך מחשבים?</summary><p><b>Usage רגיל:</b> אומדן חלקו של השחקן בסיומי ההתקפה: זריקות מהשדה, 0.44 מניסיונות העונשין ואיבודים, ביחס לאירועי הקבוצה בזמן דקותיו.</p><p><b>Usage כולל (״אמיתי״):</b> מדד המעורבות המורחב כאן מוסיף גם אסיסטים לאותו מונה. זהו מדד מותאם לאפליקציה, ואינו USG% רשמי. אסיסט וקליעה של חבר לקבוצה יכולים לתאר אותו פוזשן, ולכן זה אינו אחוז פוזשנים ייחודיים.</p><p class="us-formula">USG = 100 × (FGA + 0.44 × FTA + TOV) / exposure<br>Combined = 100 × (FGA + 0.44 × FTA + TOV + AST) / exposure<br>exposure = (player minutes / game minutes) × (team FGA + 0.44 × team FTA + team TOV)</p><p>החשיפה היא אומדן מבוקס סקור ודקות המשחק, כולל הארכות; אין כאן מדידה של זמן החזקת הכדור או נגיעות. בטווח של כמה משחקים מחברים מונים ומכנים, ולא עושים ממוצע פשוט של האחוזים. משחק ללא דקות מוצג כ״לא שיחק״. נתון חסר אינו מוחלף באפס.</p><p><a href="https://mediagamecenter.euroleague.net/" target="_blank" rel="noopener">מקור הנתונים ונוסחת ה־Usage הרגיל: EuroLeague</a> · המחירים הם המחירים העדכניים לבחירת השחקן.</p></details></div>`;
 main.appendChild(section);
-const $=id=>document.getElementById(id);let scope='all',metric='regular',data=null,market=null,loading=null,loadedAt=0,records=[];
+const $=id=>document.getElementById(id);let scope='all',metric='regular',view='regular',data=null,market=null,loading=null,loadedAt=0,records=[];
 function marketRows(){return market||(typeof players!=='undefined'?players:[]);}
 function options(){
  const selected=$('usPlayer').value,oldTeam=$('usTeam').value,byKey=new Map();
@@ -40,7 +47,7 @@ function renderRanking(){
  const selected=$('usPlayer').value;
  const ranked=U.rankPlayers(records,data.players,{team:scope==='team'?$('usTeam').value:'',position:$('usPosition').value,range:$('usRange').value,metric});
  const available=ranked.filter(p=>p.value!==null),missing=ranked.length-available.length;
- $('usRankingTitle').textContent=(scope==='team'?'השוואה בתוך '+$('usTeam').value:'דירוג כל הליגה')+' · Usage מהגבוה לנמוך';
+ $('usRankingTitle').textContent=(scope==='team'?'השוואה בתוך '+$('usTeam').value:'דירוג כל הליגה')+' · '+metricTitle()+' מהגבוה לנמוך';
  $('usRankingNote').textContent=`${available.length} שחקנים עם מדד · ${$('usPosition').selectedOptions[0].textContent} · ${$('usRange').selectedOptions[0].textContent}${missing?' · '+missing+' ללא מדד מוצגים בסוף':''}. לחיצה על שם מציגה פירוט. מדגם של פחות מ־3 הופעות מסומן.`;
  const eligible=new Set(ranked.map(p=>p.id));
  $('usPlayer').innerHTML=records.filter(p=>eligible.has(p.id)).map((p,i)=>`<option value="${esc(p.id)}">${i+1}. ${esc(name(p.name))} · ${p.price===null?'מחיר לא זמין':fmt(p.price)+' cr'}</option>`).join('');
@@ -58,6 +65,15 @@ function highlightSelection(){
   row.classList.toggle('us-selected',active);row.querySelector('button').setAttribute('aria-pressed',String(active));
  }
 }
+const metricTitle=()=>metric==='regular'?'Usage רגיל':'Usage כולל · אמיתי';
+const viewButtons=section.querySelectorAll('[data-us-view]');
+function showView(next){
+ view=next;
+ $('usSummaryPanel').hidden=view==='games'||view==='ranking';
+ $('usGamesPanel').hidden=view!=='games';
+ $('usRankingPanel').hidden=view!=='ranking';
+ for(const button of viewButtons)button.setAttribute('aria-pressed',String(button.dataset.usView===view));
+}
 function render(updateRanking=true){
  $('usMetricNote').textContent=metric==='regular'?'Usage רגיל: זריקות, עונשין ואיבודים.':'Usage כולל: זריקות, עונשין, איבודים וגם אסיסטים · מדד מעורבות מותאם לאפליקציה.';
  if(!data)return;
@@ -65,9 +81,9 @@ function render(updateRanking=true){
  const p=records.find(p=>p.id===$('usPlayer').value),profile=data.players[p?.id],games=U.selectGames(profile,$('usRange').value),stats=U.summarize(games),current=stats[metric];
  const updated=data.updated_at?new Date(data.updated_at).toLocaleString('he-IL',{day:'numeric',month:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Jerusalem'}):'לא ידוע';
  $('usStatus').textContent=`עונת 2026/27 · ${stats.registered} משחקים ברישום · ${stats.played} עם דקות · עודכן ${updated}${current.missing?' · חסר מדד ב־'+current.missing+' הופעות; החישוב חלקי':''}`;
- $('usGameDetails').hidden=!games.length;
- if(!p||!games.length){$('usResult').innerHTML='<p class="notice">אין עדיין נתוני משחק לשחקן שנבחר בעונה הנוכחית.</p>';$('usGames').innerHTML='';return;}
- const title=metric==='regular'?'Usage רגיל':'Usage כולל · אמיתי',reason=stats.played===0&&stats.unknownMinutes===0?'לא שיחק':current.value===null?'אין מספיק נתונים לחישוב':`${current.covered} הופעות בחישוב · ${stats.dnp?stats.dnp+' ללא דקות · ':''}${games.length>1?'משוקלל לפי החשיפה':'לפי המשחק האחרון ברישום'}`;
+ $('usGamesTitle').textContent='פירוט לפי משחק · '+metricTitle();
+ if(!p||!games.length){$('usResult').innerHTML='<p class="notice">אין עדיין נתוני משחק לשחקן שנבחר בעונה הנוכחית.</p>';$('usGames').innerHTML='<p class="notice">אין משחקים זמינים לשחקן ולטווח שנבחרו.</p>';return;}
+ const reason=stats.played===0&&stats.unknownMinutes===0?'לא שיחק':current.value===null?'אין מספיק נתונים לחישוב':`${current.covered} הופעות בחישוב · ${stats.dnp?stats.dnp+' ללא דקות · ':''}${games.length>1?'משוקלל לפי החשיפה':'לפי המשחק האחרון ברישום'}`;
  const metrics=[
   ['דקות בממוצע להופעה',stats.played&&stats.minutes!==null?stats.minutes/stats.played:null],
   ['זריקות מהשדה · סה״כ',stats.fga],
@@ -75,7 +91,7 @@ function render(updateRanking=true){
   ['איבודים · סה״כ',stats.turnovers],
   ...(metric==='combined'?[['אסיסטים · סה״כ',stats.assists]]:[])
  ];
- $('usResult').innerHTML=`<div class="us-score"><div><b><bdi>${esc(name(p.name))}</bdi></b><small>${esc(p.team)} · ${p.price===null?'מחיר לא זמין':fmt(p.price)+' קרדיט'}</small><small>${title} · ${reason}</small></div><strong>${pct(current.value)}</strong></div><dl class="us-metrics">${metrics.map(([label,n])=>`<div><dt>${label}</dt><dd>${fmt(n)}</dd></div>`).join('')}</dl>`;
+ $('usResult').innerHTML=`<div class="us-score"><div><b><bdi>${esc(name(p.name))}</bdi></b><small>${esc(p.team)} · ${p.price===null?'מחיר לא זמין':fmt(p.price)+' קרדיט'}</small><small>${metricTitle()} · ${reason}</small></div><strong>${pct(current.value)}</strong></div><dl class="us-metrics">${metrics.map(([label,n])=>`<div><dt>${label}</dt><dd>${fmt(n)}</dd></div>`).join('')}</dl>`;
  $('usGames').innerHTML=table(['משחק','דקות',metric==='regular'?'Usage':'כולל'],games.map(g=>{const e=U.events(g);return [`<b>${esc(g.opponent)}</b><small>${date(g.date)}${g.round?' · מ׳ '+esc(g.round):''} · ${g.home===true?'בית':g.home===false?'חוץ':'מיקום לא ידוע'}</small>${g.source&&/^https:\/\//.test(g.source)?`<small><a href="${esc(g.source)}" target="_blank" rel="noopener">דוח המשחק</a></small>`:''}`,U.num(g.minutes)===0?'לא שיחק':fmt(g.minutes),pct(e[metric])]}));
 }
 async function load(){
@@ -91,17 +107,21 @@ async function load(){
 }
 button.onclick=()=>{document.querySelectorAll('.tabs button,.tab').forEach(el=>el.classList.remove('active'));button.classList.add('active');section.classList.add('active');if(!data||Date.now()-loadedAt>60000)void load();else options();};
 for(const b of section.querySelectorAll('[data-us-scope]'))b.onclick=()=>{scope=b.dataset.usScope;for(const item of section.querySelectorAll('[data-us-scope]'))item.setAttribute('aria-pressed',String(item===b));options();};
-for(const b of section.querySelectorAll('[data-us-metric]'))b.onclick=()=>{metric=b.dataset.usMetric;for(const item of section.querySelectorAll('[data-us-metric]'))item.setAttribute('aria-pressed',String(item===b));render();};
+for(const b of viewButtons)b.onclick=()=>{
+ const next=b.dataset.usView;
+ if((next==='regular'||next==='combined')&&metric!==next){metric=next;render();}
+ showView(next);
+};
 function selectPlayer(){
  render(false);
  highlightSelection();
- $('usResult').scrollIntoView({block:'nearest'});
 }
 $('usRanking').onclick=e=>{
  const target=e.target.closest('[data-us-player]');if(!target)return;
  $('usPlayer').value=target.dataset.usPlayer;
- $('usPlayer').focus({preventScroll:true});
  selectPlayer();
+ showView(metric);
+ $('usPlayer').focus({preventScroll:true});
 };
 $('usPosition').onchange=()=>render();$('usTeam').onchange=options;$('usPlayer').onchange=selectPlayer;$('usRange').onchange=()=>render();$('usReload').onclick=()=>void load();
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&section.classList.contains('active')&&Date.now()-loadedAt>60000)void load();});
