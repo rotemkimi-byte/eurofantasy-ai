@@ -79,3 +79,8 @@ html[data-theme="dark"] .ap-screen{--ap-bg:#152237;--ap-soft:#20324a;--ap-ink:#f
 html.ef-redesign .ap-screen button{color:var(--ap-ink)}
 html.ef-redesign .ap-screen .ap-player-row{background:var(--ap-bg);color:var(--ap-ink)}
 html.ef-redesign .ap-screen .ap-player-row:hover{background:var(--ap-soft)}
+
+.ap-screen .ap-box-game{margin:12px 0;padding:12px;border:1px solid var(--ap-border);border-radius:14px}
+.ap-screen .ap-box-game h4{margin:0 0 8px;overflow-wrap:anywhere}
+.ap-screen .ap-box-metrics{grid-template-columns:repeat(3,minmax(0,1fr))}
+.ap-screen .ap-box-metrics strong{font-size:clamp(17px,5vw,27px);unicode-bidi:isolate}

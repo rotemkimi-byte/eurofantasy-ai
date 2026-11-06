@@ -1,7 +1,7 @@
 (()=>{
 'use strict';
 const C=window.AdvancedPlayerCore;if(!C)return;
-const tools=[['playerNegative','פעולות שליליות','negative'],['playerShots','מפת זריקות','shots'],['playerPlusMinus','פלוס־מינוס','plus'],['playerLineups','הרכבי קליעה','lineups'],['playerAttacks','סוגי התקפות','attacks']];
+const tools=[['playerBoxScore','נתונים נקיים','boxScore'],['playerNegative','פעולות שליליות','negative'],['playerShots','מפת זריקות','shots'],['playerPlusMinus','פלוס־מינוס','plus'],['playerLineups','הרכבי קליעה','lineups'],['playerAttacks','סוגי התקפות','attacks']];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=n=>n===null||n===undefined?'—':Number(n).toLocaleString('he-IL',{maximumFractionDigits:1});
 const date=s=>new Date(s).toLocaleDateString('he-IL',{timeZone:'Asia/Jerusalem'});
@@ -42,6 +42,26 @@ function profiles(){
  for(const [key,p] of market)if(key)map.set('market:'+key,{id:'market:'+key,name:p.name,team:p.team,games:[]});
  return [...map.values()].sort((a,b)=>a.name.localeCompare(b.name));
 }
+function boxScore(p,games){
+ if(!games.length)return empty('אין עדיין נתוני משחק לשחקן בעונה הנוכחית.');
+ const fields=[['איבודים','turnovers'],['חטיפות','steals'],['חסימות','blocksFavour'],
+  ['עבירות','foulsCommited'],['ריבאונדים','totalRebounds'],['אסיסטים','assistances']];
+ const shooting=(stats,points)=>{
+  const made=C.n(stats['fieldGoalsMade'+points]),attempted=C.n(stats['fieldGoalsAttempted'+points]);
+  return made===null?'—':attempted===null?fmt(made):made+'/'+attempted;
+ };
+ return games.map(g=>{
+  const stats=g.stats||{},seconds=C.n(stats.timePlayed);
+  const title='המספרים של '+p.name+(g.opponent?' מול '+g.opponent:'');
+  const details=date(g.date)+' · '+(g.home?'בית':'חוץ')+' · מחזור '+(g.round??'—');
+  const minutes=seconds===null?'—':Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');
+  const tiles=seconds===0?empty('לא שיחק במשחק הזה.'):
+   '<div class="ap-metrics ap-box-metrics">'+metric('PIR',fmt(C.n(stats.valuation)))+metric('דקות',minutes)+
+   metric('נקודות',fmt(C.n(stats.points)))+metric('קליעות ל־3',shooting(stats,3))+metric('קליעות ל־2',shooting(stats,2))+
+   fields.map(([label,key])=>metric(label,fmt(C.n(stats[key])))).join('')+'</div>';
+  return '<article class="ap-box-game"><h4><bdi>'+esc(title)+'</bdi></h4>'+tiles+'<small>'+esc(details)+'</small></article>';
+ }).join('');
+}
 function negative(games){
  const s=C.negative(games),labels={turnovers:'איבודים',miss2:'החטאות ל־2',miss3:'החטאות ל־3',missFT:'החטאות עונשין',fouls:'עבירות שביצע',blocked:'זריקות שנחסמו'};
  return '<div class="ap-metrics">'+Object.entries(labels).map(([k,l])=>metric(l+' למשחק',fmt(s[k].mean),'סה״כ '+fmt(s[k].total)+' · '+note(s[k].covered,games.length))).join('')+'</div>';
@@ -69,6 +89,7 @@ function lineups(games){
  return '<p class="ap-status">'+note(covered.length,games.length)+' · מיון לפי הנקודות של השחקן עם ארבעת חבריו להרכב</p><div class="ap-grid">'+rows.map((r,i)=>'<article class="ap-record"><h4>הרכב '+(i+1)+' · '+r.points+' נקודות</h4><ol>'+r.teammates.map(p=>'<li><bdi>'+esc(name(p.name))+'</bdi></li>').join('')+'</ol><small>'+r.games+' משחקים · דקות משותפות: '+fmt(r.minutes)+'</small></article>').join('')+'</div>';
 }
 const help={
+boxScore:'נתוני הבוקס סקור הרשמיים לכל משחק. קליעות מוצגות כקליעות מתוך ניסיונות. מקף מציין נתון חסר.',
 negative:'ממוצע לכל הופעה עם נתון זמין. אין סכום מאוחד: חסימה עשויה להיות גם החטאה, ועבירת תוקף עשויה להיות גם איבוד. חסימות שהשחקן ביצע אינן פעולה שלילית.',
 plus:'הפרש נקודות הקבוצה מול היריבה בזמן שהשחקן על המגרש, לפי הבוקס סקור הרשמי. ל־40 דקות מחושב מסך ההפרש חלקי סך הדקות כפול 40. זה אינו מדד סיבתי לאיכות השחקן.',
 shots:'מיקומי זריקות מהשדה מתוך המקור הרשמי בלבד. עונשין אינו ממופה. האחוזים לפי אזור מחושבים מכל הקליעות וההחטאות עם מיקום, גם כאשר מסננים את הנקודות במפה. סמוך לסל: עד 2 מטר מהטבעת. משחק נכלל רק אם יומן הזריקות תואם לבוקס סקור.',
@@ -116,6 +137,10 @@ for(const [id,title,kind] of tools){
   if(!p){output.innerHTML='';return;}
   picked.innerHTML='<div class="ap-picked-inner"><span><b><bdi>'+esc(p.name)+'</bdi></b><small>'+esc(p.team)+'</small></span><button type="button" data-change>חזרה לרשימה ←</button></div>';
   const selectedGames=C.select(p.games,$('[data-range]').value),games=selectedGames.filter(g=>g.minutes>0),latest=selectedGames[0];
+  if(kind==='boxScore'){
+   output.innerHTML=boxScore(p,selectedGames);
+   return;
+  }
   const header='<div class="ap-profile"><h3><bdi>'+esc(p.name)+'</bdi></h3><small>'+esc(p.team)+' · '+games.length+' הופעות בטווח</small>'+(latest?'<small>הרישום האחרון בטווח: '+esc(latest.opponent||'')+' · '+date(latest.date)+' · מחזור '+esc(latest.round??'—')+'</small>':'')+'</div>';
   const show=gs=>kind==='negative'?negative(gs):kind==='plus'?plus(gs):kind==='shots'?shots(gs,$('[data-shot]').value):kind==='lineups'?lineups(gs):attacks(gs);
   $('[data-output]').innerHTML=header+(games.length?show(games):empty(p.games.length?'אין הופעה עם דקות משחק בטווח שנבחר.':'אין עדיין נתוני משחק לשחקן בעונה הנוכחית.'))+

@@ -5,7 +5,7 @@ const original=document.querySelector('nav.tabs'),main=document.querySelector('m
 if(!original||!main||document.getElementById('efNavigation'))return;
 const groups=[
  {id:'home',title:'בית',description:'הסגל שלך, סנכרון וכל הכלים',tabs:['team','data'],icon:'M3 11 12 3l9 8M5 10v11h5v-7h4v7h5V10'},
- {id:'players',title:'שחקנים',description:'שוק שחקנים, ביצועים ומדדים',tabs:['market','playerMatchups','pirGraph','minutesGraph','pirCompare','usage','playerFreeThrows','playerNegative','playerShots','playerPlusMinus','playerLineups','playerAttacks','defense','injuries'],icon:'M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0M4 21v-3a8 8 0 0 1 16 0v3'},
+ {id:'players',title:'שחקנים',description:'שוק שחקנים, ביצועים ומדדים',tabs:['market','playerMatchups','pirGraph','minutesGraph','pirCompare','playerBoxScore','usage','playerFreeThrows','playerNegative','playerShots','playerPlusMinus','playerLineups','playerAttacks','defense','injuries'],icon:'M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0M4 21v-3a8 8 0 0 1 16 0v3'},
  {id:'clubs',title:'קבוצות',description:'סגלים, תוצאות ומאצ׳אפים',tabs:['clubMarket','teamMetrics','teamFreeThrows','matchups','pirWeakness'],icon:'M15 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6 21v-3a6 6 0 0 1 12 0v3M3 8v6m18-6v6M2 21v-3m20 3v-3'},
  {id:'model',title:'אלגוריתם',description:'תחזיות, משקלים ובדיקה מול תוצאות',tabs:['algorithm','learning'],icon:'M12 4 3 20h18L12 4M12 4v10M3 20l9-6 9 6'},
  {id:'fantasy',title:'פנטזי',description:'בניית סגל, מציאות וקפטנים',tabs:['negativeSurprises','absencePicks','optimizer','superSquad','bargains','captain','coach'],icon:'M7 3h10v7a5 5 0 0 1-10 0V3M7 5H3v3a4 4 0 0 0 4 4m10-7h4v3a4 4 0 0 1-4 4M12 15v6m-5 0h10'}
