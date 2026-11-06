@@ -1,7 +1,7 @@
 #usage .us-heading{display:flex;justify-content:space-between;gap:12px;align-items:center}
 #usage h3{font-size:20px;margin:0 0 5px}
 #usage p{font-size:13px;line-height:1.5;margin:8px 0}
-#usage .card{overflow-anchor:none}
+html:has(#usage.active){overflow-anchor:none}
 #usage .us-switch{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:9px 0 0}
 #usage .us-switch button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 #usage .us-switch button{background:var(--card2);color:var(--text);border:1px solid var(--line);min-height:46px;font-size:14px;font-weight:800;padding:8px 10px}
