@@ -100,7 +100,7 @@ const pickerStyle=document.createElement('style');pickerStyle.textContent='.ap-s
 for(const [id,title,kind] of tools){
  const b=document.createElement('button');b.dataset.tab=id;b.textContent=title;document.querySelector('nav.tabs').append(b);
  const section=document.createElement('section');section.id=id;section.className='tab ap-screen';
- section.innerHTML='<div class="ap-shell"><div class="ap-top"><button type="button" data-back hidden>חזרה לרשימת השחקנים ←</button><h3>'+title+'</h3><button type="button" data-refresh>רענן</button></div><div class="player-picker-modes" role="group" aria-label="בחירת רשימת שחקנים"><button type="button" data-scope="all" aria-pressed="true">כל השחקנים · לפי מחיר</button><button type="button" data-scope="team" aria-pressed="false">לפי קבוצה</button></div><div class="ap-controls player-picker-controls"><label class="ap-search-control">חיפוש שחקן<input data-search type="search" placeholder="הקלד שם שחקן…" autocomplete="off"></label><label data-team-label hidden>קבוצה<select data-team><option value="">כל הקבוצות</option></select></label><label data-player-label>שחקן · מהמחיר הגבוה לנמוך<select data-player></select></label><label>טווח נתונים<select data-range><option value="1">משחק אחרון</option><option value="3">3 משחקים אחרונים</option><option value="0">כל העונה · 2026/27</option></select></label><label>מיון שחקנים<select data-sort><option value="price" selected>מחיר · מהגבוה לנמוך</option><option value="name">שם · א–ת</option><option value="team">לפי קבוצה</option><option value="minutes">דקות · מהגבוה</option><option value="pir">PIR · המשחק האחרון</option>'+(kind==='plus'?'<option value="plus">פלוס־מינוס · מהגבוה</option>':'')+'</select></label>'+(kind==='shots'?'<label>הצג במפה<select data-shot><option value="all">הכול</option><option value="made">קליעות</option><option value="missed">החטאות</option></select></label>':'')+'</div><p class="ap-status" role="status"></p><div data-picked hidden></div><div data-browser aria-label="רשימת שחקנים"></div><div data-output hidden></div><details class="ap-help"><summary>הסבר הנתונים</summary><p>'+help[kind]+'</p><a class="ap-link" href="https://mediagamecenter.euroleague.net/" target="_blank" rel="noopener">מקור: EuroLeague Game Center</a></details></div>';
+ section.innerHTML='<div class="ap-shell"><div class="ap-top"><button type="button" data-back hidden>חזרה לרשימת השחקנים ←</button><h3>'+title+'</h3><button type="button" data-refresh>רענן</button></div><div class="player-picker-modes" role="group" aria-label="בחירת רשימת שחקנים"><button type="button" data-scope="all" aria-pressed="true">כל השחקנים · לפי מחיר</button><button type="button" data-scope="team" aria-pressed="false">לפי קבוצה</button></div><div class="ap-controls player-picker-controls"><label data-team-label hidden>קבוצה<select data-team><option value="">כל הקבוצות</option></select></label><label data-player-label>שחקן · מהמחיר הגבוה לנמוך<select data-player></select></label><label>טווח נתונים<select data-range><option value="1">משחק אחרון</option><option value="3">3 משחקים אחרונים</option><option value="0">כל העונה · 2026/27</option></select></label><label>מיון שחקנים<select data-sort><option value="price" selected>מחיר · מהגבוה לנמוך</option><option value="name">שם · א–ת</option><option value="team">לפי קבוצה</option><option value="minutes">דקות · מהגבוה</option><option value="pir">PIR · המשחק האחרון</option>'+(kind==='plus'?'<option value="plus">פלוס־מינוס · מהגבוה</option>':'')+'</select></label>'+(kind==='shots'?'<label>הצג במפה<select data-shot><option value="all">הכול</option><option value="made">קליעות</option><option value="missed">החטאות</option></select></label>':'')+'</div><p class="ap-status" role="status"></p><div data-picked hidden></div><div data-browser aria-label="רשימת שחקנים"></div><div data-output hidden></div><details class="ap-help"><summary>הסבר הנתונים</summary><p>'+help[kind]+'</p><a class="ap-link" href="https://mediagamecenter.euroleague.net/" target="_blank" rel="noopener">מקור: EuroLeague Game Center</a></details></div>';
  document.querySelector('main').append(section);
  const $=s=>section.querySelector(s);let records=[],selected='',browseOpen=true,shown=36,scope='all';
  function renderBrowser(){
@@ -108,9 +108,9 @@ for(const [id,title,kind] of tools){
   $('[data-player-label]').hidden=!browseOpen;
   $('[data-player-label]').closest('.ap-shell').querySelector('.player-picker-modes').hidden=!browseOpen;
   const host=$('[data-browser]');host.hidden=!browseOpen;if(!browseOpen)return;
-  const q=$('[data-search]').value.trim().toLocaleLowerCase(),team=scope==='team'?$('[data-team]').value:'',range=$('[data-range]').value,sort=$('[data-sort]').value;
+  const team=scope==='team'?$('[data-team]').value:'',range=$('[data-range]').value,sort=$('[data-sort]').value;
   const prices=marketPrices();
-  const rows=records.filter(p=>(scope==='all'||p.team===team)&&(!q||(p.name+' '+p.team).toLocaleLowerCase().includes(q))).map(p=>{
+  const rows=records.filter(p=>scope==='all'||p.team===team).map(p=>{
    const games=C.select(p.games,range).filter(g=>g.minutes>0),minutes=games.reduce((sum,g)=>sum+(Number(g.minutes)||0),0);
    return {p,price:prices.get(marketKey(p.name))??null,games:games.length,minutes,pir:games.length?C.n(games[0].stats?.valuation):null,pm:kind==='plus'?C.plus(games).total:null};
   });
@@ -159,16 +159,15 @@ for(const [id,title,kind] of tools){
  for(const button of section.querySelectorAll('[data-scope]'))button.onclick=()=>{
   scope=button.dataset.scope;
   for(const item of section.querySelectorAll('[data-scope]'))item.setAttribute('aria-pressed',String(item===button));
-  $('[data-search]').value='';$('[data-sort]').value='price';shown=36;renderBrowser();
+  $('[data-sort]').value='price';shown=36;renderBrowser();
  };
  function choose(id){if(!id)return;selected=id;browseOpen=false;ranges();render();renderBrowser();}
  $('[data-player]').onchange=()=>choose($('[data-player]').value);
  $('[data-team]').onchange=()=>{
   const team=$('[data-team]').value;
   if(team&&selected&&records.find(p=>p.id===selected)?.team!==team)selected='';
-  $('[data-search]').value='';browseOpen=true;shown=36;ranges();controls();render();
+  browseOpen=true;shown=36;ranges();controls();render();
  };
- $('[data-search]').oninput=()=>{browseOpen=true;shown=36;controls();render();};
  $('[data-sort]').onchange=()=>{shown=36;controls();};
  $('[data-range]').onchange=()=>{shown=36;renderBrowser();render();};
  if($('[data-shot]'))$('[data-shot]').onchange=render;

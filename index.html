@@ -96,7 +96,7 @@ html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method sum
 [hidden]{display:none!important}.rr-price{display:inline-flex;flex-direction:column;gap:4px;text-align:left;direction:ltr;white-space:nowrap}.rr-price>span{font-weight:800;color:var(--accent)}.rr-price small{font-size:10px}.rr-price .rr-delta{font-size:11px;font-weight:600}.marketTable td:nth-child(2):has(.rr-price)::after{content:none}.rr-toggle{display:flex;gap:8px;margin:0 0 16px}.rr-toggle button{background:var(--card2);color:var(--muted);border:1px solid var(--line)}.rr-toggle button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}.rr-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.rr-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:14px}.rr-name{padding:0;background:none;color:var(--text);text-align:right;min-width:0;overflow-wrap:anywhere}.rr-name small{display:block;font-size:11px;margin-top:5px}.rr-card>p{grid-column:1/-1;font-size:12px;margin:0}.rr-metrics,.rr-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;text-align:center}.rr-metrics{grid-column:1/-1}.rr-metrics>div,.rr-summary>div{background:var(--card);border-radius:9px;padding:10px 4px}.rr-metrics b,.rr-summary b{display:block;font-size:21px}.rr-metrics small,.rr-summary small{font-size:10px;display:block;margin-top:5px}.rr-summary{margin:14px 0}.rr-note{font-size:12px;line-height:1.65}@media(max-width:780px){.rr-list{grid-template-columns:1fr}}
 </style><link rel="stylesheet" href="./squad-layout.css?v=3"><link rel="stylesheet" href="./round-lab.css?v=2"><link rel="stylesheet" href="./usage.css?v=player-summary-1"><link rel="stylesheet" href="./defense.css?v=2"><link rel="stylesheet" href="./team-metrics.css?v=4"><style>#market>.filters{grid-template-columns:2fr repeat(5,minmax(0,1fr))}.clubPlayer>.squadJersey{width:65px;height:72px;margin:auto}@media(max-width:780px){#market>.filters{grid-template-columns:1fr 1fr}#market>.filters #search{grid-column:1/-1}}</style><style>
 .absenceGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px;margin-top:16px}.absenceClub{background:var(--card2);border:1px solid var(--line);border-radius:18px;overflow:hidden}.absenceClub h4{margin:0;padding:16px;background:#172d49;color:#fff;font-size:20px}.absenceMissing{padding:12px;border-bottom:1px solid var(--line)}.absenceMissing button[data-absence-player]{display:block;text-align:right;background:transparent;color:var(--text);padding:5px 0;font-size:14px}.absenceMissing small{display:block;color:var(--muted);font-size:11px;margin:4px 0 10px}.absencePick{display:grid;grid-template-columns:56px minmax(0,1fr);gap:10px;padding:14px;border-bottom:1px solid var(--line)}.absencePick .squadJersey{width:48px;height:60px}.absencePick button[data-absence-player]{background:transparent;color:var(--text);padding:0;text-align:right;font-size:16px}.absencePick p{font-size:12px;line-height:1.6;margin:6px 0;color:var(--muted)}.absenceMetrics{display:flex;flex-wrap:wrap;gap:7px}.absenceMetrics span{background:#087e6014;border:1px solid #087e6055;padding:7px;border-radius:8px;font-size:12px}.absenceMetrics b{display:block;font-size:18px}.absenceEmpty{padding:16px;line-height:1.7}
-</style><link rel="stylesheet" href="./advanced-player-tools.css?v=player-box-score-1">
+</style><link rel="stylesheet" href="./advanced-player-tools.css?v=player-lists-1">
 </head>
 <body>
 <header><div class="head"><div><div class="eyebrow">EUROLEAGUE FANTASY AGENT • V2</div><h1>EuroFantasy AI</h1></div><button type="button" class="secondary themeToggle" id="themeToggle" aria-pressed="false" aria-label="מעבר לתצוגה בהירה">☀ תצוגה בהירה</button><div class="badge" id="syncBadge">טוען נתונים…</div></div></header>
@@ -113,7 +113,6 @@ html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method sum
 
 <section id="market" class="tab active">
 <div class="card filters">
-<input id="search" placeholder="חיפוש שחקן / קבוצה">
 <select id="marketTeam" aria-label="סינון לפי קבוצה"><option value="">כל הקבוצות</option></select>
 <select id="pos"><option value="">כל העמדות</option><option>G</option><option>F</option><option>C</option></select>
 <input id="maxPrice" type="number" step=".1" placeholder="מחיר מקס׳">
@@ -134,7 +133,7 @@ html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method sum
 <section id="matchups" class="tab"><div class="card"><h3>מאצ׳אפ קבוצה מול קבוצה</h3><p class="muted">הסתברויות מודל לפי תוצאות, ביתיות, סגל זמין וחוזק יריבות. כיול מופעל רק אחרי בדיקה כרונולוגית; האחוזים אינם יחסי סוכנויות.</p><div id="gameCards" class="grid2"></div></div></section>
 
 <section id="playerMatchups" class="tab"><div class="card"><h3>מאצ׳אפ שחקנים</h3><div class="player-picker-modes" role="group" aria-label="בחירת רשימת שחקנים"><button type="button" data-pm-scope="all" aria-pressed="true">כל השחקנים · לפי מחיר</button><button type="button" data-pm-scope="team" aria-pressed="false">לפי קבוצה</button></div><div class="player-picker-controls"><label id="pmPickerTeamLabel" hidden>קבוצה לסינון שחקנים<select id="pmPickerTeam"></select></label><label>שחקן · מהמחיר הגבוה לנמוך<select id="pmPickerPlayer"></select></label></div><div class="filters pmControls"><label>קבוצה למאצ׳אפ<select id="pmTeam"></select></label><label>קבוצה להשוואה<select id="pmOpponent"><option value="">היריבה במשחק הבא</option></select></label><label>תצוגה<select id="pmView"><option value="court">מגרש</option><option value="list">רשימה · מחיר ודקות</option></select></label><button class="secondary" id="pmReload">רענן נתונים</button></div><p id="pmSummary" class="pmSummary"></p><details class="pmExplanation"><summary>הסבר</summary><div class="pmExplanationBody"><p><b>איך נבחרים השחקנים?</b> בכל קבוצה מוצגים סנטר, שני פורוורדים ושני גארדים עם ממוצע הדקות הגבוה בעמדה בעונת 2026/27. שחקנים שמסומנים בחוץ אינם נכללים. בהיעדר נתוני דקות, המיון זמני לפי המחיר.</p><p><b>מה משמעות הזוגות?</b> השחקן עם הכי הרבה דקות בעמדה מוצג מול המדורג המקביל בקבוצה השנייה. זו השוואת תפקידים ונתונים; אין כאן זיהוי של השומר האישי או אישור לחמישייה הפותחת.</p><p><b>איך קוראים את הנתונים?</b> הטבלה מציגה ממוצעים למשחק בעונה הנוכחית. שורת ״PIR צפוי״ היא תחזית למשחק הבא, בנפרד מהביצועים בפועל. המחיר נמדד בקרדיטים; — מציין נתון חסר, ולא אפס.</p><p><b>פרטים נוספים:</b> לחיצה על שחקן פותחת את פרטיו. בתצוגת רשימה המחיר במרכז והדקות מתחת לשם.</p><p id="pmStatus" class="muted pmHelp" role="status"></p></div></details><div id="pmCourts"></div></div></section>
-<section id="pirGraph" class="tab"><div class="card"><h3>גרף PIR · משחק אחרי משחק</h3><div class="player-picker-modes" role="group" aria-label="בחירת רשימת שחקנים"><button type="button" data-pir-scope="all" aria-pressed="true">כל השחקנים · לפי מחיר</button><button type="button" data-pir-scope="team" aria-pressed="false">לפי קבוצה</button></div><div class="filters pirControls player-picker-controls"><label id="pirTeamLabel" hidden>קבוצה<select id="pirTeam"></select></label><label>שחקנים או מאמנים<select id="pirKind"><option value="player">שחקנים</option><option value="coach">מאמנים</option></select></label><label>חיפוש לפי שם<input id="pirSearch" type="search" placeholder="שם שחקן או מאמן" autocomplete="off"></label></div>
+<section id="pirGraph" class="tab"><div class="card"><h3>גרף PIR · משחק אחרי משחק</h3><div class="player-picker-modes" role="group" aria-label="בחירת רשימת שחקנים"><button type="button" data-pir-scope="all" aria-pressed="true">כל השחקנים · לפי מחיר</button><button type="button" data-pir-scope="team" aria-pressed="false">לפי קבוצה</button></div><div class="filters pirControls player-picker-controls"><label id="pirTeamLabel" hidden>קבוצה<select id="pirTeam"></select></label><label>שחקנים או מאמנים<select id="pirKind"><option value="player">שחקנים</option><option value="coach">מאמנים</option></select></label></div>
 <label class="player-result-picker player-picker-controls"><span>שחקן או מאמן · מהמחיר הגבוה לנמוך</span><select id="pirPerson"></select></label>
 <div id="pirChart" class="pirChart player-result-summary" dir="ltr"></div><p id="pirDetail" class="pirDetail" aria-live="polite"></p>
 <div id="pirSummary" aria-live="polite"><bdi id="pirSelectedName"></bdi><div id="pirStats" class="stats pirStats"></div><p id="pirLatest" class="muted"></p></div>
@@ -343,9 +342,9 @@ function renderMarket(){
   const teamSignature=JSON.stringify(marketTeams);
   if(teamSelect.dataset.teams!==teamSignature){teamSelect.replaceChildren(new Option('כל הקבוצות',''),...marketTeams.map(t=>new Option(t,t)));teamSelect.dataset.teams=teamSignature;if(marketTeams.includes(selectedTeam))teamSelect.value=selectedTeam;}
   const tf=teamSelect.value;
-  const q=document.getElementById("search").value.toLowerCase(), pf=document.getElementById("pos").value, sf=document.getElementById("statusFilter").value;
+  const pf=document.getElementById("pos").value, sf=document.getElementById("statusFilter").value;
   const mp=Number(document.getElementById("maxPrice").value||999), sort=document.getElementById("sort").value;
-  let arr=players.filter(p=>(!tf||canonicalTeam(p.team)===tf)&&(!q||(p.name+" "+p.team).toLowerCase().includes(q))&&(!pf||p.pos===pf)&&(!sf||p.status===sf)&&+p.price<=mp);
+  let arr=players.filter(p=>(!tf||canonicalTeam(p.team)===tf)&&(!pf||p.pos===pf)&&(!sf||p.status===sf)&&+p.price<=mp);
   arr.sort((a,b)=>{const A=model(a),B=model(b);if(sort==="confidence")return B.confidence-A.confidence;if(sort==="minutes")return B.minutes-A.minutes;if(sort==="price")return +b.price-+a.price||a.name.localeCompare(b.name);return B.expected-A.expected});
   document.getElementById("rows").innerHTML=arr.map(p=>{const x=model(p);return `<tr>
   <td class="name" onclick='showPlayer(${JSON.stringify(p.name)},true)' style="cursor:pointer"><b>${esc(p.name)}</b><small>${esc(p.team)} • ${p.pos} • ${p.home==1?"בית":"חוץ"} מול ${esc(p.opponent)}</small></td>
@@ -803,7 +802,7 @@ function renderAbsencePicks(){
 
 function renderAll(){renderAbsencePicks();renderClubMarket();renderPlayerMatchups();document.getElementById("cntPlayers").textContent=players.length;renderMarket();renderTeam();renderCaptain();renderCoaches();renderGames();renderInjuries();}
 document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tabs button,.tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.getElementById(b.dataset.tab).classList.add("active");window.scrollTo({top:70,behavior:"smooth"})})
-for(const id of ["search","marketTeam","pos","maxPrice","statusFilter","sort"])document.getElementById(id).addEventListener("input",renderMarket);
+for(const id of ["marketTeam","pos","maxPrice","statusFilter","sort"])document.getElementById(id).addEventListener("input",renderMarket);
 document.getElementById('absenceTeam').addEventListener('change',renderAbsencePicks);
 document.getElementById('absenceStatus').addEventListener('change',renderAbsencePicks);
 document.querySelector('[data-tab="absencePicks"]').addEventListener('click',renderAbsencePicks);
@@ -1744,7 +1743,7 @@ if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
   }
 })();
 
-</script><script src="./personal-model-core.js?v=1"></script><script src="./personal-model.js?v=1"></script><script src="./model-stability.js?v=3"></script><script>window.__matchupContextEnabled=true;</script><script src="./matchup-context-core.js?v=2"></script><script src="./matchup-context.js?v=market-credits-1"></script><script src="./learning-model-version.js"></script><script src="./learning.js?v=market-credits-1"></script><script src="./optimizer.js"></script><script src="./coaches-ui.js?v=4"></script><script src="./audit-compact.js?v=2"></script><script src="./rolling-model-version.js"></script><script src="./rolling-learning.js?v=1"></script><script>
+</script><script src="./personal-model-core.js?v=1"></script><script src="./personal-model.js?v=1"></script><script src="./model-stability.js?v=3"></script><script>window.__matchupContextEnabled=true;</script><script src="./matchup-context-core.js?v=2"></script><script src="./matchup-context.js?v=market-credits-1"></script><script src="./learning-model-version.js"></script><script src="./learning.js?v=player-lists-1"></script><script src="./optimizer.js"></script><script src="./coaches-ui.js?v=4"></script><script src="./audit-compact.js?v=player-lists-1"></script><script src="./rolling-model-version.js"></script><script src="./rolling-learning.js?v=1"></script><script>
 /* PIR history: actual box scores only, E2026. Coach scoring follows Fantaking rules. */
 (()=>{
 'use strict';
@@ -1815,7 +1814,6 @@ for(const el of minutesCard.querySelectorAll('[id]'))el.id=el.id.replace(/^pir/,
 minutesSection.append(minutesCard);
 minutesSection.querySelector('h3').textContent='גרף דקות · משחק אחרי משחק';
 minutesSection.querySelector('#minutesKind').closest('label').remove();
-minutesSection.querySelector('#minutesSearch').placeholder='שם שחקן';
 minutesSection.querySelector('.player-result-picker span').textContent='שחקן · מהמחיר הגבוה לנמוך';
 
 function setupGraph(section,minutes){
@@ -1825,7 +1823,7 @@ function setupGraph(section,minutes){
  const scopes=section.querySelectorAll('[data-pir-scope]');
  let selectedRows=[],scope='all';
  function options(){
-  const type=kind(),old=$('Person').value,team=$('Team').value,search=key($('Search').value);
+  const type=kind(),old=$('Person').value,team=$('Team').value;
   const map=new Map();
   if(type==='player')for(const p of players.filter(p=>['G','F','C'].includes(p.pos)))map.set(key(p.name),{name:p.name,team:canon(p.team),price:num(p.price)});
   for(const [k,e] of data?.[type==='player'?'players':'coaches']||[])if(!map.has(k)){const market=(type==='coach'&&typeof COACHES!=='undefined'?COACHES:players).find(p=>key(p.name)===k);map.set(k,{...e,price:num(market?.price)})};
@@ -1834,7 +1832,7 @@ function setupGraph(section,minutes){
   $('Team').replaceChildren(...teams.map(t=>new Option(t,t)));
   if(teams.includes(team))$('Team').value=team;
   $('TeamLabel').hidden=scope!=='team';
-  const filtered=all.filter(([,e])=>(scope==='all'||e.team===$('Team').value)&&(!search||key(e.name).includes(search)||key(e.team).includes(search)));
+  const filtered=all.filter(([,e])=>(scope==='all'||e.team===$('Team').value));
   $('Person').disabled=!filtered.length;
   $('Person').replaceChildren(...(filtered.length?filtered.map(([k,e],i)=>new Option(`${i+1}. ${reorderCommaName(e.name)} · ${num(e.price)===null?'מחיר לא זמין':fmt(e.price)+' cr'}`,k)):[new Option('לא נמצאו תוצאות','')]));
   if(filtered.some(([k])=>k===old))$('Person').value=old;
@@ -1863,10 +1861,10 @@ function setupGraph(section,minutes){
  for(const b of scopes)b.onclick=()=>{
   scope=b.dataset.pirScope;
   for(const item of scopes)item.setAttribute('aria-pressed',String(item===b));
-  $('Search').value='';options();
+  options();
  };
- $('Kind')?.addEventListener('change',()=>{ $('Search').value='';options() });
- $('Team').addEventListener('change',()=>{$('Search').value='';$('Person').value='';options()});$('Search').addEventListener('input',options);$('Person').addEventListener('change',()=>{
+ $('Kind')?.addEventListener('change',options);
+ $('Team').addEventListener('change',()=>{$('Person').value='';options()});$('Person').addEventListener('change',()=>{
   render();
   $('Chart').scrollIntoView({block:'nearest'});
  });$('Range').addEventListener('change',render);
@@ -2066,10 +2064,10 @@ for (const id of ['data', 'learning']) {
 <script src="./team-metrics-core.js?v=1"></script><script src="./team-metrics-ui.js?v=4"></script>
 <link rel="stylesheet" href="./app-design.css?v=market-credits-2">
 <script src="./surprises.js?v=2"></script>
-<script src="./free-throws.js?v=opponent-fouls-1"></script>
-<script src="./pir-compare.js?v=round-overlay-1"></script>
+<script src="./free-throws.js?v=player-lists-1"></script>
+<script src="./pir-compare.js?v=player-lists-1"></script>
 <script src="./advanced-player-core.js?v=1"></script>
-<script src="./advanced-player-tools.js?v=player-box-score-1"></script>
+<script src="./advanced-player-tools.js?v=player-lists-1"></script>
 <script src="./app-navigation.js?v=player-box-score-1"></script>
 <script src="./app-player.js?v=market-credits-2"></script>
 <link rel="stylesheet" href="./home-dashboard.css?v=reference-6">
@@ -2152,7 +2150,7 @@ fetch('./data/player-media.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Err
 'use strict';
 const view=document.getElementById('teamView'),button=document.createElement('button');button.textContent='סימולציית הרכב';button.dataset.teamView='simulation';button.setAttribute('aria-pressed','false');button.setAttribute('aria-controls','squadSimulation');view.append(button);view.append(view.querySelector('[data-team-view="review"]'));
 const root=document.createElement('section');root.id='squadSimulation';root.hidden=true;document.getElementById('teamCards').after(root);
-const key='efa-squad-simulation-v2';let draft=null,selected=null,query='',sort='priceDesc',finance=null;
+const key='efa-squad-simulation-v2';let draft=null,selected=null,sort='priceDesc',finance=null;
 fetch('./data/roster.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{finance=d;if(!root.hidden){if(draft&&draft.slots.every(s=>s.current?.name===s.original.name))reset();render()}}).catch(()=>{});
 const num=v=>v==null||v===''||!Number.isFinite(Number(v))?null:Number(v),money=v=>num(v)===null?'—':Number(v).toFixed(1);
 const cents=v=>Math.round(Number(v)*100);
@@ -2167,13 +2165,12 @@ function court(){const tile=(s,i)=>`<article class="simCourtPlayer ${!s.current?
 
 try{const d=JSON.parse(localStorage.getItem(key)||'null');if(d&&(d.bank===null||(num(d.bank)!==null&&d.bank>=0))&&Array.isArray(d.slots)&&d.slots.every(s=>s.original&&num(s.original.price)!==null&&(!s.current||num(s.current.price)!==null)&&['G','F','C','coach'].includes(s.pos)))draft=d}catch{}
 function render(){if(!draft&&!reset())return;syncBank();
- root.innerHTML=`<div class="simToolbar"><button type="button" id="simReset">התחל מחדש מהסגל שלי</button></div><p class="simNote">לחץ על × להוצאת שחקן ועל ＋ לבחירת מחליף. הקרדיט מתעדכן אוטומטית. הטיוטה נשמרת בנפרד מהסגל שלך.</p>${draft.bank===null?'<p class="simBalanceNotice" role="status">יתרת הפנטזי טרם התקבלה בסנכרון. כרגע מוצג רק הכסף שהתפנה בהחלפות; יתרה נוספת אינה כלולה.</p>':'<p class="simNote">יתרה פנויה מהפנטזי: '+money(draft.bank)+' CR</p>'}<div class="simTotals"><div><b>${money(balance(draft))}</b><small>${draft.bank===null?'קרדיט מהחלפות בלבד':'קרדיט פנוי עכשיו'}</small></div><div><b>${draft.slots.filter(s=>!s.current).length}</b><small>מקומות להשלמה</small></div><div><b>${money(draft.slots.reduce((sum,s)=>sum+(s.current?.price||0),0))}</b><small>עלות ההרכב בטיוטה</small></div></div>${court()}${!draft.slots.length?'<p class="simNote">הוסף שחקנים ב״שוק שחקנים״ ולאחר מכן לחץ על ״התחל מחדש מהסגל שלי״.</p>':''}<dialog id="simPicker" aria-labelledby="simPoolTitle" dir="rtl"><div class="simPickerHead"><button type="button" id="simClosePicker" aria-label="סגור חלון מחליפים">×</button><h4 class="simPoolTitle" id="simPoolTitle"></h4></div><div class="simFilters"><label>חיפוש מחליף<input id="simSearch" placeholder="שם שחקן או קבוצה" value="${esc(query)}"></label><label>מיון<select id="simSort"><option value="priceDesc">מחיר: מהגבוה לנמוך</option><option value="priceAsc">מחיר: מהנמוך לגבוה</option><option value="pir">תחזית: מהגבוה לנמוך</option></select></label></div><p class="simStatus" id="simStatus" role="status"></p><div id="simCandidates" class="simCandidates"></div></dialog>`;
+ root.innerHTML=`<div class="simToolbar"><button type="button" id="simReset">התחל מחדש מהסגל שלי</button></div><p class="simNote">לחץ על × להוצאת שחקן ועל ＋ לבחירת מחליף. הקרדיט מתעדכן אוטומטית. הטיוטה נשמרת בנפרד מהסגל שלך.</p>${draft.bank===null?'<p class="simBalanceNotice" role="status">יתרת הפנטזי טרם התקבלה בסנכרון. כרגע מוצג רק הכסף שהתפנה בהחלפות; יתרה נוספת אינה כלולה.</p>':'<p class="simNote">יתרה פנויה מהפנטזי: '+money(draft.bank)+' CR</p>'}<div class="simTotals"><div><b>${money(balance(draft))}</b><small>${draft.bank===null?'קרדיט מהחלפות בלבד':'קרדיט פנוי עכשיו'}</small></div><div><b>${draft.slots.filter(s=>!s.current).length}</b><small>מקומות להשלמה</small></div><div><b>${money(draft.slots.reduce((sum,s)=>sum+(s.current?.price||0),0))}</b><small>עלות ההרכב בטיוטה</small></div></div>${court()}${!draft.slots.length?'<p class="simNote">הוסף שחקנים ב״שוק שחקנים״ ולאחר מכן לחץ על ״התחל מחדש מהסגל שלי״.</p>':''}<dialog id="simPicker" aria-labelledby="simPoolTitle" dir="rtl"><div class="simPickerHead"><button type="button" id="simClosePicker" aria-label="סגור חלון מחליפים">×</button><h4 class="simPoolTitle" id="simPoolTitle"></h4></div><div class="simFilters"><label>מיון<select id="simSort"><option value="priceDesc">מחיר: מהגבוה לנמוך</option><option value="priceAsc">מחיר: מהנמוך לגבוה</option><option value="pir">תחזית: מהגבוה לנמוך</option></select></label></div><p class="simStatus" id="simStatus" role="status"></p><div id="simCandidates" class="simCandidates"></div></dialog>`;
  root.querySelector('#simSort').value=sort;paintCandidates();
 }
-function paintCandidates(){const slot=draft.slots[selected],host=root.querySelector('#simCandidates');root.querySelector('#simPoolTitle').textContent=slot?'מחליפים · '+(slot.pos==='coach'?'מאמן':slot.pos)+' · תקציב '+money(balance(draft))+' CR':'בחר שחקן להוצאה כדי לראות מחליפים';if(!slot||slot.current){host.innerHTML='';return}const pool=slot.pos==='coach'?COACHES.map(p=>({...p,pos:'coach'})):players;const rows=pool.filter(p=>p.pos===slot.pos&&(!query||(p.name+' '+p.team).toLowerCase().includes(query.toLowerCase()))).map(p=>({p,score:slot.pos==='coach'?num(coachExpected(canonicalTeam(p.team))):num(model(p).expected)}));rows.sort((a,b)=>{const ap=num(a.p.price),bp=num(b.p.price);return sort==='pir'?(b.score??-Infinity)-(a.score??-Infinity):ap===null?1:bp===null?-1:sort==='priceAsc'?ap-bp:bp-ap});host.innerHTML=rows.map(({p,score})=>{const e=eligibility(draft,selected,p);return `<button type="button" class="simCandidate" data-sim-buy="${esc(p.name)}" ${e.ok?'':'disabled'}><span><b>${esc(p.name)}</b><small>${esc(p.team)} · ${slot.pos==='coach'?'מאמן':esc(statusText(p.status))} · ${slot.pos==='coach'?'נק׳ צפויות':'PIR צפוי'} ${money(score)}</small><small>${esc(e.reason)}</small></span><span><strong>${money(p.price)}</strong><small>CR</small></span></button>`}).join('')||'<p class="simNote">לא נמצאו מחליפים לחיפוש הזה.</p>';}
+function paintCandidates(){const slot=draft.slots[selected],host=root.querySelector('#simCandidates');root.querySelector('#simPoolTitle').textContent=slot?'מחליפים · '+(slot.pos==='coach'?'מאמן':slot.pos)+' · תקציב '+money(balance(draft))+' CR':'בחר שחקן להוצאה כדי לראות מחליפים';if(!slot||slot.current){host.innerHTML='';return}const pool=slot.pos==='coach'?COACHES.map(p=>({...p,pos:'coach'})):players;const rows=pool.filter(p=>p.pos===slot.pos).map(p=>({p,score:slot.pos==='coach'?num(coachExpected(canonicalTeam(p.team))):num(model(p).expected)}));rows.sort((a,b)=>{const ap=num(a.p.price),bp=num(b.p.price);return sort==='pir'?(b.score??-Infinity)-(a.score??-Infinity):ap===null?1:bp===null?-1:sort==='priceAsc'?ap-bp:bp-ap});host.innerHTML=rows.map(({p,score})=>{const e=eligibility(draft,selected,p);return `<button type="button" class="simCandidate" data-sim-buy="${esc(p.name)}" ${e.ok?'':'disabled'}><span><b>${esc(p.name)}</b><small>${esc(p.team)} · ${slot.pos==='coach'?'מאמן':esc(statusText(p.status))} · ${slot.pos==='coach'?'נק׳ צפויות':'PIR צפוי'} ${money(score)}</small><small>${esc(e.reason)}</small></span><span><strong>${money(p.price)}</strong><small>CR</small></span></button>`}).join('')||'<p class="simNote">לא נמצאו מחליפים לחיפוש הזה.</p>';}
 function openPicker(){const picker=root.querySelector('#simPicker');if(picker&&!picker.open)picker.showModal()}
-root.addEventListener('click',e=>{if(e.target.closest('#simClosePicker')){root.querySelector('#simPicker').close();return}if(e.target===root.querySelector('#simPicker')){const box=e.target.getBoundingClientRect();if(e.clientX<box.left||e.clientX>box.right||e.clientY<box.top||e.clientY>box.bottom)e.target.close();return}if(e.target.closest('#simReset')){if(reset())render();return}const remove=e.target.closest('[data-sim-remove]');if(remove){selected=Number(remove.dataset.simRemove);draft.slots[selected].current=null;query='';persist();render();openPicker();return}const slot=e.target.closest('[data-sim-slot]');if(slot){selected=Number(slot.dataset.simSlot);query='';render();openPicker();return}const buy=e.target.closest('[data-sim-buy]');if(buy){const s=draft.slots[selected],pool=s?.pos==='coach'?COACHES.map(p=>({...p,pos:'coach'})):players,p=pool.find(p=>p.name===buy.dataset.simBuy&&p.pos===s?.pos);if(!p)return;const eligible=eligibility(draft,selected,p);if(!eligible.ok){root.querySelector('#simStatus').textContent=eligible.reason;return}draft.slots[selected].current=snapshot(p);selected=draft.slots.findIndex(s=>!s.current);if(selected<0)selected=null;persist();render()}});
-root.addEventListener('input',e=>{if(e.target.id==='simSearch'){query=e.target.value;paintCandidates()}});
+root.addEventListener('click',e=>{if(e.target.closest('#simClosePicker')){root.querySelector('#simPicker').close();return}if(e.target===root.querySelector('#simPicker')){const box=e.target.getBoundingClientRect();if(e.clientX<box.left||e.clientX>box.right||e.clientY<box.top||e.clientY>box.bottom)e.target.close();return}if(e.target.closest('#simReset')){if(reset())render();return}const remove=e.target.closest('[data-sim-remove]');if(remove){selected=Number(remove.dataset.simRemove);draft.slots[selected].current=null;persist();render();openPicker();return}const slot=e.target.closest('[data-sim-slot]');if(slot){selected=Number(slot.dataset.simSlot);render();openPicker();return}const buy=e.target.closest('[data-sim-buy]');if(buy){const s=draft.slots[selected],pool=s?.pos==='coach'?COACHES.map(p=>({...p,pos:'coach'})):players,p=pool.find(p=>p.name===buy.dataset.simBuy&&p.pos===s?.pos);if(!p)return;const eligible=eligibility(draft,selected,p);if(!eligible.ok){root.querySelector('#simStatus').textContent=eligible.reason;return}draft.slots[selected].current=snapshot(p);selected=draft.slots.findIndex(s=>!s.current);if(selected<0)selected=null;persist();render()}});
 root.addEventListener('change',e=>{if(e.target.id==='simSort'){sort=e.target.value;paintCandidates()}});
 view.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.teamView==='simulation'){document.getElementById('teamCards').hidden=true;document.getElementById('roundReview').hidden=true;root.hidden=false;view.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===button)));render()}else if(b.dataset.teamView||b.id==='squadOptimizer'){root.hidden=true;button.setAttribute('aria-pressed','false')}});
 })();

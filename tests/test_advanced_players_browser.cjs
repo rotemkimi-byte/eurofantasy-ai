@@ -40,7 +40,9 @@ const server=http.createServer((req,res)=>{
    await page.locator('#efCategory').click();
    assert.equal(await page.locator('#efToolGroups [data-ef-tool="playerShots"]').count(),1);
    await page.locator('#efToolGroups [data-ef-tool="playerShots"]').click();
-   await page.locator('#playerShots [data-search]').fill('no-such-player-zzzz');
+   assert.equal(await page.locator('#playerShots input[type=search]').count(),0);
+   await page.locator('#playerShots [data-back]').click();
+   await page.locator('#playerShots [data-scope=team]').click();
    assert.equal(await page.locator('#playerShots [data-player]').inputValue(),'');
    assert(await page.locator('#playerShots .ap-empty').count());
   }

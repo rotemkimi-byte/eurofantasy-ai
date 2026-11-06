@@ -28,7 +28,6 @@ html[data-theme="dark"] .ap-screen{--ap-bg:#152237;--ap-soft:#20324a;--ap-ink:#f
 /* Advanced player picker: one-tap roster browser, phone-first and theme-aware. */
 .ap-screen .ap-controls{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}
 .ap-screen .ap-controls label{min-width:0;font-size:13px;font-weight:650;line-height:1.4}
-.ap-screen .ap-search-control{grid-column:1/-1}
 .ap-screen .ap-controls input,.ap-screen .ap-controls select{min-height:48px;border-radius:11px;padding:10px 11px;font-weight:600;box-shadow:none}
 .ap-screen .ap-controls select{font-size:14px}
 .ap-screen .ap-top h3{font-size:23px;margin:0}
@@ -56,7 +55,6 @@ html[data-theme="dark"] .ap-screen{--ap-bg:#152237;--ap-soft:#20324a;--ap-ink:#f
 .ap-screen .ap-help{margin-top:18px;border-top:1px solid var(--ap-border)}
 @media(min-width:720px){
  .ap-screen .ap-controls{grid-template-columns:minmax(180px,1.5fr) repeat(3,minmax(140px,1fr))}
- .ap-screen .ap-search-control{grid-column:auto}
 }
 @media(max-width:430px){
  .ap-screen .ap-shell{padding:13px}
@@ -72,7 +70,6 @@ html[data-theme="dark"] .ap-screen{--ap-bg:#152237;--ap-soft:#20324a;--ap-ink:#f
 @media(max-width:430px){.ap-screen .ap-player-row.ap-no-plus{grid-template-columns:minmax(0,1fr) 58px 70px 12px}}
 
 /* Keep the selected analysis compact; filters return with the roster. */
-.ap-screen.ap-detail-open .ap-controls label:has([data-search]),
 .ap-screen.ap-detail-open .ap-controls label:has([data-team]),
 .ap-screen.ap-detail-open .ap-controls label:has([data-sort]){display:none}
 .ap-screen .ap-row-stat b{direction:ltr;unicode-bidi:isolate}
