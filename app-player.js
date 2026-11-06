@@ -23,16 +23,28 @@ function creditChart(rounds,player){
  })).filter(r=>Number.isInteger(r.round)&&r.round>0&&r.price>0).sort((a,b)=>a.round-b.round);
  const current=U.num(player.price),last=Math.max(0,...rounds.map(r=>Number(r.round)||0));
  if(current>0)rows.push({round:last+1,price:current,current:true});
- if(!rows.length)return '<span class="muted" aria-label="אין נתוני קרדיטים">—</span>';
- const prices=rows.map(r=>r.price),lo=Math.min(...prices),hi=Math.max(...prices),span=Math.max(hi-lo,0.6);
+ if(!rows.length)return '<h3>קרדיטים</h3><span class="muted" aria-label="אין נתוני קרדיטים">—</span>';
+ const prices=rows.map(r=>r.price),lo=Math.min(...prices),hi=Math.max(...prices);
+ const center=(lo+hi)/2,half=Math.max(Math.ceil((hi-lo)*5)/10,.3);
  const first=rows[0].round,end=rows.at(-1).round;
- const x=r=>first===end?174:35+278*(r.round-first)/(end-first);
- const y=r=>35-(r.price-(lo+hi)/2)*46/span;
- return `<svg class="ef-credit-chart" viewBox="0 0 348 80" role="img" aria-label="קרדיטים לפי מחזור, מהישן לחדש">
-  <path class="ef-gridline" d="M35 35H313 M35 60H313"/>
-  <polyline points="${rows.map(r=>x(r)+','+y(r)).join(' ')}" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
-  ${rows.map((r,i)=>`<circle cx="${x(r)}" cy="${y(r)}" r="${r.current?4:3}" fill="currentColor"><title>${r.current?'עכשיו':'מחזור '+r.round} · ${fmt(r.price)} CR</title></circle>${i===0||i===rows.length-1?`<text x="${x(r)}" y="76" text-anchor="middle">${r.current?'עכשיו':'מח׳ '+r.round}</text>`:''}`).join('')}
-  <text x="${x(rows.at(-1))}" y="${y(rows.at(-1))-7}" text-anchor="middle">${fmt(rows.at(-1).price)}</text>
+ const x=r=>first===end?174:43+265*(r.round-first)/(end-first);
+ const y=value=>42-(value-center)*29/half;
+ const label=r=>r.current?'עכשיו':'מחזור '+r.round;
+ const value=r=>label(r)+' · '+fmt(r.price)+' CR';
+ const chosen=rows.at(-1);
+ return `<div class="ef-credit-heading"><h3>קרדיטים</h3><output aria-live="polite">${value(chosen)}</output></div>
+ <svg class="ef-credit-chart" viewBox="0 0 348 94" role="group" aria-label="קרדיטים לפי מחזור, מהישן לחדש">
+  ${[center+half,center,center-half].map(t=>`<line class="ef-gridline" x1="43" x2="308" y1="${y(t)}" y2="${y(t)}"/><text x="34" y="${y(t)+4}" text-anchor="end">${fmt(t)}</text>`).join('')}
+  <polyline points="${rows.map(r=>x(r)+','+y(r.price)).join(' ')}" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+  ${rows.map((r,i)=>{
+   const cx=x(r),left=i?(x(rows[i-1])+cx)/2:35,right=i<rows.length-1?(cx+x(rows[i+1]))/2:333;
+   const tick=r.current||i===0||i===rows.length-1||(r.round-first)%Math.ceil((end-first)/4)===0&&end-r.round>1;
+   return `<g role="button" tabindex="0" data-credit-point="${value(r)}" aria-label="${value(r)}" aria-pressed="${r===chosen}">
+    <rect x="${left}" y="0" width="${right-left}" height="94" fill="transparent"/>
+    <circle cx="${cx}" cy="${y(r.price)}" r="3.5" fill="currentColor"/>
+    ${tick?`<text x="${cx}" y="89" text-anchor="middle">${r.current?'עכשיו':r.round}</text>`:''}
+   </g>`;
+  }).join('')}
  </svg>`;
 }
 function safeImage(url){try{const u=new URL(url);return u.protocol==='https:'&&['media-cdn.cortextech.io','media-cdn.incrowdsports.com','media-cdn.euroleague.net'].includes(u.hostname)?url:null;}catch{return null;}}
@@ -63,10 +75,19 @@ window.showPlayer=function(name){
  const overview=document.createElement('div');overview.className='ef-overview-data';panes.overview.prepend(overview);
  if(compactMarket){
   const credits=document.createElement('section');credits.className='ef-market-credits';
-  credits.innerHTML='<h3>קרדיטים</h3><div></div>';
   overview.after(credits);
   const player=players.find(p=>p.name===name);
-  const draw=rounds=>{credits.lastElementChild.innerHTML=creditChart(rounds,player);};
+  const draw=rounds=>{credits.innerHTML=creditChart(rounds,player);};
+  const select=e=>{
+   const point=e.target.closest('[data-credit-point]');if(!point)return;
+   if(e.type==='keydown'&&e.key!=='Enter'&&e.key!==' ')return;
+   if(e.type==='keydown')e.preventDefault();
+   credits.querySelector('[aria-pressed="true"]')?.setAttribute('aria-pressed','false');
+   point.setAttribute('aria-pressed','true');
+   credits.querySelector('output').textContent=point.dataset.creditPoint;
+  };
+  credits.onclick=select;
+  credits.onkeydown=select;
   draw([]);
   creditHistory().then(rounds=>{if(body.contains(credits))draw(rounds);});
  }
