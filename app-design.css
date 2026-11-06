@@ -190,3 +190,16 @@ html.ef-redesign #playerModal .ef-player-modal-toolbar .close{
   padding-top:calc(8px + env(safe-area-inset-top,0px));
  }
 }
+
+.player-picker-modes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:12px 0}
+.player-picker-modes[hidden],.player-picker-controls label[hidden]{display:none!important}
+.tab .player-picker-modes button{min-height:44px;padding:8px 5px;background:var(--card2);color:var(--text);border:1px solid var(--line);white-space:normal}
+.tab .player-picker-modes button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#07110c}
+html[data-theme="light"] .tab .player-picker-modes button[aria-pressed="true"]{color:#fff}
+.player-picker-controls label{display:block;min-width:0;color:var(--muted)}
+.player-picker-controls select{display:block;width:100%;min-width:0;min-height:44px;margin-top:5px;font-size:16px;background:var(--card);color:var(--text);border-color:var(--line)}
+#playerMatchups .player-picker-controls{display:grid;gap:10px;margin:12px 0}
+#usage .player-picker-controls,#defense .player-picker-controls{grid-template-columns:minmax(0,1fr)}
+@media(max-width:600px){
+ #pirGraph .player-picker-controls,#pirCompare .player-picker-controls,.ap-screen .player-picker-controls,.ft-screen .player-picker-controls{display:grid;grid-template-columns:minmax(0,1fr)}
+}
