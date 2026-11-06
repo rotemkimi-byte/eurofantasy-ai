@@ -18,3 +18,6 @@ html[data-theme=light] .tab .pa-views button[aria-pressed=true],html[data-theme=
 #usage .pa-sort button[aria-pressed=true]{background:var(--accent);border-color:var(--accent)}
 #playerFreeThrows .pa-views button[aria-pressed=true],#playerFreeThrows .pa-sort button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#07110c}
 html[data-theme=light] #playerFreeThrows .pa-views button[aria-pressed=true],html[data-theme=light] #playerFreeThrows .pa-sort button[aria-pressed=true]{color:white}
+html[data-theme] .tab :is(.pa-views,.pa-sort) button[aria-pressed=false],
+html[data-theme] .tab .pa-panel .pa-picks button,
+html[data-theme] .tab .pa-panel button[data-pa-more]{color:var(--text)}
