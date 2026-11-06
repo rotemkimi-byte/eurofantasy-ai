@@ -195,7 +195,8 @@ html.ef-redesign #playerModal .ef-player-modal-toolbar .close{
 .player-picker-modes[hidden],.player-picker-controls label[hidden]{display:none!important}
 .tab .player-picker-modes button{min-height:44px;padding:8px 5px;background:var(--card2);color:var(--text);border:1px solid var(--line);white-space:normal}
 .tab .player-picker-modes button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#07110c}
-html[data-theme="light"] .tab .player-picker-modes button[aria-pressed="true"]{color:#fff}
+html[data-theme="light"] .tab .player-picker-modes button{color:var(--text)}
+html[data-theme="light"] .tab .player-picker-modes button[aria-pressed="true"]{background:#087e60;border-color:#087e60;color:#fff}
 .player-picker-controls label{display:block;min-width:0;color:var(--muted)}
 .player-picker-controls select{display:block;width:100%;min-width:0;min-height:44px;margin-top:5px;font-size:16px;background:var(--card);color:var(--text);border-color:var(--line)}
 #playerMatchups .player-picker-controls{display:grid;gap:10px;margin:12px 0}
