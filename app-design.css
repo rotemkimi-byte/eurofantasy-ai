@@ -199,8 +199,14 @@ html[data-theme="light"] .tab .player-picker-modes button{color:var(--text)}
 html[data-theme="light"] .tab .player-picker-modes button[aria-pressed="true"]{background:#087e60;border-color:#087e60;color:#fff}
 .player-picker-controls label{display:block;min-width:0;color:var(--muted)}
 .player-picker-controls select{display:block;width:100%;min-width:0;min-height:44px;margin-top:5px;font-size:16px;background:var(--card);color:var(--text);border-color:var(--line)}
+.player-result-picker{display:block;position:sticky;top:0;z-index:4;background:var(--card);padding:calc(6px + env(safe-area-inset-top,0px)) 0 8px}
+.player-result-summary{scroll-margin:calc(90px + env(safe-area-inset-top,0px)) 0 calc(100px + env(safe-area-inset-bottom,0px))}
+#pirSummary .pirStats{margin:6px 0}
+#pirSelectedName{font-weight:750}
+#pirLatest{margin:6px 0 12px}
 #playerMatchups .player-picker-controls{display:grid;gap:10px;margin:12px 0}
 #usage .player-picker-controls,#defense .player-picker-controls{grid-template-columns:minmax(0,1fr)}
 @media(max-width:600px){
- #pirGraph .player-picker-controls,#pirCompare .player-picker-controls,.ap-screen .player-picker-controls,.ft-screen .player-picker-controls{display:grid;grid-template-columns:minmax(0,1fr)}
+ #pirCompare .player-picker-controls,.ap-screen .player-picker-controls,.ft-screen .player-picker-controls{display:grid;grid-template-columns:minmax(0,1fr)}
 }
+#pirGraph .pirControls{grid-template-columns:repeat(auto-fit,minmax(min(100%,130px),1fr))}

@@ -4,7 +4,14 @@ const server=http.createServer((req,res)=>{const file=path.join(root,req.url.spl
 (async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const browser=await chromium.launch({args:['--no-sandbox']});try{
 const page=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true}),errors=[];
 page.on('pageerror',e=>errors.push(e.message));await page.route('**/*',r=>r.request().url().startsWith('http://127.0.0.1:')?r.continue():r.abort());
-await page.goto(`http://127.0.0.1:${server.address().port}`,{waitUntil:'domcontentloaded'});await page.evaluate(()=>document.querySelector('.tabs [data-tab=usage]').click());await page.locator('#usRanking tbody tr').first().waitFor();
+await page.goto(`http://127.0.0.1:${server.address().port}`,{waitUntil:'domcontentloaded'});await page.evaluate(()=>document.querySelector('.tabs [data-tab=usage]').click());
+await page.locator('#usResult .us-score').waitFor();
+assert.equal(await page.locator('#usRanking').isVisible(),false);
+assert(await page.locator('#usPlayer').evaluate(el=>el.closest('label').nextElementSibling.id==='usResult'&&getComputedStyle(el.closest('label')).position==='sticky'));
+const nextPlayer=await page.locator('#usPlayer option').nth(1).getAttribute('value');
+await page.selectOption('#usPlayer',nextPlayer);
+assert.equal(await page.locator('#usRanking .us-selected').getAttribute('data-us-row'),nextPlayer);
+await page.locator('#usRankingTitle').click();await page.locator('#usRanking tbody tr').first().waitFor();
 async function order(){const values=await page.locator('#usRanking tbody tr td:nth-child(3) strong').allTextContents();let prev=Infinity,missing=false;for(const v of values){if(v==='—'){missing=true;continue}assert(!missing);const n=parseFloat(v);assert(n<=prev);prev=n;}}
 await order();const total=await page.locator('#usRanking tbody tr').count();assert(total>100);
 await page.selectOption('#usPosition','G');assert(await page.locator('#usRanking tbody tr').count()<total);assert((await page.locator('#usRanking tbody tr td:nth-child(2) small').allTextContents()).every(t=>t.includes(' · G')));await order();

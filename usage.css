@@ -12,6 +12,10 @@
 #usage .us-score{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--card2);margin:12px 0}
 #usage .us-score strong{font-size:28px;line-height:1.3;direction:ltr;white-space:nowrap;color:var(--accent)}
 #usage .us-score b{font-size:15px}
+#usage .us-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:0 0 12px}
+#usage .us-metrics div{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:6px 8px}
+#usage .us-metrics dt{font-size:12px;color:var(--muted)}
+#usage .us-metrics dd{margin:0;font-weight:700}
 #usage small{display:block;font-size:12px;color:var(--muted);font-weight:400;line-height:1.5}
 #usage .us-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;margin:12px 0}
 #usage .us-table{width:100%;min-width:0;table-layout:fixed}
@@ -48,7 +52,6 @@
 #usage .us-selected{background:color-mix(in srgb,var(--accent) 10%,transparent)}
 #usage .us-usage-bar{display:block;height:5px;border-radius:4px;background:var(--line);margin-top:6px;overflow:hidden}
 #usage .us-usage-bar i{display:block;height:100%;background:var(--accent);border-radius:4px}
-#usage #usResult{scroll-margin-top:130px}
 #usage .us-sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media(max-width:600px){
  #usage .card{padding:12px}
