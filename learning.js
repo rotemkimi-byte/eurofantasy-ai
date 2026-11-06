@@ -76,7 +76,7 @@
   }
   const originalShow=window.showPlayer;
   window.showPlayer=function(name){
-    originalShow(name);const body=document.getElementById('modalBody');if(!body)return;
+    originalShow.apply(this,arguments);const body=document.getElementById('modalBody');if(!body||body.classList?.contains('ef-market-player'))return;
     const p=players.find(p=>p.name===name);if(!p)return;
     const x=model(p),audit=data?.players?.[key(name)];
     const section=document.createElement('section');section.className='playerSection learning-player';

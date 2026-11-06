@@ -348,7 +348,7 @@ function renderMarket(){
   let arr=players.filter(p=>(!tf||canonicalTeam(p.team)===tf)&&(!q||(p.name+" "+p.team).toLowerCase().includes(q))&&(!pf||p.pos===pf)&&(!sf||p.status===sf)&&+p.price<=mp);
   arr.sort((a,b)=>{const A=model(a),B=model(b);if(sort==="confidence")return B.confidence-A.confidence;if(sort==="minutes")return B.minutes-A.minutes;if(sort==="price")return +b.price-+a.price||a.name.localeCompare(b.name);return B.expected-A.expected});
   document.getElementById("rows").innerHTML=arr.map(p=>{const x=model(p);return `<tr>
-  <td class="name" onclick='showPlayer(${JSON.stringify(p.name)})' style="cursor:pointer"><b>${esc(p.name)}</b><small>${esc(p.team)} • ${p.pos} • ${p.home==1?"בית":"חוץ"} מול ${esc(p.opponent)}</small></td>
+  <td class="name" onclick='showPlayer(${JSON.stringify(p.name)},true)' style="cursor:pointer"><b>${esc(p.name)}</b><small>${esc(p.team)} • ${p.pos} • ${p.home==1?"בית":"חוץ"} מול ${esc(p.opponent)}</small></td>
   <td>${window.RoundReviewUI?window.RoundReviewUI.price(p):n1(p.price)}</td><td>${n1(x.minutes)}</td><td><b>${n1(x.expected)}</b></td><td>${n1(x.floor)}–${n1(x.ceiling)}</td><td>${dataQuality(p,x)}</td><td class="${x.matchPct>=2?"good":x.matchPct<=-2?"bad":""}">${x.matchPct>=0?"+":""}${x.matchPct.toFixed(1)}%</td><td class="${statusClass(p.status)}">${statusText(p.status)}</td>
   <td><button class="${isSelected(p)?"secondary":""}" onclick='event.stopPropagation();toggle(${JSON.stringify(p.name)})'>${isSelected(p)?"הסר":"הוסף"}</button></td></tr>`}).join("");
   window.MarketReferenceUI?.render(arr);
@@ -385,7 +385,7 @@ async function fillLastThreeGames(name,card){
     card.innerHTML='<h4>3 המשחקים האחרונים</h4>'+(rows.length?`<table class="lastThreeTable" aria-label="שלושת המשחקים האחרונים"><thead><tr><th>יריבה</th><th>PIR</th><th>דקות</th></tr></thead><tbody>${rows.join('')}</tbody></table>`:'<p class="muted">אין עדיין משחקים ששוחקו בעונת 2026/27.</p>');
   }catch(e){if(card.isConnected)card.innerHTML='<h4>3 המשחקים האחרונים</h4><p class="muted">נתוני המשחקים לא זמינים כרגע. פתח שוב כדי לנסות מחדש.</p>';}
 }
-window.showPlayer=function(name){
+window.showPlayer=function(name,compactMarket=false){
   const p=players.find(x=>x.name===name);if(!p)return;const x=model(p),m=x.match;
   const recent=x.recentForm;
   const hasCurrent=recent?.latestSeason==="E2026" && Number(recent.currentSeasonGames)>0;
@@ -401,9 +401,13 @@ window.showPlayer=function(name){
     actualMetric("משחקים בעונה",recent.currentSeasonGames,0),
     `<div class="miniCard lastThreeCard"><h4>3 המשחקים האחרונים</h4><p class="muted">טוען משחקים…</p></div>`
   ].join(""):'<p class="muted">אין עדיין נתוני משחק מאומתים לעונת 2026/27.</p>';
-  document.getElementById("modalBody").innerHTML=`<div class="ef-player-hero"><div class="ef-player-identity"><div class="ef-player-avatar" aria-hidden="true">${esc(p.name.split(/\s+/).filter(Boolean).slice(0,2).map(s=>s[0]).join(''))}</div><div><h2 dir="auto">${esc(p.name)}</h2><p>${esc(p.team)} • ${esc(p.pos)} • ${esc(statusText(p.status))}</p></div></div><div class="ef-player-stats"><div><small>מחיר נוכחי · קרדיט</small><b>${n1(p.price)}</b></div><div><small>PIR במשחק האחרון</small><b>${hasCurrent&&recent.lastGame?.pir!=null?n1(recent.lastGame.pir):'—'}</b></div><div><small>דקות במשחק האחרון</small><b>${hasCurrent&&recent.lastGame?.minutes!=null?n1(recent.lastGame.minutes):'—'}</b></div><div><small>ממוצע PIR · ${hasCurrent?recent.last5?.games||0:0} אחרונים</small><b>${hasCurrent&&recent.last5?.avgPir!=null?n1(recent.last5.avgPir):'—'}</b></div></div></div><nav class="ef-player-jumps" aria-label="נתוני שחקן"><a href="#efPlayerActual">ביצועים בפועל</a><a href="#efPlayerForecast">צפי למשחק הבא</a></nav>
+  const body=document.getElementById("modalBody");
+  body.classList.toggle("ef-market-player",compactMarket);
+  body.innerHTML=`<div class="ef-player-hero"><div class="ef-player-identity"><div class="ef-player-avatar" aria-hidden="true">${esc(p.name.split(/\s+/).filter(Boolean).slice(0,2).map(s=>s[0]).join(''))}</div><div><h2 dir="auto">${esc(p.name)}</h2><p>${esc(p.team)} • ${esc(p.pos)} • ${esc(statusText(p.status))}</p></div></div><div class="ef-player-stats"><div><small>מחיר נוכחי · קרדיט</small><b>${n1(p.price)}</b></div><div><small>PIR במשחק האחרון</small><b>${hasCurrent&&recent.lastGame?.pir!=null?n1(recent.lastGame.pir):'—'}</b></div><div><small>דקות במשחק האחרון</small><b>${hasCurrent&&recent.lastGame?.minutes!=null?n1(recent.lastGame.minutes):'—'}</b></div><div><small>ממוצע PIR · ${hasCurrent?recent.last5?.games||0:0} אחרונים</small><b>${hasCurrent&&recent.last5?.avgPir!=null?n1(recent.last5.avgPir):'—'}</b></div></div></div><nav class="ef-player-jumps" aria-label="נתוני שחקן"><a href="#efPlayerActual">ביצועים בפועל</a><a href="#efPlayerForecast">צפי למשחק הבא</a></nav>
   <section id="efPlayerActual" class="playerSection actual-results" aria-label="נתוני עבר"><h3 class="sectionTitle">בפועל · עונת 2026/27</h3><p class="muted sectionNote">תוצאות ממשחקים שכבר שוחקו</p><div class="detailGrid">${actualCards}</div></section>
-  <section id="efPlayerForecast" class="playerSection forecast-results" aria-label="תחזית למשחק הבא"><h3 class="sectionTitle">תחזית · המשחק הבא</h3><p class="muted sectionNote">הערכות המודל, לא תוצאות בפועל</p>
+  ${compactMarket?`<section id="efPlayerForecast" class="ef-market-forecast" aria-label="תחזית למשחק הבא">
+  ${actualMetric('PIR צפוי',x.expected)}${actualMetric('דקות צפויות',x.minutes)}
+  </section>`:`<section id="efPlayerForecast" class="playerSection forecast-results" aria-label="תחזית למשחק הבא"><h3 class="sectionTitle">תחזית · המשחק הבא</h3><p class="muted sectionNote">הערכות המודל, לא תוצאות בפועל</p>
   <div class="detailGrid">
   <div class="miniCard"><b>${n1(x.expected)}</b><small>PIR צפוי</small></div><div class="miniCard"><b>${n1(x.minutes)}</b><small>דקות צפויות</small></div>
   <div class="miniCard"><b>${n1(x.floor)}–${n1(x.ceiling)}</b><small>${x.rangeSample?"טווח שגיאות עבר*":"טווח נוסחתי*"}</small></div><div class="miniCard"><b>${x.matchPct>=0?"+":""}${x.matchPct.toFixed(1)}%</b><small>סביבת מאצ׳אפ</small></div>
@@ -412,7 +416,7 @@ window.showPlayer=function(name){
   ${x.personalPrior?.historicalGames?`<div class="miniCard"><b>${n1(x.personalPrior.avgPir)} PIR · ${n1(x.personalPrior.avgMinutes)} דק׳</b><small>בסיס אישי 2025/26 · ${x.personalPrior.historicalGames} משחקים</small></div><div class="miniCard"><b>${Math.round(x.personalPrior.currentSeasonWeight*100)}%</b><small>משקל העונה הנוכחית בביצועים לדקה</small></div><div class="miniCard"><b>${x.personalPrior.streaks.find(s=>s.threshold===30)?.longestRun??'—'}</b><small>הרצף הארוך של משחקי 30+ PIR · 2025/26</small></div><div class="miniCard"><b>${x.personalPrior.momentumEnabled?`+${n1(x.personalPrior.momentumPir)} PIR`:'לא פעיל'}</b><small>תיקון מומנטום · בדיקה היסטורית</small></div>`:''}
   <div class="miniCard"><b>${dataQuality(p,x)}</b><small>איכות נתונים</small></div><div class="miniCard"><b>${esc(x.source)}</b><small>מקור בסיס התחזית</small></div>
   <div class="miniCard"><b>${pct(m.winProb)}</b><small>סיכוי קבוצתי לניצחון</small></div><div class="miniCard"><b>${pct(m.p20)}</b><small>סיכוי קבוצתי לניצחון ב־20+ הפרש</small></div>
-  </div><p class="notice" style="margin-top:12px">בסיס PIR: ${n1(x.basePir)} • בסיס דקות: ${n1(x.baseMin)} • חוסרים בקבוצה: +${n1(x.injuryBoost)} דקות, +${n1(x.injuryUsagePct||0)}% נפח משחק${x.missingStars?.length?` (${x.missingStars.map(esc).join(", ")})`:""}. ${m.home?"בית":"חוץ"} • צפי נקודות קבוצה: ${n1(m.teamPoints)} • הגנת היריבה מול העמדה: ${Number(x.positionMatchPct||0)>=0?"+":""}${n1(x.positionMatchPct||0)}%. קו קבוצה: ${m.margin>=0?"+":""}${n1(m.margin)}; טוטאל: ${n1(m.total)}. *${x.rangeSample?`טווח המבוסס על ${x.rangeSample} שגיאות בעמדה במחזור אחד; אינו טווח ביטחון מאומת.`:"טווח נוסחתי שטרם אומת."}</p></details></section>`;
+  </div><p class="notice" style="margin-top:12px">בסיס PIR: ${n1(x.basePir)} • בסיס דקות: ${n1(x.baseMin)} • חוסרים בקבוצה: +${n1(x.injuryBoost)} דקות, +${n1(x.injuryUsagePct||0)}% נפח משחק${x.missingStars?.length?` (${x.missingStars.map(esc).join(", ")})`:""}. ${m.home?"בית":"חוץ"} • צפי נקודות קבוצה: ${n1(m.teamPoints)} • הגנת היריבה מול העמדה: ${Number(x.positionMatchPct||0)>=0?"+":""}${n1(x.positionMatchPct||0)}%. קו קבוצה: ${m.margin>=0?"+":""}${n1(m.margin)}; טוטאל: ${n1(m.total)}. *${x.rangeSample?`טווח המבוסס על ${x.rangeSample} שגיאות בעמדה במחזור אחד; אינו טווח ביטחון מאומת.`:"טווח נוסחתי שטרם אומת."}</p></details></section>`}`;
   const lastThreeCard=document.querySelector("#modalBody .lastThreeCard");
   if(lastThreeCard)void fillLastThreeGames(name,lastThreeCard);
   playerModal.showModal();
@@ -1551,7 +1555,7 @@ if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
     const body =
       document.getElementById("modalBody");
 
-    if (!body || !body.textContent) return;
+    if (!body || !body.textContent || body.classList.contains("ef-market-player")) return;
 
     if (
       body.querySelector(
@@ -1740,7 +1744,7 @@ if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
   }
 })();
 
-</script><script src="./personal-model-core.js?v=1"></script><script src="./personal-model.js?v=1"></script><script src="./model-stability.js?v=3"></script><script>window.__matchupContextEnabled=true;</script><script src="./matchup-context-core.js?v=2"></script><script src="./matchup-context.js?v=3"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script><script src="./optimizer.js"></script><script src="./coaches-ui.js?v=4"></script><script src="./audit-compact.js?v=2"></script><script src="./rolling-model-version.js"></script><script src="./rolling-learning.js?v=1"></script><script>
+</script><script src="./personal-model-core.js?v=1"></script><script src="./personal-model.js?v=1"></script><script src="./model-stability.js?v=3"></script><script>window.__matchupContextEnabled=true;</script><script src="./matchup-context-core.js?v=2"></script><script src="./matchup-context.js?v=market-credits-1"></script><script src="./learning-model-version.js"></script><script src="./learning.js?v=market-credits-1"></script><script src="./optimizer.js"></script><script src="./coaches-ui.js?v=4"></script><script src="./audit-compact.js?v=2"></script><script src="./rolling-model-version.js"></script><script src="./rolling-learning.js?v=1"></script><script>
 /* PIR history: actual box scores only, E2026. Coach scoring follows Fantaking rules. */
 (()=>{
 'use strict';
@@ -2060,14 +2064,14 @@ for (const id of ['data', 'learning']) {
 <script src="./usage-core.js?v=2"></script><script src="./usage-ui.js?v=player-summary-1"></script>
 <script src="./defense-core.js?v=2"></script><script src="./defense-ui.js?v=player-picker-1"></script>
 <script src="./team-metrics-core.js?v=1"></script><script src="./team-metrics-ui.js?v=4"></script>
-<link rel="stylesheet" href="./app-design.css?v=minutes-graph-1">
+<link rel="stylesheet" href="./app-design.css?v=market-credits-1">
 <script src="./surprises.js?v=2"></script>
 <script src="./free-throws.js?v=opponent-fouls-1"></script>
 <script src="./pir-compare.js?v=round-overlay-1"></script>
 <script src="./advanced-player-core.js?v=1"></script>
 <script src="./advanced-player-tools.js?v=player-box-score-1"></script>
 <script src="./app-navigation.js?v=player-box-score-1"></script>
-<script src="./app-player.js?v=2"></script>
+<script src="./app-player.js?v=market-credits-1"></script>
 <link rel="stylesheet" href="./home-dashboard.css?v=reference-6">
 <script src="./home-dashboard.js?v=reference-5"></script>
 <script src="./matchup-live.js"></script><style id="market-reference-design">
@@ -2106,7 +2110,7 @@ function paint(){
 }
 root.addEventListener('click',e=>{
  const action=e.target.closest('[data-market-toggle]');if(action){toggle(action.dataset.marketToggle);return}
- const player=e.target.closest('[data-market-player]');if(player)showPlayer(player.dataset.marketPlayer);
+ const player=e.target.closest('[data-market-player]');if(player)showPlayer(player.dataset.marketPlayer,true);
 });
 window.MarketReferenceUI={render(list){visible=list;paint()}};
 renderMarket();

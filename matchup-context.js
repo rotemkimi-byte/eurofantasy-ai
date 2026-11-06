@@ -19,8 +19,8 @@ window.refreshMatchupContext=next=>{
 window.refreshMatchupContext();
 const previous=model;model=p=>MatchupContext.project(previous(p),p,data);
 const originalShow=window.showPlayer;
-window.showPlayer=name=>{
- originalShow(name);const p=players.find(p=>p.name===name),body=document.getElementById('modalBody');if(!p||!body)return;
+window.showPlayer=(name,compactMarket)=>{
+ originalShow(name,compactMarket);const p=players.find(p=>p.name===name),body=document.getElementById('modalBody');if(!p||!body||compactMarket)return;
  const x=model(p),c=x.context;if(!c)return;const profile=c.profile,a=profile?.averages,r=c.rival;
  const section=document.createElement('section');section.className='playerSection forecast-results context-player';
  section.innerHTML=`<h3 class="sectionTitle">מעורבות, הגנה ותרחישי דקות</h3>
