@@ -24,8 +24,18 @@ function options(){
 }
 function table(headers,rows){return `<div class="us-table-wrap"><table class="us-table"><thead><tr>${headers.map(h=>`<th scope="col">${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>`<tr>${row.map(v=>`<td>${v}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;}
 const value=(metric,n)=>fmt(n)+(n!==null&&['stl','blk','reb','orb','drb'].includes(metric)?'%':'');
+const analytics=window.PlayerAnalysis.mount(section,section.querySelector('.us-controls'),$('dfStatus'),[$('dfResult'),$('dfGames')],{
+ metrics:{...labels,stocks:'חטיפות + חסימות למשחק'},team:()=>scope==='team'?$('dfTeam').value:'',
+ rows:()=>data?records.map(p=>{
+  const stats=D.summarize(D.selectGames(data.players[p.id],data,$('dfRange').value),data,env);
+  const values={stocks:stats.played&&stats.stocks!==null?stats.stocks/stats.played:null};
+  for(const key of Object.keys(labels))if(key!=='stocks')values[key]=stats[key].value;
+  return {...p,name:name(p.name),values};
+ }):[],format:(n,metric)=>value(metric,n)
+});
+
 function render(){
- if(!data)return;const p=records.find(p=>p.id===$('dfPlayer').value),games=D.selectGames(data.players[p?.id],data,$('dfRange').value),metric=$('dfMetric').value||'stocks',s=D.summarize(games,data,env);
+ if(!data)return;analytics.render();const p=records.find(p=>p.id===$('dfPlayer').value),games=D.selectGames(data.players[p?.id],data,$('dfRange').value),metric=$('dfMetric').value||'stocks',s=D.summarize(games,data,env);
  $('dfStatus').textContent=`עונת 2026/27 · ${games.length} משחקים ברישום · ${s.played} עם דקות · בסיס PER: ${env.games} משחקים · עודכן ${new Date(data.updated_at).toLocaleString('he-IL',{day:'numeric',month:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Jerusalem'})}`;
  if(!p||!games.length){$('dfResult').innerHTML='<p class="notice">אין נתוני משחק לשחקן בעונה הנוכחית.</p>';$('dfGames').innerHTML='';return;}
  const latest=games[0];const gameLabel=`${latest.opponent} · מחזור ${latest.round??'—'} · ${new Date(latest.date).toLocaleDateString('he-IL',{timeZone:'Asia/Jerusalem'})}`;

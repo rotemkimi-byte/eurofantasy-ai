@@ -1,0 +1,20 @@
+html:has(.tab.active .pa-views){overflow-anchor:none}
+.pa-expanded .pa-detail,.pa-panel[hidden]{display:none!important}
+.pa-views,.pa-sort,.pa-controls,.pa-picks{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
+.pa-views>button,.pa-sort>button{flex:1 1 90px}
+.pa-controls>label{flex:1 1 130px;min-width:0;font-size:13px}
+.pa-controls select{display:block;width:100%;min-width:0;margin-top:4px}
+.tab .pa-views button,.tab .pa-panel button,.tab .pa-sort button{min-height:44px;border:1px solid var(--line);background:var(--card2);color:var(--text);padding:7px;font-size:13px;font-weight:800}
+.tab .pa-views button[aria-pressed=true],.tab .pa-sort button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#07110c}
+html[data-theme=light] .tab .pa-views button[aria-pressed=true],html[data-theme=light] .tab .pa-sort button[aria-pressed=true]{color:white}
+.pa-table-wrap{margin:10px 0}
+.pa-table{width:100%;min-width:0;table-layout:fixed}
+.pa-table th,.pa-table td{position:static;padding:8px 6px;text-align:center;overflow-wrap:anywhere;font-size:13px;font-variant-numeric:tabular-nums}
+.pa-table th:first-child{width:46%;text-align:start}
+.pa-table small{display:block;color:var(--muted);font-weight:400}
+.pa-table tbody td:nth-child(2){font-weight:800}
+.pa-expanded details:has(.pa-detail){display:none!important}
+#usage .us-switch>button:last-child{grid-column:1/-1}
+#usage .pa-sort button[aria-pressed=true]{background:var(--accent);border-color:var(--accent)}
+#playerFreeThrows .pa-views button[aria-pressed=true],#playerFreeThrows .pa-sort button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#07110c}
+html[data-theme=light] #playerFreeThrows .pa-views button[aria-pressed=true],html[data-theme=light] #playerFreeThrows .pa-sort button[aria-pressed=true]{color:white}

@@ -62,9 +62,10 @@ function boxScore(p,games){
   return '<article class="ap-box-game"><h4><bdi>'+esc(title)+'</bdi></h4>'+tiles+'<small>'+esc(details)+'</small></article>';
  }).join('');
 }
+const negativeLabels={turnovers:'איבודים',miss2:'החטאות ל־2',miss3:'החטאות ל־3',missFT:'החטאות עונשין',fouls:'עבירות שביצע',blocked:'זריקות שנחסמו'};
 function negative(games){
- const s=C.negative(games),labels={turnovers:'איבודים',miss2:'החטאות ל־2',miss3:'החטאות ל־3',missFT:'החטאות עונשין',fouls:'עבירות שביצע',blocked:'זריקות שנחסמו'};
- return '<div class="ap-metrics">'+Object.entries(labels).map(([k,l])=>metric(l+' למשחק',fmt(s[k].mean),'סה״כ '+fmt(s[k].total)+' · '+note(s[k].covered,games.length))).join('')+'</div>';
+ const s=C.negative(games);
+ return '<div class="ap-metrics">'+Object.entries(negativeLabels).map(([k,l])=>metric(l+' למשחק',fmt(s[k].mean),'סה״כ '+fmt(s[k].total)+' · '+note(s[k].covered,games.length))).join('')+'</div>';
 }
 function plus(games){
  const s=C.plus(games);return '<p class="ap-status">'+note(s.covered,games.length)+'</p><div class="ap-metrics">'+metric('פלוס־מינוס מצטבר',fmt(s.total))+metric('ממוצע למשחק',fmt(s.mean))+metric('ל־40 דקות',fmt(s.per40))+metric('דקות במדגם',fmt(s.minutes))+'</div>';
@@ -103,6 +104,19 @@ for(const [id,title,kind] of tools){
  section.innerHTML='<div class="ap-shell"><div class="ap-top"><button type="button" data-back hidden>חזרה לרשימת השחקנים ←</button><h3>'+title+'</h3><button type="button" data-refresh>רענן</button></div><div class="player-picker-modes" role="group" aria-label="בחירת רשימת שחקנים"><button type="button" data-scope="all" aria-pressed="true">כל השחקנים · לפי מחיר</button><button type="button" data-scope="team" aria-pressed="false">לפי קבוצה</button></div><div class="ap-controls player-picker-controls"><label data-team-label hidden>קבוצה<select data-team><option value="">כל הקבוצות</option></select></label><label data-player-label>שחקן · מהמחיר הגבוה לנמוך<select data-player></select></label><label>טווח נתונים<select data-range><option value="1">משחק אחרון</option><option value="3">3 משחקים אחרונים</option><option value="0">כל העונה · 2026/27</option></select></label><label>מיון שחקנים<select data-sort><option value="price" selected>מחיר · מהגבוה לנמוך</option><option value="name">שם · א–ת</option><option value="team">לפי קבוצה</option><option value="minutes">דקות · מהגבוה</option><option value="pir">PIR · המשחק האחרון</option>'+(kind==='plus'?'<option value="plus">פלוס־מינוס · מהגבוה</option>':'')+'</select></label>'+(kind==='shots'?'<label>הצג במפה<select data-shot><option value="all">הכול</option><option value="made">קליעות</option><option value="missed">החטאות</option></select></label>':'')+'</div><p class="ap-status" role="status"></p><div data-picked hidden></div><div data-browser aria-label="רשימת שחקנים"></div><div data-output hidden></div><details class="ap-help"><summary>הסבר הנתונים</summary><p>'+help[kind]+'</p><a class="ap-link" href="https://mediagamecenter.euroleague.net/" target="_blank" rel="noopener">מקור: EuroLeague Game Center</a></details></div>';
  document.querySelector('main').append(section);
  const $=s=>section.querySelector(s);let records=[],selected='',browseOpen=true,shown=36,scope='all';
+ const analysisMetrics=kind==='negative'?Object.fromEntries(Object.entries(negativeLabels).map(([k,l])=>[k,l+' למשחק'])):
+  kind==='plus'?{total:'פלוס־מינוס מצטבר',mean:'ממוצע למשחק',per40:'ל־40 דקות'}:null;
+ const analytics=analysisMetrics?window.PlayerAnalysis.mount(section,$('.ap-controls'),$('[role=status]'),[$('[data-picked]'),$('[data-browser]'),$('[data-output]')],{
+  metrics:analysisMetrics,team:()=>scope==='team'?$('[data-team]').value:'',
+  rows:()=>{
+   const prices=marketPrices(),range=$('[data-range]').value;
+   return records.map(p=>{
+    const games=C.select(p.games,range).filter(g=>g.minutes>0);
+    const values=kind==='plus'?C.plus(games):Object.fromEntries(Object.entries(C.negative(games)).map(([key,stat])=>[key,stat.mean]));
+    return {...p,price:prices.get(marketKey(p.name))??null,values};
+   });
+  },format:fmt
+ }):null;
  function renderBrowser(){
   $('[data-team-label]').hidden=scope!=='team'||!browseOpen;
   $('[data-player-label]').hidden=!browseOpen;
@@ -131,6 +145,7 @@ for(const [id,title,kind] of tools){
   if([...$('[data-range]').options].some(o=>o.value===old))$('[data-range]').value=old;
  }
  function render(){
+  analytics?.render();
   const p=records.find(p=>p.id===selected),picked=$('[data-picked]'),output=$('[data-output]');
   picked.hidden=!p||browseOpen;output.hidden=!p||browseOpen;$('[data-back]').hidden=!p||browseOpen;
   section.classList.toggle('ap-detail-open',!!p&&!browseOpen);
@@ -159,7 +174,7 @@ for(const [id,title,kind] of tools){
  for(const button of section.querySelectorAll('[data-scope]'))button.onclick=()=>{
   scope=button.dataset.scope;
   for(const item of section.querySelectorAll('[data-scope]'))item.setAttribute('aria-pressed',String(item===button));
-  $('[data-sort]').value='price';shown=36;renderBrowser();
+  $('[data-sort]').value='price';shown=36;renderBrowser();analytics?.render();
  };
  function choose(id){if(!id)return;selected=id;browseOpen=false;ranges();render();renderBrowser();}
  $('[data-player]').onchange=()=>choose($('[data-player]').value);
