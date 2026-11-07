@@ -23,7 +23,8 @@ const empty=message=>'<p class="dna-empty">'+esc(message)+'</p>';
 let model=null,fixtures=[],pending=null,lastLoad=0;
 let teamGames=[],teamGame='',playerGame='';
 
-async function json(path){
+async function json(path,force=false){
+ if(window.loadGameData)return window.loadGameData(path,force);
  const response=await fetch('./data/'+path+'?t='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(20000)});
  if(!response.ok)throw Error('DNA data unavailable');
  return response.json();
@@ -76,10 +77,10 @@ function panel(id,title,description,controls){
  b.onclick=()=>{
   document.querySelectorAll('.tabs button,.tab').forEach(node=>node.classList.remove('active'));
   b.classList.add('active');section.classList.add('active');
-  if(model)paint();
+  if(model){if(id==='playerDna')restorePlayer();paint();}
   if(!model||Date.now()-lastLoad>60000)void load();
  };
- $('[data-reload]').onclick=()=>void load();
+ $('[data-reload]').onclick=()=>void load(true);
  return {$,section,button:b};
 }
 const player=panel('playerDna','DNA שחקן','איך השחקן מייצר תפוקה, ואיך הוא נראה מול כל יריבה ביורוליג.',`
@@ -104,7 +105,7 @@ const teams=panel('teamDna','DNA קבוצתי','השוו סגנונות משחק
 const panels=[player,teams];
 let view='offense';
 const playerRange=S.picker(player.$('[data-range]'),player.$('[data-past-games]'),changed=>{
- if(changed)selectPlayerRivals();
+ if(changed){window.playerToolSelection?.set(selectedPlayer()?.name,playerRange.value);selectPlayerRivals();}
  paint();
 });
 const teamRange=S.picker(teams.$('[data-range]'),teams.$('[data-past-games]'),paint);
@@ -153,7 +154,7 @@ function selectors(){
  updateOptions(player.$('[data-scope]'),[option('','כל הקבוצות'),...names.map(t=>option(t,t))]);
  selectPlayers();selectPlayerRivals();selectOpponents();
 }
-async function load(){
+async function load(force=false){
  if(pending)return pending;
  for(const p of panels){
   p.$('[data-reload]').disabled=true;p.$('.dna-status').textContent='טוען נתוני יורוליג…';
@@ -161,7 +162,7 @@ async function load(){
  pending=(async()=>{
   try{
    const [official,events,schedule,market]=await Promise.all([
-    json('official-offense.json'),json('advanced-players.json').catch(()=>null),
+    json('official-offense.json',force),json('advanced-players.json',force).catch(()=>null),
     json('context/E2026-schedule.json').catch(()=>null),json('players.json').catch(()=>null)
    ]);
    if(official.season!==C.season||!official.players||!official.teamResults?.length)throw Error('No season data');
@@ -177,6 +178,7 @@ async function load(){
     .sort((a,b)=>Date.parse(a.date)-Date.parse(b.date));
    lastLoad=now;
    selectors();
+   if(player.section.classList.contains('active'))restorePlayer();
    teamGames=built.teams.flatMap(t=>t.games.filter(g=>g.home));
    for(const p of panels){
     p.$('[data-dna-controls]').hidden=false;
@@ -419,7 +421,19 @@ function paint(){
   renderTeams();
  }
 }
+function restorePlayer(){
+ const shared=window.playerToolSelection?.find(model.players);
+ if(!shared)return;
+ const select=player.$('[data-player]');
+ if(![...select.options].some(o=>o.value===shared.row.id)){
+  player.$('[data-scope]').value='';selectPlayers();
+ }
+ if(select.value!==shared.row.id){playerGame='';select.value=shared.row.id;}
+ if(['0','3'].includes(shared.range)&&playerRange.value!=='history')playerRange.set(shared.range);
+ selectPlayerRivals();
+}
 function changePlayer(){
+ window.playerToolSelection?.set(selectedPlayer()?.name,playerRange.value);
  playerGame='';
  player.$('[data-player-rival]').value='';
  selectPlayerRivals();

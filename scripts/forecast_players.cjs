@@ -60,7 +60,7 @@ const forecasts = players.filter(p => ['G', 'F', 'C'].includes(p.pos)).map(p => 
     x = core.calibrate(x,p,{...rolling,schema:'learning-v1',modelId:rollingId,active:rolling.validation?.active},rollingId);
   if(evidence){
     Object.assign(x,{...context,positionMatchPct:positionPct,positionMatchup:defense[match.opponent || p.opponent]?.[p.pos]});
-    weighted.apply(x,p,weighted.input(p,x,weighted.signals(p,x,evidence,players)),weighted.defaults);
+    weighted.apply(x,p,weighted.input(p,x,weighted.signals(p,x,evidence,players),evidence),weighted.defaults);
   }
   return {...p, expectedPir: x.expected, expectedMinutes: x.minutes,
     detail: {reason: x.source, teamMatchPct: teamPct, positionMatchPct: positionPct,

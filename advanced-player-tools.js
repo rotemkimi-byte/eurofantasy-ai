@@ -13,7 +13,7 @@ let data=null,pending=null;
 async function load(force){
  if(data&&!force)return data;
  if(pending)return pending;
- pending=(async()=>{const r=await fetch('./data/advanced-players.json?t='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(30000)});if(!r.ok)throw Error('HTTP '+r.status);const d=await r.json();if(d.season!=='E2026'||d.schema!=='advanced-players-v1')throw Error('Wrong season');data=d;return d;})().finally(()=>pending=null);return pending;
+ pending=(async()=>{const d=await (window.loadGameData?window.loadGameData('advanced-players.json',force):(async()=>{const r=await fetch('./data/advanced-players.json?t='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(30000)});if(!r.ok)throw Error('HTTP '+r.status);const d=await r.json();return d;})());if(d.season!=='E2026'||d.schema!=='advanced-players-v1')throw Error('Wrong season');data=d;return d;})().finally(()=>pending=null);return pending;
 }
 const marketKey=s=>String(name(s)||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9 ]/g,'').split(/\s+/).filter(Boolean).sort().join(' ');
 function marketPrices(){
@@ -180,7 +180,11 @@ for(const [id,title,kind] of tools){
   try{await Promise.all([load(force),window.refreshFantasyLive?.()]);records=profiles();const team=$('[data-team]').value;
    $('[data-team]').innerHTML='<option value="">בחר קבוצה</option>'+[...new Set(records.map(p=>p.team))].sort().map(t=>'<option>'+esc(t)+'</option>').join('');
    if([...$('[data-team]').options].some(o=>o.value===team))$('[data-team]').value=team;
-   controls();ranges();render();$('[role=status]').textContent='עונת 2026/27 · עודכן '+date(data.updated_at)+' · '+Object.keys(data.games).length+' משחקים במאגר';
+   const shared=section.classList.contains('active')?window.playerToolSelection?.find(records):null;
+   if(shared){selected=shared.row.id;browseOpen=false;}
+   controls();ranges();
+   if(shared?.range)$('[data-range]').value=shared.range;
+   render();$('[role=status]').textContent='עונת 2026/27 · עודכן '+date(data.updated_at)+' · '+Object.keys(data.games).length+' משחקים במאגר';
   }catch{$('[role=status]').textContent='טעינת הנתונים נכשלה. לחץ על רענן כדי לנסות שוב.';$('[data-output]').innerHTML=empty('הנתונים אינם זמינים כרגע.');}finally{$('[data-refresh]').disabled=false;}
  }
  b.onclick=()=>{document.querySelectorAll('.tabs button,.tab').forEach(e=>e.classList.remove('active'));b.classList.add('active');section.classList.add('active');void open();};
@@ -190,7 +194,11 @@ for(const [id,title,kind] of tools){
   for(const item of section.querySelectorAll('[data-scope]'))item.setAttribute('aria-pressed',String(item===button));
   $('[data-sort]').value='price';shown=36;renderBrowser();analytics?.render();
  };
- function choose(id){if(!id)return;selected=id;browseOpen=false;ranges();render();renderBrowser();}
+ function choose(id){
+  if(!id)return;selected=id;browseOpen=false;ranges();
+  window.playerToolSelection?.set(records.find(p=>p.id===id)?.name,$('[data-range]').value);
+  render();renderBrowser();
+ }
  $('[data-player]').onchange=()=>choose($('[data-player]').value);
  $('[data-team]').onchange=()=>{
   const team=$('[data-team]').value;
@@ -198,7 +206,7 @@ for(const [id,title,kind] of tools){
   browseOpen=true;shown=36;ranges();controls();render();
  };
  $('[data-sort]').onchange=()=>{shown=36;controls();};
- $('[data-range]').onchange=()=>{shown=36;renderBrowser();render();};
+ $('[data-range]').onchange=()=>{window.playerToolSelection?.set(records.find(p=>p.id===selected)?.name,$('[data-range]').value);shown=36;renderBrowser();render();};
  if($('[data-shot]'))$('[data-shot]').onchange=render;
  section.addEventListener('click',e=>{
   const row=e.target.closest('[data-pick]');

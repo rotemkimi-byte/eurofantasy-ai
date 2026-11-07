@@ -157,7 +157,7 @@ html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method sum
 <label class="player-result-picker player-picker-controls"><span>שחקן או מאמן · מהמחיר הגבוה לנמוך</span><select id="pirPerson"></select></label>
 <p id="pirLegend" class="pirLegend" hidden><span>PIR · ציר שמאל</span><span>דקות · ציר ימין</span></p><div id="pirChart" class="pirChart player-result-summary" dir="ltr"></div><p id="pirDetail" class="pirDetail" aria-live="polite"></p>
 <div id="pirSummary" aria-live="polite"><bdi id="pirSelectedName"></bdi><div id="pirStats" class="stats pirStats"></div><p id="pirLatest" class="muted"></p></div>
-<div class="filters pirControls player-picker-controls"><label>טווח<select id="pirRange"><option value="0">כל העונה</option><option value="5">5 משחקים אחרונים</option><option value="10">10 משחקים אחרונים</option></select></label><button id="pirReload" class="secondary">רענן נתונים</button></div><p id="pirStatus" class="muted" role="status" aria-live="polite"></p><details class="ef-help"><summary>כל המשחקים בטווח שנבחר</summary><div id="pirGames"></div></details><p class="muted pirNote">הגרף נפתח במשחקים האחרונים מימין · גלול שמאלה למשחקים קודמים · לחץ על נקודה לפרטי המשחק</p><p id="pirNote" class="muted pirNote"></p><p id="pirCoverage" class="muted pirNote">מוצגים משחקים שזמינים בדוחות העונה בלבד. היעדרות מרישום המשחק אינה מוצגת כאפס.</p></div></div></section>
+<div class="filters pirControls player-picker-controls"><label>טווח<select id="pirRange"><option value="0">כל העונה</option><option value="5">5 משחקים אחרונים</option><option value="10">10 משחקים אחרונים</option><option value="1">משחק אחרון</option><option value="3">3 משחקים אחרונים</option></select></label><button id="pirReload" class="secondary">רענן נתונים</button></div><p id="pirStatus" class="muted" role="status" aria-live="polite"></p><details class="ef-help"><summary>כל המשחקים בטווח שנבחר</summary><div id="pirGames"></div></details><p class="muted pirNote">הגרף נפתח במשחקים האחרונים מימין · גלול שמאלה למשחקים קודמים · לחץ על נקודה לפרטי המשחק</p><p id="pirNote" class="muted pirNote"></p><p id="pirCoverage" class="muted pirNote">מוצגים משחקים שזמינים בדוחות העונה בלבד. היעדרות מרישום המשחק אינה מוצגת כאפס.</p></div></div></section>
 <section id="pirWeakness" class="tab"><div class="card"><h3>חולשת PIR · מול מי השחקנים מצליחים?</h3><p class="muted weakHelp">ככל שהקבוצה אפשרה ליריבות יותר PIR, היא מדורגת גבוה יותר. הפירוט לפי עמדה מראה היכן נצבר המדד. אלה ביצועים בפועל בעונת 2026/27; המדגם מושפע מהיריבות, מדקות המשחק ומההרכבים.</p><div class="filters weakControls"><label>עמדת היריבים<select id="weakPos"><option value="">כל העמדות</option><option value="G">G · גארדים</option><option value="F">F · פורוורדים</option><option value="C">C · סנטרים</option></select></label><label>מול קבוצה<select id="weakTeam"><option value="">כל הקבוצות</option></select></label><label>מיון<select id="weakSort"><option value="perGame">PIR שספגה למשחק</option><option value="per30">PIR ל־30 דקות שחקן</option></select></label><button class="secondary" id="weakReload">רענן נתונים</button></div><div id="weakRange"></div><div id="weakGames" hidden></div><p id="weakStatus" class="muted weakHelp" role="status" aria-live="polite"></p><div id="weakList"></div></div></section>
 <section id="absencePicks" class="tab"><div class="card"><h3>המלצות בעקבות חיסורים</h3><p class="muted">מי עשוי להרוויח דקות ואחריות כששחקן מפתח חסר?</p><div class="filters"><label>קבוצה<select id="absenceTeam"><option value="">כל הקבוצות</option></select></label><label>זמינות<select id="absenceStatus"><option value="all">בחוץ ובספק</option><option value="out">בחוץ בלבד</option></select></label></div><p class="notice">הערכה לפי המודל הקיים: עמדה, מחיר ותפקיד משוער. שחקן מפתח מוגדר כאן במחיר מעל 8 CR. תוספת הדקות אינה הבטחה לפתיחה בחמישייה; אין כאן ניתוח מאומת של משחקים ללא השחקן החסר.</p><div id="absenceCards" class="absenceGrid"></div></div></section>
 <section id="injuries" class="tab"><div class="card"><h3>פציעות וזמינות</h3><p class="muted">המודל מוריד דקות לשחקן בספק ומעלה מעט דקות לחברים פעילים באותה עמדה כאשר חסרים שחקנים.</p><div class="filters injuryControls"><label>בחר קבוצה<select id="injuryTeam"><option value="">כל הקבוצות · רשימה כללית</option></select></label></div><p id="injurySummary" class="muted injurySummary"></p><div id="injuryCards" class="injuryList"></div></div></section>
@@ -171,7 +171,7 @@ html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method sum
 </section>
 <section id="learning" class="tab"><div class="card"><h2>למידה ובדיקת תחזיות</h2><p class="muted">השוואה לתוצאות בפועל ותיקונים שעוברים בדיקה על משחקים מאוחרים יותר.</p><div id="learningReport"></div></div></section>
 </main>
-<footer>EuroFantasy AI v2 • נתוני שוק הם snapshot למחזור 1, 24.9.2026 • לא כלי הימורים</footer>
+<footer>EuroFantasy AI v2 • <span id="marketDataStatus">מועד עדכון נתוני השוק לא ידוע</span> • לא כלי הימורים</footer>
 
 <dialog id="playerModal"><div class="modal"><div class="ef-player-modal-toolbar"><button type="button" class="close" autofocus onclick="playerModal.close()">‹ חזרה לרשימת השחקנים</button></div><div id="modalBody"></div></div></dialog>
 
@@ -182,9 +182,18 @@ const GAMES=[{"home":"Dubai","away":"Real Madrid","homeMargin":1.5,"total":172.5
 const COACHES=[{"name":"Georgios Bartzokas","team":"Olympiacos","price":10.0},{"name":"Zeljko Obradovic","team":"Panathinaikos","price":10.0},{"name":"Pedro Martinez","team":"Real Madrid","price":9.0},{"name":"Saras Jasikevicius","team":"Fenerbahce","price":9.0},{"name":"Dimitris Itoudis","team":"Hapoel Tel Aviv","price":8.5},{"name":"Aleksander Sekulic","team":"Barcelona","price":8.0},{"name":"Xavi Pascual","team":"Dubai","price":8.0},{"name":"Pablo Laso","team":"Anadolu Efes","price":7.5},{"name":"Tomas Masiulis","team":"Zalgiris","price":7.5},{"name":"Giuseppe Poeta","team":"Milano","price":7.0},{"name":"Ibon Navarro","team":"Crvena Zvezda","price":7.0},{"name":"Xavi Albert","team":"Valencia","price":7.0},{"name":"Joan Penarroya","team":"Partizan","price":6.5},{"name":"Oded Kattash","team":"Maccabi Tel Aviv","price":6.5},{"name":"Dusan Alimpijevic","team":"Besiktas","price":6.0},{"name":"Tony Parker","team":"ASVEL","price":6.0},{"name":"Alex Mumbru","team":"Virtus Bologna","price":5.0},{"name":"Anton Gavel","team":"Bayern Munich","price":5.0},{"name":"Maxime Lefevre","team":"Paris","price":5.0},{"name":"Paolo Galbiati","team":"Baskonia","price":5.0}];
 const LS={players:"efa2_players",team:"efa2_team",stats:"efa2_official_stats",sync:"efa2_sync_time"};
 
-let players=JSON.parse(localStorage.getItem(LS.players)||"null")||SEED;
-let myTeam=JSON.parse(localStorage.getItem(LS.team)||"[]");
-let official=JSON.parse(localStorage.getItem(LS.stats)||"{}");
+function cachedValue(key,fallback){
+  try{return JSON.parse(localStorage.getItem(key))??fallback}catch{return fallback}
+}
+function cacheValue(key,value){
+  try{localStorage.setItem(key,value);return true}catch{return false}
+}
+let players=cachedValue(LS.players,SEED);
+let myTeam=cachedValue(LS.team,[]);
+let official=cachedValue(LS.stats,{});
+if(!Array.isArray(players)||!players.length)players=SEED;
+if(!Array.isArray(myTeam))myTeam=[];
+if(!official||typeof official!=='object'||Array.isArray(official))official={};
 
 function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
 function clamp(x,a,b){return Math.max(a,Math.min(b,x))}
@@ -205,7 +214,7 @@ function reorderCommaName(s){
   if(s.includes(",")){const a=s.split(",");return (a.slice(1).join(" ")+" "+a[0]).trim()}
   return s;
 }
-function save(){localStorage.setItem(LS.players,JSON.stringify(players));localStorage.setItem(LS.team,JSON.stringify(myTeam));}
+function save(){cacheValue(LS.players,JSON.stringify(players));cacheValue(LS.team,JSON.stringify(myTeam));}
 
 function rowVal(row, names){
   for(const k of names){if(row && row[k]!=null && row[k]!==""){const v=Number(row[k]);if(Number.isFinite(v))return v}}
@@ -266,7 +275,7 @@ async function syncOfficial(force=false){
   try{
     const [prior,current]=await Promise.all([fetchStats(2025),fetchStats(2026).catch(()=>({}))]);
     official={prior,current,at:new Date().toISOString()};
-    localStorage.setItem(LS.stats,JSON.stringify(official));localStorage.setItem(LS.sync,new Date().toISOString());
+    cacheValue(LS.stats,JSON.stringify(official));cacheValue(LS.sync,new Date().toISOString());
     status.textContent=`סנכרון הצליח. נתוני עבר: ${Object.keys(prior).length} שחקנים; עונה נוכחית: ${Object.keys(current).length}.`;
     badge.textContent="Official stats ✓";renderAll();
   }catch(e){
@@ -478,7 +487,7 @@ async function physicalLoad(selected){
 const SQUAD_KEY='efa2_court_roles';
 let squadPreferences;try{squadPreferences=JSON.parse(localStorage.getItem(SQUAD_KEY)||'{}')}catch{squadPreferences={}}
 if(!squadPreferences||typeof squadPreferences!=='object'||Array.isArray(squadPreferences))squadPreferences={};
-function squadSave(){localStorage.setItem(SQUAD_KEY,JSON.stringify(squadPreferences))}
+function squadSave(){cacheValue(SQUAD_KEY,JSON.stringify(squadPreferences))}
 const SQUAD_SLOTS=[['C','סנטר'],['F','פורוורד 1'],['F','פורוורד 2'],['G','גארד 1'],['G','גארד 2'],['*','שחקן שישי']];
 function squadArrangement(selected){
  const used=new Set(),slots=SQUAD_SLOTS.map(([pos],i)=>{const p=selected.find(p=>p.name===squadPreferences.slots?.[i]&&(pos==='*'||p.pos===pos)&&!used.has(p.name));if(p)used.add(p.name);return p||null});
@@ -582,8 +591,12 @@ function renderTeam(){
 
 function renderCaptain(){
   const arr=myTeam.map(n=>players.find(p=>p.name===n)).filter(p=>p&&["G","F","C"].includes(p.pos)&&p.status!=="out").map(p=>({p,x:model(p)})).sort((a,b)=>b.x.expected-a.x.expected);
-  document.getElementById("captainList").innerHTML=arr.map((z,i)=>`<div class="rankItem"><div class="rankNo">${i+1}</div><div><b>${esc(z.p.name)}</b><br><small>${esc(z.p.team)} • ${n1(z.x.minutes)} דק׳ • ${dataQuality(z.p,z.x)}</small></div><div><b>${n1(z.x.expected)}</b><br><small>גבול עליון ${n1(z.x.ceiling)}</small></div></div>`).join("")||`<p class="muted">בחר סגל כדי לקבל דירוג.</p>`;
+  document.getElementById("captainList").innerHTML=arr.map((z,i)=>`<div class="rankItem"><div class="rankNo">${i+1}</div><div><button type="button" class="secondary" data-captain-player="${esc(z.p.name)}">${esc(z.p.name)}</button><br><small>${esc(z.p.team)} • ${n1(z.x.minutes)} דק׳ • ${dataQuality(z.p,z.x)}</small></div><div><b>${n1(z.x.expected)}</b><br><small>גבול עליון ${n1(z.x.ceiling)}</small></div></div>`).join("")||`<p class="muted">בחר סגל כדי לקבל דירוג.</p>`;
 }
+document.getElementById("captainList").addEventListener("click", event => {
+  const button = event.target.closest("[data-captain-player]");
+  if (button) showPlayer(button.dataset.captainPlayer);
+});
 function coachExpected(team){
   const m=MATCHUPS[team];if(!m)return 0;
   return 25*m.p20+20*m.p11_20+10*m.p1_10-5*m.l1_10-10*m.l11_20-20*m.l20;
@@ -594,9 +607,9 @@ function renderCoaches(){
   document.getElementById("coachList").innerHTML=arr.map((c,i)=>`<div class="rankItem"><div class="rankNo">${i+1}</div><div><b>${esc(c.name)}</b><br><small>${esc(c.team)} • ${n1(c.price)} קרדיט • מול ${esc(c.m?.opponent)}</small><div class="chips"><span class="chip">Win ${pct(c.m?.winProb)}</span><span class="chip">11+ ${pct((c.m?.p11_20||0)+(c.m?.p20||0))}</span><span class="chip">20+ ${pct(c.m?.p20)}</span></div></div><div><b>${n1(c.ev)}</b><br><small>EV נק׳</small></div></div>`).join("");
 }
 function renderGames(){
-  document.getElementById("gameCards").innerHTML=GAMES.map(g=>{const h=MATCHUPS[g.home],a=MATCHUPS[g.away];return `<div class="gameCard"><div class="sectionHead"><b>${esc(g.home)} — ${esc(g.away)}</b><span class="tag">Total ${n1(g.total)}</span></div>
-  <div class="metricRow"><div class="metric"><b>${pct(h.winProb)}</b><span>${esc(g.home)} Win</span></div><div class="metric"><b>${pct(h.p11_20+h.p20)}</b><span>${esc(g.home)} 11+</span></div><div class="metric"><b>${pct(a.winProb)}</b><span>${esc(g.away)} Win</span></div><div class="metric"><b>${pct(a.p11_20+a.p20)}</b><span>${esc(g.away)} 11+</span></div></div>
-  <div class="chips"><span class="chip">Spread בית ${g.homeMargin>=0?"-":"+"}${Math.abs(g.homeMargin).toFixed(1)}</span><span class="chip">${esc(g.home)} 20+ ${pct(h.p20)}</span><span class="chip">${esc(g.away)} 20+ ${pct(a.p20)}</span></div></div>`}).join("");
+  document.getElementById("gameCards").innerHTML=GAMES.map(g=>{const h=MATCHUPS[g.home],a=MATCHUPS[g.away];return `<div class="gameCard"><div class="sectionHead"><b>${esc(g.home)} — ${esc(g.away)}</b><span class="tag">סך נקודות צפוי ${n1(g.total)}</span></div>
+  <div class="metricRow"><div class="metric"><b>${pct(h.winProb)}</b><span>ניצחון ${esc(g.home)}</span></div><div class="metric"><b>${pct(h.p11_20+h.p20)}</b><span>${esc(g.home)} 11+</span></div><div class="metric"><b>${pct(a.winProb)}</b><span>ניצחון ${esc(g.away)}</span></div><div class="metric"><b>${pct(a.p11_20+a.p20)}</b><span>${esc(g.away)} 11+</span></div></div>
+  <div class="chips"><span class="chip">הפרש צפוי לבית ${g.homeMargin>=0?"+":"−"}${Math.abs(g.homeMargin).toFixed(1)}</span><span class="chip">${esc(g.home)} 20+ ${pct(h.p20)}</span><span class="chip">${esc(g.away)} 20+ ${pct(a.p20)}</span></div></div>`}).join("");
 }
 function renderInjuries(){
  const select=document.getElementById('injuryTeam'),old=select.value;
@@ -657,7 +670,7 @@ function renderClubMarket(){
  const selected=new Set([...firstPlayers,...secondPlayers]);
  const court=lines=>`<div class="clubCourt">${lines.map((line,index)=>`<div class="clubLine">${Array.from({length:index===0?1:2},(_,slot)=>line[slot]?card(line[slot]):`<div class="clubPlayer clubEmpty"><span class="clubJersey" style="--jersey:#757575">${['C','F','G'][index]}</span><span class="clubPlayerBox"><b class="clubPlayerName">אין שחקן נוסף בעמדה</b></span></div>`).join('')}</div>`).join('')}</div>`;
  const remaining=roster.filter(p=>!selected.has(p));
- root.innerHTML=`<h4>חמישייה ראשונה · לפי דקות במשחק האחרון</h4>${court(first)}${secondPlayers.length?`<h4>חמישייה שנייה · לפי דקות במשחק האחרון</h4>${court(second)}`:''}${remaining.length?`<h4>יתר הסגל · לפי המיון שנבחר</h4><div class="clubBench">${remaining.map(card).join('')}</div>`:''}`;
+ root.innerHTML=`<h4>מובילי הדקות במשחק האחרון לפי עמדה</h4>${court(first)}${secondPlayers.length?`<h4>הבאים בדירוג הדקות לפי עמדה</h4>${court(second)}`:''}${remaining.length?`<h4>יתר הסגל · לפי המיון שנבחר</h4><div class="clubBench">${remaining.map(card).join('')}</div>`:''}`;
 }
 
 const PM_METRICS=[['minutes','דקות'],['pir','PIR'],['points','נקודות'],['rebounds','ריבאונדים'],['assists','אסיסטים'],['steals','חטיפות'],['blocks','חסימות'],['turnovers','איבודים']];
@@ -723,7 +736,7 @@ function pmListMarkup(aRoster,bRoster,team,opponent){
  const posName={C:'C',F:'F',G:'G'},pairs=pmListPairs(aRoster,bRoster);
  const player=(p,pos,other)=>p?`<button class="pmListPlayer ${other?'pmListOther':''}" data-pm-player="${esc(p.name)}" aria-label="פרטי ${esc(p.name)}"><b class="pmListName"><span class="pmListPos">${posName[pos]}</span><bdi>${esc(p.name)}</bdi></b><span class="pmListMinutes">${clubNumber(pmAverage(p,'minutes'))} דק׳ בממוצע</span></button>`:`<span class="pmListEmpty">אין שחקן בעמדת ${posName[pos]}</span>`;
  const price=p=>`<span class="pmListPrice"><b>${clubNumber(p?.price)}</b><small>קרדיט</small></span>`;
- return `<div class="pmList">${['חמישייה ראשונה · לפי דקות','חמישייה שנייה · לפי דקות','יתר הסגל · לפי עמדה ודקות'].map((title,group)=>{
+ return `<div class="pmList">${['מובילי הדקות לפי עמדה','הבאים בדירוג הדקות לפי עמדה','יתר הסגל · לפי עמדה ודקות'].map((title,group)=>{
   const rows=pairs.filter(p=>p.group===group);if(!rows.length)return '';
   return `<h3 class="pmLineupTitle">${title}</h3><div class="pmListGroup"><div class="pmListHeader"><span>${esc(team)}</span><span>מחיר</span><span>מחיר</span><span>${esc(opponent||'טרם נקבעה יריבה')}</span></div>${rows.map(({a,b,pos})=>`<div class="pmListRow">${player(a,pos,false)}${price(a)}${price(b)}${player(b,pos,true)}</div>`).join('')}</div>`;
  }).join('')}</div>`;
@@ -744,6 +757,11 @@ function renderPlayerMatchups(){
  document.querySelector('.pmExplanation').open=!!playerMatchErrors;
  document.getElementById('pmStatus').textContent=playerMatchLoading?'טוען נתוני המשחקים…':playerMatchErrors?'חלק מנתוני המשחקים לא נטענו. הנתונים הזמינים מוצגים; אפשר לנסות שוב.':'ממוצעים למשחק בעונת 2026/27 · — מציין נתון חסר.';
  const listRoot=document.getElementById('pmCourts');
+ if(playerMatchLoading){
+  document.getElementById('pmSummary').textContent='';
+  listRoot.innerHTML='<p class="muted">מכין השוואה מנתוני המשחקים…</p>';
+  return;
+ }
  listRoot.onclick=e=>{const target=e.target.closest('[data-pm-player]');if(target)showPlayer(target.dataset.pmPlayer)};
  if(all){
   const seen=new Set(),games=[];
@@ -785,7 +803,7 @@ function absenceGroups(list,onlyOut,forecast){
   g.picks=list.filter(p=>canonicalTeam(p.team)===g.team&&p.status==='active').map(p=>{
    const x=forecast(p),same=g.missing.filter(m=>m.pos===p.pos);
    return {p,x,same,boost:Number(x.injuryBoost)||0};
-  }).filter(r=>r.boost>0).sort((a,b)=>Number(b.same.length>0)-Number(a.same.length>0)||b.boost-a.boost||(Number(b.x.expected)||0)-(Number(a.x.expected)||0)).slice(0,3);
+  }).filter(r=>r.boost>=.05).sort((a,b)=>Number(b.same.length>0)-Number(a.same.length>0)||b.boost-a.boost||(Number(b.x.expected)||0)-(Number(a.x.expected)||0)).slice(0,3);
  }
  return [...groups.values()].sort((a,b)=>Math.max(...b.missing.map(p=>Number(p.price)))-Math.max(...a.missing.map(p=>Number(p.price))));
 }
@@ -815,13 +833,13 @@ document.getElementById("clearTeam").onclick=()=>{myTeam=[];save();renderAll()};
 document.getElementById("findUpgrade").onclick=renderUpgrade;document.getElementById("optBtn").onclick=optimize;
 document.getElementById("syncBtn").onclick=()=>syncOfficial(true);
 document.getElementById("csvFile").onchange=async e=>{const f=e.target.files[0];if(!f)return;const arr=csvParse(await f.text());if(arr.length){players=arr;save();renderAll()}};
-document.getElementById("resetSeed").onclick=()=>{players=SEED;localStorage.removeItem(LS.players);myTeam=myTeam.filter(n=>players.some(p=>p.name===n));save();renderAll()};
-const last=localStorage.getItem(LS.sync);if(last){document.getElementById("syncBadge").textContent="Official cache";document.getElementById("syncStatus").textContent="סנכרון אחרון: "+new Date(last).toLocaleString("he-IL")}else document.getElementById("syncStatus").textContent="עדיין לא בוצע סנכרון רשמי.";
+document.getElementById("resetSeed").onclick=()=>{players=SEED;try{localStorage.removeItem(LS.players)}catch{}myTeam=myTeam.filter(n=>players.some(p=>p.name===n));save();renderAll()};
+let last;try{last=localStorage.getItem(LS.sync)}catch{}if(last){document.getElementById("syncBadge").textContent="Official cache";document.getElementById("syncStatus").textContent="סנכרון אחרון: "+new Date(last).toLocaleString("he-IL")}else document.getElementById("syncStatus").textContent="עדיין לא בוצע סנכרון רשמי.";
 for(const id of ['clubSelect','clubSort','clubView'])document.getElementById(id).addEventListener('change',renderClubMarket);
 renderAll();
 if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
 </script>
-<script src="./live.js?v=roster-context-2"></script><script src="./roster-live.js"></script><script src="./position-matchups.js"></script><script>
+<script src="./live.js?v=qa-1"></script><script src="./roster-live.js"></script><script src="./position-matchups.js"></script><script>
 (async () => {
   try {
     const response = await fetch(
@@ -1372,7 +1390,7 @@ if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
   }
 })();
 
-</script><script src="./matchup-live.js?v=roster-context-2"></script><script>
+</script><script src="./matchup-live.js?v=qa-1"></script><script>
 (() => {
   const pctText = value => {
     const n = Number(value || 0);
@@ -1888,8 +1906,8 @@ function setupGraph(section){
     ?rankingChart(ranked,p=>p.price,'קרדיט נוכחי',fmt)
     :rankingChart(ranked,p=>p.values.average,'ממוצע '+metricLabel(),format)
   });
- function options(){
-  const type=kind(),old=selections[type],team=$('Team').value;
+ function options(restore=false){
+  const type=kind();let old=selections[type];const team=$('Team').value;
   const map=new Map();
   if(type==='player')for(const p of players.filter(p=>['G','F','C'].includes(p.pos)))map.set(key(p.name),{name:p.name,team:canon(p.team),price:num(p.price)});
   for(const [k,e] of data?.[type==='player'?'players':'coaches']||[])if(!map.has(k)){const market=(type==='coach'&&typeof COACHES!=='undefined'?COACHES:players).find(p=>key(p.name)===k);map.set(k,{...e,price:num(market?.price)})};
@@ -1897,6 +1915,12 @@ function setupGraph(section){
   const teams=[...new Set(all.map(([,e])=>e.team).filter(Boolean))].sort();
   $('Team').replaceChildren(...teams.map(t=>new Option(t,t)));
   if(teams.includes(team))$('Team').value=team;
+  const shared=restore===true&&type==='player'?window.playerToolSelection?.find(all.map(([id,p])=>({...p,id}))):null;
+  if(shared){
+   old=shared.row.id;
+   if(scope==='team'&&teams.includes(shared.row.team))$('Team').value=shared.row.team;
+   if(shared.range&&mode!=='credit')$('Range').value=shared.range;
+  }
   $('TeamLabel').hidden=scope!=='team';
   const filtered=all.filter(([,e])=>(scope==='all'||e.team===$('Team').value));
   $('Person').disabled=!filtered.length;
@@ -1958,9 +1982,12 @@ function setupGraph(section){
  $('Kind').addEventListener('change',options);
  $('Team').addEventListener('change',()=>{selections[kind()]='';options()});$('Person').addEventListener('change',()=>{
   selections[kind()]=$('Person').value;
-  render();
+  rememberGraphPlayer();render();
   if(!section.classList.contains('pa-expanded'))$('Chart').scrollIntoView({block:'nearest'});
- });$('Range').addEventListener('change',render);
+ });$('Range').addEventListener('change',()=>{rememberGraphPlayer();render();});
+ function rememberGraphPlayer(){
+  if(kind()==='player')window.playerToolSelection?.set(catalog.find(([id])=>id===$('Person').value)?.[1].name,mode==='credit'?null:$('Range').value);
+ }
  $('Reload').onclick=()=>{
   if(mode==='credit'){void loadCredits(true);return;}
   lastThreeRequests.delete('./data/euroleague-live-E2026.json');
@@ -1977,7 +2004,7 @@ function setupGraph(section){
    if(mode==='credit'){$('Reload').disabled=false;render();}
   }
  }
- function setMode(next){
+ function setMode(next,restore=false){
   if(mode==='pir'&&next!=='pir')priorKind=kind();
   mode=next;
   $('Kind').value=next==='pir'?priorKind:'player';
@@ -1985,10 +2012,12 @@ function setupGraph(section){
   $('Person').closest('label').querySelector('span').textContent=next==='pir'?'שחקן או מאמן · מהמחיר הגבוה לנמוך':'שחקן · מהמחיר הגבוה לנמוך';
   $('Range').options[1].textContent=next==='credit'?'5 נקודות מחיר אחרונות':'5 משחקים אחרונים';
   $('Range').options[2].textContent=next==='credit'?'10 נקודות מחיר אחרונות':'10 משחקים אחרונים';
+  $('Range').options[3].textContent=next==='credit'?'נקודת מחיר אחרונה':'משחק אחרון';
+  $('Range').options[4].textContent=next==='credit'?'3 נקודות מחיר אחרונות':'3 משחקים אחרונים';
   $('Coverage').hidden=next==='credit';
   $('Games').closest('details').querySelector('summary').textContent=next==='credit'?'כל המחירים בטווח שנבחר':'כל המשחקים בטווח שנבחר';
   $('Reload').disabled=next==='credit'?creditLoading:!!loading;
-  options();
+  options(restore);
   if(next==='credit')void loadCredits();
   else if(!data)void load();
  }
@@ -2004,16 +2033,16 @@ function setupGraph(section){
 }
 const graph=setupGraph(document.getElementById('pirSingle'));
 const modes=pirSection.querySelectorAll('[data-pir-mode]');
-function activateMode(next){
+function activateMode(next,restore=false){
  const comparing=next==='compare';
  for(const button of modes)button.setAttribute('aria-pressed',String(button.dataset.pirMode===next));
  document.getElementById('pirSingle').hidden=comparing;
  document.getElementById('pirCompare').hidden=!comparing;
  if(comparing)window.PIRCompareUI.load();
- else graph.setMode(next);
+ else graph.setMode(next,restore);
 }
 for(const button of modes)button.addEventListener('click',()=>activateMode(button.dataset.pirMode));
-document.querySelector('[data-tab="pirGraph"]').addEventListener('click',()=>activateMode(pirSection.querySelector('[data-pir-mode][aria-pressed="true"]').dataset.pirMode));
+document.querySelector('[data-tab="pirGraph"]').addEventListener('click',()=>activateMode(pirSection.querySelector('[data-pir-mode][aria-pressed="true"]').dataset.pirMode,true));
 function report(message){if(mode!=='credit')graph.status.textContent=message;}
 async function load(){
  if(loading)return loading;
@@ -2225,26 +2254,27 @@ for (const id of ['data', 'learning']) {
  observer.observe(document.getElementById('teamCards'),{childList:true,subtree:true});
 })();
 </script>
-<script src="./usage-core.js?v=2"></script><script src="./usage-ui.js?v=analysis-1"></script>
-<script src="./defense-core.js?v=2"></script><script src="./defense-ui.js?v=analysis-1"></script>
-<script src="./team-metrics-core.js?v=1"></script><script src="./team-metrics-ui.js?v=4"></script>
-<link rel="stylesheet" href="./app-design.css?v=player-fixtures-2">
+<script src="./game-data-store.js?v=1"></script>
+<script src="./usage-core.js?v=2"></script><script src="./usage-ui.js?v=qa-1"></script>
+<script src="./defense-core.js?v=2"></script><script src="./defense-ui.js?v=qa-1"></script>
+<script src="./team-metrics-core.js?v=1"></script><script src="./team-metrics-ui.js?v=qa-1"></script>
+<link rel="stylesheet" href="./app-design.css?v=qa-1">
 <script src="./surprises.js?v=2"></script>
-<script src="./free-throws.js?v=committed-fouls-1"></script>
+<script src="./free-throws.js?v=qa-1"></script>
 <script src="./pir-compare.js?v=graph-modes-1"></script>
 <script src="./advanced-player-core.js?v=box-averages-1"></script>
-<script src="./advanced-player-tools.js?v=box-averages-2"></script>
+<script src="./advanced-player-tools.js?v=qa-1"></script>
 <link rel="stylesheet" href="./dna-tools.css?v=7">
 <script src="./dna-core.js?v=4"></script>
-<script src="./dna-tools.js?v=7"></script>
+<script src="./dna-tools.js?v=qa-1"></script>
 <link rel="stylesheet" href="./weighted-forecast.css?v=1">
-<script src="./weighted-forecast-core.js?v=1"></script>
-<script src="./weighted-forecast.js?v=1"></script>
-<script src="./app-navigation.js?v=dna-2"></script>
+<script src="./weighted-forecast-core.js?v=qa-1"></script>
+<script src="./weighted-forecast.js?v=qa-1"></script>
+<script src="./app-navigation.js?v=qa-1"></script>
 <script src="./app-player.js?v=graph-modes-1"></script>
-<link rel="stylesheet" href="./home-dashboard.css?v=reference-6">
+<link rel="stylesheet" href="./home-dashboard.css?v=qa-1">
 <script src="./home-dashboard.js?v=reference-5"></script>
-<script src="./matchup-live.js"></script><style id="market-reference-design">
+<style id="market-reference-design">
 #market.pmReference{background:radial-gradient(ellipse at 85% 0,#36557588,transparent 45%),radial-gradient(ellipse at 15% 8%,#d5894933,transparent 28%),linear-gradient(160deg,#07182b,#15243a 45%,#080f1c);border:1px solid #708297;border-radius:22px;padding:14px 10px 20px;box-shadow:inset 0 1px 0 #ffffff55}
 #market.pmReference h3,#market.pmReference .pmSummary{color:#fff}#market.pmReference .pmControls label{color:#dbe7f7}#market.pmReference .pmExplanation>summary{color:#dbe7f7;background:#16283e;border-color:#52647b}
 .pmReference .pmControls{gap:8px}.pmReference .pmControls select{background:#13263c;color:white;border-color:#52647b;font-size:13px}.pmReference .pmSummary{font-size:14px;line-height:1.6}.pmReference .pmExplanationBody{background:#13263c;color:#fff;padding:12px;border-radius:12px}
@@ -2280,7 +2310,7 @@ function paint(){
 }
 root.addEventListener('click',e=>{
  const action=e.target.closest('[data-market-toggle]');if(action){toggle(action.dataset.marketToggle);return}
- const player=e.target.closest('[data-market-player]');if(player)showPlayer(player.dataset.marketPlayer,true);
+ const player=e.target.closest('[data-market-player]');if(player){window.playerToolSelection?.set(player.dataset.marketPlayer);showPlayer(player.dataset.marketPlayer,true);}
 });
 window.MarketReferenceUI={render(list){visible=list;paint()}};
 renderMarket();

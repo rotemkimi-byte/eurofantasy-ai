@@ -44,6 +44,7 @@
       );
     }
 
+    window.refreshMatchupContext?.();
     renderAll();
 
     console.log(

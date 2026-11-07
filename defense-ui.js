@@ -13,6 +13,18 @@ section.innerHTML=`<div class="card"><div class="us-heading"><div><h3>הגנה, 
 <p id="dfStatus" role="status" aria-live="polite">בחר בלשונית לטעינת הנתונים.</p><div id="dfResult" aria-live="polite"></div><div id="dfGames"></div>
 <details class="us-explain"><summary>הסבר המדדים והנוסחאות</summary><p><b>STL%:</b> חטיפות מתוך אומדן פוזשני היריבה בזמן דקות השחקן. פוזשנים נאמדים כזריקות מהשדה + 0.44 × זריקות עונשין − ריבאונד התקפה + איבודים.</p><p><b>BLK%:</b> חסימות ביחס לניסיונות היריבה לשתי נקודות בזמן דקות השחקן. המונה הוא מספר החסימות שנרשם, גם כשאין מידע על מרחק הזריקה שנחסמה.</p><p><b>Stocks:</b> חטיפות + חסימות. בטווח מרובה משחקים מוצגים הממוצע להופעה והסכום הכולל.</p><p><b>REB%:</b> ריבאונדים ביחס לסך ריבאונדי הקבוצה והיריבה. <b>OREB%:</b> ריבאונד התקפה ביחס לריבאונדי ההתקפה של הקבוצה וההגנה של היריבה. <b>DREB%:</b> ריבאונד הגנה ביחס לריבאונדי ההגנה של הקבוצה וההתקפה של היריבה. המכנים מותאמים לחלקו של השחקן בדקות המשחק, כולל הארכות; אלה אומדני בוקס סקור, לא ספירה מדויקת של הזדמנויות כשהוא על המגרש.</p><p><b>PER:</b> חישוב נוסחת Hollinger/Basketball Reference עם נתוני עונת היורוליג הנוכחית, התאמת קצב לפי אומדן הפוזשנים ותקנון ממוצע משוקלל בדקות ל־15 במדגם הזמין. זהו חישוב של האפליקציה, לא PER רשמי ולא PIR. במשחק יחיד משתמשים בקבועי העונה הנוכחיים; נתוני עבר עשויים להשתנות עם עדכון המדגם. מדד זה כולל גם התקפה, ואינו מדד הגנתי בלבד.</p><p>בטווח של כמה משחקים אחוזים משוקללים לפי ההזדמנויות המשוערות ו־PER משוקלל לפי דקות. נתון חסר נשאר חסר. משחק ללא דקות אינו נכלל בממוצעי ההופעות.</p><p><a href="https://www.basketball-reference.com/about/glossary.html" target="_blank" rel="noopener">הגדרות אחוזי ההגנה והריבאונד</a> · <a href="https://www.basketball-reference.com/about/per.html" target="_blank" rel="noopener">נוסחת PER</a> · <a href="https://mediagamecenter.euroleague.net/" target="_blank" rel="noopener">מקור הנתונים: EuroLeague</a></p></details></div>`;
 main.appendChild(section);const $=id=>document.getElementById(id);let scope='all',data=null,env=null,market=null,records=[],loading=null,loadedAt=0;
+function rememberPlayer(){
+ window.playerToolSelection?.set(records.find(p=>p.id===$('dfPlayer').value)?.name,$('dfRange').value);
+}
+function restorePlayer(){
+ const shared=window.playerToolSelection?.find(records);
+ if(!shared)return;
+ const select=$('dfPlayer');
+ if(![...select.options].some(o=>o.value===shared.row.id))return;
+ select.value=shared.row.id;
+ if(shared.range)$('dfRange').value=shared.range;
+ render();
+}
 function options(){
  const selected=$('dfPlayer').value,old=$('dfTeam').value,byKey=new Map(),pool=market||(typeof players!=='undefined'?players:[]);
  for(const p of pool)if(['G','F','C'].includes(p.pos)&&U.key(p.name))byKey.set(U.key(p.name),{...p,id:U.key(p.name),team:team(p.team),price:U.num(p.price)});
@@ -44,18 +56,18 @@ function render(){
  $('dfResult').innerHTML=`<div class="us-score"><div><b><bdi>${esc(name(p.name))}</bdi></b><small>${esc(p.team)} · ${fmt(p.price)} קרדיט</small><small>${labels[metric]}${metric==='stocks'?' · ממוצע להופעה':''}</small><small>${$('dfRange').value==='1'?'המשחק האחרון שהושלם':'האחרון בטווח'}: ${esc(gameLabel)}</small>${metric==='stocks'&&stocks===0?'<small>0 חטיפות וחסימות במשחקים שנבחרו · זהו נתון בפועל</small>':''}</div><strong>${value(metric,selected)}</strong></div>`+table(['מדד','ערך בטווח','סה״כ'],Object.entries(labels).map(([k,label])=>[esc(label)+(k==='stocks'?'<small>ממוצע להופעה</small>':k==='per'?'<small>ממוצע המדגם: 15</small>':''),value(k,k==='stocks'?stocks:s[k].value)+(k!=='stocks'&&s[k].missing?'<small>נתונים חלקיים</small>':''),k==='per'?'—':fmt(counts[k])]))+'<p class="muted">האחוזים הם אומדנים מבוקס סקור ודקות. PER מחושב במדגם היורוליג הזמין.</p>';
  $('dfGames').innerHTML='<h4>פירוט לפי משחק · מהחדש לישן</h4>'+table(['משחק','דקות',labels[metric].split(' · ')[0]],games.map(g=>{const m=D.gameMetrics(g,data,env),v=U.num(g.minutes)>0?(metric==='stocks'?m.stocks:metric==='per'?m.per:m[metric].value):null;return [`<b>${esc(g.opponent)}</b><small>${new Date(g.date).toLocaleDateString('he-IL',{day:'numeric',month:'numeric',timeZone:'Asia/Jerusalem'})}${g.round?' · מ׳ '+esc(g.round):''}</small>`,U.num(g.minutes)===0?'לא שיחק':fmt(g.minutes),value(metric,v)];}));
 }
-async function load(){
+async function load(force=false){
  if(loading)return loading;$('dfReload').disabled=true;$('dfStatus').textContent='טוען חטיפות, חסימות, ריבאונדים ו־PER…';
  loading=(async()=>{try{
-  const r=await fetch('./data/official-offense.json?t='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(20000)});if(!r.ok)throw Error('Missing report');const next=await r.json();
+  const next=await (window.loadGameData?window.loadGameData('official-offense.json',force):(async()=>{const r=await fetch('./data/official-offense.json?t='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(20000)});if(!r.ok)throw Error('Missing report');const next=await r.json();return next;})());
   if(next.season!=='E2026'||next.schema!=='official-offense-v1'||next.defenseVersion!==1||!next.teamGames)throw Error('Awaiting defensive data');
   const nextEnv=D.environment(next);data=next;env=nextEnv;
   try{const r=await fetch('./data/players.json?t='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(10000)});if(r.ok){const d=await r.json();if(Array.isArray(d)&&d.length)market=d;}}catch{}
-  loadedAt=Date.now();options();
+  loadedAt=Date.now();options();if(section.classList.contains('active'))restorePlayer();
  }catch(error){$('dfStatus').textContent=data?'הרענון נכשל; מוצגים הנתונים הקודמים.':'נתוני המדדים עדיין לא זמינים. נסה לרענן לאחר סיום הסנכרון.';}finally{$('dfReload').disabled=false;loading=null;}})();return loading;
 }
-button.onclick=()=>{document.querySelectorAll('.tabs button,.tab').forEach(el=>el.classList.remove('active'));button.classList.add('active');section.classList.add('active');if(!data||Date.now()-loadedAt>60000)void load();else options();};
+button.onclick=()=>{document.querySelectorAll('.tabs button,.tab').forEach(el=>el.classList.remove('active'));button.classList.add('active');section.classList.add('active');if(!data||Date.now()-loadedAt>60000)void load();else{options();restorePlayer();}};
 for(const b of section.querySelectorAll('[data-df-scope]'))b.onclick=()=>{scope=b.dataset.dfScope;for(const item of section.querySelectorAll('[data-df-scope]'))item.setAttribute('aria-pressed',String(item===b));options();};
-$('dfPlayer').onchange=render;$('dfRange').onchange=render;$('dfMetric').onchange=render;$('dfTeam').onchange=options;$('dfReload').onclick=()=>void load();
+$('dfPlayer').onchange=$('dfRange').onchange=()=>{rememberPlayer();render();};$('dfMetric').onchange=render;$('dfTeam').onchange=options;$('dfReload').onclick=()=>void load(true);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&section.classList.contains('active')&&Date.now()-loadedAt>60000)void load();});window.DefenseUI={load};
 })();

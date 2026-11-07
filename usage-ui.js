@@ -37,6 +37,18 @@ const comparison=window.PlayerAnalysis.create($('usComparePanel'),{
  }):[],format:pct
 });
 function marketRows(){return market||(typeof players!=='undefined'?players:[]);}
+function rememberPlayer(){
+ window.playerToolSelection?.set(records.find(p=>p.id===$('usPlayer').value)?.name,$('usRange').value);
+}
+function restorePlayer(){
+ const shared=window.playerToolSelection?.find(records);
+ if(!shared)return;
+ const select=$('usPlayer');
+ if(![...select.options].some(o=>o.value===shared.row.id))return;
+ select.value=shared.row.id;
+ if(shared.range)$('usRange').value=shared.range;
+ render();
+}
 function options(){
  const selected=$('usPlayer').value,oldTeam=$('usTeam').value,byKey=new Map();
  for(const p of marketRows())if(['G','F','C'].includes(p.pos)&&U.key(p.name))byKey.set(U.key(p.name),{...p,team:team(p.team),id:U.key(p.name),price:U.num(p.price)});
@@ -110,18 +122,18 @@ function render(updateRanking=true){
  $('usResult').innerHTML=`<div class="us-score"><div><b><bdi>${esc(name(p.name))}</bdi></b><small>${esc(p.team)} · ${p.price===null?'מחיר לא זמין':fmt(p.price)+' קרדיט'}</small><small>${metricTitle()} · ${reason}</small></div><strong>${pct(current.value)}</strong></div><dl class="us-metrics">${metrics.map(([label,n])=>`<div><dt>${label}</dt><dd>${fmt(n)}</dd></div>`).join('')}</dl>`;
  $('usGames').innerHTML=table(['משחק','דקות',metric==='regular'?'Usage':'כולל'],games.map(g=>{const e=U.events(g);return [`<b>${esc(g.opponent)}</b><small>${date(g.date)}${g.round?' · מ׳ '+esc(g.round):''} · ${g.home===true?'בית':g.home===false?'חוץ':'מיקום לא ידוע'}</small>${g.source&&/^https:\/\//.test(g.source)?`<small><a href="${esc(g.source)}" target="_blank" rel="noopener">דוח המשחק</a></small>`:''}`,U.num(g.minutes)===0?'לא שיחק':fmt(g.minutes),pct(e[metric])]}));
 }
-async function load(){
+async function load(force=false){
  if(loading)return loading;
  $('usReload').disabled=true;$('usStatus').textContent='טוען נתוני Usage מהדוחות הרשמיים…';
  loading=(async()=>{try{
-  const response=await fetch('./data/official-offense.json?t='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(20000)});if(!response.ok)throw Error('Usage report unavailable');
-  const next=await response.json();if(next.schema!=='official-offense-v1'||next.season!=='E2026'||!next.players||typeof next.players!=='object')throw Error('Wrong Usage report');
+  const next=await (window.loadGameData?window.loadGameData('official-offense.json',force):(async()=>{const response=await fetch('./data/official-offense.json?t='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(20000)});if(!response.ok)throw Error('Usage report unavailable');
+  const next=await response.json();return next;})());if(next.schema!=='official-offense-v1'||next.season!=='E2026'||!next.players||typeof next.players!=='object')throw Error('Wrong Usage report');
   data=next;
   try{const r=await fetch('./data/players.json?t='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(10000)});if(r.ok){const rows=await r.json();if(Array.isArray(rows)&&rows.length)market=rows;}}catch{}
-  loadedAt=Date.now();options();
+  loadedAt=Date.now();options();if(section.classList.contains('active'))restorePlayer();
  }catch(error){$('usStatus').textContent=data?'הרענון נכשל; מוצגים הנתונים שנטענו קודם.':'לא ניתן לטעון נתוני Usage כרגע. נסה ללחוץ על רענן.';}finally{$('usReload').disabled=false;loading=null;}})();return loading;
 }
-button.onclick=()=>{document.querySelectorAll('.tabs button,.tab').forEach(el=>el.classList.remove('active'));button.classList.add('active');section.classList.add('active');if(!data||Date.now()-loadedAt>60000)void load();else options();};
+button.onclick=()=>{document.querySelectorAll('.tabs button,.tab').forEach(el=>el.classList.remove('active'));button.classList.add('active');section.classList.add('active');if(!data||Date.now()-loadedAt>60000)void load();else{options();restorePlayer();}};
 for(const b of section.querySelectorAll('[data-us-scope]'))b.onclick=()=>{scope=b.dataset.usScope;for(const item of section.querySelectorAll('[data-us-scope]'))item.setAttribute('aria-pressed',String(item===b));options();};
 for(const b of viewButtons)b.onclick=()=>{
  const next=b.dataset.usView;
@@ -129,7 +141,7 @@ for(const b of viewButtons)b.onclick=()=>{
  showView(next);
 };
 function selectPlayer(){
- render(false);
+ rememberPlayer();render(false);
  highlightSelection();
 }
 $('usRanking').onclick=e=>{
@@ -146,7 +158,7 @@ for(const b of sortButtons)b.onclick=()=>{
  renderRanking();
 };
 $('usCreditCap').onchange=renderRanking;
-$('usPosition').onchange=()=>render();$('usTeam').onchange=options;$('usPlayer').onchange=selectPlayer;$('usRange').onchange=()=>render();$('usReload').onclick=()=>void load();
+$('usPosition').onchange=()=>render();$('usTeam').onchange=options;$('usPlayer').onchange=selectPlayer;$('usRange').onchange=()=>{rememberPlayer();render();};$('usReload').onclick=()=>void load(true);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&section.classList.contains('active')&&Date.now()-loadedAt>60000)void load();});
 window.UsageUI={load};
 })();

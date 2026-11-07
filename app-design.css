@@ -233,3 +233,22 @@ html[data-theme="light"] .tab .player-picker-modes button[aria-pressed="true"]{b
 .ef-market-forecast .miniCard{display:grid;place-content:center;gap:4px;padding:12px;min-width:0;min-height:88px;text-align:center}
 .ef-market-forecast .miniCard b{font-size:32px;line-height:1.15;direction:ltr}
 .ef-market-forecast .miniCard small{font-size:13px}
+
+/* Keep the active tool and the main shortcuts visible at narrow widths. */
+#efSectionNavigation{flex-wrap:wrap;overflow:visible}
+#efSectionNavigation button{min-height:44px;white-space:normal}
+.ef-tool-subtitle{margin:12px 0 5px;font-size:.9rem;color:var(--text)}
+details.ef-search{padding:8px 12px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+details.ef-search summary{display:list-item;min-height:32px;cursor:pointer;font-weight:700}
+details.ef-search label{display:grid;gap:5px;margin-block:8px}
+details.ef-search input{width:100%}
+.ef-redesign :is(button,select,input,summary,a):focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+html.ef-redesign[data-theme="light"] #market .pmRefFrame,
+html.ef-redesign[data-theme="light"] #market .pmRefFilters{background:var(--card);color:var(--text);border-color:var(--line)}
+html.ef-redesign #market .pmRefMinutes,html.ef-redesign #market .pmRefOpponent{font-size:12px}
+html.ef-redesign[data-theme="dark"] #playerMatchups .pmCompare :is(th,td){background:var(--card2);color:var(--text)}
+html.ef-redesign[data-theme="light"] #market.pmReference{background:var(--card2);border-color:var(--line);box-shadow:none}
+html.ef-redesign[data-theme="light"] #market.pmReference>.filters,
+html.ef-redesign[data-theme="light"] #market.pmReference :is(select,input){background:var(--card);color:var(--text);border-color:var(--line)}
+html.ef-redesign[data-theme="light"] #market.pmReference :is(h3,.pmSummary,.marketHelp){color:var(--text)}
+#market .marketRefSelect{min-height:36px}

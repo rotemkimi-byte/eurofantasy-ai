@@ -22,6 +22,9 @@
 
   const teamName = name => aliases[name] || name || "";
 
+  const remember = (key, value) => {
+    try { localStorage.setItem(key, value); } catch {}
+  };
   let pending = null;
   async function refresh() {
   try {
@@ -59,18 +62,18 @@
         : "active"
     })).filter(p => p.name && p.pos && p.price > 0);
 
-    localStorage.setItem(LS.players, JSON.stringify(players));
+    remember(LS.players, JSON.stringify(players));
 
     myTeam = myTeam.filter(name =>
       players.some(player => player.name === name)
     );
 
-    localStorage.setItem(LS.team, JSON.stringify(myTeam));
+    remember(LS.team, JSON.stringify(myTeam));
 
     const meta = metaResponse.ok ? await metaResponse.json() : null;
     if (meta) {
 
-      localStorage.setItem(
+      remember(
         "efa2_fantasy_sync",
         meta.updated_at || new Date().toISOString()
       );
@@ -106,6 +109,10 @@
       badge.textContent = (meta?.matchday_number ? "מחזור " + meta.matchday_number : "Fantasy") +
         (stale ? " · נתונים בעיכוב" : " · מעודכן ✓");
       badge.title = Number.isFinite(time) ? "עדכון נתונים: " + new Date(time).toLocaleString("he-IL") : "מועד העדכון לא ידוע";
+      const footer = document.getElementById("marketDataStatus");
+      if (footer) footer.textContent = Number.isFinite(time)
+        ? "נתוני שוק · מחזור " + meta.matchday_number + " · עודכן " + new Date(time).toLocaleString("he-IL", {timeZone:"Asia/Jerusalem"})
+        : "מועד עדכון נתוני השוק לא ידוע";
     }
 
     console.log(

@@ -43,4 +43,19 @@ for(const id of ['performance','usage','box','shotMap','playerDna','teamMarket',
  const i=C.definitions.findIndex(d=>d.id===id);
  assert(sample.some(row=>row[i]!==null&&row[i]!==0),id+' uses actual data');
 }
+const neutralWeights=only('shotMap');
+const starter=active.find(p=>data.profiles.get(P.key(p.name))?.length>=5);
+assert(starter,'a real player has enough games');
+const injuries=C.definitions.findIndex(d=>d.id==='injuries');
+const withoutInjuries=Array(C.definitions.length).fill(null);
+const withInjuries=withoutInjuries.slice();withInjuries[injuries]=1;
+const clear=C.input(starter,{...base,expected:10,injuryBoost:0},withoutInjuries,data);
+const absences=C.input(starter,{...base,expected:16,injuryBoost:4},withInjuries,data);
+assert.equal(C.project(clear,neutralWeights),C.project(absences,neutralWeights),'zero weight removes the old injury adjustment');
+const afterAbsences=C.apply({...base},starter,absences,only('injuries'));
+assert(afterAbsences.expected>clear.base&&afterAbsences.minutes>clear.minutes);
+const home=C.input(starter,{...base,match:{home:true}},withoutInjuries,data);
+assert(home.base>clear.base,'home factor stays in the fixed baseline');
+assert.equal(C.input({...starter,status:'out'},base,withInjuries,data).base,0);
+assert.equal(C.assess([day,day]).rows.find(r=>r.id==='performance').games,2);
 console.log('Weighted forecast: real inputs, normalization, live adjustment and round attribution verified');

@@ -25,13 +25,13 @@ const section=document.createElement('section');
 section.id='algorithm';section.className='tab';
 section.innerHTML=`<div class="card wf-shell">
  <header><span class="wf-kicker">EUROLEAGUE · 2026/27</span><h2>משקלי האלגוריתם</h2>
- <p>כלי השחקנים והקבוצות משנים את תחזית ה־PIR למשחק הבא.</p></header>
+ <p>תחזית המשחק הבא משלבת בסיס אישי של תפוקה ודקות עם תרומות לפי המשקלים שבחרת.</p></header>
  <div class="wf-switch" role="group" aria-label="תצוגת האלגוריתם">
   <button type="button" data-mode="weights" aria-pressed="true">משקלים</button>
   <button type="button" data-mode="report" aria-pressed="false">דוח מחזור</button>
   <button type="button" data-mode="edit" aria-pressed="false">שיפור ידני</button>
  </div>
- <div class="wf-venue"><b>בית / חוץ</b><span>קבוע בחישוב הבסיס</span></div>
+ <div class="wf-venue"><b>בית / חוץ</b><span>השפעה קבועה של מיקום המשחק</span></div>
  <p class="wf-muted" data-source role="status">טוען נתוני תחזית…</p>
  <div data-panel="weights">
   <div class="wf-controls"><label>קבוצה<select data-team></select></label><label>שחקן · לפי מחיר<select data-player></select></label></div>
@@ -50,6 +50,8 @@ section.innerHTML=`<div class="card wf-shell">
    <button type="button" class="secondary" data-reset>ברירת מחדל</button><strong data-total></strong>
   </div>
   <p class="wf-muted" role="status" data-feedback></p>
+  <div class="wf-actions"><button type="button" class="secondary" data-export>ייצוא משקלים</button>
+   <label>ייבוא משקלים <input type="file" accept=".json,application/json" data-import></label></div>
   <div class="wf-list">${C.definitions.map(d=>`<label class="wf-row"><span><b>${d.label}</b><small>${d.description}</small></span><span class="wf-input"><input type="number" min="0" max="100" step="1" inputmode="numeric" data-weight="${d.id}" value="${weights[d.id]}"><span>%</span></span></label>`).join('')}</div>
  </div>
  </div>`;
@@ -69,10 +71,11 @@ function rosterOptions(){
  const rows=roster.filter(p=>!team||P.team(p.team)===team).sort((a,b)=>Number(b.price)-Number(a.price)||a.name.localeCompare(b.name));
  options($('[data-player]'),[['','בחר שחקן'],...rows.map(p=>[p.name,p.name+' · '+fmt(p.price)+' CR'])]);
 }
+const coverage=f=>C.definitions.reduce((sum,d,i)=>sum+(Number.isFinite(f.signals[i])?weights[d.id]:0),0);
 function drawWeights(){
  const p=playerList().find(p=>p.name===$('[data-player]').value);
  const x=p&&modelReady?model(p):null,f=x?.weightedForecast;
- $('[data-preview]').innerHTML=p&&x?`<article class="wf-preview"><div><b><bdi>${esc(p.name)}</bdi></b><small><bdi>${esc(P.team(x.match?.opponent||p.opponent))}</bdi> · ${x.match?.home===true?'בית':x.match?.home===false?'חוץ':'מיקום לא זמין'}</small></div><div><b dir="ltr">${fmt(x.expected)} PIR</b><small>תחזית · ${f?effect.format(x.expected-f.base)+' מהכלים':'חישוב בסיס'}</small></div></article>`:'';
+ $('[data-preview]').innerHTML=p&&x?`<article class="wf-preview"><div><b><bdi>${esc(p.name)}</bdi></b><small><bdi>${esc(P.team(x.match?.opponent||p.opponent))}</bdi> · ${x.match?.home===true?'בית':x.match?.home===false?'חוץ':'מיקום לא זמין'}</small></div><div><b dir="ltr">${fmt(x.expected)} PIR</b><small>${f?'בסיס '+fmt(f.base)+' PIR · כלים '+effect.format(x.expected-f.base)+' · כיסוי '+coverage(f)+'%':'צפי קודם עד לטעינת הנתונים'}</small></div></article>`:'';
  $('[data-list]').innerHTML=C.definitions.map((d,i)=>{
   const active=f&&Number.isFinite(f.signals[i]),delta=active?f.scale*f.signals[i]*weights[d.id]/100:null;
   return `<article class="wf-row"><span><b>${d.label}</b><small>${d.description}</small></span><span class="wf-number"><b dir="ltr">${weights[d.id]}%</b>${f?`<small ${active?'dir="ltr"':''}>${active?effect.format(delta)+' PIR':'אין מדגם'}</small>`:''}</span></article>`;
@@ -83,7 +86,7 @@ function drawReport(){
  const rounds=report?.rounds||[],hadRound=rounds.some(r=>String(r.round)===select.value);
  options(select,rounds.map(r=>[String(r.round),'מחזור '+r.round+(r.complete?'':' · פתוח')]));
  select.disabled=!rounds.length;
- if(!hadRound){const latest=rounds.find(r=>r.complete&&r.games.length);if(latest)select.value=String(latest.round);}
+ if(!hadRound){const latest=rounds.find(r=>r.complete&&r.games.length);const current=latest||rounds.at(-1);if(current)select.value=String(current.round);}
  const round=rounds.find(r=>String(r.round)===select.value);
  if(!round){host.textContent='דוח ההשפעה יופיע בסיום מחזור שיש לו תחזיות שנשמרו לפני פתיחת המשחקים.';return;}
  if(!round.complete){host.textContent='המחזור עדיין פתוח. דוח ההשפעה יוצג לאחר שיסתיימו כל משחקיו.';return;}
@@ -98,9 +101,9 @@ function drawReport(){
  <span>טעות ממוצעת עם הכלים <b>${fmt(result.fullMae)} PIR</b> · בסיס ${fmt(result.baseMae)} PIR</span></p>
  <p class="wf-muted">${personal?'חישוב לפי נתוני התחזית שנשמרו לפני המשחק והמשקלים שכבר היו שמורים אז במכשיר. ':'נבדקו רק תחזיות שנשמרו לפני המשחק. '}כל כלי נבדק בנפרד. ירוק פירושו שטעות ה־PIR קטנה כשהכלי פעל. אדום פירושו שהטעות גדלה.</p>
  <div class="wf-list">${result.rows.map(r=>{
-  const direction=!r.enabled?'off':r.available<5||r.n>0&&r.n<5?'sample':!r.n?'neutral':r.delta>=.005?'better':r.delta<=-.005?'worse':'neutral';
+  const direction=!r.enabled?'off':r.available<5||r.n>0&&(r.n<5||r.games<2)?'sample':!r.n?'neutral':r.delta>=.005?'better':r.delta<=-.005?'worse':'neutral';
   const label={off:'משקל אפס',sample:'מדגם חסר',better:'שיפר',worse:'פגע',neutral:'ללא שינוי ניכר'}[direction];
-  return `<article class="wf-row"><span><b>${r.label}</b><small>${r.n} תחזיות שבהן השפיע${r.weight===null?'':' · משקל ממוצע '+fmt(r.weight)+'%'}</small></span><span class="wf-number"><b class="wf-badge" data-result="${direction}">${label}</b>${r.n>=5?`<small dir="ltr">${effect.format(r.delta)} PIR</small>`:''}</span></article>`;
+  return `<article class="wf-row"><span><b>${r.label}</b><small>${r.n} תחזיות שחקן ב־${r.games} משחקים${r.weight===null?'':' · משקל ממוצע '+fmt(r.weight)+'%'}</small></span><span class="wf-number"><b class="wf-badge" data-result="${direction}">${label}</b>${r.n>=5?`<small dir="ltr">${effect.format(r.delta)} PIR</small>`:''}</span></article>`;
  }).join('')}</div>`;
 }
 function total(){
@@ -137,7 +140,22 @@ $('[data-save]').onclick=()=>{
   $('[data-feedback]').textContent='המשקלים נשמרו במכשיר והוחלו על התחזיות.';
  }catch{$('[data-feedback]').textContent='המשקלים הוחלו בדף הזה. הדפדפן חסם שמירה במכשיר.';}
  if(modelReady&&typeof renderAll==='function')renderAll();
- drawWeights();drawReport();
+ sourceText();drawWeights();drawReport();
+};
+$('[data-export]').onclick=()=>{
+ const url=URL.createObjectURL(new Blob([JSON.stringify(weights)],{type:'application/json'}));
+ const link=document.createElement('a');link.href=url;link.download='eurofantasy-weights.json';link.click();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+};
+$('[data-import]').onchange=async event=>{
+ const file=event.target.files[0];if(!file)return;
+ try{
+  if(file.size>8192)throw Error('Invalid weights file');
+  const imported=JSON.parse(await file.text());if(!C.valid(imported))throw Error('Invalid weights');
+  draft=Object.fromEntries(C.definitions.map(d=>[d.id,imported[d.id]]));syncInputs();
+  $('[data-feedback]').textContent='המשקלים נטענו. לחץ שמור והחל כדי להפעיל אותם.';
+ }catch{$('[data-feedback]').textContent='לא ניתן לייבא את הקובץ. נדרש קובץ משקלים תקין.';}
+ event.target.value='';
 };
 $('[data-team]').onchange=()=>{rosterOptions();drawWeights();};
 $('[data-player]').onchange=drawWeights;
@@ -149,6 +167,7 @@ tab.onclick=()=>{
  rosterOptions();drawWeights();void refreshEvidence();
 };
 async function json(path){
+ if(window.loadGameData)return window.loadGameData(path);
  const r=await fetch('./data/'+path,{cache:'no-cache',signal:AbortSignal.timeout(16000)});
  if(!r.ok)throw Error('Missing '+path);
  return r.json();
@@ -163,7 +182,9 @@ async function loadReport(){
 function sourceText(){
  $('[data-source]').textContent=!modelReady?'טוען נתוני תחזית…':evidence?
   (lastError?'תחזית משוקללת · מוצגים נתוני המשחק האחרונים שנטענו.':'המשקלים פעילים בתחזית השחקנים · עונת 2026/27.'):
-  'נתוני הכלים עדיין לא זמינים. מוצגת תחזית הבסיס.';
+  'נתוני הכלים עדיין לא זמינים. מוצגת התחזית הקודמת.';
+ if(versions.length&&C.definitions.some(d=>weights[d.id]!==d.weight))
+  $('[data-source]').textContent+=' · משקלים אישיים פעילים במכשיר זה.';
 }
 async function refreshEvidence(){
  if(loading)return loading;
@@ -198,7 +219,7 @@ model=function(p){
   row={signature,signals:C.signals(p,x,evidence,players)};
   signalCache.set(p,row);
  }
- return C.apply(x,p,C.input(p,x,row.signals),weights);
+ return C.apply(x,p,C.input(p,x,row.signals,evidence),weights);
 };
 await initial;
 modelReady=true;

@@ -4,7 +4,7 @@
 const definitions=[
  ['market','שוק שחקנים',3,'מחיר השוק מול הצפי האישי ההיסטורי.'],
  ['playerMatchup','מאצ׳אפ שחקנים',8,'PIR לדקה מול היריבה, עם הפחתה על מדגם קטן.'],
- ['performance','גרפי ביצועים',16,'מגמת דקות ו־PIR בשלוש ההופעות האחרונות לעומת ההופעות הקודמות.'],
+ ['performance','גרפי ביצועים',16,'שינוי בנקודות מהשדה לניסיון קליעה בשלוש ההופעות האחרונות. דקות וזריקות נמדדות בנפרד.'],
  ['injuries','פציעות',8,'תוספת דקות ומעורבות שמקורה בחיסורי חברי סגל. סטטוס שחקן בחוץ נשמר בחישוב הבסיס.'],
  ['usage','מדד Usage',8,'שינוי ב־Usage מהבוקס־סקור הרשמי, לפי אירועים וחשיפה.'],
  ['defense','מדדי הגנה וריבאונד',5,'סיכויי ריבאונד לפי ההחטאות והריבאונד שהיריבה מאפשרת, ביחס לסגנון השחקן.'],
@@ -23,7 +23,7 @@ const definitions=[
  ['teamDna','DNA קבוצתי',2,'התאמה בין סגנון המסירות של קבוצת השחקן, המסירות שהיריבה מאפשרת ותמהיל הקליעה שלו.'],
  ['absence','המלצות חיסורים',3,'שינוי בדקות בעבר כששחקן שחסר כעת נרשם ושיחק או נרשם וישב.'],
  ['bargains','מציאות',1,'תפוקת עבר של שחקן מתחת ל־10 קרדיט, ביחס לסף של PIR אחד לקרדיט.'],
- ['surprises','הפתעות לרעה',1,'פער בין חציון PIR לדקה לרבעון התחתון בעונה, ביחס לפער האופייני בליגה.']
+ ['surprises','הפתעות לרעה',1,'תדירות הופעות של עד 10 PIR בקרב שחקנים שמחירם הנוכחי 13 קרדיט ומעלה.']
 ].map(([id,label,weight,description])=>({id,label,weight,description}));
 const defaults=Object.fromEntries(definitions.map(d=>[d.id,d.weight]));
 const num=value=>typeof value==='number'&&Number.isFinite(value)?value:null;
@@ -130,11 +130,6 @@ function build(official,advanced,{key,team,asOf=Date.now()}){
   }).sort((a,b)=>Date.parse(a.date)-Date.parse(b.date));
   if(rows.length)profiles.set(id,profiles.has(id)?null:rows);
  }
- const lowGap=rows=>{
-  const values=rows.map(r=>divide(r.stats.valuation,r.minutes)).filter(v=>v!==null).sort((a,b)=>a-b);
-  return values.length>=5?values[Math.floor(values.length*.5)]-values[Math.floor(values.length*.25)]:null;
- };
- const leagueGap=average([...profiles.values()].filter(Boolean).map(lowGap));
  const teamSummary=rows=>{
   const perPoss=read=>rate(rows,read,r=>r.pace);
   return {games:rows.length,pace:rate(rows,r=>r.pace,r=>r.minutes),allowed:perPoss(r=>r.opp.points),
@@ -155,10 +150,10 @@ function build(official,advanced,{key,team,asOf=Date.now()}){
   for(const row of rows)if(row.event)addEvents(e,[row.event]);
   personalEvents.set(id,e);
  }
- return {key,team,profiles,clubs,all,allowed,leagueEvents,personalEvents,lowGap,leagueGap};
+ return {key,team,profiles,clubs,all,allowed,leagueEvents,personalEvents};
 }
 function signals(p,x,data,roster){
- const {key,team,profiles,clubs,all,allowed,leagueEvents,personalEvents,lowGap,leagueGap}=data;
+ const {key,team,profiles,clubs,all,allowed,leagueEvents,personalEvents}=data;
  const id=key(p.name),club=team(p.team),opp=team(x.match?.opponent||p.opponent);
  const rows=profiles.get(id)||[],same=rows.filter(g=>g.team===club),recent=rows.slice(-3),prior=rows.slice(0,-3);
  const opposed=rows.filter(g=>g.opponent===opp),other=rows.filter(g=>g.opponent!==opp);
@@ -170,10 +165,11 @@ function signals(p,x,data,roster){
  const price=num(p.price),base=num(x.basePir);
  if(price>0&&base>0)set('market',compare(price*.93,base,Math.max(4,base*.35)),5);
  if(opposed.length&&other.length>=3)set('playerMatchup',compare(perf(opposed),perf(other),.35),opposed.length,4);
- if(prior.length>=2){
-  const past=rate(prior,pir,()=>1);
-  set('performance',compare(rate(recent,pir,()=>1),past,Math.max(6,Math.abs(past)*.6)),prior.length);
- }
+ const fieldPoints=g=>{
+  const points=num(g.stats.points),free=num(g.stats.freeThrowsMade);
+  return points===null||free===null?null:points-free;
+ };
+ set('performance',trend(fieldPoints,.40,stat('fieldGoalsAttempted2','fieldGoalsAttempted3')),prior.length);
  if(num(x.injuryBoost)!==null&&num(x.injuryUsagePct)!==null&&x.baseMin>0)
   set('injuries',(x.injuryBoost/x.baseMin+x.injuryUsagePct/100)/.18,6);
  set('usage',trend(g=>g.metrics?.usageEvents,.09,g=>g.metrics?.usageExposure),prior.length);
@@ -236,13 +232,30 @@ function signals(p,x,data,roster){
  }
  set('absence',average(absence),absence.length,1);
  if(rows.length>=5&&price>0&&price<10)set('bargains',compare(divide(rate(rows,pir,()=>1),price),1,.7),rows.length);
- set('surprises',compare(leagueGap,lowGap(rows),.35),rows.length);
+ const rated=rows.map(pir).filter(v=>v!==null);
+ if(price>=13&&rated.length>=5)
+  set('surprises',-rated.filter(v=>v<=10).length/rated.length,rated.length);
  return definitions.map(({id})=>s[id]);
 }
-function input(p,x,values){
+function baseline(p,x,data){
+ const rows=data.profiles.get(data.key(p.name))||[];
+ const stable=rows.length>=5?rows.slice(0,-3):rows;
+ const minutes=rate(stable,g=>g.minutes,()=>1)??num(x.personalPrior?.avgMinutes)??15;
+ const observed=rate(stable,stat('valuation'));
+ const prior=divide(num(x.personalPrior?.avgPir),num(x.personalPrior?.avgMinutes))??.5;
+ const sample=observed===null?0:stable.length;
+ const efficiency=((observed??0)*sample+prior*4)/(sample+4);
+ const venue=x.match?.home??p.home;
+ const venueFactor=1+((venue===true||venue===1)?1:venue===false||venue===0?-1:0)*1.5*.006*.6;
+ const availability=p.status==='out'?0:p.status==='questionable'?.82:1;
+ return {expected:Math.max(0,minutes*availability*efficiency*venueFactor),
+  minutes:minutes*availability};
+}
+function input(p,x,values,data){
+ if(data)x=baseline(p,x,data);
  if(!['G','F','C'].includes(p.pos)||num(x.expected)===null)return null;
  const base=x.expected;
- return {base,scale:p.status==='out'||!(x.minutes>0)?0:Math.min(5,Math.max(0,base)*.30),signals:values};
+ return {base,scale:p.status==='out'||!(x.minutes>0)?0:Math.min(5,Math.max(0,base)*.30),signals:values,...(data?{minutes:x.minutes}:{})};
 }
 function project(frozen,weights=defaults,omit=-1){
  const w=valid(weights)?weights:defaults;
@@ -256,18 +269,29 @@ function apply(x,p,frozen,weights){
  const expected=project(frozen,weights),delta=expected-x.expected;
  x.weightedForecast=frozen;
  x.expected=expected;
+ if(num(frozen.minutes)!==null){
+  const w=valid(weights)?weights:defaults;
+  const minutesDelta=(frozen.signals[indices.teamMarket]??0)*w.teamMarket*.15
+   +(frozen.signals[indices.injuries]??0)*w.injuries*.1
+   +(frozen.signals[indices.absence]??0)*w.absence*.1;
+  x.minutes=clip(frozen.minutes+minutesDelta*(p.status==='out'?0:p.status==='questionable'?.82:1),0,36);
+  x.learning={basePir:frozen.base,baseMinutes:frozen.minutes,applied:false};
+  x.source='בסיס אישי ותרומות לפי משקל';
+
+ }
  if(Number.isFinite(x.floor))x.floor=Math.min(expected,Math.max(0,x.floor+delta));
  if(Number.isFinite(x.ceiling))x.ceiling=Math.max(expected,x.ceiling+delta);
  x.value=expected/Math.max(.1,Number(p.price)||0);
  return x;
 }
 function assess(games,settingsFor=game=>game.weights||defaults){
- const totals=definitions.map(d=>({...d,n:0,delta:0,weightSum:0,enabled:0,available:0}));
+ const totals=definitions.map(d=>({...d,n:0,delta:0,weightSum:0,enabled:0,available:0,games:0}));
  let n=0,baseError=0,fullError=0,coveredGames=0;
  for(const game of games){
   const weights=settingsFor(game);
   if(!valid(weights))continue;
   let used=false;
+  const gameFactors=new Set();
   for(const [actual,base,scale,signals] of game.players){
    const row={base,scale,signals},full=project(row,weights),error=Math.abs(actual-full);
    n++;used=true;fullError+=error;baseError+=Math.abs(actual-base);
@@ -277,11 +301,12 @@ function assess(games,settingsFor=game=>game.weights||defaults){
     if(!scale||num(signals[i])===null)return;
     item.available++;
     if(signals[i]===0)return;
-    item.n++;item.weightSum+=weights[item.id];
+    item.n++;item.weightSum+=weights[item.id];gameFactors.add(item);
     item.delta+=Math.abs(actual-project(row,weights,i))-error;
    });
   }
   if(used)coveredGames++;
+  for(const item of gameFactors)item.games++;
  }
  return {n,games:coveredGames,baseMae:divide(baseError,n),fullMae:divide(fullError,n),
   rows:totals.map(({weightSum,delta,...r})=>({...r,weight:divide(weightSum,r.n),delta:divide(delta,r.n)}))};
