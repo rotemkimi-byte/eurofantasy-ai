@@ -57,9 +57,10 @@ function create(host,{metrics,rows,team=()=>'',initial=Object.keys(metrics)[0],f
  return {render,show(next){mode=next;render();}};
 }
 function mount(section,anchor,output,details,config){
+ const views=config.views||[['detail','תצוגה אישית'],['ranking','טבלה כללית'],['compare','השוואה']];
  const nav=document.createElement('div'),panel=document.createElement('div');
  nav.className='pa-views';nav.setAttribute('role','group');nav.setAttribute('aria-label','תצוגת הכלי');
- nav.innerHTML=[['detail','תצוגה אישית'],['ranking','טבלה כללית'],['compare','השוואה']].map(([id,label])=>`<button type="button" data-pa-view="${id}" aria-pressed="${id==='detail'}">${label}</button>`).join('');
+ nav.innerHTML=views.map(([id,label])=>`<button type="button" data-pa-view="${id}" aria-pressed="${id==='detail'}">${label}</button>`).join('');
  panel.className='pa-panel';panel.hidden=true;
  anchor.after(nav);output.after(panel);
  for(const element of details)element.classList.add('pa-detail');

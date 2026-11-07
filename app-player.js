@@ -46,19 +46,31 @@ let cached=null,loaded=0,pending=null,mediaPromise=null,creditPromise=null;
 function dataset(){if(cached&&Date.now()-loaded<60000)return Promise.resolve(cached);if(pending)return pending;
  pending=fetch('./data/official-offense.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('data');return r.json();}).then(d=>{if(d.season!=='E2026'||d.schema!=='official-offense-v1')throw Error('season');cached=d;loaded=Date.now();return d;}).finally(()=>{pending=null;});return pending;}
 function media(){if(!mediaPromise)mediaPromise=fetch('./data/player-media.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('media');return r.json();}).catch(()=>{mediaPromise=null;return null;});return mediaPromise;}
-function creditHistory(){
+function creditHistory(force=false){
+ if(force)creditPromise=null;
  if(!creditPromise)creditPromise=fetch('./data/round-lab.json',{cache:'no-cache'})
   .then(r=>{if(!r.ok)throw Error('credits');return r.json();})
   .then(d=>{if(d.season!=='E2026'||!Array.isArray(d.rounds))throw Error('season');return d.rounds;})
-  .catch(()=>{creditPromise=null;return [];});
+  .catch(error=>{creditPromise=null;throw error;});
  return creditPromise;
 }
-function creditChart(rounds,player){
- const key=U.key(player.name),rows=rounds.filter(r=>r.priceSource==='pre-round').map(r=>({
-  round:Number(r.round),price:U.num(r.players.find(p=>U.key(p.name)===key)?.price)
- })).filter(r=>Number.isInteger(r.round)&&r.round>0&&r.price>0).sort((a,b)=>a.round-b.round);
- const current=U.num(player.price),last=Math.max(0,...rounds.map(r=>Number(r.round)||0));
+function creditRows(rounds,player){
+ const key=U.key(player.name),prices=new Map();
+ let last=0;
+ for(const r of rounds){
+  const round=Number(r.round);
+  if(!Number.isInteger(round)||round<=0)continue;
+  last=Math.max(last,round);
+  if(r.priceSource==='pre-round')prices.set(round,U.num(r.players?.find(p=>U.key(p.name)===key)?.price));
+ }
+ const rows=Array.from({length:last},(_,i)=>({round:i+1,price:prices.get(i+1)??null}));
+ const current=U.num(player.price);
  if(current>0)rows.push({round:last+1,price:current,current:true});
+ return rows;
+}
+window.PlayerCredits={load:creditHistory,rows:creditRows};
+function creditChart(rounds,player){
+ const rows=creditRows(rounds,player).filter(r=>r.price>0);
  if(!rows.length)return '<h3>קרדיטים</h3><span class="muted" aria-label="אין נתוני קרדיטים">—</span>';
  const prices=rows.map(r=>r.price),lo=Math.min(...prices),hi=Math.max(...prices);
  const center=(lo+hi)/2,half=Math.max(Math.ceil((hi-lo)*5)/10,.3);
@@ -126,7 +138,7 @@ window.showPlayer=function(name){
   credits.onclick=select;
   credits.onkeydown=select;
   draw([]);
-  creditHistory().then(rounds=>{if(body.contains(credits))draw(rounds);});
+  creditHistory().then(rounds=>{if(body.contains(credits))draw(rounds);},()=>{});
  }
  const gamesList=document.createElement('div');panes.games.prepend(gamesList);
  let range='5',data=null,profile=null,selected=[],currentTab='overview';

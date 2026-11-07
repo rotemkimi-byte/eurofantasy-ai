@@ -5,7 +5,16 @@ const server=http.createServer((req,res)=>{const file=path.join(root,req.url.spl
 const page=await browser.newPage({viewport:{width:390,height:844}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
 await page.route('**/*',r=>r.request().url().startsWith('http://127.0.0.1:')?r.continue():r.abort());
 await page.goto(`http://127.0.0.1:${server.address().port}`,{waitUntil:'domcontentloaded'});
-await page.locator('[data-ef-group=players]').click();await page.locator('#efHome [data-ef-tool=pirCompare]').click();
+await page.locator('[data-ef-group=players]').click();await page.locator('#efHome [data-ef-tool=pirGraph]').click();assert.equal(await page.locator('[data-pir-mode=pir]').getAttribute('aria-pressed'),'true');
+await page.locator('#pirChart svg').waitFor({timeout:90000});
+const player=await page.locator('#pirPerson').inputValue();
+for(const [mode,label] of [['minutes','דקות למשחק'],['credit','קרדיט לפי מחזור'],['mixed','PIR ודקות למשחק']]){
+ await page.locator(`[data-pir-mode=${mode}]`).click();
+ await page.locator(`#pirChart svg[aria-label="${label}"]`).waitFor();
+ assert.equal(await page.locator('#pirPerson').inputValue(),player);
+}
+assert(await page.locator('#pirLegend').isVisible());
+await page.locator('[data-pir-mode=compare]').click();
 await page.locator('#pirCompare [data-add]').first().waitFor({timeout:90000});
 await page.locator('#pirCompare [data-add]').nth(0).click();await page.locator('#pirCompare [data-add]').nth(1).click();
 assert.equal(await page.locator('.pc-card').count(),2);
