@@ -38,7 +38,7 @@ const server=http.createServer((req,res)=>{
     }
     await box.locator('[data-range]').selectOption('1');
     assert.equal(await box.locator('.ap-box-average').count(),0);
-    for(const [id,p] of [['playerNegative',shot],['playerShots',shot],['playerPlusMinus',shot],['playerLineups',line],['playerAttacks',shot]]){
+    for(const [id,p] of [['playerNegative',shot],['playerShots',shot],['playerPlusMinus',shot],['playerLineups',line]]){
      await page.evaluate(id=>document.querySelector('nav.tabs [data-tab="'+id+'"]').click(),id);
      const section=page.locator('#'+id);
      await section.locator('[data-player] option[value="'+p.id+'"]').waitFor({state:'attached'});
@@ -55,6 +55,8 @@ const server=http.createServer((req,res)=>{
    // Navigation discovers the tools in the player category, and filter clears hidden selections.
    await page.locator('#efCategory').click();
    assert.equal(await page.locator('#efToolGroups [data-ef-tool="playerShots"]').count(),1);
+   assert.equal(await page.locator('#efToolGroups [data-ef-tool="playerDna"]').count(),1);
+   assert.equal(await page.locator('[data-tab="playerAttacks"], #playerAttacks').count(),0);
    await page.locator('#efToolGroups [data-ef-tool="playerShots"]').click();
    assert.equal(await page.locator('#playerShots input[type=search]').count(),0);
    await page.locator('#playerShots [data-back]').click();

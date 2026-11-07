@@ -1,7 +1,7 @@
 (()=>{
 'use strict';
 const C=window.AdvancedPlayerCore;if(!C)return;
-const tools=[['playerBoxScore','נתונים נקיים','boxScore'],['playerNegative','פעולות שליליות','negative'],['playerShots','מפת זריקות','shots'],['playerPlusMinus','פלוס־מינוס','plus'],['playerLineups','הרכבי קליעה','lineups'],['playerAttacks','סוגי התקפות','attacks']];
+const tools=[['playerBoxScore','נתונים נקיים','boxScore'],['playerNegative','פעולות שליליות','negative'],['playerShots','מפת זריקות','shots'],['playerPlusMinus','פלוס־מינוס','plus'],['playerLineups','הרכבי קליעה','lineups']];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=n=>n===null||n===undefined?'—':Number(n).toLocaleString('he-IL',{maximumFractionDigits:1});
 const date=s=>new Date(s).toLocaleDateString('he-IL',{timeZone:'Asia/Jerusalem'});
@@ -96,10 +96,6 @@ function shots(games,filter){
  const zones=[['סמוך לסל',s=>Math.hypot(s.x,s.y)<=200],['2 נק׳ מחוץ לאזור הסל',s=>s.type.startsWith('2')&&Math.hypot(s.x,s.y)>200],['3 נקודות',s=>s.type.startsWith('3')]];
  return '<p class="ap-status">'+note(covered.length,games.length)+' · '+coords.length+' מתוך '+shown.length+' זריקות בסינון עם מיקום</p><div class="ap-legend"><span>● קליעה</span><span>× החטאה</span></div>'+court+'<div class="ap-grid">'+zones.map(([label,pred])=>{const a=all.filter(s=>s.x!==null&&s.y!==null&&pred(s)),made=a.filter(s=>s.made).length;return '<article class="ap-record"><h4>'+label+'</h4>'+fmt(a.length?100*made/a.length:null)+'% · '+made+'/'+a.length+'</article>';}).join('')+'</div>';
 }
-function attacks(games){
- const labels={fastbreak:'מתפרצת',secondChance:'הזדמנות שנייה',offTurnover:'לאחר איבוד של היריבה',other:'ללא שלושת הסימונים'};
- return '<div class="ap-grid">'+C.attacks(games).map(r=>'<article class="ap-record"><h4>'+labels[r.key]+'</h4><small>'+note(r.covered,games.length)+'</small><div class="ap-metrics">'+metric('נקודות',r.covered?fmt(r.points):'—')+metric('דיוק מהשדה',r.covered&&r.fga?fmt(100*r.fgm/r.fga)+'%':'—',r.covered?r.fgm+'/'+r.fga:'אין נתון')+metric('נקודות למשחק',r.covered?fmt(r.points/r.covered):'—')+metric('עונשין',r.covered?r.ftm+'/'+r.fta:'—')+'</div></article>').join('')+'</div>';
-}
 function lineups(games){
  const covered=games.filter(g=>g.lineupCoverage),rows=C.lineups(games);
  if(!covered.length)return empty('אין בטווח הזה הרכבים שניתן לאמת מול רצף החילופים והניקוד. נסה משחק אחר או את כל העונה.');
@@ -110,8 +106,7 @@ boxScore:'נתוני הבוקס סקור הרשמיים. בשלוש הופעות
 negative:'ממוצע לכל הופעה עם נתון זמין. אין סכום מאוחד: חסימה עשויה להיות גם החטאה, ועבירת תוקף עשויה להיות גם איבוד. חסימות שהשחקן ביצע אינן פעולה שלילית.',
 plus:'הפרש נקודות הקבוצה מול היריבה בזמן שהשחקן על המגרש, לפי הבוקס סקור הרשמי. ל־40 דקות מחושב מסך ההפרש חלקי סך הדקות כפול 40. זה אינו מדד סיבתי לאיכות השחקן.',
 shots:'מיקומי זריקות מהשדה מתוך המקור הרשמי בלבד. עונשין אינו ממופה. האחוזים לפי אזור מחושבים מכל הקליעות וההחטאות עם מיקום, גם כאשר מסננים את הנקודות במפה. סמוך לסל: עד 2 מטר מהטבעת. משחק נכלל רק אם יומן הזריקות תואם לבוקס סקור.',
-lineups:'הנקודות האישיות של השחקן עם כל ארבעה שחקנים נוספים, כולל עונשין. השחזור מתחיל בחמישייה הפותחת ועוקב אחר חילופים בסדר הרשמי. משחק עם סתירה בהרכב או בניקוד אינו נכלל. דקות מוצגות רק כאשר גם שעון האירועים והדקות בבוקס סקור מתיישבים. נפח נקודות גבוה אינו מוכיח שההרכב יעיל יותר.',
-attacks:'סימוני מתפרצת, הזדמנות שנייה ונקודות לאחר איבוד מגיעים מהמקור הרשמי ועשויים לחפוף. אין לחבר את הקטגוריות. ״ללא שלושת הסימונים״ אינו סיווג טקטי. אין כאן נתוני פיק־אנד־רול או בידודים. דיוק מהשדה אינו כולל עונשין.'
+lineups:'הנקודות האישיות של השחקן עם כל ארבעה שחקנים נוספים, כולל עונשין. השחזור מתחיל בחמישייה הפותחת ועוקב אחר חילופים בסדר הרשמי. משחק עם סתירה בהרכב או בניקוד אינו נכלל. דקות מוצגות רק כאשר גם שעון האירועים והדקות בבוקס סקור מתיישבים. נפח נקודות גבוה אינו מוכיח שההרכב יעיל יותר.'
 };
 const pickerStyle=document.createElement('style');pickerStyle.textContent='.ap-screen .ap-top{flex-wrap:wrap}.ap-screen .ap-top [data-back]{flex-basis:100%;min-height:48px;font-size:16px;font-weight:800;border:2px solid var(--ap-accent);text-align:right}.ap-screen .ap-row-appearances b{font-size:19px;color:var(--ap-accent);direction:ltr;unicode-bidi:isolate}.ap-screen .ap-picked-inner{flex-wrap:wrap}';document.head.append(pickerStyle);
 for(const [id,title,kind] of tools){
@@ -176,7 +171,7 @@ for(const [id,title,kind] of tools){
    return;
   }
   const header='<div class="ap-profile"><h3><bdi>'+esc(p.name)+'</bdi></h3><small>'+esc(p.team)+' · '+games.length+' הופעות בטווח</small>'+(latest?'<small>הרישום האחרון בטווח: '+esc(latest.opponent||'')+' · '+date(latest.date)+' · מחזור '+esc(latest.round??'—')+'</small>':'')+'</div>';
-  const show=gs=>kind==='negative'?negative(gs):kind==='plus'?plus(gs):kind==='shots'?shots(gs,$('[data-shot]').value):kind==='lineups'?lineups(gs):attacks(gs);
+  const show=gs=>kind==='negative'?negative(gs):kind==='plus'?plus(gs):kind==='shots'?shots(gs,$('[data-shot]').value):lineups(gs);
   $('[data-output]').innerHTML=header+(games.length?show(games):empty(p.games.length?'אין הופעה עם דקות משחק בטווח שנבחר.':'אין עדיין נתוני משחק לשחקן בעונה הנוכחית.'))+
    (games.length&&['negative','plus'].includes(kind)?'<details><summary>פירוט לפי משחק</summary><div class="ap-grid">'+games.map(g=>'<article class="ap-record"><h4>'+esc(g.opponent||'משחק '+g.gameCode)+'</h4><small>'+date(g.date)+' · '+(g.home?'בית':'חוץ')+' · '+fmt(g.minutes)+' דקות</small>'+show([g])+'</article>').join('')+'</div></details>':'');
  }
