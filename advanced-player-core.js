@@ -43,7 +43,7 @@ function buildGame(box,points,pbp){
  for(const side of ['local','road'])for(const r of box[side]?.players||[]){
   const p=r.player?.person||{},s=r.stats||{},id=pid(p.code);
   if(!id||!p.name)continue;
-  people[id]={id,name:p.name,teamCode:String(r.player?.club?.code||'').trim(),team:r.player?.club?.name||'',minutes:n(s.timePlayed)===null?null:n(s.timePlayed)/60,stats:s,shots:[],shotCoverage:false,lineups:[],lineupCoverage:false};
+  people[id]={id,name:p.name,teamCode:String(r.player?.club?.code||'').trim(),team:r.player?.club?.name||'',height:n(p.height),minutes:n(s.timePlayed)===null?null:n(s.timePlayed)/60,stats:s,shots:[],shotCoverage:false,lineups:[],lineupCoverage:false};
  }
  // A complete per-player shooting ledger must reconcile with the box score.
  const raw=Array.isArray(points?.Rows)?points.Rows:[],seen=new Set(),duplicates=new Set();
@@ -60,6 +60,19 @@ function buildGame(box,points,pbp){
  for(const p of Object.values(people)){
   const s=p.stats,counts=[['2','fieldGoalsAttempted2','fieldGoalsMade2'],['3','fieldGoalsAttempted3','fieldGoalsMade3'],['FT','freeThrowsAttempted','freeThrowsMade']];
   p.shotCoverage=raw.length>0&&!duplicates.has(p.id)&&counts.every(([prefix,a,m])=>n(s[a])!==null&&n(s[m])!==null&&p.shots.filter(r=>r.type.startsWith(prefix)).length===n(s[a])&&p.shots.filter(r=>r.type.startsWith(prefix)&&r.made).length===n(s[m]));
+  // Points may omit missed free throws. Verify field attempts and all made shots
+  // independently before deriving location and tagged scoring shares.
+  const verified=raw.length>0&&!duplicates.has(p.id)&&counts.every(([prefix,a,m])=>
+   n(s[m])!==null&&p.shots.filter(r=>r.type.startsWith(prefix)&&r.made).length===n(s[m])&&
+   (prefix==='FT'||(n(s[a])!==null&&p.shots.filter(r=>r.type.startsWith(prefix)).length===n(s[a]))));
+  if(verified){
+   const field=p.shots.filter(r=>!r.type.startsWith('FT')),located=field.filter(r=>r.x!==null&&r.y!==null);
+   const scoring=p.shots.filter(r=>r.made),points=sum(scoring,'points');
+   const marked=flag=>scoring.every(r=>typeof r[flag]==='boolean')?[sum(scoring.filter(r=>r[flag]),'points'),points]:null;
+   p.styleShots={fieldAttempts:field.length,located:located.length,
+    nearRim:located.filter(r=>r.type.startsWith('2')&&Math.hypot(r.x,r.y)<=200).length,
+    fastbreak:marked('fastbreak'),secondChance:marked('secondChance')};
+  }
   if(!p.shotCoverage)p.shots=[];
  }
  if(!pbp||pbp.Live!==false)return people;

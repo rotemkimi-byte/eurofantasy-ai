@@ -30,6 +30,13 @@ check(built.a1.shotCoverage&&built.a1.lineupCoverage,'verified shot ledger and l
 eq(built.a1.lineups[0].points,2,'personal points');
 eq(built.a1.lineups[0].teammates.length,4,'four distinct teammates');
 const dup=C.buildGame(box,{Rows:[...points.Rows,...points.Rows]},pbp);check(!dup.a1.shotCoverage,'duplicate shot rejected');
+check(!dup.a1.styleShots,'duplicate shot rejected for DNA');
+const missedFreeThrow=JSON.parse(JSON.stringify(box));
+missedFreeThrow.local.players[0].stats.freeThrowsAttempted=1;
+const fromPoints=C.buildGame(missedFreeThrow,points,pbp).a1;
+check(!fromPoints.shotCoverage,'full shot ledger still requires missed free throws');
+eq(fromPoints.styleShots,{fieldAttempts:1,located:1,nearRim:1,fastbreak:[2,2],secondChance:[2,2]},'DNA verifies field attempts and scored points independently');
+
 const absent=C.buildGame(box,null,null);check(!absent.a1.shotCoverage&&!absent.a1.lineupCoverage,'missing source not zero');
 const bad=JSON.parse(JSON.stringify(pbp));bad.FirstQuarter[1].PLAYER_ID='Pb1';check(!C.buildGame(box,points,bad).a1.lineupCoverage,'wrong on-court scorer rejects team');
 const a=C.attacks([{...built.a1,gameCode:1}]);eq(a[0].points,2,'fastbreak scoring');eq(a[1].points,2,'overlap preserved');
