@@ -83,28 +83,31 @@ function panel(id,title,description,controls){
  return {$,section,button:b};
 }
 const player=panel('playerDna','DNA שחקן','איך השחקן מייצר תפוקה, ואיך הוא נראה מול כל יריבה ביורוליג.',`
- <div data-range></div>
  <div class="dna-controls dna-player-controls">
   <label>קבוצה <select data-scope></select></label>
   <label>שחקן · לפי מחיר <select data-player></select></label>
   <label data-player-rival-label hidden>מול קבוצה <select data-player-rival></select></label>
  </div>
- <div data-past-games hidden></div>`);
-const teams=panel('teamDna','DNA קבוצתי','השוו סגנונות משחק, מדד מול מדד, על אותו סולם.',`
  <div data-range></div>
+ <div id="playerDnaGames" data-past-games hidden></div>`);
+const teams=panel('teamDna','DNA קבוצתי','השוו סגנונות משחק, מדד מול מדד, על אותו סולם.',`
  <div class="dna-controls">
   <label>קבוצה <select data-team></select></label>
   <label data-team-pair>מול <select data-opponent></select></label>
  </div>
- <div data-past-games hidden></div>
+ <div data-range></div>
+ <div id="teamDnaGames" data-past-games hidden></div>
  <div class="dna-switch" data-team-switch role="group" aria-label="סוג המדדים">
   <button type="button" data-view="offense" aria-pressed="true">סגנון התקפי והרכבים</button>
   <button type="button" data-view="defense" aria-pressed="false">הגנה · מה הקבוצות מאפשרות</button>
  </div>`);
 const panels=[player,teams];
 let view='offense';
-const playerRange=S.picker(player.$('[data-range]'),()=>{playerGame='';selectPlayerRivals();paint();});
-const teamRange=S.picker(teams.$('[data-range]'),paint);
+const playerRange=S.picker(player.$('[data-range]'),player.$('[data-past-games]'),changed=>{
+ if(changed)selectPlayerRivals();
+ paint();
+});
+const teamRange=S.picker(teams.$('[data-range]'),teams.$('[data-past-games]'),paint);
 
 function selectPlayers(){
  const scope=player.$('[data-scope]').value;
@@ -189,14 +192,14 @@ async function load(){
  })();
  return pending;
 }
-function valueCell(stat,rating,unit,side,{league=false,playerRank=false,valueSuffix='',singleGame=false}={}){
+function valueCell(stat,rating,unit,side,{league=false,playerRank=false,valueSuffix='',singleGame=false,bar=rating}={}){
  const real=stat?.value!=null;
  const sample=league?(stat.count+' קבוצות במדגם'):(stat.count+' / '+stat.total+' משחקים');
  const display=real?fmt(stat.value,unit)+valueSuffix:'חסר נתון';
  const rank=playerRank?'אחוזון '+rating:rating+'/100';
  return `<div class="dna-value ${side}">
   <div class="dna-value-top"><strong><bdi>${esc(display)}</bdi></strong>${rating===null?'':`<bdi class="dna-rank">${rank}</bdi>`}</div>
-  ${rating===null?'':`<div class="dna-track" aria-hidden="true"><i style="--dna-width:${rating}%"></i></div>`}
+  ${bar===null?'':`<div class="dna-track" aria-hidden="true"><i style="--dna-width:${bar}%"></i></div>`}
   ${singleGame?'':`<small>${esc(sample)}${real&&!league&&rating===null?' · ללא דירוג':''}</small>`}
  </div>`;
 }
@@ -284,13 +287,17 @@ function renderPlayerGame(out,record,games){
 function renderPlayer(){
  if(!model)return;
  const out=player.$('[data-dna-results]');
- const record=selectedPlayer(),past=player.$('[data-past-games]');
- past.hidden=true;
- if(!record){out.innerHTML=empty('בחר שחקן כדי לראות את פרופיל המשחק שלו.');return;}
+ const record=selectedPlayer();
+ if(!record){
+  const prompt='בחר שחקן כדי לראות את פרופיל המשחק שלו.';
+  if(playerRange.expanded)playerRange.games([],playerGame,null,'PIR',prompt);
+  out.innerHTML=playerRange.expanded?'':empty(prompt);
+  return;
+ }
  const selectedRival=player.$('[data-player-rival]').value;
  if(playerRange.value==='history'){
   const games=record.seasonGames.filter(g=>!selectedRival||g.opponent===selectedRival);
-  S.games(past,games.map(g=>({...g,code:g.gameCode,detail:fmt(g.stats?.valuation)})),playerGame,code=>{
+  if(playerRange.expanded)playerRange.games(games.map(g=>({...g,code:g.gameCode,detail:fmt(g.stats?.valuation)})),playerGame,code=>{
    playerGame=code;renderPlayerGame(out,record,games);
   },'PIR','אין לשחקן הופעות העונה בסינון שנבחר.');
   renderPlayerGame(out,record,games);
@@ -329,9 +336,7 @@ function renderPlayer(){
   selectPlayerRivals();
   player.$('[data-player-rival]').value=opponent;
   paint();
-  const filter=player.$('[data-player-rival]');
-  filter.focus({preventScroll:true});
-  filter.scrollIntoView({block:'center'});
+  playerRange.focusHistory();
  };
  const compare=out.querySelector('[data-compare-teams]');
  if(compare)compare.onclick=()=>{
@@ -349,8 +354,10 @@ function comparisonRows(metrics,ownStats,rivalStats,benchmarks){
  return metrics.map(metric=>{
   const [id,,unit]=metric,ref=benchmarks?.[id],a=ownStats[id],b=rivalStats?.[id]||{value:ref.mean,count:ref.count};
   const diff=a.value==null||b.value==null?'':` · <bdi>${esc((a.value>b.value?'+':'')+decimal.format(a.value-b.value))}</bdi> ${unit==='%'?'נק׳ אחוז':'פער'}`;
-  return row(metric,valueCell(a,ref?.percentile(a)??null,unit,'dna-own',{singleGame:!ref}),
-   valueCell(b,rivalStats?(ref?.percentile(b)??null):null,unit,'dna-other',{league:!rivalStats,singleGame:!ref}),diff);
+  const max=unit==='%'?100:Math.max(a.value??0,b.value??0);
+  const width=stat=>stat.value==null?null:max>0?Math.min(100,stat.value/max*100):0;
+  return row(metric,valueCell(a,ref?.percentile(a)??null,unit,'dna-own',{singleGame:!ref,bar:ref?undefined:width(a)}),
+   valueCell(b,rivalStats?(ref?.percentile(b)??null):null,unit,'dna-other',{league:!rivalStats,singleGame:!ref,bar:ref?undefined:width(b)}),diff);
  }).join('');
 }
 function legend(own,rival){
@@ -368,7 +375,7 @@ function renderHistory(out,metrics,games){
  out.innerHTML=`<header class="dna-profile dna-compare-head"><span class="dna-kicker">מפגש עבר · 2026/27</span>
  <h3><bdi>${esc(game.team)}</bdi> <bdi>${game.points}–${game.against}</bdi> <bdi>${esc(game.opponent)}</bdi></h3>
  <p>${fullDate.format(new Date(game.date))}</p></header>
- <p class="dna-explain">נתונים מהמשחק שנבחר.</p>${legend(game.team,game.opponent)}
+ <p class="dna-explain">הפסים מציגים את ערכי המשחק. במדדי אחוזים הסולם הוא 0–100%. בשאר המדדים אורך הפס נקבע ביחס לערך הגבוה מבין הקבוצות.</p>${legend(game.team,game.opponent)}
  <div class="dna-chart">${comparisonRows(metrics,ownStats,rivalStats)}</div>`;
 }
 function renderTeams(updateGames=true){
@@ -376,14 +383,13 @@ function renderTeams(updateGames=true){
  const out=teams.$('[data-dna-results]');
  for(const b of teams.section.querySelectorAll('[data-view]'))b.setAttribute('aria-pressed',String(b.dataset.view===view));
  const selectedRange=teamRange.value,metrics=view==='offense'?C.offense:C.defense;
- const history=selectedRange==='history',past=teams.$('[data-past-games]');
+ const history=selectedRange==='history';
  const own=model.teams.find(t=>t.team===teams.$('[data-team]').value);
  teams.$('[data-team-pair]').hidden=history;
  teams.$('[data-team]').options[0].textContent=history?'כל הקבוצות':'בחר קבוצה';
- past.hidden=!history;
  if(history){
   const games=teamGames.filter(g=>!own||g.team===own.team||g.opponent===own.team);
-  if(updateGames)S.games(past,games.map(g=>({...g,detail:g.points+'–'+g.against})),teamGame,code=>{
+  if(updateGames&&teamRange.expanded)teamRange.games(games.map(g=>({...g,detail:g.points+'–'+g.against})),teamGame,code=>{
    teamGame=code;renderTeams(false);
   },'תוצאה');
   renderHistory(out,metrics,games);

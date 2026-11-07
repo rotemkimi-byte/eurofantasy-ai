@@ -158,7 +158,7 @@ html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method sum
 <p id="pirLegend" class="pirLegend" hidden><span>PIR · ציר שמאל</span><span>דקות · ציר ימין</span></p><div id="pirChart" class="pirChart player-result-summary" dir="ltr"></div><p id="pirDetail" class="pirDetail" aria-live="polite"></p>
 <div id="pirSummary" aria-live="polite"><bdi id="pirSelectedName"></bdi><div id="pirStats" class="stats pirStats"></div><p id="pirLatest" class="muted"></p></div>
 <div class="filters pirControls player-picker-controls"><label>טווח<select id="pirRange"><option value="0">כל העונה</option><option value="5">5 משחקים אחרונים</option><option value="10">10 משחקים אחרונים</option></select></label><button id="pirReload" class="secondary">רענן נתונים</button></div><p id="pirStatus" class="muted" role="status" aria-live="polite"></p><details class="ef-help"><summary>כל המשחקים בטווח שנבחר</summary><div id="pirGames"></div></details><p class="muted pirNote">הגרף נפתח במשחקים האחרונים מימין · גלול שמאלה למשחקים קודמים · לחץ על נקודה לפרטי המשחק</p><p id="pirNote" class="muted pirNote"></p><p id="pirCoverage" class="muted pirNote">מוצגים משחקים שזמינים בדוחות העונה בלבד. היעדרות מרישום המשחק אינה מוצגת כאפס.</p></div></div></section>
-<section id="pirWeakness" class="tab"><div class="card"><h3>חולשת PIR · מול מי השחקנים מצליחים?</h3><p class="muted weakHelp">ככל שהקבוצה אפשרה ליריבות יותר PIR, היא מדורגת גבוה יותר. הפירוט לפי עמדה מראה היכן נצבר המדד. אלה ביצועים בפועל בעונת 2026/27; המדגם מושפע מהיריבות, מדקות המשחק ומההרכבים.</p><div id="weakRange"></div><div class="filters weakControls"><label>עמדת היריבים<select id="weakPos"><option value="">כל העמדות</option><option value="G">G · גארדים</option><option value="F">F · פורוורדים</option><option value="C">C · סנטרים</option></select></label><label>מול קבוצה<select id="weakTeam"><option value="">כל הקבוצות</option></select></label><label>מיון<select id="weakSort"><option value="perGame">PIR שספגה למשחק</option><option value="per30">PIR ל־30 דקות שחקן</option></select></label><button class="secondary" id="weakReload">רענן נתונים</button></div><div id="weakGames" hidden></div><p id="weakStatus" class="muted weakHelp" role="status" aria-live="polite"></p><div id="weakList"></div></div></section>
+<section id="pirWeakness" class="tab"><div class="card"><h3>חולשת PIR · מול מי השחקנים מצליחים?</h3><p class="muted weakHelp">ככל שהקבוצה אפשרה ליריבות יותר PIR, היא מדורגת גבוה יותר. הפירוט לפי עמדה מראה היכן נצבר המדד. אלה ביצועים בפועל בעונת 2026/27; המדגם מושפע מהיריבות, מדקות המשחק ומההרכבים.</p><div class="filters weakControls"><label>עמדת היריבים<select id="weakPos"><option value="">כל העמדות</option><option value="G">G · גארדים</option><option value="F">F · פורוורדים</option><option value="C">C · סנטרים</option></select></label><label>מול קבוצה<select id="weakTeam"><option value="">כל הקבוצות</option></select></label><label>מיון<select id="weakSort"><option value="perGame">PIR שספגה למשחק</option><option value="per30">PIR ל־30 דקות שחקן</option></select></label><button class="secondary" id="weakReload">רענן נתונים</button></div><div id="weakRange"></div><div id="weakGames" hidden></div><p id="weakStatus" class="muted weakHelp" role="status" aria-live="polite"></p><div id="weakList"></div></div></section>
 <section id="absencePicks" class="tab"><div class="card"><h3>המלצות בעקבות חיסורים</h3><p class="muted">מי עשוי להרוויח דקות ואחריות כששחקן מפתח חסר?</p><div class="filters"><label>קבוצה<select id="absenceTeam"><option value="">כל הקבוצות</option></select></label><label>זמינות<select id="absenceStatus"><option value="all">בחוץ ובספק</option><option value="out">בחוץ בלבד</option></select></label></div><p class="notice">הערכה לפי המודל הקיים: עמדה, מחיר ותפקיד משוער. שחקן מפתח מוגדר כאן במחיר מעל 8 CR. תוספת הדקות אינה הבטחה לפתיחה בחמישייה; אין כאן ניתוח מאומת של משחקים ללא השחקן החסר.</p><div id="absenceCards" class="absenceGrid"></div></div></section>
 <section id="injuries" class="tab"><div class="card"><h3>פציעות וזמינות</h3><p class="muted">המודל מוריד דקות לשחקן בספק ומעלה מעט דקות לחברים פעילים באותה עמדה כאשר חסרים שחקנים.</p><div class="filters injuryControls"><label>בחר קבוצה<select id="injuryTeam"><option value="">כל הקבוצות · רשימה כללית</option></select></label></div><p id="injurySummary" class="muted injurySummary"></p><div id="injuryCards" class="injuryList"></div></div></section>
 
@@ -2050,7 +2050,7 @@ window.PIRHistoryUI={load,getData:()=>data};
  apply(root.dataset.theme==='light');
  button.addEventListener('click',()=>{const light=root.dataset.theme!=='light';apply(light);try{localStorage.setItem('eurofantasy-theme',light?'light':'dark')}catch{}});
 })();
-</script><script src="./season-game-picker.js?v=1"></script><script>
+</script><script src="./season-game-picker.js?v=2"></script><script>
 (()=>{
 'use strict';
 const $=id=>document.getElementById(id),key=n=>lastThreeName(n||'');
@@ -2078,16 +2078,15 @@ function baseline(teams,pos){let pir=0,games=0;for(const t of teams){pir+=t[pos]
 window.PIRWeaknessCore={aggregate,baseline};
 let history=null,busy=false,selectedGame='';
 const picker=window.SeasonGamePicker;
-const range=picker.picker($('weakRange'),()=>render());
+const range=picker.picker($('weakRange'),$('weakGames'),()=>render());
 function render(updateGames=true){
  if(!history)return;
  const pos=$('weakPos').value||'all',sort=$('weakSort').value,team=$('weakTeam').value;
  const single=range.value==='history';
  const games=history.fixtures.filter(g=>!team||g.team===team||g.opponent===team);
  const selected=single?games.find(g=>String(g.code)===selectedGame):null;
- $('weakGames').hidden=!single;
- if(single&&updateGames){
-  picker.games($('weakGames'),games.map(g=>({...g,detail:g.score+'–'+g.against})),selectedGame,code=>{
+ if(single&&range.expanded&&updateGames){
+  range.games(games.map(g=>({...g,detail:g.score+'–'+g.against})),selectedGame,code=>{
    selectedGame=code;render(false);
   },'תוצאה');
  }
@@ -2097,10 +2096,10 @@ function render(updateGames=true){
   return;
  }
  const latest=new Map();
- if(range.value==='5'){
+ if(range.value==='3'){
   for(const g of [...history.fixtures].sort(picker.latestFirst))for(const name of [g.team,g.opponent]){
    if(!latest.has(name))latest.set(name,new Set());
-   if(latest.get(name).size<5)latest.get(name).add(g.code);
+   if(latest.get(name).size<3)latest.get(name).add(g.code);
   }
  }
  const all=aggregate(history,players,g=>single?g.code===selected.code:!latest.size||latest.get(g.opponent)?.has(g.code));
@@ -2109,11 +2108,11 @@ function render(updateGames=true){
  const visible=ranked.map((t,i)=>({t,rank:i+1})).filter(({t})=>single||!team||t.team===team);
  const date=d=>new Date(d).toLocaleDateString('he-IL',{day:'numeric',month:'numeric',year:'numeric',timeZone:'Asia/Jerusalem'});
  const scope=selected?date(selected.date)+' · '+selected.team+' מול '+selected.opponent:
-  range.value==='5'?'עד 5 משחקים אחרונים לכל קבוצה':history.games+' משחקים בעונת 2026/27';
+  range.value==='3'?'עד 3 משחקים אחרונים לכל קבוצה':history.games+' משחקים בעונת 2026/27';
  $('weakStatus').textContent=`${scope} · ${visible.length} קבוצות בתצוגה · ${pos==='all'?'כל העמדות':pos}${history.missing&&!single?' · חסרים '+history.missing+' דוחות משחק':''}${single?'':' · ממוצע הליגה בעמדה: '+fmt(league)+' PIR למשחק'}`;
  $('weakList').innerHTML=visible.map(({t,rank})=>{
   const group=t[pos],delta=league>0?(group.perGame/league-1)*100:null;
-  return `<article class="weakCard"><div class="sectionHead"><div><small>${single?'המשחק שנבחר':'דירוג '+rank+' · יותר PIR ליריבים'}</small><h4>${esc(t.team)}</h4></div><span class="weakScore"><b>${fmt(group[sort])}</b><small>${sort==='perGame'?'PIR שספגה למשחק':'PIR ל־30 דק׳ שחקן'}</small></span></div><div class="weakMeta"><span>${group.games.size===1?'משחק אחד':group.games.size+' משחקים'}</span><span>${group.records.length} הופעות שחקנים</span>${single?'':`<span>${delta===null?'—':(delta>=0?'+':'')+delta.toFixed(0)+'%'} מול ממוצע הליגה</span>`}</div><div class="weakPositions">${['G','F','C'].map(p=>`<div class="${pos===p?'weakSelected':''}"><b>${p}</b><strong>${fmt(t[p].perGame)}</strong><small>PIR שספגה למשחק</small><small>${t[p].games.size} משחקים · ${fmt(t[p].per30)} ל־30 דק׳</small></div>`).join('')}</div>${!single&&group.games.size<5?'<p class="weakHelp muted">מדגם קטן: פחות מ־5 משחקים.</p>':''}${t.unknown?'<p class="weakHelp muted">לחלק מההופעות אין עמדה ידועה; הן נכללות בסך הכול בלבד.</p>':''}<section class="weakDetails"><h4 class="weakPlayersTitle">מה השחקנים עשו מול ${esc(t.team)}?</h4><p class="weakHelp muted">${group.records.length} הופעות שחקנים${pos==='all'?'':' · עמדה '+esc(pos)}</p><p class="muted weakHelp">כל הופעה היא משחק אחד של שחקן. הרשימה מסודרת לפי PIR בפועל מהגבוה לנמוך.</p><div class="weakPerformances">${group.records.map(r=>{
+  return `<article class="weakCard"><div class="sectionHead"><div><small>${single?'המשחק שנבחר':'דירוג '+rank+' · יותר PIR ליריבים'}</small><h4>${esc(t.team)}</h4></div><span class="weakScore"><b>${fmt(group[sort])}</b><small>${sort==='perGame'?'PIR שספגה למשחק':'PIR ל־30 דק׳ שחקן'}</small></span></div><div class="weakMeta"><span>${group.games.size===1?'משחק אחד':group.games.size+' משחקים'}</span><span>${group.records.length} הופעות שחקנים</span>${single?'':`<span>${delta===null?'—':(delta>=0?'+':'')+delta.toFixed(0)+'%'} מול ממוצע הליגה</span>`}</div><div class="weakPositions">${['G','F','C'].map(p=>`<div class="${pos===p?'weakSelected':''}"><b>${p}</b><strong>${fmt(t[p].perGame)}</strong><small>PIR שספגה למשחק</small><small>${t[p].games.size} משחקים · ${fmt(t[p].per30)} ל־30 דק׳</small></div>`).join('')}</div>${!single&&group.games.size<(Number(range.value)||5)?'<p class="weakHelp muted">מדגם קטן: '+group.games.size+' משחקים זמינים.</p>':''}${t.unknown?'<p class="weakHelp muted">לחלק מההופעות אין עמדה ידועה; הן נכללות בסך הכול בלבד.</p>':''}<section class="weakDetails"><h4 class="weakPlayersTitle">מה השחקנים עשו מול ${esc(t.team)}?</h4><p class="weakHelp muted">${group.records.length} הופעות שחקנים${pos==='all'?'':' · עמדה '+esc(pos)}</p><p class="muted weakHelp">כל הופעה היא משחק אחד של שחקן. הרשימה מסודרת לפי PIR בפועל מהגבוה לנמוך.</p><div class="weakPerformances">${group.records.map(r=>{
    const p=players.find(p=>key(p.name)===key(r.name));
    return `<div class="weakPerformance"><div>${p?`<button class="weakPlayer" data-weak-player="${esc(p.name)}">${esc(p.name)}</button>`:`<b>${esc(typeof reorderCommaName==='function'?reorderCommaName(r.name):r.name)}</b>`}<small><span class="weakPosBadge">${esc(r.pos||'—')}</span> · ${esc(r.team)} · ${date(r.date)} · ${r.home?'בית':'חוץ'}${r.round?' · מ׳ '+r.round:''}</small></div><div><b>${fmt(r.value)} PIR</b><small>${fmt(r.minutes)} דקות${number(r.price)!==null?' · '+fmt(r.price)+' קרדיט':''}</small></div></div>`;
   }).join('')}</div></section></article>`;
@@ -2235,9 +2234,9 @@ for (const id of ['data', 'learning']) {
 <script src="./pir-compare.js?v=graph-modes-1"></script>
 <script src="./advanced-player-core.js?v=box-averages-1"></script>
 <script src="./advanced-player-tools.js?v=box-averages-1"></script>
-<link rel="stylesheet" href="./dna-tools.css?v=6">
+<link rel="stylesheet" href="./dna-tools.css?v=7">
 <script src="./dna-core.js?v=4"></script>
-<script src="./dna-tools.js?v=6"></script>
+<script src="./dna-tools.js?v=7"></script>
 <script src="./app-navigation.js?v=dna-1"></script>
 <script src="./app-player.js?v=graph-modes-1"></script>
 <link rel="stylesheet" href="./home-dashboard.css?v=reference-6">
