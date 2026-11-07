@@ -70,9 +70,15 @@ def metrics(stats, total, player_seconds, game_seconds):
 
 def build(root=ROOT,offline=False):
     warnings=[]
-    payload=load(root/'data/context/E2026-schedule.json',{})
+    schedule_path=root/'data/context/E2026-schedule.json'
+    payload=load(schedule_path,{})
+    refreshed_schedule=None
     if not offline:
-        try:payload=api('E2026','games?limit=500')
+        try:
+            schedule=api('E2026','games?limit=500')
+            if not schedule.get('data') or any(g.get('season',{}).get('code')!='E2026' for g in schedule['data']):
+                raise ValueError('Invalid current-season schedule')
+            refreshed_schedule=payload=schedule
         except Exception:warnings.append('Official schedule refresh failed; using cached official schedule')
     profiles={};team_games={};now=datetime.now(timezone.utc)
     for g in payload.get('data',[]):
@@ -108,6 +114,7 @@ def build(root=ROOT,offline=False):
     result={'schema':'official-offense-v1','season':'E2026','updated_at':now.isoformat(),'source':SOURCE,'methodSource':METHOD,
       'method':'USG=100*(FGA+0.44*FTA+TO)/(playerSeconds/gameSeconds*(teamFGA+0.44*teamFTA+teamTO)); eFG=100*(2PM+1.5*3PM)/FGA; TS=100*PTS/(2*(FGA+0.44*FTA))',
       'players':profiles,'defenseVersion':1,'teamGames':team_games,'teamMetricsVersion':1,'teamResults':results,'officialStandings':standings,'warnings':warnings}
+    if refreshed_schedule is not None:save(schedule_path,refreshed_schedule)
     save(root/'data/official-offense.json',result);print(f'Official offense: {len(profiles)} players; {sum(len(p["games"]) for p in profiles.values())} player games')
     return result
 

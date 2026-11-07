@@ -121,7 +121,16 @@ html.ef-redesign[data-theme="dark"] .ef-player-tabs button[aria-selected=true],h
 html.ef-redesign #playerModal .modal{position:relative}
 html.ef-redesign #playerModal .close{position:absolute;top:24px;left:24px;margin:0;z-index:4;background:#102334;color:white;border-color:#ffffff40}
 .ef-dashboard .ef-player-hero{padding:18px;margin-bottom:12px}
-.ef-dashboard .ef-player-identity{margin-bottom:14px;padding-left:44px;gap:12px}
+.ef-dashboard .ef-player-identity{margin-bottom:14px;gap:12px}
+.ef-dashboard .ef-player-identity h2,.ef-dashboard .ef-player-identity p{padding-left:44px}
+.ef-player-fixtures{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px;margin-top:5px;color:#d2e6e5;font-size:11px;line-height:1.5}
+.ef-player-fixtures strong{color:#fff;font-size:inherit;white-space:nowrap}
+.ef-player-fixtures ul{display:contents;list-style:none}
+.ef-player-fixtures li{display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
+.ef-player-fixtures li::before{content:"";width:6px;height:6px;border-radius:50%;margin-inline-end:1px;background:#ff646b}
+.ef-player-fixtures li:nth-child(2)::before{background:#ffce62}
+.ef-player-fixtures li:nth-child(3)::before{background:#61e6a3}
+.ef-player-fixtures abbr{text-decoration:none}
 .ef-dashboard .ef-player-stats{grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid #ffffff25;padding-top:12px}
 .ef-dashboard .ef-player-stats>div{border:0;border-inline-start:1px solid #ffffff25;border-radius:0;background:none;padding:0 10px}
 .ef-dashboard .ef-player-stats>div:first-child{border-inline-start:0;padding-inline-start:0}
@@ -154,6 +163,7 @@ html:has(#playerModal[open]),body:has(#playerModal[open]){overflow:hidden}
  .ef-dashboard .ef-player-avatar{flex-basis:62px;height:62px;border-width:2px}
  html.ef-redesign .ef-dashboard .ef-player-identity h2{font-size:21px;margin-bottom:4px}
  .ef-dashboard .ef-player-identity p{font-size:11px}
+ .ef-player-fixtures{font-size:10px;column-gap:6px}
  .ef-dashboard .ef-player-stats>div{padding:0 7px}
  .ef-dashboard .ef-player-stats b{font-size:22px}
  .ef-dashboard .ef-player-stats small{font-size:9px;min-height:28px}
