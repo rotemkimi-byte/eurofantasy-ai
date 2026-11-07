@@ -159,12 +159,13 @@ async function load(){
  })();
  return pending;
 }
-function valueCell(stat,rating,unit,side,league=false){
+function valueCell(stat,rating,unit,side,{league=false,playerRank=false,valueSuffix=''}={}){
  const real=stat?.value!=null;
  const sample=league?(stat.count+' קבוצות במדגם'):(stat.count+' / '+stat.total+' משחקים');
- const display=real?fmt(stat.value,unit):'חסר נתון';
+ const display=real?fmt(stat.value,unit)+valueSuffix:'חסר נתון';
+ const rank=playerRank?'אחוזון '+rating:rating+'/100';
  return `<div class="dna-value ${side}">
-  <div class="dna-value-top"><strong><bdi>${esc(display)}</bdi></strong>${rating===null?'':`<bdi class="dna-rank">${rating}/100</bdi>`}</div>
+  <div class="dna-value-top"><strong><bdi>${esc(display)}</bdi></strong>${rating===null?'':`<bdi class="dna-rank">${rank}</bdi>`}</div>
   ${rating===null?'':`<div class="dna-track" aria-hidden="true"><i style="--dna-width:${rating}%"></i></div>`}
   <small>${esc(sample)}${real&&!league&&rating===null?' · ללא דירוג':''}</small>
  </div>`;
@@ -173,7 +174,8 @@ function row(metric,left,right='',difference=''){
  const [id,label,,source,help]=metric;
  return `<details class="dna-row" data-metric="${id}">
   <summary><span class="dna-metric-name"><b>${label}</b><small>${sources[source]}${difference}</small></span>
-  <div class="dna-values${right?' dna-pair':''}">${left}${right}</div></summary>
+  <div class="dna-values${right?' dna-pair':''}">${left}${right}</div>
+  ${id==='usage'?'<span class="dna-context">החלק מהתקפות הקבוצה שהשחקן סיים בזריקה, בעונשין או באיבוד, כשהיה על המגרש.</span>':''}</summary>
   <p>${help}</p>
  </details>`;
 }
@@ -233,8 +235,11 @@ function renderPlayer(){
  <h3><bdi>${esc(record.name)}</bdi></h3>
  ${games.length?`<p>${games.length} הופעות · ${fmt(minutes/games.length)} דק׳ למשחק · ${fmt(avgPir)} PIR בממוצע${price(record)?' · '+esc(price(record)):''}</p>`:''}
  ${tags.length?'<div class="dna-tags">'+tags.map(([,tag])=>'<span>'+tag+'</span>').join('')+'</div>':''}</header>
- ${games.length?`<p class="dna-explain">ערך בפועל לצד דירוג יחסי ${position?'מול '+position:'לפי עמדה'} באותו טווח. 50 נמצא במרכז ההתפלגות.</p>
- <div class="dna-chart">${C.playerMetrics.map(metric=>row(metric,valueCell(own[metric[0]],ratings[metric[0]],metric[2],'dna-own'))).join('')}</div>`
+ ${games.length?`<p class="dna-explain">מימין מופיע הערך של השחקן. הפס הירוק מציג את האחוזון ${position?'מול '+position:'לפי עמדה'} באותו טווח. אחוזון 50 הוא אמצע הדירוג.</p>
+ <div class="dna-chart">${C.playerMetrics.map(metric=>{
+  const [id,,unit]=metric;
+  return row(metric,valueCell(own[id],ratings[id],unit,'dna-own',{playerRank:true,valueSuffix:id==='usage'?' מהפוזשנים':''}));
+ }).join('')}</div>`
  :empty('לשחקן אין הופעות מתועדות בקבוצה הזו בעונה הנוכחית.')}
  ${matching}`;
  const compare=out.querySelector('[data-compare-teams]');
@@ -272,7 +277,7 @@ function renderTeams(){
   const [id,,unit]=metric,ref=benchmarks[id],a=ownStats[id],b=rivalStats?.[id]||{value:ref.mean,count:ref.count};
   const diff=a.value==null||b.value==null?'':` · <bdi>${esc((a.value>b.value?'+':'')+decimal.format(a.value-b.value))}</bdi> ${unit==='%'?'נק׳ אחוז':'פער'}`;
   return row(metric,valueCell(a,ref.percentile(a),unit,'dna-own'),
-   valueCell(b,rival?ref.percentile(b):null,unit,'dna-other',!rival),diff);
+   valueCell(b,rival?ref.percentile(b):null,unit,'dna-other',{league:!rival}),diff);
  }).join('')}</div>${sizeNote}`;
 }
 function paint(){
