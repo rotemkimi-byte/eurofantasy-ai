@@ -8,6 +8,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const decimal=new Intl.NumberFormat('he-IL',{maximumFractionDigits:1});
 const date=new Intl.DateTimeFormat('he-IL',{timeZone:'Asia/Jerusalem',day:'numeric',month:'numeric'});
 const fullDate=new Intl.DateTimeFormat('he-IL',{timeZone:'Asia/Jerusalem',day:'numeric',month:'numeric',year:'numeric'});
+const calendarDate=new Intl.DateTimeFormat('he-IL',{timeZone:'Asia/Jerusalem',weekday:'short',day:'numeric',month:'numeric'});
 const unitLabels={'%':'%',per40:' ל־40 דק׳',per100:' ל־100 פוז׳',pos:' פוז׳ ל־40 דק׳',cm:' ס״מ'};
 const sources={box:'בוקס־סקור',events:'יומן זריקות',estimated:'אומדן',lineups:'חמישיות מאומתות'};
 const positionLabels={G:'גארדים',F:'פורוורדים',C:'סנטרים',Guard:'גארדים',Forward:'פורוורדים',Center:'סנטרים'};
@@ -21,7 +22,7 @@ const labelName=name=>name.includes(',')?name.split(',').reverse().map(s=>s.trim
 const option=(value,name)=>new Option(name,value);
 const empty=message=>'<p class="dna-empty">'+esc(message)+'</p>';
 let model=null,fixtures=[],pending=null,lastLoad=0;
-let historyPair='';
+let historyDays=new Map(),historyDay='',historyGame='';
 
 async function json(path){
  const response=await fetch('./data/'+path+'?t='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(20000)});
@@ -93,16 +94,22 @@ const player=panel('playerDna','DNA שחקן','איך השחקן מייצר תפ
  </div>`);
 const teams=panel('teamDna','DNA קבוצתי','השוו סגנונות משחק, מדד מול מדד, על אותו סולם.',`
  <div class="dna-controls">
-  <label>קבוצה <select data-team></select></label>
-  <label>מול <select data-opponent></select></label>
+  <label data-team-pair>קבוצה <select data-team></select></label>
+  <label data-team-pair>מול <select data-opponent></select></label>
   <label>טווח <select data-range>
    <option value="0" selected>כל העונה</option>
    <option value="3">3 משחקים אחרונים</option>
    <option value="history">מפגשי עבר העונה</option>
   </select></label>
-  <label class="dna-history-picker" data-history-label hidden>בחר מפגש <select data-history-game></select></label>
  </div>
- <div class="dna-switch" role="group" aria-label="סוג המדדים">
+ <section class="dna-calendar" data-calendar hidden aria-labelledby="dnaCalendarHeading">
+  <h3 id="dnaCalendarHeading">משחקים שהסתיימו העונה</h3>
+  <p class="dna-explain">בחר תאריך. אפשר לגלול בין התאריכים כדי להגיע למשחקים קודמים.</p>
+  <div class="dna-calendar-dates" data-calendar-dates role="group" aria-label="תאריכי משחקים"></div>
+  <h4 data-calendar-date></h4>
+  <div class="dna-calendar-games" data-calendar-games role="group" aria-label="משחקים בתאריך שנבחר"></div>
+ </section>
+ <div class="dna-switch" data-team-switch role="group" aria-label="סוג המדדים">
   <button type="button" data-view="offense" aria-pressed="true">סגנון התקפי והרכבים</button>
   <button type="button" data-view="defense" aria-pressed="false">הגנה · מה הקבוצות מאפשרות</button>
  </div>`);
@@ -176,6 +183,7 @@ async function load(){
     .sort((a,b)=>Date.parse(a.date)-Date.parse(b.date));
    lastLoad=now;
    selectors();
+   refreshCalendar();
    for(const p of panels){
     p.$('[data-dna-controls]').hidden=false;
     p.$('.dna-status').textContent=events?.season===C.season?'':'נתוני האירועים חסרים כרגע. מדדי הבוקס־סקור זמינים.';
@@ -323,44 +331,66 @@ function comparisonRows(metrics,ownStats,rivalStats,benchmarks){
 function legend(own,rival){
  return `<div class="dna-legend"><span class="dna-own"><i></i><bdi>${esc(own)}</bdi></span><span class="dna-other"><i></i><bdi>${esc(rival)}</bdi></span></div>`;
 }
-function renderHistory(out,own,rival,metrics){
- const picker=teams.$('[data-history-game]'),label=teams.$('[data-history-label]');
- if(!rival){
-  out.innerHTML=empty('בחר קבוצה יריבה כדי לראות את המפגשים ביניהן העונה.');
+function refreshCalendar(){
+ const games=model.teams.flatMap(t=>t.games.filter(g=>g.home))
+  .sort((a,b)=>Date.parse(b.date)-Date.parse(a.date)||b.code-a.code);
+ historyDays=new Map();
+ for(const game of games){
+  const day=fullDate.format(new Date(game.date));
+  if(!historyDays.has(day))historyDays.set(day,[]);
+  historyDays.get(day).push(game);
+ }
+ if(!historyDays.has(historyDay))historyDay=historyDays.keys().next().value||'';
+ teams.$('[data-calendar-dates]').innerHTML=[...historyDays].map(([day,games])=>
+  `<button type="button" class="secondary" data-calendar-day="${esc(day)}" aria-pressed="false">${calendarDate.format(new Date(games[0].date))}</button>`).join('');
+ teams.$('[data-calendar-games]').removeAttribute('data-day');
+}
+function renderHistory(out,metrics){
+ const games=historyDays.get(historyDay)||[];
+ const list=teams.$('[data-calendar-games]');
+ for(const button of teams.$('[data-calendar-dates]').querySelectorAll('button')){
+  button.setAttribute('aria-pressed',String(button.dataset.calendarDay===historyDay));
+ }
+ teams.$('[data-calendar-date]').textContent=historyDay;
+ if(list.dataset.day!==historyDay){
+  list.dataset.day=historyDay;
+  list.innerHTML=games.map(g=>`<button type="button" class="secondary" data-calendar-game="${g.code}" aria-pressed="false">
+   <span><strong><bdi>${esc(g.team)}</bdi> מול <bdi>${esc(g.opponent)}</bdi></strong>
+   <small>${fullDate.format(new Date(g.date))}${g.round?' · מחזור '+esc(g.round):''}</small></span>
+   <bdi class="dna-calendar-score">${g.points}–${g.against}</bdi>
+  </button>`).join('');
+ }
+ const game=games.find(g=>String(g.code)===historyGame);
+ for(const button of list.querySelectorAll('button')){
+  button.setAttribute('aria-pressed',String(button.dataset.calendarGame===historyGame));
+ }
+ teams.$('[data-team-switch]').hidden=!game;
+ if(!game){
+  out.innerHTML=empty(games.length?'בחר משחק כדי לראות את ההשוואה.':'אין עדיין משחקי יורוליג שהסתיימו העונה.');
   return;
  }
- const pair=[own.team,rival.team].sort().join('|');
- if(pair!==historyPair){picker.value='';historyPair=pair;}
- const games=own.games.filter(g=>g.opponent===rival.team);
- if(!games.length){
-  out.innerHTML=empty('הקבוצות עדיין לא נפגשו ביורוליג העונה.');
-  return;
- }
- label.hidden=false;
- updateOptions(picker,games.map(g=>option(String(g.code),
-  fullDate.format(new Date(g.date))+' · '+g.points+'–'+g.against+' · '+(g.home?'בית':'חוץ'))),String(games[0].code));
- const game=games.find(g=>String(g.code)===picker.value)||games[0];
- const other=rival.games.find(g=>g.code===game.code);
- const home=game.home?own.team:rival.team,away=game.home?rival.team:own.team;
- const homeScore=game.home?game.points:game.against,awayScore=game.home?game.against:game.points;
+ const other=model.teams.find(t=>t.team===game.opponent)?.games.find(g=>g.code===game.code);
  const ownStats=C.summarize([game],metrics),rivalStats=C.summarize(other?[other]:[],metrics);
  out.innerHTML=`<header class="dna-profile dna-compare-head"><span class="dna-kicker">מפגש עבר · 2026/27</span>
- <h3><bdi>${esc(home)}</bdi> <bdi>${homeScore}–${awayScore}</bdi> <bdi>${esc(away)}</bdi></h3>
- <p>${fullDate.format(new Date(game.date))} · ${game.home?'בית':'חוץ'} ל־<bdi>${esc(own.team)}</bdi></p></header>
- <p class="dna-explain">נתונים מהמשחק שנבחר.</p>${legend(own.team,rival.team)}
+ <h3><bdi>${esc(game.team)}</bdi> <bdi>${game.points}–${game.against}</bdi> <bdi>${esc(game.opponent)}</bdi></h3>
+ <p>${fullDate.format(new Date(game.date))}</p></header>
+ <p class="dna-explain">נתונים מהמשחק שנבחר.</p>${legend(game.team,game.opponent)}
  <div class="dna-chart">${comparisonRows(metrics,ownStats,rivalStats)}</div>`;
 }
 function renderTeams(){
  if(!model)return;
  const out=teams.$('[data-dna-results]');
- teams.$('[data-history-label]').hidden=true;
+ const selectedRange=teams.$('[data-range]').value,metrics=view==='offense'?C.offense:C.defense;
+ const history=selectedRange==='history';
+ teams.$('[data-calendar]').hidden=!history;
+ for(const label of teams.section.querySelectorAll('[data-team-pair]'))label.hidden=history;
+ if(history){renderHistory(out,metrics);return;}
+ teams.$('[data-team-switch]').hidden=false;
  const own=model.teams.find(t=>t.team===teams.$('[data-team]').value);
  if(!own){out.innerHTML=empty('בחר קבוצה להשוואה מול היריבה הבאה, קבוצה אחרת או ממוצע הליגה.');return;}
  const compare=teams.$('[data-opponent]').value;
  const opponent=compare==='next'?nextOpponent(own.team):compare;
  const rival=model.teams.find(t=>t.team===opponent);
- const selectedRange=teams.$('[data-range]').value,metrics=view==='offense'?C.offense:C.defense;
- if(selectedRange==='history'){renderHistory(out,own,rival,metrics);return;}
  const {stats,benchmarks}=teamAnalysis(Number(selectedRange),metrics);
  const ownStats=stats.get(own),rivalStats=stats.get(rival);
  const heading=rival?.team||'ממוצע הליגה';
@@ -394,6 +424,16 @@ teams.$('[data-team]').onchange=()=>{
  if([...teams.$('[data-opponent]').options].some(o=>o.value==='next'))teams.$('[data-opponent]').value='next';
  paint();
 };
-teams.$('[data-opponent]').onchange=teams.$('[data-range]').onchange=teams.$('[data-history-game]').onchange=paint;
+teams.$('[data-opponent]').onchange=teams.$('[data-range]').onchange=paint;
+teams.$('[data-calendar-dates]').onclick=e=>{
+ const day=e.target.closest('[data-calendar-day]')?.dataset.calendarDay;
+ if(!day||day===historyDay)return;
+ historyDay=day;historyGame='';paint();
+};
+teams.$('[data-calendar-games]').onclick=e=>{
+ const game=e.target.closest('[data-calendar-game]')?.dataset.calendarGame;
+ if(!game)return;
+ historyGame=game;paint();
+};
 for(const b of teams.section.querySelectorAll('[data-view]'))b.onclick=()=>{view=b.dataset.view;paint();};
 })();

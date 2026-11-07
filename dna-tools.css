@@ -27,7 +27,7 @@ html[data-theme="light"] .dna-shell{
  gap:10px;
  margin:18px 0 12px;
 }
-.dna-history-picker,[data-player-rival-label]{grid-column:1/-1}
+.dna-controls [data-player-rival-label]{grid-column:1/-1}
 .dna-controls label{min-width:0;color:var(--text);font-weight:650}
 .dna-controls select{display:block;width:100%;margin-top:4px}
 .dna-switch,.dna-tags,.dna-legend{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
@@ -37,6 +37,22 @@ html[data-theme="light"] .dna-shell{
  color:var(--text);
 }
 .dna-switch button[aria-pressed="true"]{border-color:var(--dna-primary);color:var(--dna-primary)}
+.dna-switch[hidden],.dna-calendar[hidden],.dna-controls [data-team-pair][hidden]{display:none}
+.dna-calendar h3,.dna-calendar h4{margin:12px 0 4px}
+.dna-calendar-dates{
+ display:flex;gap:8px;overflow-x:auto;padding:4px 4px 9px;
+ scrollbar-width:thin;
+}
+.dna-calendar-dates button{flex:none;white-space:nowrap}
+.dna-calendar-games{display:grid;gap:7px}
+.dna-calendar-games button{
+ display:flex;align-items:center;justify-content:space-between;gap:10px;
+ width:100%;min-height:48px;text-align:start;
+}
+.dna-calendar-games strong{overflow-wrap:anywhere}
+.dna-calendar-games small{display:block;color:var(--muted);margin-top:3px}
+.dna-calendar-score{flex:none;font-weight:750}
+.dna-calendar button[aria-pressed="true"]{border-color:var(--dna-primary);color:var(--dna-primary)}
 .dna-profile,.dna-match{
  padding:15px;
  margin:14px 0 10px;
