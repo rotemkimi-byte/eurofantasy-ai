@@ -12,9 +12,10 @@ class QuietHandler(SimpleHTTPRequestHandler):
 
 schedule=load(OUT/'schedule.json',{})
 now=datetime.now(timezone.utc)
+ident=model_id()
 def needs_snapshot(g):
     old=load(OUT/f'snapshots/E2026-{g["gameCode"]}.json')
-    return not old or old.get('algorithmSchema')!=1 or old.get('modelId')!=model_id() or not (OUT/f'team-snapshots/E2026-{g["gameCode"]}.json').exists()
+    return not old or old.get('algorithmSchema')!=2 or old.get('modelId')!=ident or not (OUT/f'team-snapshots/E2026-{g["gameCode"]}.json').exists()
 
 upcoming=[g for g in schedule.values() if not g['played'] and now+timedelta(minutes=10)<date(g['start'])<=now+timedelta(hours=24) and needs_snapshot(g)]
 if not upcoming:
@@ -27,12 +28,13 @@ try:
         browser=pw.chromium.launch(headless=True)
         page=browser.new_page()
         page.goto(f'http://127.0.0.1:{server.server_port}/index.html',wait_until='networkidle',timeout=60000)
-        page.wait_for_function('window.__stabilityModelPatched && window.__learningReady && window.__recentFormPatched && (!window.__matchupContextEnabled || window.__matchupContextReady) && (!window.__replayCaptureReady || window.__rollingReady)',timeout=45000)
-        if page.evaluate('window.__learningModelId')!=model_id(): raise RuntimeError('Browser model version does not match source')
+        page.wait_for_function('window.__weightedForecastReady && window.__stabilityModelPatched && window.__learningReady && window.__recentFormPatched && (!window.__matchupContextEnabled || window.__matchupContextReady) && (!window.__replayCaptureReady || window.__rollingReady)',timeout=45000)
+        if page.evaluate('window.__learningModelId')!=ident: raise RuntimeError('Browser model version does not match source')
+        weighted_defaults=page.evaluate('window.WeightedForecast.defaults')
         forecasts=page.evaluate('''() => players.filter(p=>['G','F','C'].includes(p.pos)).map(p=>{
           const x=model(p),b=x.learning;
           return {name:p.name,team:p.team,pos:p.pos,opponent:x.match?.opponent,home:!!x.match?.home,status:p.status,price:p.price,
-          expectedPir:x.expected,expectedMinutes:x.minutes,basePir:b?.basePir??x.expected,baseMinutes:b?.baseMinutes??x.minutes,
+          expectedPir:x.expected,expectedMinutes:x.minutes,weightedForecast:x.weightedForecast??null,basePir:b?.basePir??x.weightedForecast?.base??x.expected,baseMinutes:b?.baseMinutes??x.minutes,
           correctionActive:!!b?.applied,modelSource:x.source,algorithmInputs:Object.fromEntries(["basePir","baseMin","injuryBoost","injuryUsagePct","missingStars","positionMatchPct","positionMatchup","minutes","recentForm","context"].map(k=>[k,x[k]??null])),features:{basePir:x.basePir,baseMin:x.baseMin,injuryBoost:x.injuryBoost,injuryUsagePct:x.injuryUsagePct,missingStars:x.missingStars,positionMatchPct:x.positionMatchPct,teamPoints:x.match?.teamPoints,margin:x.match?.margin,lastGameWeight:x.recentForm?.lastGameWeight,personalPrior:x.personalPrior,currentSeasonWeight:x.currentSeasonWeight,context:x.context?{involvementFactor:x.context.involvementFactor,defenseFactor:x.context.defenseFactor,defenseSample:x.context.defenseSample,rival:x.context.rival?.name,scenarios:x.context.scenarios,minutesCorrectionActive:x.context.minutesCorrectionActive}:null}};
         })''')
         team_forecasts=page.evaluate('() => Object.fromEntries(Object.entries(MATCHUPS).map(([team,m])=>[team,{...m}]))')
@@ -47,7 +49,8 @@ try:
             if opp!=(g['away'] if team==g['home'] else g['home']):continue
             if p['home']!=(team==g['home']):continue
             selected.append({**p,'team':team,'opponent':opp})
-        if not selected:print('Skipped stale or missing matchup',g['gameCode']);continue
+        if not selected or not all(p.get('weightedForecast') for p in selected):
+            print('Skipped stale matchup or missing weighted data',g['gameCode']);continue
         team_path=OUT/f'team-snapshots/E2026-{g["gameCode"]}.json'
         team_map={canon(k):v for k,v in team_forecasts.items()}
         tm=team_map.get(g['home'],{})
@@ -55,10 +58,10 @@ try:
             save(team_path,{'season':'E2026','created_at':created.isoformat(),'home':g['home'],'away':g['away'],'gameCode':g['gameCode'],'round':g['round'],'forecast':tm})
         player_path=OUT/f'snapshots/E2026-{g["gameCode"]}.json'
         old=load(player_path)
-        if old and old.get('modelId')==model_id() and old.get('algorithmSchema')==1:continue
+        if old and old.get('modelId')==ident and old.get('algorithmSchema')==2:continue
         if old:
             archive=OUT/f'snapshots/archive/E2026-{g["gameCode"]}-{old.get("modelId","legacy")}.json'
             if not archive.exists():save(archive,old)
-        save(player_path,{'algorithmSchema':1,'schema':VERSION,'season':'E2026','modelId':model_id(),'gameCode':g['gameCode'],'round':g['round'],'kickoff':g['start'],'created_at':created.isoformat(),'predictions':selected})
+        save(player_path,{'algorithmSchema':2,'weightedDefaults':weighted_defaults,'schema':VERSION,'season':'E2026','modelId':ident,'gameCode':g['gameCode'],'round':g['round'],'kickoff':g['start'],'created_at':created.isoformat(),'predictions':selected})
         print('Frozen live forecast',g['gameCode'],len(selected),'players')
 finally:server.shutdown()

@@ -43,7 +43,7 @@ def api(path):
     with urllib.request.urlopen(req,timeout=40) as r: return json.load(r)
 
 def model_id():
-    files=['index.html','live.js','roster-live.js','position-matchups.js','matchup-live.js','model-stability.js','personal-model-core.js','personal-model.js','matchup-context-core.js','matchup-context.js','data/player-history.json']
+    files=['index.html','live.js','roster-live.js','position-matchups.js','matchup-live.js','model-stability.js','personal-model-core.js','personal-model.js','matchup-context-core.js','matchup-context.js','data/player-history.json','weighted-forecast-core.js','weighted-forecast.js']
     return hashlib.sha256(b''.join(n.encode()+ (ROOT/n).read_bytes() for n in files if (ROOT/n).exists())).hexdigest()[:20]
 
 def prepare():
@@ -237,6 +237,8 @@ def grade():
     payload['roundReviews']=round_reviews(rows,schedule)
     payload['servedMetrics']=metrics([{**r,'error':r['servedError'],'baseMinutes':r.get('servedMinutes',r['baseMinutes'])} for r in rows])
     save(OUT/'latest.json',payload)
+    from weighted_rounds import write_report
+    write_report(schedule)
     print(json.dumps({'diagnosticRows':len(rows),'eligibleRows':len(eligible),'validation':validation}))
 
 if __name__=='__main__':

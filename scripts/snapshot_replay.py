@@ -1,5 +1,5 @@
 """Freeze complete projection inputs before kickoff, independent of legacy snapshots."""
-import threading
+import subprocess, sys, threading
 from datetime import datetime,timezone,timedelta
 from functools import partial
 from http.server import SimpleHTTPRequestHandler,ThreadingHTTPServer
@@ -10,6 +10,9 @@ now=datetime.now(timezone.utc);ident=engine_id()
 schedule=load(OUT/'schedule.json',{})
 games=[g for g in schedule.values() if not g['played'] and now+timedelta(minutes=10)<date(g['start'])<=now+timedelta(hours=24) and load(OUT/f'input-snapshots/E2026-{g["gameCode"]}.json',{}).get('engineId')!=ident]
 if not games:print('No upcoming games needing complete input snapshots');raise SystemExit(0)
+# The scheduled replay job already runs before each fixture. Complete its
+# capture only once the site's weighted forecast has also been frozen.
+subprocess.run([sys.executable, str(ROOT/'scripts/snapshot_live_model.py')], check=True)
 class Quiet(SimpleHTTPRequestHandler):
     def log_message(self,*args):pass
 server=ThreadingHTTPServer(('127.0.0.1',0),partial(Quiet,directory=str(ROOT)))
@@ -25,6 +28,10 @@ try:
     created=datetime.now(timezone.utc)
     for g in games:
         if created>=date(g['start'])-timedelta(minutes=10):continue
+        live=load(OUT/f'snapshots/E2026-{g["gameCode"]}.json',{})
+        if live.get('algorithmSchema')!=2:
+            print('Waiting for weighted site forecasts',g['gameCode'])
+            continue
         selected=[p for p in predictions if canon(p['team']) in [g['home'],g['away']] and canon(p.get('opponent'))==(g['away'] if canon(p['team'])==g['home'] else g['home']) and (p.get('input') or {}).get('match',{}).get('home')==(canon(p['team'])==g['home']) and input_ok(p.get('input'),created,date(g['start']),g['gameCode'])]
         if not selected:print('Skipped missing complete inputs',g['gameCode']);continue
         path=OUT/f'input-snapshots/E2026-{g["gameCode"]}.json';old=load(path)

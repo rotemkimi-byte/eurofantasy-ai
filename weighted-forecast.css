@@ -1,0 +1,26 @@
+#algorithm .wf-shell{max-width:900px;margin-inline:auto}
+#algorithm .wf-shell h2{margin:5px 0 0}
+#algorithm .wf-shell header p{margin:5px 0 14px}
+#algorithm .wf-kicker{font-size:.75rem;letter-spacing:.1em;color:var(--muted);font-weight:800}
+#algorithm .wf-switch,.wf-actions,.wf-controls{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+#algorithm .wf-switch button{flex:1 1 104px;min-height:44px}
+#algorithm .wf-switch button[aria-pressed=false]{background:var(--card2);color:var(--text);border:1px solid var(--line)}
+#algorithm .wf-switch button[aria-pressed=true],#algorithm [data-save]{background:#145c83;color:#fff}
+#algorithm .wf-controls label{display:grid;gap:4px;flex:1 1 130px;min-width:0;font-weight:700}
+#algorithm select{width:100%;min-width:0;min-height:44px;color:var(--text);background:var(--card2)}
+#algorithm .wf-venue,#algorithm .wf-preview{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card2)}
+#algorithm .wf-venue span,#algorithm .wf-muted,#algorithm small{color:var(--muted);font-size:.86rem}
+#algorithm .wf-preview{margin-block:10px}
+#algorithm .wf-preview small,#algorithm .wf-row small,#algorithm .wf-report-summary span{display:block;margin-top:3px}
+#algorithm .wf-list{display:grid;gap:6px;margin-block:12px}
+#algorithm .wf-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:var(--card2)}
+#algorithm .wf-number{text-align:left;white-space:nowrap}
+#algorithm .wf-number>b{font-size:1.1rem}
+#algorithm .wf-input{display:flex;align-items:center;gap:3px;direction:ltr}
+#algorithm input[type=number]{width:66px;min-height:42px;color:var(--text);background:var(--card)}
+#algorithm [data-total]{align-self:center}
+#algorithm [data-total][data-valid=false]{color:var(--red,#b6384d)}
+#algorithm .wf-badge{display:inline-block;padding:2px 7px;border-radius:7px;background:#e2e8f0;color:#334155;font-size:.83rem}
+#algorithm [data-result=better]{background:#d2f6e0;color:#075332}
+#algorithm [data-result=worse]{background:#ffe0e4;color:#8c122d}
+#algorithm [hidden]{display:none!important}

@@ -22,7 +22,7 @@ try:
         page.on('pageerror', lambda e: errors.append(str(e)))
         page.route('https://**/*', lambda route: route.abort())
         page.goto(f'http://127.0.0.1:{server.server_port}/index.html', wait_until='networkidle')
-        page.wait_for_function('window.__personalModelReady && window.__stabilityModelPatched && window.__learningReady', timeout=60000)
+        page.wait_for_function('window.__weightedForecastReady && window.__personalModelReady && window.__stabilityModelPatched && window.__learningReady', timeout=60000)
         actual = page.evaluate("() => players.filter(p=>['G','F','C'].includes(p.pos)).map(p=>{const x=model(p);return {name:p.name,expectedPir:x.expected,expectedMinutes:x.minutes,personal:x.personalModel};})")
         by_name = {p['name']: p for p in actual}
         for p in expected['predictions']:

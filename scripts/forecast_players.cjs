@@ -3,6 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const core = require('../personal-model-core.js');
 const extension = require('../matchup-context-core.js');
+const weighted = require('../weighted-forecast-core.js');
 const crypto = require('node:crypto');
 const root = path.resolve(__dirname, '..');
 function load(file, fallback = {}) {
@@ -22,13 +23,21 @@ extension.applyTeams(matches, matchupContext);
 const defense = load('data/position-matchups.json').defense || {};
 const games = load('data/euroleague-live-E2026.json');
 const modelFiles = ['index.html','live.js','roster-live.js','position-matchups.js','matchup-live.js',
-  'model-stability.js','personal-model-core.js','personal-model.js','matchup-context-core.js','matchup-context.js','data/player-history.json'];
+  'model-stability.js','personal-model-core.js','personal-model.js','matchup-context-core.js','matchup-context.js','data/player-history.json','weighted-forecast-core.js','weighted-forecast.js'];
 const fingerprint = crypto.createHash('sha256');
 for (const file of modelFiles) if (fs.existsSync(path.join(root, file))) {
   fingerprint.update(file); fingerprint.update(fs.readFileSync(path.join(root, file)));
 }
 const modelId = fingerprint.digest('hex').slice(0, 20);
 const learning = load('data/learning/latest.json');
+const rolling = load('data/learning/rolling.json');
+const rollingId = fs.readFileSync(path.join(root,'rolling-model-version.js'),'utf8').match(/"([a-f0-9]+)"/)?.[1];
+const rollingAge = Date.now() - Date.parse(rolling.updated_at);
+const useRolling = rolling?.schema === 'rolling-learning-v1' && rolling.engineId === rollingId &&
+  rolling.season === 'E2026' && rollingAge >= 0 && rollingAge < 36 * 3600000;
+const official = load('data/official-offense.json');
+const evidence = official?.season === 'E2026' && official.schema === 'official-offense-v1'
+  ? weighted.build(official, load('data/advanced-players.json'), core) : null;
 const logs = {};
 if (games.season === 'E2026') for (const game of Object.values(games.games || {})) {
   for (const g of game.rows || []) {
@@ -46,7 +55,13 @@ const forecasts = players.filter(p => ['G', 'F', 'C'].includes(p.pos)).map(p => 
   const positionPct = (Number(defense[match.opponent || p.opponent]?.[p.pos]?.factor || 1) - 1) * 100;
   const teamPct = (Math.max(.92, Math.min(1.08, 1 + (Number(match.teamPoints ?? 84) - 84) * .006)) - 1) * 100;
   const context = {...core.opportunity(p, players), teamPct, positionPct, margin: match.margin};
-  const x = core.calibrate(extension.project({...core.project(p, r, h, context, history.config),match}, p, matchupContext), p, learning, modelId);
+  let x = core.calibrate(extension.project({...core.project(p, r, h, context, history.config),match}, p, matchupContext), p, learning, modelId);
+  if(useRolling && !x.learning?.applied)
+    x = core.calibrate(x,p,{...rolling,schema:'learning-v1',modelId:rollingId,active:rolling.validation?.active},rollingId);
+  if(evidence){
+    Object.assign(x,{...context,positionMatchPct:positionPct,positionMatchup:defense[match.opponent || p.opponent]?.[p.pos]});
+    weighted.apply(x,p,weighted.input(p,x,weighted.signals(p,x,evidence,players)),weighted.defaults);
+  }
   return {...p, expectedPir: x.expected, expectedMinutes: x.minutes,
     detail: {reason: x.source, teamMatchPct: teamPct, positionMatchPct: positionPct,
       ...context, personalPrior: x.personalPrior}};
