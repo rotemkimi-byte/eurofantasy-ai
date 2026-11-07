@@ -1,14 +1,13 @@
 (()=>{
 'use strict';
-const C=window.DnaCore,T=window.TeamMetricsCore;
+const C=window.DnaCore,T=window.TeamMetricsCore,S=window.SeasonGamePicker;
 const nav=document.querySelector('nav.tabs'),main=document.querySelector('main');
-if(!C||!T||!nav||!main)return;
+if(!C||!T||!S||!nav||!main)return;
 
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const decimal=new Intl.NumberFormat('he-IL',{maximumFractionDigits:1});
 const date=new Intl.DateTimeFormat('he-IL',{timeZone:'Asia/Jerusalem',day:'numeric',month:'numeric'});
 const fullDate=new Intl.DateTimeFormat('he-IL',{timeZone:'Asia/Jerusalem',day:'numeric',month:'numeric',year:'numeric'});
-const calendarDate=new Intl.DateTimeFormat('he-IL',{timeZone:'Asia/Jerusalem',weekday:'short',day:'numeric',month:'numeric'});
 const unitLabels={'%':'%',per40:' ל־40 דק׳',per100:' ל־100 פוז׳',pos:' פוז׳ ל־40 דק׳',cm:' ס״מ'};
 const sources={box:'בוקס־סקור',events:'יומן זריקות',estimated:'אומדן',lineups:'חמישיות מאומתות'};
 const positionLabels={G:'גארדים',F:'פורוורדים',C:'סנטרים',Guard:'גארדים',Forward:'פורוורדים',Center:'סנטרים'};
@@ -22,7 +21,7 @@ const labelName=name=>name.includes(',')?name.split(',').reverse().map(s=>s.trim
 const option=(value,name)=>new Option(name,value);
 const empty=message=>'<p class="dna-empty">'+esc(message)+'</p>';
 let model=null,fixtures=[],pending=null,lastLoad=0;
-let historyDays=new Map(),historyDay='',historyGame='';
+let teamGames=[],teamGame='',playerGame='';
 
 async function json(path){
  const response=await fetch('./data/'+path+'?t='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(20000)});
@@ -75,7 +74,6 @@ function panel(id,title,description,controls){
  main.append(section);
  const $=selector=>section.querySelector(selector);
  b.onclick=()=>{
-  if(id==='teamDna'&&!section.classList.contains('active'))$('[data-range]').value='0';
   document.querySelectorAll('.tabs button,.tab').forEach(node=>node.classList.remove('active'));
   b.classList.add('active');section.classList.add('active');
   if(model)paint();
@@ -84,37 +82,29 @@ function panel(id,title,description,controls){
  $('[data-reload]').onclick=()=>void load();
  return {$,section,button:b};
 }
-const range=title=>`<label>טווח <select data-range><option value="0">כל העונה</option><option value="5">5 ${title} אחרונים</option><option value="3">3 ${title} אחרונים</option></select></label>`;
 const player=panel('playerDna','DNA שחקן','איך השחקן מייצר תפוקה, ואיך הוא נראה מול כל יריבה ביורוליג.',`
+ <div data-range></div>
  <div class="dna-controls dna-player-controls">
   <label>קבוצה <select data-scope></select></label>
   <label>שחקן · לפי מחיר <select data-player></select></label>
-  ${range('משחקים')}
   <label data-player-rival-label hidden>מול קבוצה <select data-player-rival></select></label>
- </div>`);
-const teams=panel('teamDna','DNA קבוצתי','השוו סגנונות משחק, מדד מול מדד, על אותו סולם.',`
- <div class="dna-controls">
-  <label data-team-pair>קבוצה <select data-team></select></label>
-  <label data-team-pair>מול <select data-opponent></select></label>
-  <label>טווח <select data-range>
-   <option value="0" selected>כל העונה</option>
-   <option value="3">3 משחקים אחרונים</option>
-   <option value="history">מפגשי עבר העונה</option>
-  </select></label>
  </div>
- <section class="dna-calendar" data-calendar hidden aria-labelledby="dnaCalendarHeading">
-  <h3 id="dnaCalendarHeading">משחקים שהסתיימו העונה</h3>
-  <p class="dna-explain">בחר תאריך. אפשר לגלול בין התאריכים כדי להגיע למשחקים קודמים.</p>
-  <div class="dna-calendar-dates" data-calendar-dates role="group" aria-label="תאריכי משחקים"></div>
-  <h4 data-calendar-date></h4>
-  <div class="dna-calendar-games" data-calendar-games role="group" aria-label="משחקים בתאריך שנבחר"></div>
- </section>
+ <div data-past-games hidden></div>`);
+const teams=panel('teamDna','DNA קבוצתי','השוו סגנונות משחק, מדד מול מדד, על אותו סולם.',`
+ <div data-range></div>
+ <div class="dna-controls">
+  <label>קבוצה <select data-team></select></label>
+  <label data-team-pair>מול <select data-opponent></select></label>
+ </div>
+ <div data-past-games hidden></div>
  <div class="dna-switch" data-team-switch role="group" aria-label="סוג המדדים">
   <button type="button" data-view="offense" aria-pressed="true">סגנון התקפי והרכבים</button>
   <button type="button" data-view="defense" aria-pressed="false">הגנה · מה הקבוצות מאפשרות</button>
  </div>`);
 const panels=[player,teams];
 let view='offense';
+const playerRange=S.picker(player.$('[data-range]'),()=>{playerGame='';selectPlayerRivals();paint();});
+const teamRange=S.picker(teams.$('[data-range]'),paint);
 
 function selectPlayers(){
  const scope=player.$('[data-scope]').value;
@@ -134,15 +124,16 @@ function selectPlayerRivals(){
  if(!record){select.replaceChildren();return;}
  const counts=new Map();
  for(const g of record.seasonGames)counts.set(g.opponent,(counts.get(g.opponent)||0)+1);
- const rivals=model.teams.map(t=>t.team).filter(team=>team!==record.team)
+ const history=playerRange.value==='history';
+ const rivals=model.teams.map(t=>t.team).filter(team=>team!==record.team||counts.has(team))
   .sort((a,b)=>(counts.get(b)||0)-(counts.get(a)||0)||a.localeCompare(b));
  const next=nextOpponent(record.team);
- const options=[rivals.includes(next)?option('next','היריבה הבאה · '+next):option('','בחר יריבה'),
-  ...rivals.map(name=>{
-   const count=counts.get(name);
-   return option(name,name+(count?' · '+(count===1?'הופעה אחת':count+' הופעות'):''));
-  })];
- updateOptions(select,options,options[0].value);
+ const first=history?option('','כל היריבות'):rivals.includes(next)?option('next','היריבה הבאה · '+next):option('','בחר יריבה');
+ const options=[first,...rivals.map(name=>{
+  const count=counts.get(name);
+  return option(name,name+(count?' · '+(count===1?'הופעה אחת':count+' הופעות'):' · ללא הופעות'));
+ })];
+ updateOptions(select,options,first.value);
 }
 function selectOpponents(){
  const own=teams.$('[data-team]').value,next=nextOpponent(own);
@@ -183,7 +174,7 @@ async function load(){
     .sort((a,b)=>Date.parse(a.date)-Date.parse(b.date));
    lastLoad=now;
    selectors();
-   refreshCalendar();
+   teamGames=built.teams.flatMap(t=>t.games.filter(g=>g.home));
    for(const p of panels){
     p.$('[data-dna-controls]').hidden=false;
     p.$('.dna-status').textContent=events?.season===C.season?'':'נתוני האירועים חסרים כרגע. מדדי הבוקס־סקור זמינים.';
@@ -226,8 +217,7 @@ function teamAnalysis(gameLimit,metrics){
  const benchmarks=Object.fromEntries(metrics.map(([id])=>[id,C.benchmark([...stats.values()].map(s=>s[id]),id)]));
  return {stats,benchmarks};
 }
-function playerHistory(record,rival){
- const games=record.seasonGames.filter(g=>g.opponent===rival.team);
+function playerHistory(record,games,heading){
  if(!games.length)return empty('אין לשחקן הופעות מול היריבה הזו ביורוליג העונה.');
  const metrics=[['דקות',g=>g.minutes],['נקודות',g=>g.stats?.points],['PIR',g=>g.stats?.valuation]];
  const usageMetric=C.playerMetrics.filter(([id])=>id==='usage');
@@ -238,7 +228,7 @@ function playerHistory(record,rival){
  });
  const cells=values=>values.map(v=>'<td><bdi>'+v+'</bdi></td>').join('');
  const averageRow=(rows,label)=>'<tr><th scope="row">'+label+'</th>'+cells([...averages(rows),usage(rows)])+'</tr>';
- return `<h4>הופעות מול היריבה העונה</h4><table class="dna-history-table">
+ return `<h4>${heading}</h4><table class="dna-history-table">
  <thead><tr><th scope="col">משחק</th>${metrics.map(([label])=>'<th scope="col">'+label+'</th>').join('')}<th scope="col">Usage</th></tr></thead>
  <tbody>${games.map(g=>`<tr><th scope="row"><bdi>${fullDate.format(new Date(g.date))}</bdi>
  <small>${g.home?'בית':'חוץ'}${g.team===record.team?'':' · '+esc(g.team)}</small></th>
@@ -268,20 +258,45 @@ function guidance(p,record,own,rival,gameLimit){
  const rivalProfile=metrics.filter(([id])=>['pace','allowedThree','allowedRebound','allowedFouls'].includes(id));
  return `<aside class="dna-match"><div class="dna-match-head"><div><span class="dna-kicker">${names?'המשחק הבא':'מאצ׳אפ מול קבוצה'}</span>
  <h3><bdi>${esc(own.team)}</bdi> מול <bdi>${esc(rival.team)}</bdi></h3>${names?'<small>'+esc(names)+'</small>':''}</div>
- <button type="button" class="secondary" data-compare-teams>השוואת הקבוצות</button></div>
- ${playerHistory(record,rival)}
+ <div class="dna-match-actions">
+ <button type="button" class="secondary" data-player-past>משחקי עבר מול היריבה</button>
+ <button type="button" class="secondary" data-compare-teams>השוואת הקבוצות</button></div></div>
+ ${playerHistory(record,record.seasonGames.filter(g=>g.opponent===rival.team),'הופעות מול היריבה העונה')}
  <details class="dna-rival-profile"><summary>נתוני היריבה מול ממוצע הליגה</summary>
  <dl>${rivalProfile.map(([id,label,unit])=>`<div><dt>${label}</dt><dd><bdi>${fmt(rivalStats[id].value,unit)}</bdi>
  <small>ליגה · <bdi>${fmt(benchmarks[id].mean,unit)}</bdi></small></dd></div>`).join('')}</dl>
  ${signals.length?'<ul>'+signals.join('')+'</ul>':''}
  <p>נתוני הקבוצות לפי הטווח שבחרת.</p></details></aside>`;
 }
+function renderPlayerGame(out,record,games){
+ const game=games.find(g=>String(g.gameCode)===playerGame);
+ if(!game){out.innerHTML=games.length?empty('בחר משחק כדי לראות את נתוני השחקן.'):'';return;}
+ const stats=C.summarize([game],C.playerMetrics);
+ out.innerHTML=`<div class="dna-match"><span class="dna-kicker">משחק עבר · 2026/27</span>
+ <h3><bdi>${esc(record.name)}</bdi></h3>
+ <p><bdi>${esc(game.team)}</bdi> מול <bdi>${esc(game.opponent)}</bdi> · <bdi>${fullDate.format(new Date(game.date))}</bdi></p>
+ ${playerHistory(record,[game],'נתוני המשחק מול ממוצע העונה')}</div>
+ <div class="dna-chart">${C.playerMetrics.map(metric=>{
+  const [id,,unit]=metric;
+  return row(metric,valueCell(stats[id],null,unit,'dna-own',{singleGame:true}));
+ }).join('')}</div>`;
+}
 function renderPlayer(){
  if(!model)return;
  const out=player.$('[data-dna-results]');
- const record=selectedPlayer();
+ const record=selectedPlayer(),past=player.$('[data-past-games]');
+ past.hidden=true;
  if(!record){out.innerHTML=empty('בחר שחקן כדי לראות את פרופיל המשחק שלו.');return;}
- const gameLimit=Number(player.$('[data-range]').value),games=C.select(record.games,gameLimit);
+ const selectedRival=player.$('[data-player-rival]').value;
+ if(playerRange.value==='history'){
+  const games=record.seasonGames.filter(g=>!selectedRival||g.opponent===selectedRival);
+  S.games(past,games.map(g=>({...g,code:g.gameCode,detail:fmt(g.stats?.valuation)})),playerGame,code=>{
+   playerGame=code;renderPlayerGame(out,record,games);
+  },'PIR','אין לשחקן הופעות העונה בסינון שנבחר.');
+  renderPlayerGame(out,record,games);
+  return;
+ }
+ const gameLimit=Number(playerRange.value),games=C.select(record.games,gameLimit);
  const position=positionLabels[record.position];
  const peers=model.players.filter(p=>record.position&&p.position===record.position);
  const stats=calc(peers,gameLimit,C.playerMetrics);
@@ -291,7 +306,6 @@ function renderPlayer(){
  const minutes=games.reduce((sum,g)=>sum+g.minutes,0);
  const pirs=games.map(g=>g.stats?.valuation).filter(Number.isFinite);
  const avgPir=pirs.length?pirs.reduce((sum,pir)=>sum+pir,0)/pirs.length:null;
- const selectedRival=player.$('[data-player-rival]').value;
  const opponent=selectedRival==='next'?nextOpponent(record.team):selectedRival;
  const club=model.teams.find(t=>t.team===record.team),rival=model.teams.find(t=>t.team===opponent);
  const matching=club&&rival?guidance(ratings,record,club,rival,gameLimit):'';
@@ -308,11 +322,22 @@ function renderPlayer(){
  }).join('')}</div>`
  :empty('לשחקן אין הופעות מתועדות בקבוצה הזו בעונה הנוכחית.')}
  ${manual?'':matching}`;
+ const previous=out.querySelector('[data-player-past]');
+ if(previous)previous.onclick=()=>{
+  playerRange.set('history');
+  playerGame='';
+  selectPlayerRivals();
+  player.$('[data-player-rival]').value=opponent;
+  paint();
+  const filter=player.$('[data-player-rival]');
+  filter.focus({preventScroll:true});
+  filter.scrollIntoView({block:'center'});
+ };
  const compare=out.querySelector('[data-compare-teams]');
  if(compare)compare.onclick=()=>{
   teams.$('[data-team]').value=record.team;
   selectOpponents();teams.$('[data-opponent]').value=selectedRival;
-  teams.$('[data-range]').value='0';
+  teamRange.set('0');
   view='offense';
   teams.button.click();
   teams.section.setAttribute('tabindex','-1');
@@ -331,42 +356,11 @@ function comparisonRows(metrics,ownStats,rivalStats,benchmarks){
 function legend(own,rival){
  return `<div class="dna-legend"><span class="dna-own"><i></i><bdi>${esc(own)}</bdi></span><span class="dna-other"><i></i><bdi>${esc(rival)}</bdi></span></div>`;
 }
-function refreshCalendar(){
- const games=model.teams.flatMap(t=>t.games.filter(g=>g.home))
-  .sort((a,b)=>Date.parse(b.date)-Date.parse(a.date)||b.code-a.code);
- historyDays=new Map();
- for(const game of games){
-  const day=fullDate.format(new Date(game.date));
-  if(!historyDays.has(day))historyDays.set(day,[]);
-  historyDays.get(day).push(game);
- }
- if(!historyDays.has(historyDay))historyDay=historyDays.keys().next().value||'';
- teams.$('[data-calendar-dates]').innerHTML=[...historyDays].map(([day,games])=>
-  `<button type="button" class="secondary" data-calendar-day="${esc(day)}" aria-pressed="false">${calendarDate.format(new Date(games[0].date))}</button>`).join('');
- teams.$('[data-calendar-games]').removeAttribute('data-day');
-}
-function renderHistory(out,metrics){
- const games=historyDays.get(historyDay)||[];
- const list=teams.$('[data-calendar-games]');
- for(const button of teams.$('[data-calendar-dates]').querySelectorAll('button')){
-  button.setAttribute('aria-pressed',String(button.dataset.calendarDay===historyDay));
- }
- teams.$('[data-calendar-date]').textContent=historyDay;
- if(list.dataset.day!==historyDay){
-  list.dataset.day=historyDay;
-  list.innerHTML=games.map(g=>`<button type="button" class="secondary" data-calendar-game="${g.code}" aria-pressed="false">
-   <span><strong><bdi>${esc(g.team)}</bdi> מול <bdi>${esc(g.opponent)}</bdi></strong>
-   <small>${fullDate.format(new Date(g.date))}${g.round?' · מחזור '+esc(g.round):''}</small></span>
-   <bdi class="dna-calendar-score">${g.points}–${g.against}</bdi>
-  </button>`).join('');
- }
- const game=games.find(g=>String(g.code)===historyGame);
- for(const button of list.querySelectorAll('button')){
-  button.setAttribute('aria-pressed',String(button.dataset.calendarGame===historyGame));
- }
+function renderHistory(out,metrics,games){
+ const game=games.find(g=>String(g.code)===teamGame);
  teams.$('[data-team-switch]').hidden=!game;
  if(!game){
-  out.innerHTML=empty(games.length?'בחר משחק כדי לראות את ההשוואה.':'אין עדיין משחקי יורוליג שהסתיימו העונה.');
+  out.innerHTML=games.length?empty('בחר משחק כדי לראות את ההשוואה.'):'';
   return;
  }
  const other=model.teams.find(t=>t.team===game.opponent)?.games.find(g=>g.code===game.code);
@@ -377,16 +371,25 @@ function renderHistory(out,metrics){
  <p class="dna-explain">נתונים מהמשחק שנבחר.</p>${legend(game.team,game.opponent)}
  <div class="dna-chart">${comparisonRows(metrics,ownStats,rivalStats)}</div>`;
 }
-function renderTeams(){
+function renderTeams(updateGames=true){
  if(!model)return;
  const out=teams.$('[data-dna-results]');
- const selectedRange=teams.$('[data-range]').value,metrics=view==='offense'?C.offense:C.defense;
- const history=selectedRange==='history';
- teams.$('[data-calendar]').hidden=!history;
- for(const label of teams.section.querySelectorAll('[data-team-pair]'))label.hidden=history;
- if(history){renderHistory(out,metrics);return;}
- teams.$('[data-team-switch]').hidden=false;
+ for(const b of teams.section.querySelectorAll('[data-view]'))b.setAttribute('aria-pressed',String(b.dataset.view===view));
+ const selectedRange=teamRange.value,metrics=view==='offense'?C.offense:C.defense;
+ const history=selectedRange==='history',past=teams.$('[data-past-games]');
  const own=model.teams.find(t=>t.team===teams.$('[data-team]').value);
+ teams.$('[data-team-pair]').hidden=history;
+ teams.$('[data-team]').options[0].textContent=history?'כל הקבוצות':'בחר קבוצה';
+ past.hidden=!history;
+ if(history){
+  const games=teamGames.filter(g=>!own||g.team===own.team||g.opponent===own.team);
+  if(updateGames)S.games(past,games.map(g=>({...g,detail:g.points+'–'+g.against})),teamGame,code=>{
+   teamGame=code;renderTeams(false);
+  },'תוצאה');
+  renderHistory(out,metrics,games);
+  return;
+ }
+ teams.$('[data-team-switch]').hidden=false;
  if(!own){out.innerHTML=empty('בחר קבוצה להשוואה מול היריבה הבאה, קבוצה אחרת או ממוצע הליגה.');return;}
  const compare=teams.$('[data-opponent]').value;
  const opponent=compare==='next'?nextOpponent(own.team):compare;
@@ -407,33 +410,23 @@ function paint(){
  const visible=panels.find(p=>p.section.classList.contains('active'));
  if(visible===player)renderPlayer();
  if(visible===teams){
-  for(const b of teams.section.querySelectorAll('[data-view]'))b.setAttribute('aria-pressed',String(b.dataset.view===view));
   renderTeams();
  }
 }
 function changePlayer(){
+ playerGame='';
  player.$('[data-player-rival]').value='';
  selectPlayerRivals();
  paint();
 }
 player.$('[data-scope]').onchange=()=>{selectPlayers();changePlayer();};
 player.$('[data-player]').onchange=changePlayer;
-player.$('[data-player-rival]').onchange=player.$('[data-range]').onchange=paint;
+player.$('[data-player-rival]').onchange=()=>{playerGame='';paint();};
 teams.$('[data-team]').onchange=()=>{
- selectOpponents();
+ teamGame='';selectOpponents();
  if([...teams.$('[data-opponent]').options].some(o=>o.value==='next'))teams.$('[data-opponent]').value='next';
  paint();
 };
-teams.$('[data-opponent]').onchange=teams.$('[data-range]').onchange=paint;
-teams.$('[data-calendar-dates]').onclick=e=>{
- const day=e.target.closest('[data-calendar-day]')?.dataset.calendarDay;
- if(!day||day===historyDay)return;
- historyDay=day;historyGame='';paint();
-};
-teams.$('[data-calendar-games]').onclick=e=>{
- const game=e.target.closest('[data-calendar-game]')?.dataset.calendarGame;
- if(!game)return;
- historyGame=game;paint();
-};
-for(const b of teams.section.querySelectorAll('[data-view]'))b.onclick=()=>{view=b.dataset.view;paint();};
+teams.$('[data-opponent]').onchange=paint;
+for(const b of teams.section.querySelectorAll('[data-view]'))b.onclick=()=>{view=b.dataset.view;renderTeams(false);};
 })();
