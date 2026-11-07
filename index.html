@@ -132,7 +132,19 @@ html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method sum
 
 <section id="matchups" class="tab"><div class="card"><h3>מאצ׳אפ קבוצה מול קבוצה</h3><p class="muted">הסתברויות מודל לפי תוצאות, ביתיות, סגל זמין וחוזק יריבות. כיול מופעל רק אחרי בדיקה כרונולוגית; האחוזים אינם יחסי סוכנויות.</p><div id="gameCards" class="grid2"></div></div></section>
 
-<section id="playerMatchups" class="tab"><div class="card"><h3>מאצ׳אפ שחקנים</h3><div class="player-picker-modes" role="group" aria-label="בחירת רשימת שחקנים"><button type="button" data-pm-scope="all" aria-pressed="true">כל השחקנים · לפי מחיר</button><button type="button" data-pm-scope="team" aria-pressed="false">לפי קבוצה</button></div><div class="player-picker-controls"><label id="pmPickerTeamLabel" hidden>קבוצה לסינון שחקנים<select id="pmPickerTeam"></select></label><label>שחקן · מהמחיר הגבוה לנמוך<select id="pmPickerPlayer"></select></label></div><div class="filters pmControls"><label>קבוצה למאצ׳אפ<select id="pmTeam"></select></label><label>קבוצה להשוואה<select id="pmOpponent"><option value="">היריבה במשחק הבא</option></select></label><label>תצוגה<select id="pmView"><option value="court">מגרש</option><option value="list">רשימה · מחיר ודקות</option></select></label><button class="secondary" id="pmReload">רענן נתונים</button></div><p id="pmSummary" class="pmSummary"></p><details class="pmExplanation"><summary>הסבר</summary><div class="pmExplanationBody"><p><b>איך נבחרים השחקנים?</b> בכל קבוצה מוצגים סנטר, שני פורוורדים ושני גארדים עם ממוצע הדקות הגבוה בעמדה בעונת 2026/27. שחקנים שמסומנים בחוץ אינם נכללים. בהיעדר נתוני דקות, המיון זמני לפי המחיר.</p><p><b>מה משמעות הזוגות?</b> השחקן עם הכי הרבה דקות בעמדה מוצג מול המדורג המקביל בקבוצה השנייה. זו השוואת תפקידים ונתונים; אין כאן זיהוי של השומר האישי או אישור לחמישייה הפותחת.</p><p><b>איך קוראים את הנתונים?</b> הטבלה מציגה ממוצעים למשחק בעונה הנוכחית. שורת ״PIR צפוי״ היא תחזית למשחק הבא, בנפרד מהביצועים בפועל. המחיר נמדד בקרדיטים; — מציין נתון חסר, ולא אפס.</p><p><b>פרטים נוספים:</b> לחיצה על שחקן פותחת את פרטיו. בתצוגת רשימה המחיר במרכז והדקות מתחת לשם.</p><p id="pmStatus" class="muted pmHelp" role="status"></p></div></details><div id="pmCourts"></div></div></section>
+<section id="playerMatchups" class="tab"><div class="card"><h3>מאצ׳אפ שחקנים</h3><div class="pmModes" role="group" aria-label="משחקי מאצ׳אפ">
+  <button type="button" data-pm-mode="upcoming" aria-controls="pmUpcoming" aria-pressed="true">המשחקים הבאים</button>
+  <button type="button" data-pm-mode="history" aria-controls="pmHistory" aria-pressed="false">משחקי עבר</button>
+</div><div id="pmUpcoming"><div class="filters pmControls"><label>קבוצה למאצ׳אפ<select id="pmTeam"></select></label><label>קבוצה להשוואה<select id="pmOpponent"><option value="">היריבה במשחק הבא</option></select></label><label>תצוגה<select id="pmView"><option value="court">מגרש</option><option value="list">רשימה · מחיר ודקות</option></select></label><button class="secondary" id="pmReload">רענן נתונים</button></div><p id="pmSummary" class="pmSummary"></p><details class="pmExplanation"><summary>הסבר</summary><div class="pmExplanationBody"><p><b>איך נבחרים השחקנים?</b> בכל קבוצה מוצגים סנטר, שני פורוורדים ושני גארדים עם ממוצע הדקות הגבוה בעמדה בעונת 2026/27. שחקנים שמסומנים בחוץ אינם נכללים. בהיעדר נתוני דקות, המיון זמני לפי המחיר.</p><p><b>מה משמעות הזוגות?</b> השחקן עם הכי הרבה דקות בעמדה מוצג מול המדורג המקביל בקבוצה השנייה. זו השוואת תפקידים ונתונים; אין כאן זיהוי של השומר האישי או אישור לחמישייה הפותחת.</p><p><b>איך קוראים את הנתונים?</b> הטבלה מציגה ממוצעים למשחק בעונה הנוכחית. שורת ״PIR צפוי״ היא תחזית למשחק הבא, בנפרד מהביצועים בפועל. המחיר נמדד בקרדיטים; — מציין נתון חסר, ולא אפס.</p><p><b>פרטים נוספים:</b> לחיצה על שחקן פותחת את פרטיו. בתצוגת רשימה המחיר במרכז והדקות מתחת לשם.</p><p id="pmStatus" class="muted pmHelp" role="status"></p></div></details><div id="pmCourts"></div></div>
+<div id="pmHistory" hidden>
+  <div class="filters pmHistoryControls">
+    <label>מחזור<select id="pmHistoryRound" disabled></select></label>
+    <label>משחק<select id="pmHistoryGame" disabled></select></label>
+  </div>
+  <p id="pmHistoryStatus" class="muted pmHelp" role="status"></p>
+  <button type="button" id="pmHistoryRetry" class="secondary" hidden>נסה שוב</button>
+  <div id="pmHistoryResult"></div>
+</div></div></section>
 <section id="pirGraph" class="tab"><div class="card"><h3>גרף PIR · משחק אחרי משחק</h3><div class="player-picker-modes" role="group" aria-label="בחירת רשימת שחקנים"><button type="button" data-pir-scope="all" aria-pressed="true">כל השחקנים · לפי מחיר</button><button type="button" data-pir-scope="team" aria-pressed="false">לפי קבוצה</button></div><div class="filters pirControls player-picker-controls"><label id="pirTeamLabel" hidden>קבוצה<select id="pirTeam"></select></label><label>שחקנים או מאמנים<select id="pirKind"><option value="player">שחקנים</option><option value="coach">מאמנים</option></select></label></div>
 <label class="player-result-picker player-picker-controls"><span>שחקן או מאמן · מהמחיר הגבוה לנמוך</span><select id="pirPerson"></select></label>
 <div id="pirChart" class="pirChart player-result-summary" dir="ltr"></div><p id="pirDetail" class="pirDetail" aria-live="polite"></p>
@@ -645,6 +657,9 @@ const PM_METRICS=[['minutes','דקות'],['pir','PIR'],['points','נקודות']
 const playerMatchStats=new Map(),playerMatchBoxes=new Set();
 let playerMatchLoading=false,playerMatchErrors=0,playerMatchRequest=0;
 const pmNumber=v=>v==null||v===''||!Number.isFinite(Number(v))?null:Number(v);
+function pmBoxValues(stats,seconds){
+ return {minutes:seconds/60,pir:stats.valuation,points:stats.points,rebounds:stats.totalRebounds,assists:stats.assistances,steals:stats.steals,blocks:stats.blocksFavour,turnovers:stats.turnovers};
+}
 function pmAddBox(code,box){
  physicalAddBox(code,box);
  if(playerMatchBoxes.has(code))return;
@@ -653,7 +668,7 @@ function pmAddBox(code,box){
   const name=row.player?.person?.name;if(!name)continue;const key=lastThreeName(name);
   let record=playerMatchStats.get(key);if(!record){record={games:new Set(),totals:{},counts:{}};playerMatchStats.set(key,record)}
   if(record.games.has(code))continue;record.games.add(code);
-  const values={minutes:seconds/60,pir:stats.valuation,points:stats.points,rebounds:stats.totalRebounds,assists:stats.assistances,steals:stats.steals,blocks:stats.blocksFavour,turnovers:stats.turnovers};
+  const values=pmBoxValues(stats,seconds);
   for(const [metric,value] of Object.entries(values)){const n=pmNumber(value);if(n===null)continue;record.totals[metric]=(record.totals[metric]||0)+n;record.counts[metric]=(record.counts[metric]||0)+1}
  }
  playerMatchBoxes.add(code);
@@ -691,8 +706,8 @@ async function pmLoadStats(){
  if(request===playerMatchRequest){playerMatchLoading=false;renderPlayerMatchups()}
 }
 // Both sides use the same position/minutes ranking, including every reserve once.
-function pmListPairs(aRoster,bRoster){
- return ['C','F','G'].flatMap(pos=>{
+function pmListPairs(aRoster,bRoster,positions=['C','F','G']){
+ return positions.flatMap(pos=>{
   const a=aRoster.filter(p=>p.pos===pos),b=bRoster.filter(p=>p.pos===pos),firstCount=pos==='C'?1:2;
   return Array.from({length:Math.max(a.length,b.length)},(_,rank)=>({a:a[rank],b:b[rank],pos,group:rank<firstCount?0:rank<firstCount*2?1:2}));
  });
@@ -706,21 +721,7 @@ function pmListMarkup(aRoster,bRoster,team,opponent){
   return `<h3 class="pmLineupTitle">${title}</h3><div class="pmListGroup"><div class="pmListHeader"><span>${esc(team)}</span><span>מחיר</span><span>מחיר</span><span>${esc(opponent||'טרם נקבעה יריבה')}</span></div>${rows.map(({a,b,pos})=>`<div class="pmListRow">${player(a,pos,false)}${price(a)}${price(b)}${player(b,pos,true)}</div>`).join('')}</div>`;
  }).join('')}</div>`;
 }
-function renderMatchupPicker(){
- const team=document.getElementById('pmPickerTeam'),player=document.getElementById('pmPickerPlayer');
- const teamMode=document.querySelector('[data-pm-scope="team"]').getAttribute('aria-pressed')==='true';
- const selectedTeam=team.value,selectedPlayer=player.value;
- const pool=players.filter(p=>['G','F','C'].includes(p.pos)).sort((a,b)=>Number(b.price||0)-Number(a.price||0)||a.name.localeCompare(b.name));
- const teams=[...new Set(pool.map(p=>canonicalTeam(p.team)).filter(Boolean))].sort();
- team.replaceChildren(...teams.map(t=>new Option(t,t)));
- if(teams.includes(selectedTeam))team.value=selectedTeam;
- document.getElementById('pmPickerTeamLabel').hidden=!teamMode;
- const rows=pool.filter(p=>!teamMode||canonicalTeam(p.team)===team.value);
- player.replaceChildren(new Option(rows.length?'בחר שחקן':'לא נמצאו שחקנים',''),...rows.map(p=>new Option(p.name+' · '+clubNumber(p.price)+' cr',p.name)));
- if(rows.some(p=>p.name===selectedPlayer))player.value=selectedPlayer;
-}
 function renderPlayerMatchups(){
- renderMatchupPicker();
  const select=document.getElementById('pmTeam');if(!select)return;
  const teams=[...new Set(players.filter(p=>['G','F','C'].includes(p.pos)).map(p=>canonicalTeam(p.team)))].sort();
  const signature=JSON.stringify(teams);
@@ -761,12 +762,6 @@ function renderPlayerMatchups(){
  const root=document.getElementById('pmCourts');root.innerHTML=teams.length?court('חמישייה ראשונה',false)+court('חמישייה שנייה',true)+(remaining.length?`<details class="pmExtra"><summary>יתר הסגל (${remaining.length})</summary><div class="pmExtraGrid">${remaining.map(p=>pair(p,squadOpponentFor(p,{opponent}).rival,p.pos)).join('')}</div></details>`:''):'<p class="muted">אין כרגע קבוצות במאגר.</p>';
  root.onclick=e=>{const target=e.target.closest('[data-pm-player]');if(target)showPlayer(target.dataset.pmPlayer)};
 }
-for(const b of document.querySelectorAll('[data-pm-scope]'))b.onclick=()=>{
- for(const item of document.querySelectorAll('[data-pm-scope]'))item.setAttribute('aria-pressed',String(item===b));
- renderMatchupPicker();
-};
-document.getElementById('pmPickerTeam').onchange=renderMatchupPicker;
-document.getElementById('pmPickerPlayer').onchange=e=>{if(e.target.value){showPlayer(e.target.value);e.target.value='';}};
 document.getElementById('pmTeam').addEventListener('change',()=>{document.getElementById('pmOpponent').value='';void pmLoadStats()});
 document.getElementById('pmOpponent').addEventListener('change',()=>void pmLoadStats());
 try{const saved=localStorage.getItem('pmView');if(saved==='list'||saved==='court')document.getElementById('pmView').value=saved}catch{}
@@ -2269,4 +2264,22 @@ html.ef-redesign #playerMatchups .pmCompare .pmForecast th,html.ef-redesign #pla
 .pmBrowse{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:12px 0}.pmBrowse button{min-height:44px}
 .pmAllGames{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;align-items:flex-start;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;padding-bottom:12px}
 .pmGameSlide{flex:0 0 100%;min-width:0;scroll-snap-align:start}.pmGameSlide>h3{margin:12px 0 6px}.pmGameSlide .pmList{width:100%}
-</style><script src="./learning-model-version.js"></script><script src="./learning.js"></script></body></html>
+.pmModes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0}
+.pmModes button{min-height:44px;background:var(--card2);color:var(--text);border:1px solid var(--line)}
+html.ef-redesign #playerMatchups .pmModes button[aria-pressed=true]{background:var(--accent);color:#071b13;border-color:transparent}
+html.ef-redesign[data-theme=light] #playerMatchups .pmModes button[aria-pressed=true]{color:#fff}
+.pmHistoryControls{grid-template-columns:minmax(0,1fr) minmax(0,2fr)}
+.pmHistoryControls label,.pmHistoryControls select{min-width:0}
+.pmHistoryControls select{width:100%}
+.pmHistoryScore,.pmHistoryPair summary{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:8px}
+.pmHistoryScore{padding:12px 10px;text-align:center;background:var(--card2);border:1px solid var(--line);border-radius:12px;font-weight:800;overflow-wrap:anywhere}
+.pmHistoryScore small,.pmHistoryPair small{display:block;color:var(--muted);font-size:11px}
+.pmHistoryScore strong{display:flex;gap:5px;font-size:20px;white-space:nowrap}
+.pmHistoryPair{margin:6px 0;border:1px solid var(--line);border-radius:10px;background:var(--card2);overflow:hidden}
+.pmHistoryPair summary{min-height:48px;padding:8px 10px;cursor:pointer;font-size:13px;overflow-wrap:anywhere}
+.pmHistoryPair summary>span:last-child{text-align:left}
+.pmHistoryPosition{color:var(--muted);font-size:11px;text-align:center}
+.pmHistoryPosition::after{content:'⌄';display:block;font-size:14px;line-height:1}
+.pmHistoryPair[open] .pmHistoryPosition::after{content:'⌃'}
+.pmHistoryPair .pmCompare th,.pmHistoryPair .pmCompare td{font-size:12px}
+</style><script src="./player-matchup-history.js?v=1"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script></body></html>
