@@ -27,7 +27,7 @@ html[data-theme="light"] .dna-shell{
  gap:10px;
  margin:18px 0 12px;
 }
-.dna-history-picker{grid-column:1/-1}
+.dna-history-picker,[data-player-rival-label]{grid-column:1/-1}
 .dna-controls label{min-width:0;color:var(--text);font-weight:650}
 .dna-controls select{display:block;width:100%;margin-top:4px}
 .dna-switch,.dna-tags,.dna-legend{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
@@ -89,6 +89,20 @@ html.ef-redesign .dna-row summary{padding:12px}
 .dna-legend i{width:9px;height:9px;border-radius:50%;background:var(--dna-color);flex:none}
 .dna-match ul{display:grid;gap:8px;margin:12px 0;padding-inline-start:20px}
 .dna-match li span{display:block;color:var(--muted);font-size:12px}
+.dna-match h4{margin:14px 0 7px;font-size:14px}
+.dna-history-table{width:100%;min-width:0;table-layout:fixed;border-collapse:collapse}
+.dna-history-table th,.dna-history-table td{
+ padding:7px 3px;text-align:center;font-size:12px;border-bottom:1px solid var(--line);
+ white-space:normal;overflow-wrap:anywhere;
+}
+.dna-history-table th:first-child{width:30%;text-align:start}
+.dna-history-table tfoot{color:var(--muted)}
+.dna-rival-profile{margin-top:12px}
+.dna-rival-profile summary{font-weight:750}
+.dna-rival-profile dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:8px 0}
+.dna-rival-profile dl div{padding:8px;border:1px solid var(--line);border-radius:8px}
+.dna-rival-profile dt{color:var(--muted);font-size:12px}
+.dna-rival-profile dd{margin:3px 0 0;font-weight:750}
 .dna-empty{padding:10px 0}
 @media(max-width:560px){
  .dna-controls{grid-template-columns:repeat(2,minmax(0,1fr))}

@@ -145,32 +145,6 @@ function addHeightBands(g,bands){
  g.metrics.high=pair(sum(r=>r.height>=bands.high?r.minutes:0),minutes);
 }
 
-function historicalGame(game,box,events,bands){
- const names={local:game.home,road:game.away};
- const codes={local:game.homeCode,road:game.awayCode};
- const scores={local:game.homeScore,road:game.awayScore};
- const match={};
- for(const [side,team] of Object.entries(names)){
-  const data=box?.[side],players=data?.players||[];
-  const clubCodes=new Set(players.map(p=>p.player?.club?.code).filter(Boolean));
-  if(clubCodes.size!==1||!clubCodes.has(codes[side])||data.total?.points!==scores[side])return null;
-  const seconds=players.map(p=>number(p.stats?.timePlayed));
-  const minutes=seconds.includes(null)?null:seconds.reduce((sum,s)=>sum+s,0)/300;
-  match[side]={team,stats:data.total,gameMinutes:minutes>=40&&(minutes-40)%5===0?minutes:null};
- }
- const people=Object.fromEntries(Object.entries(events).map(([id,p])=>[id,{
-  ...p,team:p.teamCode===codes.local?names.local:p.teamCode===codes.road?names.road:null
- }]));
- return Object.fromEntries(Object.entries(names).map(([side,team])=>{
-  const other=side==='local'?'road':'local';
-  const [played]=teamGames({games:[{code:game.code,date:game.date,round:game.round,home:side==='local',
-   team,opponent:names[other],points:scores[side],against:scores[other],stats:match[side].stats,
-   opponentStats:match[other].stats}]},{teamGames:{[game.code]:match}},{games:{[game.code]:{players:people}}});
-  addHeightBands(played,bands);
-  return [team,played];
- }));
-}
-
 function build(official,events,teamCore,now=Date.now()){
  const teams=teamCore.build(official,now).teams.map(t=>({...t,games:teamGames(t,official,events)}));
  const bands=heightBands(teams);
@@ -222,7 +196,7 @@ function benchmark(stats,id,player=false){
   }};
 }
 
-const api={season,key,offense,defense,playerMetrics,build,historicalGame,select,summarize,benchmark};
+const api={season,key,offense,defense,playerMetrics,build,select,summarize,benchmark};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;
 else root.DnaCore=api;
 })(typeof window!=='undefined'?window:globalThis);
