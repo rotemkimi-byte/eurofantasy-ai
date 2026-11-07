@@ -16,12 +16,28 @@ const server=http.createServer((req,res)=>{
   const shot=profiles.find(p=>p.shotCoverage&&p.shots.some(s=>s.x!==null)),line=profiles.find(p=>p.lineupCoverage&&p.lineups.some(l=>l.points>0));
   assert(shot,'At least one real shot map');assert(line,'At least one real reconstructed scoring lineup');
   const page=await browser.newPage();
+  const boxPlayer=profiles.find(p=>p.name.includes('VEZENKOV'))||shot;
+  const boxGames=Object.values(data.games).filter(g=>g.players[boxPlayer.id]?.minutes>0).sort((a,b)=>Date.parse(b.date)-Date.parse(a.date));
   for(const width of [390,1280]){
    await page.setViewportSize({width,height:900});
    await page.goto('http://127.0.0.1:'+server.address().port,{waitUntil:'domcontentloaded'});
    await page.waitForSelector('#efNavigation');
    for(const theme of ['light','dark']){
     await page.evaluate(theme=>document.documentElement.dataset.theme=theme,theme);
+    await page.evaluate(()=>document.querySelector('nav.tabs [data-tab="playerBoxScore"]').click());
+    const box=page.locator('#playerBoxScore');
+    await box.locator('[data-player]').selectOption(boxPlayer.id);
+    for(const range of ['3','0']){
+     await box.locator('[data-range]').selectOption(range);
+     const games=range==='3'?boxGames.slice(0,3):boxGames;
+     const points=games.map(g=>g.players[boxPlayer.id].stats.points).filter(Number.isFinite);
+     const average=(points.reduce((sum,n)=>sum+n,0)/points.length).toLocaleString('he-IL',{maximumFractionDigits:1});
+     const output=box.locator('.ap-box-average');
+     assert.match(await output.locator(':scope > small').textContent(),new RegExp('^'+games.length+' '));
+     assert.equal(await output.locator('.ap-metric').filter({has:page.getByText('נקודות',{exact:true})}).locator('strong').textContent(),average);
+    }
+    await box.locator('[data-range]').selectOption('1');
+    assert.equal(await box.locator('.ap-box-average').count(),0);
     for(const [id,p] of [['playerNegative',shot],['playerShots',shot],['playerPlusMinus',shot],['playerLineups',line],['playerAttacks',shot]]){
      await page.evaluate(id=>document.querySelector('nav.tabs [data-tab="'+id+'"]').click(),id);
      const section=page.locator('#'+id);

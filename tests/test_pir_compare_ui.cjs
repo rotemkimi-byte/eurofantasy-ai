@@ -14,6 +14,13 @@ for(const [mode,label] of [['minutes','דקות למשחק'],['credit','קרדי
  assert.equal(await page.locator('#pirPerson').inputValue(),player);
 }
 assert(await page.locator('#pirLegend').isVisible());
+assert(await page.locator('#pirChart .pirPointValue.pirValue').count());
+assert(await page.locator('#pirChart .pirPointValue.minutesValue').count());
+const [axisLabel,...minuteTicks]=await page.locator('.pirFixedAxis.minutesValue text').allTextContents();
+assert.equal(axisLabel,'דקות');
+assert.equal(minuteTicks[0],'0');
+assert(minuteTicks.every((tick,i)=>i===0||Number(tick)>Number(minuteTicks[i-1])));
+assert.equal(await page.locator('.pirRoundAxis').textContent(),'מחזור יורוליג');
 await page.locator('[data-pir-mode=compare]').click();
 await page.locator('#pirCompare [data-add]').first().waitFor({timeout:90000});
 await page.locator('#pirCompare [data-add]').nth(0).click();await page.locator('#pirCompare [data-add]').nth(1).click();

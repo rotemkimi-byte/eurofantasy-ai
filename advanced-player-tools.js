@@ -42,23 +42,39 @@ function profiles(){
  for(const [key,p] of market)if(key)map.set('market:'+key,{id:'market:'+key,name:p.name,team:p.team,games:[]});
  return [...map.values()].sort((a,b)=>a.name.localeCompare(b.name));
 }
+const boxFields=[['PIR','valuation'],['דקות','timePlayed'],['נקודות','points'],['קליעות ל־3',3],['קליעות ל־2',2],
+ ['איבודים','turnovers'],['חטיפות','steals'],['חסימות','blocksFavour'],['עבירות','foulsCommited'],
+ ['ריבאונדים','totalRebounds'],['אסיסטים','assistances']];
+function boxMinutes(seconds){
+ if(seconds===null)return '—';
+ const rounded=Math.round(seconds);
+ return Math.floor(rounded/60)+':'+String(rounded%60).padStart(2,'0');
+}
+const boxShooting=(made,attempted)=>made===null?'—':attempted===null?fmt(made):fmt(made)+'/'+fmt(attempted);
+const boxTiles=render=>'<div class="ap-metrics ap-box-metrics">'+boxFields.map(([label,key])=>render(label,key)).join('')+'</div>';
+function boxAverageCards(games,range){
+ const a=C.boxAverages(games,boxFields.map(([,key])=>key).filter(key=>typeof key==='string'));
+ const title=range==='3'?'ממוצע למשחק · 3 הופעות אחרונות':'ממוצע למשחק · כל העונה';
+ const coverage=count=>count<a.games?note(count,a.games):'';
+ const tiles=a.games?boxTiles((label,key)=>{
+  if(typeof key==='number'){
+   const s=a.shooting[key];
+   return metric(label,boxShooting(s.made,s.attempted),coverage(s.covered));
+  }
+  const {mean,covered}=a.stats[key];
+  return metric(label,key==='timePlayed'?boxMinutes(mean):fmt(mean),coverage(covered));
+ }):empty('אין הופעות עם דקות משחק בטווח שנבחר.');
+ return '<article class="ap-box-game ap-box-average"><h4>'+title+'</h4><small>'+a.games+' הופעות בחישוב</small>'+tiles+'</article>';
+}
 function boxScore(p,games){
  if(!games.length)return empty('אין עדיין נתוני משחק לשחקן בעונה הנוכחית.');
- const fields=[['איבודים','turnovers'],['חטיפות','steals'],['חסימות','blocksFavour'],
-  ['עבירות','foulsCommited'],['ריבאונדים','totalRebounds'],['אסיסטים','assistances']];
- const shooting=(stats,points)=>{
-  const made=C.n(stats['fieldGoalsMade'+points]),attempted=C.n(stats['fieldGoalsAttempted'+points]);
-  return made===null?'—':attempted===null?fmt(made):made+'/'+attempted;
- };
  return games.map(g=>{
   const stats=g.stats||{},seconds=C.n(stats.timePlayed);
   const title='המספרים של '+p.name+(g.opponent?' מול '+g.opponent:'');
   const details=date(g.date)+' · '+(g.home?'בית':'חוץ')+' · מחזור '+(g.round??'—');
-  const minutes=seconds===null?'—':Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');
-  const tiles=seconds===0?empty('לא שיחק במשחק הזה.'):
-   '<div class="ap-metrics ap-box-metrics">'+metric('PIR',fmt(C.n(stats.valuation)))+metric('דקות',minutes)+
-   metric('נקודות',fmt(C.n(stats.points)))+metric('קליעות ל־3',shooting(stats,3))+metric('קליעות ל־2',shooting(stats,2))+
-   fields.map(([label,key])=>metric(label,fmt(C.n(stats[key])))).join('')+'</div>';
+  const tiles=seconds===0?empty('לא שיחק במשחק הזה.'):boxTiles((label,key)=>metric(label,
+   typeof key==='number'?boxShooting(C.n(stats['fieldGoalsMade'+key]),C.n(stats['fieldGoalsAttempted'+key])):
+   key==='timePlayed'?boxMinutes(seconds):fmt(C.n(stats[key]))));
   return '<article class="ap-box-game"><h4><bdi>'+esc(title)+'</bdi></h4>'+tiles+'<small>'+esc(details)+'</small></article>';
  }).join('');
 }
@@ -90,7 +106,7 @@ function lineups(games){
  return '<p class="ap-status">'+note(covered.length,games.length)+' · מיון לפי הנקודות של השחקן עם ארבעת חבריו להרכב</p><div class="ap-grid">'+rows.map((r,i)=>'<article class="ap-record"><h4>הרכב '+(i+1)+' · '+r.points+' נקודות</h4><ol>'+r.teammates.map(p=>'<li><bdi>'+esc(name(p.name))+'</bdi></li>').join('')+'</ol><small>'+r.games+' משחקים · דקות משותפות: '+fmt(r.minutes)+'</small></article>').join('')+'</div>';
 }
 const help={
-boxScore:'נתוני הבוקס סקור הרשמיים לכל משחק. קליעות מוצגות כקליעות מתוך ניסיונות. מקף מציין נתון חסר.',
+boxScore:'נתוני הבוקס סקור הרשמיים. בשלוש הופעות אחרונות ובעונה מוצג ממוצע למשחק שבו השחקן שיחק. קליעות מוצגות כקליעות מתוך ניסיונות, ובממוצע נכללות רק הופעות עם שני הנתונים. מקף מציין נתון חסר.',
 negative:'ממוצע לכל הופעה עם נתון זמין. אין סכום מאוחד: חסימה עשויה להיות גם החטאה, ועבירת תוקף עשויה להיות גם איבוד. חסימות שהשחקן ביצע אינן פעולה שלילית.',
 plus:'הפרש נקודות הקבוצה מול היריבה בזמן שהשחקן על המגרש, לפי הבוקס סקור הרשמי. ל־40 דקות מחושב מסך ההפרש חלקי סך הדקות כפול 40. זה אינו מדד סיבתי לאיכות השחקן.',
 shots:'מיקומי זריקות מהשדה מתוך המקור הרשמי בלבד. עונשין אינו ממופה. האחוזים לפי אזור מחושבים מכל הקליעות וההחטאות עם מיקום, גם כאשר מסננים את הנקודות במפה. סמוך לסל: עד 2 מטר מהטבעת. משחק נכלל רק אם יומן הזריקות תואם לבוקס סקור.',
@@ -153,7 +169,10 @@ for(const [id,title,kind] of tools){
   picked.innerHTML='<div class="ap-picked-inner"><span><b><bdi>'+esc(p.name)+'</bdi></b><small>'+esc(p.team)+'</small></span><button type="button" data-change>חזרה לרשימה ←</button></div>';
   const selectedGames=C.select(p.games,$('[data-range]').value),games=selectedGames.filter(g=>g.minutes>0),latest=selectedGames[0];
   if(kind==='boxScore'){
-   output.innerHTML=boxScore(p,selectedGames);
+   const range=$('[data-range]').value;
+   const multi=range==='3'||range==='0';
+   const rows=range==='3'?C.select(p.games.filter(g=>g.minutes>0),range):selectedGames;
+   output.innerHTML=multi?boxAverageCards(rows,range)+(rows.length?'<details><summary>פירוט המשחקים בטווח</summary>'+boxScore(p,rows)+'</details>':''):boxScore(p,rows);
    return;
   }
   const header='<div class="ap-profile"><h3><bdi>'+esc(p.name)+'</bdi></h3><small>'+esc(p.team)+' · '+games.length+' הופעות בטווח</small>'+(latest?'<small>הרישום האחרון בטווח: '+esc(latest.opponent||'')+' · '+date(latest.date)+' · מחזור '+esc(latest.round??'—')+'</small>':'')+'</div>';

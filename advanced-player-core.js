@@ -9,6 +9,21 @@ function select(games,range,now=Date.now()){
  if(String(range).startsWith('game:'))return rows.filter(g=>String(g.gameCode)===String(range).slice(5));
  return Number(range)>0?rows.slice(0,Number(range)):rows;
 }
+function boxAverages(games,fields){
+ const played=games.filter(g=>n(g.minutes)>0);
+ const summarize=values=>({
+  mean:values.length?values.reduce((total,value)=>total+value,0)/values.length:null,
+  covered:values.length
+ });
+ const stats=Object.fromEntries(fields.map(key=>[key,summarize(played
+  .map(g=>n(g.stats?.[key])).filter(value=>value!==null))]));
+ const shooting=Object.fromEntries([2,3].map(points=>{
+  const pairs=played.map(g=>[n(g.stats?.['fieldGoalsMade'+points]),n(g.stats?.['fieldGoalsAttempted'+points])])
+   .filter(([made,attempted])=>made!==null&&attempted!==null&&made>=0&&attempted>=made);
+  return [points,{made:summarize(pairs.map(p=>p[0])).mean,attempted:summarize(pairs.map(p=>p[1])).mean,covered:pairs.length}];
+ }));
+ return {games:played.length,stats,shooting};
+}
 function negative(games){
  const fields={turnovers:'turnovers',fouls:'foulsCommited',blocked:'blocksAgainst'};
  const result={};
@@ -118,6 +133,6 @@ function lineups(games){
   r.points+=row.points;r.minutes=r.minutes===null||row.minutes===null?null:r.minutes+row.minutes;r.games.add(g.gameCode);
  }return [...map.values()].map(r=>({...r,games:r.games.size,per40:r.minutes>0?40*r.points/r.minutes:null})).sort((a,b)=>b.points-a.points||b.minutes-a.minutes);
 }
-const api={n,pid,select,negative,plus,buildGame,attacks,lineups};
+const api={n,pid,select,boxAverages,negative,plus,buildGame,attacks,lineups};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.AdvancedPlayerCore=api;
 })(typeof window!=='undefined'?window:globalThis);
