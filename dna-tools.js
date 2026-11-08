@@ -283,7 +283,7 @@ function teamStyle(metrics,ownStats,rivalStats,ownName,rivalName){
  </figure>`;
 }
 function metricDetails(out,content){
- const open=out.querySelector('.dna-expanded')?.open;
+ const open=out.querySelector('.dna-expanded')?.open??true;
  return `<details class="dna-expanded"${open?' open':''}><summary>טבלת מדדים ומקורות</summary>${content}</details>`;
 }
 function valueCell(stat,rating,unit,side,{league=false,playerRank=false,valueSuffix='',singleGame=false,bar=rating}={}){
@@ -422,12 +422,12 @@ function renderPlayer(){
  ${headlineStats(summary)}
  ${tags.length?'<div class="dna-tags">'+tags.map(([,tag])=>'<span>'+tag+'</span>').join('')+'</div>':''}</section>
  ${games.length?playerStyle(own):empty('לשחקן אין הופעות מתועדות בקבוצה הזו בעונה הנוכחית.')}
- ${matching}
  ${games.length?metricDetails(out,`<p class="dna-explain">האחוזון משווה את השחקן ${position?'מול '+position:'לפי עמדה'} באותו טווח. לחיצה על מדד מציגה איך חושב.</p>
  <div class="dna-chart">${C.playerMetrics.map(metric=>{
   const [id,,unit]=metric;
   return row(metric,valueCell(own[id],ratings[id],unit,'dna-own',{playerRank:true,valueSuffix:id==='usage'?' מהפוזשנים':''}));
- }).join('')}</div>`):''}`;
+ }).join('')}</div>`):''}
+ ${matching}`;
  loadPortraits(out);
  const previous=out.querySelector('[data-player-past]');
  if(previous)previous.onclick=()=>{
