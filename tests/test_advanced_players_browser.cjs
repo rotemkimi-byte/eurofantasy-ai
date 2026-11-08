@@ -1,6 +1,14 @@
 'use strict';
 const {chromium}=require('playwright'),fs=require('node:fs'),http=require('node:http'),path=require('node:path'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..');
+function contrastRatio(a,b){
+ const luminance=color=>color.match(/\d+(?:\.\d+)?/g).slice(0,3)
+  .map(channel=>Number(channel)/255)
+  .map(value=>value<=0.04045?value/12.92:((value+0.055)/1.055)**2.4)
+  .reduce((sum,value,i)=>sum+value*[0.2126,0.7152,0.0722][i],0);
+ const [low,high]=[luminance(a),luminance(b)].sort((x,y)=>x-y);
+ return (high+0.05)/(low+0.05);
+}
 const server=http.createServer((req,res)=>{
  const file=path.join(root,decodeURIComponent(req.url.split('?')[0]==='/'?'/index.html':req.url.split('?')[0]));
  if(!file.startsWith(root+path.sep)){res.writeHead(403).end();return;}
@@ -24,6 +32,20 @@ const server=http.createServer((req,res)=>{
    await page.waitForSelector('#efNavigation');
    for(const theme of ['light','dark']){
     await page.evaluate(theme=>document.documentElement.dataset.theme=theme,theme);
+    await page.evaluate(()=>document.querySelector('nav.tabs [data-tab="teamDna"]').click());
+    const dna=page.locator('#teamDna');
+    for(const mode of ['offense','defense']){
+     const button=dna.locator(`[data-view="${mode}"]`);
+     await button.click();
+     assert.equal(await button.getAttribute('aria-pressed'),'true');
+     const colors=await dna.locator('.dna-switch button, .season-ranges button').evaluateAll(buttons=>buttons.map(button=>{
+      const style=getComputedStyle(button);
+      return [button.textContent,style.color,style.backgroundColor];
+     }));
+     for(const [label,text,background] of colors){
+      assert(contrastRatio(text,background)>=4.5,`Contrast for ${label} in ${theme} / ${mode} at ${width}px`);
+     }
+    }
     await page.evaluate(()=>document.querySelector('nav.tabs [data-tab="playerBoxScore"]').click());
     const box=page.locator('#playerBoxScore');
     await box.locator('[data-player]').selectOption(boxPlayer.id);
