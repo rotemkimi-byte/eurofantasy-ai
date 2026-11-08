@@ -220,48 +220,71 @@ function loadPortraits(out){
 function headlineStats(items){
  return `<dl class="dna-headline-stats">${items.map(([label,value])=>`<div><dt>${label}</dt><dd><bdi>${esc(value)}</bdi></dd></div>`).join('')}</dl>`;
 }
-function overviewChart(title,metrics,ids,series){
- const rows=ids.map(id=>metrics.find(metric=>metric[0]===id))
-  .filter(([id])=>series.some(([,stats])=>stats[id]?.value!=null));
- if(!rows.length)return empty('אין מספיק נתונים להצגת הגרף בטווח שנבחר.');
- return `<figure class="dna-overview-chart">
-  <figcaption>${title}</figcaption>
-  <p class="dna-explain">ערכים בפועל · סולם משותף של 0–100%</p>
-  ${series.length>1?legend(series[0][0],series[1][0]):''}
-  <dl class="dna-overview-rows">${rows.map(([id,label])=>`<div><dt>${label}</dt>
-   ${series.map(([name,stats],i)=>{
-    const value=stats[id]?.value;
-    return `<dd class="${i?'dna-other':'dna-own'}">
-     <span class="dna-overview-track" aria-hidden="true">${value==null?'':`<i style="--dna-width:${Math.max(0,Math.min(100,value))}%"></i>`}</span>
-     <bdi><span class="dna-sr-only">${esc(name)} · </span>${fmt(value,'%')}</bdi></dd>`;
-   }).join('')}</div>`).join('')}</dl></figure>`;
-}
-function radar(metrics,ids,series){
- const axes=ids.map(id=>metrics.find(metric=>metric[0]===id))
-  .filter(([id])=>series.every(([,ratings])=>Number.isFinite(ratings[id])));
- if(axes.length<3)return empty('אין מספיק מדדים מדורגים להצגת רדאר בטווח הזה.');
- const point=(index,value)=>{
-  const angle=index*2*Math.PI/axes.length-Math.PI/2;
-  return [110+78*value/100*Math.cos(angle),110+78*value/100*Math.sin(angle)].map(v=>v.toFixed(2));
- };
- const polygon=values=>values.map((value,index)=>point(index,value).join(',')).join(' ');
- return `<figure class="dna-radar">
-  <figcaption>רדאר סגנון · אחוזונים</figcaption>
-  <p class="dna-explain">0 במרכז, 100 בקצה. הערכים מראים מיקום יחסי במדגם.</p>
-  ${series.length>1?legend(series[0][0],series[1][0]):''}
-  <div class="dna-radar-layout">
-   <svg viewBox="0 0 220 220" aria-hidden="true" focusable="false">
-    ${[25,50,75,100].map(level=>`<polygon class="dna-radar-grid" points="${polygon(axes.map(()=>level))}"/>`).join('')}
-    ${axes.map((_,i)=>{const [x,y]=point(i,100);return `<line class="dna-radar-grid" x1="110" y1="110" x2="${x}" y2="${y}"/>`;}).join('')}
-    ${series.map(([,ratings],i)=>`<polygon class="dna-radar-series ${i?'dna-other':'dna-own'}" points="${polygon(axes.map(([id])=>ratings[id]))}"/>`).join('')}
-    ${axes.map((_,i)=>{const [x,y]=point(i,118);return `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central">${i+1}</text>`;}).join('')}
+function playerStyle(stats){
+ const three=stats.three.value,usage=stats.usage.value;
+ const shotNotes=[
+  ['דיוק משלוש',stats.threeAccuracy.value,'מהשלשות נכנסו'],
+  ['ליד הסל',stats.rim.value,'מהזריקות עם מיקום היו עד 2 מ׳ מהטבעת'],
+  ['מתפרצת',stats.fastbreak.value,'מהנקודות ביומן הזריקות'],
+  ['הזדמנות שנייה',stats.secondChance.value,'מהנקודות ביומן הזריקות']
+ ].filter(([,value])=>value!=null);
+ return `<section class="dna-player-style">
+  <figure class="dna-shot-split">
+   <svg class="dna-court-mark" viewBox="0 0 240 160" aria-hidden="true" focusable="false">
+    <path d="M2 2H238V158H2ZM78 2V64H162V2M78 64A42 42 0 0 0 162 64M18 2V28A102 102 0 0 0 222 28V2"/>
+    <circle cx="120" cy="20" r="7"/>
    </svg>
-   <ol>${axes.map(([id,label])=>`<li><b>${label}</b><span>${series.map(([name,ratings],i)=>`<bdi class="${i?'dna-other':'dna-own'}"><span class="dna-sr-only">${esc(name)} · </span>${ratings[id]}</bdi>`).join('')}</span></li>`).join('')}</ol>
-  </div></figure>`;
+   <figcaption>תמהיל הזריקות</figcaption><p>מתוך ניסיונות מהשדה</p>
+   ${three==null?'<p class="dna-shot-missing">אין נתוני זריקות בטווח הזה.</p>':`
+   <div class="dna-shot-labels">
+    <div><strong><bdi>${fmt(100-three,'%')}</bdi></strong><span>זריקות לשתיים</span></div>
+    <div><strong><bdi>${fmt(three,'%')}</bdi></strong><span>זריקות לשלוש</span></div>
+   </div>
+   <div class="dna-shot-strip" aria-hidden="true" style="--dna-two:${100-three}%"><i></i><i></i></div>`}
+  </figure>
+  <section class="dna-player-role">
+   <h4>התפקיד בהתקפה</h4>
+   <p class="dna-usage-summary">${usage==null?'אין אומדן שימוש בטווח הזה.':`<strong><bdi>${fmt(usage,'%')}</bdi></strong><span>מהפוזשנים של הקבוצה הסתיימו בזריקה, בעונשין או באיבוד שלו כשהיה על המגרש · אומדן Usage</span>`}</p>
+   ${shotNotes.length?`<dl class="dna-role-stats">${shotNotes.map(([label,value,note])=>`<div>
+    <dt>${label}<small>${note}</small></dt><dd><bdi>${fmt(value,'%')}</bdi></dd>
+   </div>`).join('')}</dl>`:''}
+  </section>
+ </section>`;
 }
-function expandedProfile(out,content){
+function teamStyle(metrics,ownStats,rivalStats,ownName,rivalName){
+ const ids=metrics===C.offense?['three','threeAccuracy','offRebound','assisted']:['allowedThree','allowedTwo','allowedRebound'];
+ const rows=ids.map(id=>{
+  const [,label]=metrics.find(metric=>metric[0]===id);
+  const a=ownStats[id]?.value,b=rivalStats[id]?.value;
+  return {label,a,b,gap:a!=null&&b!=null?Math.abs(a-b):null};
+ }).filter(({a,b})=>a!=null||b!=null);
+ if(!rows.length)return empty('אין מספיק נתונים להשוואת הסגנון בטווח הזה.');
+ const biggest=rows.reduce((best,row)=>row.gap!=null&&(!best||row.gap>best.gap)?row:best,null);
+ return `<figure class="dna-team-style">
+  <figcaption>${metrics===C.offense?'איך הקבוצות משחקות בהתקפה':'מה הקבוצות מאפשרות בהגנה'}</figcaption>
+  ${biggest&&biggest.gap>=0.1?`<p class="dna-gap-lead">הפער הגדול ביותר כאן הוא ב<strong>${biggest.label}</strong> · <bdi>${fmt(biggest.gap)}</bdi> נק׳ אחוז</p>`:''}
+  ${legend(ownName,rivalName)}
+  <div class="dna-team-scale" aria-hidden="true"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+  <dl class="dna-team-chart">${rows.map(({label,a,b,gap})=>`
+   <div class="dna-team-line">
+    <dt>${label}${gap==null?'':` <small>פער <bdi>${fmt(gap)}</bdi></small>`}</dt>
+    <dd>
+     <div class="dna-dot-track" aria-hidden="true">
+      ${gap==null?'':`<i class="dna-dot-connector" style="--dna-start:${Math.min(a,b)}%;--dna-gap:${gap}%"></i>`}
+      ${a==null?'':`<i class="dna-dot dna-own" style="--dna-point:${a}%"></i>`}
+      ${b==null?'':`<i class="dna-dot dna-other" style="--dna-point:${b}%"></i>`}
+     </div>
+     <div class="dna-dot-values">
+      <bdi class="dna-own"><span class="dna-sr-only">${esc(ownName)} · </span>${fmt(a,'%')}</bdi>
+      <bdi class="dna-other"><span class="dna-sr-only">${esc(rivalName)} · </span>${fmt(b,'%')}</bdi>
+     </div>
+    </dd>
+   </div>`).join('')}</dl>
+ </figure>`;
+}
+function metricDetails(out,content){
  const open=out.querySelector('.dna-expanded')?.open;
- return `<details class="dna-expanded"${open?' open':''}><summary>פרופיל מורחב · רדאר וכל המדדים</summary>${content}</details>`;
+ return `<details class="dna-expanded"${open?' open':''}><summary>טבלת מדדים ומקורות</summary>${content}</details>`;
 }
 function valueCell(stat,rating,unit,side,{league=false,playerRank=false,valueSuffix='',singleGame=false,bar=rating}={}){
  const real=stat?.value!=null;
@@ -350,10 +373,11 @@ function renderPlayerGame(out,record,games){
  <h3><bdi>${esc(record.name)}</bdi></h3>
  <p><bdi>${esc(game.team)}</bdi> מול <bdi>${esc(game.opponent)}</bdi> · <bdi>${fullDate.format(new Date(game.date))}</bdi></p>
  ${playerHistory(record,[game],'נתוני המשחק מול ממוצע העונה')}</div>
- <div class="dna-chart">${C.playerMetrics.map(metric=>{
+ ${playerStyle(stats)}
+ ${metricDetails(out,`<div class="dna-chart">${C.playerMetrics.map(metric=>{
   const [id,,unit]=metric;
   return row(metric,valueCell(stats[id],null,unit,'dna-own',{singleGame:true}));
- }).join('')}</div>`;
+ }).join('')}</div>`)}`;
 }
 function renderPlayer(){
  if(!model)return;
@@ -387,7 +411,6 @@ function renderPlayer(){
  const opponent=selectedRival==='next'?nextOpponent(record.team):selectedRival;
  const club=model.teams.find(t=>t.team===record.team),rival=model.teams.find(t=>t.team===opponent);
  const matching=club&&rival?guidance(ratings,record,club,rival,gameLimit):'';
- const manual=selectedRival&&selectedRival!=='next';
  const summary=[
   ['PIR ממוצע',fmt(avgPir)],['דקות למשחק',fmt(games.length?minutes/games.length:null)],['הופעות',fmt(games.length)]
  ];
@@ -398,15 +421,13 @@ function renderPlayer(){
  <h3><bdi>${esc(record.name)}</bdi></h3></div></div>
  ${headlineStats(summary)}
  ${tags.length?'<div class="dna-tags">'+tags.map(([,tag])=>'<span>'+tag+'</span>').join('')+'</div>':''}</section>
- ${games.length?`${overviewChart('סגנון התקפי',C.playerMetrics,['usage','three','rim','fastbreak'],[[record.name,own]])}
- ${expandedProfile(out,`${radar(C.playerMetrics,['usage','assists','three','offRebound','steals'],[[record.name,ratings]])}
- <p class="dna-explain">הפס הירוק מציג את האחוזון ${position?'מול '+position:'לפי עמדה'} באותו טווח. אחוזון 50 הוא אמצע הדירוג.</p>
+ ${games.length?playerStyle(own):empty('לשחקן אין הופעות מתועדות בקבוצה הזו בעונה הנוכחית.')}
+ ${matching}
+ ${games.length?metricDetails(out,`<p class="dna-explain">האחוזון משווה את השחקן ${position?'מול '+position:'לפי עמדה'} באותו טווח. לחיצה על מדד מציגה איך חושב.</p>
  <div class="dna-chart">${C.playerMetrics.map(metric=>{
   const [id,,unit]=metric;
   return row(metric,valueCell(own[id],ratings[id],unit,'dna-own',{playerRank:true,valueSuffix:id==='usage'?' מהפוזשנים':''}));
- }).join('')}</div>`)}`
- :empty('לשחקן אין הופעות מתועדות בקבוצה הזו בעונה הנוכחית.')}
- ${matching}`;
+ }).join('')}</div>`):''}`;
  loadPortraits(out);
  const previous=out.querySelector('[data-player-past]');
  if(previous)previous.onclick=()=>{
@@ -454,8 +475,9 @@ function renderHistory(out,metrics,games){
  out.innerHTML=`<header class="dna-profile dna-compare-head"><span class="dna-kicker">מפגש עבר · 2026/27</span>
  <h3><bdi>${esc(game.team)}</bdi> <bdi>${game.points}–${game.against}</bdi> <bdi>${esc(game.opponent)}</bdi></h3>
  <p>${fullDate.format(new Date(game.date))}</p></header>
- <p class="dna-explain">הפסים מציגים את ערכי המשחק. במדדי אחוזים הסולם הוא 0–100%. בשאר המדדים אורך הפס נקבע ביחס לערך הגבוה מבין הקבוצות.</p>${legend(game.team,game.opponent)}
- <div class="dna-chart">${comparisonRows(metrics,ownStats,rivalStats)}</div>`;
+ ${teamStyle(metrics,ownStats,rivalStats,game.team,game.opponent)}
+ ${metricDetails(out,`<p class="dna-explain">הטבלה מציגה את הערכים במשחק. לחיצה על מדד מציגה איך חושב.</p>${legend(game.team,game.opponent)}
+ <div class="dna-chart">${comparisonRows(metrics,ownStats,rivalStats)}</div>`)}`;
 }
 function renderTeams(updateGames=true){
  if(!model)return;
@@ -484,10 +506,8 @@ function renderTeams(updateGames=true){
  const heading=rival?.team||'ממוצע הליגה';
  const match=rival?fixtureFor(own.team,rival.team):'';
  const sizeNote=view==='offense'&&model.bands?'<p class="dna-explain">נתוני חמישיות גבוהות ונמוכות מבוססים על דקות שבהן אפשר לאמת את ההרכב. ספי המדגם · נמוכה עד '+fmt(model.bands.low,'cm')+' · גבוהה החל מ־'+fmt(model.bands.high,'cm')+'</p>':'';
- const chartIds=view==='offense'?['three','threeAccuracy','offRebound','assisted']:['allowedThree','allowedTwo','allowedRebound'];
- const radarIds=view==='offense'?['pace','three','offRebound','assisted','turnovers']:['allowedThree','allowedTwo','allowedRebound','forced','steals'];
- const ranked=stats=>Object.fromEntries(radarIds.map(id=>[id,benchmarks[id].percentile(stats[id])]));
- const leagueStats=Object.fromEntries(chartIds.map(id=>[id,{value:benchmarks[id].mean}]));
+ const leagueStats=Object.fromEntries(metrics.map(([id])=>[id,{value:benchmarks[id].mean}]));
+ const pace=ownStats.pace?.value,otherPace=(rivalStats||leagueStats).pace?.value;
  const selectedGames=record=>C.select(record.games,Number(selectedRange)).length;
  out.innerHTML=`<section class="dna-profile">
  <span class="dna-kicker">השוואת סגנונות</span>
@@ -495,10 +515,10 @@ function renderTeams(updateGames=true){
   <div class="dna-identity">${portrait(own.team,clubCrests.get(own.team),'club')}<div><h3><bdi>${esc(own.team)}</bdi></h3><p>${selectedGames(own)} משחקים בטווח</p></div></div>
   <span class="dna-versus">מול</span>
   <div class="dna-identity">${rival?portrait(heading,clubCrests.get(heading),'club'):''}<div><h3><bdi>${esc(heading)}</bdi></h3>${rival?`<p>${selectedGames(rival)} משחקים בטווח</p>`:''}</div></div>
- </div>${match?'<p>'+esc(match)+'</p>':''}</section>
- ${overviewChart(view==='offense'?'סגנון התקפי':'מה הקבוצות מאפשרות',metrics,chartIds,[[own.team,ownStats],[heading,rivalStats||leagueStats]])}
- ${expandedProfile(out,`${radar(metrics,radarIds,[[own.team,ranked(ownStats)],...(rival?[[heading,ranked(rivalStats)]]:[])])}
- <p class="dna-explain">הפסים בפירוט מראים דירוג יחסי לליגה בטווח שנבחר. 50 נמצא במרכז ההתפלגות.</p>
+ </div>${match?'<p class="dna-fixture">'+esc(match)+'</p>':''}
+ ${pace!=null||otherPace!=null?`<div class="dna-pace"><bdi class="dna-own">${fmt(pace)}</bdi><span>פוזשנים ל־40 דקות</span><bdi class="dna-other">${fmt(otherPace)}</bdi></div>`:''}</section>
+ ${teamStyle(metrics,ownStats,rivalStats||leagueStats,own.team,heading)}
+ ${metricDetails(out,`<p class="dna-explain">הדירוגים בטבלה משווים כל קבוצה למדגם הליגה בטווח שנבחר. לחיצה על מדד מציגה איך חושב.</p>
  ${legend(own.team,heading)}
  <div class="dna-chart">${comparisonRows(metrics,ownStats,rivalStats,benchmarks)}</div>${sizeNote}`)}`;
  loadPortraits(out);

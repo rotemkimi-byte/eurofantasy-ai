@@ -153,23 +153,147 @@ html[data-theme="light"] .tab .dna-switch button[aria-pressed="true"]{
 }
 .dna-team-pair .dna-identity:last-child{justify-self:end}
 .dna-versus{color:var(--dna-muted);font-size:13px}
-.dna-overview-chart,.dna-radar{margin:18px 0}
-.dna-overview-chart figcaption,.dna-radar figcaption{font-size:17px;font-weight:750}
-.dna-overview-rows{display:grid;gap:13px;margin:12px 0 0}
-.dna-overview-rows>div{display:grid;gap:5px}
-.dna-overview-rows dt{font-size:14px;font-weight:650}
-.dna-overview-rows dd{
+/* Keep the style summary separate from the full metric table. */
+.dna-player-style{
  display:grid;
- grid-template-columns:minmax(0,1fr) 5ch;
- gap:8px;
- align-items:center;
+ grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+ gap:clamp(12px,2vw,22px);
+ margin-block:18px;
+}
+.dna-shot-split{
+ position:relative;
+ isolation:isolate;
+ overflow:hidden;
  margin:0;
- font-size:14px;
- font-weight:700;
+ min-width:0;
+ padding:clamp(15px,3.4vw,30px);
+ border-radius:17px;
+ background:#102720;
+ color:#f1faf7;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+}
+.dna-court-mark{
+ position:absolute;
+ z-index:-1;
+ inset-block-start:0;
+ inset-inline-end:-5%;
+ width:min(65%,235px);
+ height:auto;
+ opacity:.33;
+ fill:none;
+ stroke:#4a806e;
+ stroke-width:1.2;
+}
+.dna-shot-split figcaption,.dna-team-style figcaption{font-size:clamp(17px,2vw,22px);font-weight:760;line-height:1.25}
+.dna-shot-split p{color:#c0d8ce;margin:4px 0 0;font-size:13px}
+.dna-shot-split .dna-shot-missing{margin-top:24px}
+.dna-shot-labels{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:10px;
+ margin-block:24px 12px;
+}
+.dna-shot-labels div:nth-child(2){text-align:end}
+.dna-shot-labels strong{
+ display:block;
+ color:#74e7be;
+ font-size:clamp(26px,5.4vw,48px);
+ line-height:1.05;
+ letter-spacing:-.04em;
  font-variant-numeric:tabular-nums;
 }
-.dna-overview-track{height:9px;border-radius:999px;background:var(--line);overflow:hidden}
-.dna-overview-track i{display:block;width:var(--dna-width);height:100%;border-radius:inherit;background:var(--dna-color)}
+.dna-shot-labels div:nth-child(2) strong{color:#ffce91}
+.dna-shot-labels span{display:block;margin-top:5px;font-size:13px;color:#e0ebe6}
+.dna-shot-strip{
+ display:grid;
+ grid-template-columns:var(--dna-two) minmax(0,1fr);
+ height:13px;
+ border-radius:999px;
+ overflow:hidden;
+}
+.dna-shot-strip i{background:#74e7be}
+.dna-shot-strip i+i{background:#ffce91}
+.dna-player-role{
+ min-width:0;
+ padding:clamp(13px,2.6vw,23px);
+ border-radius:17px;
+ background:var(--card2);
+}
+.dna-player-role h4{margin:0 0 8px;font-size:17px}
+.dna-usage-summary{display:flex;align-items:center;gap:10px;margin:0;color:var(--dna-muted);font-size:13px;line-height:1.45}
+.dna-usage-summary strong{color:var(--dna-primary);font-size:clamp(22px,3vw,32px);font-variant-numeric:tabular-nums}
+.dna-role-stats{margin:12px 0 0}
+.dna-role-stats>div{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:7px 0;border-top:1px solid var(--line)}
+.dna-role-stats dt{font-size:13px;font-weight:700}
+.dna-role-stats dt small{display:block;color:var(--dna-muted);font-size:11px;font-weight:500}
+.dna-role-stats dd{margin:0;font-size:16px;font-weight:750;font-variant-numeric:tabular-nums}
+.dna-pace{
+ display:grid;
+ grid-template-columns:1fr auto 1fr;
+ gap:8px;
+ align-items:center;
+ margin-top:12px;
+ padding-top:10px;
+ border-top:1px solid var(--line);
+ text-align:center;
+}
+.dna-pace span,.dna-profile .dna-fixture{font-size:12px;color:var(--dna-muted);text-align:center}
+.dna-pace bdi,.dna-dot-values bdi{color:var(--dna-color);font-weight:750;font-variant-numeric:tabular-nums}
+.dna-pace bdi{font-size:18px}
+.dna-team-style{
+ margin:18px 0;
+ padding:clamp(13px,3vw,24px);
+ border-radius:17px;
+ background:var(--card2);
+}
+.dna-gap-lead{margin:6px 0 0;color:var(--dna-muted);font-size:13px}
+.dna-gap-lead strong{color:var(--text)}
+.dna-team-style .dna-legend{margin:12px 0 13px;column-gap:17px}
+.dna-team-scale{
+ display:flex;
+ justify-content:space-between;
+ direction:ltr;
+ color:var(--dna-muted);
+ font-size:11px;
+ padding-inline:6px;
+}
+.dna-team-chart{margin:0}
+.dna-team-line{padding:8px 0 6px}
+.dna-team-line+.dna-team-line{border-top:1px solid var(--line)}
+.dna-team-line dt{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:14px;font-weight:700}
+.dna-team-line dt small{font-size:11px;font-weight:600;color:var(--dna-muted);white-space:nowrap}
+.dna-team-line dd{margin:0}
+.dna-dot-track{
+ position:relative;
+ direction:ltr;
+ margin:2px 6px 0;
+ height:22px;
+ background:linear-gradient(var(--line),var(--line)) center / 100% 2px no-repeat;
+}
+.dna-dot-connector{
+ position:absolute;
+ left:var(--dna-start);
+ top:9px;
+ width:var(--dna-gap);
+ height:4px;
+ background:var(--dna-muted);
+ border-radius:999px;
+}
+.dna-dot{
+ position:absolute;
+ left:var(--dna-point);
+ width:11px;
+ height:11px;
+ border:2px solid var(--card2);
+ border-radius:50%;
+ background:var(--dna-color);
+ transform:translateX(-50%);
+}
+.dna-dot.dna-own{top:3px}
+.dna-dot.dna-other{top:8px}
+.dna-dot-values{display:flex;gap:14px;font-size:14px}
 .dna-expanded{border-block:1px solid var(--line);margin:16px 0}
 html.ef-redesign .dna-expanded>summary,.dna-expanded>summary{
  color:var(--text);
@@ -178,15 +302,6 @@ html.ef-redesign .dna-expanded>summary,.dna-expanded>summary{
  font-weight:750;
 }
 .dna-expanded[open]{padding-bottom:12px}
-.dna-radar-layout{display:flex;flex-wrap:wrap;align-items:center;gap:0 22px}
-.dna-radar svg{width:min(210px,100%);margin-inline:auto;direction:ltr}
-.dna-radar-grid{fill:none;stroke:var(--line);stroke-width:1}
-.dna-radar-series{fill:var(--dna-color);fill-opacity:.12;stroke:var(--dna-color);stroke-width:2}
-.dna-radar text{fill:var(--text);font-size:14px}
-.dna-radar ol{flex:1 1 240px;padding-inline-start:24px;margin:0;font-size:13px}
-.dna-radar li{padding:5px 0;border-bottom:1px solid var(--line)}
-.dna-radar li>span{display:inline-flex;gap:8px;margin-inline-start:8px}
-.dna-radar li bdi{color:var(--dna-color);font-weight:750}
 .dna-sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .dna-tags span{
  border:1px solid var(--line);
@@ -250,7 +365,8 @@ html.ef-redesign .dna-row summary{padding:12px}
 .dna-rival-profile dd{margin:3px 0 0;font-weight:750}
 .dna-empty{padding:10px 0}
 @media(max-width:560px){
- .dna-player-controls{grid-template-columns:1fr}
+ .dna-player-controls,.dna-player-style{grid-template-columns:1fr}
+ html.ef-redesign .dna-shell{padding:12px}
  .dna-team-pair .dna-identity{flex-direction:column;gap:5px;text-align:center;justify-self:center}
  .dna-team-pair .dna-portrait{width:44px;height:44px}
  .dna-headline-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
