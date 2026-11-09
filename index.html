@@ -72,8 +72,8 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
 .pmListCrest{position:absolute;top:7px;left:7px;display:grid;place-items:center;min-width:24px;height:25px;font-size:9px;font-weight:800;color:#41475d}
 .pmListOther .pmListCrest{left:auto;right:7px}
 .pmListCrest img{width:25px;height:25px;object-fit:contain}
-.pmListPhoto{grid-area:photo;display:grid;place-items:end center;height:98px;padding-top:13px}
-.pmListPhoto img{width:100%;height:100%;min-height:0;object-fit:contain;object-position:bottom}
+.pmListPhoto{grid-area:photo;position:relative;display:grid;place-items:center;height:98px;overflow:hidden}
+.pmListPhoto img{position:absolute;top:3px;left:50%;transform:translateX(-50%);width:max(100%,105px);height:215%;object-fit:contain;object-position:top center}
 .pmListPhoto .squadJersey{width:45px;height:52px;margin:auto}
 .pmListPhoto img + svg,.pmListCrest img + b{display:none}
 .pmListInfo{grid-area:info;display:grid;gap:8px;min-width:0}
@@ -92,15 +92,16 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
 .pmListPrice small{display:block;font-size:10px;color:#41475d;margin-top:3px}
 .pmListGap{position:relative;border-radius:999px;background:#eeeff4;color:#41475d;text-align:center;padding:5px 12px;font-size:12px;font-weight:800;white-space:nowrap}
 .pmListGap[data-winner]{background:#d9f7c0;color:#244b15}
-.pmListGapArrow{position:absolute;top:50%;transform:translateY(-52%);font-size:20px;line-height:1}
-.pmListGap[data-winner="left"] .pmListGapArrow{left:6px}
-.pmListGap[data-winner="right"] .pmListGapArrow{right:6px}
+.pmListGapArrow{position:absolute;top:50%;width:7px;height:7px;border:solid currentColor;border-width:2px 2px 0 0}
+.pmListGap[data-winner="left"] .pmListGapArrow{left:7px;transform:translateY(-50%) rotate(-135deg)}
+.pmListGap[data-winner="right"] .pmListGapArrow{right:7px;transform:translateY(-50%) rotate(45deg)}
 .pmListEmpty{display:grid;place-items:center;padding:6px;font-size:11px;color:#41475d;text-align:center}
 @media(max-width:640px){
  .pmListGroup{padding:7px}
  .pmListHeader,.pmListRow{grid-template-columns:minmax(0,1fr) 78px minmax(0,1fr);gap:5px}
  .pmListPlayer,.pmListPlayer.pmListOther{grid-template-areas:"photo" "info";grid-template-columns:minmax(0,1fr);grid-template-rows:59px 1fr;gap:4px;min-height:100%;padding:5px;text-align:center}
- .pmListPhoto{height:59px;padding-top:0}
+ .pmListPhoto{height:59px}
+ .pmListPhoto img{width:100%;top:1px}
  .pmListPhoto .squadJersey{width:34px;height:40px}
  .pmListCrest{top:4px;left:4px;min-width:17px;height:18px;font-size:8px}
  .pmListOther .pmListCrest{right:4px}
@@ -829,7 +830,7 @@ function pmListMarkup(aRoster,bRoster,team,opponent){
   const left=pmAverage(a,'minutes'),right=pmAverage(b,'minutes');
   const difference=Number(clubNumber(left))-Number(clubNumber(right));
   const winner=difference>0?'left':difference<0?'right':null;
-  const gap=winner?`<span class="pmListGap" dir="rtl" data-winner="${winner}"><bdi dir="ltr">+${clubNumber(Math.abs(difference))}</bdi> דק׳ <span class="pmListGapArrow" role="img" aria-label="לטובת ${esc(reorderCommaName((winner==='left'?a:b).name))}">${winner==='left'?'‹':'›'}</span></span>`:
+  const gap=winner?`<span class="pmListGap" dir="rtl" data-winner="${winner}"><bdi dir="ltr">+${clubNumber(Math.abs(difference))}</bdi> דק׳ <span class="pmListGapArrow" role="img" aria-label="לטובת ${esc(reorderCommaName((winner==='left'?a:b).name))}"></span></span>`:
    `<span class="pmListGap" dir="rtl">${difference===0?'שוויון':'—'}</span>`;
   return `<div class="pmListRow">${pmListPlayer(a,pos,left,false)}<div class="pmListCenter"><div class="pmListPrices">${price(a)}${price(b)}</div>${gap}</div>${pmListPlayer(b,pos,right,true)}</div>`;
  };
