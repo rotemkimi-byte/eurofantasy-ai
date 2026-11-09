@@ -39,7 +39,7 @@ function matchup({a,b,pos}){
  return `<details class="pmHistoryPair"><summary>${side(a)}<span class="pmHistoryPosition">${position}</span>${side(b)}</summary>
   <div class="pmCompare"><table aria-label="השוואת שחקנים במשחק"><thead><tr>
   <th scope="col"><bdi>${esc(a?.name||'—')}</bdi></th><th scope="col">בפועל</th><th scope="col"><bdi>${esc(b?.name||'—')}</bdi></th>
-  </tr></thead><tbody>${PM_METRICS.map(([key,label])=>`<tr><td>${number(a,key)}</td><th scope="row">${label}</th><td>${number(b,key)}</td></tr>`).join('')}</tbody></table></div>
+  </tr></thead><tbody>${PM_METRICS.map(([key,label])=>pmComparisonRow(key,label,a?.values[key],b?.values[key])).join('')}</tbody></table></div>
  </details>`;
 }
 function lineups(box){

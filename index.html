@@ -677,6 +677,16 @@ const PM_METRICS=[['minutes','דקות'],['pir','PIR'],['points','נקודות']
 const playerMatchStats=new Map(),playerMatchBoxes=new Set();
 let playerMatchLoading=false,playerMatchErrors=0,playerMatchRequest=0;
 const pmNumber=v=>v==null||v===''||!Number.isFinite(Number(v))?null:Number(v);
+function pmComparisonRow(key,label,a,b,rowClass=''){
+ const firstValue=clubNumber(a),secondValue=clubNumber(b);
+ // Compare at the same precision shown in the table.
+ const difference=Number(firstValue)-Number(secondValue);
+ const advantage=key==='turnovers'?-difference:difference;
+ const cell=(value,leads)=>leads
+  ?`<td><strong class="pmLeader">${value}<span class="pmLeaderArrow" aria-hidden="true">▲</span><span class="pmLeaderLabel"> יתרון</span></strong></td>`
+  :`<td>${value}</td>`;
+ return `<tr${rowClass?` class="${rowClass}"`:''}>${cell(firstValue,advantage>0)}<th scope="row">${label}</th>${cell(secondValue,advantage<0)}</tr>`;
+}
 function pmBoxValues(stats,seconds){
  return {minutes:seconds/60,pir:stats.valuation,points:stats.points,rebounds:stats.totalRebounds,assists:stats.assistances,steals:stats.steals,blocks:stats.blocksFavour,turnovers:stats.turnovers};
 }
@@ -776,7 +786,7 @@ function renderPlayerMatchups(){
  const figure=(p,placeholder)=>p?`<button class="pmFigure" data-pm-player="${esc(p.name)}" aria-label="פרטי ${esc(p.name)}">${squadJersey(p)}<b>${esc(p.name)}</b><small>${esc(p.team)} · ${esc(p.pos)} · ${statusText(p.status)}</small><small>${clubNumber(p.price)} קרדיט</small>${physicalLine(p)}</button>`:`<div class="pmMissing">${placeholder}</div>`;
  const pair=(a,b,pos)=>{
   const games=p=>p?playerMatchStats.get(lastThreeName(p.name))?.games.size||0:0;
-  return `<article class="pmPair"><div class="pmFigures">${figure(a,'אין שחקן בעמדה '+pos)}${figure(b,'אין יריב בעמדה '+pos)}</div><div class="pmCompare"><table aria-label="השוואת שחקנים בעמדה ${pos}"><thead><tr><th>${a?esc(a.name):'שחקן'}</th><th>ממוצע</th><th>${b?esc(b.name):'יריב'}</th></tr></thead><tbody>${PM_METRICS.map(([key,label])=>`<tr><td>${clubNumber(pmAverage(a,key))}</td><th scope="row">${label}</th><td>${clubNumber(pmAverage(b,key))}</td></tr>`).join('')}<tr class="pmForecast"><td>${a?clubNumber(model(a).expected):'—'}</td><th scope="row">PIR צפוי</th><td>${b?clubNumber(model(b).expected):'—'}</td></tr></tbody></table><small class="pmSample">משחקים בקובצי הפירוט: ${games(a)} / ${games(b)}</small></div></article>`;
+  return `<article class="pmPair"><div class="pmFigures">${figure(a,'אין שחקן בעמדה '+pos)}${figure(b,'אין יריב בעמדה '+pos)}</div><div class="pmCompare"><table aria-label="השוואת שחקנים בעמדה ${pos}"><thead><tr><th>${a?esc(a.name):'שחקן'}</th><th>ממוצע</th><th>${b?esc(b.name):'יריב'}</th></tr></thead><tbody>${PM_METRICS.map(([key,label])=>pmComparisonRow(key,label,pmAverage(a,key),pmAverage(b,key))).join('')}${pmComparisonRow('pir','PIR צפוי',a?model(a).expected:null,b?model(b).expected:null,'pmForecast')}</tbody></table><small class="pmSample">משחקים בקובצי הפירוט: ${games(a)} / ${games(b)}</small></div></article>`;
  };
  const court=(label,second)=>{
   const a=pmLines(aRoster,second),b=pmLines(bRoster,second);
@@ -2438,7 +2448,14 @@ new MutationObserver(records=>{
 /* Keep the comparison's light card palette coherent in either site theme. */
 html.ef-redesign #playerMatchups .pmCompare th,html.ef-redesign #playerMatchups .pmCompare td{background:#fff;color:#201040}
 html.ef-redesign #playerMatchups .pmCompare thead th{background:#eeeaf4;color:#4c3c61;font-weight:700}
-html.ef-redesign #playerMatchups .pmCompare .pmForecast th,html.ef-redesign #playerMatchups .pmCompare .pmForecast td{color:#08754b;background:#f1fff8}
+html.ef-redesign #playerMatchups .pmCompare .pmForecast :is(th,td){background:#f1fff8}
+html.ef-redesign #playerMatchups .pmCompare .pmForecast th{color:#08754b}
+#playerMatchups .pmCompare .pmForecast td{color:#201040}
+.pmCompare .pmLeader{display:inline-flex;align-items:center;gap:.25em;direction:ltr;white-space:nowrap;color:#08652f;font-weight:800}
+.pmCompare td:last-child .pmLeader{flex-direction:row-reverse}
+.pmCompare .pmLeaderArrow{font-size:.78em;line-height:1}
+.pmCompare .pmLeaderLabel{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+html.ef-redesign[data-theme="dark"] #playerMatchups .pmCompare tr:not(.pmForecast) .pmLeader{color:#62e6a3}
 .pmBrowse{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:12px 0}.pmBrowse button{min-height:44px}
 .pmAllGames{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;align-items:flex-start;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;padding-bottom:12px}
 .pmGameSlide{flex:0 0 100%;min-width:0;scroll-snap-align:start}.pmGameSlide>h3{margin:12px 0 6px}.pmGameSlide .pmList{width:100%}
@@ -2474,4 +2491,4 @@ html.ef-redesign[data-theme=light] #playerMatchups .pmModes button[aria-pressed=
 .pmHistoryPosition::after{content:'⌄';display:block;font-size:14px;line-height:1}
 .pmHistoryPair[open] .pmHistoryPosition::after{content:'⌃'}
 .pmHistoryPair .pmCompare th,.pmHistoryPair .pmCompare td{font-size:12px}
-</style><script src="./player-matchup-history.js?v=1"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script><script src="./matchup-live.js"></script></body></html>
+</style><script src="./player-matchup-history.js?v=2"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script><script src="./matchup-live.js"></script></body></html>
