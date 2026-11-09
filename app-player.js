@@ -111,7 +111,7 @@ function chart(games){
 function marketGameRow(g){
  const opponent=canonicalTeam(g.opponent)||'יריבה לא ידועה';
  const kit=TEAM_KITS[opponent];
- const clubColor=opponent==='Baskonia'?kit?.[3]:kit?.[1]==='#ffffff'?kit[2]:kit?.[1];
+ const clubColor=['Baskonia','Besiktas'].includes(opponent)?kit?.[3]:opponent==='Real Madrid'?kit?.[2]:kit?.[1];
  const venue=g.home===true?'בית':g.home===false?'חוץ':'מיקום לא ידוע';
  const played=g.minutes>0,dnp=U.num(g.minutes)===0,s=g.stats||{};
  const pir=played?U.num(s.valuation):null;
