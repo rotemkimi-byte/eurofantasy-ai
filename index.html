@@ -57,8 +57,62 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
 </style><style>.squadVenue{display:block;background:#11082f;color:white;border-radius:4px;padding:4px 2px;font-size:9px;margin:5px 0;font-weight:800}.squadRivalPir{display:block;font-size:11px;font-weight:800;color:#281746;margin:5px 0}.squadRivalPir span{display:block;font-size:7px;font-weight:400;color:#605266;margin-top:2px}</style><style>.pmControls{grid-template-columns:1fr 1fr auto;align-items:end}.pmControls label{min-width:0}.pmSummary{font-size:16px;font-weight:800;color:var(--accent);margin:13px 0 8px}.pmHelp{font-size:11px;line-height:1.6}.pmExplanation{margin:6px 0 12px}.pmExplanation>summary{display:list-item;width:fit-content;cursor:pointer;font-size:12px;font-weight:700;color:var(--accent);padding:6px 12px;border:1px solid var(--line);border-radius:9px;background:var(--card2)}.pmExplanationBody{font-size:12px;line-height:1.7;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-top:8px}.pmExplanationBody p{margin:0 0 9px}.pmExplanationBody p:last-child{margin-bottom:0}.pmLineupTitle{font-size:16px;margin:16px 0 10px;color:var(--text)}.pmCourt{border-radius:14px;padding:18px 10px;max-width:900px;margin:auto}.pmCourtRow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0 0;align-items:start}.pmCenter{display:flex;justify-content:center;margin-top:0}.pmCenter>.pmPair{width:calc(50% - 7px)}.pmPair{min-width:0;color:#180d3e}.pmFigures{display:grid;grid-template-columns:1fr 1fr;gap:5px;align-items:end}.pmFigure{width:100%;min-width:0;background:transparent;padding:0;color:#170b35;border-radius:0;font-size:11px}.pmFigure .squadJersey{width:58px;height:76px;max-width:100%}.pmFigure b{display:block;background:#13092f;color:#fff;padding:5px 3px;border-bottom:3px solid #00c783;border-radius:6px 6px 0 0;min-height:39px;font-size:10px;line-height:1.3;overflow-wrap:anywhere}.pmFigure small{display:block;font-size:8px;line-height:1.4;overflow-wrap:anywhere;padding:3px 2px;background:#fff;color:#665674}.pmCompare{background:white;padding:6px 3px;border-radius:0 0 7px 7px;margin-top:3px}.pmCompare table{width:100%;min-width:0;table-layout:fixed}.pmCompare th,.pmCompare td{padding:6px 2px;font-size:10px;text-align:center;border-bottom:1px solid #e5dfec;position:static;background:transparent;color:#201040;overflow-wrap:anywhere}.pmCompare thead th{width:31%;font-size:8px;color:#71617d;font-weight:500}.pmCompare thead th:nth-child(2){width:38%}.pmCompare td{font-weight:800;direction:ltr}.pmCompare th{width:38%;font-weight:500}.pmCompare .pmForecast th,.pmCompare .pmForecast td{color:#08754b;border-top:2px solid #00c783;border-bottom:0}.pmSample{display:block;font-size:8px;color:#786c84;text-align:center;margin-top:6px}.pmMissing{font-size:10px;padding:16px 3px;text-align:center;border:1px dashed #fff;background:#ffffff4f;min-height:120px;display:grid;place-items:center}.pmExtra{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:10px}.pmExtraGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}.pmExtra .pmFigure small{background:#e7e0ef}.pmExtra .pmFigure{color:white}@media(max-width:600px){.pmControls{grid-template-columns:1fr 1fr}.pmControls button{grid-column:1/-1}.pmCourt{padding:15px 6px}.pmCourtRow{gap:9px}.pmCenter>.pmPair{width:calc(50% - 4.5px)}.pmFigure .squadJersey{width:44px;height:59px}.pmFigure b{font-size:9px;min-height:44px}.pmCompare th,.pmCompare td{font-size:9px;padding:5px 1px}.pmSummary{font-size:14px}.pmSample{font-size:7px}}@media(max-width:350px){.pmCourtRow,.pmExtraGrid{grid-template-columns:1fr}.pmCenter>.pmPair{width:100%}.pmFigure .squadJersey{width:55px;height:72px}}
 </style><style>.playerPhysical{display:block;font-size:9px;line-height:1.45;color:#665674;margin:4px 0;overflow-wrap:anywhere}.squadRival .playerPhysical{font-size:8px}.squadInfo>.playerPhysical{padding-bottom:5px;border-bottom:1px solid #e5dfec;margin-bottom:7px}.pmFigure>.playerPhysical{background:#fff;padding:4px 2px;margin:0;font-size:8px}.squadLower .playerPhysical{font-size:8px}</style><link rel="stylesheet" href="./coaches-ui.css?v=3"><link rel="stylesheet" href="./audit-compact.css?v=1"><style>
 .pmControls{grid-template-columns:1fr 1fr 1fr auto}
-.pmList{max-width:900px;margin:auto}.pmListGroup{background:#fff;color:#180d3e;border-radius:18px;padding:8px 12px;margin-bottom:18px}.pmListHeader,.pmListRow{display:grid;grid-template-columns:minmax(0,1fr) 48px 48px minmax(0,1fr);gap:8px;align-items:center}.pmListHeader{color:#766d81;font-size:10px;padding:8px 0;text-align:center}.pmListRow{padding:14px 0;border-bottom:1px solid #eeeaf2}.pmListRow:last-child{border-bottom:0}.pmListPlayer{min-width:0;background:transparent;color:#180d3e;padding:0;border-radius:0;text-align:right;cursor:pointer}.pmListPlayer.pmListOther{text-align:left}.pmListName{display:block;border-bottom:3px solid #00c783;padding:0 0 5px;font-size:19px;line-height:1.35;overflow-wrap:anywhere}.pmListPos{display:inline-block;background:#eeeaf2;border-radius:4px;padding:1px 4px;font-size:10px;margin-inline-end:4px}.pmListMinutes{display:block;font-size:11px;color:#6b6077;margin-top:5px}.pmListPrice{background:#f1eff4;border-radius:8px;text-align:center;padding:8px 1px;direction:ltr}.pmListPrice b{display:block;font-size:17px;font-variant-numeric:tabular-nums;line-height:1.1}.pmListPrice small{display:block;font-size:9px;color:#766d81;margin-top:3px}.pmListEmpty{font-size:11px;color:#81788c;text-align:center}
-@media(max-width:600px){.pmControls{grid-template-columns:1fr 1fr}.pmListGroup{padding:6px 8px}.pmListHeader,.pmListRow{grid-template-columns:minmax(0,1fr) 38px 38px minmax(0,1fr);gap:5px}.pmListName{font-size:16px}.pmListPrice b{font-size:15px}.pmListMinutes{font-size:10px}}
+.pmList{max-width:1000px;margin:auto}
+.pmListGroup{background:#fcfcfe;color:#17162d;border:1px solid #e7e9f0;border-radius:18px;padding:12px;margin-bottom:18px}
+.pmListHeader,.pmListRow{display:grid;grid-template-columns:minmax(0,1fr) clamp(96px,17vw,160px) minmax(0,1fr);gap:12px;align-items:center;direction:ltr}
+.pmListHeader{margin-bottom:12px;text-align:center;font-size:12px;font-weight:800;color:#41475d}
+.pmListHeader bdi{border-radius:8px;background:#f1f1f6;padding:5px 4px;overflow-wrap:anywhere}
+.pmListHeader bdi:last-child{background:#eaf2ff}
+.pmListRow + .pmListRow{margin-top:12px}
+.pmListPlayer,.pmListEmpty{background:#f1f1f6;border:1px solid #e7e7ef;border-radius:16px;color:#17162d;min-width:0;min-height:118px}
+.pmListOther{background:#eaf2ff;border-color:#dce7f9}
+.pmListPlayer{position:relative;display:grid;grid-template-areas:"photo info";grid-template-columns:minmax(0,38%) minmax(0,1fr);gap:8px;align-items:center;width:100%;padding:8px 10px;text-align:left;font:inherit}
+.pmListPlayer.pmListOther{grid-template-areas:"info photo";grid-template-columns:minmax(0,1fr) minmax(0,38%);text-align:right}
+.pmListPlayer:focus-visible{outline:2px solid #215eb0;outline-offset:2px}
+.pmListCrest{position:absolute;top:7px;left:7px;display:grid;place-items:center;min-width:24px;height:25px;font-size:9px;font-weight:800;color:#41475d}
+.pmListOther .pmListCrest{left:auto;right:7px}
+.pmListCrest img{width:25px;height:25px;object-fit:contain}
+.pmListPhoto{grid-area:photo;display:grid;place-items:end center;height:98px;padding-top:13px}
+.pmListPhoto img{width:100%;height:100%;min-height:0;object-fit:contain;object-position:bottom}
+.pmListPhoto .squadJersey{width:45px;height:52px;margin:auto}
+.pmListPhoto img + svg,.pmListCrest img + b{display:none}
+.pmListInfo{grid-area:info;display:grid;gap:8px;min-width:0}
+.pmListName{display:flex;align-items:center;gap:5px;font-size:clamp(13px,2vw,23px);line-height:1.12;overflow-wrap:anywhere}
+.pmListOther .pmListName{justify-content:flex-end}
+.pmListPos{flex:none;background:#dfe4ef;border-radius:5px;padding:3px 5px;font-size:11px;line-height:1}
+.pmListBar{height:7px;border-radius:9px;background:#d5d9e3;overflow:hidden}
+.pmListBar span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#087e47,#61bf28)}
+.pmListMinutes{font-size:clamp(11px,1.35vw,15px);color:#41475d}
+.pmListMinutes bdi,.pmListPrice b,.pmListGap bdi{font-variant-numeric:tabular-nums}
+.pmListCenter{display:grid;gap:8px;position:relative}
+.pmListCenter::before{content:"";width:1px;height:10px;background:#c9cfdc;justify-self:center}
+.pmListPrices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.pmListPrice{background:#efeff5;border-radius:10px;text-align:center;padding:7px 2px}
+.pmListPrice b{display:block;font-size:clamp(14px,2vw,23px);line-height:1.1}
+.pmListPrice small{display:block;font-size:10px;color:#41475d;margin-top:3px}
+.pmListGap{position:relative;border-radius:999px;background:#eeeff4;color:#41475d;text-align:center;padding:5px 12px;font-size:12px;font-weight:800;white-space:nowrap}
+.pmListGap[data-winner]{background:#d9f7c0;color:#244b15}
+.pmListGapArrow{position:absolute;top:50%;transform:translateY(-52%);font-size:20px;line-height:1}
+.pmListGap[data-winner="left"] .pmListGapArrow{left:6px}
+.pmListGap[data-winner="right"] .pmListGapArrow{right:6px}
+.pmListEmpty{display:grid;place-items:center;padding:6px;font-size:11px;color:#41475d;text-align:center}
+@media(max-width:640px){
+ .pmListGroup{padding:7px}
+ .pmListHeader,.pmListRow{grid-template-columns:minmax(0,1fr) 78px minmax(0,1fr);gap:5px}
+ .pmListPlayer,.pmListPlayer.pmListOther{grid-template-areas:"photo" "info";grid-template-columns:minmax(0,1fr);grid-template-rows:59px 1fr;gap:4px;min-height:100%;padding:5px;text-align:center}
+ .pmListPhoto{height:59px;padding-top:0}
+ .pmListPhoto .squadJersey{width:34px;height:40px}
+ .pmListCrest{top:4px;left:4px;min-width:17px;height:18px;font-size:8px}
+ .pmListOther .pmListCrest{right:4px}
+ .pmListCrest img{width:18px;height:18px}
+ .pmListInfo{grid-template-rows:1fr 5px auto;gap:5px}
+ .pmListName,.pmListOther .pmListName{justify-content:center}
+ .pmListPos{padding:2px 3px;font-size:9px}
+ .pmListBar{height:5px}
+ .pmListPrices{gap:4px}
+ .pmListGap{font-size:11px}
+}
+@media(max-width:600px){.pmControls{grid-template-columns:1fr 1fr}}
 </style><style>.pirControls{grid-template-columns:repeat(3,minmax(0,1fr));align-items:end}.pirControls label{min-width:0}.pirControls select,.pirControls input{width:100%;min-width:0}.pirStats{grid-template-columns:repeat(4,minmax(0,1fr));margin:15px 0;scroll-margin-top:180px}.pirNote{font-size:11px;line-height:1.6;margin-top:12px}.pirNote a{color:var(--blue)}.pirChart{overflow-x:auto;overscroll-behavior-x:contain;border:1px solid var(--line);border-radius:12px;background:#0c1118;padding:5px}.pirChart svg{display:block;height:240px;max-width:none}.pirPoint{cursor:pointer;outline:none}.pirPoint:focus circle:last-of-type{stroke:#fff;stroke-width:3}.pirDetail{padding:12px;background:var(--card2);border-radius:10px;font-size:13px;line-height:1.6;margin-top:12px}.pirTable{width:100%;min-width:0;table-layout:fixed}.pirTable th,.pirTable td{padding:12px 5px;font-size:12px;position:static;overflow-wrap:anywhere}.pirTable th:first-child{width:43%}.pirTable small{display:block;font-size:10px;color:var(--muted);margin-top:4px}.pirTable tr{cursor:pointer}.pirTable td:not(:first-child){text-align:center;font-variant-numeric:tabular-nums}@media(max-width:600px){.pirControls{grid-template-columns:repeat(2,minmax(0,1fr))}.pirStats{gap:5px}.pirStats .stat{padding:10px 3px}.pirStats .stat b{font-size:20px}.pirStats .stat span{font-size:9px}}</style><style>.pirPicker{grid-column:1/-1;min-width:0}.pirPicker>span{display:block;color:var(--muted);font-size:12px;margin-bottom:8px}.pirPicker select[hidden]{display:none!important}.pirRoster>p{padding:12px;margin:0;font-size:13px}</style><style>.injuryControls{grid-template-columns:minmax(0,360px);margin-top:15px}.injuryControls select{width:100%;min-width:0}.injurySummary{font-size:12px;margin-top:12px}.injuryList{display:flex;flex-direction:column;gap:10px}.injuryRow{background:var(--card2);border:1px solid var(--line);border-radius:13px;overflow:hidden}.injuryOpen{display:flex;justify-content:space-between;gap:14px;align-items:center;width:100%;text-align:right;background:transparent;color:var(--text);padding:15px;border-radius:0}.injuryIdentity{min-width:0}.injuryIdentity>b{display:block;font-size:18px;overflow-wrap:anywhere;line-height:1.35}.injuryIdentity>small{display:block;color:var(--muted);font-size:12px;margin-top:5px}.injuryStatus{display:inline-block;font-size:12px;margin-top:7px}.injuryPrice{flex:0 0 70px;text-align:center}.injuryPrice>b{display:block;font-size:23px;color:var(--accent);direction:ltr}.injuryPrice>small{font-size:10px;color:var(--muted)}.injuryMates{border-top:1px solid var(--line);padding:10px 15px;font-size:11px;color:var(--muted)}.injuryMates summary{cursor:pointer}.injuryMates .chips{margin-top:10px}.injuryMates .chip{cursor:pointer;white-space:normal;text-align:right;color:var(--text)}.injuryOpen:focus-visible{outline:2px solid var(--accent);outline-offset:-3px}</style><style>
 :root{color-scheme:dark;--chart-grid:#2b333e;--chart-muted:#99a3b0;--chart-text:#f7f8fa;--chart-accent:#62e6a5;--chart-negative:#ff7878}
 .themeToggle{font-size:12px;white-space:nowrap;flex-shrink:0}.themeToggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
@@ -675,6 +729,15 @@ function renderClubMarket(){
 
 const PM_METRICS=[['minutes','דקות'],['pir','PIR'],['points','נקודות'],['rebounds','ריבאונדים'],['assists','אסיסטים'],['steals','חטיפות'],['blocks','חסימות'],['turnovers','איבודים']];
 const playerMatchStats=new Map(),playerMatchBoxes=new Set();
+let playerCardMedia=null;
+const playerCardCrests=new Map();
+function playerCardProfile(p){return playerCardMedia?.players?.[window.UsageCore?.key(p.name)||lastThreeName(p.name)]}
+function playerCardImageUrl(url){
+ try{
+  const u=new URL(url);
+  return u.protocol==='https:'&&['media-cdn.cortextech.io','media-cdn.incrowdsports.com','media-cdn.euroleague.net'].includes(u.hostname)?u.href:null;
+ }catch{return null}
+}
 let playerMatchLoading=false,playerMatchErrors=0,playerMatchRequest=0;
 const pmNumber=v=>v==null||v===''||!Number.isFinite(Number(v))?null:Number(v);
 function pmComparisonRow(key,label,a,b,rowClass=''){
@@ -742,13 +805,37 @@ function pmListPairs(aRoster,bRoster,positions=['C','F','G']){
   return Array.from({length:Math.max(a.length,b.length)},(_,rank)=>({a:a[rank],b:b[rank],pos,group:rank<firstCount?0:rank<firstCount*2?1:2}));
  });
 }
+function pmListPlayer(p,pos,minutes,other){
+ const side=other?' pmListOther':'';
+ if(!p)return `<span class="pmListEmpty${side}" dir="rtl">אין שחקן בעמדת ${pos}</span>`;
+ const team=canonicalTeam(p.team),crest=playerCardCrests.get(team);
+ const photo=playerCardImageUrl(playerCardProfile(p)?.photo);
+ const image=url=>url?`<img src="${esc(url)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:'';
+ const width=Math.max(0,Math.min(100,minutes/40*100));
+ return `<button type="button" class="pmListPlayer${side}" data-pm-player="${esc(p.name)}">
+  <span class="pmListCrest" role="img" aria-label="${esc(team)}">${image(crest)}<b>${esc(TEAM_KITS[team]?.[0]||team)}</b></span>
+  <span class="pmListPhoto" aria-hidden="true">${image(photo)}${squadJersey(p)}</span>
+  <span class="pmListInfo">
+   <b class="pmListName"><bdi>${esc(reorderCommaName(p.name))}</bdi><span class="pmListPos">${pos}</span></b>
+   <span class="pmListBar" aria-hidden="true"><span style="width:${width}%"></span></span>
+   <span class="pmListMinutes" dir="rtl"><bdi dir="ltr">${clubNumber(minutes)}</bdi> דק׳ בממוצע</span>
+  </span>
+ </button>`;
+}
 function pmListMarkup(aRoster,bRoster,team,opponent){
- const posName={C:'C',F:'F',G:'G'},pairs=pmListPairs(aRoster,bRoster);
- const player=(p,pos,other)=>p?`<button class="pmListPlayer ${other?'pmListOther':''}" data-pm-player="${esc(p.name)}" aria-label="פרטי ${esc(p.name)}"><b class="pmListName"><span class="pmListPos">${posName[pos]}</span><bdi>${esc(p.name)}</bdi></b><span class="pmListMinutes">${clubNumber(pmAverage(p,'minutes'))} דק׳ בממוצע</span></button>`:`<span class="pmListEmpty">אין שחקן בעמדת ${posName[pos]}</span>`;
+ const pairs=pmListPairs(aRoster,bRoster);
  const price=p=>`<span class="pmListPrice"><b>${clubNumber(p?.price)}</b><small>קרדיט</small></span>`;
+ const row=({a,b,pos})=>{
+  const left=pmAverage(a,'minutes'),right=pmAverage(b,'minutes');
+  const difference=Number(clubNumber(left))-Number(clubNumber(right));
+  const winner=difference>0?'left':difference<0?'right':null;
+  const gap=winner?`<span class="pmListGap" dir="rtl" data-winner="${winner}"><bdi dir="ltr">+${clubNumber(Math.abs(difference))}</bdi> דק׳ <span class="pmListGapArrow" role="img" aria-label="לטובת ${esc(reorderCommaName((winner==='left'?a:b).name))}">${winner==='left'?'‹':'›'}</span></span>`:
+   `<span class="pmListGap" dir="rtl">${difference===0?'שוויון':'—'}</span>`;
+  return `<div class="pmListRow">${pmListPlayer(a,pos,left,false)}<div class="pmListCenter"><div class="pmListPrices">${price(a)}${price(b)}</div>${gap}</div>${pmListPlayer(b,pos,right,true)}</div>`;
+ };
  return `<div class="pmList">${['מובילי הדקות לפי עמדה','הבאים בדירוג הדקות לפי עמדה','יתר הסגל · לפי עמדה ודקות'].map((title,group)=>{
   const rows=pairs.filter(p=>p.group===group);if(!rows.length)return '';
-  return `<h3 class="pmLineupTitle">${title}</h3><div class="pmListGroup"><div class="pmListHeader"><span>${esc(team)}</span><span>מחיר</span><span>מחיר</span><span>${esc(opponent||'טרם נקבעה יריבה')}</span></div>${rows.map(({a,b,pos})=>`<div class="pmListRow">${player(a,pos,false)}${price(a)}${price(b)}${player(b,pos,true)}</div>`).join('')}</div>`;
+  return `<h3 class="pmLineupTitle">${title}</h3><div class="pmListGroup"><div class="pmListHeader"><bdi>${esc(team)}</bdi><span dir="rtl">מחיר ופער דקות</span><bdi>${esc(opponent||'טרם נקבעה יריבה')}</bdi></div>${rows.map(row).join('')}</div>`;
  }).join('')}</div>`;
 }
 function renderPlayerMatchups(){
@@ -803,6 +890,9 @@ try{const saved=localStorage.getItem('pmView');if(saved==='list'||saved==='court
 document.getElementById('pmView').addEventListener('change',()=>{if(document.getElementById('pmView').value==='court'&&document.getElementById('pmTeam').value==='__all__'){document.getElementById('pmTeam').selectedIndex=1;void pmLoadStats();}try{localStorage.setItem('pmView',document.getElementById('pmView').value)}catch{}renderPlayerMatchups()});
 document.getElementById('pmReload').onclick=()=>void pmLoadStats();
 document.querySelector('[data-tab="playerMatchups"]').addEventListener('click',()=>void pmLoadStats());
+document.getElementById('pmCourts').addEventListener('error',e=>{
+ if(e.target.matches('.pmListPhoto img,.pmListCrest img'))e.target.remove();
+},true);
 
 
 function absenceGroups(list,onlyOut,forecast){
@@ -2303,12 +2393,10 @@ section.classList.add('pmReference');
 const table=section.querySelector('.tablewrap');table.hidden=true;
 const root=document.createElement('div');root.id='marketReferenceCards';root.className='pmRefGrid';table.after(root);
 let visible=[];
-let media=null;
-const imageUrl=url=>{try{const u=new URL(url);return u.protocol==='https:'&&['media-cdn.cortextech.io','media-cdn.incrowdsports.com','media-cdn.euroleague.net'].includes(u.hostname)?u.href:null}catch{return null}};
 function card(p){
  const team=canonicalTeam(p.team),kit=TEAM_KITS[team]||['—','#36485c','#ffffff'];
- const profile=media?.players?.[window.UsageCore?.key(p.name)||lastThreeName(p.name)];
- const photo=imageUrl(profile?.photo),crest=profile&&canonicalTeam(profile.club)===team?imageUrl(profile.crest):null;
+ const profile=playerCardProfile(p);
+ const photo=playerCardImageUrl(profile?.photo),crest=profile&&canonicalTeam(profile.club)===team?playerCardImageUrl(profile.crest):null;
  const m=matchup(p),forecast=model(p),expected=pmNumber(forecast.expected),delta=pmNumber(window.RoundReviewUI?.delta(p));
  const count=expected===null?0:Math.max(0,Math.min(5,Math.round(expected/6)));
  const venue=m?.home===true?'⌂ בית':m?.home===false?'↗ חוץ':'מיקום טרם נקבע';
@@ -2324,7 +2412,21 @@ root.addEventListener('click',e=>{
 });
 window.MarketReferenceUI={render(list){visible=list;paint()}};
 renderMarket();
-fetch('./data/player-media.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('media');return r.json()}).then(d=>{if(d.season==='E2026'){media=d;paint()}}).catch(()=>{});
+fetch('./data/player-media.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('media');return r.json()}).then(d=>{
+ if(d.season!=='E2026')return;
+ playerCardMedia=d;
+ for(const profile of Object.values(d.players||{})){
+  const crest=playerCardImageUrl(profile.crest);
+  if(crest&&profile.club)playerCardCrests.set(canonicalTeam(profile.club),crest);
+ }
+ paint();
+ const matchups=document.getElementById('pmCourts');
+ if(!matchups.querySelector('.pmListRow'))return;
+ const scroll=matchups.querySelector('.pmAllGames')?.scrollLeft??0;
+ renderPlayerMatchups();
+ const strip=matchups.querySelector('.pmAllGames');
+ if(strip)strip.scrollLeft=scroll;
+}).catch(()=>{});
 })();
 </script>
 
