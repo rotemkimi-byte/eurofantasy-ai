@@ -2422,6 +2422,7 @@ fetch('./data/player-media.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Err
   const crest=playerCardImageUrl(profile.crest);
   if(crest&&profile.club)playerCardCrests.set(canonicalTeam(profile.club),crest);
  }
+ document.dispatchEvent(new Event('fantasy-player-media-ready'));
  paint();
  const matchups=document.getElementById('pmCourts');
  if(!matchups.querySelector('.pmListRow'))return;
@@ -2436,60 +2437,414 @@ fetch('./data/player-media.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Err
 <style id="squad-simulator-style">
 #teamView{flex-wrap:nowrap;overflow-x:auto;padding:10px 12px;gap:7px;direction:rtl}#teamView button{flex:0 0 auto;background:#e3eaf5!important;border:1px solid #8699b4!important;color:#20344f!important;box-shadow:0 2px 3px #142b4514;font-weight:850}#teamView button[aria-pressed="true"]{background:#087e60!important;color:#fff!important;border-color:#07654d!important}#teamView [data-team-view="review"]{order:99;margin-inline-start:auto}
 .tabs button:not(.active){color:#20344f!important;background:#e3eaf5!important;border-color:#94a5bd!important}.tabs button.active{background:#087e60!important;color:white!important;border-color:#087e60!important}
-#squadSimulation{padding:14px;background:linear-gradient(150deg,#101b33,#21143d);color:#fff;border-radius:16px;margin:10px}.simToolbar{display:flex;gap:10px;align-items:end;flex-wrap:wrap}.simToolbar label{color:#e4eaf5;flex:1;min-width:160px}.simToolbar input,.simFilters input,.simFilters select{background:#fff;color:#192b42;border-color:#bdcbdc}.simToolbar button{background:#deebf8;color:#1c3552}.simNote{font-size:12px;color:#d3dcec;line-height:1.6;margin:10px 0}.simTotals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:14px 0}.simTotals>div{padding:10px 4px;text-align:center;background:#ffffff12;border:1px solid #ffffff30;border-radius:12px}.simTotals b{display:block;font-size:23px;direction:ltr}.simTotals small{color:#d3dcec;font-size:11px}.simRoster{display:grid;grid-template-columns:repeat(auto-fill,minmax(135px,1fr));gap:8px}.simSlot{background:#f2f6fd;color:#1b2e49;border:2px solid transparent;border-radius:13px;padding:9px;text-align:center;min-width:0}.simSlot.selected{border-color:#58e5b2;box-shadow:0 0 0 2px #58e5b244}.simSlot .squadJersey{width:45px;height:54px;margin:auto}.simSlot b{display:block;font-size:12px;overflow-wrap:anywhere}.simSlot small{display:block;color:#425a75;font-size:11px;margin-top:4px}.simSlot button{font-size:11px;padding:6px 8px;margin:6px 2px 0;background:#203e62;color:white}.simSlot .simRemove{background:#b13246}.simSlot.empty{background:#ffffff0a;color:white;border:2px dashed #899bb6}.simSlot.empty small{color:#d3dcec}.simSlot.empty button{background:#e5fff4;color:#11543b}.simFilters{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;margin:12px 0}.simFilters label{font-size:12px;color:#d3dcec}.simCandidates{display:grid;gap:7px;max-height:560px;overflow:auto;overscroll-behavior:contain}.simCandidate{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px;text-align:right;width:100%;background:#fff;color:#1b2e49;padding:12px;border:1px solid #c9d9e9}.simCandidate b{display:block;font-size:14px}.simCandidate small{display:block;color:#45607d;margin-top:4px;font-size:11px}.simCandidate strong{display:block;font-size:23px;direction:ltr}.simCandidate:disabled{opacity:1;background:#aeb5c0;color:#3e4653;border-color:#929ba8;cursor:not-allowed}.simCandidate:disabled small{color:#394350}.simCandidate:focus-visible,.simSlot button:focus-visible{outline:3px solid #ffcb55;outline-offset:2px}.simStatus{color:#ffd4ad;font-size:12px;min-height:18px}.simPoolTitle{font-size:16px;margin:18px 0 6px}
-
-#squadSimulation{padding:10px;margin:8px}.simBalanceNotice{color:#ffdda8;background:#ffffff0a;border:1px solid #8c744f;border-radius:10px;padding:9px;font-size:12px;line-height:1.5}.simCourtBoard{max-width:700px;margin:0 auto;border-radius:18px;overflow:hidden;border:1px solid #d1a76c}.simWoodCourt{position:relative;isolation:isolate;padding:22px 10px 14px;background:repeating-linear-gradient(90deg,#d6a368 0 34px,#e6bc82 34px 68px,#dfb177 68px 102px)}.simCourtMarkings{position:absolute;inset:12px;border:2px solid #fff9;z-index:-1}.simCourtMarkings:before{content:'';position:absolute;width:44%;height:25%;left:28%;top:-14px;border:2px solid #fffc;border-radius:0 0 50% 50%}.simCourtMarkings:after{content:'';position:absolute;bottom:-65px;left:25%;width:50%;height:130px;border:2px solid #fff9;border-radius:50%}.simCourtRow{display:flex;justify-content:space-evenly;gap:18px;margin-bottom:18px}.simCourtPlayer{position:relative;display:flex;flex-direction:column;align-items:center;width:44%;max-width:190px;padding:0;background:transparent;color:#20123f;border-radius:9px;min-width:0}.simCourtPlayer .squadJersey{width:72px;height:88px;margin:0 auto 3px;filter:drop-shadow(0 4px 3px #0004)}.simCourtPlayer b{display:block;width:100%;background:#191035;color:white;font-size:13px;padding:7px 4px;border-bottom:3px solid #28ca90;overflow-wrap:anywhere;border-radius:7px 7px 0 0}.simCourtPlayer small{display:block;width:100%;background:white;color:#20123f;font-size:13px;font-weight:800;padding:6px 2px}.simCourtPlayer>span:last-child{display:block;width:100%;background:#e9e4f5;color:#2f2050;font-size:11px;padding:5px;border-radius:0 0 7px 7px}.simCourtPlayer.chosen{outline:3px solid #46efac;outline-offset:4px}.simVacantIcon{height:91px;display:grid;place-items:center;font-size:44px;color:#fff;border:2px dashed #ffffffba;width:72px;border-radius:12px;margin-bottom:3px;background:#17102f55}.simCourtLower{display:grid;grid-template-columns:2fr 1fr;gap:12px;background:#160d31;padding:16px 10px;align-items:start}.simCourtLower h4{font-size:12px;margin:0 0 12px;text-align:center;color:#ddd5ef}.simCourtLower h4:not(:first-child){margin-top:18px}.simCourtBench{display:grid;grid-template-columns:1fr 1fr;gap:16px 9px}.simCourtLower .simCourtPlayer{width:100%;max-width:none}.simCourtLower .squadJersey{width:55px;height:70px}.simCourtLower .simVacantIcon{height:73px;width:55px}.simCourtLower .simCourtPlayer b{font-size:11px}.simCourtPlaceholder{font-size:12px;color:#eee;text-align:center;border:1px dashed #b5a9c9;padding:20px 4px;border-radius:9px}.simCourtPlayer:focus-visible{outline:3px solid #ffcb55;outline-offset:4px}.simPoolTitle{scroll-margin-top:85px}
-
-/* Simulator cards and accessible replacement dialog. */
-.simCourtBoard{box-shadow:0 14px 35px #0004;border:2px solid #eccb96}
-.simWoodCourt{padding:30px 12px 20px;background:linear-gradient(180deg,#fff1 0%,#62350718 100%),repeating-linear-gradient(90deg,#d6a368 0 34px,#e6bc82 34px 68px,#dfb177 68px 102px)}
-.simCourtPlayer .simPlayerAction{display:block;width:100%;padding:0;background:transparent;color:#fff;text-align:center;box-shadow:0 6px 12px #0002;border-radius:10px}
-.simCourtPlayer .simRemoveX{position:absolute;top:-8px;left:0;z-index:2;width:44px;height:44px;display:grid;place-items:center;padding:0;border-radius:50%;background:#fff;color:#be2347;border:2px solid #be2347;font-size:29px;box-shadow:0 3px 8px #0004}
-.simCourtPlayer .simPlayerAction b{font-size:14px;padding:9px 4px}
-.simCourtPlayer .simPlayerAction small{font-size:21px;padding:7px 3px;direction:ltr}
-.simTileTeam{display:block;background:#fff;color:#544569;padding:3px 4px 8px;font-size:11px}
-.simTileAction{display:block;background:#087e60;color:#fff;padding:9px 3px;font-size:12px;border-radius:0 0 9px 9px}
-.simCourtLower .simPlayerAction b{font-size:11px}
-.simCourtLower .simPlayerAction small{font-size:18px}
-.simCourtLower .simRemoveX{top:-10px;left:-3px}
-.simCourtPlayer.vacant .simPlayerAction small{font-size:12px;direction:rtl}
-#simPicker{width:min(620px,96vw);max-height:88dvh;padding:16px;background:#14213a;color:white;border:1px solid #7289ab;box-shadow:0 22px 80px #0008;border-radius:20px;overflow:auto}
+#squadSimulation{padding:10px;margin:8px;background:linear-gradient(150deg,#102037,#152b35);color:#fff;border-radius:16px}
+.simToolbar button{background:#e7f0fb;color:#193450}
+.simNote,.simBalanceNotice{font-size:12px;line-height:1.55;color:#e2ebf3;margin:10px 0}
+.simBalanceNotice{color:#ffe3ae;border:1px solid #9e825b;border-radius:10px;padding:9px}
+.simTotals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:14px 0}
+.simTotals>div{padding:10px 4px;text-align:center;background:#ffffff12;border:1px solid #ffffff30;border-radius:12px}
+.simTotals b{display:block;font-size:22px;direction:ltr}
+.simTotals small{color:#e2ebf3;font-size:11px}
+.simCourtBoard{max-width:700px;margin:auto;border-radius:19px;overflow:hidden;border:2px solid #ebc796;box-shadow:0 14px 35px #0004}
+.simWoodCourt{position:relative;isolation:isolate;padding:20px 10px 12px;background:repeating-linear-gradient(90deg,#d6a368 0 34px,#e6bc82 34px 68px,#dfb177 68px 102px)}
+.simCourtMarkings{position:absolute;inset:10px;border:2px solid #fff9;z-index:-1;overflow:hidden}
+.simCourtMarkings::before,.simCourtMarkings::after{content:'';position:absolute;width:44%;left:28%;border:2px solid #fff9}
+.simCourtMarkings::before{height:25%;top:-2px;border-radius:0 0 50% 50%}
+.simCourtMarkings::after{height:120px;bottom:-60px;border-radius:50%}
+.simCourtRow{display:flex;justify-content:space-evenly;gap:12px;margin-bottom:12px}
+.simCourtPlayer{position:relative;width:46%;max-width:190px;min-width:0}
+.simCourtPlayer .simPlayerAction{display:grid;width:100%;height:100%;justify-items:center;align-content:start;gap:4px;padding:6px 5px;background:#fff;color:#172741;text-align:center;border:1px solid #d3dce9;border-radius:13px;box-shadow:0 5px 12px #0003}
+.simCourtPlayer .simRemoveX{position:absolute;top:-4px;inset-inline-end:-4px;z-index:1;width:44px;height:44px;display:grid;place-items:center;padding:0;border-radius:50%;background:#fff;color:#9c2140;border:1px solid #e4bbc6;font-size:24px}
+.simCourtPlayer .simPlayerAction:focus-visible,.simCourtPlayer .simRemoveX:focus-visible,#simPicker button:focus-visible{outline:2px solid #0b745a;outline-offset:2px}
+.simPlayerAction>.simPlayerName{font-size:clamp(12px,2vw,16px);line-height:1.15;overflow-wrap:anywhere}
+.simPlayerAction>.simTilePrice{display:block;font-size:14px;color:#126050;direction:ltr;font-weight:850}
+.simPlayerAction .simClub{font-size:10px}
+.simMedia{display:block;position:relative;isolation:isolate;width:66px;height:62px;overflow:hidden;border-radius:9px;background:#edf1f6;margin-inline:auto}
+.simMedia .squadJersey{position:absolute;bottom:2px;inset-inline-end:3px;width:33px;height:40px;margin:0;z-index:1;filter:drop-shadow(0 2px 2px #0003)}
+.simMedia:not(:has(img)) .squadJersey{left:50%;right:auto;transform:translateX(-50%);width:45px;height:52px}
+.simMedia img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 9%}
+.simClub,.simNext,.simPopularity{color:#40536c;font-size:11px;line-height:1.25;overflow-wrap:anywhere}
+.simClub{display:flex;align-items:center;justify-content:center;gap:4px}
+.simClub img{width:13px;height:13px;object-fit:contain}
+.simNext{display:flex;align-items:center;gap:4px}
+.simNext i{display:inline-block;flex:0 0 3px;height:12px;border-radius:3px;background:var(--sim-opponent);box-shadow:0 0 0 1px #16243a33}
+.simPlayerAction .simNext{justify-content:center;width:100%;background:#f0f4fa;border-radius:7px;padding:5px 3px}
+.simPopularity bdi{font-weight:850;color:#15604f}
+.simVacantIcon{display:grid;place-items:center;width:62px;height:62px;border:1px dashed #6b8e87;border-radius:12px;font-size:32px;color:#15604f;background:#e8f5ef}
+.simCourtLower{display:grid;grid-template-columns:2fr 1fr;gap:9px;background:#15263a;padding:14px 7px;align-items:start}
+.simCourtLower>section{min-width:0}
+.simCourtLower h4{font-size:12px;margin:0 0 8px;text-align:center;color:#e2ebf3}
+.simCourtLower h4:not(:first-child){margin-top:14px}
+.simCourtBench{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.simCourtLower .simCourtPlayer{width:100%;max-width:none}
+.simCourtPlaceholder{font-size:12px;color:#25364b;background:#ffffffe5;text-align:center;border:1px dashed #62768d;padding:18px 5px;border-radius:10px}
+#simPicker{width:min(620px,calc(100vw - 16px));max-height:88dvh;padding:0;background:#f1f5fa;color:#172741;border:1px solid #a3b3c8;box-shadow:0 22px 80px #0008;border-radius:20px;overflow:hidden}
+#simPicker[open]{display:grid;grid-template-rows:auto minmax(0,1fr)}
 #simPicker::backdrop{background:#080c18ba;backdrop-filter:blur(4px)}
-.simPickerHead{display:flex;align-items:center;gap:12px;position:sticky;top:-16px;background:#14213a;padding:10px 0;z-index:2}
-#simClosePicker{flex:0 0 44px;height:44px;padding:0;font-size:28px;background:#e6edf7;color:#14213a}
-#simPicker .simPoolTitle{margin:0;font-size:17px;line-height:1.5}
-#simPicker .simCandidates{max-height:none;overflow:visible}
-#simPicker .simFilters input,#simPicker .simFilters select{font-size:16px}
-@media(max-width:420px){#squadSimulation{margin:4px;padding:7px}.simCourtRow{gap:14px}.simCourtLower{gap:10px;padding:20px 8px}.simTileTeam{font-size:10px}}
+.simPickerHead{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#15263a;color:#fff}
+.simPickerHead button{flex:none;min-width:44px;height:44px;padding:0 8px;background:#e7eff8;color:#172741}
+#simClosePicker{font-size:25px}
+.simPickerHead h4{margin:0;font-size:16px;line-height:1.35}
+.simPickerBody{overflow:auto;overscroll-behavior:contain;padding:10px}
+.simFilters{display:flex;align-items:center;justify-content:space-between;gap:6px;margin:0 0 8px}
+.simFilters label{font-size:12px;color:#354a62}
+.simFilters select{display:block;padding:5px;max-width:100%;font-size:16px;background:#fff;color:#172741}
+.simFilters small{font-size:11px;color:#40536c}
+.simCandidates{display:grid;gap:7px}
+.simCandidate,.simDetailCard{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;align-items:center;background:#fff;border:1px solid #cfdbea;border-radius:13px;padding:7px;min-width:0}
+.simCandidatePlayer{display:grid;grid-template-columns:54px minmax(0,1fr);gap:7px;align-items:center;width:100%;min-width:0;padding:0;background:transparent;color:#172741;text-align:start}
+.simCandidatePlayer .simMedia{width:54px;height:61px}
+.simCandidateInfo{display:grid;gap:3px;min-width:0}
+.simCandidateInfo .simClub{justify-content:start}
+.simCandidateInfo .simPlayerName{font-size:13px;line-height:1.15;overflow-wrap:anywhere}
+.simCandidateInfo .simNext,.simCandidateInfo .simPopularity{font-size:10px}
+.simMetrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
+.simMetrics>span{display:grid;justify-items:center;gap:1px;padding:3px 1px;background:#eff4fa;border-radius:6px;color:#243b55;white-space:nowrap}
+.simMetrics bdi{font-size:13px;font-weight:850}
+.simMetrics small{font-size:9px;color:#40536c}
+.simMetrics>span:last-child{background:#e4f5ed;color:#125c4b}
+.simCandidateControls{display:grid;justify-items:center;gap:3px;width:49px;text-align:center}
+.simCandidateControls small{font-size:9px;line-height:1.2;color:#654451}
+#simPicker .simAdd{width:46px;height:46px;padding:0;display:grid;place-items:center;border-radius:11px;font-size:30px;line-height:1;background:#087356;color:white}
+#simPicker .simAdd:disabled{opacity:1;background:#e8edf3;color:#596a80;cursor:not-allowed}
+.simStatus{color:#79233a;font-size:12px;margin:0 0 7px}
+.simStatus:empty{display:none}
+.simHistoryTitle{margin:14px 0 7px;font-size:14px}
+.simHistory{width:100%;border-collapse:separate;border-spacing:0 4px;text-align:center;font-size:12px}
+.simHistory th,.simHistory td{padding:7px 3px}
+.simHistory th{color:#354a62}
+.simHistory td{background:#fff;font-variant-numeric:tabular-nums}
+.simHistory td:first-child{border-radius:0 7px 7px 0}
+.simHistory td:last-child{border-radius:7px 0 0 7px;font-weight:850;color:#125c4b}
+.simHistory td .simRoundOpponent{display:block;color:#40536c;font-size:10px}
+.simEmptyMessage{color:#40536c;font-size:12px}
+@media(max-width:420px){
+ #squadSimulation{margin:4px;padding:7px}
+ .simCourtLower .simRemoveX{width:44px;height:44px}
+ .simCourtLower .simPlayerAction{padding-inline:3px}
+ .simCourtLower .simPlayerName{font-size:11px}
+ .simCourtLower .simNext{font-size:10px}
+}
 </style>
 <script>
 (()=>{
 'use strict';
-const view=document.getElementById('teamView'),button=document.createElement('button');button.textContent='סימולציית הרכב';button.dataset.teamView='simulation';button.setAttribute('aria-pressed','false');button.setAttribute('aria-controls','squadSimulation');view.append(button);view.append(view.querySelector('[data-team-view="review"]'));
-const root=document.createElement('section');root.id='squadSimulation';root.hidden=true;document.getElementById('teamCards').after(root);
-const key='efa-squad-simulation-v2';let draft=null,selected=null,sort='priceDesc',finance=null;
-fetch('./data/roster.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{finance=d;if(!root.hidden){if(draft&&draft.slots.every(s=>s.current?.name===s.original.name))reset();render()}}).catch(()=>{});
-const num=v=>v==null||v===''||!Number.isFinite(Number(v))?null:Number(v),money=v=>num(v)===null?'—':Number(v).toFixed(1);
-const cents=v=>Math.round(Number(v)*100);
-function balance(state){return (cents(state.bank??0)+state.slots.reduce((sum,s)=>sum+cents(s.original.price)-(s.current?cents(s.current.price):0),0))/100}
-function eligibility(state,index,p){const slot=state.slots[index];if(!slot)return {ok:false,reason:'בחר מקום בהרכב'};if(slot.current)return {ok:false,reason:'יש להוציא את השחקן תחילה'};if(p.pos!==slot.pos)return {ok:false,reason:'עמדה לא מתאימה'};if(state.slots.some(s=>s.current?.name===p.name&&s.pos===p.pos))return {ok:false,reason:'כבר בסגל'};if(num(p.price)===null||num(p.price)<0)return {ok:false,reason:'מחיר חסר'};const missing=cents(p.price)-cents(balance(state));return missing>0?{ok:false,reason:'חסרים '+money(missing/100)+' CR'}:{ok:true,reason:'יישארו '+money(balance(state)-Number(p.price))+' CR'};}
-window.SquadSimulationCore={balance,eligibility};
-const snapshot=p=>({name:p.name,team:p.team,pos:p.pos,price:Number(p.price)});
-function persist(){try{localStorage.setItem(key,JSON.stringify(draft))}catch{}}
-function reset(){const roster=myTeam.map(n=>players.find(p=>p.name===n)).filter(p=>p&&['G','F','C'].includes(p.pos));const syncedCoach=COACHES.find(c=>finance?.players?.includes(c.name)||myTeam.includes(c.name));const coach=syncedCoach||COACHES.find(c=>c.name===squadPreferences.coach);const arrangement=squadArrangement(roster);const roles=new Map(arrangement.slots.map((p,i)=>[p?.name,i]));if(coach)roster.push({...coach,pos:'coach'});if(roster.some(p=>num(p.price)===null)){root.innerHTML='<p>חסר מחיר לשחקן בסגל. רענן את הנתונים ופתח שוב את הסימולציה.</p>';return false}draft={bank:null,slots:roster.map(p=>({pos:p.pos,role:p.pos==='coach'?'coach':roles.has(p.name)?roles.get(p.name):'bench',original:snapshot(p),current:snapshot(p)}))};selected=null;syncBank();persist();return true;}
-function syncBank(){if(!draft)return;const official=finance?.players;const names=draft.slots.map(s=>s.original.name);const matches=Array.isArray(official)&&official.length===names.length&&names.every(n=>official.includes(n));draft.bank=matches&&num(finance?.available_credits)!==null&&finance.available_credits>=0?Number(finance.available_credits):null;}
-function court(){const tile=(s,i)=>`<article class="simCourtPlayer ${!s.current?'vacant':''} ${selected===i?'chosen':''}">${s.current?`<button type="button" class="simRemoveX" data-sim-remove="${i}" aria-label="הסר את ${esc(s.current.name)} והצג מחליפים">×</button>`:''}<button type="button" class="simPlayerAction" ${s.current?'data-sim-remove':'data-sim-slot'}="${i}" aria-label="${s.current?'החלף את':'בחר מחליף עבור'} ${esc(s.current?.name||s.original.name)}">${s.current?squadJersey(s.current,s.pos==='coach'):'<span class="simVacantIcon">＋</span>'}<b>${esc(s.current?.name||'הוסף שחקן')}</b><small>${s.current?money(s.current.price)+' CR':esc(s.original.name)}</small><span class="simTileTeam">${s.current?esc(s.current.team):'מקום פנוי'} · ${s.pos==='coach'?'מאמן':esc(s.pos)}</span><span class="simTileAction">${s.current?'החלף שחקן ↔':'＋ בחר מחליף'}</span></button></article>`;const role=n=>{const i=draft.slots.findIndex(s=>s.role===n);return i<0?'<div class="simCourtPlaceholder">'+(n===5?'שחקן שישי':n==='coach'?'מאמן':'מקום בהרכב')+'</div>':tile(draft.slots[i],i)};return `<div class="simCourtBoard"><div class="simWoodCourt"><div class="simCourtMarkings" aria-hidden="true"></div><div class="simCourtRow simCourtCenter">${role(0)}</div><div class="simCourtRow">${role(1)}${role(2)}</div><div class="simCourtRow">${role(3)}${role(4)}</div></div><div class="simCourtLower"><section><h4>ספסל</h4><div class="simCourtBench">${draft.slots.map((s,i)=>s.role==='bench'?tile(s,i):'').join('')}</div></section><section><h4>שחקן שישי</h4>${role(5)}<h4>מאמן</h4>${role('coach')}</section></div></div>`;}
+const view=document.getElementById('teamView'),button=document.createElement('button');
+button.textContent='סימולציית הרכב';
+button.dataset.teamView='simulation';
+button.setAttribute('aria-pressed','false');
+button.setAttribute('aria-controls','squadSimulation');
+view.append(button,view.querySelector('[data-team-view="review"]'));
+const root=document.createElement('section');
+root.id='squadSimulation';
+root.hidden=true;
+document.getElementById('teamCards').after(root);
 
-try{const d=JSON.parse(localStorage.getItem(key)||'null');if(d&&(d.bank===null||(num(d.bank)!==null&&d.bank>=0))&&Array.isArray(d.slots)&&d.slots.every(s=>s.original&&num(s.original.price)!==null&&(!s.current||num(s.current.price)!==null)&&['G','F','C','coach'].includes(s.pos)))draft=d}catch{}
-function render(){if(!draft&&!reset())return;syncBank();
- root.innerHTML=`<div class="simToolbar"><button type="button" id="simReset">התחל מחדש מהסגל שלי</button></div><p class="simNote">לחץ על × להוצאת שחקן ועל ＋ לבחירת מחליף. הקרדיט מתעדכן אוטומטית. הטיוטה נשמרת בנפרד מהסגל שלך.</p>${draft.bank===null?'<p class="simBalanceNotice" role="status">יתרת הפנטזי טרם התקבלה בסנכרון. כרגע מוצג רק הכסף שהתפנה בהחלפות; יתרה נוספת אינה כלולה.</p>':'<p class="simNote">יתרה פנויה מהפנטזי: '+money(draft.bank)+' CR</p>'}<div class="simTotals"><div><b>${money(balance(draft))}</b><small>${draft.bank===null?'קרדיט מהחלפות בלבד':'קרדיט פנוי עכשיו'}</small></div><div><b>${draft.slots.filter(s=>!s.current).length}</b><small>מקומות להשלמה</small></div><div><b>${money(draft.slots.reduce((sum,s)=>sum+(s.current?.price||0),0))}</b><small>עלות ההרכב בטיוטה</small></div></div>${court()}${!draft.slots.length?'<p class="simNote">הוסף שחקנים ב״שוק שחקנים״ ולאחר מכן לחץ על ״התחל מחדש מהסגל שלי״.</p>':''}<dialog id="simPicker" aria-labelledby="simPoolTitle" dir="rtl"><div class="simPickerHead"><button type="button" id="simClosePicker" aria-label="סגור חלון מחליפים">×</button><h4 class="simPoolTitle" id="simPoolTitle"></h4></div><div class="simFilters"><label>מיון<select id="simSort"><option value="priceDesc">מחיר: מהגבוה לנמוך</option><option value="priceAsc">מחיר: מהנמוך לגבוה</option><option value="pir">תחזית: מהגבוה לנמוך</option></select></label></div><p class="simStatus" id="simStatus" role="status"></p><div id="simCandidates" class="simCandidates"></div></dialog>`;
- root.querySelector('#simSort').value=sort;paintCandidates();
+const key='efa-squad-simulation-v2';
+let draft=null,selected=null,sort='priceDesc',finance=null;
+const num=v=>v==null||v===''||!Number.isFinite(Number(v))?null:Number(v);
+const money=v=>num(v)===null?'—':Number(v).toFixed(1);
+const cents=v=>Math.round(Number(v)*100);
+const snapshot=p=>({name:p.name,team:p.team,pos:p.pos,price:Number(p.price)});
+const livePlayer=p=>(p.pos==='coach'?COACHES:players).find(q=>q.name===p.name);
+const picker=()=>root.querySelector('#simPicker');
+
+function balance(state){
+ return (cents(state.bank??0)+state.slots.reduce((sum,s)=>sum+cents(s.original.price)-(s.current?cents(s.current.price):0),0))/100;
 }
-function paintCandidates(){const slot=draft.slots[selected],host=root.querySelector('#simCandidates');root.querySelector('#simPoolTitle').textContent=slot?'מחליפים · '+(slot.pos==='coach'?'מאמן':slot.pos)+' · תקציב '+money(balance(draft))+' CR':'בחר שחקן להוצאה כדי לראות מחליפים';if(!slot||slot.current){host.innerHTML='';return}const pool=slot.pos==='coach'?COACHES.map(p=>({...p,pos:'coach'})):players;const rows=pool.filter(p=>p.pos===slot.pos).map(p=>({p,score:slot.pos==='coach'?num(coachExpected(canonicalTeam(p.team))):num(model(p).expected)}));rows.sort((a,b)=>{const ap=num(a.p.price),bp=num(b.p.price);return sort==='pir'?(b.score??-Infinity)-(a.score??-Infinity):ap===null?1:bp===null?-1:sort==='priceAsc'?ap-bp:bp-ap});host.innerHTML=rows.map(({p,score})=>{const e=eligibility(draft,selected,p);return `<button type="button" class="simCandidate" data-sim-buy="${esc(p.name)}" ${e.ok?'':'disabled'}><span><b>${esc(p.name)}</b><small>${esc(p.team)} · ${slot.pos==='coach'?'מאמן':esc(statusText(p.status))} · ${slot.pos==='coach'?'נק׳ צפויות':'PIR צפוי'} ${money(score)}</small><small>${esc(e.reason)}</small></span><span><strong>${money(p.price)}</strong><small>CR</small></span></button>`}).join('')||'<p class="simNote">לא נמצאו מחליפים לחיפוש הזה.</p>';}
-function openPicker(){const picker=root.querySelector('#simPicker');if(picker&&!picker.open)picker.showModal()}
-root.addEventListener('click',e=>{if(e.target.closest('#simClosePicker')){root.querySelector('#simPicker').close();return}if(e.target===root.querySelector('#simPicker')){const box=e.target.getBoundingClientRect();if(e.clientX<box.left||e.clientX>box.right||e.clientY<box.top||e.clientY>box.bottom)e.target.close();return}if(e.target.closest('#simReset')){if(reset())render();return}const remove=e.target.closest('[data-sim-remove]');if(remove){selected=Number(remove.dataset.simRemove);draft.slots[selected].current=null;persist();render();openPicker();return}const slot=e.target.closest('[data-sim-slot]');if(slot){selected=Number(slot.dataset.simSlot);render();openPicker();return}const buy=e.target.closest('[data-sim-buy]');if(buy){const s=draft.slots[selected],pool=s?.pos==='coach'?COACHES.map(p=>({...p,pos:'coach'})):players,p=pool.find(p=>p.name===buy.dataset.simBuy&&p.pos===s?.pos);if(!p)return;const eligible=eligibility(draft,selected,p);if(!eligible.ok){root.querySelector('#simStatus').textContent=eligible.reason;return}draft.slots[selected].current=snapshot(p);selected=draft.slots.findIndex(s=>!s.current);if(selected<0)selected=null;persist();render()}});
-root.addEventListener('change',e=>{if(e.target.id==='simSort'){sort=e.target.value;paintCandidates()}});
-view.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.teamView==='simulation'){document.getElementById('teamCards').hidden=true;document.getElementById('roundReview').hidden=true;root.hidden=false;view.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===button)));render()}else if(b.dataset.teamView||b.id==='squadOptimizer'){root.hidden=true;button.setAttribute('aria-pressed','false')}});
+function budget(state,index){
+ return (cents(balance(state))+cents(state.slots[index]?.current?.price??0))/100;
+}
+function eligibility(state,index,p){
+ const slot=state.slots[index];
+ if(!slot)return {ok:false,reason:'בחר מקום בהרכב'};
+ if(p.pos!==slot.pos)return {ok:false,reason:'עמדה לא מתאימה'};
+ if(state.slots.some(s=>s.current?.name===p.name&&s.pos===p.pos))return {ok:false,reason:'כבר בסגל'};
+ if(num(p.price)===null||num(p.price)<0)return {ok:false,reason:'מחיר חסר'};
+ const available=budget(state,index),missing=cents(p.price)-cents(available);
+ return missing>0?{ok:false,reason:'חסרים '+money(missing/100)+' CR'}:{ok:true,reason:'יישארו '+money(available-Number(p.price))+' CR'};
+}
+window.SquadSimulationCore={balance,eligibility};
+function persist(){try{localStorage.setItem(key,JSON.stringify(draft))}catch{}}
+function reset(){
+ const roster=myTeam.map(n=>players.find(p=>p.name===n)).filter(p=>p&&['G','F','C'].includes(p.pos));
+ const coach=COACHES.find(c=>finance?.players?.includes(c.name)||myTeam.includes(c.name))||COACHES.find(c=>c.name===squadPreferences.coach);
+ const arrangement=squadArrangement(roster),roles=new Map(arrangement.slots.map((p,i)=>[p?.name,i]));
+ if(coach)roster.push({...coach,pos:'coach'});
+ if(roster.some(p=>num(p.price)===null)){
+  root.innerHTML='<p>חסר מחיר לשחקן בסגל. רענן את הנתונים ופתח שוב את הסימולציה.</p>';
+  return false;
+ }
+ draft={bank:null,slots:roster.map(p=>({
+  pos:p.pos,role:p.pos==='coach'?'coach':roles.get(p.name)??'bench',original:snapshot(p),current:snapshot(p)
+ }))};
+ selected=null;
+ syncBank();
+ persist();
+ return true;
+}
+function syncBank(){
+ if(!draft)return;
+ const official=finance?.players,names=draft.slots.map(s=>s.original.name);
+ const matches=Array.isArray(official)&&official.length===names.length&&names.every(n=>official.includes(n));
+ draft.bank=matches&&num(finance?.available_credits)!==null&&finance.available_credits>=0?Number(finance.available_credits):null;
+}
+
+function identity(p){
+ const coach=p.pos==='coach',team=canonicalTeam(p.team);
+ const profile=coach?null:playerCardProfile(p);
+ const photo=playerCardImageUrl(profile?.photo),crest=playerCardCrests.get(team);
+ const media=`<span class="simMedia" aria-hidden="true">${photo?`<img src="${esc(photo)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:''}${squadJersey(p,coach)}</span>`;
+ const club=`<span class="simClub">${crest?`<img src="${esc(crest)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:''}<bdi>${esc(team||'קבוצה לא זמינה')}</bdi></span>`;
+ return {media,club};
+}
+function nextGame(p){
+ const match=matchup(p),opponent=canonicalTeam(match.opponent||p.opponent||'');
+ if(!opponent)return '<span class="simNext">היריבה טרם נקבעה</span>';
+ const color=TEAM_KITS[opponent]?.[1]||'#65748a';
+ return `<span class="simNext"><i aria-hidden="true" style="--sim-opponent:${color}"></i><span>מול <bdi>${esc(opponent)}</bdi></span></span>`;
+}
+function popularity(p){
+ const value=num(p.previous_round_popularity),round=num(p.popularity_round);
+ return `<span class="simPopularity" title="שיעור סגלי הפנטזי שבחרו בשחקן במחזור הקודם">בחירות במחזור ${round===null?'הקודם':round} <bdi>${value===null?'—':money(value)+'%'}</bdi></span>`;
+}
+function court(){
+ const tile=(s,i)=>{
+  const player=s.current?{...s.current,...livePlayer(s.current),pos:s.pos,price:s.current.price}:null;
+  const name=esc(player?.name||s.original.name);
+  const media=player?identity(player):null;
+  return `<article class="simCourtPlayer">
+   ${player?`<button type="button" class="simRemoveX" data-sim-remove="${i}" aria-label="הסר את ${name}">×</button>`:''}
+   <button type="button" class="simPlayerAction" data-sim-slot="${i}" aria-label="${player?'מחליפים עבור':'בחר מחליף עבור'} ${name}">
+    ${media?.media||'<span class="simVacantIcon" aria-hidden="true">+</span>'}
+    <b class="simPlayerName"><bdi>${player?name:'בחר מחליף'}</bdi></b>
+    ${player?`${media.club}<bdi class="simTilePrice">${money(player.price)} CR</bdi>${s.pos==='coach'?'':popularity(player)}${nextGame(player)}`:`<span class="simClub"><bdi>${name}</bdi></span>`}
+   </button>
+  </article>`;
+ };
+ const role=n=>{
+  const i=draft.slots.findIndex(s=>s.role===n);
+  return i<0?'<div class="simCourtPlaceholder">'+(n===5?'שחקן שישי':n==='coach'?'מאמן':'מקום בהרכב')+'</div>':tile(draft.slots[i],i);
+ };
+ return `<div class="simCourtBoard">
+  <div class="simWoodCourt"><div class="simCourtMarkings" aria-hidden="true"></div>
+   <div class="simCourtRow">${role(0)}</div><div class="simCourtRow">${role(1)}${role(2)}</div><div class="simCourtRow">${role(3)}${role(4)}</div>
+  </div>
+  <div class="simCourtLower"><section><h4>ספסל</h4><div class="simCourtBench">${draft.slots.map((s,i)=>s.role==='bench'?tile(s,i):'').join('')}</div></section>
+  <section><h4>שחקן שישי</h4>${role(5)}<h4>מאמן</h4>${role('coach')}</section></div>
+ </div>`;
+}
+
+function render(){
+ if(!draft&&!reset())return;
+ syncBank();
+ const free=money(balance(draft)),vacancies=draft.slots.filter(s=>!s.current).length;
+ const cost=money(draft.slots.reduce((sum,s)=>sum+(s.current?.price||0),0));
+ root.innerHTML=`<div class="simToolbar"><button type="button" id="simReset">התחל מחדש מהסגל שלי</button></div>
+ <p class="simNote">לחיצה על שחקן פותחת את רשימת המחליפים. לחיצה על ＋ מאשרת החלפה בטיוטה.</p>
+ ${draft.bank===null?'<p class="simBalanceNotice" role="status">יתרת הפנטזי טרם התקבלה בסנכרון. כרגע מוצג הקרדיט שהתפנה בהחלפות.</p>':'<p class="simNote">יתרה פנויה מהפנטזי: '+money(draft.bank)+' CR</p>'}
+ <div class="simTotals">
+  <div><b>${free}</b><small>${draft.bank===null?'קרדיט מהחלפות בלבד':'קרדיט פנוי עכשיו'}</small></div>
+  <div><b>${vacancies}</b><small>מקומות להשלמה</small></div>
+  <div><b>${cost}</b><small>עלות ההרכב בטיוטה</small></div>
+ </div>${court()}
+ ${!draft.slots.length?'<p class="simNote">הוסף שחקנים בשוק שחקנים ולחץ על ״התחל מחדש מהסגל שלי״.</p>':''}
+ <dialog id="simPicker" aria-labelledby="simPoolTitle" dir="rtl">
+  <div class="simPickerHead"><button type="button" id="simClosePicker" aria-label="סגור חלון מחליפים">×</button>
+  <button type="button" id="simBack" hidden>חזרה לרשימה</button><h4 id="simPoolTitle"></h4></div>
+  <div class="simPickerBody"><p class="simStatus" id="simStatus" role="status"></p><div id="simScreen"></div></div>
+ </dialog>`;
+}
+
+function averages(p){
+ if(p.pos==='coach')return {minutes:null,pir:num(coachExpected(canonicalTeam(p.team)))};
+ const form=model(p).recentForm;
+ const season=form?.latestSeason==='E2026'?form.season:null;
+ return {minutes:num(season?.avgMinutes),pir:num(season?.avgPir)};
+}
+function candidatePool(){
+ const slot=draft.slots[selected];
+ return slot.pos==='coach'?COACHES.map(p=>({...p,pos:'coach'})):players.filter(p=>p.pos===slot.pos);
+}
+function metricCards(p,stats){
+ const card=(label,value)=>`<span><bdi>${money(value)}</bdi><small>${label}</small></span>`;
+ return `<span class="simMetrics">${card('מחיר CR',p.price)}${card('דקות',stats.minutes)}${card(p.pos==='coach'?'נק׳ צפויות':'PIR',stats.pir)}</span>`;
+}
+function addControl(p){
+ const e=eligibility(draft,selected,p);
+ return `<span class="simCandidateControls"><button type="button" class="simAdd" data-sim-buy="${esc(p.name)}" aria-label="הוסף לסגל את ${esc(p.name)}" ${e.ok?'':'disabled'}>+</button>${e.ok?'':`<small>${esc(e.reason)}</small>`}</span>`;
+}
+function candidateRow(p,stats){
+ const {media,club}=identity(p);
+ return `<article class="simCandidate">
+  <button type="button" class="simCandidatePlayer" data-sim-details="${esc(p.name)}">
+   ${media}<span class="simCandidateInfo"><b class="simPlayerName"><bdi>${esc(p.name)}</bdi></b>${club}
+   ${metricCards(p,stats)}${nextGame(p)}</span>
+  </button>${addControl(p)}
+ </article>`;
+}
+
+function paintCandidates(){
+ const slot=draft.slots[selected],coach=slot.pos==='coach';
+ const dialog=picker(),host=dialog.querySelector('#simScreen');
+ dialog.querySelector('#simBack').hidden=true;
+ dialog.querySelector('#simPoolTitle').textContent=`מחליפים · ${coach?'מאמן':slot.pos} · תקציב ${money(budget(draft,selected))} CR`;
+ dialog.querySelector('#simStatus').textContent='';
+ const rows=candidatePool().map(p=>({p,stats:averages(p)}));
+ const compare=(a,b,descending=true)=>{
+  if(a===null||b===null)return Number(a===null)-Number(b===null);
+  return descending?b-a:a-b;
+ };
+ rows.sort((a,b)=>sort==='pir'?compare(a.stats.pir,b.stats.pir):compare(num(a.p.price),num(b.p.price),sort!=='priceAsc'));
+ host.innerHTML=`<div class="simFilters"><label>מיון
+ <select id="simSort"><option value="priceDesc">מחיר · גבוה לנמוך</option><option value="priceAsc">מחיר · נמוך לגבוה</option>
+ <option value="pir">${coach?'נק׳ צפויות':'PIR עונתי'} · גבוה לנמוך</option></select></label>
+ <small>${coach?'':'דקות ו־PIR · ממוצע עונתי'}</small></div>
+ <div class="simCandidates">${rows.map(({p,stats})=>candidateRow(p,stats)).join('')||'<p class="simEmptyMessage">אין מחליפים זמינים בעמדה.</p>'}</div>`;
+ dialog.querySelector('#simSort').value=sort;
+}
+function historyRows(live,schedule,credits,p){
+ if(live.season!=='E2026')return [];
+ const games=new Map((schedule.data||[]).filter(g=>g.season?.code==='E2026'&&g.played===true).map(g=>[Number(g.gameCode),g]));
+ const prices=new Map(window.PlayerCredits.rows(credits,p).filter(r=>!r.current&&r.price>0).map(r=>[r.round,r.price]));
+ const name=lastThreeName(p.name),team=canonicalTeam(p.team);
+ const rows=Object.values(live.games||{}).flatMap(g=>{
+  const fixture=games.get(Number(g.gameCode)),round=Number(fixture?.round);
+  if(!Number.isInteger(round)||round<1)return [];
+  const row=(g.rows||[]).find(r=>r.season==='E2026'&&lastThreeName(r.name)===name);
+  if(!row)return [];
+  const home=canonicalTeam(fixture.local?.club?.name||''),away=canonicalTeam(fixture.road?.club?.name||'');
+  return [{round,code:Number(g.gameCode),opponent:home===team?away:away===team?home:'',price:prices.get(round),minutes:num(row.minutes),pir:num(row.pir)}];
+ });
+ const represented=new Set(rows.map(r=>r.round));
+ for(const fixture of games.values()){
+  const round=Number(fixture.round);
+  if(!prices.has(round)||represented.has(round))continue;
+  const home=canonicalTeam(fixture.local?.club?.name||''),away=canonicalTeam(fixture.road?.club?.name||'');
+  const opponent=home===team?away:away===team?home:'';
+  if(!opponent)continue;
+  rows.push({round,code:Number(fixture.gameCode),opponent,price:prices.get(round),minutes:null,pir:null});
+  represented.add(round);
+ }
+ return rows.sort((a,b)=>b.round-a.round||b.code-a.code);
+}
+function playedMinutes(minutes){
+ if(minutes===null)return '—';
+ const seconds=Math.round(minutes*60);
+ return Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');
+}
+async function showHistory(p){
+ const dialog=picker(),host=dialog.querySelector('#simScreen'),back=dialog.querySelector('#simBack');
+ const {media,club}=identity(p);
+ back.hidden=false;
+ dialog.querySelector('#simPoolTitle').textContent=p.name;
+ dialog.querySelector('#simStatus').textContent='';
+ host.innerHTML=`<article class="simDetailCard"><div class="simCandidatePlayer">${media}<span class="simCandidateInfo">${club}
+ ${metricCards(p,averages(p))}${nextGame(p)}</span></div>${addControl(p)}</article>
+ ${p.pos==='coach'?'':'<h5 class="simHistoryTitle">משחקי העונה</h5><div data-sim-history aria-live="polite">טוען נתונים…</div>'}`;
+ dialog.querySelector('.simPickerBody').scrollTop=0;
+ back.focus();
+ const target=host.querySelector('[data-sim-history]');
+ if(!target)return;
+ try{
+  const [live,schedule,credits]=await Promise.all([
+   lastThreeFetch('./data/euroleague-live-E2026.json'),
+   lastThreeFetch('./data/context/E2026-schedule.json'),
+   window.PlayerCredits.load().catch(()=>[])
+  ]);
+  if(!target.isConnected)return;
+  const rows=historyRows(live,schedule,credits,p);
+  target.innerHTML=rows.length?`<table class="simHistory"><thead><tr><th scope="col">מחזור</th><th scope="col">מחיר CR</th><th scope="col">דקות</th><th scope="col">PIR</th></tr></thead>
+  <tbody>${rows.map(r=>`<tr><td>${r.round}${r.opponent?`<bdi class="simRoundOpponent">${esc(r.opponent)}</bdi>`:''}</td><td>${money(r.price)}</td><td><bdi>${playedMinutes(r.minutes)}</bdi></td><td>${money(r.pir)}</td></tr>`).join('')}</tbody></table>`:
+  '<p class="simEmptyMessage">אין נתוני משחקים לשחקן בעונה הנוכחית.</p>';
+ }catch{
+  if(target.isConnected)target.innerHTML='<p class="simEmptyMessage">טעינת משחקי העונה נכשלה. אפשר לחזור לרשימה ולנסות שוב.</p>';
+ }
+}
+function openPicker(index){
+ selected=index;
+ paintCandidates();
+ const dialog=picker();
+ dialog.querySelector('.simPickerBody').scrollTop=0;
+ dialog.showModal();
+}
+function refreshVisible(){
+ if(!root.hidden&&!picker()?.open)render();
+}
+try{
+ const d=JSON.parse(localStorage.getItem(key)||'null');
+ if(d&&(d.bank===null||(num(d.bank)!==null&&d.bank>=0))&&Array.isArray(d.slots)&&
+    d.slots.every(s=>s.original&&num(s.original.price)!==null&&(!s.current||num(s.current.price)!==null)&&['G','F','C','coach'].includes(s.pos)))draft=d;
+}catch{}
+fetch('./data/roster.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{
+ finance=d;
+ if(!root.hidden&&!picker()?.open){
+  if(draft&&draft.slots.every(s=>s.current?.name===s.original.name))reset();
+  render();
+ }
+}).catch(()=>{});
+document.addEventListener('fantasy-live-updated',refreshVisible);
+document.addEventListener('fantasy-player-media-ready',refreshVisible);
+root.addEventListener('error',e=>{if(e.target.matches('.simMedia img,.simClub img'))e.target.remove()},true);
+root.addEventListener('click',e=>{
+ const dialog=picker();
+ if(e.target.closest('#simClosePicker')){dialog.close();return}
+ if(e.target===dialog){dialog.close();return}
+ if(e.target.closest('#simBack')){paintCandidates();dialog.querySelector('#simSort').focus();return}
+ if(e.target.closest('#simReset')){if(reset())render();return}
+ const remove=e.target.closest('[data-sim-remove]');
+ if(remove){
+  const index=Number(remove.dataset.simRemove);
+  draft.slots[index].current=null;
+  persist();
+  render();
+  root.querySelector(`[data-sim-slot="${index}"]`).focus();
+  openPicker(index);
+  return;
+ }
+ const slot=e.target.closest('[data-sim-slot]');
+ if(slot){openPicker(Number(slot.dataset.simSlot));return}
+ const details=e.target.closest('[data-sim-details]');
+ if(details){
+  const p=candidatePool().find(p=>p.name===details.dataset.simDetails);
+  if(p)void showHistory(p);
+  return;
+ }
+ const buy=e.target.closest('[data-sim-buy]');
+ if(!buy)return;
+ const p=candidatePool().find(p=>p.name===buy.dataset.simBuy);
+ if(!p)return;
+ const eligible=eligibility(draft,selected,p);
+ if(!eligible.ok){dialog.querySelector('#simStatus').textContent=eligible.reason;return}
+ const index=selected;
+ draft.slots[index].current=snapshot(p);
+ selected=null;
+ persist();
+ dialog.close();
+ render();
+ root.querySelector(`[data-sim-slot="${index}"]`).focus();
+});
+root.addEventListener('change',e=>{
+ if(e.target.id==='simSort'){
+  sort=e.target.value;
+  paintCandidates();
+  picker().querySelector('#simSort').focus();
+ }
+});
+view.addEventListener('click',e=>{
+ const b=e.target.closest('button');
+ if(!b)return;
+ if(b===button){
+  document.getElementById('teamCards').hidden=true;
+  document.getElementById('roundReview').hidden=true;
+  root.hidden=false;
+  view.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===button)));
+  render();
+ }else if(b.dataset.teamView||b.id==='squadOptimizer'){
+  root.hidden=true;
+  button.setAttribute('aria-pressed','false');
+ }
+});
 })();
 </script>
 
