@@ -2501,6 +2501,8 @@ fetch('./data/player-media.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Err
 .simMetrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
 .simMetrics>span{display:grid;justify-items:center;gap:1px;padding:3px 1px;background:#eff4fa;border-radius:6px;color:#243b55;white-space:nowrap}
 .simMetrics bdi{font-size:13px;font-weight:850}
+.simMetrics>span:first-child bdi{font-size:16px;line-height:1.1}
+.simMetrics>span:not(:first-child) bdi{line-height:1.35}
 .simMetrics small{font-size:9px;color:#40536c}
 .simMetrics>span:last-child{background:#e4f5ed;color:#125c4b}
 .simCandidateControls{display:grid;justify-items:center;gap:3px;width:49px;text-align:center}
@@ -2509,14 +2511,18 @@ fetch('./data/player-media.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Err
 #simPicker .simAdd:disabled{opacity:1;background:#e8edf3;color:#596a80;cursor:not-allowed}
 .simStatus{color:#79233a;font-size:12px;margin:0 0 7px}
 .simStatus:empty{display:none}
-.simHistoryTitle{margin:14px 0 7px;font-size:14px}
-.simHistory{width:100%;border-collapse:separate;border-spacing:0 4px;text-align:center;font-size:12px}
-.simHistory th,.simHistory td{padding:7px 3px}
-.simHistory th{color:#354a62}
-.simHistory td{background:#fff;font-variant-numeric:tabular-nums}
-.simHistory td:first-child{border-radius:0 7px 7px 0}
-.simHistory td:last-child{border-radius:7px 0 0 7px;font-weight:850;color:#125c4b}
-.simHistory td .simRoundOpponent{display:block;color:#40536c;font-size:10px}
+.simHistoryTitle{margin:10px 0 5px;font-size:14px}
+.simHistory{width:100%;min-width:0;table-layout:fixed;border-collapse:collapse}
+.simHistory th,.simHistory td{padding:4px 3px;text-align:center;font-size:12px;line-height:1.2;border-bottom:1px solid #dce4ee}
+.simHistory th{position:static;background:#e6edf6;color:#354a62;white-space:nowrap}
+.simHistory th:first-child{width:43%;text-align:start;padding-inline-start:5px}
+.simHistory td{background:#fff;color:#172741;font-variant-numeric:tabular-nums}
+.simHistory tbody tr:nth-child(even) td{background:#f7f9fc}
+.simHistory td:not(:first-child){white-space:nowrap}
+.simHistory td:last-child{font-weight:850;color:#125c4b}
+.simHistory .simRound{display:flex;align-items:baseline;gap:5px;text-align:start}
+.simHistory .simRoundNumber{flex:0 0 1.6em;text-align:center;font-weight:800}
+.simHistory .simRoundOpponent{min-width:0;color:#40536c;font-size:10px;overflow-wrap:anywhere}
 .simEmptyMessage{color:#40536c;font-size:12px}
 @media(max-width:420px){
  #squadSimulation{margin:4px;padding:7px}
@@ -2755,7 +2761,7 @@ async function showHistory(p){
   if(!target.isConnected)return;
   const rows=historyRows(live,schedule,credits,p);
   target.innerHTML=rows.length?`<table class="simHistory"><thead><tr><th scope="col">מחזור</th><th scope="col">מחיר CR</th><th scope="col">דקות</th><th scope="col">PIR</th></tr></thead>
-  <tbody>${rows.map(r=>`<tr><td>${r.round}${r.opponent?`<bdi class="simRoundOpponent">${esc(r.opponent)}</bdi>`:''}</td><td>${money(r.price)}</td><td><bdi>${playedMinutes(r.minutes)}</bdi></td><td>${money(r.pir)}</td></tr>`).join('')}</tbody></table>`:
+  <tbody>${rows.map(r=>`<tr><td><span class="simRound"><bdi class="simRoundNumber">${r.round}</bdi>${r.opponent?`<bdi class="simRoundOpponent">${esc(r.opponent)}</bdi>`:''}</span></td><td>${money(r.price)}</td><td><bdi>${playedMinutes(r.minutes)}</bdi></td><td>${money(r.pir)}</td></tr>`).join('')}</tbody></table>`:
   '<p class="simEmptyMessage">אין נתוני משחקים לשחקן בעונה הנוכחית.</p>';
  }catch{
   if(target.isConnected)target.innerHTML='<p class="simEmptyMessage">טעינת משחקי העונה נכשלה. אפשר לחזור לרשימה ולנסות שוב.</p>';
