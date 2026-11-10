@@ -190,7 +190,7 @@ html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method sum
 <section id="playerMatchups" class="tab"><div class="card"><h3>מאצ׳אפ שחקנים</h3><div class="pmModes" role="group" aria-label="משחקי מאצ׳אפ">
   <button type="button" data-pm-mode="upcoming" aria-controls="pmUpcoming" aria-pressed="true">המשחקים הבאים</button>
   <button type="button" data-pm-mode="history" aria-controls="pmHistory" aria-pressed="false">משחקי עבר</button>
-</div><div id="pmUpcoming"><div class="filters pmControls"><label>קבוצה למאצ׳אפ<select id="pmTeam"></select></label><label>קבוצה להשוואה<select id="pmOpponent"><option value="">היריבה במשחק הבא</option></select></label><label>תצוגה<select id="pmView"><option value="court">מגרש</option><option value="list">רשימה · מחיר ודקות</option></select></label><button class="secondary" id="pmReload">רענן נתונים</button></div><p id="pmSummary" class="pmSummary"></p><details class="pmExplanation"><summary>הסבר</summary><div class="pmExplanationBody"><p><b>איך נבחרים השחקנים?</b> בכל קבוצה מוצגים סנטר, שני פורוורדים ושני גארדים עם ממוצע הדקות הגבוה בעמדה בעונת 2026/27. שחקנים שמסומנים בחוץ אינם נכללים. בהיעדר נתוני דקות, המיון זמני לפי המחיר.</p><p><b>מה משמעות הזוגות?</b> השחקן עם הכי הרבה דקות בעמדה מוצג מול המדורג המקביל בקבוצה השנייה. זו השוואת תפקידים ונתונים; אין כאן זיהוי של השומר האישי או אישור לחמישייה הפותחת.</p><p><b>איך קוראים את הנתונים?</b> הטבלה מציגה ממוצעים למשחק בעונה הנוכחית. שורת ״PIR צפוי״ היא תחזית למשחק הבא, בנפרד מהביצועים בפועל. המחיר נמדד בקרדיטים; — מציין נתון חסר, ולא אפס.</p><p><b>פרטים נוספים:</b> לחיצה על שחקן פותחת את פרטיו. בתצוגת רשימה המחיר במרכז והדקות מתחת לשם.</p><p id="pmStatus" class="muted pmHelp" role="status"></p></div></details><div id="pmCourts"></div></div>
+</div><div id="pmUpcoming"><div class="filters pmControls"><label>קבוצה למאצ׳אפ<select id="pmTeam"></select></label><label>קבוצה להשוואה<select id="pmOpponent"><option value="">היריבה במשחק הבא</option></select></label><label>תצוגה<select id="pmView"><option value="court">מגרש</option><option value="list">רשימה · מחיר ו־PIR</option></select></label><button class="secondary" id="pmReload">רענן נתונים</button></div><p id="pmSummary" class="pmSummary"></p><details class="pmExplanation"><summary>הסבר</summary><div class="pmExplanationBody"><p><b>איך נבחרים השחקנים?</b> בכל קבוצה מוצגים סנטר, שני פורוורדים ושני גארדים עם ממוצע הדקות הגבוה בעמדה בעונת 2026/27. שחקנים שמסומנים בחוץ אינם נכללים. בהיעדר נתוני דקות, המיון זמני לפי המחיר.</p><p><b>מה משמעות הזוגות?</b> השחקן עם הכי הרבה דקות בעמדה מוצג מול המדורג המקביל בקבוצה השנייה. זו השוואת תפקידים ונתונים; אין כאן זיהוי של השומר האישי או אישור לחמישייה הפותחת.</p><p><b>איך קוראים את הנתונים?</b> הטבלה מציגה ממוצעים למשחק בעונה הנוכחית. שורת ״PIR צפוי״ היא תחזית למשחק הבא, בנפרד מהביצועים בפועל. המחיר נמדד בקרדיטים; — מציין נתון חסר, ולא אפס.</p><p><b>פרטים נוספים:</b> לחיצה על שחקן פותחת את פרטיו. בתצוגת רשימה מוצגים במרכז המחיר ופער ה־PIR הצפוי למשחק הבא של כל שחקן. החץ מצביע על השחקן עם התחזית הגבוהה יותר. הדקות מוצגות מתחת לשם.</p><p id="pmStatus" class="muted pmHelp" role="status"></p></div></details><div id="pmCourts"></div></div>
 <div id="pmHistory" hidden>
   <div class="filters pmHistoryControls">
     <label>מחזור<select id="pmHistoryRound" disabled></select></label>
@@ -827,16 +827,17 @@ function pmListMarkup(aRoster,bRoster,team,opponent){
  const pairs=pmListPairs(aRoster,bRoster);
  const price=p=>`<span class="pmListPrice"><b>${clubNumber(p?.price)}</b><small>קרדיט</small></span>`;
  const row=({a,b,pos})=>{
-  const left=pmAverage(a,'minutes'),right=pmAverage(b,'minutes');
-  const difference=Number(clubNumber(left))-Number(clubNumber(right));
+  const leftMinutes=pmAverage(a,'minutes'),rightMinutes=pmAverage(b,'minutes');
+  const leftPir=clubNumber(a?model(a).expected:null),rightPir=clubNumber(b?model(b).expected:null);
+  const difference=Number(leftPir)-Number(rightPir);
   const winner=difference>0?'left':difference<0?'right':null;
-  const gap=winner?`<span class="pmListGap" dir="rtl" data-winner="${winner}"><bdi dir="ltr">+${clubNumber(Math.abs(difference))}</bdi> דק׳ <span class="pmListGapArrow" role="img" aria-label="לטובת ${esc(reorderCommaName((winner==='left'?a:b).name))}"></span></span>`:
+  const gap=winner?`<span class="pmListGap" dir="rtl" data-winner="${winner}"><bdi dir="ltr">+${clubNumber(Math.abs(difference))} PIR</bdi> <span class="pmListGapArrow" role="img" aria-label="לטובת ${esc(reorderCommaName((winner==='left'?a:b).name))}"></span></span>`:
    `<span class="pmListGap" dir="rtl">${difference===0?'שוויון':'—'}</span>`;
-  return `<div class="pmListRow">${pmListPlayer(a,pos,left,false)}<div class="pmListCenter"><div class="pmListPrices">${price(a)}${price(b)}</div>${gap}</div>${pmListPlayer(b,pos,right,true)}</div>`;
+  return `<div class="pmListRow">${pmListPlayer(a,pos,leftMinutes,false)}<div class="pmListCenter"><div class="pmListPrices">${price(a)}${price(b)}</div>${gap}</div>${pmListPlayer(b,pos,rightMinutes,true)}</div>`;
  };
  return `<div class="pmList">${['מובילי הדקות לפי עמדה','הבאים בדירוג הדקות לפי עמדה','יתר הסגל · לפי עמדה ודקות'].map((title,group)=>{
   const rows=pairs.filter(p=>p.group===group);if(!rows.length)return '';
-  return `<h3 class="pmLineupTitle">${title}</h3><div class="pmListGroup"><div class="pmListHeader"><bdi>${esc(team)}</bdi><span dir="rtl">מחיר ופער דקות</span><bdi>${esc(opponent||'טרם נקבעה יריבה')}</bdi></div>${rows.map(row).join('')}</div>`;
+  return `<h3 class="pmLineupTitle">${title}</h3><div class="pmListGroup"><div class="pmListHeader"><bdi>${esc(team)}</bdi><span dir="rtl">מחיר ופער PIR צפוי</span><bdi>${esc(opponent||'טרם נקבעה יריבה')}</bdi></div>${rows.map(row).join('')}</div>`;
  }).join('')}</div>`;
 }
 function renderPlayerMatchups(){
