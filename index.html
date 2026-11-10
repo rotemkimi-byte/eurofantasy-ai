@@ -2467,6 +2467,9 @@ fetch('./data/player-media.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Err
 .simClub{display:flex;align-items:center;justify-content:center;gap:4px}
 .simClub img{width:13px;height:13px;object-fit:contain}
 .simNext{display:flex;align-items:center;gap:4px}
+.simVenue{display:inline-block;padding:1px 3px;border-radius:4px;font-size:9px;line-height:1.1;font-weight:800;white-space:nowrap;color:#40536c;background:#e8eef5}
+.simVenue[data-venue="בית"]{color:#145846;background:#e0f2e9}
+.simVenue[data-venue="חוץ"]{color:#254f7b;background:#e2ecf8}
 .simNext i{display:inline-block;flex:0 0 3px;height:12px;border-radius:3px;background:var(--sim-opponent);box-shadow:0 0 0 1px #16243a33}
 .simPlayerAction .simNext{justify-content:center;width:100%;background:#f0f4fa;border-radius:7px;padding:5px 3px}
 .simPopularity bdi{font-weight:850;color:#15604f}
@@ -2511,17 +2514,18 @@ fetch('./data/player-media.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Err
 #simPicker .simAdd:disabled{opacity:1;background:#e8edf3;color:#596a80;cursor:not-allowed}
 .simStatus{color:#79233a;font-size:12px;margin:0 0 7px}
 .simStatus:empty{display:none}
-.simHistoryTitle{margin:10px 0 5px;font-size:14px}
-.simHistory{width:100%;min-width:0;table-layout:fixed;border-collapse:collapse}
-.simHistory th,.simHistory td{padding:4px 3px;text-align:center;font-size:12px;line-height:1.2;border-bottom:1px solid #dce4ee}
+.simHistoryTitle{margin:8px 0 4px;font-size:13px}
+.simHistory{width:100%;min-width:0;max-width:440px;table-layout:fixed;border-collapse:collapse}
+.simHistory th,.simHistory td{padding:2px;text-align:center;font-size:11px;line-height:1.15;border-bottom:1px solid #dce4ee}
 .simHistory th{position:static;background:#e6edf6;color:#354a62;white-space:nowrap}
-.simHistory th:first-child{width:43%;text-align:start;padding-inline-start:5px}
+.simHistory th:first-child{width:39%;text-align:start;padding-inline-start:5px}
+.simHistory th:nth-child(2){width:14%}
 .simHistory td{background:#fff;color:#172741;font-variant-numeric:tabular-nums}
 .simHistory tbody tr:nth-child(even) td{background:#f7f9fc}
 .simHistory td:not(:first-child){white-space:nowrap}
 .simHistory td:last-child{font-weight:850;color:#125c4b}
-.simHistory .simRound{display:flex;align-items:baseline;gap:5px;text-align:start}
-.simHistory .simRoundNumber{flex:0 0 1.6em;text-align:center;font-weight:800}
+.simHistory .simRound{display:flex;align-items:baseline;gap:3px;text-align:start}
+.simHistory .simRoundNumber{flex:0 0 1.45em;text-align:center;font-weight:800}
 .simHistory .simRoundOpponent{min-width:0;color:#40536c;font-size:10px;overflow-wrap:anywhere}
 .simEmptyMessage{color:#40536c;font-size:12px}
 @media(max-width:420px){
@@ -2604,11 +2608,21 @@ function identity(p){
  const club=`<span class="simClub">${crest?`<img src="${esc(crest)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:''}<bdi>${esc(team||'קבוצה לא זמינה')}</bdi></span>`;
  return {media,club};
 }
+function venueLabel(home,neutral=false){
+ if(neutral)return 'ניטרלי';
+ if([true,1,'1'].includes(home))return 'בית';
+ if([false,0,'0'].includes(home))return 'חוץ';
+ return '';
+}
+function venueBadge(venue){
+ return venue?`<span class="simVenue" data-venue="${venue}">${venue}</span>`:'';
+}
 function nextGame(p){
  const match=matchup(p),opponent=canonicalTeam(match.opponent||p.opponent||'');
  if(!opponent)return '<span class="simNext">היריבה טרם נקבעה</span>';
  const color=TEAM_KITS[opponent]?.[1]||'#65748a';
- return `<span class="simNext"><i aria-hidden="true" style="--sim-opponent:${color}"></i><span>מול <bdi>${esc(opponent)}</bdi></span></span>`;
+ const home=MATCHUPS[canonicalTeam(p.team)]?.home??p.home;
+ return `<span class="simNext"><i aria-hidden="true" style="--sim-opponent:${color}"></i><span>מול <bdi>${esc(opponent)}</bdi> ${venueBadge(venueLabel(home,match.isNeutralVenue===true))}</span></span>`;
 }
 function popularity(p){
  const value=num(p.previous_round_popularity),round=num(p.popularity_round);
@@ -2709,27 +2723,42 @@ function paintCandidates(){
  <div class="simCandidates">${rows.map(({p,stats})=>candidateRow(p,stats)).join('')||'<p class="simEmptyMessage">אין מחליפים זמינים בעמדה.</p>'}</div>`;
  dialog.querySelector('#simSort').value=sort;
 }
-function historyRows(live,schedule,credits,p){
+async function historyRows(live,schedule,credits,p){
  if(live.season!=='E2026')return [];
  const games=new Map((schedule.data||[]).filter(g=>g.season?.code==='E2026'&&g.played===true).map(g=>[Number(g.gameCode),g]));
  const prices=new Map(window.PlayerCredits.rows(credits,p).filter(r=>!r.current&&r.price>0).map(r=>[r.round,r.price]));
  const name=lastThreeName(p.name),team=canonicalTeam(p.team);
- const rows=Object.values(live.games||{}).flatMap(g=>{
-  const fixture=games.get(Number(g.gameCode)),round=Number(fixture?.round);
-  if(!Number.isInteger(round)||round<1)return [];
+ const roundTeams=new Map(credits.filter(r=>r.priceSource==='pre-round').flatMap(r=>{
+  const historical=r.players?.find(player=>lastThreeName(player.name)===name);
+  return historical?.team?[[Number(r.round),canonicalTeam(historical.team)]]:[];
+ }));
+ const sides=['local','road'];
+ const club=(fixture,side)=>canonicalTeam(fixture[side]?.club?.name||'');
+ const sideForTeam=fixture=>sides.find(side=>club(fixture,side)===(roundTeams.get(Number(fixture.round))||team));
+ const location=(fixture,side)=>side?{
+  opponent:club(fixture,side==='local'?'road':'local'),venue:venueLabel(side==='local',fixture.isNeutralVenue===true)
+ }:{opponent:'',venue:''};
+ const played=await Promise.all(Object.values(live.games||{}).map(async g=>{
+  const code=Number(g.gameCode),fixture=games.get(code),round=Number(fixture?.round);
+  if(!Number.isInteger(round)||round<1)return null;
   const row=(g.rows||[]).find(r=>r.season==='E2026'&&lastThreeName(r.name)===name);
-  if(!row)return [];
-  const home=canonicalTeam(fixture.local?.club?.name||''),away=canonicalTeam(fixture.road?.club?.name||'');
-  return [{round,code:Number(g.gameCode),opponent:home===team?away:away===team?home:'',price:prices.get(round),minutes:num(row.minutes),pir:num(row.pir)}];
- });
+  if(!row)return null;
+  let side=sideForTeam(fixture);
+  if(!side){
+   // The current club may differ from the club in an earlier box score.
+   const box=await lastThreeFetch(`./data/backtest/cache/E2026-${code}-stats.json`).catch(()=>null);
+   side=sides.find(key=>box?.[key]?.players?.some(r=>lastThreeName(r.player?.person?.name||'')===name));
+  }
+  return {round,code,...location(fixture,side),price:prices.get(round),minutes:num(row.minutes),pir:num(row.pir)};
+ }));
+ const rows=played.filter(Boolean);
  const represented=new Set(rows.map(r=>r.round));
  for(const fixture of games.values()){
   const round=Number(fixture.round);
   if(!prices.has(round)||represented.has(round))continue;
-  const home=canonicalTeam(fixture.local?.club?.name||''),away=canonicalTeam(fixture.road?.club?.name||'');
-  const opponent=home===team?away:away===team?home:'';
-  if(!opponent)continue;
-  rows.push({round,code:Number(fixture.gameCode),opponent,price:prices.get(round),minutes:null,pir:null});
+  const game=location(fixture,sideForTeam(fixture));
+  if(!game.opponent)continue;
+  rows.push({round,code:Number(fixture.gameCode),...game,price:prices.get(round),minutes:null,pir:null});
   represented.add(round);
  }
  return rows.sort((a,b)=>b.round-a.round||b.code-a.code);
@@ -2759,9 +2788,10 @@ async function showHistory(p){
    window.PlayerCredits.load().catch(()=>[])
   ]);
   if(!target.isConnected)return;
-  const rows=historyRows(live,schedule,credits,p);
-  target.innerHTML=rows.length?`<table class="simHistory"><thead><tr><th scope="col">מחזור</th><th scope="col">מחיר CR</th><th scope="col">דקות</th><th scope="col">PIR</th></tr></thead>
-  <tbody>${rows.map(r=>`<tr><td><span class="simRound"><bdi class="simRoundNumber">${r.round}</bdi>${r.opponent?`<bdi class="simRoundOpponent">${esc(r.opponent)}</bdi>`:''}</span></td><td>${money(r.price)}</td><td><bdi>${playedMinutes(r.minutes)}</bdi></td><td>${money(r.pir)}</td></tr>`).join('')}</tbody></table>`:
+  const rows=await historyRows(live,schedule,credits,p);
+  if(!target.isConnected)return;
+  target.innerHTML=rows.length?`<table class="simHistory"><thead><tr><th scope="col">מחזור · יריבה</th><th scope="col">מגרש</th><th scope="col" title="מחיר בקרדיטים">CR</th><th scope="col">דקות</th><th scope="col">PIR</th></tr></thead>
+  <tbody>${rows.map(r=>`<tr><td><span class="simRound"><bdi class="simRoundNumber">${r.round}</bdi>${r.opponent?`<bdi class="simRoundOpponent">${esc(r.opponent)}</bdi>`:''}</span></td><td>${venueBadge(r.venue)||'—'}</td><td>${money(r.price)}</td><td><bdi>${playedMinutes(r.minutes)}</bdi></td><td>${money(r.pir)}</td></tr>`).join('')}</tbody></table>`:
   '<p class="simEmptyMessage">אין נתוני משחקים לשחקן בעונה הנוכחית.</p>';
  }catch{
   if(target.isConnected)target.innerHTML='<p class="simEmptyMessage">טעינת משחקי העונה נכשלה. אפשר לחזור לרשימה ולנסות שוב.</p>';
