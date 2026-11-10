@@ -56,6 +56,7 @@ def resolve_matchday():
     return {
         "id": int(md["id"]),
         "number": int(md.get("number") or 0),
+        "previous": data.get("previous_matchday"),
     }
 
 
@@ -185,20 +186,20 @@ def discover_player_list_ids():
     return ids
 
 
+def matchday_players(list_id, matchday_id):
+    path = (
+        f"/players-lists/{list_id}/matchdays/{matchday_id}/players"
+        "?per_page=-1&page=1&sort_by=quotation&sort_order=desc"
+    )
+    return extract_rows(api(path))
+
+
 def fetch_players(matchday):
     attempts = []
 
     for list_id in discover_player_list_ids():
-        path = (
-            f"/players-lists/{list_id}/matchdays/"
-            f"{matchday['id']}/players"
-            "?per_page=-1&page=1"
-            "&sort_by=quotation&sort_order=desc"
-        )
-
         try:
-            result = api(path)
-            rows = extract_rows(result)
+            rows = matchday_players(list_id, matchday["id"])
 
             attempts.append(f"{list_id}:{len(rows)}")
 
@@ -213,6 +214,38 @@ def fetch_players(matchday):
     raise RuntimeError(
         "No player list found. Attempts: " + ", ".join(attempts)
     )
+
+
+def previous_popularity(matchday, list_id):
+    previous = matchday.get("previous")
+    if not isinstance(previous, dict) or not previous.get("id"):
+        return None, {}
+    round_number = previous.get("number")
+    if not isinstance(round_number, int) or round_number != matchday["number"] - 1 or round_number < 1:
+        return None, {}
+
+    percentages = {}
+    try:
+        saved = json.loads((DATA_DIR / "players.json").read_text(encoding="utf-8"))
+        percentages = {
+            p["fantasy_id"]: p["previous_round_popularity"]
+            for p in extract_rows(saved)
+            if p.get("fantasy_id") is not None
+            and p.get("popularity_round") == round_number
+            and p.get("previous_round_popularity") is not None
+        }
+    except (OSError, ValueError):
+        pass
+
+    try:
+        for player in matchday_players(list_id, previous["id"]):
+            fraction = player.get("popularity")
+            if player.get("id") is not None and type(fraction) in (int, float) and 0 <= fraction <= 1:
+                percentages[player["id"]] = round(fraction * 100, 4)
+        print(f"Popularity for round {round_number}: {len(percentages)} players")
+    except RuntimeError as error:
+        print(f"Previous round popularity unavailable: {error}")
+    return round_number, percentages
 
 
 def normalise_player(p):
@@ -251,6 +284,7 @@ def normalise_player(p):
     else:
         home = 0
 
+    jersey = str(p.get("jersey") if p.get("jersey") is not None else "")
     return {
         "name": player_name(p),
         "team": team_name,
@@ -260,6 +294,7 @@ def normalise_player(p):
         "home": home,
         "status": player_status(p),
         "fantasy_id": p.get("id"),
+        "jerseyNumber": jersey if re.fullmatch(r"[0-9]{1,2}", jersey) else None,
         "probability_of_playing": p.get("probability_of_playing"),
         "data_updated": datetime.now(timezone.utc).isoformat(),
         "fantasy_source": "Fantaking API",
@@ -294,6 +329,7 @@ def main():
     )
 
     raw_players, list_id = fetch_players(matchday)
+    popularity_round, popularity = previous_popularity(matchday, list_id)
 
     players = []
 
@@ -301,6 +337,8 @@ def main():
         player = normalise_player(raw)
 
         if player["name"]:
+            player["popularity_round"] = popularity_round
+            player["previous_round_popularity"] = popularity.get(player["fantasy_id"])
             players.append(player)
 
     if not players:
