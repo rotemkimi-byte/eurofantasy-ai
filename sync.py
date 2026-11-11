@@ -60,7 +60,7 @@ def resolve_matchday():
         "id": int(md["id"]),
         "number": int(md.get("number") or 0),
         "previous": data.get("previous_matchday"),
-        "matchdays": data.get("matchdays") or [],
+        "current_slot": data.get("current_round") or {},
     }
 
 
@@ -220,94 +220,52 @@ def fetch_players(matchday):
     )
 
 
-def popularity_snapshot(list_id, day):
-    snapshot = {}
-    percentages = {}
-    for raw in matchday_players(list_id, day["id"]):
-        fraction = raw.get("popularity")
-        player_id = raw.get("id")
-        if player_id is None or type(fraction) not in (int, float) or not 0 <= fraction <= 1:
-            continue
-        percent = round(fraction * 100, 4)
-        percentages[player_id] = percent
-        name = player_name(raw)
-        pos = position_code(raw)
-        team = raw.get("team") or ""
-        if isinstance(team, dict):
-            team = team.get("name") or team.get("abbreviation") or ""
-        if name and pos in POPULARITY_POSITIONS:
-            snapshot[player_id] = dict(id=player_id, name=name, team=team, pos=pos, percent=percent)
+def sync_popularity(matchday, list_id, players, captured_at):
+    previous = matchday.get("previous") or {}
+    previous_number = previous.get("number")
+    if list_id != POPULARITY_LIST_ID:
+        return previous_number, {}
 
-    # An entire player list at zero does not provide a usable selection snapshot.
-    if not any(row["percent"] > 0 for row in snapshot.values()):
-        return [], {}
-    return sorted(snapshot.values(), key=lambda row: str(row["id"])), percentages
-
-
-def previous_popularity(matchday, list_id):
-    previous = matchday.get("previous")
-    if not isinstance(previous, dict) or not previous.get("id"):
-        return None, {}
-    round_number = previous.get("number")
-    if not isinstance(round_number, int) or round_number != matchday["number"] - 1 or round_number < 1:
-        return None, {}
-
-    percentages = {}
+    path = DATA_DIR / "popularity-snapshots.json"
+    archive = {"season": POPULARITY_SEASON, "rounds": {}}
+    if path.exists():
+        archive = json.loads(path.read_text(encoding="utf-8"))
+    rounds = archive["rounds"]
+    slot = matchday["current_slot"]
     try:
-        saved = json.loads((DATA_DIR / "players.json").read_text(encoding="utf-8"))
-        percentages = {
-            p["fantasy_id"]: p["previous_round_popularity"]
-            for p in extract_rows(saved)
-            if p.get("fantasy_id") is not None
-            and p.get("popularity_round") == round_number
-            and p.get("previous_round_popularity") is not None
-        }
-    except (OSError, ValueError):
-        pass
+        starts_at = datetime.fromisoformat(slot.get("started_at") or "")
+    except ValueError:
+        starts_at = None
 
-    archive_path = DATA_DIR / "popularity.json"
-    rounds = {}
-    if list_id == POPULARITY_LIST_ID and archive_path.exists():
-        archive = json.loads(archive_path.read_text(encoding="utf-8"))
-        if archive.get("season") == POPULARITY_SEASON:
-            rounds = archive["rounds"]
+    # The API repeats the live popularity field on historical matchday requests.
+    # Capture it against the current matchday before the first slot starts.
+    if slot.get("number") == 1 and starts_at and starts_at.tzinfo and captured_at < starts_at:
+        snapshot = {}
+        for raw in players:
+            fraction = raw.get("popularity")
+            player_id = raw.get("id")
+            if player_id is None or type(fraction) not in (int, float) or not 0 <= fraction <= 1:
+                continue
+            player = normalise_player(raw)
+            if player["name"] and player["pos"] in POPULARITY_POSITIONS:
+                snapshot[player_id] = {
+                    "id": player_id, "name": player["name"], "team": player["team"],
+                    "pos": player["pos"], "percent": round(fraction * 100, 4),
+                }
 
-    latest_key = str(round_number)
-    percentages.update({p["id"]: p["percent"] for p in rounds.get(latest_key, [])})
-    days = [previous]
-    if list_id == POPULARITY_LIST_ID:
-        days.extend(
-            day for day in matchday["matchdays"]
-            if isinstance(day, dict) and day.get("id")
-            and type(day.get("number")) is int and 0 < day["number"] < round_number
-            and str(day["number"]) not in rounds
-        )
+        if any(player["percent"] > 0 for player in snapshot.values()):
+            key = str(matchday["number"])
+            existing = rounds.get(key, {})
+            if captured_at.isoformat() > existing.get("captured_at", ""):
+                rounds[key] = {
+                    "captured_at": captured_at.isoformat(),
+                    "players": sorted(snapshot.values(), key=lambda player: str(player["id"])),
+                }
+                save_json(path, archive)
+                print(f"Saved popularity snapshot for round {key}: {len(snapshot)} players")
 
-    changed = False
-    for day in days:
-        key = str(day["number"])
-        try:
-            rows, fresh = popularity_snapshot(list_id, day)
-        except RuntimeError as error:
-            print(f"Popularity for round {key} unavailable: {error}")
-            continue
-        if key == latest_key:
-            percentages.update(fresh)
-        if list_id == POPULARITY_LIST_ID and rows:
-            merged = {p["id"]: p for p in rounds.get(key, [])}
-            merged.update({p["id"]: p for p in rows})
-            updated = sorted(merged.values(), key=lambda row: str(row["id"]))
-            if updated != rounds.get(key):
-                rounds[key] = updated
-                changed = True
-        print(f"Popularity for round {key}: {len(rows)} players")
-
-    if changed:
-        save_json(archive_path, {
-            "season": POPULARITY_SEASON,
-            "rounds": dict(sorted(rounds.items(), key=lambda item: int(item[0]))),
-        })
-    return round_number, percentages
+    previous_players = rounds.get(str(previous_number), {}).get("players", [])
+    return previous_number, {p["id"]: p["percent"] for p in previous_players}
 
 
 def normalise_player(p):
@@ -391,7 +349,9 @@ def main():
     )
 
     raw_players, list_id = fetch_players(matchday)
-    popularity_round, popularity = previous_popularity(matchday, list_id)
+    popularity_round, popularity = sync_popularity(
+        matchday, list_id, raw_players, datetime.now(timezone.utc),
+    )
 
     players = []
 

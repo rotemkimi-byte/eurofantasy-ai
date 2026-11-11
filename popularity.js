@@ -56,8 +56,11 @@
   let latestRound = 0;
   let loading = false;
   let loaded = false;
-  let archiveData = null;
-  let liveData = [];
+  let captureTimes = new Map();
+  let activeRound = 0;
+  const timestamp = new Intl.DateTimeFormat('he-IL', {
+    dateStyle: 'short', timeStyle: 'short', timeZone: 'Asia/Jerusalem'
+  });
 
   function validRow(row) {
     return row && row.id != null && row.name && Object.hasOwn(positions, row.pos)
@@ -97,13 +100,13 @@
     } else if (!selected.length) {
       $('popStatus').textContent = round && !season
         ? `אחוזי הבחירה למחזור ${round} עדיין אינם זמינים.`
-        : 'אחוזי הבחירה אינם זמינים כרגע. אפשר לנסות לרענן.';
+        : 'הממוצע יהיה זמין לאחר שיישמרו אחוזי בחירה.';
     } else if (!players.length) {
       $('popStatus').textContent = 'אין נתוני בחירה לעמדה שבחרת בתקופה הזו.';
     } else {
       $('popStatus').textContent = season
-        ? `עונת 2026/27 · נתונים ל־${rounds.size} מתוך ${latestRound} מחזורים · ממוצע לכל שחקן לפי המחזורים שבהם יש לו נתון.`
-        : `מחזור ${round} · ${players.length} שחקנים · אחוז מסגלי הפנטזי שבחרו בשחקן.`;
+        ? `עונת 2026/27 · נתונים ל־${selected.length} מתוך ${latestRound} מחזורים · ממוצע לכל שחקן לפי המחזורים שבהם יש לו נתון.`
+        : `מחזור ${round} · אחוז מסגלי הפנטזי שבחרו בשחקן · צילום מצב מ־${timestamp.format(captureTimes.get(round))}`;
     }
 
     let rank = 0;
@@ -131,41 +134,33 @@
     $('popReload').disabled = true;
     render();
 
-    const [archive, live] = await Promise.allSettled([fetchData('popularity.json'), fetchData('players.json')]);
-    if (archive.value?.season === 'E2026') archiveData = archive.value.rounds;
-    if (Array.isArray(live.value)) liveData = live.value;
+    const [archive, meta] = await Promise.allSettled([
+      fetchData('popularity-snapshots.json'), fetchData('meta.json')
+    ]);
+    const matchday = meta.value?.matchday_number;
+    if (meta.value?.players_list_id === 49 && Number.isInteger(matchday)) activeRound = matchday;
 
-    const snapshots = new Map();
-    for (const [key, rows] of Object.entries(archiveData || {})) {
-      const round = Number(key);
-      if (Number.isInteger(round) && round > 0 && Array.isArray(rows)) {
-        snapshots.set(round, new Map(rows.filter(validRow).map(row => [String(row.id), row])));
+    if (archive.value?.season === 'E2026') {
+      const snapshots = new Map();
+      captureTimes = new Map();
+      for (const [key, snapshot] of Object.entries(archive.value.rounds || {})) {
+        const round = Number(key);
+        const captured = Date.parse(snapshot.captured_at);
+        if (!Number.isInteger(round) || round < 1 || !Number.isFinite(captured) || !Array.isArray(snapshot.players)) continue;
+        const rows = snapshot.players.filter(validRow);
+        if (!rows.length) continue;
+        snapshots.set(round, new Map(rows.map(row => [String(row.id), row])));
+        captureTimes.set(round, captured);
       }
+      rounds = new Map([...snapshots].sort(([a], [b]) => a - b));
     }
 
-    let liveRound = 0;
-    const fallback = new Map();
-    for (const player of liveData) {
-      const round = player.popularity_round;
-      if (!Number.isInteger(round) || round < 1) continue;
-      liveRound = Math.max(round, liveRound);
-      const row = { id: player.fantasy_id, name: player.name, team: player.team,
-        pos: player.pos, percent: player.previous_round_popularity };
-      if (!validRow(row)) continue;
-      if (!fallback.has(round)) fallback.set(round, new Map());
-      fallback.get(round).set(String(row.id), row);
-    }
-    for (const [round, rows] of fallback) {
-      if (!snapshots.get(round)?.size) snapshots.set(round, rows);
-    }
-
-    rounds = new Map([...snapshots].filter(([, rows]) => rows.size).sort(([a], [b]) => a - b));
-    latestRound = Math.max(liveRound, ...rounds.keys());
+    latestRound = Math.max(activeRound, ...rounds.keys());
     const picker = $('popRound');
     const previous = picker.value;
     picker.replaceChildren(...Array.from({ length: latestRound }, (_, index) => {
       const round = latestRound - index;
-      return new Option('מחזור ' + round + (rounds.has(round) ? '' : ' · אין נתונים'), round);
+      return new Option('מחזור ' + round + (rounds.has(round) ? (round === activeRound ? ' · נוכחי' : '') : ' · אין נתונים'), round);
     }));
     if (previous && Number(previous) <= latestRound) picker.value = previous;
     else if (rounds.size) picker.value = Math.max(...rounds.keys());
