@@ -11,6 +11,9 @@ TOKEN = os.environ.get("FANTASY_TOKEN", "").strip()
 
 DATA_DIR = Path("data")
 DATA_DIR.mkdir(exist_ok=True)
+POPULARITY_SEASON = "E2026"
+POPULARITY_LIST_ID = 49
+POPULARITY_POSITIONS = {"G", "F", "C"}
 
 
 def api(path, auth=True):
@@ -57,6 +60,7 @@ def resolve_matchday():
         "id": int(md["id"]),
         "number": int(md.get("number") or 0),
         "previous": data.get("previous_matchday"),
+        "matchdays": data.get("matchdays") or [],
     }
 
 
@@ -216,6 +220,30 @@ def fetch_players(matchday):
     )
 
 
+def popularity_snapshot(list_id, day):
+    snapshot = {}
+    percentages = {}
+    for raw in matchday_players(list_id, day["id"]):
+        fraction = raw.get("popularity")
+        player_id = raw.get("id")
+        if player_id is None or type(fraction) not in (int, float) or not 0 <= fraction <= 1:
+            continue
+        percent = round(fraction * 100, 4)
+        percentages[player_id] = percent
+        name = player_name(raw)
+        pos = position_code(raw)
+        team = raw.get("team") or ""
+        if isinstance(team, dict):
+            team = team.get("name") or team.get("abbreviation") or ""
+        if name and pos in POPULARITY_POSITIONS:
+            snapshot[player_id] = dict(id=player_id, name=name, team=team, pos=pos, percent=percent)
+
+    # An entire player list at zero does not provide a usable selection snapshot.
+    if not any(row["percent"] > 0 for row in snapshot.values()):
+        return [], {}
+    return sorted(snapshot.values(), key=lambda row: str(row["id"])), percentages
+
+
 def previous_popularity(matchday, list_id):
     previous = matchday.get("previous")
     if not isinstance(previous, dict) or not previous.get("id"):
@@ -237,14 +265,48 @@ def previous_popularity(matchday, list_id):
     except (OSError, ValueError):
         pass
 
-    try:
-        for player in matchday_players(list_id, previous["id"]):
-            fraction = player.get("popularity")
-            if player.get("id") is not None and type(fraction) in (int, float) and 0 <= fraction <= 1:
-                percentages[player["id"]] = round(fraction * 100, 4)
-        print(f"Popularity for round {round_number}: {len(percentages)} players")
-    except RuntimeError as error:
-        print(f"Previous round popularity unavailable: {error}")
+    archive_path = DATA_DIR / "popularity.json"
+    rounds = {}
+    if list_id == POPULARITY_LIST_ID and archive_path.exists():
+        archive = json.loads(archive_path.read_text(encoding="utf-8"))
+        if archive.get("season") == POPULARITY_SEASON:
+            rounds = archive["rounds"]
+
+    latest_key = str(round_number)
+    percentages.update({p["id"]: p["percent"] for p in rounds.get(latest_key, [])})
+    days = [previous]
+    if list_id == POPULARITY_LIST_ID:
+        days.extend(
+            day for day in matchday["matchdays"]
+            if isinstance(day, dict) and day.get("id")
+            and type(day.get("number")) is int and 0 < day["number"] < round_number
+            and str(day["number"]) not in rounds
+        )
+
+    changed = False
+    for day in days:
+        key = str(day["number"])
+        try:
+            rows, fresh = popularity_snapshot(list_id, day)
+        except RuntimeError as error:
+            print(f"Popularity for round {key} unavailable: {error}")
+            continue
+        if key == latest_key:
+            percentages.update(fresh)
+        if list_id == POPULARITY_LIST_ID and rows:
+            merged = {p["id"]: p for p in rounds.get(key, [])}
+            merged.update({p["id"]: p for p in rows})
+            updated = sorted(merged.values(), key=lambda row: str(row["id"]))
+            if updated != rounds.get(key):
+                rounds[key] = updated
+                changed = True
+        print(f"Popularity for round {key}: {len(rows)} players")
+
+    if changed:
+        save_json(archive_path, {
+            "season": POPULARITY_SEASON,
+            "rounds": dict(sorted(rounds.items(), key=lambda item: int(item[0]))),
+        })
     return round_number, percentages
 
 

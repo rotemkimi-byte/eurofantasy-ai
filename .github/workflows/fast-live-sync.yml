@@ -13,8 +13,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: eurofantasy-fast-live-sync
-  cancel-in-progress: true
+  group: eurofantasy-fantasy-data-sync
+  cancel-in-progress: false
 
 jobs:
   sync:
