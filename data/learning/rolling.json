@@ -2,8 +2,8 @@
   "schema": "rolling-learning-v1",
   "season": "E2026",
   "engineId": "190e68bc1c7574fd489a",
-  "updated_at": "2026-11-11T14:44:41.069891+00:00",
-  "exactCount": 1305,
+  "updated_at": "2026-11-11T21:35:49.295365+00:00",
+  "exactCount": 1328,
   "diagnostic": {
     "n": 434,
     "mae": 5.191151955094332,
@@ -16,10 +16,10 @@
   },
   "missingInputs": 347,
   "validation": {
-    "n": 1052,
-    "games": 47,
-    "baselineMae": 5.778641288089515,
-    "candidateMae": 5.735348668061232,
+    "n": 1074,
+    "games": 48,
+    "baselineMae": 5.758961516063093,
+    "candidateMae": 5.715752480483878,
     "active": false,
     "reason": "collecting-or-no-improvement",
     "folds": [
@@ -445,33 +445,42 @@
         "testN": 22,
         "baselineMae": 5.843338241491438,
         "candidateMae": 5.782259621717225
+      },
+      {
+        "gameCode": 102,
+        "round": 11,
+        "trainingN": 1279,
+        "trainingGames": 57,
+        "testN": 22,
+        "baselineMae": 4.817910599163279,
+        "candidateMae": 4.778698419966756
       }
     ],
-    "intervalCoverage": 0.7946768060836502
+    "intervalCoverage": 0.797951582867784
   },
   "coefficients": {
     "G": {
-      "n": 515,
-      "minutes": -0.4995706193853765,
-      "efficiencyPir": -0.2213225026375127
+      "n": 525,
+      "minutes": -0.4702012935652736,
+      "efficiencyPir": -0.25231655957220556
     },
     "F": {
-      "n": 457,
-      "minutes": -0.43912428185230157,
-      "efficiencyPir": -0.15014068734392733
+      "n": 462,
+      "minutes": -0.4191566896647454,
+      "efficiencyPir": -0.1402153901424898
     },
     "C": {
-      "n": 235,
-      "minutes": -0.9930994874458405,
-      "efficiencyPir": 0.3819966048628053
+      "n": 237,
+      "minutes": -0.9554026700402962,
+      "efficiencyPir": 0.38043323523751504
     }
   },
   "interval": {
     "active": true,
     "targetCoverage": 0.8,
-    "coverage": 0.7946768060836502,
-    "n": 1052,
-    "radius": 9.084769258471518
+    "coverage": 0.797951582867784,
+    "n": 1074,
+    "radius": 9.050856214495797
   },
   "limitations": [
     "Partial historical reconstructions exclude unrecoverable pregame defensive context and momentum configuration; never activate live corrections.",
@@ -660,6 +669,30 @@
     },
     {
       "round": 10,
+      "kind": "partial-reconstruction",
+      "n": 0,
+      "mae": null,
+      "bias": null,
+      "minutesMae": null,
+      "hits": 0,
+      "hitRate": null,
+      "over": 0,
+      "under": 0
+    },
+    {
+      "round": 11,
+      "kind": "exact-frozen-input",
+      "n": 23,
+      "mae": 5.267851085990598,
+      "bias": -0.5238213633579136,
+      "minutesMae": 7.160820256244957,
+      "hits": 6,
+      "hitRate": 26.08695652173913,
+      "over": 10,
+      "under": 7
+    },
+    {
+      "round": 11,
       "kind": "partial-reconstruction",
       "n": 0,
       "mae": null,
