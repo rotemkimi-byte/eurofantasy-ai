@@ -122,8 +122,8 @@
     }).join('');
   }
 
-  async function fetchData(file) {
-    const response = await fetch('./data/' + file, { cache: 'no-store', signal: AbortSignal.timeout(15000) });
+  async function fetchData(url) {
+    const response = await fetch(url, { cache: 'no-store', signal: AbortSignal.timeout(10000) });
     if (!response.ok) throw new Error('Popularity data unavailable');
     return response.json();
   }
@@ -134,9 +134,13 @@
     $('popReload').disabled = true;
     render();
 
-    const [archive, meta] = await Promise.allSettled([
-      fetchData('popularity-snapshots.json'), fetchData('meta.json')
-    ]);
+    const archivePath = 'data/popularity-snapshots.json';
+    // The sync can publish a newer snapshot before GitHub Pages redeploys.
+    const published = location.hostname === 'rotemkimi-byte.github.io'
+      ? fetchData('https://raw.githubusercontent.com/rotemkimi-byte/eurofantasy-ai/main/' + archivePath)
+          .catch(() => fetchData('./' + archivePath))
+      : fetchData('./' + archivePath);
+    const [archive, meta] = await Promise.allSettled([published, fetchData('./data/meta.json')]);
     const matchday = meta.value?.matchday_number;
     if (meta.value?.players_list_id === 49 && Number.isInteger(matchday)) activeRound = matchday;
 
