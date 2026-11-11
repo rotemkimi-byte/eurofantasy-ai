@@ -143,7 +143,12 @@ html.ef-redesign .ef-dashboard .ef-chart-ranges button{padding:6px 3px;font-size
 html.ef-redesign .ef-dashboard .ef-data-status{font-size:10px;margin:6px 0;line-height:1.5}
 html.ef-redesign .ef-dashboard .ef-player-history{margin-top:8px;padding:12px 12px 4px;border:0;border-radius:14px 14px 0 0}
 html.ef-redesign .ef-dashboard .ef-player-history .sectionTitle{font-size:15px;margin-bottom:0}
-html.ef-redesign .ef-dashboard .ef-player-history>p.muted{font-size:10px;margin:2px 0}
+.ef-history-toolbar{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:6px 10px}
+html.ef-redesign .ef-dashboard .ef-history-toolbar p{font-size:10px;margin:2px 0}
+.ef-venue-filters{display:flex;gap:3px;padding:3px;border:1px solid var(--line);border-radius:11px;background:var(--card2)}
+html.ef-redesign .ef-venue-filters button{min-width:34px;min-height:34px;padding:4px 6px;border-radius:7px;background:transparent;color:var(--text);font-size:11px}
+html.ef-redesign .ef-venue-filters button[aria-pressed="true"]{background:#087e60;color:#fff}
+.ef-venue-filters button:focus-visible{outline:2px solid var(--blue);outline-offset:1px}
 .ef-dashboard .ef-trend-svg{max-height:210px}
 .ef-dashboard .ef-usage-preview{gap:0;margin:0;background:var(--card);border-radius:0 0 14px 14px;padding:10px 12px;border-top:1px solid var(--line)}
 .ef-dashboard .ef-usage-preview .ef-metric{border:0;border-radius:0;padding:0 10px;background:none}

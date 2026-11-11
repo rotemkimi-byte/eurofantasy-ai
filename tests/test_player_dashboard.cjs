@@ -9,8 +9,23 @@ if(process.env.MEDIA_FIXTURE){const m=JSON.parse(fs.readFileSync(path.join(root,
 await page.goto(`http://127.0.0.1:${server.address().port}`,{waitUntil:'networkidle'});
 async function open(name){await page.evaluate(n=>window.showPlayer(n),name);await page.locator('.ef-overview-data .ef-game-card').first().waitFor();}
 await open('Elijah Bryant');assert.equal(await page.locator('[role=tab][data-player-tab]').count(),4);
-const source=JSON.parse(fs.readFileSync(path.join(root,'data/official-offense.json'))),U=require('../usage-core.js');const stats=U.summarize(U.selectGames(source.players['bryant elijah'],'5'));
+const source=JSON.parse(fs.readFileSync(path.join(root,'data/official-offense.json'))),U=require('../usage-core.js');const season=U.selectGames(source.players['bryant elijah'],'0'),stats=U.summarize(season);
+assert.equal(await page.locator('[data-range="0"]').getAttribute('aria-pressed'),'true');
+assert.equal(await page.locator('[data-player-venue="all"]').getAttribute('aria-pressed'),'true');
 assert.equal(await page.locator('.ef-usage-preview strong').first().textContent(),stats.regular.value.toFixed(1)+'%');
+for(const [venue,home] of [['home',true],['away',false]]){
+ const games=season.filter(g=>g.home===home);
+ const played=games.filter(g=>g.minutes>0&&U.num(g.stats?.valuation)!==null);
+ await page.locator(`[data-player-venue="${venue}"]`).click();
+ assert.equal(await page.locator('.ef-player-history .pirPoint').count(),played.length);
+ assert.equal(await page.locator('.ef-player-stats b').nth(1).textContent(),(played.reduce((s,g)=>s+g.stats.valuation,0)/played.length).toFixed(1));
+ await page.locator('[data-player-tab="games"]').click();
+ assert.equal(await page.locator('#efPane-games .ef-game-card').count(),games.length);
+ await page.locator('[data-player-tab="overview"]').click();
+}
+await page.locator('[data-range="3"]').click();
+assert.equal(await page.locator('.ef-player-history .pirPoint').count(),season.filter(g=>g.home===false).slice(0,3).filter(g=>g.minutes>0&&U.num(g.stats?.valuation)!==null).length);
+await page.locator('[data-player-venue="all"]').click();
 for(const id of ['usage','defense','games','overview']){await page.locator(`[data-player-tab=${id}]`).click();assert.equal(await page.locator('.ef-player-pane:visible').count(),1);assert(await page.locator('#efPane-'+id).isVisible());}
 for(const range of ['1','3','0']){await page.locator(`[data-range="${range}"]`).click();const expected=U.selectGames(source.players['bryant elijah'],range).filter(g=>g.minutes>0&&g.stats.valuation!==null).length;assert.equal(await page.locator('.ef-player-history .pirPoint').count(),expected);}
 await page.locator('[data-range="3"]').click();await page.locator('.pirPoint').first().click();assert((await page.locator('.ef-chart-detail').textContent()).includes('PIR'));

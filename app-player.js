@@ -151,9 +151,22 @@ window.showPlayer=function(name){
  for(const child of [...body.children])if(child!==hero)panes.overview.append(child);
  const actual=panes.overview.querySelector('.actual-results');if(actual){const details=document.createElement('details');details.className='ef-extra-stats';details.innerHTML='<summary>נתונים נוספים ושינויי קרדיט</summary>';details.append(actual);panes.games.append(details);}
  body.append(tabs);
- const controls=document.createElement('div');controls.className='ef-chart-ranges';controls.setAttribute('role','group');controls.setAttribute('aria-label','טווח נתוני השחקן');controls.innerHTML=[['1','אחרון'],['3','3 משחקים'],['5','5 משחקים'],['0','עונה']].map(([n,l])=>`<button type="button" data-range="${n}" aria-pressed="${n==='5'}">${l}</button>`).join('');body.append(controls);
+ const controls=document.createElement('div');controls.className='ef-chart-ranges';controls.setAttribute('role','group');controls.setAttribute('aria-label','טווח נתוני השחקן');controls.innerHTML=[['1','אחרון'],['3','3 משחקים'],['5','5 משחקים'],['0','עונה']].map(([n,l])=>`<button type="button" data-range="${n}" aria-pressed="${n==='0'}">${l}</button>`).join('');body.append(controls);
  const status=document.createElement('p');status.className='ef-data-status muted';status.setAttribute('role','status');status.textContent='טוען נתוני משחק מאומתים…';body.append(status,...Object.values(panes));
  const overview=document.createElement('div');overview.className='ef-overview-data';panes.overview.prepend(overview);
+ overview.innerHTML=`<section class="playerSection ef-player-history">
+  <div class="ef-history-toolbar">
+   <div><h3 class="sectionTitle">מגמת ביצועים · PIR</h3><p class="muted">תוצאות בפועל · מהישן לחדש</p></div>
+   <div class="ef-venue-filters" role="group" aria-label="בית וחוץ">
+    <button type="button" data-player-venue="all" aria-pressed="true">הכול</button>
+    <button type="button" data-player-venue="home" aria-pressed="false">בית</button>
+    <button type="button" data-player-venue="away" aria-pressed="false">חוץ</button>
+   </div>
+  </div>
+  <div class="ef-history-plot"></div>
+ </section><div class="ef-overview-summary"></div>`;
+ const plot=overview.querySelector('.ef-history-plot'),summary=overview.querySelector('.ef-overview-summary');
+ const venueControls=overview.querySelector('.ef-venue-filters');
  if(compactMarket){
   const credits=document.createElement('section');credits.className='ef-market-credits';
   overview.after(credits);
@@ -172,20 +185,33 @@ window.showPlayer=function(name){
   creditHistory().then(rounds=>{if(body.contains(credits))draw(rounds);},()=>{});
  }
  const gamesList=document.createElement('div');panes.games.prepend(gamesList);
- let range='5',data=null,profile=null,selected=[],currentTab='overview';
+ let range='0',venue='all',data=null,profile=null,selected=[],currentTab='overview';
  function activate(id,focus=false){currentTab=id;for(const [key,pane] of Object.entries(panes))pane.hidden=key!==id;for(const b of tabs.children){const on=b.dataset.playerTab===id;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1;if(on&&focus)b.focus();}}
  tabs.onclick=e=>{const b=e.target.closest('[data-player-tab]');if(b)activate(b.dataset.playerTab);};
  tabs.onkeydown=e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const ids=Object.keys(labels),i=ids.indexOf(currentTab);activate(e.key==='Home'?ids[0]:e.key==='End'?ids.at(-1):ids[(i+(e.key==='ArrowLeft'?1:3))%4],true);};
  controls.onclick=e=>{const b=e.target.closest('[data-range]');if(!b)return;range=b.dataset.range;for(const el of controls.children)el.setAttribute('aria-pressed',String(el===b));render();};
+ venueControls.onclick=e=>{
+  const button=e.target.closest('[data-player-venue]');
+  if(!button)return;
+  venue=button.dataset.playerVenue;
+  for(const el of venueControls.children)el.setAttribute('aria-pressed',String(el===button));
+  render();
+ };
  function gameCard(g){const s=g.stats||{};return `<article class="ef-game-card"><header><div><b>${esc(g.opponent)}</b><small>${date(g.date)} · ${g.home===true?'בית':g.home===false?'חוץ':'מיקום לא ידוע'}${g.round?' · מחזור '+esc(g.round):''}</small></div>${safeLink(g.source)}</header>${g.minutes===0?'<p class="muted">לא שיחק</p>':`<div class="ef-game-numbers">${metric('PIR',g.minutes>0?fmt(s.valuation):'—')}${metric('נקודות',fmt(s.points))}${metric('דקות',fmt(g.minutes))}</div>`}</article>`;}
  function render(){
-  if(!data)return;selected=U.selectGames(profile,range);const usage=U.summarize(selected),df=D.summarize(selected,data,null),played=selected.filter(g=>g.minutes>0),latest=U.selectGames(profile,'1')[0];
+  if(!data)return;
+  const seasonGames=U.selectGames(profile,'0');
+  const venueGames=venue==='all'?seasonGames:seasonGames.filter(game=>game.home===(venue==='home'));
+  selected=range==='0'?venueGames:venueGames.slice(0,Number(range));
+  const usage=U.summarize(selected),df=D.summarize(selected,data,null),played=selected.filter(g=>g.minutes>0),latest=selected[0];
   const avg=k=>played.length&&played.every(g=>U.num(g.stats?.[k])!==null)?played.reduce((s,g)=>s+Number(g.stats[k]),0)/played.length:null;
   const tag=range==='1'?'משחק אחרון':range==='0'?'כל העונה':range+' משחקים אחרונים';
-  status.textContent=`עונת 2026/27 · ${tag} · ${selected.length} משחקים ברישום, ${played.length} עם דקות`;
+  const location=venue==='home'?' · בית':venue==='away'?' · חוץ':'';
+  status.textContent=`עונת 2026/27 · ${tag}${location} · ${selected.length} משחקים ברישום, ${played.length} עם דקות`;
   const stats=hero.querySelector('.ef-player-stats'),price=player.price;
   stats.innerHTML=[['מחיר נוכחי · קרדיט',price],['ממוצע PIR · הטווח שנבחר',avg('valuation')],['ממוצע דקות · הטווח שנבחר',played.length?usage.minutes===null?null:usage.minutes/played.length:null],['ממוצע נקודות · הטווח שנבחר',avg('points')]].map(([l,v])=>`<div><small>${l}</small><b>${fmt(v)}</b></div>`).join('');
-  overview.innerHTML=`<section class="playerSection ef-player-history"><h3 class="sectionTitle">מגמת ביצועים · PIR</h3><p class="muted">תוצאות בפועל · מהישן לחדש</p>${chart(selected)}<p class="ef-chart-detail muted" aria-live="polite">לחץ על נקודה להצגת המשחק</p></section><div class="ef-metric-grid ef-usage-preview">${rate('Usage רגיל',usage.regular)}${rate('Usage כולל · עם אסיסטים',usage.combined)}</div>${compactMarket?'':`<p class="ef-method muted">אומדנים מבוקס סקור ודקות; Usage כולל הוא מדד מותאם, לא אחוז פוזשנים ייחודיים.</p><h3 class="ef-last-title">המשחק האחרון</h3>${latest?gameCard(latest):'<p class="muted">אין משחקים זמינים לשחקן בעונה הנוכחית.</p>'}`}`;
+  plot.innerHTML=`${chart(selected)}<p class="ef-chart-detail muted" aria-live="polite">${played.some(g=>U.num(g.stats?.valuation)!==null)?'לחץ על נקודה להצגת המשחק':''}</p>`;
+  summary.innerHTML=`<div class="ef-metric-grid ef-usage-preview">${rate('Usage רגיל',usage.regular)}${rate('Usage כולל · עם אסיסטים',usage.combined)}</div>${compactMarket?'':`<p class="ef-method muted">אומדנים מבוקס סקור ודקות; Usage כולל הוא מדד מותאם, לא אחוז פוזשנים ייחודיים.</p><h3 class="ef-last-title">המשחק האחרון</h3>${latest?gameCard(latest):'<p class="muted">אין משחקים זמינים בסינון שנבחר.</p>'}`}`;
   panes.usage.innerHTML=`<h3>מעורבות בהתקפה</h3><div class="ef-metric-grid">${rate('Usage רגיל',usage.regular)}${rate('Usage כולל · עם אסיסטים',usage.combined)}${metric('זריקות מהשדה · סה״כ',fmt(usage.fga))}${metric('ניסיונות עונשין · סה״כ',fmt(usage.fta))}${metric('אסיסטים · סה״כ',fmt(usage.assists))}${metric('איבודים · סה״כ',fmt(usage.turnovers))}</div><p class="ef-method">Usage רגיל: זריקות מהשדה + 0.44 מניסיונות העונשין + איבודים, ביחס לאומדן אירועי הקבוצה בזמן דקות השחקן. Usage כולל מוסיף אסיסטים; הוא מדד מעורבות מותאם לאפליקציה. אין כאן מדידה של זמן החזקת כדור. כמה משחקים משוקללים לפי החשיפה, ולא בממוצע פשוט.</p>`;
   panes.defense.innerHTML=`<h3>הגנה וריבאונד</h3><div class="ef-metric-grid">${rate('אחוז חטיפות משוער',df.stl)}${rate('אחוז חסימות משוער',df.blk)}${rate('אחוז ריבאונד משוער',df.reb)}${rate('אחוז ריבאונד הגנה משוער',df.drb)}${metric('חטיפות · סה״כ',fmt(df.steals))}${metric('חסימות · סה״כ',fmt(df.blocks))}${metric('ריבאונדים · סה״כ',fmt(df.rebounds))}${metric('ריבאונד התקפה · סה״כ',fmt(df.offensiveRebounds))}</div><p class="ef-method">אחוזים משוערים מנתוני הבוקס סקור ודקות המשחק. הם מתארים פעולות מסוימות ואינם ציון כולל לאיכות ההגנה. נתון חסר מוצג כ־—.</p>`;
   gamesList.innerHTML='<h3>משחקים · מהחדש לישן</h3>'+(selected.length
