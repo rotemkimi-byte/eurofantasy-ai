@@ -23,14 +23,8 @@
       const [team, value]
       of Object.entries(live)
     ) {
-      if (!MATCHUPS[team]) {
-        MATCHUPS[team] = {};
-      }
-
-      Object.assign(
-        MATCHUPS[team],
-        value
-      );
+      const {context, contextBase, ...previous} = MATCHUPS[team] || {};
+      MATCHUPS[team] = {...previous, ...contextBase, ...value};
     }
 
     if (
@@ -44,6 +38,7 @@
       );
     }
 
+    window.refreshMatchupContext?.();
     renderAll();
 
     console.log(
