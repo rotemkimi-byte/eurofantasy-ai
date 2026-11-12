@@ -12,12 +12,17 @@ await open('Elijah Bryant');assert.equal(await page.locator('[role=tab][data-pla
 const source=JSON.parse(fs.readFileSync(path.join(root,'data/official-offense.json'))),U=require('../usage-core.js');const season=U.selectGames(source.players['bryant elijah'],'0'),stats=U.summarize(season);
 assert.equal(await page.locator('[data-range="0"]').getAttribute('aria-pressed'),'true');
 assert.equal(await page.locator('[data-player-venue="all"]').getAttribute('aria-pressed'),'true');
+const pirLabels=()=>page.locator('.ef-player-history .ef-pir-value').allTextContents();
+const expectedLabels=games=>games.filter(g=>g.minutes>0&&U.num(g.stats?.valuation)!==null)
+ .map(g=>String(U.num(g.stats.valuation))).reverse();
+assert.deepEqual(await pirLabels(),expectedLabels(season));
 assert.equal(await page.locator('.ef-usage-preview strong').first().textContent(),stats.regular.value.toFixed(1)+'%');
 for(const [venue,home] of [['home',true],['away',false]]){
  const games=season.filter(g=>g.home===home);
  const played=games.filter(g=>g.minutes>0&&U.num(g.stats?.valuation)!==null);
  await page.locator(`[data-player-venue="${venue}"]`).click();
  assert.equal(await page.locator('.ef-player-history .pirPoint').count(),played.length);
+ assert.deepEqual(await pirLabels(),expectedLabels(games));
  assert.equal(await page.locator('.ef-player-stats b').nth(1).textContent(),(played.reduce((s,g)=>s+g.stats.valuation,0)/played.length).toFixed(1));
  await page.locator('[data-player-tab="games"]').click();
  assert.equal(await page.locator('#efPane-games .ef-game-card').count(),games.length);
