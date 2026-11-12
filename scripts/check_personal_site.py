@@ -31,6 +31,34 @@ try:
             assert abs(a['expectedPir'] - p['expectedPir']) < 1e-7, (p['name'], a, p)
             assert abs(a['expectedMinutes'] - p['expectedMinutes']) < 1e-7, (p['name'], a, p)
         assert not errors, errors
+        capture = page.evaluate('window.captureUnifiedForecast()')
+        assert capture and capture['version'] == 'unified-pir-v1'
+        assert len(capture['predictions']) == len(actual)
+        assert all(len(p['input']['tools']) == 22 for p in capture['predictions'])
+        assert page.evaluate("() => model(players.find(p => p.name === 'Elijah Bryant')).expected") == by_name['Elijah Bryant']['expectedPir']
+        page.locator('nav.tabs [data-tab="algorithm"]').click()
+        algorithm = page.locator('#algorithm')
+        assert algorithm.locator('[data-mode="weights"]').get_attribute('aria-pressed') == 'true'
+        assert algorithm.locator('[data-list] .wf-row').count() == 22
+        algorithm.locator('[data-mode="report"]').click()
+        historical = page.evaluate('''async () => {
+          const {rounds} = await (await fetch('./data/learning/tool-impacts.json')).json();
+          const round = rounds.find(r => r.games.some(g => g.players.some(p => Number.isFinite(p[4]?.expectedPir))));
+          const game = round?.games.find(g => g.players.some(p => Number.isFinite(p[4]?.expectedPir)));
+          const row = game?.players.find(p => Number.isFinite(p[4]?.expectedPir));
+          return row ? {round:round.round,name:row[4].name,forecast:row[4].expectedPir.toFixed(4)} : null;
+        }''')
+        assert historical, 'Weighted report fixture needs a frozen player forecast'
+        algorithm.locator('[data-round]').select_option(str(historical['round']))
+        algorithm.locator('[data-report-player]').select_option(historical['name'])
+        player_report = algorithm.locator('[data-report]')
+        assert historical['forecast'] in player_report.inner_text()
+        assert 'טעות מוחלטת' in player_report.inner_text()
+        assert player_report.locator('.wf-row').count() >= 22
+        algorithm.locator('[data-mode="edit"]').click()
+        assert algorithm.locator('[data-weight]').count() == 22
+        algorithm.locator('[data-save]').click()
+        assert page.evaluate("JSON.parse(localStorage.getItem('efa2_weighted_forecast_v1')).length") == 1
         page.evaluate("showPlayer('Elijah Bryant')")
         # Historical metrics live inside a collapsed details section.
         # Open it before testing visible text; inner_text excludes hidden content.

@@ -56,7 +56,7 @@ function normalize(weights){
 const shotZone=s=>s.type?.startsWith('3')?2:Math.hypot(s.x,s.y)<=200?0:1;
 const attackKeys=['fastbreak','secondChance','offTurnover'];
 function events(){
- return {zones:Array.from({length:3},()=>[0,0]),attacks:attackKeys.map(()=>[0,0]),games:0};
+ return {zones:Array.from({length:3},()=>[0,0]),attacks:attackKeys.map(()=>[0,0]),contexts:Array.from({length:3},()=>Array.from({length:4},()=>[0,0])),games:0};
 }
 function addEvents(target,rows){
  let covered=false;
@@ -66,7 +66,12 @@ function addEvents(target,rows){
   for(const s of r.shots||[]){
    if(s.type?.startsWith('FT'))continue;
    if(num(s.x)!==null&&num(s.y)!==null){
-    const z=target.zones[shotZone(s)];z[0]+=Number(!!s.made);z[1]++;
+    const zone=shotZone(s),made=Number(!!s.made);
+    const z=target.zones[zone];z[0]+=made;z[1]++;
+    if(attackKeys.every(k=>typeof s[k]==='boolean')){
+     const tag=attackKeys.findIndex(k=>s[k])+1;
+     const context=target.contexts[zone][tag];context[0]+=made;context[1]++;
+    }
    }
   }
   for(const s of r.shots||[]){
@@ -125,7 +130,9 @@ function build(official,advanced,{key,team,asOf=Date.now()}){
   const id=key(p.name);
   const rows=(p.games||[]).filter(g=>g.minutes>0&&before(g.date)).map(g=>{
    const club=team(g.team),code=String(g.gameCode),a=eventRows.get(code+'|'+id+'|'+club);
-   return {...g,team:club,opponent:team(g.opponent),stats:{...a?.stats,...g.stats},
+   return {...g,team:club,opponent:team(g.opponent),
+    stats:{...a?.stats,...g.stats,blocksAgainst:a?.stats?.blocksAgainst},
+    officialBlocksAgainst:g.stats?.blocksAgainst,
     teamMinutes:byGame.get(code+'|'+club)?.minutes,event:a,roster:rosters.get(code)};
   }).sort((a,b)=>Date.parse(a.date)-Date.parse(b.date));
   if(rows.length)profiles.set(id,profiles.has(id)?null:rows);
@@ -150,9 +157,10 @@ function build(official,advanced,{key,team,asOf=Date.now()}){
   for(const row of rows)if(row.event)addEvents(e,[row.event]);
   personalEvents.set(id,e);
  }
- return {key,team,profiles,clubs,all,allowed,leagueEvents,personalEvents};
+ return {key,team,profiles,clubs,all,allowed,leagueEvents,personalEvents,
+  completedCodes:[...new Set([...byGame.keys()].map(k=>k.split('|')[0]))]};
 }
-function signals(p,x,data,roster){
+function signals(p,x,data,roster,{unified=false}={}){
  const {key,team,profiles,clubs,all,allowed,leagueEvents,personalEvents}=data;
  const id=key(p.name),club=team(p.team),opp=team(x.match?.opponent||p.opponent);
  const rows=profiles.get(id)||[],same=rows.filter(g=>g.team===club),recent=rows.slice(-3),prior=rows.slice(0,-3);
@@ -182,6 +190,8 @@ function signals(p,x,data,roster){
  set('freeThrows',trend(free,.12),prior.length);
  set('box',trend(stat('assistances','defensiveRebounds','steals','blocksFavour'),.25),prior.length);
  const negative=g=>{
+  const penalties=stat('turnovers','foulsCommited','blocksAgainst');
+  if(unified)return penalties({...g,stats:{...g.stats,blocksAgainst:g.officialBlocksAgainst??g.stats.blocksAgainst}});
   const n=stat('turnovers','foulsCommited','blocksAgainst','fieldGoalsAttempted2','fieldGoalsAttempted3')(g);
   const m=stat('fieldGoalsMade2','fieldGoalsMade3')(g);
   return difference(n,m);
@@ -191,11 +201,13 @@ function signals(p,x,data,roster){
  set('plusMinus',trend(stat('plusMinus'),.55),prior.length);
  const playerEvents=personalEvents.get(id),against=allowed.get(opp);
  if(playerEvents&&against?.games>=3){
-  let adjustment=0,attempts=0;
+  let adjustment=0,pirAdjustment=0,attempts=0;
   against.zones.forEach(([made,n],i)=>{
    const [lm,ln]=leagueEvents.zones[i],taken=playerEvents.zones[i][1];
    if(n<20||ln<100||!taken)return;
-   adjustment+=(made/n-lm/ln)*taken;attempts+=taken;
+   const difference=made/n-lm/ln;
+   adjustment+=difference*taken;attempts+=taken;
+   pirAdjustment+=difference*taken*(i===2?4:3)*n/(n+30);
   });
   if(attempts>=15)set('shotMap',adjustment/attempts/.09,against.games);
   const dna=against.attacks.map(([scored,n],i)=>{
@@ -203,12 +215,36 @@ function signals(p,x,data,roster){
    return n>=60&&ownN>=20&&leagueN>=100?((scored/n-leaguePoints/leagueN)/.1)*clip(ownPoints/ownN/.2,0,1):null;
   });
   set('playerDna',average(dna),against.games);
+  if(unified){
+   // One tag per attempt. Measure matchup efficiency within a zone, after removing
+   // the zone-level effect used by the shot map. Tags never add extra points.
+   let effect=0,exposure=0;
+   against.contexts.forEach((group,zone)=>{
+    const [zm,zn]=against.zones[zone],[lm,ln]=leagueEvents.zones[zone];
+    if(zn<20||ln<100)return;
+    group.forEach(([made,n],tag)=>{
+     const [leagueMade,leagueN]=leagueEvents.contexts[zone][tag];
+     const taken=playerEvents.contexts[zone][tag][1];
+     if(n<10||leagueN<30||!taken)return;
+     const residual=(made/n-leagueMade/leagueN)-(zm/zn-lm/ln);
+     effect+=residual*taken*(zone===2?4:3)*n/(n+30);exposure+=taken;
+    });
+   });
+   const playerMinutes=sum(rows.filter(r=>r.event?.shotCoverage),r=>r.minutes);
+   s.shotMap=attempts>=15&&playerMinutes>0?24*pirAdjustment/playerMinutes:null;
+   s.playerDna=exposure>=15&&playerMinutes>0?24*effect/playerMinutes:null;
+  }
  }
  const mates=new Map(roster.filter(q=>team(q.team)===club).map(q=>[key(q.name),q.status]));
  const knownLineups=same.flatMap(g=>g.event?.lineupCoverage?g.event.lineups:[]).filter(r=>r.minutes>0);
  const lineRate=r=>rate(r,l=>l.points,l=>l.minutes);
  const available=knownLineups.filter(l=>l.teammates.every(t=>mates.get(key(t.name))==='active'));
- if(sum(available,l=>l.minutes)>=15&&sum(knownLineups,l=>l.minutes)>=35)
+ if(unified){
+  const disrupted=knownLineups.filter(l=>l.teammates.some(t=>mates.get(key(t.name))==='out'));
+  const activeMinutes=sum(available,l=>l.minutes),disruptedMinutes=sum(disrupted,l=>l.minutes);
+  if(activeMinutes>=15&&disruptedMinutes>=15)
+   set('lineups',compare(lineRate(available),lineRate(disrupted),.22),Math.min(activeMinutes,disruptedMinutes)/15);
+ }else if(sum(available,l=>l.minutes)>=15&&sum(knownLineups,l=>l.minutes)>=35)
   set('lineups',compare(lineRate(available),lineRate(knownLineups),.22),same.length);
  if(same.length>=5)set('teamMarket',compare(rate(same.slice(-3),g=>g.minutes,g=>g.teamMinutes),
   rate(same.slice(0,-3),g=>g.minutes,g=>g.teamMinutes),.16),same.length);
@@ -221,6 +257,12 @@ function signals(p,x,data,roster){
   const assist=compare(rival.allowedAssists,all.allowedAssists,.14),style=compare(own?.assists,all.assists,.18);
   const three=rate(rows,stat('fieldGoalsAttempted3'),stat('fieldGoalsAttempted2','fieldGoalsAttempted3'));
   if(assist!==null&&style!==null&&three!==null)set('teamDna',(assist+style)*.5*clip(three*1.8,0,1),rival.games);
+  if(unified){
+   const creation=rate(same,stat('assistances'));
+   const context=relative(rival.allowedAssists,all.allowedAssists,1);
+   const teamStyle=relative(own?.assists,all.assists,1);
+   s.teamDna=creation!==null&&context!==null&&teamStyle!==null?24*creation*(context+teamStyle)*.5*rival.games/(rival.games+4):null;
+  }
  }
  const absence=[];
  for(const [mate,status] of mates){

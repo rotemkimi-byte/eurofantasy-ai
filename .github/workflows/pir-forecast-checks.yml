@@ -1,0 +1,43 @@
+name: PIR forecast regression checks
+
+on:
+  pull_request:
+    paths:
+      - '**.js'
+      - '**.cjs'
+      - '**.py'
+      - 'index.html'
+      - '.github/workflows/pir-forecast-checks.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify forecast mathematics, chronology and integrations
+        run: |
+          node tests/test_unified_forecast.cjs
+          node tests/test_weighted_forecast.cjs
+          node tests/test_advanced_players.cjs
+          node tests/test_capture.cjs
+          node tests/test_replay.cjs
+          node scripts/test_personal_model.cjs
+          python -m unittest discover -s tests -p 'test_*.py'
+          python scripts/unified_learning.py --historical --output /tmp/unified-validation.json
+      - name: Check browser serving and algorithm report
+        run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+          python scripts/check_personal_site.py

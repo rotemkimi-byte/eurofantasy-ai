@@ -2,11 +2,17 @@ name: Install rolling historical learning
 on:
   workflow_dispatch:
   push:
+    branches: [main]
     paths:
       - '.github/workflows/install-rolling-learning.yml'
       - 'scripts/fantasy_learning.py'
       - 'scripts/rolling_learning.py'
       - 'scripts/snapshot_live_model.py'
+      - 'unified-forecast-core.js'
+      - 'weighted-forecast-core.js'
+      - 'scripts/unified_learning.py'
+      - 'scripts/score-unified.cjs'
+      - 'scripts/unified-replay.cjs'
       - 'learning.js'
       - 'audit-compact.js'
   schedule:
@@ -39,11 +45,14 @@ jobs:
           node --check rolling-learning.js
           node tests/test_replay.cjs
           node tests/test_capture.cjs
+          node tests/test_unified_forecast.cjs
+          python -m unittest discover -s tests -p 'test_weighted_rounds.py'
       - name: Refresh completed results and replay the current projection
         run: |
           python scripts/fantasy_learning.py prepare
           python scripts/fantasy_learning.py grade
           python scripts/rolling_learning.py
+          python scripts/unified_learning.py
       - name: Check whether upcoming games need input snapshots
         id: capture
         run: |
@@ -53,9 +62,12 @@ jobs:
           import sys
           sys.path.insert(0,'scripts')
           from rolling_learning import OUT,engine_id
-          from fantasy_learning import load,date
-          now=datetime.now(timezone.utc);ident=engine_id()
-          needed=any(not g['played'] and now+timedelta(minutes=10)<date(g['start'])<=now+timedelta(hours=24) and load(OUT/f'input-snapshots/E2026-{g["gameCode"]}.json',{}).get('engineId')!=ident for g in load(OUT/'schedule.json',{}).values())
+          from fantasy_learning import load,date,model_id
+          from unified_learning import engine_id as shadow_id
+          now=datetime.now(timezone.utc);ident=engine_id();shadow=shadow_id();live=model_id()
+          needed=any(not g['played'] and now+timedelta(minutes=10)<date(g['start'])<=now+timedelta(hours=24) and (load(OUT/f'input-snapshots/E2026-{g["gameCode"]}.json',{}).get('engineId')!=ident
+                      or load(OUT/f'snapshots/E2026-{g["gameCode"]}.json',{}).get('modelId')!=live
+                      or not (OUT/f'shadow-snapshots/E2026-{g["gameCode"]}-{shadow}.json').exists()) for g in load(OUT/'schedule.json',{}).values())
           with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('needed='+str(needed).lower()+'\n')
           PYCHECK
       - name: Capture immutable inputs for upcoming games

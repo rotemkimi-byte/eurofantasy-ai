@@ -6,6 +6,7 @@ const nav=document.querySelector('nav.tabs'),main=document.querySelector('main')
 if(!C||!P||!nav||!main)return;
 const key='efa2_weighted_forecast_v1';
 const money=new Intl.NumberFormat('he-IL',{maximumFractionDigits:1});
+const exact=n=>Number.isFinite(n)?n.toFixed(4):'—';
 const effect=new Intl.NumberFormat('he-IL',{minimumFractionDigits:2,maximumFractionDigits:2,signDisplay:'exceptZero'});
 const fmt=n=>Number.isFinite(n)?money.format(n):'—';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -16,7 +17,7 @@ try{
   .sort((a,b)=>Date.parse(a.savedAt)-Date.parse(b.savedAt));
 }catch{}
 let weights=versions.at(-1)?.weights||C.defaults,draft={...weights};
-let evidence=null,report=null,modelReady=false,loading=null,lastLoaded=0,lastError=false;
+let evidence=null,shadowEvidence=null,report=null,modelReady=false,loading=null,lastLoaded=0,lastError=false;
 let reportLoading=null,reportError=false,auditLimit=5;
 let signalCache=new WeakMap(),currentRoster=null;
 const tab=document.createElement('button');
@@ -102,11 +103,19 @@ function drawAudit(round,rows){
  }
  const scope={round:String(round.round),source:'all',team:'',sort:'error'};
  const id=window.__learningModelId||window.__learningReport.modelId;
- const hits=audit.select(sample,{...scope,result:'hit'},id).length;
+ const versions=new Map();
+ for(const row of sample){
+  const version=row.modelId||'legacy';
+  if(!versions.has(version))versions.set(version,[]);
+  versions.get(version).push(row);
+ }
  const selected=audit.select(sample,{...scope,result:$('[data-audit-filter]').value},id);
  const games=new Set(sample.map(r=>r.gameCode)).size;
  host.innerHTML=`<p class="wf-muted">${round.complete===false?'מחזור פתוח · ':''}${games}${round.scheduled?' מתוך '+round.scheduled:''} משחקים נבדקו · פגיעה עד ±${audit.tolerance({round:round.round})} PIR${sample.some(r=>!audit.current(r,id))?' · כולל תחזיות מגרסאות קודמות':''}</p>
- <div class="ac-metrics"><div><b>${sample.length}</b><span>תחזיות שנבדקו</span></div><div data-result="better"><b>${hits}</b><span>פגיעות</span></div><div data-result="worse"><b>${sample.length-hits}</b><span>פספוסים</span></div></div>`;
+ ${[...versions].map(([version,entries])=>{
+  const hits=audit.select(entries,{...scope,result:'hit'},id).length;
+  return `<small class="wf-muted">גרסה <bdi>${esc(version)}</bdi></small><div class="ac-metrics"><div><b>${entries.length}</b><span>תחזיות שנבדקו</span></div><div data-result="better"><b>${hits}</b><span>פגיעות</span></div><div data-result="worse"><b>${entries.length-hits}</b><span>פספוסים</span></div></div>`;
+ }).join('')}`;
  $('[data-audit-rows]').innerHTML=selected.slice(0,auditLimit).map(r=>audit.card(r,id)).join('')||'<p>אין תוצאות במסנן הזה.</p>';
  $('[data-audit-more]').hidden=selected.length<=auditLimit;
 }
@@ -121,43 +130,71 @@ function drawReport(){
  if(!$('[data-round]').dataset.chosen&&latest)select.value=String(latest.round);
  select.disabled=!rounds.length;
  const round=rounds.find(r=>String(r.round)===select.value);
- const names=[...new Set(rows.filter(r=>r.round===round?.round).map(r=>r.name))].sort();
+ const names=[...new Set([
+  ...rows.filter(r=>Number(r.round)===round?.round).map(r=>r.name),
+  ...(round?.games||[]).flatMap(game=>game.players.map(row=>row[4]?.name))
+ ].filter(Boolean))].sort();
  options($('[data-report-player]'),[['','כל השחקנים'],...names.map(name=>[name,name])]);
  drawAudit(round,rows);
- if(!report){host.textContent=reportError?'דוח ההשפעה לא זמין כרגע.':'טוען את דוח ההשפעה…';return;}
- if(!round?.games.length){host.textContent='אין עדיין משחקים במחזור הזה עם תוצאה וקלט שמור לבדיקת השפעת הכלים.';return;}
  const personal=$('[data-report-mode]').value==='device';
  const selectedName=$('[data-report-player]').value;
- const games=round.games.map(game=>({...game,players:game.players.filter(row=>!selectedName||row[4]?.name===selectedName)})).filter(game=>game.players.length);
- const result=C.assess(games,game=>personal?
-  versions.findLast(v=>Date.parse(v.savedAt)<=Date.parse(game.savedAt))?.weights:(game.weights||C.defaults));
- if(!result.n){
-  host.textContent=personal?'אין למחזור הזה משקלים ששמרת במכשיר לפני מועד צילום התחזית.':'אין עדיין תחזיות מוקדמות עם נתוני אמת למחזור הזה.';
-  return;
- }
+ const settings=game=>personal?versions.findLast(v=>Date.parse(v.savedAt)<=Date.parse(game.savedAt))?.weights:game.weights;
+ const games=(round?.games||[]).map(game=>({...game,players:game.players.filter(row=>!selectedName||row[4]?.name===selectedName)}))
+  .filter(game=>game.players.length);
  if(selectedName){
-  const game=games[0],row=game?.players[0],chosen=personal?versions.findLast(v=>Date.parse(v.savedAt)<=Date.parse(game.savedAt))?.weights:(game?.weights||C.defaults);
-  if(!row||!chosen){host.textContent='אין פירוק שמור לשחקן ולמשקלים שנבחרו.';return;}
-  const [actual,base,scale,signals,info]=row,frozen={base,scale,signals},full=C.project(frozen,chosen);
-  host.innerHTML=`<p><b>${esc(selectedName)}</b> · PIR בפועל ${fmt(actual)} · תחזית משוקללת ${fmt(full)}</p>
-  <p class="wf-muted">בכל שורה מוצגת התחזית כשהכלי פעיל ובהסרת תרומתו. הצבע מתאר את השינוי בטעות במשחק הזה. ${personal?'זהו שחזור לפי המשקלים האישיים.':''}</p>
-  ${info?.freeThrowsAttempted!=null?`<p>עונשין בפועל · ${info.freeThrowsMade} מתוך ${info.freeThrowsAttempted} · עבירות שסחט ${info.foulsReceived??'—'}</p>`:''}
-  <div class="wf-list">${C.definitions.map((d,i)=>{
-   const without=C.project(frozen,chosen,i),delta=Math.abs(actual-without)-Math.abs(actual-full),shift=full-without;
-   const missing=signals[i]==null,off=!chosen[d.id],direction=missing||off?'sample':delta>1e-9?'better':delta< -1e-9?'worse':'neutral';
-   const label=off?'משקל אפס':missing?'חסר נתון שמור':direction==='better'?'עזר במשחק הזה':direction==='worse'?'הגדיל טעות':'ללא השפעה במשחק';
-   const precise=n=>Number(n).toFixed(4);
-   return `<article class="wf-row"><span><b>${d.label}</b><small>משקל ${chosen[d.id]}% · ${missing?'אין קלט להערכת התרומה':`תרומה לתחזית ${precise(shift)} PIR<br>עם הכלי ${precise(full)} · בלי הכלי ${precise(without)}`}</small></span><span class="wf-number"><b class="wf-badge" data-result="${direction}">${label}</b>${!missing&&!off?`<small>שינוי בדיוק ${precise(delta)} PIR</small>`:''}</span></article>`;
-  }).join('')}</div>`;
+  const gameCodes=new Set(games.map(game=>String(game.gameCode)));
+  const history=rows.filter(r=>Number(r.round)===round?.round&&r.name===selectedName&&!gameCodes.has(String(r.gameCode)));
+  host.innerHTML=games.flatMap(game=>game.players.map(row=>playerImpact(game,row,settings(game),personal))).join('')
+   +history.map(r=>`<p><b>${esc(r.name)}</b> · משחק ${esc(r.gameCode)} · גרסה <bdi>${esc(r.modelId||'legacy')}</bdi>
+    <br>תחזית שנשמרה ${exact(r.servedPir)} · בפועל ${exact(r.actualPir)} · טעות מוחלטת ${exact(Math.abs(r.actualPir-r.servedPir))} PIR</p>
+    <p class="wf-muted">פירוט הכלים לא נשמר בתחזית הזאת.</p>`).join('');
+  if(!games.length&&!history.length)host.textContent='אין תחזית מוקדמת שנשמרה לשחקן במחזור הזה.';
   return;
  }
- host.innerHTML=`<p class="wf-report-summary"><b>${result.games} מתוך ${round.scheduled} משחקים · ${result.n} תחזיות שחקן</b>
- <span>טעות ממוצעת עם הכלים <b>${fmt(result.fullMae)} PIR</b> · בסיס ${fmt(result.baseMae)} PIR</span></p>
- <p class="wf-muted">${personal?'חישוב לפי נתוני התחזית שנשמרו לפני המשחק והמשקלים שכבר היו שמורים אז במכשיר. ':'נבדקו רק תחזיות שנשמרו לפני המשחק. '}כל כלי נבדק בנפרד. ירוק פירושו שטעות ה־PIR קטנה כשהכלי פעל. אדום פירושו שהטעות גדלה.</p>
+ if(!report){host.textContent=reportError?'דוח ההשפעה לא זמין כרגע.':'טוען את דוח ההשפעה…';return;}
+ if(!games.length){host.textContent='אין עדיין משחקים במחזור הזה עם תוצאה וקלט שמור לבדיקת השפעת הכלים.';return;}
+ const byVersion=new Map();
+ for(const game of games){
+  const version=game.modelId||'legacy';
+  if(!byVersion.has(version))byVersion.set(version,[]);
+  byVersion.get(version).push(game);
+ }
+ host.innerHTML=[...byVersion].map(([version,entries])=>roundImpact(version,entries,settings,personal)).join('');
+}
+function playerImpact(game,row,chosen,personal){
+ const [actual,base,scale,signals,info]=row,frozen={base,scale,signals};
+ const recomputed=C.valid(chosen)?C.project(frozen,chosen):null;
+ const saved=info?.expectedPir;
+ const full=personal?recomputed:saved;
+ const verified=Number.isFinite(full)&&Number.isFinite(recomputed)&&Math.abs(full-recomputed)<1e-8;
+ const header=`<p><b>${esc(info?.name)}</b> · משחק ${esc(game.gameCode)} · גרסה <bdi>${esc(game.modelId||'legacy')}</bdi>
+ <br>${personal?'שחזור לפי משקלים אישיים':'תחזית שנשמרה לפני המשחק'} ${exact(full)} · בפועל ${exact(actual)} · טעות מוחלטת ${exact(Number.isFinite(full)?Math.abs(actual-full):null)} PIR
+ ${personal&&Number.isFinite(saved)?`<br>תחזית האתר שנשמרה ${exact(saved)} PIR`:''}
+ ${Number.isFinite(info?.actualMinutes)?`<br>דקות בפועל ${exact(info.actualMinutes)}${!personal?` · דקות צפויות ${exact(info.expectedMinutes)}`:''}`:''}</p>`;
+ if(!verified)return header+'<p class="wf-muted">אין קלט ומשקלים שמורים שמאפשרים לאמת את פירוק התחזית.</p>';
+ return header+`<p class="wf-muted">שינוי בדיוק הוא ההפרש בטעות המוחלטת בין התחזית המלאה לתחזית בהסרת הכלי.</p>
+ ${info?.freeThrowsAttempted!=null?`<p>עונשין בפועל · ${info.freeThrowsMade} מתוך ${info.freeThrowsAttempted} · עבירות שסחט ${info.foulsReceived??'—'}</p>`:''}
+ <div class="wf-list">${C.definitions.map((d,i)=>{
+  const without=C.project(frozen,chosen,i),shift=full-without;
+  const delta=Math.abs(actual-without)-Math.abs(actual-full);
+  const missing=signals[i]==null,off=chosen[d.id]===0;
+  const direction=off?'off':missing?'sample':delta>1e-9?'better':delta< -1e-9?'worse':'neutral';
+  const label=off?'משקל אפס':missing?'חסר נתון שמור':direction==='better'?'שיפר דיוק':direction==='worse'?'הגדיל טעות':
+   signals[i]===0?'אות אפס':scale===0?'אין בסיס להשפעה':Math.abs(shift)<1e-9?'תרומה אפס לאחר חישוב התחזית':'אותה טעות מוחלטת';
+  return `<article class="wf-row"><span><b>${d.label}</b><small>משקל ${chosen[d.id]}% · ${missing&&!off?'אין קלט להערכת התרומה':`תרומה לתחזית ${exact(shift)} PIR<br>עם הכלי ${exact(full)} · בלי הכלי ${exact(without)}`}</small></span><span class="wf-number"><b class="wf-badge" data-result="${direction}">${label}</b>${!missing||off?`<small>שינוי בדיוק ${exact(delta)} PIR</small>`:''}</span></article>`;
+ }).join('')}</div>`;
+}
+function roundImpact(version,games,settings,personal){
+ const checked=personal?games:games.map(game=>({...game,players:game.players.filter(([,base,scale,signals,info])=>
+  Number.isFinite(info?.expectedPir)&&C.valid(game.weights)&&Math.abs(C.project({base,scale,signals},game.weights)-info.expectedPir)<1e-8)}));
+ const result=C.assess(checked,settings);
+ if(!result.n)return '<p class="wf-muted">אין משקלים שמורים לבדיקת הגרסה במועדי התחזיות.</p>';
+ return `<p class="wf-report-summary"><b>גרסה <bdi>${esc(version)}</bdi> · ${result.games} משחקים · ${result.n} תחזיות שחקן</b>
+ <span>MAE עם הכלים <b>${exact(result.fullMae)} PIR</b> · בסיס ${exact(result.baseMae)} PIR</span></p>
  <div class="wf-list">${result.rows.map(r=>{
-  const direction=!r.enabled?'off':r.available<5||r.n>0&&(r.n<5||r.games<2)?'sample':!r.n?'neutral':r.delta>=.005?'better':r.delta<=-.005?'worse':'neutral';
-  const label={off:'משקל אפס',sample:'מדגם חסר',better:'שיפר דיוק',worse:'הגדיל טעות',neutral:'שינוי ממוצע קטן מ־0.005 PIR'}[direction];
-  return `<article class="wf-row"><span><b>${r.label}</b><small>${r.n} תחזיות שחקן ב־${r.games} משחקים${r.weight===null?'':' · משקל ממוצע '+fmt(r.weight)+'%'}</small></span><span class="wf-number"><b class="wf-badge" data-result="${direction}">${label}</b>${r.n>=5&&r.games>=2?`<small dir="ltr">${effect.format(r.delta)} PIR</small>`:''}</span></article>`;
+  const direction=!r.enabled?'off':!r.available?'sample':r.delta>1e-9?'better':r.delta< -1e-9?'worse':'neutral';
+  const label={off:'משקל אפס',sample:'אין קלט שמור',better:'שיפר דיוק',worse:'הגדיל טעות',neutral:'השפעה ממוצעת אפסית'}[direction];
+  return `<article class="wf-row"><span><b>${r.label}</b><small>אות זמין ב־${r.available} תחזיות · אות פעיל ב־${r.n} תחזיות ב־${r.games} משחקים</small></span><span class="wf-number"><b class="wf-badge" data-result="${direction}">${label}</b>${r.delta!==null?`<small dir="ltr">${exact(r.delta)} PIR</small>`:''}</span></article>`;
  }).join('')}</div>`;
 }
 function total(){
@@ -258,6 +295,8 @@ async function refreshEvidence(){
    const [official,advanced]=await Promise.all([json('official-offense.json'),json('advanced-players.json').catch(()=>null)]);
    if(official.season!=='E2026'||official.schema!=='official-offense-v1')throw Error('Wrong season');
    evidence=C.build(official,advanced,P);signalCache=new WeakMap();lastError=!advanced;
+   const published=data=>Number.isFinite(Date.parse(data?.updated_at))&&Date.parse(data.updated_at)<=Date.now();
+   shadowEvidence=published(official)?(published(advanced)?evidence:C.build(official,null,P)):null;
    if(modelReady&&typeof renderAll==='function')renderAll();
   }catch{lastError=true;}
   sourceText();if(section.classList.contains('active'))drawWeights();
@@ -271,6 +310,17 @@ if(!window.__rollingReady||typeof model!=='function'){
  window.__weightedForecastReady=true;return;
 }
 const previous=model;
+// Only the snapshot job asks for shadow inputs. User-facing forecasts keep the served model.
+window.captureUnifiedForecast = () => {
+ const U=window.UnifiedForecast;
+ if(!U||!shadowEvidence||!modelReady)return null;
+ return {version:U.version,completedCodes:shadowEvidence.completedCodes,
+  predictions:playerList().map(p=>{
+   const x=previous(p);
+   return {name:p.name,team:p.team,opponent:x.match?.opponent,home:x.match?.home,
+    input:U.capture(p,x,shadowEvidence,players,C)};
+  })};
+};
 model=function(p){
  const x=previous(p);
  if(!evidence||!['G','F','C'].includes(p.pos))return x;

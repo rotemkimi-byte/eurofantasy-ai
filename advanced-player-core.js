@@ -80,7 +80,7 @@ function buildGame(box,points,pbp){
  for(const side of ['local','road']){
   const list=(box[side]?.players||[]),code=String(list[0]?.player?.club?.code||'').trim();
   const active=new Set(list.filter(r=>r.stats?.startFive===true).map(r=>pid(r.player.person.code)));
-  teams[code]={active,valid:active.size===5,seconds:{},points:{},groups:{},side};
+  teams[code]={active,valid:active.size===5,timing:true,last:0,seconds:{},points:{},groups:{},side};
  }
  const rawEvents=[];
  ['FirstQuarter','SecondQuarter','ThirdQuarter','ForthQuarter','ExtraTime'].forEach((k,i)=>{
@@ -98,18 +98,22 @@ function buildGame(box,points,pbp){
  const events=rawEvents.sort((a,b)=>a.period-b.period||(a.type==='BP'?-1:b.type==='BP'?1:0)||(a.seq-b.seq));
  const end=events.filter(e=>e.type==='EG').at(-1)?.at;
  if(!end||end<2400)return people;
- let last=0,timing=true;const ids=new Set();
+ const ids=new Set();
  function group(t){const lineup=[...t.active].sort(),k=lineup.join('|');return t.groups[k]||(t.groups[k]={players:lineup,seconds:0,points:{}});}
+ function advance(t,at){
+  if(at===null||at<t.last){t.timing=false;return;}
+  const dt=at-t.last;t.last=at;
+  if(t.active.size!==5&&dt>0)t.valid=false;
+  if(t.valid&&dt){group(t).seconds+=dt;for(const id of t.active)t.seconds[id]=(t.seconds[id]||0)+dt;}
+ }
  for(const e of events){
   if(ids.has(e.seq)){for(const t of Object.values(teams))t.valid=false;continue;}ids.add(e.seq);
-  if(e.at===null||e.at<last)timing=false;
-  const dt=timing?e.at-last:0;
-  for(const t of Object.values(teams)){
-   if(t.active.size!==5&&dt>0)t.valid=false;
-   if(t.valid&&dt){group(t).seconds+=dt;for(const id of t.active)t.seconds[id]=(t.seconds[id]||0)+dt;}
-  }if(e.at!==null)last=e.at;
   const code=String(e.CODETEAM||'').trim(),t=teams[code],id=pid(e.PLAYER_ID);
+  // Only substitutions and period boundaries can change who owns elapsed time.
+  // Missing clocks on other events do not invalidate otherwise reconciled minutes.
+  if(e.type==='BP'||e.type==='EP'||e.type==='EG')Object.values(teams).forEach(team=>advance(team,e.at));
   if(!t)continue;
+  if(e.type==='IN'||e.type==='OUT')advance(t,e.at);
   if(e.type==='IN'){if(!people[id]||people[id].teamCode!==code||t.active.has(id))t.valid=false;t.active.add(id);}
   else if(e.type==='OUT'){if(!t.active.has(id))t.valid=false;t.active.delete(id);}
   else if(e.type in shotTypes){
@@ -124,7 +128,7 @@ function buildGame(box,points,pbp){
   if(!t.valid||!list.every(p=>n(p.stats.points)!==null&&(t.points[p.id]||0)===n(p.stats.points)))continue;
   for(const p of list){
    p.lineupCoverage=true;
-   p.lineups=Object.values(t.groups).filter(g=>g.players.includes(p.id)).map(g=>({teammates:g.players.filter(id=>id!==p.id).map(id=>({id,name:people[id].name})),minutes:timing&&list.every(q=>Math.abs((t.seconds[q.id]||0)-n(q.stats.timePlayed))<=3)?g.seconds/60:null,points:g.points[p.id]||0}));
+   p.lineups=Object.values(t.groups).filter(g=>g.players.includes(p.id)).map(g=>({teammates:g.players.filter(id=>id!==p.id).map(id=>({id,name:people[id].name})),minutes:t.timing&&list.every(q=>n(q.stats.timePlayed)!==null&&Math.abs((t.seconds[q.id]||0)-n(q.stats.timePlayed))<=3)?g.seconds/60:null,points:g.points[p.id]||0}));
   }
  }
  return people;

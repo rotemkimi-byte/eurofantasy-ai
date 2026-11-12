@@ -9,10 +9,12 @@ from fantasy_learning import load,save,date,canon,key
 now=datetime.now(timezone.utc);ident=engine_id()
 schedule=load(OUT/'schedule.json',{})
 games=[g for g in schedule.values() if not g['played'] and now+timedelta(minutes=10)<date(g['start'])<=now+timedelta(hours=24) and load(OUT/f'input-snapshots/E2026-{g["gameCode"]}.json',{}).get('engineId')!=ident]
-if not games:print('No upcoming games needing complete input snapshots');raise SystemExit(0)
 # The scheduled replay job already runs before each fixture. Complete its
 # capture only once the site's weighted forecast has also been frozen.
 subprocess.run([sys.executable, str(ROOT/'scripts/snapshot_live_model.py')], check=True)
+if not games:
+    print('No upcoming games needing complete input snapshots')
+    raise SystemExit(0)
 class Quiet(SimpleHTTPRequestHandler):
     def log_message(self,*args):pass
 server=ThreadingHTTPServer(('127.0.0.1',0),partial(Quiet,directory=str(ROOT)))

@@ -28,6 +28,13 @@ const pbp={Live:false,FirstQuarter:[{NUMBEROFPLAY:1,PLAYTYPE:'BP'},{NUMBEROFPLAY
 const built=C.buildGame(box,points,pbp);
 check(built.a1.shotCoverage&&built.a1.lineupCoverage,'verified shot ledger and lineup');
 eq(built.a1.lineups[0].points,2,'personal points');
+eq(built.a1.lineups[0].minutes,40,'lineup minutes reconcile');
+const missingClock=JSON.parse(JSON.stringify(pbp));delete missingClock.FirstQuarter[1].MARKERTIME;
+eq(C.buildGame(box,points,missingClock).a1.lineups[0].minutes,40,'scoring clock does not define lineup duration');
+const unknownSub=JSON.parse(JSON.stringify(pbp));
+unknownSub.FirstQuarter.push({NUMBEROFPLAY:2.1,PLAYTYPE:'OUT',CODETEAM:'A',PLAYER_ID:'Pa1'},
+ {NUMBEROFPLAY:2.2,PLAYTYPE:'IN',CODETEAM:'A',PLAYER_ID:'Pa1'});
+eq(C.buildGame(box,points,unknownSub).a1.lineups[0].minutes,null,'unverified substitution time remains missing');
 eq(built.a1.lineups[0].teammates.length,4,'four distinct teammates');
 const dup=C.buildGame(box,{Rows:[...points.Rows,...points.Rows]},pbp);check(!dup.a1.shotCoverage,'duplicate shot rejected');
 check(!dup.a1.styleShots,'duplicate shot rejected for DNA');
