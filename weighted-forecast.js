@@ -21,7 +21,7 @@ let reportLoading=null,reportError=false,auditLimit=5;
 let signalCache=new WeakMap(),currentRoster=null;
 const tab=document.createElement('button');
 tab.type='button';tab.dataset.tab='algorithm';tab.textContent='משקלי האלגוריתם';
-// The existing algorithm laboratory owns the visible algorithm screen.
+nav.append(tab);
 const section=document.createElement('section');
 section.id='algorithm';section.className='tab';
 section.innerHTML=`<div class="card wf-shell">
@@ -65,7 +65,7 @@ section.innerHTML=`<div class="card wf-shell">
   <div class="wf-list">${C.definitions.map(d=>`<label class="wf-row"><span><b>${d.label}</b><small>${d.description}</small></span><span class="wf-input"><input type="number" min="0" max="100" step="1" inputmode="numeric" data-weight="${d.id}" value="${weights[d.id]}"><span>%</span></span></label>`).join('')}</div>
  </div>
  </div>`;
-// Keep these controls detached while preserving the live forecast pipeline.
+main.append(section);
 const $=selector=>section.querySelector(selector),modeButtons=[...section.querySelectorAll('[data-mode]')];
 const playerList=()=>typeof players!=='undefined'?players.filter(p=>['G','F','C'].includes(p.pos)):[];
 function options(select,entries){
