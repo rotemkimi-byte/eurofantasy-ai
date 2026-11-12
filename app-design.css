@@ -106,8 +106,10 @@ html.ef-redesign .ef-player-tabs button[aria-selected=true]{background:var(--acc
 .ef-player-pane{min-width:0}.ef-data-status{font-size:12px;margin:12px 0}
 .ef-player-avatar{overflow:hidden;background:#ffffff13}.ef-player-avatar img{width:100%;height:100%;object-fit:cover;object-position:center top}
 .ef-club-crest{display:inline-flex;width:25px;height:25px;vertical-align:middle;margin-inline-end:7px}.ef-club-crest:empty{display:none}.ef-club-crest img{width:100%;height:100%;object-fit:contain}
+.ef-trend-scroll{min-width:0;overflow-x:auto;direction:ltr;overscroll-behavior-x:contain}
 .ef-trend-svg{display:block;width:100%;height:auto;color:var(--accent);overflow:visible;direction:ltr}
 .ef-trend-svg text{font-size:11px;fill:var(--muted);font-family:inherit}.ef-gridline{stroke:var(--line);stroke-dasharray:3 3}.ef-trend-svg .pirPoint{cursor:pointer;stroke:var(--card);stroke-width:2}.ef-trend-svg .pirPoint:focus{stroke:var(--text);stroke-width:3;outline:none}
+.ef-trend-svg .ef-pir-value{font-size:13px;font-weight:800;fill:var(--text);stroke:var(--card);stroke-width:2px;stroke-linejoin:round;paint-order:stroke;pointer-events:none;font-variant-numeric:tabular-nums}
 .ef-metric-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}
 .ef-metric{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px 12px;min-width:0}.ef-metric small{display:block;font-size:12px;color:var(--muted)}.ef-metric strong{display:block;font-size:28px;line-height:1.4;color:var(--accent);font-variant-numeric:tabular-nums;direction:ltr;text-align:right}.ef-metric span{display:block;font-size:11px;color:var(--muted);line-height:1.5}
 .ef-method{font-size:12px;color:var(--muted);line-height:1.7;margin:12px 0 20px}

@@ -104,9 +104,31 @@ function chart(games){
  const rows=games.slice().reverse(),valid=rows.filter(g=>g.minutes>0&&U.num(g.stats?.valuation)!==null);
  if(!valid.length)return '<p class="muted">אין נתוני PIR למשחקים בטווח הזה.</p>';
  const lo=Math.min(0,...valid.map(g=>g.stats.valuation)),hi=Math.max(10,...valid.map(g=>g.stats.valuation)),span=hi-lo||1;
- const x=i=>42+(rows.length===1?150:i*300/(rows.length-1)),y=v=>160-(v-lo)/span*130;
- let paths=[],current=[];rows.forEach((g,i)=>{if(g.minutes>0&&U.num(g.stats?.valuation)!==null)current.push(`${x(i)},${y(g.stats.valuation)}`);else if(current.length){paths.push(current);current=[];}});if(current.length)paths.push(current);
- return `<svg class="ef-trend-svg" viewBox="0 0 372 202" role="img" aria-label="PIR בפועל, מהישן לחדש"><title>PIR בפועל · עונת 2026/27</title>${[0,.5,1].map(t=>{const v=lo+span*t;return `<line x1="42" x2="342" y1="${y(v)}" y2="${y(v)}" class="ef-gridline"/><text x="32" y="${y(v)+4}" text-anchor="end">${Math.round(v)}</text>`;}).join('')}${paths.map(p=>`<polygon points="${p[0].split(',')[0]},160 ${p.join(' ')} ${p.at(-1).split(',')[0]},160" fill="currentColor" opacity=".08"/><polyline points="${p.join(' ')}" fill="none" stroke="currentColor" stroke-width="2.5"/>`).join('')}${rows.map((g,i)=>{const ok=g.minutes>0&&U.num(g.stats?.valuation)!==null;return `${ok?`<circle class="pirPoint" data-game-index="${i}" tabindex="0" role="button" aria-label="${esc(date(g.date)+' '+g.opponent+' PIR '+g.stats.valuation)}" cx="${x(i)}" cy="${y(g.stats.valuation)}" r="4.5" fill="currentColor"><title>${esc(g.opponent)} · ${fmt(g.stats.valuation)}</title></circle>`:''}${rows.length<=5||i===0||i===rows.length-1?`<text x="${x(i)}" y="185" text-anchor="middle">${date(g.date)}</text>`:''}`;}).join('')}</svg>`;
+ const width=Math.max(372,72+(rows.length-1)*29),left=42,right=width-30;
+ const x=i=>rows.length===1?(left+right)/2:left+i*(right-left)/(rows.length-1);
+ const y=value=>160-(value-lo)/span*130;
+ const paths=[];
+ let current=[];
+ rows.forEach((game,i)=>{
+  const value=U.num(game.stats?.valuation);
+  if(game.minutes>0&&value!==null)current.push(`${x(i)},${y(value)}`);
+  else if(current.length){paths.push(current);current=[];}
+ });
+ if(current.length)paths.push(current);
+ const grid=[0,.5,1].map(t=>{
+  const value=lo+span*t;
+  return `<line x1="${left}" x2="${right}" y1="${y(value)}" y2="${y(value)}" class="ef-gridline"/><text x="32" y="${y(value)+4}" text-anchor="end">${Math.round(value)}</text>`;
+ }).join('');
+ const lines=paths.map(path=>`<polygon points="${path[0].split(',')[0]},160 ${path.join(' ')} ${path.at(-1).split(',')[0]},160" fill="currentColor" opacity=".08"/><polyline points="${path.join(' ')}" fill="none" stroke="currentColor" stroke-width="2.5"/>`).join('');
+ const points=rows.map((game,i)=>{
+  const value=U.num(game.stats?.valuation),cx=x(i);
+  const point=game.minutes>0&&value!==null?`<circle class="pirPoint" data-game-index="${i}" tabindex="0" role="button" aria-label="${esc(date(game.date)+' '+game.opponent+' PIR '+value)}" cx="${cx}" cy="${y(value)}" r="4.5" fill="currentColor"><title>${esc(game.opponent)} · ${fmt(value)}</title></circle>
+   <text class="ef-pir-value" x="${cx}" y="${y(value)-10}" text-anchor="middle" aria-hidden="true">${value}</text>`:'';
+  const tick=rows.length<=5||i===0||i===rows.length-1?`<text x="${cx}" y="185" text-anchor="middle">${date(game.date)}</text>`:'';
+  return point+tick;
+ }).join('');
+ const wide=width>372?` style="min-width:${width}px"`:'';
+ return `<div class="ef-trend-scroll"><svg class="ef-trend-svg" viewBox="0 0 ${width} 202"${wide} role="group" aria-label="PIR בפועל, מהישן לחדש"><title>PIR בפועל · עונת 2026/27</title>${grid}${lines}${points}</svg></div>`;
 }
 function marketGameRow(g){
  const opponent=canonicalTeam(g.opponent)||'יריבה לא ידועה';
@@ -211,6 +233,8 @@ window.showPlayer=function(name){
   const stats=hero.querySelector('.ef-player-stats'),price=player.price;
   stats.innerHTML=[['מחיר נוכחי · קרדיט',price],['ממוצע PIR · הטווח שנבחר',avg('valuation')],['ממוצע דקות · הטווח שנבחר',played.length?usage.minutes===null?null:usage.minutes/played.length:null],['ממוצע נקודות · הטווח שנבחר',avg('points')]].map(([l,v])=>`<div><small>${l}</small><b>${fmt(v)}</b></div>`).join('');
   plot.innerHTML=`${chart(selected)}<p class="ef-chart-detail muted" aria-live="polite">${played.some(g=>U.num(g.stats?.valuation)!==null)?'לחץ על נקודה להצגת המשחק':''}</p>`;
+  const scroll=plot.querySelector('.ef-trend-scroll');
+  if(scroll)scroll.scrollLeft=scroll.scrollWidth;
   summary.innerHTML=`<div class="ef-metric-grid ef-usage-preview">${rate('Usage רגיל',usage.regular)}${rate('Usage כולל · עם אסיסטים',usage.combined)}</div>${compactMarket?'':`<p class="ef-method muted">אומדנים מבוקס סקור ודקות; Usage כולל הוא מדד מותאם, לא אחוז פוזשנים ייחודיים.</p><h3 class="ef-last-title">המשחק האחרון</h3>${latest?gameCard(latest):'<p class="muted">אין משחקים זמינים בסינון שנבחר.</p>'}`}`;
   panes.usage.innerHTML=`<h3>מעורבות בהתקפה</h3><div class="ef-metric-grid">${rate('Usage רגיל',usage.regular)}${rate('Usage כולל · עם אסיסטים',usage.combined)}${metric('זריקות מהשדה · סה״כ',fmt(usage.fga))}${metric('ניסיונות עונשין · סה״כ',fmt(usage.fta))}${metric('אסיסטים · סה״כ',fmt(usage.assists))}${metric('איבודים · סה״כ',fmt(usage.turnovers))}</div><p class="ef-method">Usage רגיל: זריקות מהשדה + 0.44 מניסיונות העונשין + איבודים, ביחס לאומדן אירועי הקבוצה בזמן דקות השחקן. Usage כולל מוסיף אסיסטים; הוא מדד מעורבות מותאם לאפליקציה. אין כאן מדידה של זמן החזקת כדור. כמה משחקים משוקללים לפי החשיפה, ולא בממוצע פשוט.</p>`;
   panes.defense.innerHTML=`<h3>הגנה וריבאונד</h3><div class="ef-metric-grid">${rate('אחוז חטיפות משוער',df.stl)}${rate('אחוז חסימות משוער',df.blk)}${rate('אחוז ריבאונד משוער',df.reb)}${rate('אחוז ריבאונד הגנה משוער',df.drb)}${metric('חטיפות · סה״כ',fmt(df.steals))}${metric('חסימות · סה״כ',fmt(df.blocks))}${metric('ריבאונדים · סה״כ',fmt(df.rebounds))}${metric('ריבאונד התקפה · סה״כ',fmt(df.offensiveRebounds))}</div><p class="ef-method">אחוזים משוערים מנתוני הבוקס סקור ודקות המשחק. הם מתארים פעולות מסוימות ואינם ציון כולל לאיכות ההגנה. נתון חסר מוצג כ־—.</p>`;
