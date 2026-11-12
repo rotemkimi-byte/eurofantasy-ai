@@ -32,7 +32,9 @@ def game_rows(game, snapshot, observed):
             continue
         if any(v is not None and (num(v) is None or abs(num(v)) > 1) for v in signals):
             continue
-        metadata = {'name': p.get('name'), 'team': club}
+        metadata = {'name': p.get('name'), 'team': club,
+                    'expectedPir': num(p.get('expectedPir')), 'expectedMinutes': num(p.get('expectedMinutes')),
+                    'actualMinutes': num(actual.get('actualMinutes'))}
         for side in ('local', 'road'):
             for entry in (box.get(side) or {}).get('players', []):
                 if key(entry.get('player', {}).get('person', {}).get('name')) == key(p.get('name')):
@@ -64,7 +66,7 @@ def build(schedule):
             except (OSError, ValueError, TypeError, AttributeError):
                 continue
             if rows:
-                entries.append({'gameCode': code, 'savedAt': snapshot['created_at'], 'weights': snapshot.get('weightedDefaults'), 'players': rows})
+                entries.append({'gameCode': code, 'savedAt': snapshot['created_at'], 'modelId': snapshot.get('modelId'), 'weights': snapshot.get('weightedDefaults'), 'players': rows})
         rounds.append({'round': number, 'scheduled': len(games), 'complete': complete, 'games': entries})
     return {'schema': SCHEMA, 'season': 'E2026', 'rounds': rounds}
 

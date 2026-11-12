@@ -15,7 +15,7 @@ async function main(){
  const result={schema:'advanced-players-v1',season:'E2026',updated_at:new Date().toISOString(),source:'https://live.euroleague.net/',games:{},warnings:[]};
  let at=0;
  async function worker(){while(at<codes.length){const i=at++,code=codes[i],meta=info.get(code);
-  if(i>=6&&old.schema==='advanced-players-v1'&&old.games?.[code]?.eventsFetched&&old.games[code].styleVersion===1){result.games[code]=old.games[code];continue;}
+  if(i>=6&&old.schema==='advanced-players-v1'&&old.games?.[code]?.eventsFetched&&old.games[code].styleVersion===1&&old.games[code].lineupTimingVersion===2){result.games[code]=old.games[code];continue;}
   const box=read(path.join(root,'data/backtest/cache/E2026-'+code+'-stats.json'),null);
   if(!box){result.warnings.push('Missing box score '+code);continue;}
   const urls=['Points','PlaybyPlay'].map(kind=>'https://live.euroleague.net/api/'+kind+'?gamecode='+code+'&seasoncode=E2026');
@@ -49,7 +49,7 @@ async function main(){
   const styleVersion=hasPoints||(sameBox&&previous?.styleVersion===1)?1:undefined;
   const retained=sameBox&&previous?.eventsFetched;
   const eventsFetched=(hasPoints||retained)&&(hasPbp||retained);
-  result.games[code]={...meta,styleVersion,eventsFetched:!!eventsFetched,players};
+  result.games[code]={...meta,styleVersion,lineupTimingVersion:hasPbp?2:previous?.lineupTimingVersion,eventsFetched:!!eventsFetched,players};
   if(!hasPoints||!hasPbp)result.warnings.push('Missing event feed '+code);
  }}
  await Promise.all(Array.from({length:4},worker));

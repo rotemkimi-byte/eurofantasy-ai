@@ -9,8 +9,8 @@ function tails(margin,winProb=null){const normalWin=1-cdf(-margin/11.5),p=num(wi
 function valid(data,now=Date.now()){
  const time=Date.parse(data?.updated_at);return data?.schema==='matchup-context-v1'&&data.season==='E2026'&&Number.isFinite(time)&&time<=now+300000&&now-time<36*3600000;
 }
-function project(x,p,data){
- const y={...x};if(!valid(data)||p.status==='out'||!['G','F','C'].includes(p.pos))return y;
+function project(x,p,data,now=Date.now()){
+ const y={...x};if(!valid(data,now)||p.status==='out'||!['G','F','C'].includes(p.pos))return y;
  const profile=data.players?.[key(p.name)],opp=x.match?.opponent||p.opponent,defense=data.defense?.[opp];
  const margin=num(x.match?.margin)||0;const tail=tails(margin,x.match?.winProb);let baseMin=num(x.minutes)||0;
  if(baseMin<=0)return y;
