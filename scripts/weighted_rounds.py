@@ -15,6 +15,7 @@ def game_rows(game, snapshot, observed):
     if not saved or not kickoff or saved >= kickoff or snapshot.get('gameCode') != game['gameCode']:
         return []
     result = []
+    box = load(ROOT / f'data/backtest/cache/E2026-{game["gameCode"]}-stats.json', {})
     for p in snapshot.get('predictions', []):
         actual = observed.get(key(p.get('name')))
         club = canon(p.get('team'))
@@ -31,7 +32,14 @@ def game_rows(game, snapshot, observed):
             continue
         if any(v is not None and (num(v) is None or abs(num(v)) > 1) for v in signals):
             continue
-        result.append([pir, base, scale, signals])
+        metadata = {'name': p.get('name'), 'team': club}
+        for side in ('local', 'road'):
+            for entry in (box.get(side) or {}).get('players', []):
+                if key(entry.get('player', {}).get('person', {}).get('name')) == key(p.get('name')):
+                    stats = entry.get('stats', {})
+                    metadata.update({field: num(stats.get(field)) for field in
+                                     ('freeThrowsAttempted', 'freeThrowsMade', 'foulsReceived')})
+        result.append([pir, base, scale, signals, metadata])
     return result
 
 

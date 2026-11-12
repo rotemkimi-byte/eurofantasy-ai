@@ -28,19 +28,19 @@ section.innerHTML=`<div class="card wf-shell">
  <header><span class="wf-kicker">EUROLEAGUE · 2026/27</span><h2>משקלי האלגוריתם</h2>
  <p>תחזית המשחק הבא משלבת בסיס אישי של תפוקה ודקות עם תרומות לפי המשקלים שבחרת.</p></header>
  <div class="wf-switch" role="group" aria-label="תצוגת האלגוריתם">
-  <button type="button" data-mode="report" aria-pressed="true">דוח מחזור</button>
-  <button type="button" data-mode="weights" aria-pressed="false">משקלים</button>
+  <button type="button" data-mode="weights" aria-pressed="true">משקלים</button>
+  <button type="button" data-mode="report" aria-pressed="false">דוח מחזור</button>
   <button type="button" data-mode="edit" aria-pressed="false">שיפור ידני</button>
  </div>
  <div class="wf-venue"><b>בית / חוץ</b><span>השפעה קבועה של מיקום המשחק</span></div>
  <p class="wf-muted" data-source role="status">טוען נתוני תחזית…</p>
- <div data-panel="weights" hidden>
+ <div data-panel="weights">
   <div class="wf-controls"><label>קבוצה<select data-team></select></label><label>שחקן · לפי מחיר<select data-player></select></label></div>
   <div data-preview></div>
   <div class="wf-list" data-list></div>
  </div>
- <div data-panel="report">
-  <div class="wf-controls"><label>מחזור<select data-round></select></label></div>
+ <div data-panel="report" hidden>
+  <div class="wf-controls"><label>מחזור<select data-round></select></label><label>שחקן<select data-report-player><option value="">כל השחקנים</option></select></label></div>
   <div class="wf-audit audit-compact">
    <h3>דיוק התחזיות</h3>
    <div data-audit-summary aria-live="polite"></div>
@@ -93,7 +93,7 @@ function drawWeights(){
 }
 function drawAudit(round,rows){
  const host=$('[data-audit-summary]'),details=$('[data-audit-details]'),audit=window.AuditCompact;
- const sample=rows.filter(r=>Number(r.round)===round?.round);
+ const sample=rows.filter(r=>Number(r.round)===round?.round&&(!$('[data-report-player]').value||r.name===$('[data-report-player]').value));
  details.hidden=!sample.length||!audit;
  if(details.hidden){
   host.textContent=window.__learningReport===undefined?'טוען את בדיקת התחזיות…':
@@ -121,14 +121,34 @@ function drawReport(){
  if(!$('[data-round]').dataset.chosen&&latest)select.value=String(latest.round);
  select.disabled=!rounds.length;
  const round=rounds.find(r=>String(r.round)===select.value);
+ const names=[...new Set(rows.filter(r=>r.round===round?.round).map(r=>r.name))].sort();
+ options($('[data-report-player]'),[['','כל השחקנים'],...names.map(name=>[name,name])]);
  drawAudit(round,rows);
  if(!report){host.textContent=reportError?'דוח ההשפעה לא זמין כרגע.':'טוען את דוח ההשפעה…';return;}
  if(!round?.games.length){host.textContent='אין עדיין משחקים במחזור הזה עם תוצאה וקלט שמור לבדיקת השפעת הכלים.';return;}
  const personal=$('[data-report-mode]').value==='device';
- const result=C.assess(round.games,game=>personal?
+ const selectedName=$('[data-report-player]').value;
+ const games=round.games.map(game=>({...game,players:game.players.filter(row=>!selectedName||row[4]?.name===selectedName)})).filter(game=>game.players.length);
+ const result=C.assess(games,game=>personal?
   versions.findLast(v=>Date.parse(v.savedAt)<=Date.parse(game.savedAt))?.weights:(game.weights||C.defaults));
  if(!result.n){
   host.textContent=personal?'אין למחזור הזה משקלים ששמרת במכשיר לפני מועד צילום התחזית.':'אין עדיין תחזיות מוקדמות עם נתוני אמת למחזור הזה.';
+  return;
+ }
+ if(selectedName){
+  const game=games[0],row=game?.players[0],chosen=personal?versions.findLast(v=>Date.parse(v.savedAt)<=Date.parse(game.savedAt))?.weights:(game?.weights||C.defaults);
+  if(!row||!chosen){host.textContent='אין פירוק שמור לשחקן ולמשקלים שנבחרו.';return;}
+  const [actual,base,scale,signals,info]=row,frozen={base,scale,signals},full=C.project(frozen,chosen);
+  host.innerHTML=`<p><b>${esc(selectedName)}</b> · PIR בפועל ${fmt(actual)} · תחזית משוקללת ${fmt(full)}</p>
+  <p class="wf-muted">בכל שורה מוצגת התחזית כשהכלי פעיל ובהסרת תרומתו. הצבע מתאר את השינוי בטעות במשחק הזה. ${personal?'זהו שחזור לפי המשקלים האישיים.':''}</p>
+  ${info?.freeThrowsAttempted!=null?`<p>עונשין בפועל · ${info.freeThrowsMade} מתוך ${info.freeThrowsAttempted} · עבירות שסחט ${info.foulsReceived??'—'}</p>`:''}
+  <div class="wf-list">${C.definitions.map((d,i)=>{
+   const without=C.project(frozen,chosen,i),delta=Math.abs(actual-without)-Math.abs(actual-full),shift=full-without;
+   const missing=signals[i]==null,off=!chosen[d.id],direction=missing||off?'sample':delta>1e-9?'better':delta< -1e-9?'worse':'neutral';
+   const label=off?'משקל אפס':missing?'חסר נתון שמור':direction==='better'?'עזר במשחק הזה':direction==='worse'?'הגדיל טעות':'ללא השפעה במשחק';
+   const precise=n=>Number(n).toFixed(4);
+   return `<article class="wf-row"><span><b>${d.label}</b><small>משקל ${chosen[d.id]}% · ${missing?'אין קלט להערכת התרומה':`תרומה לתחזית ${precise(shift)} PIR<br>עם הכלי ${precise(full)} · בלי הכלי ${precise(without)}`}</small></span><span class="wf-number"><b class="wf-badge" data-result="${direction}">${label}</b>${!missing&&!off?`<small>שינוי בדיוק ${precise(delta)} PIR</small>`:''}</span></article>`;
+  }).join('')}</div>`;
   return;
  }
  host.innerHTML=`<p class="wf-report-summary"><b>${result.games} מתוך ${round.scheduled} משחקים · ${result.n} תחזיות שחקן</b>
@@ -136,7 +156,7 @@ function drawReport(){
  <p class="wf-muted">${personal?'חישוב לפי נתוני התחזית שנשמרו לפני המשחק והמשקלים שכבר היו שמורים אז במכשיר. ':'נבדקו רק תחזיות שנשמרו לפני המשחק. '}כל כלי נבדק בנפרד. ירוק פירושו שטעות ה־PIR קטנה כשהכלי פעל. אדום פירושו שהטעות גדלה.</p>
  <div class="wf-list">${result.rows.map(r=>{
   const direction=!r.enabled?'off':r.available<5||r.n>0&&(r.n<5||r.games<2)?'sample':!r.n?'neutral':r.delta>=.005?'better':r.delta<=-.005?'worse':'neutral';
-  const label={off:'משקל אפס',sample:'מדגם חסר',better:'שיפר דיוק',worse:'הגדיל טעות',neutral:'ללא שינוי ניכר'}[direction];
+  const label={off:'משקל אפס',sample:'מדגם חסר',better:'שיפר דיוק',worse:'הגדיל טעות',neutral:'שינוי ממוצע קטן מ־0.005 PIR'}[direction];
   return `<article class="wf-row"><span><b>${r.label}</b><small>${r.n} תחזיות שחקן ב־${r.games} משחקים${r.weight===null?'':' · משקל ממוצע '+fmt(r.weight)+'%'}</small></span><span class="wf-number"><b class="wf-badge" data-result="${direction}">${label}</b>${r.n>=5&&r.games>=2?`<small dir="ltr">${effect.format(r.delta)} PIR</small>`:''}</span></article>`;
  }).join('')}</div>`;
 }
@@ -194,6 +214,7 @@ $('[data-import]').onchange=async event=>{
 $('[data-team]').onchange=()=>{rosterOptions();drawWeights();};
 $('[data-player]').onchange=drawWeights;
 $('[data-round]').onchange=event=>{event.target.dataset.chosen='true';auditLimit=5;drawReport();};
+$('[data-report-player]').onchange=()=>{auditLimit=5;$('[data-audit-details]').open=true;drawReport();};
 $('[data-audit-filter]').onchange=()=>{auditLimit=5;drawReport();};
 $('[data-audit-more]').onclick=()=>{auditLimit+=5;drawReport();};
 $('[data-report-mode]').onchange=drawReport;

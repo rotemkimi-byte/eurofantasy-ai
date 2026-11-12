@@ -33,7 +33,7 @@ class WeightedRoundsTest(unittest.TestCase):
             'algorithmSchema': 2, 'predictions': [player]
         }
         observed = {'player test': {'team': 'Paris', 'actualPir': -1}}
-        self.assertEqual(game_rows(game, snapshot, observed), [[-1, 8.0, 2.4, player['weightedForecast']['signals']]])
+        self.assertEqual(game_rows(game, snapshot, observed)[0][:4], [-1, 8.0, 2.4, player['weightedForecast']['signals']])
         self.assertEqual(game_rows(game, {**snapshot, 'created_at': game['start']}, observed), [])
         self.assertEqual(game_rows(game, {**snapshot, 'algorithmSchema': 1}, observed), [])
         self.assertEqual(game_rows(game, {**snapshot, 'gameCode': 2}, observed), [])
