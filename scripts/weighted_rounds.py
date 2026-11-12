@@ -1,4 +1,4 @@
-"""Join frozen weighted inputs to completed EuroLeague box scores."""
+"""Join frozen weighted inputs to available EuroLeague box scores."""
 from collections import defaultdict
 from fantasy_learning import OUT, ROOT, actuals, canon, date, key, load, num
 import json
@@ -43,23 +43,21 @@ def build(schedule):
     for number, games in sorted(grouped.items(), reverse=True):
         complete = all(g['played'] for g in games)
         entries = []
-        if complete:
-            for game in sorted(games, key=lambda g: g['start']):
-                code = game['gameCode']
-                snapshot = load(OUT / f'snapshots/E2026-{code}.json')
-                if not snapshot or snapshot.get('algorithmSchema') != 2:
-                    continue
-                # The normal grading step has already refreshed these box scores.
-                if not (ROOT / f'data/backtest/cache/E2026-{code}-stats.json').exists():
-                    continue
-                try:
-                    rows = game_rows(game, snapshot, actuals(game))
-                except (OSError, ValueError, TypeError, AttributeError):
-                    continue
-                if rows:
-                    entries.append({'gameCode': code, 'savedAt': snapshot['created_at'], 'weights': snapshot.get('weightedDefaults'), 'players': rows})
-        if entries or not complete:
-            rounds.append({'round': number, 'scheduled': len(games), 'complete': complete, 'games': entries})
+        for game in sorted((g for g in games if g['played']), key=lambda g: g['start']):
+            code = game['gameCode']
+            snapshot = load(OUT / f'snapshots/E2026-{code}.json')
+            if not snapshot or snapshot.get('algorithmSchema') != 2:
+                continue
+            # The normal grading step has already refreshed these box scores.
+            if not (ROOT / f'data/backtest/cache/E2026-{code}-stats.json').exists():
+                continue
+            try:
+                rows = game_rows(game, snapshot, actuals(game))
+            except (OSError, ValueError, TypeError, AttributeError):
+                continue
+            if rows:
+                entries.append({'gameCode': code, 'savedAt': snapshot['created_at'], 'weights': snapshot.get('weightedDefaults'), 'players': rows})
+        rounds.append({'round': number, 'scheduled': len(games), 'complete': complete, 'games': entries})
     return {'schema': SCHEMA, 'season': 'E2026', 'rounds': rounds}
 
 

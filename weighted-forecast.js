@@ -17,6 +17,7 @@ try{
 }catch{}
 let weights=versions.at(-1)?.weights||C.defaults,draft={...weights};
 let evidence=null,report=null,modelReady=false,loading=null,lastLoaded=0,lastError=false;
+let reportLoading=null,reportError=false,auditLimit=5;
 let signalCache=new WeakMap(),currentRoster=null;
 const tab=document.createElement('button');
 tab.type='button';tab.dataset.tab='algorithm';tab.textContent='משקלי האלגוריתם';
@@ -27,20 +28,29 @@ section.innerHTML=`<div class="card wf-shell">
  <header><span class="wf-kicker">EUROLEAGUE · 2026/27</span><h2>משקלי האלגוריתם</h2>
  <p>תחזית המשחק הבא משלבת בסיס אישי של תפוקה ודקות עם תרומות לפי המשקלים שבחרת.</p></header>
  <div class="wf-switch" role="group" aria-label="תצוגת האלגוריתם">
-  <button type="button" data-mode="weights" aria-pressed="true">משקלים</button>
-  <button type="button" data-mode="report" aria-pressed="false">דוח מחזור</button>
+  <button type="button" data-mode="report" aria-pressed="true">דוח מחזור</button>
+  <button type="button" data-mode="weights" aria-pressed="false">משקלים</button>
   <button type="button" data-mode="edit" aria-pressed="false">שיפור ידני</button>
  </div>
  <div class="wf-venue"><b>בית / חוץ</b><span>השפעה קבועה של מיקום המשחק</span></div>
  <p class="wf-muted" data-source role="status">טוען נתוני תחזית…</p>
- <div data-panel="weights">
+ <div data-panel="weights" hidden>
   <div class="wf-controls"><label>קבוצה<select data-team></select></label><label>שחקן · לפי מחיר<select data-player></select></label></div>
   <div data-preview></div>
   <div class="wf-list" data-list></div>
  </div>
- <div data-panel="report" hidden>
-  <div class="wf-controls"><label>מחזור<select data-round></select></label>
-   <label>משקלים בדוח<select data-report-mode><option value="site">ברירת המחדל של האתר</option><option value="device">המשקלים שנשמרו במכשיר לפני התחזית</option></select></label></div>
+ <div data-panel="report">
+  <div class="wf-controls"><label>מחזור<select data-round></select></label></div>
+  <div class="wf-audit audit-compact">
+   <h3>דיוק התחזיות</h3>
+   <div data-audit-summary aria-live="polite"></div>
+   <details data-audit-details hidden><summary>פגיעות ופספוסים לפי שחקן</summary>
+    <div class="wf-controls"><label>תוצאה<select data-audit-filter><option value="all">כל התוצאות</option><option value="hit">פגיעות</option><option value="miss">פספוסים</option></select></label></div>
+    <div data-audit-rows></div><button type="button" class="secondary" data-audit-more>הצג עוד</button>
+   </details>
+  </div>
+  <h3>השפעת הכלים על הדיוק</h3>
+  <div class="wf-controls"><label>משקלים לבדיקת ההשפעה<select data-report-mode><option value="site">ברירת המחדל של האתר</option><option value="device">המשקלים שנשמרו במכשיר לפני התחזית</option></select></label></div>
   <div data-report></div>
  </div>
  <div data-panel="edit" hidden>
@@ -81,15 +91,39 @@ function drawWeights(){
   return `<article class="wf-row"><span><b>${d.label}</b><small>${d.description}</small></span><span class="wf-number"><b dir="ltr">${weights[d.id]}%</b>${f?`<small ${active?'dir="ltr"':''}>${active?effect.format(delta)+' PIR':'אין מדגם'}</small>`:''}</span></article>`;
  }).join('');
 }
+function drawAudit(round,rows){
+ const host=$('[data-audit-summary]'),details=$('[data-audit-details]'),audit=window.AuditCompact;
+ const sample=rows.filter(r=>Number(r.round)===round?.round);
+ details.hidden=!sample.length||!audit;
+ if(details.hidden){
+  host.textContent=window.__learningReport===undefined?'טוען את בדיקת התחזיות…':
+   window.__learningReport===null?'בדיקת התחזיות לא זמינה כרגע.':'אין תחזיות שנבדקו במחזור הזה.';
+  return;
+ }
+ const scope={round:String(round.round),source:'all',team:'',sort:'error'};
+ const id=window.__learningModelId||window.__learningReport.modelId;
+ const hits=audit.select(sample,{...scope,result:'hit'},id).length;
+ const selected=audit.select(sample,{...scope,result:$('[data-audit-filter]').value},id);
+ const games=new Set(sample.map(r=>r.gameCode)).size;
+ host.innerHTML=`<p class="wf-muted">${round.complete===false?'מחזור פתוח · ':''}${games}${round.scheduled?' מתוך '+round.scheduled:''} משחקים נבדקו · פגיעה עד ±${audit.tolerance({round:round.round})} PIR${sample.some(r=>!audit.current(r,id))?' · כולל תחזיות מגרסאות קודמות':''}</p>
+ <div class="ac-metrics"><div><b>${sample.length}</b><span>תחזיות שנבדקו</span></div><div data-result="better"><b>${hits}</b><span>פגיעות</span></div><div data-result="worse"><b>${sample.length-hits}</b><span>פספוסים</span></div></div>`;
+ $('[data-audit-rows]').innerHTML=selected.slice(0,auditLimit).map(r=>audit.card(r,id)).join('')||'<p>אין תוצאות במסנן הזה.</p>';
+ $('[data-audit-more]').hidden=selected.length<=auditLimit;
+}
 function drawReport(){
  const host=$('[data-report]'),select=$('[data-round]');
- const rounds=report?.rounds||[],hadRound=rounds.some(r=>String(r.round)===select.value);
- options(select,rounds.map(r=>[String(r.round),'מחזור '+r.round+(r.complete?'':' · פתוח')]));
+ const rows=window.__learningReport?.rows||[];
+ const byRound=new Map((report?.rounds||[]).map(r=>[r.round,r]));
+ for(const r of rows)if(!byRound.has(r.round))byRound.set(r.round,{round:r.round,games:[]});
+ const rounds=[...byRound.values()].sort((a,b)=>b.round-a.round);
+ const latest=rounds.find(r=>r.games.length||rows.some(row=>row.round===r.round));
+ options(select,rounds.map(r=>[String(r.round),'מחזור '+r.round+(r.complete===false?' · פתוח':'')]));
+ if(!$('[data-round]').dataset.chosen&&latest)select.value=String(latest.round);
  select.disabled=!rounds.length;
- if(!hadRound){const latest=rounds.find(r=>r.complete&&r.games.length);const current=latest||rounds.at(-1);if(current)select.value=String(current.round);}
  const round=rounds.find(r=>String(r.round)===select.value);
- if(!round){host.textContent='דוח ההשפעה יופיע בסיום מחזור שיש לו תחזיות שנשמרו לפני פתיחת המשחקים.';return;}
- if(!round.complete){host.textContent='המחזור עדיין פתוח. דוח ההשפעה יוצג לאחר שיסתיימו כל משחקיו.';return;}
+ drawAudit(round,rows);
+ if(!report){host.textContent=reportError?'דוח ההשפעה לא זמין כרגע.':'טוען את דוח ההשפעה…';return;}
+ if(!round?.games.length){host.textContent='אין עדיין משחקים במחזור הזה עם תוצאה וקלט שמור לבדיקת השפעת הכלים.';return;}
  const personal=$('[data-report-mode]').value==='device';
  const result=C.assess(round.games,game=>personal?
   versions.findLast(v=>Date.parse(v.savedAt)<=Date.parse(game.savedAt))?.weights:(game.weights||C.defaults));
@@ -102,8 +136,8 @@ function drawReport(){
  <p class="wf-muted">${personal?'חישוב לפי נתוני התחזית שנשמרו לפני המשחק והמשקלים שכבר היו שמורים אז במכשיר. ':'נבדקו רק תחזיות שנשמרו לפני המשחק. '}כל כלי נבדק בנפרד. ירוק פירושו שטעות ה־PIR קטנה כשהכלי פעל. אדום פירושו שהטעות גדלה.</p>
  <div class="wf-list">${result.rows.map(r=>{
   const direction=!r.enabled?'off':r.available<5||r.n>0&&(r.n<5||r.games<2)?'sample':!r.n?'neutral':r.delta>=.005?'better':r.delta<=-.005?'worse':'neutral';
-  const label={off:'משקל אפס',sample:'מדגם חסר',better:'שיפר',worse:'פגע',neutral:'ללא שינוי ניכר'}[direction];
-  return `<article class="wf-row"><span><b>${r.label}</b><small>${r.n} תחזיות שחקן ב־${r.games} משחקים${r.weight===null?'':' · משקל ממוצע '+fmt(r.weight)+'%'}</small></span><span class="wf-number"><b class="wf-badge" data-result="${direction}">${label}</b>${r.n>=5?`<small dir="ltr">${effect.format(r.delta)} PIR</small>`:''}</span></article>`;
+  const label={off:'משקל אפס',sample:'מדגם חסר',better:'שיפר דיוק',worse:'הגדיל טעות',neutral:'ללא שינוי ניכר'}[direction];
+  return `<article class="wf-row"><span><b>${r.label}</b><small>${r.n} תחזיות שחקן ב־${r.games} משחקים${r.weight===null?'':' · משקל ממוצע '+fmt(r.weight)+'%'}</small></span><span class="wf-number"><b class="wf-badge" data-result="${direction}">${label}</b>${r.n>=5&&r.games>=2?`<small dir="ltr">${effect.format(r.delta)} PIR</small>`:''}</span></article>`;
  }).join('')}</div>`;
 }
 function total(){
@@ -159,12 +193,14 @@ $('[data-import]').onchange=async event=>{
 };
 $('[data-team]').onchange=()=>{rosterOptions();drawWeights();};
 $('[data-player]').onchange=drawWeights;
-$('[data-round]').onchange=drawReport;
+$('[data-round]').onchange=event=>{event.target.dataset.chosen='true';auditLimit=5;drawReport();};
+$('[data-audit-filter]').onchange=()=>{auditLimit=5;drawReport();};
+$('[data-audit-more]').onclick=()=>{auditLimit+=5;drawReport();};
 $('[data-report-mode]').onchange=drawReport;
 tab.onclick=()=>{
  document.querySelectorAll('.tabs button,.tab').forEach(el=>el.classList.remove('active'));
  tab.classList.add('active');section.classList.add('active');
- rosterOptions();drawWeights();void refreshEvidence();
+ rosterOptions();drawWeights();void refreshEvidence();void loadReport();
 };
 async function json(path){
  if(window.loadGameData)return window.loadGameData(path);
@@ -173,10 +209,16 @@ async function json(path){
  return r.json();
 }
 async function loadReport(){
- try{
-  const data=await json('learning/tool-impacts.json');
-  if(data.schema==='weighted-rounds-v1'&&data.season==='E2026')report=data;
- }catch{}
+ if(reportLoading)return reportLoading;
+ reportLoading=(async()=>{
+  try{
+   const data=await json('learning/tool-impacts.json');
+   if(data.schema!=='weighted-rounds-v1'||data.season!=='E2026')throw Error('Invalid round report');
+   report=data;reportError=false;
+  }catch{reportError=true;}
+ })();
+ await reportLoading;
+ reportLoading=null;
  drawReport();
 }
 function sourceText(){
@@ -201,7 +243,7 @@ async function refreshEvidence(){
  })().finally(()=>{loading=null;});
  return loading;
 }
-switchMode('weights');total();const initial=refreshEvidence();
+total();const initial=refreshEvidence();
 for(let i=0;i<700&&!window.__rollingReady;i++)await new Promise(resolve=>setTimeout(resolve,100));
 if(!window.__rollingReady||typeof model!=='function'){
  $('[data-source]').textContent='מודל הבסיס עדיין לא זמין. נסה לרענן את האפליקציה.';
@@ -224,7 +266,7 @@ model=function(p){
 await initial;
 modelReady=true;
 window.__weightedForecastReady=true;
-sourceText();drawWeights();
+sourceText();drawWeights();drawReport();
 if(typeof renderAll==='function')renderAll();
 window.addEventListener('focus',()=>void refreshEvidence());
 document.addEventListener('fantasy-live-updated',()=>{

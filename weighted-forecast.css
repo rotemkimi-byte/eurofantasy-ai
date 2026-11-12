@@ -23,4 +23,12 @@
 #algorithm .wf-badge{display:inline-block;padding:2px 7px;border-radius:7px;background:#e2e8f0;color:#334155;font-size:.83rem}
 #algorithm [data-result=better]{background:#d2f6e0;color:#075332}
 #algorithm [data-result=worse]{background:#ffe0e4;color:#8c122d}
+#algorithm .wf-audit{margin-block:16px 22px}
+#algorithm .wf-audit .ac-metrics [data-result]> *{color:inherit}
+#algorithm .wf-audit .ac-row .miss{color:#ff919b}
+html[data-theme="light"] #algorithm .wf-audit .ac-row .miss{color:#8c122d}
+#algorithm .wf-audit .ac-values{flex-wrap:wrap}
+#algorithm .wf-audit .ac-values b{display:inline-block}
+#algorithm .wf-audit .ac-gap-note{color:var(--text);font-weight:700}
+#algorithm .wf-audit>details>summary{cursor:pointer;font-weight:700}
 #algorithm [hidden]{display:none!important}
