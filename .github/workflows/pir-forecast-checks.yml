@@ -26,6 +26,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Install optimizer test dependencies
+        run: python -m pip install numpy scipy
       - name: Verify forecast mathematics, chronology and integrations
         run: |
           node tests/test_unified_forecast.cjs
