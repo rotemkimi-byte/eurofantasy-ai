@@ -1,5 +1,7 @@
 (async()=>{
 'use strict';
+// Wait for the primary algorithm screen before considering the legacy laboratory.
+if(document.readyState==='loading')await new Promise(resolve=>document.addEventListener('DOMContentLoaded',resolve,{once:true}));
 const A=window.AlgorithmLab,esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),fmt=n=>n==null?'—':Number(n).toFixed(1),signed=n=>(n>0?'+':'')+fmt(n),storageKey='eurofantasy-algorithm-v1';
 if(!A||document.getElementById('algorithm'))return;
 let weights={...A.defaults},saved=null;
