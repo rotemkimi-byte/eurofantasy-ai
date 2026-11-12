@@ -1,7 +1,5 @@
 (async()=>{
 'use strict';
-// Wait for the primary algorithm screen before considering the legacy laboratory.
-if(document.readyState==='loading')await new Promise(resolve=>document.addEventListener('DOMContentLoaded',resolve,{once:true}));
 const A=window.AlgorithmLab,esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),fmt=n=>n==null?'—':Number(n).toFixed(1),signed=n=>(n>0?'+':'')+fmt(n),storageKey='eurofantasy-algorithm-v1';
 if(!A||document.getElementById('algorithm'))return;
 let weights={...A.defaults},saved=null;
@@ -57,7 +55,7 @@ async function selectGame(){const token=++requestId;history=null;$('alHistoryAct
  let snap=snapshots.get(g.gameCode);
  if(!snap){try{const r=await fetch(`./data/learning/snapshots/E2026-${Number(g.gameCode)}.json`,{cache:'no-store',signal:AbortSignal.timeout(10000)});if(r.ok){snap=await r.json();snapshots.set(g.gameCode,snap);}}catch{}}
  if(token!==requestId)return;
- history={...A.historical(p,g,snap,playerLogs(p)),game:g};draw();
+ history={...A.historical(p,g,snap,playerLogs(p)),game:g,toolWeights:snap?.weightedDefaults};draw();
 }
 
 function selectedFixture(p,x,past){
@@ -109,6 +107,24 @@ function drawOfficial(p,x,past){
  const actualShots=`<h3>קליעה ואיבודים · ${past?'המשחק שנבחר':'המשחק האחרון בפועל'}</h3><p class="muted">${esc(observed?.opponent)} · ${esc(observed?.date?.slice(0,10))} · ${fmt(shot.points)} נקודות · ${fmt(observed?.stats?.valuation)} PIR</p><div class="al-table-wrap"><table class="al-table"><thead><tr><th>נתון</th><th>בפועל</th></tr></thead><tbody>${shotRow('מהשדה',shot.field)}${shotRow('לשתיים',shot.two)}${shotRow('לשלוש',shot.three)}${shotRow('עונשין',shot.free)}${stat('איבודי כדור',fmt(shot.turnovers),'במשחק בפועל')}${stat('אסיסטים',fmt(shot.assists),'במשחק בפועל')}</tbody></table></div>`;
 root.innerHTML=`<details class="al-advanced"><summary>נתוני קליעה והתקפה רשמיים</summary>`+actualShots+`<h3>נפח התקפי ו־Usage · ${past?'בפועל':'בסיס רשמי לצפי'}</h3><p class="muted">עונת 2026/27 · נתוני משחק מהמקור הרשמי. Usage ומדדי היעילות מחושבים מהם. זמן עם הכדור ומספר נגיעות אינם זמינים.</p><div class="al-table-wrap"><table class="al-table"><thead><tr><th>מדד</th><th>${past?'בפועל':'אומדן / בסיס מהעבר'}</th></tr></thead><tbody>${rows.map(r=>stat(...r)).join('')}</tbody></table></div><p class="notice">${report.trend==null?'אין מספיק משחקים להשוואת מגמת נפח.':`נפח הזריקות לדקה ${report.trend>=0?'עלה':'ירד'} ב־${fmt(Math.abs(report.trend))}% בשלושת המשחקים האחרונים לעומת המשחקים הקודמים. זו מגמה שנצפתה, לא הבטחה למשחק הבא.`}</p><h3>חברי קבוצה באותו תפקיד רשמי</h3><p class="muted">${esc(report.positionName||'תפקיד לא ידוע')} · אותם שחקנים עשויים לשחק יחד. ללא נתוני חילופים מאומתים אין קביעה שהם מחליפים זה את זה.</p><div class="al-table-wrap"><table class="al-table"><thead><tr><th>שחקן</th><th>דקות והשוואה</th></tr></thead><tbody>${report.peers.map(q=>stat(q.name,fmt(q.average.avgMinutes)+' דק׳',`ממוצע עד 3 הופעות אחרונות; שיחק בפעם האחרונה ב־${q.last.date.slice(0,10)}. `+(q.comparisonReady?`דקות השחקן הנבחר כשחבר הסגל שיחק: ${fmt(q.withPeer.avgMinutes)} (${q.withPeer.games} משחקים); כשנרשם ולא שיחק: ${fmt(q.withoutPeer.avgMinutes)} (${q.withoutPeer.games} משחקים). זו השוואה תיאורית.`:`השוואת דקות: ${q.withPeer.games} משחקים יחד, ${q.withoutPeer.games} משחקים שבהם החבר נרשם ולא שיחק; נדרשים לפחות 3 בכל מצב.`))).join('')||'<tr><td colspan="2">אין חברי קבוצה עם תפקיד תואם במדגם.</td></tr>'}</tbody></table></div><p class="muted"><a href="${esc(report.source)}" target="_blank" rel="noopener">מקור נתוני המשחק: EuroLeague</a> · <a href="https://mediagamecenter.euroleague.net/" target="_blank" rel="noopener">מקור נוסחאות המדדים</a><br>עודכן: ${esc(report.updatedAt?.slice(0,16).replace('T',' '))} UTC. הצפי לנפח הוא אומדן מדקות ומקצב זריקות, ומשמש להסבר בלשונית.</p></details><details class="al-advanced"><summary>היריבה, מגמת PIR ואימות קהל</summary>${evidencePanel(p,x,past)}</details>`;
 }
+function historyAccuracy(){
+ if(!history||history.missing||history.savedExpected==null)return '';
+ const actual=Number(history.actual),expected=Number(history.savedExpected);
+ const round=Number(history.game.round),limit=round&&round<8?5:3,error=actual-expected;
+ let html=`<div class="al-context"><b class="${Math.abs(error)<=limit?'al-good':'al-bad'}">${Math.abs(error)<=limit?'פגיעה':'פספוס'} · פער ${signed(error)} PIR</b><p>תחזית ${fmt(expected)} · בפועל ${fmt(actual)} · טווח פגיעה ±${limit} PIR</p></div>`;
+ const C=window.WeightedForecast,frozen=history.player?.weightedForecast,w=history.toolWeights;
+ if(!C||!frozen||!C.valid(w))return html+'<p class="al-context">אין פירוק כלים שמור מלפני המשחק הזה.</p>';
+ const full=C.project(frozen,w);
+ if(Math.abs(full-expected)>.01)return html+'<p class="al-context">פירוק הכלים השמור אינו תואם לתחזית שהוצגה במשחק הזה.</p>';
+ const precise=n=>Number(n).toFixed(3);
+ html+=table(['כלי','השפעה במשחק'],C.definitions.map((d,i)=>{
+  const missing=frozen.signals[i]==null,without=C.project(frozen,w,i),delta=Math.abs(actual-without)-Math.abs(actual-full);
+  const label=!w[d.id]?'משקל אפס':missing?'חסר נתון שמור':delta>1e-9?'עזר לדיוק':delta< -1e-9?'הגדיל את הטעות':'ללא השפעה';
+  const cls=!missing&&w[d.id]?(delta>1e-9?'al-good':delta< -1e-9?'al-bad':''):'';
+  return [esc(d.label),`<b class="${cls}">${label}</b>${missing?'':`<small>משקל ${w[d.id]}% · תרומה לתחזית ${precise(full-without)} PIR<br>עם הכלי ${precise(full)} · בלי הכלי ${precise(without)}<br>שינוי בדיוק ${precise(delta)} PIR</small>`}`];
+ }),'השפעת הכלים על השחקן במשחק שנבחר');
+ return html;
+}
 function draw(){const valid=A.valid(weights),total=A.definitions.reduce((sum,d)=>sum+Number(weights[d.id]||0),0);$('alTotal').textContent=fmt(total)+'% / 100%';$('alTotal').className=valid?'al-good':'al-bad';$('alSave').disabled=!valid;
  if(!ready)return;
  const p=roster().find(p=>p.name===$('alPlayer').value);if(!p){$('alResult').textContent='אין שחקנים זמינים בקבוצה שנבחרה.';return;}
@@ -118,6 +134,7 @@ function draw(){const valid=A.valid(weights),total=A.definitions.reduce((sum,d)=
  if(past&&!history){$('alResult').innerHTML='';return;}
  $('alHistoryStatus').textContent=past?(history.missing?'לא נמצאה תחזית שמורה תקינה מלפני המשחק. מוצגת התוצאה בלבד.':`תחזית מקורית נשמרה ב־${history.savedAt.slice(0,16).replace('T',' ')} UTC. ${history.partial?'פירוק חלקי: נתונים חסרים אינם מוחלפים בנתונים של היום.':'נתוני הקריטריונים נשמרו לפני המשחק.'} המשקולות הנוכחיות הן ניסוי בדיעבד, ולא המשקולות ששימשו בתחזית המקורית.`):'המשחק הבא: תחזית עתידית לפי הנתונים העדכניים והמשקולות שבחרת.';
  $('alHistoryActual').innerHTML=past?table(['מדד','בפועל','צפי שנשמר'],[['PIR',fmt(history.actual),fmt(history.savedExpected)],['דקות',fmt(history.actualMinutes),fmt(history.player?.expectedMinutes)]],'המשחק שנבחר · תוצאה מול הצפי המקורי')+(history.missing?'<p class="al-context">אין תחזית שמורה מלפני המשחק; מוצגים נתוני הביצוע בלבד.</p>':''):'';
+ if(past)$('alHistoryActual').innerHTML+=historyAccuracy();
  drawOfficial(p,past?(history.x||{}):model(p),past);
  if(past&&history.missing){$('alContext').textContent=`${history.game.date.slice(0,10)} · מול ${history.game.opponent}`;$('alResult').innerHTML=answerPanel(p,{},true);return;}
  const x=past?history.x:model(p),result=A.evaluate(past?history.player:p,x,weights,{venue:$('alVenue').value,minutes:$('alMinutes').value});
