@@ -36,7 +36,8 @@ try:
         assert len(capture['predictions']) == len(actual)
         assert all(len(p['input']['tools']) == 22 for p in capture['predictions'])
         assert page.evaluate("() => model(players.find(p => p.name === 'Elijah Bryant')).expected") == by_name['Elijah Bryant']['expectedPir']
-        page.locator('nav.tabs [data-tab="algorithm"]').click()
+        page.locator('#efNavigation [data-ef-group="model"]').click()
+        page.locator('#efHome [data-ef-tool="algorithm"]').click()
         algorithm = page.locator('#algorithm')
         assert algorithm.locator('[data-mode="weights"]').get_attribute('aria-pressed') == 'true'
         assert algorithm.locator('[data-list] .wf-row').count() == 22
