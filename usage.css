@@ -2,19 +2,22 @@
 #usage h3{font-size:20px;margin:0 0 5px}
 #usage p{font-size:13px;line-height:1.5;margin:8px 0}
 html:has(#usage.active){overflow-anchor:none}
-#usage .us-switch{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;margin:8px 0 0}
-#usage .us-switch button{grid-column:span 2;background:var(--card2);color:var(--text);border:1px solid var(--line);min-height:40px;font-size:12px;font-weight:800;padding:5px 3px}
+#usage .us-switch{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px;margin:7px 0 0;padding:4px;background:var(--card2);border:1px solid var(--line);border-radius:12px}
+#usage .us-switch button{grid-column:span 2;background:var(--card2);color:var(--text);border:1px solid transparent;border-radius:8px;min-height:44px;font-size:12px;font-weight:800;padding:5px 3px;white-space:normal;line-height:1.2}
 #usage .us-switch button:nth-child(-n+2){grid-column:span 3}
+#usage .us-view-picker .us-switch>button:last-child{grid-column:span 2}
+#usage .us-switch button[data-us-metric][aria-pressed=false]{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 40%,var(--line));background:color-mix(in srgb,var(--accent) 8%,var(--card))}
 #usage .us-switch button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 #usage .us-switch button[aria-pressed=true]{background:var(--accent);color:#07110c;border-color:var(--accent)}
-#usage .us-controls{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:10px;margin:12px 0}
+html[data-theme="light"] #usage .us-switch button[aria-pressed=true]{color:#fff}
+#usage .us-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:8px 0}
 #usage label{display:block;min-width:0;font-size:13px}
 #usage select,#usage input{display:block;width:100%;min-width:0;font-size:16px;margin-top:5px}
 #usage #usTeamLabel{grid-column:1/-1}
 #usage [hidden]{display:none!important}
 #usage .us-player-card{margin:10px 0 12px;overflow:hidden;border:1px solid var(--line);border-radius:13px;background:var(--card2)}
-#usage .us-score{display:grid;grid-template-columns:64px minmax(0,1fr) minmax(68px,auto);align-items:center;gap:9px;padding:8px;border-inline-start:4px solid var(--us-club);background:linear-gradient(125deg,var(--card) 25%,var(--card2))}
-#usage .us-portrait{position:relative;display:grid;place-items:center;width:64px;height:72px;overflow:hidden;border-radius:8px;background:linear-gradient(145deg,var(--us-club),color-mix(in srgb,var(--us-club) 45%,var(--card2)))}
+#usage .us-score{display:grid;grid-template-columns:64px minmax(0,1fr) minmax(68px,auto);align-items:center;gap:9px;padding:12px;border-inline-start:4px solid var(--us-club);background:linear-gradient(125deg,color-mix(in srgb,var(--us-club) 12%,var(--card)),var(--card) 68%)}
+#usage .us-portrait{position:relative;display:grid;place-items:center;width:64px;height:72px;overflow:hidden;border-radius:10px;background:linear-gradient(145deg,var(--us-club),color-mix(in srgb,var(--us-club) 45%,var(--card2)))}
 #usage .us-portrait svg{width:40px;height:52px;margin:0}
 #usage .us-portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;background:inherit}
 #usage .us-identity{min-width:0;overflow-wrap:anywhere}
@@ -27,58 +30,71 @@ html:has(#usage.active){overflow-anchor:none}
 #usage .us-value strong{font-size:24px;color:var(--accent);font-variant-numeric:tabular-nums;white-space:nowrap}
 #usage .us-meter{display:block;width:100%;height:4px;border-radius:4px;background:var(--line);overflow:hidden}
 #usage .us-meter i{display:block;height:100%;width:var(--us-fill);border-radius:inherit;background:var(--accent)}
-#usage .us-metrics{display:flex;flex-wrap:wrap;gap:1px;margin:0;padding:1px 0 0;background:var(--line)}
-#usage .us-metrics div{flex:1 1 90px;min-width:0;padding:5px 6px;background:var(--card);text-align:center}
-#usage .us-metrics dt{font-size:10px;color:var(--muted);line-height:1.2}
-#usage .us-metrics dd{margin:2px 0 0;font-size:15px;font-weight:800;font-variant-numeric:tabular-nums}
-#usage .us-sample{padding:5px 8px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}
-#usage small{display:block;font-size:12px;color:var(--muted);font-weight:400;line-height:1.5}
-#usage .us-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;margin:12px 0}
-#usage .us-table{width:100%;min-width:0;table-layout:fixed}
-#usage .us-table th,#usage .us-table td{position:static;vertical-align:top;overflow-wrap:anywhere;font-size:14px;padding:9px 8px;text-align:right;background:transparent;font-variant-numeric:tabular-nums}
-#usage .us-table th{background:var(--card2);font-size:12px;color:var(--muted)}
-#usage .us-table th:first-child{width:40%}
-#usage .us-table td:not(:first-child){text-align:center}
-#usage .us-table th:not(:first-child){text-align:center}
-#usage .us-table tr:last-child td{border-bottom:0}
-#usage .us-explain{padding:11px 12px;border:1px solid var(--line);border-radius:10px;margin-top:12px}
-#usage summary{cursor:pointer;font-size:14px;font-weight:600}
-#usage .us-explain a,#usage .us-table a{color:var(--blue)}
+#usage .us-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:6px;margin:0;padding:9px}
+#usage .us-metrics div{min-width:0;padding:7px 8px;background:var(--card);border:1px solid var(--line);border-radius:9px}
+#usage .us-metrics div:first-child{background:color-mix(in srgb,var(--accent) 9%,var(--card))}
+#usage .us-metrics dt{font-size:11px;color:var(--muted);line-height:1.25}
+#usage .us-metrics dd{margin:3px 0 0;font-size:19px;font-weight:850;font-variant-numeric:tabular-nums}
+#usage .us-sample{padding:0 10px 8px;color:var(--muted);font-size:11px}
+#usage small{display:block;font-size:12px;color:var(--muted);font-weight:400;line-height:1.4}
+#usage .us-games{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:8px}
+#usage .us-game{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;padding:9px 10px;border:1px solid var(--line);border-inline-start:4px solid var(--us-club);border-radius:12px;background:linear-gradient(125deg,color-mix(in srgb,var(--us-club) 10%,var(--card)),var(--card) 65%);min-width:0}
+#usage .us-game-opponent{display:flex;gap:8px;align-items:center;min-width:0;overflow-wrap:anywhere}
+#usage .us-game-opponent b{font-size:15px}
+#usage .us-crest{position:relative;display:grid;place-items:center;flex:none;width:36px;height:36px;border-radius:8px;background:var(--us-club);color:var(--us-ink);font-size:10px;font-weight:850}
+#usage .us-crest img{position:absolute;inset:0;width:100%;height:100%;padding:4px;box-sizing:border-box;object-fit:contain;border:1px solid var(--line);border-radius:inherit;background:var(--card)}
+#usage .us-game-stats{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:750;white-space:nowrap}
+#usage .us-game .us-value{min-width:62px}
+#usage .us-game .us-value strong{font-size:19px}
+#usage .us-game-meta{display:flex;grid-column:1/-1;justify-content:space-between;align-items:center;gap:6px;padding-top:6px;border-top:1px solid var(--line);font-size:12px}
+#usage .us-venue{padding:2px 7px;border-radius:5px;background:var(--card2);color:var(--muted);font-weight:750}
+#usage .us-venue[data-home="true"]{background:color-mix(in srgb,var(--accent) 12%,var(--card));color:var(--accent)}
+#usage .us-game a{color:var(--blue);font-weight:700;padding:5px 0}
+#usage .us-explain{padding:0 10px;border:1px solid var(--line);border-radius:10px;margin-top:12px;background:var(--card2)}
+#usage summary{cursor:pointer;font-size:13px;font-weight:700;padding-block:10px}
+#usage .us-explain a{color:var(--blue)}
 #usage .us-formula{direction:ltr;text-align:left;overflow-wrap:anywhere;font-size:13px}
 #usage #usStatus{font-size:12px;color:var(--muted)}
 #usage #usReload{font-size:13px;white-space:nowrap}
 #usage #usReload:disabled{opacity:.5}
 #usage #usRankingTitle,#usage #usGamesTitle{font-size:16px;margin:12px 0 6px}
 #usage #usRankingNote{font-size:12px}
-#usage .us-ranking-wrap{max-height:540px;overflow:auto;overscroll-behavior:contain}
-#usage .us-ranking{table-layout:fixed;min-width:0}
-#usage .us-ranking .us-rank-col{width:7%}
-#usage .us-ranking .us-name-col{width:39%}
-#usage .us-ranking .us-value-col{width:22%}
-#usage .us-ranking .us-min-col,#usage .us-ranking .us-games-col{width:16%}
-#usage .us-ranking th{position:sticky;top:0;z-index:1;background:var(--card2)}
-#usage .us-ranking th:first-child{width:auto}
-#usage .us-ranking td:nth-child(2),#usage .us-ranking th:nth-child(2){text-align:right}
-#usage .us-ranking td:first-child,#usage .us-ranking th:first-child{text-align:center}
-#usage .us-ranking td{vertical-align:middle}
-#usage .us-player-link{display:block;background:transparent;border:0;color:var(--text);padding:2px 0;text-align:right;font-size:14px;line-height:1.4;overflow-wrap:anywhere;width:100%}
+#usage .us-ranking-wrap{margin:7px 0}
+#usage .us-ranking{width:100%;min-width:0;table-layout:fixed;border-collapse:separate;border-spacing:0 4px}
+#usage .us-ranking .us-rank-col{width:8%}
+#usage .us-ranking .us-name-col{width:43%}
+#usage .us-ranking .us-value-col{width:21%}
+#usage .us-ranking .us-min-col{width:12%}
+#usage .us-ranking .us-games-col{width:16%}
+#usage .us-ranking th{position:static;padding:5px 2px;background:transparent;color:var(--muted);font-size:11px;line-height:1.2;text-align:center}
+#usage .us-ranking td{padding:6px 4px;background:var(--card2);border-block:1px solid var(--line);font-size:13px;text-align:center;vertical-align:middle;font-variant-numeric:tabular-nums}
+#usage .us-ranking td:first-child{border-inline-start:1px solid var(--line);border-start-start-radius:9px;border-end-start-radius:9px}
+#usage .us-ranking td:last-child{border-inline-end:1px solid var(--line);border-start-end-radius:9px;border-end-end-radius:9px}
+#usage .us-ranking td:nth-child(2),#usage .us-ranking th:nth-child(2){text-align:start}
+#usage .us-rank{display:inline-grid;place-items:center;min-width:21px;height:22px;padding:0 2px;border-radius:5px;background:var(--card);color:var(--muted);font-size:10px;font-weight:800}
+#usage .us-player-link{display:flex;align-items:center;gap:6px;background:transparent;border:0;color:var(--text);padding:0;text-align:start;font-size:13px;line-height:1.2;white-space:normal;width:100%;min-height:44px}
 #usage .us-player-link:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-#usage .us-ranking small{font-size:10px}
+#usage .us-ranking .us-portrait{width:34px;height:40px;flex:none;border-radius:6px}
+#usage .us-ranking .us-portrait svg{width:27px;height:32px}
+#usage .us-ranking-identity{min-width:0;overflow-wrap:anywhere}
+#usage .us-ranking small{margin-top:2px;font-size:10px}
 #usage .us-ranking strong{color:var(--accent);white-space:nowrap}
-#usage .us-selected{background:color-mix(in srgb,var(--accent) 10%,transparent)}
-#usage .us-usage-bar{display:block;height:5px;border-radius:4px;background:var(--line);margin-top:6px;overflow:hidden}
-#usage .us-usage-bar i{display:block;height:100%;background:var(--accent);border-radius:4px}
+#usage .us-ranking .us-meter{margin-top:4px}
+#usage .us-selected td{background:color-mix(in srgb,var(--accent) 10%,var(--card2))}
 #usage .us-sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media(max-width:600px){
- #usage .card{padding:12px}
- #usage .us-controls{grid-template-columns:repeat(2,minmax(0,1fr))}
- #usage .us-table th,#usage .us-table td{padding:8px 5px;font-size:13px}
- #usage .us-table th{font-size:12px}
- #usage .us-ranking-wrap{max-height:480px}
- #usage .us-player-link{font-size:12px}
- #usage .us-ranking th{font-size:10px;padding:9px 3px}
- #usage .us-ranking td{font-size:12px;padding:10px 3px}
+ #usage .card{padding:10px}
+ #usage .us-ranking th{font-size:10px}
+ #usage .us-ranking td{font-size:12px;padding:5px 3px}
  #usage .us-ranking small{font-size:9px}
+ #usage .us-player-link{font-size:12px}
 }
-
-@media(max-width:360px){#usage .us-score{grid-template-columns:48px minmax(0,1fr) minmax(64px,auto);gap:6px}#usage .us-portrait{width:48px;height:60px}#usage .us-value strong{font-size:21px}#usage .us-identity>b{font-size:14px}}
+@media(max-width:360px){
+ #usage .us-score{grid-template-columns:48px minmax(0,1fr) minmax(64px,auto);gap:6px;padding:8px}
+ #usage .us-portrait{width:48px;height:60px}
+ #usage .us-value strong{font-size:21px}
+ #usage .us-identity>b{font-size:14px}
+ #usage .us-ranking .us-portrait{width:26px;height:34px}
+ #usage .us-ranking .us-player-link{gap:4px}
+ #usage .us-game{padding:8px;gap:6px}
+}
