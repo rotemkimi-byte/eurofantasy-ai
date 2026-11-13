@@ -2,11 +2,15 @@
  --dna-primary:#4edbb3;
  --dna-secondary:#ffc27a;
  --dna-muted:#abb5c2;
+ --dna-ahead:#62e6a5;
+ --dna-behind:#ff929c;
 }
 html[data-theme="light"] .dna-shell{
  --dna-primary:#08775c;
  --dna-secondary:#945216;
  --dna-muted:#4b5b70;
+ --dna-ahead:#087052;
+ --dna-behind:#b32440;
 }
 .dna-heading,.dna-match-head,.dna-value-top{
  display:flex;
@@ -41,6 +45,17 @@ html[data-theme="light"] .dna-shell{
 .dna-controls label{min-width:0;color:var(--text);font-weight:650}
 .dna-controls select{display:block;width:100%;margin-top:4px}
 .dna-switch,.dna-legend{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.dna-shell [hidden]{display:none!important}
+.dna-compare-controls label{display:block;color:var(--text);font-weight:650}
+.dna-compare-controls select{display:block;width:100%;margin-top:4px}
+.dna-style-compare{
+ margin:14px 0;
+ padding:clamp(10px,2.5vw,18px);
+ border:1px solid var(--line);
+ border-radius:14px;
+ background:var(--card);
+}
+.dna-style-compare h4{margin:0;font-size:17px}
 .season-ranges{
  display:grid;
  grid-template-columns:repeat(3,minmax(0,1fr));
@@ -317,7 +332,7 @@ html[data-theme="light"] #playerDna{
  border-top:1px solid var(--line);
  text-align:center;
 }
-.dna-pace span,.dna-profile .dna-fixture{font-size:12px;color:var(--dna-muted);text-align:center}
+.dna-pace-label,.dna-profile .dna-fixture{font-size:12px;color:var(--dna-muted);text-align:center}
 .dna-pace bdi,.dna-dot-values bdi{color:var(--dna-color);font-weight:750;font-variant-numeric:tabular-nums}
 .dna-pace bdi{font-size:18px}
 .dna-team-style{
@@ -411,6 +426,11 @@ html.ef-redesign .dna-row summary{padding:12px}
 .dna-rank,.dna-legend span{color:var(--dna-color);font-size:11px}
 .dna-own{--dna-color:var(--dna-primary)}
 .dna-other{--dna-color:var(--dna-secondary)}
+.dna-ahead{--dna-color:var(--dna-ahead)}
+.dna-behind{--dna-color:var(--dna-behind)}
+.dna-even{--dna-color:var(--dna-muted)}
+.dna-ahead strong,.dna-behind strong{color:var(--dna-color)}
+.dna-indicator{color:var(--dna-color);font-size:.75em;margin-inline-end:4px}
 .dna-track{height:7px;margin:4px 0;border-radius:20px;background:var(--line);overflow:hidden}
 .dna-track i{display:block;height:100%;width:var(--dna-width);border-radius:inherit;background:var(--dna-color)}
 .dna-legend span{display:flex;align-items:center;gap:5px;font-weight:750;font-size:12px}
