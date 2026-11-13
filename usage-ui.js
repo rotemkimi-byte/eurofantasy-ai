@@ -20,7 +20,7 @@ section.innerHTML=`<div class="card"><div class="us-heading"><div><h3>מדד Usa
 <button type="button" data-us-view="ranking" aria-pressed="false" aria-controls="usRankingPanel">טבלה כללית</button>
 <button type="button" data-us-view="compare" aria-pressed="false" aria-controls="usComparePanel">השוואה</button>
 </div></div>
-<div class="us-controls"><label>עמדה<select id="usPosition"><option value="">כל העמדות</option><option value="G">גארדים · G</option><option value="F">פורוורדים · F</option><option value="C">סנטרים · C</option></select></label><label>טווח משחקים<select id="usRange"><option value="1">משחק אחרון</option><option value="3">3 משחקים אחרונים</option><option value="0">כל העונה · 2026/27</option></select></label></div>
+<div class="us-controls"><label>עמדה<select id="usPosition"><option value="">כל העמדות</option><option value="G">גארדים · G</option><option value="F">פורוורדים · F</option><option value="C">סנטרים · C</option></select></label><label>טווח משחקים<select id="usRange"><option value="1">משחק אחרון</option><option value="3">3 משחקים אחרונים</option><option value="0">כל העונה</option></select></label></div>
 <p id="usStatus" role="status" aria-live="polite">בחר בלשונית לטעינת הנתונים.</p>
 <div id="usSummaryPanel"><div id="usResult" class="player-result-summary" aria-live="polite"></div><p id="usMetricNote" class="muted"></p></div>
 <div id="usGamesPanel" hidden><h4 id="usGamesTitle"></h4><div id="usGames"></div></div>
@@ -119,7 +119,25 @@ function render(updateRanking=true){
   ['איבודים · סה״כ',stats.turnovers],
   ...(metric==='combined'?[['אסיסטים · סה״כ',stats.assists]]:[])
  ];
- $('usResult').innerHTML=`<div class="us-score"><div><b><bdi>${esc(name(p.name))}</bdi></b><small>${esc(p.team)} · ${p.price===null?'מחיר לא זמין':fmt(p.price)+' קרדיט'}</small><small>${metricTitle()} · ${reason}</small></div><strong>${pct(current.value)}</strong></div><dl class="us-metrics">${metrics.map(([label,n])=>`<div><dt>${label}</dt><dd>${fmt(n)}</dd></div>`).join('')}</dl>`;
+ const kit=typeof TEAM_KITS==='undefined'?null:TEAM_KITS[p.team];
+ const color=kit?.[1]||'#536783',ink=kit?.[2]||'#fff';
+ const media=typeof playerCardProfile==='function'?playerCardProfile(p):null;
+ const portrait=typeof playerCardImageUrl==='function'?playerCardImageUrl(media?.photo):null;
+ const crest=typeof playerCardCrests==='undefined'?null:playerCardCrests.get(p.team);
+ const image=url=>url?`<img src="${esc(url)}" alt="" decoding="async" referrerpolicy="no-referrer">`:'';
+ const meter=current.value===null?'':`<span class="us-meter" aria-hidden="true"><i style="--us-fill:${Math.max(0,Math.min(100,current.value))}%"></i></span>`;
+ $('usResult').innerHTML=`<article class="us-player-card" style="--us-club:${color};--us-ink:${ink}">
+  <div class="us-score">
+   <div class="us-portrait" aria-hidden="true">${typeof squadJersey==='function'?squadJersey(p):''}${image(portrait)}</div>
+   <div class="us-identity"><b><bdi>${esc(name(p.name))}</bdi></b>
+    <span class="us-club">${image(crest)}<bdi>${esc(p.team||'קבוצה לא זמינה')}</bdi></span>
+    <span class="us-player-meta">${p.pos?`<bdi>${esc(p.pos)}</bdi>`:''}${p.price===null?'':`<bdi>${fmt(p.price)} CR</bdi>`}</span>
+   </div>
+   <div class="us-value"><span>${metricTitle()}</span><strong><bdi>${pct(current.value)}</bdi></strong>${meter}</div>
+  </div>
+  <dl class="us-metrics">${metrics.map(([label,n])=>`<div><dt>${label}</dt><dd><bdi>${fmt(n)}</bdi></dd></div>`).join('')}</dl>
+  <div class="us-sample">${esc(reason)}</div>
+ </article>`;
  $('usGames').innerHTML=table(['משחק','דקות',metric==='regular'?'Usage':'כולל'],games.map(g=>{const e=U.events(g);return [`<b>${esc(g.opponent)}</b><small>${date(g.date)}${g.round?' · מ׳ '+esc(g.round):''} · ${g.home===true?'בית':g.home===false?'חוץ':'מיקום לא ידוע'}</small>${g.source&&/^https:\/\//.test(g.source)?`<small><a href="${esc(g.source)}" target="_blank" rel="noopener">דוח המשחק</a></small>`:''}`,U.num(g.minutes)===0?'לא שיחק':fmt(g.minutes),pct(e[metric])]}));
 }
 async function load(force=false){
@@ -159,6 +177,8 @@ for(const b of sortButtons)b.onclick=()=>{
 };
 $('usCreditCap').onchange=renderRanking;
 $('usPosition').onchange=()=>render();$('usTeam').onchange=options;$('usPlayer').onchange=selectPlayer;$('usRange').onchange=()=>{rememberPlayer();render();};$('usReload').onclick=()=>void load(true);
+$('usResult').addEventListener('error',event=>{if(event.target.matches('img'))event.target.remove();},true);
+document.addEventListener('fantasy-player-media-ready',()=>render(false));
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&section.classList.contains('active')&&Date.now()-loadedAt>60000)void load();});
 window.UsageUI={load};
 })();
