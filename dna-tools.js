@@ -345,6 +345,13 @@ function metricDetails(out,content){
  const open=out.querySelector('.dna-expanded')?.open??true;
  return `<details class="dna-expanded"${open?' open':''}><summary>טבלת מדדים ומקורות</summary>${content}</details>`;
 }
+function teamMetricTable(title,description,rows){
+ return `<section class="dna-team-metrics" aria-labelledby="dnaTeamMetricsTitle">
+  <h4 id="dnaTeamMetricsTitle">${title}</h4>
+  <p class="dna-explain">${description} לחיצה על מדד מציגה איך חושב.</p>
+  <div class="dna-chart">${rows}</div>
+ </section>`;
+}
 function teamSides(id,a,b){
  if(a==null||b==null||fmt(a)===fmt(b))return ['dna-own dna-even','dna-other dna-even'];
  const ownLeads=lowerTeamMetrics.has(id)?a<b:a>b;
@@ -355,11 +362,12 @@ function teamIndicator(side){
  if(side.endsWith('dna-behind'))return '<span class="dna-indicator" aria-label="מאחור במדד" role="img">▼</span>';
  return '';
 }
-function valueCell(stat,rating,unit,side,{league=false,singleGame=false,bar=rating,showRank=true}={}){
+function valueCell(stat,rating,unit,side,{league=false,singleGame=false,bar=rating,showRank=true,name}={}){
  const real=stat?.value!=null;
  const sample=league?(stat.count+' קבוצות במדגם'):(stat.count+' / '+stat.total+' משחקים');
  const display=real?fmt(stat.value,unit):'חסר נתון';
  return `<div class="dna-value ${side}">
+  ${name?`<div class="dna-value-name"><bdi>${esc(name)}</bdi></div>`:''}
   <div class="dna-value-top"><strong>${teamIndicator(side)}<bdi>${esc(display)}</bdi></strong>${rating===null?'':`<bdi class="dna-rank">${rating}/100</bdi>`}</div>
   ${bar===null?'':`<div class="dna-track" aria-hidden="true"><i style="--dna-width:${bar}%"></i></div>`}
   ${singleGame?'':`<small>${esc(sample)}${showRank&&real&&!league&&rating===null?' · ללא דירוג':''}</small>`}
@@ -530,7 +538,7 @@ function renderPlayer(){
   window.scrollTo({top:0,behavior:'auto'});
  };
 }
-function comparisonRows(metrics,ownStats,rivalStats,benchmarks,{teamColors=true,singleGame=!benchmarks}={}){
+function comparisonRows(metrics,ownStats,rivalStats,benchmarks,{teamColors=true,singleGame=!benchmarks,names=[]}={}){
  return metrics.map(metric=>{
   const [id,,unit]=metric,ref=benchmarks?.[id],a=ownStats[id],b=rivalStats?.[id]||{value:ref.mean,count:ref.count};
   const gap=a.value==null||b.value==null?null:a.value-b.value;
@@ -538,8 +546,8 @@ function comparisonRows(metrics,ownStats,rivalStats,benchmarks,{teamColors=true,
   const max=unit==='%'?100:Math.max(a.value??0,b.value??0);
   const width=stat=>stat.value==null?null:max>0?Math.min(100,stat.value/max*100):0;
   const [ownSide,rivalSide]=teamColors?teamSides(id,a.value,b.value):['dna-own','dna-other'];
-  return row(metric,valueCell(a,ref?.percentile(a)??null,unit,ownSide,{singleGame,bar:ref?undefined:width(a),showRank:!!ref}),
-   valueCell(b,rivalStats?(ref?.percentile(b)??null):null,unit,rivalSide,{league:!rivalStats,singleGame,bar:ref?undefined:width(b),showRank:!!ref}),diff);
+  return row(metric,valueCell(a,ref?.percentile(a)??null,unit,ownSide,{singleGame,bar:ref?undefined:width(a),showRank:!!ref,name:names[0]}),
+   valueCell(b,rivalStats?(ref?.percentile(b)??null):null,unit,rivalSide,{league:!rivalStats,singleGame,bar:ref?undefined:width(b),showRank:!!ref,name:names[1]}),diff);
  }).join('');
 }
 function legend(own,rival,teamColors=false){
@@ -557,9 +565,9 @@ function renderHistory(out,metrics,games){
  out.innerHTML=`<header class="dna-profile dna-compare-head"><span class="dna-kicker">מפגש עבר · 2026/27</span>
  <h3><bdi>${esc(game.team)}</bdi> <bdi>${game.points}–${game.against}</bdi> <bdi>${esc(game.opponent)}</bdi></h3>
  <p>${fullDate.format(new Date(game.date))}</p></header>
- ${teamStyle(metrics,ownStats,rivalStats,game.team,game.opponent)}
- ${metricDetails(out,`<p class="dna-explain">הטבלה מציגה את הערכים במשחק. לחיצה על מדד מציגה איך חושב.</p>${legend(game.team,game.opponent,true)}
- <div class="dna-chart">${comparisonRows(metrics,ownStats,rivalStats)}</div>`)}`;
+ ${teamMetricTable(view==='defense'?'מה היריבות עשו מול כל קבוצה במשחק':'איך הקבוצות שיחקו בהתקפה',
+  view==='defense'?'מתחת לכל קבוצה מוצגים הנתונים של היריבה ששיחקה מולה.':'הערכים מתייחסים למשחק שנבחר.',
+  comparisonRows(metrics,ownStats,rivalStats,undefined,{names:[game.team,game.opponent]}))}`;
 }
 function renderTeams(updateGames=true){
  if(!model)return;
@@ -592,6 +600,14 @@ function renderTeams(updateGames=true){
  const pace=ownStats.pace?.value,otherPace=(rivalStats||leagueStats).pace?.value;
  const [ownPaceSide,otherPaceSide]=teamSides('pace',pace,otherPace);
  const selectedGames=record=>C.select(record.games,Number(selectedRange)).length;
+ const metricTable=view==='defense'
+  ?teamMetricTable('מה היריבות עושות מול כל קבוצה',
+   'הערך תחת כל קבוצה מתאר את ביצועי היריבות מולה. הדירוג הוא ביחס לליגה בטווח שנבחר.',
+   comparisonRows(metrics,ownStats,rivalStats,benchmarks,{names:[own.team,heading]}))
+  :teamStyle(metrics,ownStats,rivalStats||leagueStats,own.team,heading)+
+   metricDetails(out,`<p class="dna-explain">הדירוגים בטבלה משווים כל קבוצה למדגם הליגה בטווח שנבחר. לחיצה על מדד מציגה איך חושב.</p>
+   ${legend(own.team,heading,true)}
+   <div class="dna-chart">${comparisonRows(metrics,ownStats,rivalStats,benchmarks)}</div>${sizeNote}`);
  out.innerHTML=`<section class="dna-profile">
  <span class="dna-kicker">השוואת סגנונות</span>
  <div class="dna-team-pair">
@@ -600,10 +616,7 @@ function renderTeams(updateGames=true){
   <div class="dna-identity">${rival?portrait(heading,clubCrests.get(heading),'club'):''}<div><h3><bdi>${esc(heading)}</bdi></h3>${rival?`<p>${selectedGames(rival)} משחקים בטווח</p>`:''}</div></div>
  </div>${match?'<p class="dna-fixture">'+esc(match)+'</p>':''}
  ${pace!=null||otherPace!=null?`<div class="dna-pace"><bdi class="${ownPaceSide}">${teamIndicator(ownPaceSide)}${fmt(pace)}</bdi><span class="dna-pace-label">פוזשנים ל־40 דקות</span><bdi class="${otherPaceSide}">${teamIndicator(otherPaceSide)}${fmt(otherPace)}</bdi></div>`:''}</section>
- ${teamStyle(metrics,ownStats,rivalStats||leagueStats,own.team,heading)}
- ${metricDetails(out,`<p class="dna-explain">הדירוגים בטבלה משווים כל קבוצה למדגם הליגה בטווח שנבחר. לחיצה על מדד מציגה איך חושב.</p>
- ${legend(own.team,heading,true)}
- <div class="dna-chart">${comparisonRows(metrics,ownStats,rivalStats,benchmarks)}</div>${sizeNote}`)}`;
+ ${metricTable}`;
  loadPortraits(out);
 }
 function paint(){
