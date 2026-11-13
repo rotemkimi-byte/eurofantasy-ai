@@ -114,7 +114,42 @@ footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
  .pmListGap{font-size:11px}
 }
 @media(max-width:600px){.pmControls{grid-template-columns:1fr 1fr}}
-</style><style>.pirControls{grid-template-columns:repeat(3,minmax(0,1fr));align-items:end}.pirControls label{min-width:0}.pirControls select,.pirControls input{width:100%;min-width:0}.pirStats{grid-template-columns:repeat(4,minmax(0,1fr));margin:15px 0;scroll-margin-top:180px}.pirNote{font-size:11px;line-height:1.6;margin-top:12px}.pirNote a{color:var(--blue)}.pirChart{overflow-x:auto;overscroll-behavior-x:contain;border:1px solid var(--line);border-radius:12px;background:#0c1118;padding:5px}.pirChart svg{display:block;height:240px;max-width:none}.pirPoint{cursor:pointer;outline:none}.pirPoint:focus circle:last-of-type{stroke:#fff;stroke-width:3}.pirDetail{padding:12px;background:var(--card2);border-radius:10px;font-size:13px;line-height:1.6;margin-top:12px}.pirTable{width:100%;min-width:0;table-layout:fixed}.pirTable th,.pirTable td{padding:12px 5px;font-size:12px;position:static;overflow-wrap:anywhere}.pirTable th:first-child{width:43%}.pirTable small{display:block;font-size:10px;color:var(--muted);margin-top:4px}.pirTable tr{cursor:pointer}.pirTable td:not(:first-child){text-align:center;font-variant-numeric:tabular-nums}@media(max-width:600px){.pirControls{grid-template-columns:repeat(2,minmax(0,1fr))}.pirStats{gap:5px}.pirStats .stat{padding:10px 3px}.pirStats .stat b{font-size:20px}.pirStats .stat span{font-size:9px}}</style><style>.pirPicker{grid-column:1/-1;min-width:0}.pirPicker>span{display:block;color:var(--muted);font-size:12px;margin-bottom:8px}.pirPicker select[hidden]{display:none!important}.pirRoster>p{padding:12px;margin:0;font-size:13px}</style><style>.injuryControls{grid-template-columns:minmax(0,360px);margin-top:15px}.injuryControls select{width:100%;min-width:0}.injurySummary{font-size:12px;margin-top:12px}.injuryList{display:flex;flex-direction:column;gap:10px}.injuryRow{background:var(--card2);border:1px solid var(--line);border-radius:13px;overflow:hidden}.injuryOpen{display:flex;justify-content:space-between;gap:14px;align-items:center;width:100%;text-align:right;background:transparent;color:var(--text);padding:15px;border-radius:0}.injuryIdentity{min-width:0}.injuryIdentity>b{display:block;font-size:18px;overflow-wrap:anywhere;line-height:1.35}.injuryIdentity>small{display:block;color:var(--muted);font-size:12px;margin-top:5px}.injuryStatus{display:inline-block;font-size:12px;margin-top:7px}.injuryPrice{flex:0 0 70px;text-align:center}.injuryPrice>b{display:block;font-size:23px;color:var(--accent);direction:ltr}.injuryPrice>small{font-size:10px;color:var(--muted)}.injuryMates{border-top:1px solid var(--line);padding:10px 15px;font-size:11px;color:var(--muted)}.injuryMates summary{cursor:pointer}.injuryMates .chips{margin-top:10px}.injuryMates .chip{cursor:pointer;white-space:normal;text-align:right;color:var(--text)}.injuryOpen:focus-visible{outline:2px solid var(--accent);outline-offset:-3px}</style><style>
+</style><style>.pirControls{grid-template-columns:repeat(3,minmax(0,1fr));align-items:end}.pirControls label{min-width:0}.pirControls select,.pirControls input{width:100%;min-width:0}.pirStats{grid-template-columns:repeat(4,minmax(0,1fr));margin:15px 0;scroll-margin-top:180px}.pirNote{font-size:11px;line-height:1.6;margin-top:12px}.pirNote a{color:var(--blue)}.pirChart{overflow-x:auto;overscroll-behavior-x:contain;border:1px solid var(--line);border-radius:12px;background:#0c1118;padding:5px}.pirChart svg{display:block;height:240px;max-width:none}.pirPoint{cursor:pointer;outline:none}.pirPoint:focus circle:last-of-type{stroke:#fff;stroke-width:3}.pirDetail{padding:12px;background:var(--card2);border-radius:10px;font-size:13px;line-height:1.6;margin-top:12px}.pirTable{width:100%;min-width:0;table-layout:fixed}.pirTable th,.pirTable td{padding:12px 5px;font-size:12px;position:static;overflow-wrap:anywhere}.pirTable th:first-child{width:43%}.pirTable small{display:block;font-size:10px;color:var(--muted);margin-top:4px}.pirTable tr{cursor:pointer}.pirTable td:not(:first-child){text-align:center;font-variant-numeric:tabular-nums}@media(max-width:600px){.pirControls{grid-template-columns:repeat(2,minmax(0,1fr))}.pirStats{gap:5px}.pirStats .stat{padding:10px 3px}.pirStats .stat b{font-size:20px}.pirStats .stat span{font-size:9px}}</style><style>.pirPicker{grid-column:1/-1;min-width:0}.pirPicker>span{display:block;color:var(--muted);font-size:12px;margin-bottom:8px}.pirPicker select[hidden]{display:none!important}.pirRoster>p{padding:12px;margin:0;font-size:13px}</style><style id="injury-design">
+.injuryControls{grid-template-columns:minmax(0,360px);margin:10px 0 6px}
+.injuryControls select{width:100%;min-width:0}
+.injurySummary{font-size:12px;margin:6px 0 10px}
+.injuryList{display:grid;gap:6px}
+.injuryRow{position:relative;min-width:0;border:1px solid var(--line);border-radius:12px;background:var(--card2);overflow:hidden}
+.injuryRow::before{content:"";position:absolute;inset-block:0;inset-inline-start:0;width:4px;background:var(--injury-club);pointer-events:none}
+.injuryMain{display:flex;align-items:center;gap:4px;padding-inline-end:5px}
+.injuryOpen{display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:center;gap:8px;flex:1;min-width:0;min-height:64px;padding:6px 10px 6px 3px;text-align:start;background:none;color:var(--text);border-radius:8px}
+.injuryMedia{position:relative;display:grid;place-items:center;width:44px;height:48px;border:1px solid var(--line);border-radius:8px;background:var(--card);overflow:hidden}
+.injuryMedia .squadJersey{width:31px;height:39px;margin:0}
+.injuryMedia img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;background:var(--card)}
+.injuryIdentity{min-width:0}
+.injuryIdentity>b{display:block;font-size:14px;line-height:1.2;overflow-wrap:anywhere}
+.injuryClub{display:flex;align-items:center;gap:4px;margin-top:4px;color:var(--muted);font-size:11px;line-height:1.2}
+.injuryClub bdi{min-width:0;overflow-wrap:anywhere}
+.injuryClub img{width:16px;height:16px;object-fit:contain;flex:none}
+.injuryPosition{flex:none;font-weight:700}
+.injuryMeta{display:grid;justify-items:end;gap:4px}
+.injuryStatus{display:inline-block;padding:2px 6px;border-radius:5px;font-size:11px;line-height:1.2;white-space:nowrap}
+.injuryStatus.bad{background:#5e2635;color:#ffdce5}
+.injuryStatus.warn{background:#513b16;color:#ffe5a3}
+html[data-theme="light"] .injuryStatus.bad{background:#fce2e8;color:#9b1734}
+html[data-theme="light"] .injuryStatus.warn{background:#ffedc4;color:#765002}
+.injuryPrice{display:flex;align-items:baseline;gap:3px;color:var(--accent);font-size:15px;line-height:1;font-variant-numeric:tabular-nums}
+.injuryPrice small{color:var(--muted);font-size:9px}
+#injuries .injuryMatesToggle{display:grid;place-items:center;flex:0 0 40px;min-height:44px;padding:0;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--text)}
+.injuryMatesToggle span{font-size:17px;line-height:1}
+.injuryMatesToggle[aria-expanded="true"] span{transform:rotate(180deg)}
+.injuryMates{margin-inline:10px;padding:7px 0;border-top:1px solid var(--line);color:var(--muted);font-size:11px}
+.injuryMates[hidden]{display:none}
+.injuryMates .chips{margin-top:4px}
+.injuryMates .chip{white-space:normal;text-align:start;color:var(--text)}
+.injuryOpen:focus-visible,.injuryMatesToggle:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+@media(max-width:360px){.injuryOpen{grid-template-columns:38px minmax(0,1fr) auto;gap:6px}.injuryMedia{width:38px;height:43px}.injuryIdentity>b{font-size:13px}}
+</style><style>
 :root{color-scheme:dark;--chart-grid:#2b333e;--chart-muted:#99a3b0;--chart-text:#f7f8fa;--chart-accent:#62e6a5;--chart-negative:#ff7878}
 .themeToggle{font-size:12px;white-space:nowrap;flex-shrink:0}.themeToggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 :root[data-theme="light"]{color-scheme:light;--bg:#f2f5f8;--card:#fff;--card2:#edf2f7;--line:#ccd5df;--text:#152333;--muted:#536478;--accent:#08794e;--warn:#986100;--bad:#bb3045;--blue:#215eb0;--chart-grid:#d5dee7;--chart-muted:#536478;--chart-text:#152333;--chart-accent:#08794e;--chart-negative:#bb3045}
@@ -215,7 +250,7 @@ html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method sum
 <div class="filters pirControls player-picker-controls"><label>טווח<select id="pirRange"><option value="0">כל העונה</option><option value="5">5 משחקים אחרונים</option><option value="10">10 משחקים אחרונים</option><option value="1">משחק אחרון</option><option value="3">3 משחקים אחרונים</option></select></label><button id="pirReload" class="secondary">רענן נתונים</button></div><p id="pirStatus" class="muted" role="status" aria-live="polite"></p><details class="ef-help"><summary>כל המשחקים בטווח שנבחר</summary><div id="pirGames"></div></details><p class="muted pirNote">הגרף נפתח במשחקים האחרונים מימין · גלול שמאלה למשחקים קודמים · לחץ על נקודה לפרטי המשחק</p><p id="pirNote" class="muted pirNote"></p><p id="pirCoverage" class="muted pirNote">מוצגים משחקים שזמינים בדוחות העונה בלבד. היעדרות מרישום המשחק אינה מוצגת כאפס.</p></div></div></section>
 <section id="pirWeakness" class="tab"><div class="card"><h3>חולשת PIR · מול מי השחקנים מצליחים?</h3><p class="muted weakHelp">ככל שהקבוצה אפשרה ליריבות יותר PIR, היא מדורגת גבוה יותר. הפירוט לפי עמדה מראה היכן נצבר המדד. אלה ביצועים בפועל בעונת 2026/27; המדגם מושפע מהיריבות, מדקות המשחק ומההרכבים.</p><div class="filters weakControls"><label>עמדת היריבים<select id="weakPos"><option value="">כל העמדות</option><option value="G">G · גארדים</option><option value="F">F · פורוורדים</option><option value="C">C · סנטרים</option></select></label><label>מול קבוצה<select id="weakTeam"><option value="">כל הקבוצות</option></select></label><label>מיון<select id="weakSort"><option value="perGame">PIR שספגה למשחק</option><option value="per30">PIR ל־30 דקות שחקן</option></select></label><button class="secondary" id="weakReload">רענן נתונים</button></div><div id="weakRange"></div><div id="weakGames" hidden></div><p id="weakStatus" class="muted weakHelp" role="status" aria-live="polite"></p><div id="weakList"></div></div></section>
 <section id="absencePicks" class="tab"><div class="card"><h3>המלצות בעקבות חיסורים</h3><p class="muted">מי עשוי להרוויח דקות ואחריות כששחקן מפתח חסר?</p><div class="filters"><label>קבוצה<select id="absenceTeam"><option value="">כל הקבוצות</option></select></label><label>זמינות<select id="absenceStatus"><option value="all">בחוץ ובספק</option><option value="out">בחוץ בלבד</option></select></label></div><p class="notice">הערכה לפי המודל הקיים: עמדה, מחיר ותפקיד משוער. שחקן מפתח מוגדר כאן במחיר מעל 8 CR. תוספת הדקות אינה הבטחה לפתיחה בחמישייה; אין כאן ניתוח מאומת של משחקים ללא השחקן החסר.</p><div id="absenceCards" class="absenceGrid"></div></div></section>
-<section id="injuries" class="tab"><div class="card"><h3>פציעות וזמינות</h3><p class="muted">המודל מוריד דקות לשחקן בספק ומעלה מעט דקות לחברים פעילים באותה עמדה כאשר חסרים שחקנים.</p><div class="filters injuryControls"><label>בחר קבוצה<select id="injuryTeam"><option value="">כל הקבוצות · רשימה כללית</option></select></label></div><p id="injurySummary" class="muted injurySummary"></p><div id="injuryCards" class="injuryList"></div></div></section>
+<section id="injuries" class="tab"><div class="card"><h3>פציעות וזמינות</h3><p class="muted">המודל מוריד דקות לשחקן בספק ומעלה מעט דקות לחברים פעילים באותה עמדה כאשר חסרים שחקנים.</p><div class="filters injuryControls"><label>קבוצה<select id="injuryTeam"><option value="">כל הקבוצות</option></select></label></div><p id="injurySummary" class="muted injurySummary" aria-live="polite"></p><div id="injuryCards" class="injuryList"></div></div></section>
 
 <section id="optimizer" class="tab"><div class="card"><h3>אופטימייזר סגל</h3><div class="grid3"><label>תקציב<input id="budget" type="number" value="91" step=".1"></label><label>סף איכות נתונים פנימי<input id="optConf" type="number" value="35"></label><label>להחריג שחקנים בספק<select id="excludeQ"><option value="no">לא</option><option value="yes">כן</option></select></label></div><p class="muted">בונה 4 גארדים, 4 פורוורדים ו־2 סנטרים. תקציב ברירת המחדל 91 משאיר 9 למאמן.</p><button id="optBtn">Optimize</button><div id="optResult" style="margin-top:12px"></div></div></section>
 
@@ -666,20 +701,60 @@ function renderGames(){
   <div class="metricRow"><div class="metric"><b>${pct(h.winProb)}</b><span>ניצחון ${esc(g.home)}</span></div><div class="metric"><b>${pct(h.p11_20+h.p20)}</b><span>${esc(g.home)} 11+</span></div><div class="metric"><b>${pct(a.winProb)}</b><span>ניצחון ${esc(g.away)}</span></div><div class="metric"><b>${pct(a.p11_20+a.p20)}</b><span>${esc(g.away)} 11+</span></div></div>
   <div class="chips"><span class="chip">הפרש צפוי לבית ${g.homeMargin>=0?"+":"−"}${Math.abs(g.homeMargin).toFixed(1)}</span><span class="chip">${esc(g.home)} 20+ ${pct(h.p20)}</span><span class="chip">${esc(g.away)} 20+ ${pct(a.p20)}</span></div></div>`}).join("");
 }
+const injuryPhotoAliases={'dozier perry':'dozier pj','nikos rogkavopoulos':'nikolaos rogkavopoulos'};
 function renderInjuries(){
  const select=document.getElementById('injuryTeam'),old=select.value;
  const teams=[...new Set(players.map(p=>canonicalTeam(p.team)).filter(Boolean))].sort();
- select.replaceChildren(new Option('כל הקבוצות · רשימה כללית',''),...teams.map(t=>new Option(t,t)));if(teams.includes(old))select.value=old;
+ select.replaceChildren(new Option('כל הקבוצות',''),...teams.map(t=>new Option(t,t)));
+ if(teams.includes(old))select.value=old;
  const price=p=>p.price==null||p.price===''||!Number.isFinite(Number(p.price))?null:Number(p.price);
- const arr=players.filter(p=>p.status!=="active"&&(!select.value||canonicalTeam(p.team)===select.value)).sort((a,b)=>(price(b)!==null)-(price(a)!==null)||(price(b)??0)-(price(a)??0)||a.name.localeCompare(b.name));
- document.getElementById('injurySummary').textContent=`${select.value||'כל הקבוצות'} · ${arr.length} שחקנים בפציעות וזמינות · מחיר מהגבוה לנמוך`;
+ const credit=p=>price(p)?.toFixed(1)??'—';
+ const arr=players.filter(p=>p.status!=='active'&&(!select.value||canonicalTeam(p.team)===select.value))
+  .sort((a,b)=>(price(b)!==null)-(price(a)!==null)||(price(b)??0)-(price(a)??0)||a.name.localeCompare(b.name));
+ const out=arr.filter(p=>p.status==='out').length;
+ const questionable=arr.filter(p=>p.status==='questionable').length;
+ document.getElementById('injurySummary').textContent=`${arr.length} ברשימה · ${out} בחוץ · ${questionable} בספק`;
  const root=document.getElementById('injuryCards');
- root.innerHTML=arr.map(p=>{
-  const team=canonicalTeam(p.team),mates=players.filter(x=>canonicalTeam(x.team)===team&&x.pos===p.pos&&x.status==="active").sort((a,b)=>(price(b)??-1)-(price(a)??-1)).slice(0,3);
-  return `<article class="injuryRow"><button class="injuryOpen" data-injury-player="${esc(p.name)}" aria-label="פרטי ${esc(p.name)}"><span class="injuryIdentity"><b><bdi>${esc(p.name)}</bdi></b><small>${esc(team)} · ${esc(p.pos)}</small><span class="injuryStatus ${statusClass(p.status)}">${statusText(p.status)}</span></span><span class="injuryPrice"><b>${price(p)===null?'—':price(p).toFixed(1)}</b><small>קרדיט</small></span></button>${mates.length?`<details class="injuryMates"><summary>שחקנים פעילים באותה עמדה בקבוצה</summary><div class="chips">${mates.map(x=>`<button type="button" class="chip" data-injury-player="${esc(x.name)}">${esc(x.name)} · ${price(x)===null?'—':price(x).toFixed(1)} קרדיט</button>`).join('')}</div></details>`:''}</article>`;
+ root.innerHTML=arr.map((p,index)=>{
+  const team=canonicalTeam(p.team)||'קבוצה לא זמינה',color=TEAM_KITS[team]?.[1]||'#65748a';
+  const crest=playerCardCrests.get(team),name=reorderCommaName(p.name);
+  const key=lastThreeName(p.name);
+  // The official roster photo covers Cordinier while he is absent from current-season box scores.
+  const clubPortrait=key==='cordinier isaia'?'https://prodanadoluefesstorge.blob.core.windows.net/public/teamplayer/865a2ec3-3d14-41f2-9b85-b6dd6d1c029a/Mobile/9ad4914e-4f88-42d7-8389-09ac739a006f.png':'';
+  const profile=playerCardProfile(p)||playerCardMedia?.players?.[injuryPhotoAliases[key]];
+  const photo=playerCardImageUrl(profile?.photo)||clubPortrait;
+  const image=url=>url?`<img src="${esc(url)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">`:'';
+  const mates=players.filter(x=>canonicalTeam(x.team)===team&&x.pos===p.pos&&x.status==='active')
+   .sort((a,b)=>(price(b)??-1)-(price(a)??-1)).slice(0,3);
+  const panel='injuryMates-'+index,more='שחקנים פעילים באותה עמדה';
+  return `<article class="injuryRow" style="--injury-club:${color}">
+   <div class="injuryMain">
+    <button type="button" class="injuryOpen" data-injury-player="${esc(p.name)}">
+     <span class="injuryMedia" aria-hidden="true">${squadJersey(p)}${image(photo)}</span>
+     <span class="injuryIdentity"><b><bdi>${esc(name)}</bdi></b><span class="injuryClub">${image(crest)}<bdi>${esc(team)}</bdi><span class="injuryPosition"><bdi>${esc(p.pos)}</bdi></span></span></span>
+     <span class="injuryMeta"><span class="injuryStatus ${statusClass(p.status)}">${esc(statusText(p.status))}</span>
+      <span class="injuryPrice"><bdi>${credit(p)}</bdi><small>קרדיט</small></span></span>
+    </button>
+    ${mates.length?`<button type="button" class="injuryMatesToggle" aria-controls="${panel}" aria-expanded="false" aria-label="${more} · ${esc(name)}" title="${more}"><span aria-hidden="true">⌄</span></button>`:''}
+   </div>
+   ${mates.length?`<div class="injuryMates" id="${panel}" hidden>${more}<div class="chips">${mates.map(x=>`<button type="button" class="chip" data-injury-player="${esc(x.name)}"><bdi>${esc(reorderCommaName(x.name))}</bdi> · ${credit(x)} קרדיט</button>`).join('')}</div></div>`:''}
+  </article>`;
  }).join('')||'<p class="muted">אין שחקנים מסומנים כפצועים או בספק בקבוצה שנבחרה.</p>';
- root.onclick=e=>{const target=e.target.closest('[data-injury-player]');if(target)showPlayer(target.dataset.injuryPlayer)};
 }
+const injuryCards=document.getElementById('injuryCards');
+injuryCards.addEventListener('click',event=>{
+ const toggle=event.target.closest('.injuryMatesToggle');
+ if(toggle){
+  const panel=document.getElementById(toggle.getAttribute('aria-controls'));
+  panel.hidden=!panel.hidden;
+  toggle.setAttribute('aria-expanded',String(!panel.hidden));
+  return;
+ }
+ const target=event.target.closest('[data-injury-player]');
+ if(target)showPlayer(target.dataset.injuryPlayer);
+});
+injuryCards.addEventListener('error',event=>{if(event.target.matches('img'))event.target.remove()},true);
+document.addEventListener('fantasy-player-media-ready',renderInjuries);
 
 function renderUpgrade(){
   const extra=+document.getElementById("extraCredit").value||0,min=+document.getElementById("minConf").value||0,sel=myTeam.map(n=>players.find(p=>p.name===n)).filter(Boolean);let ideas=[];
