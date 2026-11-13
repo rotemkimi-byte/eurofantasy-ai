@@ -7,7 +7,8 @@ const fmt=n=>n===null||n===undefined?'—':Number(n).toLocaleString('he-IL',{max
 const date=s=>new Date(s).toLocaleDateString('he-IL',{timeZone:'Asia/Jerusalem'});
 const name=s=>String(s||'').includes(',')?s.split(',').reverse().map(x=>x.trim()).join(' '):s;
 const empty=s=>'<p class="ap-empty">'+esc(s)+'</p>';
-const metric=(label,value,note='')=>'<div class="ap-metric"><strong>'+esc(value)+'</strong><span>'+esc(label)+'</span><small>'+esc(note)+'</small></div>';
+const metric=(label,value,note='',tone='')=>'<div class="ap-metric"'+(tone?' data-tone="'+tone+'"':'')+'><strong>'+esc(value)+'</strong><span>'+esc(label)+'</span>'+(note?'<small>'+esc(note)+'</small>':'')+'</div>';
+const signed=n=>n>0?'+'+fmt(n):fmt(n);
 const note=(count,total)=>count+' מתוך '+total+' הופעות עם נתון מאומת';
 let data=null,pending=null;
 async function load(force){
@@ -81,10 +82,17 @@ function boxScore(p,games){
 const negativeLabels={turnovers:'איבודים',miss2:'החטאות ל־2',miss3:'החטאות ל־3',missFT:'החטאות עונשין',fouls:'עבירות שביצע',blocked:'זריקות שנחסמו'};
 function negative(games){
  const s=C.negative(games);
- return '<div class="ap-metrics">'+Object.entries(negativeLabels).map(([k,l])=>metric(l+' למשחק',fmt(s[k].mean),'סה״כ '+fmt(s[k].total)+' · '+note(s[k].covered,games.length))).join('')+'</div>';
+ return '<div class="ap-metrics ap-negative-metrics">'+Object.entries(negativeLabels).map(([k,l])=>{
+  const row=s[k],coverage=row.covered<games.length?' · '+note(row.covered,games.length):'';
+  return metric(l,fmt(row.mean),'סה״כ '+fmt(row.total)+coverage);
+ }).join('')+'</div>';
 }
 function plus(games){
- const s=C.plus(games);return '<p class="ap-status">'+note(s.covered,games.length)+'</p><div class="ap-metrics">'+metric('פלוס־מינוס מצטבר',fmt(s.total))+metric('ממוצע למשחק',fmt(s.mean))+metric('ל־40 דקות',fmt(s.per40))+metric('דקות במדגם',fmt(s.minutes))+'</div>';
+ const s=C.plus(games);
+ const score=(label,n)=>metric(label,signed(n),'',n<0?'negative':'');
+ return '<p class="ap-status">'+note(s.covered,games.length)+'</p><div class="ap-metrics">'+
+  score('פלוס־מינוס מצטבר',s.total)+score('ממוצע למשחק',s.mean)+score('ל־40 דקות',s.per40)+
+  metric('דקות במדגם',fmt(s.minutes))+'</div>';
 }
 function shots(games,filter){
  const covered=games.filter(g=>g.shotCoverage),all=covered.flatMap(g=>g.shots).filter(s=>!s.type.startsWith('FT'));
@@ -108,17 +116,17 @@ plus:'הפרש נקודות הקבוצה מול היריבה בזמן שהשחק
 shots:'מיקומי זריקות מהשדה מתוך המקור הרשמי בלבד. עונשין אינו ממופה. האחוזים לפי אזור מחושבים מכל הקליעות וההחטאות עם מיקום, גם כאשר מסננים את הנקודות במפה. סמוך לסל: עד 2 מטר מהטבעת. משחק נכלל רק אם יומן הזריקות תואם לבוקס סקור.',
 lineups:'הנקודות האישיות של השחקן עם כל ארבעה שחקנים נוספים, כולל עונשין. השחזור מתחיל בחמישייה הפותחת ועוקב אחר חילופים בסדר הרשמי. משחק עם סתירה בהרכב או בניקוד אינו נכלל. דקות מוצגות רק כאשר גם שעון האירועים והדקות בבוקס סקור מתיישבים. נפח נקודות גבוה אינו מוכיח שההרכב יעיל יותר.'
 };
-const pickerStyle=document.createElement('style');pickerStyle.textContent='.ap-screen .ap-top{flex-wrap:wrap}.ap-screen .ap-top [data-back]{flex-basis:100%;min-height:48px;font-size:16px;font-weight:800;border:2px solid var(--ap-accent);text-align:right}.ap-screen .ap-row-appearances b{font-size:19px;color:var(--ap-accent);direction:ltr;unicode-bidi:isolate}.ap-screen .ap-picked-inner{flex-wrap:wrap}';document.head.append(pickerStyle);
 for(const [id,title,kind] of tools){
  const b=document.createElement('button');b.dataset.tab=id;b.textContent=title;document.querySelector('nav.tabs').append(b);
  const section=document.createElement('section');section.id=id;section.className='tab ap-screen';
- section.innerHTML='<div class="ap-shell"><div class="ap-top"><button type="button" data-back hidden>חזרה לרשימת השחקנים ←</button><h3>'+title+'</h3><button type="button" data-refresh>רענן</button></div><div class="player-picker-modes" role="group" aria-label="בחירת רשימת שחקנים"><button type="button" data-scope="all" aria-pressed="true">כל השחקנים · לפי מחיר</button><button type="button" data-scope="team" aria-pressed="false">לפי קבוצה</button></div><div class="ap-controls player-picker-controls"><label data-team-label hidden>קבוצה<select data-team><option value="">כל הקבוצות</option></select></label><label data-player-label>שחקן · מהמחיר הגבוה לנמוך<select data-player></select></label><label>טווח נתונים<select data-range><option value="1">משחק אחרון</option><option value="3">3 משחקים אחרונים</option><option value="0">כל העונה · 2026/27</option></select></label><label>מיון שחקנים<select data-sort><option value="price" selected>מחיר · מהגבוה לנמוך</option><option value="name">שם · א–ת</option><option value="team">לפי קבוצה</option><option value="minutes">דקות · מהגבוה</option><option value="pir">PIR · המשחק האחרון</option>'+(kind==='plus'?'<option value="plus">פלוס־מינוס · מהגבוה</option>':'')+'</select></label>'+(kind==='shots'?'<label>הצג במפה<select data-shot><option value="all">הכול</option><option value="made">קליעות</option><option value="missed">החטאות</option></select></label>':'')+'</div><p class="ap-status" role="status"></p><div data-picked hidden></div><div data-browser aria-label="רשימת שחקנים"></div><div data-output hidden></div><details class="ap-help"><summary>הסבר הנתונים</summary><p>'+help[kind]+'</p><a class="ap-link" href="https://mediagamecenter.euroleague.net/" target="_blank" rel="noopener">מקור: EuroLeague Game Center</a></details></div>';
+ section.innerHTML='<div class="ap-shell"><div class="ap-top"><h3>'+title+'</h3><button type="button" data-refresh>רענן</button></div><div class="player-picker-modes" role="group" aria-label="בחירת רשימת שחקנים"><button type="button" data-scope="all" aria-pressed="true">כל השחקנים · לפי מחיר</button><button type="button" data-scope="team" aria-pressed="false">לפי קבוצה</button></div><div class="ap-controls player-picker-controls"><label data-team-label hidden>קבוצה<select data-team><option value="">כל הקבוצות</option></select></label><label data-player-label>שחקן · מהמחיר הגבוה לנמוך<select data-player></select></label><label>טווח נתונים<select data-range><option value="1">משחק אחרון</option><option value="3">3 משחקים אחרונים</option><option value="0">כל העונה · 2026/27</option></select></label><label>מיון שחקנים<select data-sort><option value="price" selected>מחיר · מהגבוה לנמוך</option><option value="name">שם · א–ת</option><option value="team">לפי קבוצה</option><option value="minutes">דקות · מהגבוה</option><option value="pir">PIR · המשחק האחרון</option>'+(kind==='plus'?'<option value="plus">פלוס־מינוס · מהגבוה</option>':'')+'</select></label>'+(kind==='shots'?'<label>הצג במפה<select data-shot><option value="all">הכול</option><option value="made">קליעות</option><option value="missed">החטאות</option></select></label>':'')+'</div><p class="ap-status" role="status"></p><div class="ap-profile" data-picked hidden></div><div data-browser aria-label="רשימת שחקנים"></div><div data-output hidden></div><details class="ap-help"><summary>הסבר הנתונים</summary><p>'+help[kind]+'</p><a class="ap-link" href="https://mediagamecenter.euroleague.net/" target="_blank" rel="noopener">מקור: EuroLeague Game Center</a></details></div>';
  document.querySelector('main').append(section);
+ document.addEventListener('fantasy-player-media-ready',()=>{if(!browseOpen)render();});
  const $=s=>section.querySelector(s);let records=[],selected='',browseOpen=true,shown=36,scope='all';
  const analysisMetrics=kind==='negative'?Object.fromEntries(Object.entries(negativeLabels).map(([k,l])=>[k,l+' למשחק'])):
   kind==='plus'?{total:'פלוס־מינוס מצטבר',mean:'ממוצע למשחק',per40:'ל־40 דקות'}:null;
  const analytics=analysisMetrics?window.PlayerAnalysis.mount(section,$('.ap-controls'),$('[role=status]'),[$('[data-picked]'),$('[data-browser]'),$('[data-output]')],{
-  metrics:analysisMetrics,team:()=>scope==='team'?$('[data-team]').value:'',
+  metrics:analysisMetrics,marketStyle:true,team:()=>scope==='team'?$('[data-team]').value:'',
   rows:()=>{
    const prices=marketPrices(),range=$('[data-range]').value;
    return records.map(p=>{
@@ -158,11 +166,17 @@ for(const [id,title,kind] of tools){
  function render(){
   analytics?.render();
   const p=records.find(p=>p.id===selected),picked=$('[data-picked]'),output=$('[data-output]');
-  picked.hidden=!p||browseOpen;output.hidden=!p||browseOpen;$('[data-back]').hidden=!p||browseOpen;
+  picked.hidden=!p||browseOpen;output.hidden=!p||browseOpen;
   section.classList.toggle('ap-detail-open',!!p&&!browseOpen);
   if(!p){output.innerHTML='';return;}
-  picked.innerHTML='<div class="ap-picked-inner"><span><b><bdi>'+esc(p.name)+'</bdi></b><small>'+esc(p.team)+'</small></span><button type="button" data-change>חזרה לרשימה ←</button></div>';
   const selectedGames=C.select(p.games,$('[data-range]').value),games=selectedGames.filter(g=>g.minutes>0),latest=selectedGames[0];
+  const price=marketPrices().get(marketKey(p.name));
+  const meta=latest?'<bdi>'+esc(latest.opponent||'')+'</bdi> · '+date(latest.date)+' · מחזור '+esc(latest.round??'—'):'';
+  picked.innerHTML=window.PlayerAnalysis.profile(p,{
+   meta,
+   action:'<div class="pa-profile-actions">'+(price!=null?'<bdi class="pa-credit">'+fmt(price)+' CR</bdi>':'')+
+    '<button type="button" data-back>חזרה לרשימה <span aria-hidden="true">←</span></button></div>'
+  });
   if(kind==='boxScore'){
    const range=$('[data-range]').value;
    const multi=range==='3'||range==='0';
@@ -170,9 +184,8 @@ for(const [id,title,kind] of tools){
    output.innerHTML=multi?boxAverageCards(rows,range)+(rows.length?'<details><summary>פירוט המשחקים בטווח</summary>'+boxScore(p,rows)+'</details>':''):boxScore(p,rows);
    return;
   }
-  const header='<div class="ap-profile"><h3><bdi>'+esc(p.name)+'</bdi></h3><small>'+esc(p.team)+' · '+games.length+' הופעות בטווח</small>'+(latest?'<small>הרישום האחרון בטווח: '+esc(latest.opponent||'')+' · '+date(latest.date)+' · מחזור '+esc(latest.round??'—')+'</small>':'')+'</div>';
   const show=gs=>kind==='negative'?negative(gs):kind==='plus'?plus(gs):kind==='shots'?shots(gs,$('[data-shot]').value):lineups(gs);
-  $('[data-output]').innerHTML=header+(games.length?show(games):empty(p.games.length?'אין הופעה עם דקות משחק בטווח שנבחר.':'אין עדיין נתוני משחק לשחקן בעונה הנוכחית.'))+
+  $('[data-output]').innerHTML=(games.length?(kind==='negative'?'<h4 class="pa-stats-heading">ממוצע למשחק <small>'+games.length+' הופעות</small></h4>':'')+show(games):empty(p.games.length?'אין הופעה עם דקות משחק בטווח שנבחר.':'אין עדיין נתוני משחק לשחקן בעונה הנוכחית.'))+
    (games.length&&['negative','plus'].includes(kind)?'<details><summary>פירוט לפי משחק</summary><div class="ap-grid">'+games.map(g=>'<article class="ap-record"><h4>'+esc(g.opponent||'משחק '+g.gameCode)+'</h4><small>'+date(g.date)+' · '+(g.home?'בית':'חוץ')+' · '+fmt(g.minutes)+' דקות</small>'+show([g])+'</article>').join('')+'</div></details>':'');
  }
  async function open(force=false){
@@ -211,7 +224,7 @@ for(const [id,title,kind] of tools){
  section.addEventListener('click',e=>{
   const row=e.target.closest('[data-pick]');
   if(row){choose(row.dataset.pick);return;}
-  if(e.target.closest('[data-change],[data-back]')){browseOpen=true;renderBrowser();render();$('[data-player]').focus();return;}
+  if(e.target.closest('[data-back]')){browseOpen=true;renderBrowser();render();$('[data-player]').focus();return;}
   if(e.target.closest('[data-more]')){shown+=36;renderBrowser();}
  });
 }

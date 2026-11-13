@@ -11,6 +11,7 @@ const button=document.createElement('button');button.type='button';button.datase
 const section=document.createElement('section');section.id='usage';section.className='tab';
 section.innerHTML=`<div class="card"><div class="us-heading"><div><h3>מדד Usage</h3><p class="muted">סיומי התקפה ומעורבות כוללת · נתוני עבר בפועל</p></div><button type="button" id="usReload" class="secondary">רענן</button></div>
 <div class="player-picker-modes" role="group" aria-label="בחירת רשימת שחקנים"><button type="button" data-us-scope="all" aria-pressed="true">כל השחקנים · לפי מחיר</button><button type="button" data-us-scope="team" aria-pressed="false">לפי קבוצה</button></div><div class="player-picker-controls"><label id="usTeamLabel" hidden>קבוצה<select id="usTeam"></select></label></div>
+<div class="us-controls"><label>עמדה<select id="usPosition"><option value="">כל העמדות</option><option value="G">גארדים · G</option><option value="F">פורוורדים · F</option><option value="C">סנטרים · C</option></select></label><label>טווח משחקים<select id="usRange"><option value="1">משחק אחרון</option><option value="3">3 משחקים אחרונים</option><option value="0">כל העונה</option></select></label></div>
 <div class="us-view-picker player-result-picker">
 <label class="player-picker-controls">שחקן · מהמחיר הגבוה לנמוך<select id="usPlayer"></select></label>
 <div class="us-switch" role="group" aria-label="תצוגת Usage">
@@ -20,7 +21,7 @@ section.innerHTML=`<div class="card"><div class="us-heading"><div><h3>מדד Usa
 <button type="button" data-us-view="ranking" aria-pressed="false" aria-controls="usRankingPanel">טבלה כללית</button>
 <button type="button" data-us-view="compare" aria-pressed="false" aria-controls="usComparePanel">השוואה</button>
 </div></div>
-<div class="us-controls"><label>עמדה<select id="usPosition"><option value="">כל העמדות</option><option value="G">גארדים · G</option><option value="F">פורוורדים · F</option><option value="C">סנטרים · C</option></select></label><label>טווח משחקים<select id="usRange"><option value="1">משחק אחרון</option><option value="3">3 משחקים אחרונים</option><option value="0">כל העונה</option></select></label></div>
+
 <p id="usStatus" role="status" aria-live="polite">בחר בלשונית לטעינת הנתונים.</p>
 <div id="usSummaryPanel"><div id="usResult" class="player-result-summary" aria-live="polite"></div><p id="usMetricNote" class="muted"></p></div>
 <div id="usGamesPanel" hidden><h4 id="usGamesTitle"></h4><div id="usGames" class="us-games"></div></div>
@@ -30,6 +31,7 @@ section.innerHTML=`<div class="card"><div class="us-heading"><div><h3>מדד Usa
 main.appendChild(section);
 const $=id=>document.getElementById(id);let scope='all',metric='regular',view='regular',data=null,market=null,loading=null,loadedAt=0,records=[],rankingSort='metric';
 const comparison=window.PlayerAnalysis.create($('usComparePanel'),{
+ marketStyle:true,
  metrics:{regular:'Usage רגיל',combined:'Usage כולל · אמיתי'},
  rows:()=>data?records.map(p=>{
   const s=U.summarize(U.selectGames(data.players[p.id],$('usRange').value));

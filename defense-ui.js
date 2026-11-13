@@ -37,7 +37,7 @@ function options(){
 function table(headers,rows){return `<div class="us-table-wrap"><table class="us-table"><thead><tr>${headers.map(h=>`<th scope="col">${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>`<tr>${row.map(v=>`<td>${v}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;}
 const value=(metric,n)=>fmt(n)+(n!==null&&['stl','blk','reb','orb','drb'].includes(metric)?'%':'');
 const analytics=window.PlayerAnalysis.mount(section,section.querySelector('.us-controls'),$('dfStatus'),[$('dfResult'),$('dfGames')],{
- metrics:{...labels,stocks:'חטיפות + חסימות למשחק'},team:()=>scope==='team'?$('dfTeam').value:'',
+ marketStyle:true,metrics:{...labels,stocks:'חטיפות + חסימות למשחק'},team:()=>scope==='team'?$('dfTeam').value:'',
  rows:()=>data?records.map(p=>{
   const stats=D.summarize(D.selectGames(data.players[p.id],data,$('dfRange').value),data,env);
   const values={stocks:stats.played&&stats.stocks!==null?stats.stocks/stats.played:null};
@@ -51,10 +51,19 @@ function render(){
  $('dfStatus').textContent=`עונת 2026/27 · ${games.length} משחקים ברישום · ${s.played} עם דקות · בסיס PER: ${env.games} משחקים · עודכן ${new Date(data.updated_at).toLocaleString('he-IL',{day:'numeric',month:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Jerusalem'})}`;
  if(!p||!games.length){$('dfResult').innerHTML='<p class="notice">אין נתוני משחק לשחקן בעונה הנוכחית.</p>';$('dfGames').innerHTML='';return;}
  const latest=games[0];const gameLabel=`${latest.opponent} · מחזור ${latest.round??'—'} · ${new Date(latest.date).toLocaleDateString('he-IL',{timeZone:'Asia/Jerusalem'})}`;
- const stocks=s.stocks!==null&&s.played?s.stocks/s.played:null,selected=metric==='stocks'?stocks:s[metric].value;
+ const stocks=s.stocks!==null&&s.played?s.stocks/s.played:null;
  const counts={stl:s.steals,blk:s.blocks,reb:s.rebounds,orb:s.offensiveRebounds,drb:s.defensiveRebounds,stocks:s.stocks};
- $('dfResult').innerHTML=`<div class="us-score"><div><b><bdi>${esc(name(p.name))}</bdi></b><small>${esc(p.team)} · ${fmt(p.price)} קרדיט</small><small>${labels[metric]}${metric==='stocks'?' · ממוצע להופעה':''}</small><small>${$('dfRange').value==='1'?'המשחק האחרון שהושלם':'האחרון בטווח'}: ${esc(gameLabel)}</small>${metric==='stocks'&&stocks===0?'<small>0 חטיפות וחסימות במשחקים שנבחרו · זהו נתון בפועל</small>':''}</div><strong>${value(metric,selected)}</strong></div>`+table(['מדד','ערך בטווח','סה״כ'],Object.entries(labels).map(([k,label])=>[esc(label)+(k==='stocks'?'<small>ממוצע להופעה</small>':k==='per'?'<small>ממוצע המדגם: 15</small>':''),value(k,k==='stocks'?stocks:s[k].value)+(k!=='stocks'&&s[k].missing?'<small>נתונים חלקיים</small>':''),k==='per'?'—':fmt(counts[k])]))+'<p class="muted">האחוזים הם אומדנים מבוקס סקור ודקות. PER מחושב במדגם היורוליג הזמין.</p>';
- $('dfGames').innerHTML='<h4>פירוט לפי משחק · מהחדש לישן</h4>'+table(['משחק','דקות',labels[metric].split(' · ')[0]],games.map(g=>{const m=D.gameMetrics(g,data,env),v=U.num(g.minutes)>0?(metric==='stocks'?m.stocks:metric==='per'?m.per:m[metric].value):null;return [`<b>${esc(g.opponent)}</b><small>${new Date(g.date).toLocaleDateString('he-IL',{day:'numeric',month:'numeric',timeZone:'Asia/Jerusalem'})}${g.round?' · מ׳ '+esc(g.round):''}</small>`,U.num(g.minutes)===0?'לא שיחק':fmt(g.minutes),value(metric,v)];}));
+ const summary=window.PlayerAnalysis.profile({...p,name:name(p.name)},{
+  stat:p.price===null?'':`<bdi class="pa-credit">${fmt(p.price)} CR</bdi>`,
+  meta:`<bdi>${esc(gameLabel)}</bdi> · ${s.played} הופעות עם דקות`
+ });
+ $('dfResult').innerHTML=summary+`<dl class="pa-stat-list">${Object.entries(labels).map(([k,label])=>{
+  const detail=k==='stocks'?'ממוצע להופעה':k==='per'?'ממוצע המדגם 15':s[k].missing?'נתונים חלקיים':'';
+  const total=counts[k]==null?'':`<small>סה״כ <bdi>${fmt(counts[k])}</bdi></small>`;
+  return `<div data-primary="${k===metric}"><dt><bdi>${esc(label)}</bdi>${detail?`<small>${detail}</small>`:''}</dt><dd><bdi>${value(k,k==='stocks'?stocks:s[k].value)}</bdi>${total}</dd></div>`;
+ }).join('')}</dl>`;
+
+ $('dfGames').innerHTML='<details class="pa-breakdown"><summary>פירוט לפי משחק</summary>'+table(['משחק','דקות',labels[metric].split(' · ')[0]],games.map(g=>{const m=D.gameMetrics(g,data,env),v=U.num(g.minutes)>0?(metric==='stocks'?m.stocks:metric==='per'?m.per:m[metric].value):null;return [`<b>${esc(g.opponent)}</b><small>${new Date(g.date).toLocaleDateString('he-IL',{day:'numeric',month:'numeric',timeZone:'Asia/Jerusalem'})}${g.round?' · מ׳ '+esc(g.round):''}</small>`,U.num(g.minutes)===0?'לא שיחק':fmt(g.minutes),value(metric,v)];}))+'</details>';
 }
 async function load(force=false){
  if(loading)return loading;$('dfReload').disabled=true;$('dfStatus').textContent='טוען חטיפות, חסימות, ריבאונדים ו־PER…';
@@ -69,5 +78,6 @@ async function load(force=false){
 button.onclick=()=>{document.querySelectorAll('.tabs button,.tab').forEach(el=>el.classList.remove('active'));button.classList.add('active');section.classList.add('active');if(!data||Date.now()-loadedAt>60000)void load();else{options();restorePlayer();}};
 for(const b of section.querySelectorAll('[data-df-scope]'))b.onclick=()=>{scope=b.dataset.dfScope;for(const item of section.querySelectorAll('[data-df-scope]'))item.setAttribute('aria-pressed',String(item===b));options();};
 $('dfPlayer').onchange=$('dfRange').onchange=()=>{rememberPlayer();render();};$('dfMetric').onchange=render;$('dfTeam').onchange=options;$('dfReload').onclick=()=>void load(true);
+document.addEventListener('fantasy-player-media-ready',render);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&section.classList.contains('active')&&Date.now()-loadedAt>60000)void load();});window.DefenseUI={load};
 })();
