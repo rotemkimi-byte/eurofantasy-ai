@@ -2,8 +2,8 @@
   "schema": "rolling-learning-v1",
   "season": "E2026",
   "engineId": "48d83fdac9b64ea09d06",
-  "updated_at": "2026-11-13T15:28:45.010890+00:00",
-  "exactCount": 1465,
+  "updated_at": "2026-11-13T21:40:34.739099+00:00",
+  "exactCount": 1510,
   "diagnostic": {
     "n": 434,
     "mae": 5.191151955094332,
@@ -16,10 +16,10 @@
   },
   "missingInputs": 347,
   "validation": {
-    "n": 1210,
-    "games": 54,
-    "baselineMae": 5.738887585168903,
-    "candidateMae": 5.693851317242583,
+    "n": 1254,
+    "games": 56,
+    "baselineMae": 5.742643437962878,
+    "candidateMae": 5.698794554493819,
     "active": false,
     "reason": "collecting-or-no-improvement",
     "folds": [
@@ -508,33 +508,51 @@
         "testN": 22,
         "baselineMae": 5.987818050927371,
         "candidateMae": 6.028434333016616
+      },
+      {
+        "gameCode": 109,
+        "round": 11,
+        "trainingN": 1324,
+        "trainingGames": 59,
+        "testN": 22,
+        "baselineMae": 6.021482813451654,
+        "candidateMae": 6.046274864556009
+      },
+      {
+        "gameCode": 110,
+        "round": 11,
+        "trainingN": 1415,
+        "trainingGames": 63,
+        "testN": 22,
+        "baselineMae": 5.670375966142722,
+        "candidateMae": 5.6231922932496605
       }
     ],
-    "intervalCoverage": 0.8008264462809918
+    "intervalCoverage": 0.8014354066985646
   },
   "coefficients": {
     "G": {
-      "n": 579,
-      "minutes": -0.427996646081521,
-      "efficiencyPir": -0.2145798428414661
+      "n": 595,
+      "minutes": -0.45950324138490245,
+      "efficiencyPir": -0.20729431775184487
     },
     "F": {
-      "n": 510,
-      "minutes": -0.45055963862678405,
-      "efficiencyPir": -0.18741361496008527
+      "n": 526,
+      "minutes": -0.44263342236507935,
+      "efficiencyPir": -0.1501577548189264
     },
     "C": {
-      "n": 262,
-      "minutes": -0.9148515841349603,
-      "efficiencyPir": 0.4444475791988865
+      "n": 270,
+      "minutes": -0.9113408328550768,
+      "efficiencyPir": 0.4231345721416691
     }
   },
   "interval": {
     "active": true,
     "targetCoverage": 0.8,
-    "coverage": 0.8008264462809918,
-    "n": 1210,
-    "radius": 9.008640389690882
+    "coverage": 0.8014354066985646,
+    "n": 1254,
+    "radius": 9.004844789493553
   },
   "limitations": [
     "Partial historical reconstructions exclude unrecoverable pregame defensive context and momentum configuration; never activate live corrections.",
@@ -736,14 +754,14 @@
     {
       "round": 11,
       "kind": "exact-frozen-input",
-      "n": 160,
-      "mae": 5.508048871596653,
-      "bias": -0.3636271444862748,
-      "minutesMae": 5.435594280650077,
-      "hits": 53,
-      "hitRate": 33.125,
-      "over": 63,
-      "under": 44
+      "n": 205,
+      "mae": 5.5775183629145415,
+      "bias": -0.3738800349672483,
+      "minutesMae": 5.367207940479652,
+      "hits": 65,
+      "hitRate": 31.70731707317073,
+      "over": 81,
+      "under": 59
     },
     {
       "round": 11,
