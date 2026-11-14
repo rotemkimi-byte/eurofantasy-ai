@@ -1,5 +1,5 @@
 'use strict';
-const {chromium}=require('playwright');
+const {chromium,webkit}=require('playwright');
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const http=require('node:http');
@@ -14,24 +14,40 @@ const server=http.createServer((req,res)=>{
 (async()=>{
  const production=process.env.DNA_SITE_URL;
  if(!production)await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
- const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH});
+ const engine=process.env.DNA_BROWSER==='webkit'?webkit:chromium;
+ const browser=await engine.launch({headless:true,executablePath:process.env.CHROMIUM_PATH});
  try{
   const widths=[375,390,430,1280];
   for(const width of widths){
    const page=await browser.newPage({viewport:{width,height:900}});
    const errors=[];
    page.on('pageerror',error=>errors.push(error.message));
+   if(process.env.DNA_OLD_CSS){
+    await page.route('**/dna-tools.css?*',route=>route.fulfill({path:process.env.DNA_OLD_CSS,contentType:'text/css'}));
+   }
    await page.goto(production||'http://127.0.0.1:'+server.address().port,{waitUntil:'domcontentloaded',timeout:60000});
    await page.locator('nav.tabs [data-tab="playerDna"]').evaluate(el=>el.click());
    const panel=page.locator('#playerDna');
    await panel.locator('.dna-radar-card').waitFor({timeout:60000});
    await page.locator('html').evaluate(el=>el.dataset.theme='light');
    assert.equal(await panel.evaluate(el=>getComputedStyle(el).direction),'rtl');
-   assert.equal(await panel.locator('.dna-shot-split + .dna-radar-profile + .dna-player-metrics').count(),1);
+   assert.equal(await panel.locator('.dna-player-visuals:has(> .dna-shot-split + .dna-radar-profile) + .dna-player-metrics').count(),1);
    assert.equal(await panel.locator('.dna-bars, .dna-radar-scores').count(),0);
    const radar = panel.locator('.dna-radar-profile');
    assert.ok(await radar.locator('svg').evaluate(svg=>svg.getBoundingClientRect().bottom>svg.getBoundingClientRect().top));
    assert.ok(await radar.evaluate(el=>el.getBoundingClientRect().top>=el.previousElementSibling.getBoundingClientRect().bottom));
+   const cardsFit=await panel.locator('.dna-player-style-profile').evaluate((style,mobile)=>{
+    const container=style.getBoundingClientRect();
+    const shot=style.querySelector('.dna-shot-split').getBoundingClientRect();
+    const radar=style.querySelector('.dna-radar-profile').getBoundingClientRect();
+    const metrics=style.querySelector('.dna-player-metrics').getBoundingClientRect();
+    const court=style.querySelector('.dna-court').getBoundingClientRect();
+    const table=style.querySelector('.dna-player-table').getBoundingClientRect();
+    const cards=[shot,radar,metrics];
+    return cards.every(box=>box.width>=container.width*(mobile?.98:.32)&&box.left>=container.left-1&&box.right<=container.right+1)&&
+     court.width>=shot.width-26&&table.width>=metrics.width-24&&(!mobile||metrics.top>=radar.bottom);
+   },width<=740);
+   assert.equal(cardsFit,true,'DNA cards collapsed or overflowed at '+width+'px');
    const scores=await radar.locator('.dna-radar-inline-score').allTextContents();
    assert.equal(scores.length,10);
    assert.ok(scores.some(score=>/^\d+(\.\d+)?$/.test(score)));

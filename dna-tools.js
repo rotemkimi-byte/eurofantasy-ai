@@ -281,7 +281,8 @@ function playerProfile(record,games,tags=[]){
 function playerStyle(stats,ratings,position,radar=''){
  const three=stats.three.value;
  const ranked=!!ratings;
- return `<section class="dna-player-style${radar?' dna-player-style-with-radar':''}">
+ return `<section class="${radar?'dna-player-style-profile':'dna-player-style'}">
+  ${radar?'<div class="dna-player-visuals">':''}
   <figure class="dna-shot-split">
    <figcaption>תמהיל הזריקות</figcaption><p>מתוך ניסיונות מהשדה</p>
    ${three==null?'<p class="dna-shot-missing">אין נתוני זריקות בטווח הזה.</p>':`
@@ -299,6 +300,7 @@ function playerStyle(stats,ratings,position,radar=''){
    <div class="dna-shot-strip" aria-hidden="true" style="--dna-two:${100-three}%"><i></i><i></i></div>`}
   </figure>
   ${radar}
+  ${radar?'</div>':''}
   <section class="dna-player-metrics" aria-labelledby="dnaPlayerMetricsTitle">
    <h4 id="dnaPlayerMetricsTitle">מדדים מרכזיים</h4>
    ${ranked?`<p>האחוזון משווה את השחקן ${position?'מול '+position:'לפי עמדה'} באותו טווח.</p>`:''}
