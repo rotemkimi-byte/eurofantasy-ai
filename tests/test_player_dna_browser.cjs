@@ -32,7 +32,7 @@ const server=http.createServer((req,res)=>{
    await page.locator('html').evaluate(el=>el.dataset.theme='light');
    assert.equal(await panel.evaluate(el=>getComputedStyle(el).direction),'rtl');
    assert.equal(await panel.locator('.dna-player-visuals:has(> .dna-shot-split + .dna-radar-profile) + .dna-player-metrics').count(),1);
-   assert.equal(await panel.locator('.dna-bars, .dna-radar-scores').count(),0);
+   assert.equal(await panel.locator('.dna-bars, .dna-radar-scores, .dna-summary').count(),0);
    const radar = panel.locator('.dna-radar-profile');
    assert.ok(await radar.locator('svg').evaluate(svg=>svg.getBoundingClientRect().bottom>svg.getBoundingClientRect().top));
    assert.ok(await radar.evaluate(el=>el.getBoundingClientRect().top>=el.previousElementSibling.getBoundingClientRect().bottom));
@@ -50,6 +50,10 @@ const server=http.createServer((req,res)=>{
    assert.equal(cardsFit,true,'DNA cards collapsed or overflowed at '+width+'px');
    const scores=await radar.locator('.dna-radar-inline-score').allTextContents();
    assert.equal(scores.length,10);
+   assert.deepEqual(await radar.locator('svg text[direction=rtl]').allTextContents(),
+    ['קליעה','שלשות','צבע','יצירת משחק','מתפרצות','ריבאונד','הגנה','סחיטת עבירות','יציבות','יעילות']);
+   assert.equal(await radar.locator('svg text.dna-radar-inline-score[direction=ltr]').count(),10);
+   assert.equal(await radar.locator('svg text > tspan').count(),0);
    assert.ok(scores.some(score=>/^\d+(\.\d+)?$/.test(score)));
    const radarBounds=await radar.locator('svg').evaluate(svg=>{
     const {x,y,width,height}=svg.viewBox.baseVal;
@@ -84,7 +88,6 @@ const server=http.createServer((req,res)=>{
     await panel.locator('.dna-radar-card').screenshot({path:path.join(process.env.DNA_SCREENSHOT_DIR,'radar.png')});
     await shooting.screenshot({path:path.join(process.env.DNA_SCREENSHOT_DIR,'category.png')});
    }
-   const seasonSummary=await panel.locator('.dna-summary').textContent();
    for(const range of ['5','3','1']){
     const b=panel.locator('[data-season-range="'+range+'"]');
     await b.click();
@@ -92,8 +95,7 @@ const server=http.createServer((req,res)=>{
     const appearances=await panel.locator('.dna-headline-stats div').last().locator('dd').textContent();
     assert.ok(Number(appearances)<=Number(range));
    }
-   assert.notEqual(await panel.locator('.dna-summary').textContent(),seasonSummary);
-   assert.equal(await panel.locator('.dna-bars, .dna-radar-scores').count(),0);
+   assert.equal(await panel.locator('.dna-bars, .dna-radar-scores, .dna-summary').count(),0);
    assert.ok((await radar.locator('.dna-radar-inline-score').allTextContents()).every(score=>score==='—'));
    await panel.locator('[data-venue=away]').click();
    assert.equal(await panel.locator('[data-venue=away]').getAttribute('aria-pressed'),'true');
@@ -102,6 +104,7 @@ const server=http.createServer((req,res)=>{
    await panel.locator('[data-player-view=player]').click();
    await panel.locator('[data-compare-player]').selectOption({index:1});
    assert.equal(await panel.locator('.dna-radar-other').count(),1);
+   assert.equal(await panel.locator('.dna-summary').count(),1);
    assert.equal(await panel.locator('.dna-radar-inline-score').count(),0);
    const marker=panel.locator('.dna-radar-own .dna-radar-hit').first();
    await marker.click();

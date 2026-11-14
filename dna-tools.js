@@ -489,8 +489,9 @@ function playerRadar(reports,record,compare,{profile=false}={}){
  };
  const labels=radarAxes.map(([label],i)=>{
   const [x,y]=point(i,profile?1.19:1.14);
-  return `<text x="${x}" y="${y}">${label}${profile?`
-   <tspan class="dna-radar-inline-score" x="${x}" dy="15">${fmt(first[i])}</tspan>`:''}</text>`;
+  const name=`<text x="${x}" y="${y}" direction="rtl">${label}</text>`;
+  return profile?`${name}
+   <text class="dna-radar-inline-score" x="${x}" y="${y+18}" direction="ltr">${fmt(first[i])}</text>`:name;
  }).join('');
  const score=(n,kind)=>`<bdi class="${kind}">${n??'—'}</bdi>`;
  const scores=profile?'':radarAxes.map(([label],i)=>{
@@ -508,7 +509,7 @@ function playerRadar(reports,record,compare,{profile=false}={}){
  return `<section class="dna-radar-card${profile?' dna-radar-profile':''}"><h4>רדאר DNA שחקן</h4>
  <p class="dna-explain">ככל שנקודה רחוקה מהמרכז, האחוזון של השחקן בעמדתו גבוה יותר בטווח שנבחר. נקודה חסרה מציינת מדגם שאינו מספיק לדירוג.</p>
  ${compare?legend(record.name,compare.name):''}
- <div class="dna-radar-layout"><div><svg viewBox="${profile?'0 -5 340 285':'0 0 340 258'}" ${accessibility}>
+ <div class="dna-radar-layout"><div><svg viewBox="${profile?'-8 -5 356 291':'0 0 340 258'}" ${accessibility}>
   <g class="dna-radar-grid">${rings}${spokes}</g>${display(first,'dna-radar-own')}${second?display(second,'dna-radar-other'):''}${labels}
  </svg><div class="dna-radar-scale"><span>אחוזון</span><bdi>0 · 25 · 50 · 75 · 100</bdi></div></div>
  ${profile?'':`<ul class="dna-radar-scores" aria-label="ערכי הצירים">${scores}</ul>`}</div>
@@ -712,7 +713,7 @@ function renderPlayer(){
  const profile=playerView==='profile';
  const hasChart=games.length||compare&&M.select(compare.games,limit,playerVenue).length;
  const radar=hasChart?playerRadar(reports,record,compare,{profile}):'';
- const charts=hasChart?(profile?'':radar+playerBars(reports,record,compare))+playerDnaSummary(reports,record):'';
+ const charts=!profile&&hasChart?radar+playerBars(reports,record,compare)+playerDnaSummary(reports,record):'';
  const style=profile
   ?games.length?playerStyle(own,ratings,positionLabels[record.position],radar):empty('אין מספיק נתונים להופעות בטווח ובסינון שנבחרו.')
   :playerStyleComparison(record,limit,rival);
