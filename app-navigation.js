@@ -35,28 +35,16 @@ const toolbar=document.createElement('div');toolbar.id='efToolbar';toolbar.inner
 original.before(toolbar);
 const subnav=document.createElement('nav');subnav.id='efSectionNavigation';subnav.setAttribute('aria-label','כלים באזור הנבחר');toolbar.after(subnav);
 const bottom=document.createElement('nav');bottom.id='efNavigation';bottom.setAttribute('aria-label','ניווט ראשי');bottom.innerHTML=groups.map(g=>`<button type="button" data-ef-group="${g.id}">${icon(g)}<span>${g.title}</span></button>`).join('');document.body.appendChild(bottom);
-// Mobile browser controls can move the visible bottom without changing the fixed layout viewport.
-const viewport=window.visualViewport;
-if(viewport){
- let frame=null,shift=0;
- function alignBottom(){
-  frame=null;
-  if(!viewport.height)return;
-  const fixedBottom=bottom.getBoundingClientRect().bottom-shift;
-  const next=viewport.scale===1?Math.round(viewport.offsetTop+viewport.height-fixedBottom):0;
-  if(next===shift)return;
-  shift=next;
-  bottom.style.setProperty('--ef-nav-viewport-shift',shift+'px');
- }
- function scheduleAlignment(){
-  if(frame===null)frame=requestAnimationFrame(alignBottom);
- }
- viewport.addEventListener('resize',scheduleAlignment,{passive:true});
- viewport.addEventListener('scroll',scheduleAlignment,{passive:true});
- window.addEventListener('resize',scheduleAlignment,{passive:true});
- window.addEventListener('scroll',scheduleAlignment,{passive:true});
- window.addEventListener('pageshow',scheduleAlignment);
- scheduleAlignment();
+// Keep the dock outside the scrolling content on touch-sized screens.
+const pageScroll=document.createElement('div');
+pageScroll.id='efPageScroll';
+const pageParts=[...document.querySelectorAll('body > header, body > main, body > footer')];
+document.body.insertBefore(pageScroll,pageParts[0]);
+pageScroll.append(...pageParts);
+const mobileLayout=matchMedia('(max-width:760px)');
+function resetScroll(){
+ const scroller=mobileLayout.matches?pageScroll:window;
+ scroller.scrollTo({top:0,behavior:'instant'});
 }
 
 function tools(g){
@@ -101,16 +89,16 @@ function openGroup(id,focus=true,record=true){
  if(record)updateAddress(id,false);currentTool=null;
  group=id;landing=true;filter='';document.getElementById('efToolSearch').value='';
  document.querySelectorAll('.tabs button,.tab').forEach(e=>e.classList.remove('active'));home.classList.add('active');paint();
- if(focus){document.getElementById('efPageTitle').focus({preventScroll:true});window.scrollTo({top:0,behavior:'auto'});}
+ if(focus){document.getElementById('efPageTitle').focus({preventScroll:true});resetScroll();}
 }
-function openTool(id,record=true){const b=buttons().find(b=>b.dataset.tab===id);if(!b)return false;if(record)updateAddress(id,true);currentTool=id;landing=false;group=groupFor(id).id;b.click();paint();const section=document.getElementById(id);if(section){section.setAttribute('tabindex','-1');section.focus({preventScroll:true});}window.scrollTo({top:0,behavior:'auto'});return true;}
+function openTool(id,record=true){const b=buttons().find(b=>b.dataset.tab===id);if(!b)return false;if(record)updateAddress(id,true);currentTool=id;landing=false;group=groupFor(id).id;b.click();paint();const section=document.getElementById(id);if(section){section.setAttribute('tabindex','-1');section.focus({preventScroll:true});}resetScroll();return true;}
 for(const root of [home,subnav])root.addEventListener('click',e=>{const b=e.target.closest('[data-ef-tool]');if(b)openTool(b.dataset.efTool);});
 bottom.addEventListener('click',e=>{const b=e.target.closest('[data-ef-group]');if(b)openGroup(b.dataset.efGroup);});
 document.getElementById('efAllTools').onclick=()=>openGroup('home');
 document.getElementById('efCategory').onclick=()=>openGroup(group);
 document.getElementById('efToolSearch').addEventListener('input',e=>{filter=e.target.value.trim().toLocaleLowerCase();renderLanding();});
 // Catch original/programmatic tab activation, including tabs inserted by asynchronous modules.
-new MutationObserver(()=>{const active=original.querySelector('button.active');if(active){landing=false;group=groupFor(active.dataset.tab).id;if(currentTool!==active.dataset.tab){currentTool=active.dataset.tab;updateAddress(currentTool,true);}}paint();}).observe(original,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
+new MutationObserver(()=>{const active=original.querySelector('button.active');if(active){landing=false;group=groupFor(active.dataset.tab).id;if(currentTool!==active.dataset.tab){currentTool=active.dataset.tab;updateAddress(currentTool,true);if(mobileLayout.matches)resetScroll();}}paint();}).observe(original,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
 document.documentElement.classList.add('ef-redesign');
 original.setAttribute('aria-hidden','true');
 function restoreAddress(){

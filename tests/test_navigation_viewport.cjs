@@ -17,43 +17,49 @@ const server=http.createServer((req,res)=>{
  const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH});
  try{
   const page=await browser.newPage(devices['iPhone 15']);
-  await page.addInitScript(()=>{
-   const real=window.visualViewport;
-   const simulated=new EventTarget();
-   for(const key of ['height','offsetTop','scale']){
-    Object.defineProperty(simulated,key,{get:()=>window.navTestViewport?.[key]??real[key]});
-   }
-   Object.defineProperty(window,'visualViewport',{value:simulated});
-  });
   await page.goto('http://127.0.0.1:'+server.address().port,{waitUntil:'domcontentloaded'});
   const nav=page.locator('#efNavigation');
   await nav.locator('[data-ef-group="players"]').click();
   await page.locator('#efHome [data-ef-tool="playerDna"]').waitFor();
-  async function align(height,offsetTop,event){
-   await page.evaluate(({height,offsetTop,event})=>{
-    window.navTestViewport={height,offsetTop};
-    visualViewport.dispatchEvent(new Event(event));
-   },{height,offsetTop,event});
-   await page.waitForFunction(()=>{
-    const {height,offsetTop}=visualViewport;
-    const bounds=document.getElementById('efNavigation').getBoundingClientRect();
-    return Math.abs(bounds.bottom-(height+offsetTop))<=1;
-   });
+  const scroller=page.locator('#efPageScroll');
+  async function assertPinned(){
+   const bounds=await nav.evaluate(el=>({
+    dock:el.getBoundingClientRect().bottom,
+    viewport:visualViewport.height,
+    pageScroll:window.scrollY,
+    hit:el.contains(document.elementFromPoint(innerWidth/2,el.getBoundingClientRect().top+20))
+   }));
+   assert.ok(Math.abs(bounds.dock-bounds.viewport)<=1,JSON.stringify(bounds));
+   assert.equal(bounds.pageScroll,0);
+   assert.equal(bounds.hit,true);
   }
-  const height=await page.evaluate(()=>innerHeight);
-  await align(height-180,0,'resize');
+  await assertPinned();
   await page.locator('#efHome [data-ef-tool="playerDna"]').click();
   await page.locator('#playerDna .dna-radar-card').waitFor();
-  await page.evaluate(()=>window.scrollTo(0,600));
-  assert.ok(await page.evaluate(()=>scrollY>0));
-  await align(height-180,55,'scroll');
+  await assertPinned();
+  const input=await page.context().newCDPSession(page);
+  await input.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:190,y:570}]});
+  for(const y of [530,470,410,350,290,230]){
+   await input.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:190,y}]});
+  }
+  await input.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+  await page.waitForFunction(()=>document.getElementById('efPageScroll').scrollTop>200);
+  await assertPinned();
   await page.locator('#playerDna [data-player-view="player"]').evaluate(el=>el.click());
   await page.locator('#playerDna [data-compare-player]').selectOption({index:1});
   await page.locator('.dna-comparison-scores').waitFor();
-  await align(height,0,'resize');
+  await page.setViewportSize({width:393,height:650});
+  await assertPinned();
+  await scroller.evaluate(el=>el.scrollTop=el.scrollHeight);
+  await assertPinned();
+  assert.ok(await page.locator('#efPageScroll > footer').evaluate(el=>
+   el.getBoundingClientRect().bottom<=document.getElementById('efNavigation').getBoundingClientRect().top+1
+  ));
   await nav.locator('[data-ef-group="players"]').click();
   assert.equal(await nav.locator('[data-ef-group="players"]').getAttribute('aria-current'),'page');
   assert.equal(await nav.count(),1);
+  assert.equal(await scroller.evaluate(el=>el.scrollTop),0);
+  await assertPinned();
   console.log('Navigation stayed at the visible bottom through viewport changes, scroll and DNA navigation.');
  }finally{await browser.close();server.close();}
 })().catch(error=>{console.error(error);server.close();process.exitCode=1;});
