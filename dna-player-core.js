@@ -128,13 +128,19 @@ metrics('summary',box,[
 metrics('summary','התחזית המשוקללת',[
  ['projection','התאמת PIR צפוי לסגנון','PIR','הפירוט אומד רכיבי PIR לפי קצב עונתי ודקות חזויות, משלים את הפער לבסיס האישי ומציג את תרומות כלי החיזוי לאחר שקלול. הסכום שווה לתחזית הפעילה.',0,'linked']
 ]);
-const missing=[
- ['creation','AST%','חסר מספר סלי החברים בזמן שהשחקן היה על המגרש.'],
- ['boards','ORB% ו־DRB%','קיימים אומדנים לפי דקות, והמדד המדויק דורש הזדמנויות ריבאונד ששויכו לפוזשנים בזמן שהשחקן שיחק.'],
- ['boards','יעילות הגנתית על המגרש / Defensive Rating','חסרים ניקוד יריבה ופוזשנים מאומתים בזמן שהשחקן שיחק.'],
- ['lineups','Usage, נפח זריקות ויעילות קליעה לפי חמישייה','נתוני החמישיות הקיימים מייחסים לשחקן נקודות ודקות. נדרש גם שיוך מאומת של ניסיונות שדה, עונשין ואיבודים.'],
- ['lineups','Net Rating ו־PIR מלא לפי חמישייה','חסרים פוזשנים, ניקוד יריבה ושיוך כל רכיבי PIR לחמישייה.']
+const onCourt='יומן מהלכים ובוקס־סקור של EuroLeague';
+const addedMetrics=[
+ {id:'astPct',group:'creation',label:'AST%',unit:'%',source:onCourt,help:'100 כפול אסיסטים של השחקן חלקי סלי שדה של חבריו בזמן ששיחק, אחרי הפחתת הסלים שלו.',direction:0},
+ {id:'orbPct',group:'boards',label:'ORB%',unit:'%',source:onCourt,help:'100 כפול ריבאונדי ההתקפה של השחקן חלקי ריבאונדי ההתקפה של קבוצתו וריבאונדי ההגנה של היריבה בזמן ששיחק.',direction:1},
+ {id:'drbPct',group:'boards',label:'DRB%',unit:'%',source:onCourt,help:'100 כפול ריבאונדי ההגנה של השחקן חלקי ריבאונדי ההגנה של קבוצתו וריבאונדי ההתקפה של היריבה בזמן ששיחק.',direction:1},
+ {id:'defRating',group:'boards',label:'יעילות הגנתית על המגרש',unit:'ל־100 פוז׳',source:onCourt,help:'100 כפול נקודות היריבה חלקי אומדן הפוזשנים שלה בזמן ששיחק. האומדן הוא ניסיונות שדה + 0.44 × עונשין − ריבאונדי התקפה + איבודים.',direction:-1},
+ {id:'lineupUsage',group:'lineups',label:'Usage לפי חמישייה',unit:'%',source:onCourt,help:'100 כפול פעולות סיום של השחקן חלקי פעולות סיום קבוצתיות בחמישייה. פעולות סיום הן זריקות שדה + 0.44 × עונשין + איבודים.',direction:0},
+ {id:'lineupFga',group:'lineups',label:'נפח זריקות לפי חמישייה',unit:'ל־40 דק׳',source:onCourt,help:'40 כפול ניסיונות השדה של השחקן חלקי הדקות בחמישייה.',direction:0},
+ {id:'lineupTs',group:'lineups',label:'יעילות קליעה לפי חמישייה (TS%)',unit:'%',source:onCourt,help:'100 כפול נקודות השחקן חלקי פעמיים (ניסיונות שדה + 0.44 × ניסיונות עונשין) בחמישייה.',direction:1},
+ {id:'lineupNet',group:'lineups',label:'Net Rating לפי חמישייה',unit:'ל־100 פוז׳',source:onCourt,help:'100 כפול (נקודות הקבוצה לפוזשן משוער פחות נקודות היריבה לפוזשן משוער) בחמישייה. האומדן לכל צד הוא זריקות שדה + 0.44 × עונשין − ריבאונד התקפה + איבודים.',direction:1},
+ {id:'lineupPir',group:'lineups',label:'PIR מלא לפי חמישייה',unit:'PIR ל־40 דק׳',source:onCourt,help:'סכום רכיבי PIR הרשמיים באירועי השחקן בחמישייה, כפול 40 חלקי דקות בחמישייה.',direction:1}
 ];
+const catalogById=new Map([...catalog,...addedMetrics].map(spec=>[spec.id,spec]));
 
 const finite=Number.isFinite;
 const sum=values=>values.reduce((a,b)=>a+b,0);
@@ -165,7 +171,7 @@ function select(games,limit=0,venue='all'){
  return limit>0?rows.slice(0,limit):rows;
 }
 
-function seasonContext(official,advanced,asOf=Date.now(),{pregame=false,fixtureCode=null}={}){
+function seasonContext(official,advanced,asOf=Date.now(),{pregame=false,fixtureCode=null,dnaEvents=null}={}){
  const empty={games:new Map(),players:new Map(),through:asOf,opponents:new Map(),positional:new Map(),pregame};
  if(official?.season!=='E2026'||!finite(asOf))return empty;
  const published=data=>Date.parse(data?.updated_at)<=asOf;
@@ -174,6 +180,8 @@ function seasonContext(official,advanced,asOf=Date.now(),{pregame=false,fixtureC
  const games=new Map((official.teamResults||[]).filter(g=>Number(g.gameCode)>0&&String(g.gameCode)!==String(fixtureCode)&&
   Date.parse(g.date)+(pregame?4*3600000:0)<=asOf&&g.home&&g.away&&g.home!==g.away&&
   finite(g.homeScore)&&finite(g.awayScore)&&g.homeScore!==g.awayScore).map(g=>[String(g.gameCode),g]));
+ const extra=!pregame&&dnaEvents?.season==='E2026'&&dnaEvents.version===1&&Array.isArray(dnaEvents.fields)?dnaEvents:null;
+ const ledgers=new Map();
  const players=new Map();
  for(const p of Object.values(official.players||{})){
   const id=String(p.playerCode||'').replace(/^P/,'');
@@ -186,7 +194,16 @@ function seasonContext(official,advanced,asOf=Date.now(),{pregame=false,fixtureC
    const ev=event?.team===g.team&&Date.parse(candidate.date)===Date.parse(g.date)&&event.minutes===g.minutes&&
     ['points','fieldGoalsAttempted2','fieldGoalsMade2','fieldGoalsAttempted3','fieldGoalsMade3','freeThrowsMade','freeThrowsAttempted']
      .every(k=>finite(g.stats?.[k])&&g.stats[k]===event.stats?.[k])?event:null;
-   rows.set(code,{...g,event:ev,teamScore:g.home?game.homeScore:game.awayScore,teamStats:side?.team===g.team?side.stats:null,
+   const extraGame=extra?.games?.[code];
+   const extraMatches=ev&&testExtra(extraGame,game,event,g.home);
+   const ledger=extraMatches?extraGame.ledger:null;
+   const extraZone=extraMatches?extraGame.zones?.[id]:null;
+   if(ledger&&!ledgers.has(code))ledgers.set(code,decodeLineups(ledger,extra.fields));
+   const playerLines=ledger?ledgers.get(code)?.[g.home?0:1]?.get(id):null;
+   const onCourt=playerLines&&Math.abs(sum(playerLines.map(line=>line.seconds))-g.minutes*60)<=3&&
+    Object.keys(playerLines[0].person).every(field=>sum(playerLines.map(line=>line.person[field]))===g.stats?.[field])
+    ?playerLines:null;
+   rows.set(code,{...g,event:ev,extraZone,onCourt,teamScore:g.home?game.homeScore:game.awayScore,teamStats:side?.team===g.team?side.stats:null,
     neutral:game.neutral===true||game.isNeutralVenue===true});
   }
   players.set(id,{id,name:p.name,games:[...rows.values()].sort((a,b)=>Date.parse(b.date)-Date.parse(a.date)||b.gameCode-a.gameCode)});
@@ -207,7 +224,34 @@ function seasonContext(official,advanced,asOf=Date.now(),{pregame=false,fixtureC
  return {...empty,games,players,opponents,positional};
 }
 
+function testExtra(data,game,event,home){
+ return data&&Date.parse(data.date)===Date.parse(game.date)&&data.score?.[0]===game.homeScore&&data.score?.[1]===game.awayScore&&
+  data.teams?.length===2&&event.teamCode===data.teams[home?0:1];
+}
+
+function decodeLineups(ledger,fields){
+ const decode=values=>Object.fromEntries(ledger.columns.map((column,i)=>[fields[column],values[i]]));
+ return ledger.sides.map(rows=>{
+  const players=new Map();
+  for(const [five,seconds,totals,allowed,counters] of rows){
+   const own=decode(totals),rival=decode(allowed);
+   five.forEach((id,i)=>{
+    if(!players.has(id))players.set(id,[]);
+    players.get(id).push({five,seconds,own,rival,person:decode(counters[i])});
+   });
+  }
+  return players;
+ });
+}
+
 function shotLedger(g){
+ if(g.extraZone){
+  const [raw,distance,paint]=g.extraZone;
+  const bins=raw.map(([attempts,made,points])=>({attempts,made,points}));
+  const attempts=sum(bins.map(b=>b.attempts));
+  if(attempts===fga(g)&&sum(bins.map(b=>b.made))===get(g,'fieldGoalsMade2')+get(g,'fieldGoalsMade3')&&
+   bins[3].attempts===get(g,'fieldGoalsAttempted3')&&bins[3].made===get(g,'fieldGoalsMade3'))return {bins,distance,paint,attempts};
+ }
  if(!g.event?.shotCoverage)return null;
  const rows=g.event.shots.filter(s=>!s.type.startsWith('FT'));
  if(rows.length!==fga(g)||!rows.every(s=>finite(s.x)&&finite(s.y)))return null;
@@ -249,18 +293,22 @@ function teammate(context,record,season,recent){
  const codes=new Set(season.map(g=>String(g.gameCode)));
  const team=season[0].team;
  const candidates=[];
+ let central=false,knownAbsences=0;
  for(const p of context.players.values()){
   if(p.id===record.id)continue;
   const together=p.games.filter(g=>g.team===team&&codes.has(String(g.gameCode)));
   const played=together.filter(g=>g.minutes>0);
   if(played.length<3||avg(played.map(g=>g.minutes))<18)continue;
+  central=true;
   const minutes=avg(played.map(g=>g.minutes));
   const byCode=new Map(together.map(g=>[g.gameCode,g.minutes]));
   const withMate=recent.filter(g=>byCode.get(g.gameCode)>0);
   const without=recent.filter(g=>byCode.get(g.gameCode)===0);
+  knownAbsences=Math.max(knownAbsences,without.length);
   if(withMate.length>=3&&without.length>=3)candidates.push({name:p.name,minutes,withMate,without});
  }
- return candidates.sort((a,b)=>b.minutes-a.minutes||a.name.localeCompare(b.name))[0]||null;
+ return {mate:candidates.sort((a,b)=>b.minutes-a.minutes||a.name.localeCompare(b.name))[0],
+  reason:!central?'mateCentral':knownAbsences<3?'mateAbsent':'matePlayed'};
 }
 
 function summarize(record,context,options={}){
@@ -271,7 +319,7 @@ function summarize(record,context,options={}){
  const games=gameCode!=null?season.filter(g=>String(g.gameCode)===String(gameCode)):select(current,limit,venue);
  const history=season.filter(g=>!games.length||Date.parse(g.date)<=Date.parse(games[0].date));
  const sample=history.filter(g=>g.team===(games[0]?.team||club));
- const stats=Object.fromEntries(catalog.map(({id})=>[id,{value:null,count:0,total:games.length,minutes:0,denominator:0}]));
+ const stats=Object.fromEntries([...catalog,...addedMetrics].map(({id})=>[id,{value:null,count:0,total:games.length,minutes:0,denominator:0}]));
  const set=(id,x,rows=games,denominator=0,details=null)=>{
   if(finite(x)&&rows.length)stats[id]={value:x,count:rows.length,total:games.length,minutes:sum(rows.map(g=>g.minutes)),denominator,details};
  };
@@ -361,17 +409,20 @@ function summarize(record,context,options={}){
  }
  if(history.length>=2&&games.length)set('rest',(Date.parse(history[0].date)-Date.parse(history[1].date))/86400000,history.slice(0,2));
  if(history.length>=3&&games.length)set('load',minuteSum(history.slice(0,5)),history.slice(0,5));
+ if(!context.pregame)summarizeOnCourt(games,set,stats,context);
  const lineupRows=games.filter(g=>g.event?.lineupCoverage&&g.event.lineups.every(l=>finite(l.minutes))&&g.event.lineups.some(l=>l.minutes>0));
  const combination=A.lineups(lineupRows.map(g=>({...g.event,gameCode:g.gameCode}))).filter(l=>l.minutes>=10).sort((a,b)=>b.minutes-a.minutes);
  if(combination.length)set('lineupRate',combination[0].per40,lineupRows,0,
   combination.slice(0,3).map(l=>[l.teammates.map(t=>t.name).join(' · '),l.per40,'נק׳ ל־40 דק׳']));
  if(games.length>=6){
-  const mate=teammate(context,record,sample,games);
+  const {mate,reason}=teammate(context,record,sample,games)||{};
+  for(const id of ['absenceMin','absenceUsage','teammateDependence'])stats[id].reason=reason;
   if(mate){
    const {withMate,without,name}=mate,detailsFor=(a,b,unit)=>[[name+' · איתו',a,unit],[name+' · בלעדיו',b,unit]];
    const rows=withMate.concat(without),a=minuteSum(withMate)/withMate.length,b=minuteSum(without)/without.length;
    set('absenceMin',b-a,rows,0,detailsFor(a,b,'דק׳'));
    set('absenceUsage',diff(u(without),u(withMate)),rows,0,detailsFor(u(withMate),u(without),'%'));
+   if(stats.absenceUsage.value===null)stats.absenceUsage.reason='mateUsage';
    set('teammateDependence',diff(pirRate(without),pirRate(withMate)),rows,0,detailsFor(pirRate(withMate),pirRate(without),'PIR ל־40 דק׳'));
   }
   const rates=games.map(g=>[g.minutes,get(g,'valuation')]);
@@ -394,6 +445,61 @@ function summarize(record,context,options={}){
    ['שלשות','צבע','עונשין','שאר נקודות לשתיים'].map((l,i)=>[l,ratio(shares[i],chartPoints,100),'%']));
  }
  return {stats,games,bins,shotGames:covered.length,position:games[0]?.positionName||record.position};
+}
+
+function summarizeOnCourt(games,set,stats,context){
+ const fgm=s=>s.fieldGoalsMade2+s.fieldGoalsMade3;
+ const shots=s=>s.fieldGoalsAttempted2+s.fieldGoalsAttempted3;
+ const endings=s=>shots(s)+.44*s.freeThrowsAttempted+s.turnovers;
+ const ownPoss=s=>endings(s)-s.offensiveRebounds;
+ const possessionFields=['fieldGoalsAttempted2','fieldGoalsAttempted3','freeThrowsAttempted','turnovers','offensiveRebounds'];
+ const shootingFields=['points','fieldGoalsAttempted2','fieldGoalsAttempted3','freeThrowsAttempted'];
+ const pirFields=[...shootingFields,'fieldGoalsMade2','fieldGoalsMade3','freeThrowsMade','offensiveRebounds','defensiveRebounds',
+  'assistances','steals','blocksFavour','blocksAgainst','foulsCommited','foulsReceived','turnovers'];
+ const coverage=fields=>games.filter(g=>g.onCourt?.length&&fields.every(k=>finite(g.onCourt[0].own[k])));
+ const names=five=>five.map(id=>context.players.get(id)?.name||id).join(' · ');
+ const collect=(lines,fields)=>Object.fromEntries(['own','rival','person'].map(side=>
+  [side,Object.fromEntries(fields.map(k=>[k,sum(lines.map(line=>line[side][k]))]))]));
+ function measure(id,fields,calc,byLineup=false){
+  const rows=coverage(fields);
+  const lines=rows.flatMap(g=>g.onCourt.map(line=>({...line,game:g})));
+  if(!lines.length)return;
+  stats[id]={...stats[id],reason:byLineup?'lineupMinutes':'onCourtDenominator'};
+  if(!byLineup){
+   const result=calc(collect(lines,fields),sum(lines.map(l=>l.seconds)));
+   if(finite(result))set(id,result,rows);
+   return;
+  }
+  const grouped=new Map();
+  for(const line of lines){
+   const key=line.five.join('|');
+   if(!grouped.has(key))grouped.set(key,[]);
+   grouped.get(key).push(line);
+  }
+  const eligible=[...grouped.values()].map(group=>{
+   const seconds=sum(group.map(l=>l.seconds));
+   return {group,seconds,value:calc(collect(group,fields),seconds)};
+  }).filter(x=>x.seconds>=600&&finite(x.value)).sort((a,b)=>b.seconds-a.seconds);
+  if(!eligible.length)return;
+  const [first]=eligible;
+  set(id,first.value,[...new Set(first.group.map(l=>l.game))],0,
+   eligible.slice(0,3).map(({group,value,seconds})=>[names(group[0].five)+' · '+(seconds/60).toFixed(1)+' דק׳',value,catalogById.get(id).unit]));
+ }
+ measure('astPct',['assistances','fieldGoalsMade2','fieldGoalsMade3'],({own,person})=>ratio(person.assistances,fgm(own)-fgm(person),100));
+ measure('orbPct',['offensiveRebounds','defensiveRebounds'],({own,rival,person})=>ratio(person.offensiveRebounds,own.offensiveRebounds+rival.defensiveRebounds,100));
+ measure('drbPct',['offensiveRebounds','defensiveRebounds'],({own,rival,person})=>ratio(person.defensiveRebounds,own.defensiveRebounds+rival.offensiveRebounds,100));
+ measure('defRating',[...possessionFields,'points'],({rival})=>ratio(rival.points,ownPoss(rival),100));
+ measure('lineupUsage',possessionFields.slice(0,4),({own,person})=>ratio(endings(person),endings(own),100),true);
+ measure('lineupFga',shootingFields.slice(1,3),({person},seconds)=>ratio(shots(person),seconds,2400),true);
+ measure('lineupTs',shootingFields,({person})=>ratio(...O.trueShootingParts(person.points,shots(person),person.freeThrowsAttempted),100),true);
+ measure('lineupNet',[...possessionFields,'points'],({own,rival})=>{
+  const a=ratio(own.points,ownPoss(own),100),b=ratio(rival.points,ownPoss(rival),100);
+  return diff(a,b);
+ },true);
+ measure('lineupPir',pirFields,({person},seconds)=>{
+  const parts=P.components(person);
+  return parts?ratio(sum(Object.values(parts)),seconds,2400):null;
+ },true);
 }
 
 function opponentZones(rows){
@@ -461,6 +567,7 @@ function opponentReport(report,context,clubs,opponent,ownTeam,teamModel,{limit=0
  const active=report.bins.map(z=>z.attempts);
  const idx=active.map((n,i)=>n>=5?i:null).filter(i=>i!==null);
  const sample=sum(idx.map(i=>active[i]));
+ stats.matchFit={...stats.matchFit,reason:sample<20||report.shotGames<2?'fitPlayer':rival.covered.length<2?'fitRival':'fitPeers'};
  if(sample>=20&&report.shotGames>=2){
   const scores=[];
   for(const [name,club] of clubs){
@@ -468,6 +575,7 @@ function opponentReport(report,context,clubs,opponent,ownTeam,teamModel,{limit=0
    scores.push([name,sum(idx.map(i=>active[i]*club.bins[i].made/club.bins[i].attempts))/sample]);
   }
   const chosen=scores.find(([name])=>name===opponent)?.[1];
+  if(!finite(chosen))stats.matchFit.reason='fitRival';
   if(finite(chosen)&&scores.length>=6){
    const rank=percentile(chosen,scores.map(([,v])=>v));
    set('matchFit',rank,rival.covered,[['אחוז קליעה משוקלל שהיריבה מאפשרת',100*chosen,'%'],
@@ -533,6 +641,6 @@ const detailRows={
  midVolume:['midAccuracy'],rimAttempts:['rim40'],fta40:['ftr'],pir40:['pirMinute'],
  scoringShare:['otherShare'],allowedRim:['allowedZones'],absenceMin:['absenceUsage']
 };
-const api={catalog,groups,detailRows,missing,select,seasonContext,summarize,pirLedger,buildRivals,opponentReport,rank,projection,features};
+const api={catalog,addedMetrics,groups,detailRows,select,seasonContext,summarize,pirLedger,buildRivals,opponentReport,rank,projection,features};
 if(node)module.exports=api;else root.PlayerDnaMetrics=api;
 })(typeof globalThis!=='undefined'?globalThis:this);

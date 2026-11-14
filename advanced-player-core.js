@@ -52,7 +52,7 @@ function teamShotSummary(players){
   points:sumField('points'),rimMade:sumField('rimMade'),rimAttempts:sumField('rimAttempts'),
   midMade:sumField('midMade'),midAttempts:sumField('midAttempts'),offTurnover};
 }
-function buildGame(box,points,pbp,{teamDna=false}={}){
+function buildGame(box,points,pbp,{teamDna=false,observeLineups,observeShots}={}){
  const people={};
  for(const side of ['local','road'])for(const r of box[side]?.players||[]){
   const p=r.player?.person||{},s=r.stats||{},id=pid(p.code);
@@ -82,6 +82,7 @@ function buildGame(box,points,pbp,{teamDna=false}={}){
   if(verified){
    const field=p.shots.filter(r=>!r.type.startsWith('FT')),located=field.filter(r=>r.x!==null&&r.y!==null);
    const scoring=p.shots.filter(r=>r.made),points=sum(scoring,'points');
+   if(located.length===field.length)observeShots?.(p,located);
    const marked=flag=>scoring.every(r=>typeof r[flag]==='boolean')?[sum(scoring.filter(r=>r[flag]),'points'),points]:null;
    p.styleShots={fieldAttempts:field.length,located:located.length,
     nearRim:located.filter(r=>r.type.startsWith('2')&&Math.hypot(r.x,r.y)<=200).length,
@@ -121,6 +122,7 @@ function buildGame(box,points,pbp,{teamDna=false}={}){
  const events=rawEvents.sort((a,b)=>a.period-b.period||(a.type==='BP'?-1:b.type==='BP'?1:0)||(a.seq-b.seq));
  const end=events.filter(e=>e.type==='EG').at(-1)?.at;
  if(!end||end<2400)return people;
+ const ledger=observeLineups?.(box,pbp,teams,people);
  const ids=new Set();
  function group(t){const lineup=[...t.active].sort(),k=lineup.join('|');return t.groups[k]||(t.groups[k]={players:lineup,seconds:0,points:{}});}
  function advance(t,at){
@@ -135,6 +137,7 @@ function buildGame(box,points,pbp,{teamDna=false}={}){
   // Only substitutions and period boundaries can change who owns elapsed time.
   // Missing clocks on other events do not invalidate otherwise reconciled minutes.
   if(e.type==='BP'||e.type==='EP'||e.type==='EG')Object.values(teams).forEach(team=>advance(team,e.at));
+  ledger?.track(e,code,id);
   if(!t)continue;
   if(e.type==='IN'||e.type==='OUT')advance(t,e.at);
   if(e.type==='IN'){if(!people[id]||people[id].teamCode!==code||t.active.has(id))t.valid=false;t.active.add(id);}
@@ -154,6 +157,7 @@ function buildGame(box,points,pbp,{teamDna=false}={}){
    p.lineups=Object.values(t.groups).filter(g=>g.players.includes(p.id)).map(g=>({teammates:g.players.filter(id=>id!==p.id).map(id=>({id,name:people[id].name})),minutes:t.timing&&list.every(q=>n(q.stats.timePlayed)!==null&&Math.abs((t.seconds[q.id]||0)-n(q.stats.timePlayed))<=3)?g.seconds/60:null,points:g.points[p.id]||0}));
   }
  }
+ ledger?.finish(end);
  return people;
 }
 function attacks(games){

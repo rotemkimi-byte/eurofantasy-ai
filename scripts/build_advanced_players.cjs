@@ -1,6 +1,7 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
 const C=require('../advanced-player-core.js');
+const DnaEvents=require('./build_player_dna_events.cjs');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'data/advanced-players.json');
 const teamOut=path.join(root,'data/team-dna-events.json');
 const read=(p,fallback)=>{try{return JSON.parse(fs.readFileSync(p,'utf8'))}catch{return fallback}};
@@ -15,11 +16,12 @@ async function main(){
  const old=read(out,{games:{}}),codes=[...info.keys()].sort((a,b)=>Date.parse(info.get(b).date)-Date.parse(info.get(a).date));
  const savedTeam=read(teamOut,{}),oldTeam=savedTeam.season==='E2026'?savedTeam.games||{}:{};
  const teamEvents={season:'E2026',games:{}};
+ const priorDna=DnaEvents.previous(),dna=DnaEvents.empty();
  const result={schema:'advanced-players-v1',season:'E2026',updated_at:new Date().toISOString(),source:'https://live.euroleague.net/',games:{},warnings:[]};
  let at=0;
  async function worker(){while(at<codes.length){const i=at++,code=codes[i],meta=info.get(code);
-  if(i>=6&&old.schema==='advanced-players-v1'&&old.games?.[code]?.eventsFetched&&old.games[code].styleVersion===1&&old.games[code].lineupTimingVersion===2&&oldTeam[code]?.date===meta.date){
-   result.games[code]=old.games[code];teamEvents.games[code]=oldTeam[code];continue;
+  if(i>=6&&old.schema==='advanced-players-v1'&&old.games?.[code]?.eventsFetched&&old.games[code].styleVersion===1&&old.games[code].lineupTimingVersion===2&&oldTeam[code]?.date===meta.date&&priorDna.games[code]?.date===meta.date){
+   result.games[code]=old.games[code];teamEvents.games[code]=oldTeam[code];dna.games[code]=priorDna.games[code];continue;
   }
   const box=read(path.join(root,'data/backtest/cache/E2026-'+code+'-stats.json'),null);
   if(!box){result.warnings.push('Missing box score '+code);continue;}
@@ -28,7 +30,8 @@ async function main(){
   const points=fetched[0].status==='fulfilled'?fetched[0].value:null,pbp=fetched[1].status==='fulfilled'?fetched[1].value:null;
   const hasPoints=!!points?.Rows?.length,hasPbp=pbp?.Live===false;
   const previous=old.games?.[code];
-  const players=C.buildGame(box,points,pbp,{teamDna:true});
+  const {players,data}=DnaEvents.game(box,points,pbp,meta,priorDna.games[code],{teamDna:true});
+  dna.games[code]=data;
   // Either upstream feed can be rate-limited independently. Retain the verified
   // fields for that feed while accepting newly verified fields from the other.
   const priorPlayers=previous?.players||{};
@@ -70,6 +73,7 @@ async function main(){
  if(!Object.keys(result.games).length)throw Error('No advanced games; preserving previous dataset');
  fs.writeFileSync(out,JSON.stringify(result)+'\n');
  fs.writeFileSync(teamOut,JSON.stringify(teamEvents)+'\n');
+ DnaEvents.save(dna);
  const all=Object.values(result.games).flatMap(g=>Object.values(g.players)).filter(p=>p.minutes>0);
  console.log(JSON.stringify({games:Object.keys(result.games).length,appearances:all.length,shots:all.filter(p=>p.shotCoverage).length,lineups:all.filter(p=>p.lineupCoverage).length,warnings:result.warnings.length}));
 }

@@ -70,3 +70,47 @@ for(const p of all){
  for(const [id,s] of Object.entries(stats))assert.ok(s.value===null||Number.isFinite(s.value),p.name+' '+id);
 }
 console.log('Player DNA formulas, coverage, pregame cutoffs, 80 rows and official PIR reconciliation across '+validated+' appearances passed.');
+
+const help=require('../dna-metric-explanations.js');
+const dnaEvents=require('../data/player-dna-events.json');
+const enriched=M.seasonContext(official,advanced,Date.now(),{dnaEvents});
+const enrichedRecord=enriched.players.get(record.id);
+const enrichedReport=M.summarize({...enrichedRecord,team:record.team},enriched);
+const rivalCoverage=M.buildRivals(enriched);
+assert.equal(Object.keys(help.rows).length,M.catalog.length+M.addedMetrics.length);
+for(const spec of [...M.catalog,...M.addedMetrics]){
+ assert.ok(help.rows[spec.id].slice(0,4).every(t=>typeof t==='string'&&t.length>0),spec.id);
+ assert.ok(help.method(spec).length>20,spec.id);
+ assert.ok(help.reason(spec,{value:null},{games:[{}]},'rival')?.length>10,spec.id);
+}
+assert.ok(enrichedReport.shotGames>=report.shotGames);
+assert.ok([...rivalCoverage.values()].every(r=>r.covered.length>=2));
+const full=enrichedReport.games.filter(g=>g.onCourt?.[0]?.person.assistances!==undefined);
+assert.ok(full.length);
+const entries=full.flatMap(g=>g.onCourt);
+const assisted=entries.reduce((n,l)=>n+l.person.assistances,0);
+const baskets=entries.reduce((n,l)=>n+l.own.fieldGoalsMade2+l.own.fieldGoalsMade3-l.person.fieldGoalsMade2-l.person.fieldGoalsMade3,0);
+near(enrichedReport.stats.astPct.value,100*assisted/baskets);
+assert.equal(enrichedReport.stats.astPct.count,full.length);
+for(const g of enrichedRecord.games.filter(g=>g.onCourt)){
+ const {onCourt}=g;
+ assert.ok(Math.abs(onCourt.reduce((n,l)=>n+l.seconds,0)-g.minutes*60)<=3);
+ for(const k of dnaEvents.fields.filter(k=>Number.isFinite(onCourt[0].person[k]))){
+  assert.equal(onCourt.reduce((n,l)=>n+l.person[k],0),g.stats[k],k+' in game '+g.gameCode);
+ }
+}
+const samples=new Map();
+for(const p of enriched.players.values()){
+ const played=p.games.find(g=>g.minutes>0);
+ if(!played)continue;
+ const r=M.summarize({...p,team:played.team},enriched);
+ for(const {id} of M.addedMetrics)if(Number.isFinite(r.stats[id].value))samples.set(id,(samples.get(id)||0)+1);
+}
+assert.equal(samples.size,M.addedMetrics.length);
+const polluted=M.seasonContext(official,advanced,Date.now(),{dnaEvents:{...dnaEvents,season:'E2025'}});
+assert.ok(polluted.players.get(record.id).games.every(g=>!g.onCourt&&!g.extraZone));
+assert.ok(M.seasonContext(official,advanced,asOf,{pregame:true,dnaEvents}).players.get(record.id).games.every(g=>!g.onCourt&&!g.extraZone));
+const zeroRebound=enrichedReport.games.find(g=>g.onCourt?.[0]?.person.offensiveRebounds!==undefined&&g.stats.offensiveRebounds===0&&
+ g.onCourt.some(l=>l.own.offensiveRebounds+l.rival.defensiveRebounds>0));
+if(zeroRebound)assert.equal(M.summarize(record,enriched,{gameCode:zeroRebound.gameCode}).stats.orbPct.value,0);
+console.log('Player DNA explanations and reconciled event coverage:',Object.fromEntries(samples));

@@ -1,8 +1,8 @@
 (()=>{
 'use strict';
-const C=window.DnaCore,T=window.TeamMetricsCore,S=window.SeasonGamePicker,M=window.PlayerDnaMetrics;
+const C=window.DnaCore,T=window.TeamMetricsCore,S=window.SeasonGamePicker,M=window.PlayerDnaMetrics,H=window.PlayerDnaExplanations;
 const nav=document.querySelector('nav.tabs'),main=document.querySelector('main');
-if(!C||!T||!S||!M||!nav||!main)return;
+if(!C||!T||!S||!M||!H||!nav||!main)return;
 
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const decimal=new Intl.NumberFormat('he-IL',{maximumFractionDigits:1});
@@ -195,10 +195,11 @@ async function load(force=false){
  }
  pending=(async()=>{
   try{
-   const [official,events,schedule,market,media,teamEvents]=await Promise.all([
+   const [official,events,schedule,market,media,teamEvents,dnaEvents]=await Promise.all([
     json('official-offense.json',force),json('advanced-players.json',force).catch(()=>null),
     json('context/E2026-schedule.json').catch(()=>null),json('players.json',force).catch(()=>null),
-    json('player-media.json').catch(()=>null),json('team-dna-events.json',force).catch(()=>null)
+    json('player-media.json').catch(()=>null),json('team-dna-events.json',force).catch(()=>null),
+    json('player-dna-events.json',force).catch(()=>null)
    ]);
    if(official.season!==C.season||!official.players||!official.teamResults?.length)throw Error('No season data');
    const built=C.build(official,events?.season===C.season?events:null,T,Date.now(),teamEvents);
@@ -207,7 +208,7 @@ async function load(force=false){
    const neutral=new Set(scheduleGames.map(g=>String(g.gameCode)));
    for(const p of built.players)for(const g of p.games)g.neutral=neutral.has(String(g.gameCode));
    for(const t of built.teams)for(const g of t.games)g.neutral=neutral.has(String(g.code));
-   const dna=M.seasonContext({...official,teamResults:official.teamResults.map(g=>({...g,neutral:neutral.has(String(g.gameCode))}))},events);
+   const dna=M.seasonContext({...official,teamResults:official.teamResults.map(g=>({...g,neutral:neutral.has(String(g.gameCode))}))},events,Date.now(),{dnaEvents});
    model={...built,players:roster(built.players,market),dna};
    playerAnalysisCache=null;
    if(media?.season===C.season)playerPhotos=media.players||{};
@@ -540,10 +541,10 @@ function selectRadarAxis(event){
 }
 player.$('[data-dna-results]').addEventListener('click',selectRadarAxis);
 
-const metricById=new Map(M.catalog.map(m=>[m.id,m]));
+const metricById=new Map([...M.catalog,...M.addedMetrics].map(m=>[m.id,m]));
 const insideRows=new Set(Object.values(M.detailRows).flat());
 const suffix=unit=>unit==='%'?'%':unit?' '+unit:'';
-const expandedNumber=(v,unit)=>v==null?'אין מספיק נתונים':fmt(v)+suffix(unit);
+const expandedNumber=(v,unit)=>v==null?'נתון לא זמין':fmt(v)+suffix(unit);
 const styleOnly=new Set(['usage','three','rim','fastbreak','secondChance']);
 const barSpecs=[
  ...C.playerMetrics.map(([id,label,unit,source,help])=>({id,label,unit:unitLabels[unit].trim(),source:sources[source],help,
@@ -563,20 +564,20 @@ function rankBand(rank,direction){
  const favorable=direction<0?100-rank:rank;
  return favorable>=75?'strong':favorable<=25?'weak':'middle';
 }
-function metricValue(stat,rank,spec,{name,side='',advantage=0,subject='עמדה'}={}){
+function metricValue(stat,rank,spec,{name,side='',advantage=0,subject='עמדה',reason}={}){
  const visible=stat?.value!=null;
  const sample=stat?.total>0&&stat.count<=stat.total?`${stat.count} מתוך ${stat.total} משחקים`:stat?.count?`${stat.count} משחקים במדגם`:'';
  const [meaning,tone]=interpretations[rankBand(rank,spec.direction)];
  return `<div class="dna-expanded-value ${side} ${advantage>0?'dna-ahead':advantage<0?'dna-behind':side?'dna-even':''}">
   ${name?`<small class="dna-value-person"><bdi>${esc(name)}</bdi></small>`:''}
-  <div class="dna-raw"><strong><bdi>${visible?fmt(stat.value):'אין מספיק נתונים'}</bdi></strong>
+  <div class="dna-raw"><strong><bdi>${visible?fmt(stat.value):reason?'—':'אין מספיק נתונים'}</bdi></strong>
   ${visible&&spec.unit?`<span>${esc(spec.unit)}</span>`:''}</div>
   ${Number.isFinite(rank)?`<div class="dna-rank-line"><bdi>${rank} / 100</bdi><span>אחוזון ${subject}</span></div>
    ${!side||advantage?`<div class="dna-rank-track ${tone}" aria-hidden="true"><i style="--dna-width:${rank}%"></i></div>`:''}
-   <small>${meaning}</small>`:`<small>${visible?'ללא אחוזון זמין':'אין ערך בטווח שנבחר'}</small>`}
+   <small>${meaning}</small>`:`<small>${visible?'ללא אחוזון זמין':esc(reason||'אין ערך בטווח שנבחר')}</small>`}
   ${sample?`<small>${sample}</small>`:''}</div>`;
 }
-function metricPair(spec,stat,rank,comparison,subject){
+function metricPair(spec,stat,rank,comparison,subject,reasons={}){
  const {stat:other,rank:otherRank,name,ownName}=comparison||{};
  const paired=!!comparison;
  const gap=stat?.value!=null&&other?.value!=null?stat.value-other.value:null;
@@ -584,7 +585,7 @@ function metricPair(spec,stat,rank,comparison,subject){
  const advantage=gap==null||tied?0:Math.sign((spec.direction||1)*gap);
  const unit=spec.unit==='%'?'נק׳ אחוז':spec.unit;
  return `<div class="dna-expanded-cells${paired?' dna-two-cells':''}">
-  ${metricValue(stat,rank,spec,{name:ownName,side:paired?'dna-own':'',advantage,subject})}
+  ${metricValue(stat,rank,spec,{name:ownName,side:paired?'dna-own':'',advantage,subject,reason:reasons.own})}
   ${paired?metricValue(other,otherRank,spec,{name,side:'dna-other',advantage:-advantage}):''}</div>
   ${paired&&gap!=null?`<small class="dna-metric-gap">${tied?'שוויון בערכים המוצגים':`פער <bdi>${fmt(Math.abs(gap))}</bdi> ${esc(unit)}${advantage?` · ${spec.direction?'יתרון ל־':'ערך גבוה יותר אצל '}<bdi>${esc(advantage>0?ownName:name)}</bdi>`:''}`}</small>`:''}`;
 }
@@ -639,34 +640,99 @@ const categoryMeta={
  lineups:['▦','תפוקה בחמישיות ועם שחקנים שונים'],
  summary:['≋','יציבות ותלות בדקות ובסגנון']
 };
+const playerDnaResults=player.$('[data-dna-results]');
+playerDnaResults.addEventListener('click',event=>{
+ const button=event.target.closest('.dna-explain-toggle');
+ if(!button)return;
+ event.preventDefault();
+ const row=button.closest('.dna-expanded-row');
+ row.open=!row.open;
+ button.setAttribute('aria-expanded',String(row.open));
+});
+playerDnaResults.addEventListener('toggle',event=>{
+ const row=event.target;
+ if(!row.matches('.dna-expanded-groups .dna-expanded-row'))return;
+ row.querySelector(':scope > summary .dna-explain-toggle').setAttribute('aria-expanded',String(row.open));
+},true);
+
+function explanation(spec,stat,rank,reason,detailsId,name,opponent){
+ const {id,source,unit,group}=spec;
+ const [measure,reading,fantasy,hypothetical]=H.rows[id];
+ const visible=Number.isFinite(stat?.value);
+ const type=visible?H.type(id):'נתון לא זמין';
+ const sample=id==='projection'&&visible?0:stat?.count??0;
+ const partial=visible&&sample>0&&sample<stat.total;
+ const coverage=id==='projection'&&visible?'תחזית למשחק אחד':sample
+  ?partial?`כיסוי חלקי · ${sample} מתוך ${stat.total} משחקים`:`${sample} משחקים במדגם`
+  :'0 משחקים עם ערך בטווח';
+ const quality=id==='projection'&&visible?'התחזית מבוססת על נתוני המודל הפעיל':
+  !visible?'אין בסיס להערכת ביטחון':type==='אומדן'?'קלט מאומת · התוצאה תלויה בהנחות האומדן':
+  partial?'קלט מאומת בחלק מהטווח · הביטחון בהכללה מוגבל':
+  sample<3?'מדגם קטן · הביטחון בהכללה מוגבל':'קלט מאומת · גודל המדגם מתואר למעלה';
+ const rivalRank=id==='matchFit'||id==='pirWeakness';
+ const explanationRank=id==='matchFit'&&visible?stat.value:rank;
+ const rankText=Number.isFinite(explanationRank)
+  ?`אחוזון ${explanationRank} מול ${rivalRank?'יריבות כשירות במדגם':'שחקנים כשירים באותה עמדה'}. הוא מציין כמה מהערכים נמוכים מהערך הזה, עם חצי משקל לערכים זהים. האחוזון עולה עם הערך גם כשהעדיפות היא לערך נמוך.`
+  :rivalRank?'אחוזון היריבה דורש לפחות שש יריבות כשירות להשוואה.':
+   group==='opponent'?'המדד מוצג כערך של היריבה בטווח. השורה הזו אינה מדורגת באחוזון.':
+   id==='projection'?'התחזית מוצגת ביחידות PIR למשחק.':
+   id.startsWith('lineup')&&id!=='lineupRate'?'הערך מתייחס לחמישייה המסוימת. אין דירוג אחוזון להשוואה בין חמישיות.':
+   'אחוזון עמדה זמין כשיש לפחות 6 שחקנים כשירים. נדרשות 3 הופעות, 45 דקות ובמדדי קליעה גם מינימום ניסיונות.';
+ const subject=rivalRank||group==='opponent'?opponent:name;
+ const example=visible
+  ?`<bdi>${esc(subject)}</bdi> · <bdi>${esc(expandedNumber(stat.value,unit))}</bdi>. ${esc(H.live[id]||measure)}`
+  :`<strong>דוגמה בלבד</strong> · <bdi>${esc(hypothetical)}</bdi>. ${esc(measure)}`;
+ return `<div class="dna-metric-explanation" id="${detailsId}">
+  <dl class="dna-explanation-meta">
+   <div><dt>מקור</dt><dd>${esc(source)}</dd></div>
+   <div><dt>סוג הנתון</dt><dd>${type}</dd></div>
+   <div><dt>מדגם</dt><dd>${coverage}</dd></div>
+   <div><dt>ביטחון</dt><dd>${quality}</dd></div>
+  </dl>
+  <p><strong>מה המדד מודד</strong> ${esc(measure)}</p>
+  <p><strong>איך הוא מחושב</strong> ${esc(H.method(spec))}</p>
+  <p><strong>איך קוראים את התוצאה</strong> ${esc(reading)}</p>
+  <p><strong>מה המשמעות בפנטזי</strong> ${esc(fantasy)}</p>
+  <p><strong>${visible?'דוגמה מהנתונים':'דוגמה היפותטית'}</strong> ${example}</p>
+  <p class="dna-explanation-rank">${esc(rankText)}</p>
+  ${reason?`<p><strong>זמינות הנתון</strong> ${esc(reason)}</p>`:''}
+ </div>`;
+}
 function expandedMetrics(report,ranks,{other,otherRanks,opponent,compareName,ownName,compact=false}={}){
  const metric=(spec,child=false)=>{
-  const {id,group,label,source,help,unit}=spec,stat=report.stats[id];
+  const {id,group,label,source,unit}=spec,stat=report.stats[id];
   const compare=other&&group!=='opponent'&&!['matchFit','projection'].includes(id)
    ?{stat:other.stats[id],rank:otherRanks?.[id],name:compareName,ownName}:null;
   const subject=id==='matchFit'||id==='pirWeakness'?'בין יריבות':'עמדה';
+  const rank=stat?.rank??ranks?.[id];
+  const reasons={
+   own:stat?.value==null?H.reason(spec,stat,report,opponent):null,
+   other:compare&&compare.stat?.value==null?H.reason(spec,compare.stat,other,opponent):null
+  };
+  const detailsId='dna-explanation-'+id;
   const detailItems=(rows,name)=>rows?.length?`<dl>${name?`<dt><bdi>${esc(name)}</bdi></dt><dd></dd>`:''}
    ${rows.map(([l,v,u])=>`<dt><bdi>${esc(l)}</bdi></dt><dd><bdi>${esc(expandedNumber(v,u??unit))}</bdi></dd>`).join('')}</dl>`:'';
   const ratioHint=id==='rebRatio'&&stat?.value!=null?`<p><bdi>${fmt(stat.value)}</bdi> ריבאונדי התקפה על כל ריבאונד הגנה אחד של השחקן.</p>`:'';
-  const more=`<div class="dna-expanded-help"><p>${help}</p>${ratioHint}${detailItems(stat?.details,compare&&ownName)}
+  const more=`<div class="dna-expanded-help">${explanation(spec,stat,rank,reasons.own,detailsId,ownName,opponent)}${ratioHint}${detailItems(stat?.details,compare&&ownName)}
+   ${compare?`<p class="dna-explanation-rank"><bdi>${esc(compareName)}</bdi> · ${esc(compare.stat?.value!=null?expandedNumber(compare.stat.value,unit):reasons.other)}</p>`:''}
    ${detailItems(compare?.stat?.details,compareName)}
    ${(M.detailRows[id]||[]).map(key=>metric(metricById.get(key),true)).join('')}</div>`;
   return `<details class="dna-expanded-row${child?' dna-submetric':''}" data-metric="${id}"><summary>
-   <span class="dna-expanded-name"><b>${label}</b><small>${source}${stat?.context?` · מול <bdi>${esc(stat.context)}</bdi>`:''}</small></span>
-   ${metricPair(spec,stat,stat?.rank??ranks?.[id],compare,subject)}
+   <span class="dna-expanded-name"><b>${label}</b><small>${source}${stat?.context?` · מול <bdi>${esc(stat.context)}</bdi>`:''}</small>
+   <button type="button" class="dna-explain-toggle" aria-label="הסבר על ${esc(label)}" aria-expanded="false" aria-controls="${detailsId}"><i aria-hidden="true">i</i>הסבר</button></span>
+   ${metricPair(spec,stat,stat?.rank??ranks?.[id],compare,subject,reasons)}
    </summary>${more}</details>`;
  };
  return `<section class="dna-expanded-groups${compact?' dna-compact-metrics':''}"><h4>ניתוח לפי קטגוריות</h4>
  ${Object.entries(M.groups).map(([group,label])=>{
   if(group==='opponent'&&!opponent&&!ownName)return '';
-  const rows=M.catalog.filter(m=>m.group===group&&!insideRows.has(m.id));
+  const rows=[...M.catalog,...M.addedMetrics].filter(m=>m.group===group&&!insideRows.has(m.id));
   const [icon,description]=categoryMeta[group];
   return `<details class="dna-category" data-dna-group="${group}"><summary>
    <span class="dna-category-icon" aria-hidden="true">${icon}</span>
    <span class="dna-category-title"><b>${label}</b><small>${description}${group==='opponent'?` · <bdi>${esc(opponent||'אין יריבה מזוהה כרגע')}</bdi>`:''}</small></span>
    ${metricAction('הצג מדדים','סגור מדדים')}</summary>
-   <div class="dna-category-grid">${rows.map(m=>metric(m)).join('')}
-   ${M.missing.filter(([g])=>g===group).map(([,name,why])=>`<details class="dna-unavailable"><summary><b>${name}</b><small>אין מספיק נתונים</small></summary><p>${why}</p></details>`).join('')}</div>
+   <div class="dna-category-grid">${rows.map(m=>metric(m)).join('')}</div>
   </details>`;
  }).join('')}</section>`;
 }

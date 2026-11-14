@@ -18,10 +18,12 @@ const server=http.createServer((req,res)=>{
  const browser=await engine.launch({headless:true,executablePath:process.env.CHROMIUM_PATH});
  try{
   const widths=[375,390,430,1280];
+  const page=await browser.newPage();
   for(const width of widths){
-   const page=await browser.newPage({viewport:{width,height:900}});
+   await page.setViewportSize({width,height:900});
    const errors=[];
-   page.on('pageerror',error=>errors.push(error.message));
+   const recordError=error=>errors.push(error.message);
+   page.on('pageerror',recordError);
    if(process.env.DNA_OLD_CSS){
     await page.route('**/dna-tools.css?*',route=>route.fulfill({path:process.env.DNA_OLD_CSS,contentType:'text/css'}));
    }
@@ -71,12 +73,44 @@ const server=http.createServer((req,res)=>{
    await page.waitForFunction(()=>window.__weightedForecastReady===true,null,{timeout:80000});
    const projection=await panel.locator('[data-metric=projection] .dna-expanded-value .dna-raw').textContent();
    assert.match(projection,/PIR/);
-   for(const group of ['shooting','creation','transition','boards']){
-    const category=panel.locator(`[data-dna-group="${group}"]`);
+   const categories=panel.locator('.dna-expanded-groups > .dna-category');
+   assert.equal(await categories.count(),11);
+   assert.equal(await panel.locator('.dna-explain-toggle').count(),82);
+   assert.equal(await panel.locator('.dna-explain-toggle:not(.dna-expanded-groups *)').count(),0);
+   const nav=page.locator('#efNavigation');
+   const menuPosition=await nav.evaluate(el=>getComputedStyle(el).position);
+   assert.equal(menuPosition,width<=760?'relative':'fixed');
+   for(const category of await categories.all()){
     const toggle=category.locator(':scope > summary');
     assert.equal(await toggle.getByText('הצג מדדים').isVisible(),true);
     await toggle.getByText('הצג מדדים').click();
     assert.equal(await toggle.getByText('סגור מדדים').isVisible(),true);
+    const checked=await category.evaluate(el=>{
+     const box=el.getBoundingClientRect();
+     return [...el.querySelectorAll('.dna-category-grid > details')].every(row=>{
+      const button=row.querySelector('button');
+      const b=button.getBoundingClientRect(),v=row.querySelector('.dna-expanded-cells').getBoundingClientRect();
+      return b.width>=44&&b.height>=44&&b.left>=box.left&&b.right<=box.right&&
+       (b.bottom<=v.top||b.top>=v.bottom||b.right<=v.left||b.left>=v.right);
+     });
+    });
+    assert.equal(checked,true,'Explanation buttons overlap metric content');
+    // Exercise every disclosure, including the details nested under related metrics.
+    const exercised=await category.evaluate(el=>{
+     const moves=[];
+     function test(row){
+      const button=row.querySelector(':scope > summary button');
+      const body=document.getElementById(button.getAttribute('aria-controls'));
+      button.click();
+      if(!row.open||button.getAttribute('aria-expanded')!=='true'||!body.checkVisibility())return false;
+      moves.push(row.dataset.metric);
+      for(const child of row.querySelectorAll(':scope > .dna-expanded-help > .dna-submetric'))if(!test(child))return false;
+      button.click();
+      return !row.open&&button.getAttribute('aria-expanded')==='false';
+     }
+     return [...el.querySelectorAll('.dna-category-grid > details')].every(test)?moves:null;
+    });
+    assert.ok(exercised?.length);
     await toggle.locator('.dna-category-title').click();
     assert.equal(await category.getAttribute('open'),null);
    }
@@ -91,7 +125,11 @@ const server=http.createServer((req,res)=>{
    });
    assert.ok(bounds.sideBySide&&bounds.height<=112,JSON.stringify(bounds));
    assert.equal(await panel.getByText('מה זה אומר?',{exact:true}).count(),0);
-   await card.locator(':scope > summary').click();
+   const help=card.locator(':scope > summary .dna-explain-toggle');
+   await help.focus();
+   await help.press('Enter');
+   assert.equal(await help.getAttribute('aria-expanded'),'true');
+   assert.equal(await nav.evaluate(el=>getComputedStyle(el).position),menuPosition);
    assert.ok(await card.locator(':scope > .dna-expanded-help').isVisible());
    if(process.env.DNA_SCREENSHOT_DIR&&width===390){
     await boards.screenshot({path:path.join(process.env.DNA_SCREENSHOT_DIR,'compact-boards.png')});
@@ -100,6 +138,10 @@ const server=http.createServer((req,res)=>{
    await shooting.locator(':scope > summary').click();
    await shooting.locator('[data-metric=ts] > summary').click();
    assert.match(await shooting.locator('[data-metric=ts] .dna-expanded-value').textContent(),/%/);
+   assert.match(await shooting.locator('#dna-explanation-ts').textContent(),/איך הוא מחושב/);
+   const lineup=panel.locator('[data-metric=lineupPir]');
+   assert.match(await lineup.locator('.dna-metric-explanation').textContent(),/איך קוראים את התוצאה/);
+   if(width===390&&process.env.DNA_SCREENSHOT_DIR)await panel.locator('.dna-expanded-groups > h4').screenshot({path:path.join(process.env.DNA_SCREENSHOT_DIR,'heading.png')});
    if(process.env.DNA_SCREENSHOT_DIR&&width===390){
     await panel.locator('.dna-radar-card').screenshot({path:path.join(process.env.DNA_SCREENSHOT_DIR,'radar.png')});
     await shooting.screenshot({path:path.join(process.env.DNA_SCREENSHOT_DIR,'category.png')});
@@ -163,7 +205,7 @@ const server=http.createServer((req,res)=>{
    assert.equal(await panel.locator('.dna-history-table').count(),1);
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
    assert.deepEqual(errors,[]);
-   await page.close();
+   page.off('pageerror',recordError);
   }
   console.log('Player DNA passed at '+widths.join(', ')+'px'+(production?' on GitHub Pages.':' locally.'));
  }finally{await browser.close();server.close();}

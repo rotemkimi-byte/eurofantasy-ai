@@ -524,3 +524,30 @@ html.ef-redesign .dna-row summary{padding:12px}
 #playerDna .dna-more-bars>summary{display:flex;min-height:44px;padding:6px 0;list-style:none}
 #playerDna .dna-more-bars>summary::-webkit-details-marker{display:none}
 .dna-more-bars .dna-bars-grid{margin-block-start:3px}
+
+#playerDna .dna-explain-toggle{
+ display:inline-flex;align-items:center;justify-self:start;justify-content:center;gap:5px;
+ min-block-size:44px;min-inline-size:58px;padding:0 8px;max-inline-size:100%;
+ color:var(--dna-primary);border:1px solid var(--line);border-radius:8px;
+ background:var(--card2);font:inherit;font-size:12px;font-weight:750;white-space:nowrap;cursor:pointer
+}
+#playerDna .dna-explain-toggle i{
+ display:grid;place-items:center;inline-size:13px;block-size:13px;border:1px solid currentColor;
+ border-radius:50%;font:750 10px/1 system-ui;flex:none
+}
+#playerDna .dna-explain-toggle:is([aria-expanded="true"],:hover){border-color:currentColor}
+#playerDna .dna-explain-toggle:focus-visible{outline:2px solid var(--dna-primary);outline-offset:2px}
+.dna-metric-explanation{
+ border-block-start:1px solid var(--line);padding-block:8px 2px;color:var(--text);overflow-wrap:anywhere
+}
+.dna-expanded-row[open]>.dna-expanded-help>.dna-metric-explanation{animation:dna-reveal .17s ease-out}
+@keyframes dna-reveal{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){
+ .dna-expanded-row[open]>.dna-expanded-help>.dna-metric-explanation{animation:none}
+}
+#playerDna .dna-explanation-meta{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 9px}
+.dna-explanation-meta>div{border:1px solid var(--line);border-radius:6px;padding:3px 7px;font-size:11px;min-inline-size:0}
+.dna-explanation-meta dt,.dna-explanation-meta dd{display:inline}
+.dna-explanation-meta dt{color:var(--dna-muted);margin-inline-end:4px}
+.dna-metric-explanation p>strong:first-child{display:block}
+.dna-explanation-rank{color:var(--dna-muted)}
