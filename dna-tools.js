@@ -1,8 +1,8 @@
 (()=>{
 'use strict';
-const C=window.DnaCore,T=window.TeamMetricsCore,S=window.SeasonGamePicker;
+const C=window.DnaCore,T=window.TeamMetricsCore,S=window.SeasonGamePicker,M=window.PlayerDnaMetrics;
 const nav=document.querySelector('nav.tabs'),main=document.querySelector('main');
-if(!C||!T||!S||!nav||!main)return;
+if(!C||!T||!S||!M||!nav||!main)return;
 
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const decimal=new Intl.NumberFormat('he-IL',{maximumFractionDigits:1});
@@ -24,7 +24,8 @@ const option=(value,name)=>new Option(name,value);
 const empty=message=>'<p class="dna-empty">'+esc(message)+'</p>';
 let model=null,fixtures=[],pending=null,lastLoad=0;
 let teamGames=[],teamGame='',playerGame='',playerView='profile',manualPlayer=false;
-let playerPhotos={},clubCrests=new Map();
+let playerPhotos={},clubCrests=new Map(),playerVenue='all';
+let playerAnalysisCache;
 
 async function json(path,force=false){
  if(window.loadGameData)return window.loadGameData(path,force);
@@ -93,6 +94,11 @@ const player=panel('playerDna','DNA שחקן','איך השחקן מייצר תפ
   <label data-player-rival-label hidden>מול קבוצה <select data-player-rival></select></label>
  </div>
  <div data-range></div>
+ <div class="dna-switch dna-venue" data-player-venue role="group" aria-label="בית וחוץ">
+  <button type="button" data-venue="all" aria-pressed="true">הכול</button>
+  <button type="button" data-venue="home" aria-pressed="false">בית</button>
+  <button type="button" data-venue="away" aria-pressed="false">חוץ</button>
+ </div>
  <div class="dna-switch" data-player-switch role="group" aria-label="השוואת סגנון">
   <button type="button" data-player-view="profile" aria-pressed="true">פרופיל שחקן</button>
   <button type="button" data-player-view="player" aria-pressed="false">מול שחקן</button>
@@ -119,7 +125,7 @@ let view='offense';
 const playerRange=S.picker(player.$('[data-range]'),player.$('[data-past-games]'),changed=>{
  if(changed){window.playerToolSelection?.set(selectedPlayer()?.name,playerRange.value);selectPlayerRivals();}
  paint();
-});
+},[['0','כל העונה'],['5','5 משחקים'],['3','3 משחקים'],['1','משחק אחרון'],['history','משחקי עבר']]);
 const teamRange=S.picker(teams.$('[data-range]'),teams.$('[data-past-games]'),paint);
 
 function selectPlayers(){
@@ -197,7 +203,13 @@ async function load(force=false){
    if(official.season!==C.season||!official.players||!official.teamResults?.length)throw Error('No season data');
    const built=C.build(official,events?.season===C.season?events:null,T);
    if(!built.teams.length)throw Error('No team records');
-   model={...built,players:roster(built.players,market)};
+   const scheduleGames=(schedule?.data||[]).filter(g=>g.season?.code===C.season&&g.isNeutralVenue);
+   const neutral=new Set(scheduleGames.map(g=>String(g.gameCode)));
+   for(const p of built.players)for(const g of p.games)g.neutral=neutral.has(String(g.gameCode));
+   for(const t of built.teams)for(const g of t.games)g.neutral=neutral.has(String(g.code));
+   const dna=M.seasonContext({...official,teamResults:official.teamResults.map(g=>({...g,neutral:neutral.has(String(g.gameCode))}))},events);
+   model={...built,players:roster(built.players,market),dna};
+   playerAnalysisCache=null;
    if(media?.season===C.season)playerPhotos=media.players||{};
    for(const g of schedule?.data||[]){
     for(const club of [g.local?.club,g.road?.club]){
@@ -297,7 +309,7 @@ function playerStyle(stats,ratings,position){
       <details class="dna-metric-method"><summary>${label}</summary><p>${help}</p></details>
       <small>${sources[source]}${ranked?' · '+stat.count+' / '+stat.total+' משחקים':''}</small>
       ${id==='usage'?'<small>התקפות הקבוצה שסיים בזריקה, בעונשין או באיבוד כשהיה על המגרש.</small>':''}
-     </th><td><bdi>${stat.value==null?'—':fmt(stat.value,unit)}</bdi></td>
+     </th><td><bdi>${stat.value==null?'אין מספיק נתונים':fmt(stat.value,unit)}</bdi></td>
      ${ranked?`<td>${rating==null?'<span class="dna-rank-missing" aria-label="ללא דירוג">—</span>':`<div class="dna-percentile">
       <bdi>${rating}</bdi><span class="dna-track" aria-hidden="true"><i style="--dna-width:${rating}%"></i></span></div>`}</td>`:''}</tr>`;
     }).join('')}</tbody>
@@ -325,7 +337,7 @@ function teamIndicator(side){
 function valueCell(stat,rating,unit,side,{league=false,singleGame=false,bar=rating,showRank=true,name}={}){
  const real=stat?.value!=null;
  const sample=league?(stat.count+' קבוצות במדגם'):(stat.count+' / '+stat.total+' משחקים');
- const display=real?fmt(stat.value,unit):'חסר נתון';
+ const display=real?fmt(stat.value,unit):'אין מספיק נתונים';
  return `<div class="dna-value ${side}">
   ${name?`<div class="dna-value-name"><bdi>${esc(name)}</bdi></div>`:''}
   <div class="dna-value-top"><strong>${teamIndicator(side)}<bdi>${esc(display)}</bdi></strong>${rating===null?'':`<bdi class="dna-rank">${rating}/100</bdi>`}</div>
@@ -374,6 +386,7 @@ function renderPlayerGame(out,record,games){
  const stats=C.summarize([game],C.playerMetrics);
  out.innerHTML=`${playerProfile(record,[game])}
  ${playerStyle(stats)}
+ ${expandedMetrics(M.summarize(record,model.dna,{gameCode:game.gameCode}),null)}
  <div class="dna-match"><span class="dna-kicker">משחק עבר · 2026/27</span>
  <h3>נתוני המשחק</h3>
  <p><bdi>${esc(game.team)}</bdi> מול <bdi>${esc(game.opponent)}</bdi> · <bdi>${fullDate.format(new Date(game.date))}</bdi></p>
@@ -387,20 +400,124 @@ function playerStyleComparison(record,gameLimit,rival){
  if(!opponent)return empty(againstTeam?'בחר קבוצה כדי להשוות סגנונות.':'בחר שחקן כדי להשוות סגנונות.');
  const metrics=againstTeam?sharedStyleMetrics:C.playerMetrics;
  const opponentName=againstTeam?opponent.team:opponent.name;
- const ownGames=C.select(record.seasonGames,gameLimit);
- const otherGames=C.select(againstTeam?opponent.games:opponent.seasonGames,gameLimit);
+ const ownGames=M.select(record.games,gameLimit,playerVenue);
+ const otherGames=M.select(opponent.games,gameLimit,playerVenue);
  const ownStats=C.summarize(ownGames,metrics),otherStats=C.summarize(otherGames,metrics);
  const biggest=metrics.filter(([id,,unit])=>unit==='%'&&ownStats[id].value!=null&&otherStats[id].value!=null)
   .map(([id,label])=>({label,gap:ownStats[id].value-otherStats[id].value}))
   .sort((a,b)=>Math.abs(b.gap)-Math.abs(a.gap))[0];
  return `<section class="dna-style-compare">
   <h4>השוואת סגנון</h4>
-  <p class="dna-explain">${againstTeam?'ההשוואה משתמשת בשיעורים שמחושבים באותו אופן לשחקן ולקבוצה. ':''}${gameLimit?'שלושת המשחקים האחרונים של כל צד.':'כל משחקי העונה הזמינים בטווח.'}</p>
+  <p class="dna-explain">${againstTeam?'ההשוואה משתמשת בשיעורים שמחושבים באותו אופן לשחקן ולקבוצה. ':''}${gameLimit?gameLimit+' ההופעות האחרונות של כל צד (לפי הזמינות).':'כל משחקי העונה הזמינים בטווח.'}</p>
   ${biggest&&fmt(biggest.gap)!==fmt(0)?`<p class="dna-gap-lead">הפער הגדול ביותר במדדי האחוזים · <strong>${biggest.label}</strong> · <bdi>${fmt(Math.abs(biggest.gap))}</bdi> נק׳ אחוז יותר אצל <bdi>${esc(biggest.gap>0?record.name:opponentName)}</bdi></p>`:''}
   ${againstTeam?legend(record.name,opponentName):''}
-  <div class="dna-chart">${comparisonRows(metrics,ownStats,otherStats,undefined,{highlightAdvantage:!againstTeam,singleGame:false,names:againstTeam?[]:[record.name,opponentName]})}</div>
+  <div class="dna-chart">${comparisonRows(metrics,ownStats,otherStats,undefined,{highlightAdvantage:!againstTeam,singleGame:false,names:[record.name,opponentName],playerComparison:!againstTeam})}</div>
  </section>`;
 }
+function buildPlayerAnalysis(options){
+ const {limit,venue}=options;
+ const base=new Map(),detail=new Map(),baseRanks=new Map(),detailRanks=new Map();
+ for(const p of model.players){
+  base.set(p,C.summarize(M.select(p.games,limit,venue),C.playerMetrics));
+  detail.set(p,M.summarize(p,model.dna,options));
+ }
+ const positions=new Map();
+ for(const p of model.players){
+  if(!positions.has(p.position))positions.set(p.position,[]);
+  positions.get(p.position).push(p);
+ }
+ for(const peers of positions.values()){
+  const benchmarks=Object.fromEntries(C.playerMetrics.map(([id])=>[id,C.benchmark(peers.map(p=>base.get(p)[id]),id,true)]));
+  const samples=Object.fromEntries(M.catalog.map(({id})=>[id,peers.map(p=>detail.get(p).stats[id])]));
+  for(const p of peers){
+   baseRanks.set(p,Object.fromEntries(C.playerMetrics.map(([id])=>[id,benchmarks[id].percentile(base.get(p)[id])])));
+   detailRanks.set(p,Object.fromEntries(M.catalog.map(({id})=>[id,M.rank(detail.get(p).stats[id],id,samples[id])])));
+  }
+ }
+ for(const id of ['defPir','defShare']){
+  const league=[...detail.values()].map(r=>r.stats[id]);
+  const mean=league.filter(stat=>stat.value!=null&&stat.count>=3&&stat.minutes>=45);
+  const leagueMean=mean.length?mean.reduce((sum,stat)=>sum+stat.value,0)/mean.length:null;
+  for(const r of detail.values()){
+   const stat=r.stats[id];
+   if(stat.value==null)continue;
+   stat.details=[...(stat.details||[]),['ממוצע ליגה',leagueMean,M.catalog.find(m=>m.id===id).unit],
+    ['אחוזון ליגה',M.rank(stat,id,league),'מתוך 100']];
+  }
+ }
+ playerAnalysisCache={...options,base,detail,baseRanks,detailRanks,rivals:new Map()};
+ return playerAnalysisCache;
+}
+
+const radarAxes=[
+ ['קליעה',['ts']],['שלשות',['threeAccuracy']],['צבע',['rimAccuracy']],['יצירת משחק',['assists']],
+ ['מתפרצות',['fastbreak']],['ריבאונד',['offRebound','defRebound']],['הגנה',['steals','blocks']],
+ ['סחיטת עבירות',['drawn']],['יציבות',['pirStability']],['יעילות',['pir40']]
+];
+function playerRadar(reports,record,compare){
+ const values=p=>radarAxes.map(([,ids])=>{
+  const ranks={...reports.baseRanks.get(p),...reports.detailRanks.get(p)};
+  const available=ids.map(id=>ranks[id]).filter(Number.isFinite);
+  return available.length===ids.length?available.reduce((a,b)=>a+b,0)/available.length:null;
+ });
+ const first=values(record),second=compare?values(compare):null;
+ const point=(i,scale)=>{const a=2*Math.PI*i/10-Math.PI/2;return [200+Math.cos(a)*112*scale,153+Math.sin(a)*112*scale].map(x=>x.toFixed(2)).join(',');};
+ const perimeter=scale=>radarAxes.map((_,i)=>point(i,scale)).join(' ');
+ const shapes=[.25,.5,.75,1].map(scale=>`<polygon points="${perimeter(scale)}"/>`).join('');
+ const line=(r,kind)=>{
+  const points=r.map((v,i)=>v==null?null:point(i,v/100));
+  return `<g class="${kind}">${points.map((p,i)=>p&&points[(i+1)%10]?`<line x1="${p.split(',')[0]}" y1="${p.split(',')[1]}" x2="${points[(i+1)%10].split(',')[0]}" y2="${points[(i+1)%10].split(',')[1]}"/>`:'').join('')}
+   ${points.map(p=>p?`<circle cx="${p.split(',')[0]}" cy="${p.split(',')[1]}" r="3.4"/>`:'').join('')}</g>`;
+ };
+ const labels=radarAxes.map(([label],i)=>{const [x,y]=point(i,1.24).split(',');return `<text x="${x}" y="${y}">${label}</text>`;}).join('');
+ const scores=radarAxes.map(([label],i)=>`<li><span>${label}</span><strong>${first[i]??'—'}${second?` / ${second[i]??'—'}`:''}</strong></li>`).join('');
+ return `<section class="dna-radar-card"><h4>DNA שחקן · 10 צירים</h4>
+ <p class="dna-explain">אחוזונים לפי עמדה בטווח שנבחר. ציר בלי נקודה מציין כיסוי חסר לדירוג.</p>
+ ${compare?legend(record.name,compare.name):''}
+ <div class="dna-radar-layout"><svg viewBox="0 0 400 306" aria-hidden="true">
+  <g class="dna-radar-grid">${shapes}</g>${line(first,'dna-radar-own')}${second?line(second,'dna-radar-other'):''}${labels}
+ </svg><ul class="dna-radar-scores" aria-label="ערכי הצירים">${scores}</ul></div></section>`;
+}
+
+const metricById=new Map(M.catalog.map(m=>[m.id,m]));
+const insideRows=new Set(Object.values(M.detailRows).flat());
+const suffix=unit=>unit==='%'?'%':unit?' '+unit:'';
+const expandedNumber=(v,unit)=>v==null?'אין מספיק נתונים':fmt(v)+suffix(unit);
+function metricValue(stat,rank,spec,name,tone=''){
+ const visible=stat?.value!=null;
+ const sample=stat?.total>0&&stat.count<=stat.total?`${stat.count}/${stat.total} משחקים`:stat?.count?`${stat.count} משחקים במדגם`:'';
+ return `<div class="dna-expanded-value ${tone}">${name?`<small><bdi>${esc(name)}</bdi></small>`:''}
+  <strong><bdi>${esc(expandedNumber(stat?.value,spec.unit))}</bdi></strong>
+  ${visible?`<small>${sample}${sample?' · ':''}${rank==null?'ללא אחוזון':`אחוזון ${rank}`}</small>`:''}</div>`;
+}
+function expandedMetrics(report,ranks,{other,otherRanks,opponent,compareName,ownName}={}){
+ const metric=(spec,child=false)=>{
+  const {id,group,direction,label,source,help,unit}=spec,stat=report.stats[id];
+  const compared=other&&group!=='opponent'&&!['matchFit','projection'].includes(id)?other.stats[id]:null;
+  const advantage=compared&&direction&&stat?.value!=null&&compared.value!=null&&fmt(stat.value)!==fmt(compared.value)?Math.sign(direction*(stat.value-compared.value)):0;
+  const tone=n=>n>0?'dna-ahead':n<0?'dna-behind':'';
+  const value=metricValue(stat,stat?.rank??ranks?.[id],spec,compared?ownName:null,tone(advantage));
+  const values=value+(compared?metricValue(compared,otherRanks?.[id],spec,compareName,tone(-advantage)):'');
+  const detailItems=(rows,name)=>rows?.length?`<dl>${name?`<dt><bdi>${esc(name)}</bdi></dt><dd></dd>`:''}
+   ${rows.map(([l,v,u])=>`<dt><bdi>${esc(l)}</bdi></dt><dd><bdi>${esc(expandedNumber(v,u??unit))}</bdi></dd>`).join('')}</dl>`:'';
+  const more=`<div class="dna-expanded-help"><p>${help}</p>${detailItems(stat?.details,compared&&ownName)}
+   ${detailItems(compared?.details,compareName)}
+   ${(M.detailRows[id]||[]).map(key=>metric(metricById.get(key),true)).join('')}</div>`;
+  return `<details class="dna-expanded-row${child?' dna-submetric':''}" data-metric="${id}"><summary>
+   <span class="dna-expanded-name"><b>${label}</b><small>${source}${stat?.context?` · מול <bdi>${esc(stat.context)}</bdi>`:''}</small></span>
+   <div class="dna-expanded-cells${compared?' dna-two-cells':''}">${values}</div></summary>${more}</details>`;
+ };
+ return `<div class="dna-expanded-groups"><h4>ניתוח לפי קטגוריות</h4>
+ ${Object.entries(M.groups).map(([group,label])=>{
+  if(group==='opponent'&&!opponent&&!ownName)return '';
+  const rows=M.catalog.filter(m=>m.group===group&&!insideRows.has(m.id));
+  return `<details class="dna-category" data-dna-group="${group}"><summary><b>${label}</b>${group==='opponent'? `<span><bdi>${esc(opponent||'אין יריבה מזוהה כרגע')}</bdi></span>`:''}</summary>
+   ${rows.map(m=>metric(m)).join('')}
+   ${M.missing.filter(([g])=>g===group).map(([,name,why])=>`<details class="dna-unavailable"><summary><b>${name}</b><small>אין מספיק נתונים</small></summary><p>${why}</p></details>`).join('')}
+  </details>`;
+ }).join('')}</div>`;
+}
+
 function renderPlayer(){
  if(!model)return;
  const out=player.$('[data-dna-results]');
@@ -420,38 +537,56 @@ function renderPlayer(){
  }
  const selectedRival=player.$('[data-player-rival]').value;
  if(playerRange.value==='history'){
-  const games=record.seasonGames.filter(g=>!selectedRival||g.opponent===selectedRival);
+  const games=M.select(record.seasonGames,0,playerVenue).filter(g=>!selectedRival||g.opponent===selectedRival);
   if(playerRange.expanded)playerRange.games(games.map(g=>({...g,code:g.gameCode,detail:fmt(g.stats?.valuation)})),playerGame,code=>{
    playerGame=code;renderPlayerGame(out,record,games);
   },'PIR','אין לשחקן הופעות העונה בסינון שנבחר.');
   renderPlayerGame(out,record,games);
   return;
  }
- const gameLimit=Number(playerRange.value),games=C.select(record.games,gameLimit);
- const position=positionLabels[record.position];
- const peers=model.players.filter(p=>record.position&&p.position===record.position);
- const stats=calc(peers,gameLimit,C.playerMetrics);
- const own=stats.get(record)||C.summarize(games,C.playerMetrics);
- const ratings=Object.fromEntries(C.playerMetrics.map(([id])=>[id,C.benchmark([...stats.values()].map(s=>s[id]),id,true).percentile(own[id])]));
+ const limit=Number(playerRange.value),options={limit,venue:playerVenue};
+ const reports=playerAnalysisCache?.limit===limit&&playerAnalysisCache?.venue===playerVenue
+  ?playerAnalysisCache:buildPlayerAnalysis(options);
+ const own=reports.base.get(record),report=reports.detail.get(record);
+ const games=M.select(record.games,limit,playerVenue);
+ const ratings=Object.fromEntries(C.playerMetrics.map(([id])=>[id,reports.baseRanks.get(record)[id]]));
  const tags=Object.entries(styleTags).filter(([id])=>ratings[id]>=70).sort(([a],[b])=>ratings[b]-ratings[a]);
  const target=player.$('[data-compare-club]').value;
- const opponent=target==='next'?nextOpponent(record.team):target;
+ const opponent=playerView==='team'&&target!=='next'?target:nextOpponent(record.team);
  const rival=model.teams.find(t=>t.team===opponent);
+ const compare=playerView==='player'?model.players.find(p=>p.id===player.$('[data-compare-player]').value):null;
+ const other=reports.detail.get(compare);
+ const withRival={...report,stats:{...report.stats}};
+ if(rival){
+  const next=nextGame(record.team);
+  const venue=playerVenue!=='all'&&opponent===nextOpponent(record.team)&&!next?.neutral?(next?.home===opponent?'home':'away'):playerVenue;
+  const rivals=reports.rivals.get(venue)||M.buildRivals(model.dna,{limit,venue});
+  reports.rivals.set(venue,rivals);
+  M.opponentReport(withRival,model.dna,rivals,opponent,record.team,model,{limit,venue});
+ }
+ if(playerView==='profile'){
+  const forecast=window.getPlayerDnaForecast?.(record.name);
+  const projection=forecast&&M.projection(forecast.frozen,window.WeightedForecast,forecast.weights,forecast.profile);
+  if(projection)withRival.stats.projection={...projection,context:forecast.opponent};
+ }
+ const radar=games.length?playerRadar(reports,record,compare):'';
  const style=playerView==='profile'
-  ?games.length?playerStyle(own,ratings,position):empty('לשחקן אין הופעות מתועדות בקבוצה הזו בעונה הנוכחית.')
-  :playerStyleComparison(record,gameLimit,rival);
+  ?games.length?playerStyle(own,ratings,positionLabels[record.position]):empty('אין מספיק נתונים להופעות בטווח ובסינון שנבחרו.')
+  :playerStyleComparison(record,limit,rival);
  out.innerHTML=`${playerProfile(record,games,tags)}
- ${style}`;
+ ${radar}
+ ${style}
+ ${expandedMetrics(withRival,reports.detailRanks.get(record),{other,otherRanks:reports.detailRanks.get(compare),opponent,compareName:compare?.name,ownName:record.name})}`;
  loadPortraits(out);
 }
-function comparisonRows(metrics,ownStats,rivalStats,benchmarks,{highlightAdvantage=true,singleGame=!benchmarks,names=[]}={}){
+function comparisonRows(metrics,ownStats,rivalStats,benchmarks,{highlightAdvantage=true,singleGame=!benchmarks,names=[],playerComparison=false}={}){
  return metrics.map(metric=>{
   const [id,,unit]=metric,ref=benchmarks?.[id],a=ownStats[id],b=rivalStats?.[id]||{value:ref.mean,count:ref.count};
   const gap=a.value==null||b.value==null?null:a.value-b.value;
   const diff=gap==null?'':` · פער <bdi>${fmt(Math.abs(gap))}</bdi>${unit==='%'?' נק׳ אחוז':unitLabels[unit]||''}`;
   const max=unit==='%'?100:Math.max(a.value??0,b.value??0);
   const width=stat=>stat.value==null?null:max>0?Math.min(100,stat.value/max*100):0;
-  const [ownSide,rivalSide]=highlightAdvantage?comparisonSides(id,a.value,b.value):['dna-own','dna-other'];
+  const [ownSide,rivalSide]=highlightAdvantage&&(!playerComparison||!['usage','three','rim','fastbreak','secondChance'].includes(id))?comparisonSides(id,a.value,b.value):['dna-own','dna-other'];
   return row(metric,valueCell(a,ref?.percentile(a)??null,unit,ownSide,{singleGame,bar:ref?undefined:width(a),showRank:!!ref,name:names[0]}),
    valueCell(b,rivalStats?(ref?.percentile(b)??null):null,unit,rivalSide,{league:!rivalStats,singleGame,bar:ref?undefined:width(b),showRank:!!ref,name:names[1]}),diff);
  }).join('');
@@ -537,6 +672,12 @@ player.$('[data-player]').onchange=changePlayer;
 player.$('[data-player-rival]').onchange=()=>{playerGame='';paint();};
 player.$('[data-compare-player]').onchange=paint;
 player.$('[data-compare-club]').onchange=paint;
+for(const b of player.section.querySelectorAll('[data-venue]'))b.onclick=()=>{
+ playerVenue=b.dataset.venue;playerGame='';
+ for(const choice of player.section.querySelectorAll('[data-venue]'))choice.setAttribute('aria-pressed',String(choice===b));
+ paint();
+};
+window.addEventListener('player-dna-forecast-ready',()=>{if(playerView==='profile')paint();});
 for(const b of player.section.querySelectorAll('[data-player-view]'))b.onclick=()=>{
  playerView=b.dataset.playerView;
  selectPlayerRivals();paint();

@@ -5,9 +5,9 @@ const date=new Intl.DateTimeFormat('he-IL',{timeZone:'Asia/Jerusalem',day:'2-dig
 const ranges=[['0','כל העונה'],['3','ממוצע 3 משחקים'],['history','משחקי עבר']];
 const latestFirst=(a,b)=>Date.parse(b.date)-Date.parse(a.date)||Number(b.code)-Number(a.code);
 
-function picker(root,list,onChange){
+function picker(root,list,onChange,choices=ranges){
  let current='0';
- root.innerHTML='<div class="season-ranges" role="group" aria-label="טווח משחקים">'+ranges.map(([value,label])=>
+ root.innerHTML='<div class="season-ranges" role="group" aria-label="טווח משחקים">'+choices.map(([value,label])=>
   `<button type="button" class="season-choice" data-season-range="${value}" aria-pressed="${value==='0'}">${label}</button>`).join('')+'</div>';
  const history=root.querySelector('[data-season-range="history"]');
  history.setAttribute('aria-controls',list.id);

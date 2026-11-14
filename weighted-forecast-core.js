@@ -157,7 +157,14 @@ function build(official,advanced,{key,team,asOf=Date.now()}){
   for(const row of rows)if(row.event)addEvents(e,[row.event]);
   personalEvents.set(id,e);
  }
- return {key,team,profiles,clubs,all,allowed,leagueEvents,personalEvents,
+ const dna=root.PlayerDnaMetrics||(typeof module==='object'&&module.exports?require('./dna-player-core.js'):null);
+ const contexts=new Map();
+ const playerDna=(record,fixtureCode=null)=>{
+  if(!dna)return null;
+  if(!contexts.has(fixtureCode))contexts.set(fixtureCode,dna.seasonContext(official,advanced,asOf,{pregame:true,fixtureCode}));
+  return dna.features(record,contexts.get(fixtureCode));
+ };
+ return {key,team,profiles,clubs,all,allowed,leagueEvents,personalEvents,playerDna,
   completedCodes:[...new Set([...byGame.keys()].map(k=>k.split('|')[0]))]};
 }
 function signals(p,x,data,roster,{unified=false}={}){

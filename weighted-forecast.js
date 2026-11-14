@@ -334,8 +334,20 @@ model=function(p){
  }
  return C.apply(x,p,C.input(p,x,row.signals,evidence),weights);
 };
+window.getPlayerDnaForecast = name => {
+ if(!modelReady||!evidence)return null;
+ const p=playerList().find(p=>P.key(p.name)===P.key(name));
+ if(!p)return null;
+ const x=model(p);
+ const club=P.team(p.team);
+ const rows=(shadowEvidence?.profiles.get(P.key(p.name))||[]).filter(g=>g.team===club);
+ const profile=window.UnifiedForecast?.statProfile(rows);
+ return {frozen:x.weightedForecast,opponent:P.team(x.match?.opponent||p.opponent),weights,profile};
+};
+window.getPregamePlayerDna = (record,fixtureCode) => shadowEvidence?.playerDna?.(record,fixtureCode)??null;
 await initial;
 modelReady=true;
+window.dispatchEvent(new Event('player-dna-forecast-ready'));
 window.__weightedForecastReady=true;
 sourceText();drawWeights();drawReport();
 if(typeof renderAll==='function')renderAll();
