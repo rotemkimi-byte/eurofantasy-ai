@@ -184,7 +184,7 @@ html[data-theme="light"] .audit-compact .miss,html[data-theme="light"] .ac-value
 html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method summary{color:var(--blue)}
 </style><style>.weakHelp{font-size:12px;line-height:1.65}.weakControls{grid-template-columns:repeat(3,minmax(0,1fr)) auto;align-items:end}.weakControls label{min-width:0}.weakCard{background:var(--card2);border:1px solid var(--line);border-radius:15px;padding:16px;margin-top:12px}.weakCard h4{font-size:20px;margin:6px 0;overflow-wrap:anywhere}.weakCard .sectionHead>div{min-width:0}.weakCard .sectionHead>div>small{font-size:10px}.weakScore{text-align:center;flex:0 0 110px}.weakScore>b{display:block;font-size:29px;color:var(--accent);direction:ltr}.weakScore>small{font-size:10px}.weakMeta{display:flex;gap:8px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin:12px 0}.weakMeta>span{border:1px solid var(--line);border-radius:8px;padding:5px}.weakPositions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.weakPositions>div{text-align:center;padding:10px 3px;border:1px solid var(--line);border-radius:10px;background:var(--card)}.weakPositions b{color:var(--blue);font-size:14px}.weakPositions strong{display:block;font-size:22px;margin:5px 0;direction:ltr}.weakPositions small{display:block;font-size:9px;line-height:1.6}.weakPositions .weakSelected{border-color:var(--accent)}.weakDetails{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}.weakCard .weakPlayersTitle{font-size:16px;color:var(--blue);margin:0 0 5px}.weakPosBadge{display:inline-block;padding:1px 5px;background:var(--card);border:1px solid var(--line);border-radius:5px;color:var(--blue);font-weight:800}.weakPerformances{max-height:420px;overflow:auto}.weakPerformance{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}.weakPerformance small{display:block;font-size:10px;line-height:1.6;margin-top:4px}.weakPlayer{padding:0;background:transparent;color:var(--text);text-align:right;font-size:14px;overflow-wrap:anywhere;line-height:1.4}.weakPerformance>div:last-child{text-align:left;white-space:nowrap}.weakPerformance>div:last-child>b{color:var(--accent);font-size:20px}@media(max-width:600px){.weakControls{grid-template-columns:1fr 1fr}.weakControls button{grid-column:1/-1}.weakCard{padding:12px}.weakScore{flex-basis:95px}.weakScore>b{font-size:26px}.weakCard h4{font-size:18px}}</style><style>
 [hidden]{display:none!important}.rr-price{display:inline-flex;flex-direction:column;gap:4px;text-align:left;direction:ltr;white-space:nowrap}.rr-price>span{font-weight:800;color:var(--accent)}.rr-price small{font-size:10px}.rr-price .rr-delta{font-size:11px;font-weight:600}.marketTable td:nth-child(2):has(.rr-price)::after{content:none}.rr-toggle{display:flex;gap:8px;margin:0 0 16px}.rr-toggle button{background:var(--card2);color:var(--muted);border:1px solid var(--line)}.rr-toggle button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}.rr-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.rr-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:14px}.rr-name{padding:0;background:none;color:var(--text);text-align:right;min-width:0;overflow-wrap:anywhere}.rr-name small{display:block;font-size:11px;margin-top:5px}.rr-card>p{grid-column:1/-1;font-size:12px;margin:0}.rr-metrics,.rr-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;text-align:center}.rr-metrics{grid-column:1/-1}.rr-metrics>div,.rr-summary>div{background:var(--card);border-radius:9px;padding:10px 4px}.rr-metrics b,.rr-summary b{display:block;font-size:21px}.rr-metrics small,.rr-summary small{font-size:10px;display:block;margin-top:5px}.rr-summary{margin:14px 0}.rr-note{font-size:12px;line-height:1.65}@media(max-width:780px){.rr-list{grid-template-columns:1fr}}
-</style><link rel="stylesheet" href="./squad-layout.css?v=3"><link rel="stylesheet" href="./round-lab.css?v=2"><link rel="stylesheet" href="./usage.css?v=market-player-tools-1"><link rel="stylesheet" href="./player-analysis.css?v=market-player-tools-1"><link rel="stylesheet" href="./defense.css?v=2"><link rel="stylesheet" href="./team-metrics.css?v=4"><style>#market>.filters{grid-template-columns:2fr repeat(5,minmax(0,1fr))}.clubPlayer>.squadJersey{width:65px;height:72px;margin:auto}@media(max-width:780px){#market>.filters{grid-template-columns:1fr 1fr}#market>.filters #search{grid-column:1/-1}}</style><style>
+</style><link rel="stylesheet" href="./squad-layout.css?v=3"><link rel="stylesheet" href="./round-lab.css?v=2"><link rel="stylesheet" href="./usage.css?v=market-player-tools-1"><link rel="stylesheet" href="./player-analysis.css?v=market-player-tools-1"><link rel="stylesheet" href="./defense.css?v=2"><link rel="stylesheet" href="./team-metrics.css?v=4"><style>#market>.filters{grid-template-columns:repeat(4,minmax(0,1fr))}.clubPlayer>.squadJersey{width:65px;height:72px;margin:auto}@media(max-width:780px){#market>.filters{grid-template-columns:1fr 1fr}}</style><style>
 .absenceGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px;margin-top:16px}.absenceClub{background:var(--card2);border:1px solid var(--line);border-radius:18px;overflow:hidden}.absenceClub h4{margin:0;padding:16px;background:#172d49;color:#fff;font-size:20px}.absenceMissing{padding:12px;border-bottom:1px solid var(--line)}.absenceMissing button[data-absence-player]{display:block;text-align:right;background:transparent;color:var(--text);padding:5px 0;font-size:14px}.absenceMissing small{display:block;color:var(--muted);font-size:11px;margin:4px 0 10px}.absencePick{display:grid;grid-template-columns:56px minmax(0,1fr);gap:10px;padding:14px;border-bottom:1px solid var(--line)}.absencePick .squadJersey{width:48px;height:60px}.absencePick button[data-absence-player]{background:transparent;color:var(--text);padding:0;text-align:right;font-size:16px}.absencePick p{font-size:12px;line-height:1.6;margin:6px 0;color:var(--muted)}.absenceMetrics{display:flex;flex-wrap:wrap;gap:7px}.absenceMetrics span{background:#087e6014;border:1px solid #087e6055;padding:7px;border-radius:8px;font-size:12px}.absenceMetrics b{display:block;font-size:18px}.absenceEmpty{padding:16px;line-height:1.7}
 </style><link rel="stylesheet" href="./advanced-player-tools.css?v=market-player-tools-1">
 </head>
@@ -205,7 +205,6 @@ html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method sum
 <div class="card filters">
 <select id="marketTeam" aria-label="סינון לפי קבוצה"><option value="">כל הקבוצות</option></select>
 <select id="pos"><option value="">כל העמדות</option><option>G</option><option>F</option><option>C</option></select>
-<input id="maxPrice" type="number" step=".1" placeholder="מחיר מקס׳">
 <select id="statusFilter"><option value="">כל הסטטוסים</option><option value="active">פעיל</option><option value="questionable">בספק</option><option value="out">בחוץ</option></select>
 <select id="sort"><option value="price" selected>מחיר: מהגבוה לנמוך</option><option value="projection">PIR צפוי</option><option value="confidence">איכות נתונים</option><option value="minutes">דקות צפויות</option></select>
 </div>
@@ -251,7 +250,7 @@ html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method sum
  <dl id="pirStats" class="pirOverviewStats" hidden></dl>
  <div id="pirDetail" class="pirOverviewDetail" aria-live="polite"></div>
 </section>
-<div class="filters pirControls player-picker-controls"><label>טווח<select id="pirRange"><option value="0">כל העונה</option><option value="5">5 משחקים אחרונים</option><option value="10">10 משחקים אחרונים</option><option value="1">משחק אחרון</option><option value="3">3 משחקים אחרונים</option></select></label><button id="pirReload" class="secondary">רענן נתונים</button></div><p id="pirStatus" class="muted" role="status" aria-live="polite"></p><details class="ef-help"><summary>כל המשחקים בטווח שנבחר</summary><div id="pirGames"></div></details><p class="muted pirNote">הגרף נפתח במשחקים האחרונים מימין · גלול שמאלה למשחקים קודמים · לחץ על נקודה לפרטי המשחק</p><p id="pirNote" class="muted pirNote"></p><p id="pirCoverage" class="muted pirNote">מוצגים משחקים שזמינים בדוחות העונה בלבד. היעדרות מרישום המשחק אינה מוצגת כאפס.</p></div></div></section>
+<div class="filters pirControls player-picker-controls"><label>טווח<select id="pirRange"><option value="0">כל העונה</option><option value="5">5 משחקים אחרונים</option><option value="10">10 משחקים אחרונים</option><option value="1">משחק אחרון</option><option value="3">3 משחקים אחרונים</option></select></label><button id="pirReload" class="secondary">רענן נתונים</button></div><p id="pirStatus" class="muted" role="status" aria-live="polite"></p><details class="ef-help"><summary>כל המשחקים בטווח שנבחר</summary><div id="pirGames"></div></details><details class="ef-help pir-help"><summary>הסבר על הגרף</summary><div class="ef-help-body"><p class="muted pirNote">הגרף נפתח במשחקים האחרונים מימין · גלול שמאלה למשחקים קודמים · לחץ על נקודה לפרטי המשחק</p><p id="pirNote" class="muted pirNote"></p><p id="pirCoverage" class="muted pirNote">מוצגים משחקים שזמינים בדוחות העונה בלבד. היעדרות מרישום המשחק אינה מוצגת כאפס.</p></div></details></div></div></section>
 <section id="pirWeakness" class="tab"><div class="card"><h3>חולשת PIR · מול מי השחקנים מצליחים?</h3><p class="muted weakHelp">ככל שהקבוצה אפשרה ליריבות יותר PIR, היא מדורגת גבוה יותר. הפירוט לפי עמדה מראה היכן נצבר המדד. אלה ביצועים בפועל בעונת 2026/27; המדגם מושפע מהיריבות, מדקות המשחק ומההרכבים.</p><div class="filters weakControls"><label>עמדת היריבים<select id="weakPos"><option value="">כל העמדות</option><option value="G">G · גארדים</option><option value="F">F · פורוורדים</option><option value="C">C · סנטרים</option></select></label><label>מול קבוצה<select id="weakTeam"><option value="">כל הקבוצות</option></select></label><label>מיון<select id="weakSort"><option value="perGame">PIR שספגה למשחק</option><option value="per30">PIR ל־30 דקות שחקן</option></select></label><button class="secondary" id="weakReload">רענן נתונים</button></div><div id="weakRange"></div><div id="weakGames" hidden></div><p id="weakStatus" class="muted weakHelp" role="status" aria-live="polite"></p><div id="weakList"></div></div></section>
 <section id="absencePicks" class="tab"><div class="card"><h3>המלצות בעקבות חיסורים</h3><p class="muted">מי עשוי להרוויח דקות ואחריות כששחקן מפתח חסר?</p><div class="filters"><label>קבוצה<select id="absenceTeam"><option value="">כל הקבוצות</option></select></label><label>זמינות<select id="absenceStatus"><option value="all">בחוץ ובספק</option><option value="out">בחוץ בלבד</option></select></label></div><p class="notice">הערכה לפי המודל הקיים: עמדה, מחיר ותפקיד משוער. שחקן מפתח מוגדר כאן במחיר מעל 8 CR. תוספת הדקות אינה הבטחה לפתיחה בחמישייה; אין כאן ניתוח מאומת של משחקים ללא השחקן החסר.</p><div id="absenceCards" class="absenceGrid"></div></div></section>
 <section id="injuries" class="tab"><div class="card"><h3>פציעות וזמינות</h3><p class="muted">המודל מוריד דקות לשחקן בספק ומעלה מעט דקות לחברים פעילים באותה עמדה כאשר חסרים שחקנים.</p><div class="filters injuryControls"><label>קבוצה<select id="injuryTeam"><option value="">כל הקבוצות</option></select></label></div><p id="injurySummary" class="muted injurySummary" aria-live="polite"></p><div id="injuryCards" class="injuryList"></div></div></section>
@@ -465,8 +464,8 @@ function renderMarket(){
   if(teamSelect.dataset.teams!==teamSignature){teamSelect.replaceChildren(new Option('כל הקבוצות',''),...marketTeams.map(t=>new Option(t,t)));teamSelect.dataset.teams=teamSignature;if(marketTeams.includes(selectedTeam))teamSelect.value=selectedTeam;}
   const tf=teamSelect.value;
   const pf=document.getElementById("pos").value, sf=document.getElementById("statusFilter").value;
-  const mp=Number(document.getElementById("maxPrice").value||999), sort=document.getElementById("sort").value;
-  let arr=players.filter(p=>(!tf||canonicalTeam(p.team)===tf)&&(!pf||p.pos===pf)&&(!sf||p.status===sf)&&+p.price<=mp);
+  const sort=document.getElementById("sort").value;
+  let arr=players.filter(p=>(!tf||canonicalTeam(p.team)===tf)&&(!pf||p.pos===pf)&&(!sf||p.status===sf));
   arr.sort((a,b)=>{const A=model(a),B=model(b);if(sort==="confidence")return B.confidence-A.confidence;if(sort==="minutes")return B.minutes-A.minutes;if(sort==="price")return +b.price-+a.price||a.name.localeCompare(b.name);return B.expected-A.expected});
   document.getElementById("rows").innerHTML=arr.map(p=>{const x=model(p);return `<tr>
   <td class="name" onclick='showPlayer(${JSON.stringify(p.name)},true)' style="cursor:pointer"><b>${esc(p.name)}</b><small>${esc(p.team)} • ${p.pos} • ${p.home==1?"בית":"חוץ"} מול ${esc(p.opponent)}</small></td>
@@ -1011,7 +1010,7 @@ function renderAbsencePicks(){
 
 function renderAll(){renderAbsencePicks();renderClubMarket();renderPlayerMatchups();document.getElementById("cntPlayers").textContent=players.length;renderMarket();renderTeam();renderCaptain();renderCoaches();renderGames();renderInjuries();}
 document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tabs button,.tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.getElementById(b.dataset.tab).classList.add("active");window.scrollTo({top:70,behavior:"smooth"})})
-for(const id of ["marketTeam","pos","maxPrice","statusFilter","sort"])document.getElementById(id).addEventListener("input",renderMarket);
+for(const id of ["marketTeam","pos","statusFilter","sort"])document.getElementById(id).addEventListener("input",renderMarket);
 document.getElementById('absenceTeam').addEventListener('change',renderAbsencePicks);
 document.getElementById('absenceStatus').addEventListener('change',renderAbsencePicks);
 document.querySelector('[data-tab="absencePicks"]').addEventListener('click',renderAbsencePicks);
@@ -1967,35 +1966,38 @@ function formatMinutes(value){
  return Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');
 }
 function coachPoints(margin,ot=false){if(num(margin)===null||margin===0)return null;return margin>0?(ot||margin<=10?10:margin<=20?20:25):(ot||margin>=-10?-5:margin>=-20?-10:-20)}
-function buildHistory(live,schedule,boxes,now=Date.now()){
- if(live?.season!=='E2026')throw Error('wrong season');
- const schedules=new Map((schedule?.data||[]).filter(g=>!g.season?.code||g.season.code==='E2026').map(g=>[Number(g.gameCode),g]));
- const out={players:new Map(),coaches:new Map(),fixtures:[],games:0,missing:0};
- const add=(map,name,team,row)=>{const k=key(name);if(!k)return;if(!map.has(k))map.set(k,{name,team,games:[]});const entity=map.get(k);entity.team=team;entity.games.push(row)};
+function buildHistory(payload,now=Date.now()){
+ if(payload?.season!=='E2026'||payload.version!==1||!payload.games)throw Error('Invalid performance history');
+ const out={players:new Map(),coaches:new Map(),fixtures:[],games:0,missing:payload.missing||0};
+ const add=(map,name,team,row)=>{
+  const k=key(name);if(!k)return;
+  if(!map.has(k))map.set(k,{name,team,games:[]});
+  const entity=map.get(k);entity.team=team;entity.games.push(row);
+ };
  const seen=new Set();
- for(const g of Object.values(live.games||{}).slice().sort((a,b)=>String(a.date).localeCompare(String(b.date)))){
-  const code=Number(g.gameCode),s=schedules.get(code),date=s?.utcDate||g.date;
-  if(!Number.isInteger(code)||code<=0||seen.has(code)||!Number.isFinite(Date.parse(date))||Date.parse(date)>=now||s&&s.played!==true)continue;
-  seen.add(code);const box=boxes.get(code);if(!box){out.missing++;continue}
-  const homeScore=num(box.local?.total?.points),awayScore=num(box.road?.total?.points);
-  if(homeScore===null||awayScore===null||homeScore===awayScore){out.missing++;continue}
+ for(const g of Object.values(payload.games).sort((a,b)=>Date.parse(a.date)-Date.parse(b.date)||a.gameCode-b.gameCode)){
+  const code=g.gameCode,date=g.date;
+  if(!Number.isInteger(code)||code<=0||seen.has(code)||!Number.isFinite(Date.parse(date))||Date.parse(date)>=now)continue;
+  seen.add(code);
+  const homeScore=num(g.local?.[1]),awayScore=num(g.road?.[1]);
+  if(homeScore===null||awayScore===null||homeScore===awayScore){out.missing++;continue;}
   out.games++;
-  const ot=Number(box.local?.total?.timePlayed)>2400||Number(box.road?.total?.timePlayed)>2400||Object.values(s?.local?.partials?.extraPeriods||{}).some(v=>Number(v)>0);
+  const ot=g.ot||g.local[2]>2400||g.road[2]>2400;
   for(const side of ['local','road']){
-   const other=side==='local'?'road':'local',part=box[side],opart=box[other];
-   const club=p=>p?.players?.find(r=>r.player?.club)?.player.club;
-   const team=canon(s?.[side]?.club?.name||club(part)?.name||''),opponent=canon(s?.[other]?.club?.name||club(opart)?.name||'');
-   const score=side==='local'?homeScore:awayScore,against=side==='local'?awayScore:homeScore;
-   const base={code,date,round:s?.round??null,team,opponent,home:side==='local',score,against,ot};
-   if(base.home&&team&&opponent)out.fixtures.push(base);
-   for(const r of part?.players||[]){
-    const name=r.player?.person?.name,seconds=num(r.stats?.timePlayed);if(!name)continue;
-    add(out.players,name,team,{...base,pos:({1:'G',2:'F',3:'C'})[r.player?.position]||null,minutes:seconds===null?null:seconds/60,value:seconds!==null&&seconds>0?num(r.stats?.valuation):null,dnp:seconds===0});
+   const home=side==='local';
+   const [club,score,,coach,players]=g[side];
+   const [rival,against]=g[home?'road':'local'];
+   const team=canon(club),opponent=canon(rival);
+   const base={code,date,round:g.round??null,team,opponent,home,score,against,ot};
+   if(home&&team&&opponent)out.fixtures.push(base);
+   for(const [name,position,time,pir] of players){
+    const seconds=num(time);
+    add(out.players,name,team,{...base,pos:({1:'G',2:'F',3:'C'})[position]||null,
+     minutes:seconds===null?null:seconds/60,value:seconds>0?num(pir):null,dnp:seconds===0});
    }
-   if(part?.coach?.name)add(out.coaches,part.coach.name,team,{...base,value:coachPoints(score-against,ot),minutes:null});
+   if(coach)add(out.coaches,coach,team,{...base,value:coachPoints(score-against,ot),minutes:null});
   }
  }
- for(const map of [out.players,out.coaches])for(const entity of map.values())entity.games.sort((a,b)=>Date.parse(a.date)-Date.parse(b.date)||a.code-b.code);
  return out;
 }
 function svgChart(rows,caption,minutes=false,{credit=false,mixed=false}={}){
@@ -2083,7 +2085,7 @@ function setupGraph(section){
  let selectedRows=[],catalog=[],scope='all';
  const selections={player:'',coach:''};
  const analytics=window.PlayerAnalysis.mount(section,$('Person').closest('label'),$('Status'),
-  [$('Person').closest('label'),$('Legend'),$('Chart'),$('Summary'),$('Games').closest('details'),...section.querySelectorAll('.pirNote')],{
+  [$('Person').closest('label'),$('Legend'),$('Chart'),$('Summary'),$('Games').closest('details'),section.querySelector('.pir-help')],{
    views:[['detail','תצוגה אישית'],['ranking','טבלה כללית']],
    metrics:{get average(){return mode==='credit'?'קרדיט נוכחי':'ממוצע '+metricLabel();}},team:()=>scope==='team'?$('Team').value:'',
    rows:()=>catalog.map(([id,p])=>{
@@ -2190,9 +2192,7 @@ function setupGraph(section){
  }
  $('Reload').onclick=()=>{
   if(mode==='credit'){void loadCredits(true);return;}
-  lastThreeRequests.delete('./data/euroleague-live-E2026.json');
-  lastThreeRequests.delete('./data/context/E2026-schedule.json');
-  void load();
+  void load(true);
  };
  async function loadCredits(force=false){
   if(creditLoading||creditData&&!force)return;
@@ -2261,22 +2261,24 @@ function activateMode(next,restore=false){
 for(const button of modes)button.addEventListener('click',()=>activateMode(button.dataset.pirMode));
 document.querySelector('[data-tab="pirGraph"]').addEventListener('click',()=>activateMode(pirSection.querySelector('[data-pir-mode][aria-pressed="true"]').dataset.pirMode,true));
 function report(message){if(mode!=='credit')graph.status.textContent=message;}
-async function load(){
+async function load(force=false){
  if(loading)return loading;
+ if(data&&!force)return;
  if(mode!=='credit')graph.reload.disabled=true;
  report('טוען היסטוריית משחקים…');
  loading=(async()=>{try{
-  const [live,schedule]=await Promise.all([lastThreeFetch('./data/euroleague-live-E2026.json'),lastThreeFetch('./data/context/E2026-schedule.json').catch(()=>null),window.refreshFantasyLive?.()]);
-  if(live.season!=='E2026')throw Error('wrong season');
-  const boxes=new Map(),codes=[...new Set(Object.values(live.games||{}).map(g=>Number(g.gameCode)).filter(c=>Number.isInteger(c)&&c>0))];let cursor=0,done=0;errors=0;
-  await Promise.all(Array.from({length:Math.min(4,codes.length)},async()=>{while(cursor<codes.length){const code=codes[cursor++];try{boxes.set(code,await lastThreeFetch(`./data/backtest/cache/E2026-${code}-stats.json`))}catch{errors++}done++;report(`טוען דוחות משחק: ${done}/${codes.length}`)}}));
-  data=buildHistory(live,schedule,boxes);errors=Math.max(errors,data.missing);
+  const snapshot=await window.loadGameData('performance-history.json',force);
+  const history=buildHistory(snapshot);
+  if(!history.games)throw Error('No completed games in performance history');
+  data=history;errors=history.missing;
   return true;
  }catch(error){report('לא ניתן לטעון נתוני משחקים כרגע. לחץ על רענון כדי לנסות שוב.');console.warn('PIR history unavailable',error);return false}
  })().then(success=>{
   loading=null;
-  if(mode!=='credit')graph.reload.disabled=false;
-  if(success)graph.options();
+  if(mode!=='credit'){
+   graph.reload.disabled=false;
+   if(success)graph.options();
+  }
  });
  return loading;
 }
@@ -2368,8 +2370,7 @@ function render(updateGames=true){
 async function load(force=false){
  if(busy)return;busy=true;$('weakReload').disabled=true;$('weakStatus').textContent='טוען ומנתח משחקים לפי יריבה ועמדה…';
  try{
-  if(force){lastThreeRequests.delete('./data/euroleague-live-E2026.json');lastThreeRequests.delete('./data/context/E2026-schedule.json')}
-  if(force||!window.PIRHistoryUI.getData())await window.PIRHistoryUI.load();
+  if(force||!window.PIRHistoryUI.getData())await window.PIRHistoryUI.load(force);
   history=window.PIRHistoryUI.getData();
   if(!history){$('weakStatus').textContent='נתוני המשחקים לא נטענו. לחץ על רענון כדי לנסות שוב.';return;}
   const saved=$('weakTeam').value;
@@ -2478,10 +2479,10 @@ for (const id of ['data', 'learning']) {
 <link rel="stylesheet" href="./app-design.css?v=nav-pinned-2">
 <script src="./surprises.js?v=2"></script>
 <script src="./free-throws.js?v=market-player-tools-1"></script>
-<script src="./pir-compare.js?v=graph-modes-1"></script>
+<script src="./pir-compare.js?v=graph-modes-2"></script>
 <script src="./advanced-player-core.js?v=team-dna-1"></script>
 <script src="./advanced-player-tools.js?v=market-player-tools-1"></script>
-<link rel="stylesheet" href="./dna-tools.css?v=23">
+<link rel="stylesheet" href="./dna-tools.css?v=24">
 <script src="./official-offense-core.js?v=team-dna-1"></script>
 <script src="./dna-core.js?v=team-dna-1"></script>
 <link rel="stylesheet" href="./weighted-forecast.css?v=round-evidence-1">

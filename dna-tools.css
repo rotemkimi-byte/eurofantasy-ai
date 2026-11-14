@@ -2,6 +2,7 @@
  --dna-primary:#4edbb3;
  --dna-secondary:#ffc27a;
  --dna-muted:#abb5c2;
+ --dna-style:#8ab8ff;
  --dna-ahead:#62e6a5;
  --dna-behind:#ff929c;
 }
@@ -9,6 +10,7 @@ html[data-theme="light"] .dna-shell{
  --dna-primary:#08775c;
  --dna-secondary:#945216;
  --dna-muted:#4b5b70;
+ --dna-style:#275fae;
  --dna-ahead:#087052;
  --dna-behind:#b32440;
 }
@@ -450,6 +452,7 @@ html.ef-redesign .dna-row summary{padding:12px}
 .dna-rank-weak{--dna-rank-color:var(--dna-behind)}
 .dna-rank-middle{--dna-rank-color:var(--dna-secondary)}
 .dna-rank-neutral{--dna-rank-color:var(--dna-muted)}
+.dna-expanded-groups .dna-rank-neutral{--dna-rank-color:var(--dna-style)}
 .dna-summary strong{color:var(--dna-rank-color);margin-inline-end:4px}
 .dna-expanded-groups{display:grid;gap:8px;margin-block:14px}
 .dna-category-grid,.dna-bars-grid{

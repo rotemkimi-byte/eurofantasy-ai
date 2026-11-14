@@ -80,7 +80,7 @@ def build(root=ROOT,offline=False):
                 raise ValueError('Invalid current-season schedule')
             refreshed_schedule=payload=schedule
         except Exception:warnings.append('Official schedule refresh failed; using cached official schedule')
-    profiles={};team_games={};now=datetime.now(timezone.utc)
+    profiles={};team_games={};performance={};now=datetime.now(timezone.utc)
     for g in payload.get('data',[]):
         date=stamp(g.get('utcDate'))
         if not g.get('played') or not date or date>=now or g.get('season',{}).get('code')!='E2026':continue
@@ -90,6 +90,18 @@ def build(root=ROOT,offline=False):
             except Exception:warnings.append(f'Missing official box score {code}');continue
         if not box:continue
         team_games[str(code)]={'date':date.isoformat()}
+        compact={'gameCode':code,'date':date.isoformat(),'round':g.get('roundNumber') or g.get('round')}
+        for side in ['local','road']:
+            part=box.get(side) or {};total=part.get('total') or {}
+            players=[]
+            for row in part.get('players') or []:
+                player=row.get('player') or {};stats=row.get('stats') or {}
+                name=(player.get('person') or {}).get('name')
+                if name:players.append([name,player.get('position'),number(stats.get('timePlayed')),number(stats.get('valuation'))])
+            compact[side]=[(g.get(side,{}).get('club') or {}).get('name'),number(total.get('points')),
+                           number(total.get('timePlayed')),(part.get('coach') or {}).get('name'),players]
+        compact['ot']=any(number(v) and number(v)>0 for v in ((g.get('local') or {}).get('partials') or {}).get('extraPeriods',{}).values())
+        performance[str(code)]=compact
         for side,other in [('local','road'),('road','local')]:
             part=box.get(side) or {};rows=part.get('players') or [];total=part.get('total') or {}
             seconds=[number((r.get('stats') or {}).get('timePlayed')) for r in rows]
@@ -115,6 +127,8 @@ def build(root=ROOT,offline=False):
       'method':'USG=100*(FGA+0.44*FTA+TO)/(playerSeconds/gameSeconds*(teamFGA+0.44*teamFTA+teamTO)); eFG=100*(2PM+1.5*3PM)/FGA; TS=100*PTS/(2*(FGA+0.44*FTA))',
       'players':profiles,'defenseVersion':1,'teamGames':team_games,'teamMetricsVersion':1,'teamResults':results,'officialStandings':standings,'warnings':warnings}
     if refreshed_schedule is not None:save(schedule_path,refreshed_schedule)
+    save(root/'data/performance-history.json',{'season':'E2026','version':1,'games':performance,
+                                               'missing':sum(1 for r in results if str(r['gameCode']) not in performance)})
     save(root/'data/official-offense.json',result);print(f'Official offense: {len(profiles)} players; {sum(len(p["games"]) for p in profiles.values())} player games')
     return result
 
