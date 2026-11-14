@@ -38,7 +38,21 @@ function plus(games){
  const total=rows.reduce((a,g)=>a+Number(g.stats.plusMinus),0),minutes=sum(rows,'minutes');
  return {total:rows.length?total:null,mean:rows.length?total/rows.length:null,per40:minutes?40*total/minutes:null,covered:rows.length,minutes};
 }
-function buildGame(box,points,pbp){
+function shotZone(s){
+ if(s.type.startsWith('3'))return 3;
+ if(Math.hypot(s.x,s.y)<=200)return 0;
+ return Math.abs(s.x)<=245&&s.y<=422.5?1:2;
+}
+function teamShotSummary(players){
+ if(!players.length||!players.every(p=>p.styleShots&&p.teamDnaShots))return null;
+ const rows=players.map(p=>p.teamDnaShots);
+ const sumField=k=>sum(rows,k);
+ const offTurnover=rows.every(r=>r.offTurnover!==null)?sumField('offTurnover'):null;
+ return {attempts:sum(players.map(p=>p.styleShots),'fieldAttempts'),located:sum(players.map(p=>p.styleShots),'located'),
+  points:sumField('points'),rimMade:sumField('rimMade'),rimAttempts:sumField('rimAttempts'),
+  midMade:sumField('midMade'),midAttempts:sumField('midAttempts'),offTurnover};
+}
+function buildGame(box,points,pbp,{teamDna=false}={}){
  const people={};
  for(const side of ['local','road'])for(const r of box[side]?.players||[]){
   const p=r.player?.person||{},s=r.stats||{},id=pid(p.code);
@@ -72,6 +86,15 @@ function buildGame(box,points,pbp){
    p.styleShots={fieldAttempts:field.length,located:located.length,
     nearRim:located.filter(r=>r.type.startsWith('2')&&Math.hypot(r.x,r.y)<=200).length,
     fastbreak:marked('fastbreak'),secondChance:marked('secondChance')};
+   if(teamDna){
+    const zones=[0,0,0,0],makes=[0,0,0,0];
+    for(const shot of located){
+     const zone=shotZone(shot);
+     zones[zone]++;makes[zone]+=Number(shot.made);
+    }
+    p.teamDnaShots={points,rimMade:makes[0],rimAttempts:zones[0],midMade:makes[2],midAttempts:zones[2],
+     offTurnover:marked('offTurnover')?.[0]??null};
+   }
   }
   if(!p.shotCoverage)p.shots=[];
  }
@@ -150,6 +173,6 @@ function lineups(games){
   r.points+=row.points;r.minutes=r.minutes===null||row.minutes===null?null:r.minutes+row.minutes;r.games.add(g.gameCode);
  }return [...map.values()].map(r=>({...r,games:r.games.size,per40:r.minutes>0?40*r.points/r.minutes:null})).sort((a,b)=>b.points-a.points||b.minutes-a.minutes);
 }
-const api={n,pid,select,boxAverages,negative,plus,buildGame,attacks,lineups};
+const api={n,pid,shotZone,teamShotSummary,select,boxAverages,negative,plus,buildGame,attacks,lineups};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.AdvancedPlayerCore=api;
 })(typeof window!=='undefined'?window:globalThis);

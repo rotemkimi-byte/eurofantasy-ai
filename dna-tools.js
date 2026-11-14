@@ -8,15 +8,15 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const decimal=new Intl.NumberFormat('he-IL',{maximumFractionDigits:1});
 const date=new Intl.DateTimeFormat('he-IL',{timeZone:'Asia/Jerusalem',day:'numeric',month:'numeric'});
 const fullDate=new Intl.DateTimeFormat('he-IL',{timeZone:'Asia/Jerusalem',day:'numeric',month:'numeric',year:'numeric'});
-const unitLabels={'%':'%',per40:' ל־40 דק׳',per100:' ל־100 פוז׳',pos:' פוז׳ ל־40 דק׳',cm:' ס״מ'};
-const sources={box:'בוקס־סקור',events:'יומן זריקות',estimated:'אומדן',lineups:'חמישיות מאומתות'};
+const unitLabels={'%':'%',per40:' ל־40 דק׳',per100:' ל־100 פוז׳',pos:' פוז׳ ל־40 דק׳',cm:' ס״מ',shots:' זריקות',ratio:' ל־1',pointsPerGame:' נק׳ למשחק',pointsPer100:' נק׳ ל־100 פוז׳',perPossession:' נק׳ להתקפה'};
+const sources={box:'בוקס־סקור',events:'יומן זריקות',estimated:'אומדן',lineups:'חמישיות מאומתות',estimatedBox:'אומדן מבוקס־סקור'};
 const positionLabels={G:'גארדים',F:'פורוורדים',C:'סנטרים',Guard:'גארדים',Forward:'פורוורדים',Center:'סנטרים'};
 const toPosition={Guard:'G',Forward:'F',Center:'C'};
 const styleTags={assists:'יוצר משחק',usage:'מעורבות התקפית גבוהה',three:'זורק הרבה לשלוש',
  rim:'משחק ליד הסל',fastbreak:'שחקן מתפרצות',offRebound:'ריבאונד התקפה',defRebound:'ריבאונד הגנה',
  drawn:'סוחט עבירות',steals:'חוטף כדורים',blocks:'חוסם',secondChance:'הזדמנות שנייה'};
 const sharedStyleMetrics=C.playerMetrics.filter(([id])=>['three','threeAccuracy','rim','fastbreak','secondChance'].includes(id));
-const lowerIsBetter=new Set(['turnovers','fouls','allowedThree','allowedTwo','allowedRebound','allowedFouls']);
+const lowerIsBetter=new Set(['turnovers','fouls','allowedThree','allowedTwo','allowedRebound','allowedFouls',...C.lowTeamMetrics]);
 const fmt=(value,unit='')=>value==null?'—':decimal.format(value)+(unitLabels[unit]||'');
 const price=p=>Number.isFinite(p.price)&&p.price>0?fmt(p.price)+' CR':'';
 const labelName=name=>name.includes(',')?name.split(',').reverse().map(s=>s.trim()).join(' '):name;
@@ -195,13 +195,13 @@ async function load(force=false){
  }
  pending=(async()=>{
   try{
-   const [official,events,schedule,market,media]=await Promise.all([
+   const [official,events,schedule,market,media,teamEvents]=await Promise.all([
     json('official-offense.json',force),json('advanced-players.json',force).catch(()=>null),
     json('context/E2026-schedule.json').catch(()=>null),json('players.json',force).catch(()=>null),
-    json('player-media.json').catch(()=>null)
+    json('player-media.json').catch(()=>null),json('team-dna-events.json',force).catch(()=>null)
    ]);
    if(official.season!==C.season||!official.players||!official.teamResults?.length)throw Error('No season data');
-   const built=C.build(official,events?.season===C.season?events:null,T);
+   const built=C.build(official,events?.season===C.season?events:null,T,Date.now(),teamEvents);
    if(!built.teams.length)throw Error('No team records');
    const scheduleGames=(schedule?.data||[]).filter(g=>g.season?.code===C.season&&g.isNeutralVenue);
    const neutral=new Set(scheduleGames.map(g=>String(g.gameCode)));
@@ -753,6 +753,11 @@ function comparisonRows(metrics,ownStats,rivalStats,benchmarks,{highlightAdvanta
 function legend(own,rival){
  return `<div class="dna-legend"><span class="dna-own"><i></i><bdi>${esc(own)}</bdi></span><span class="dna-other"><i></i><bdi>${esc(rival)}</bdi></span></div>`;
 }
+function extraTeamRows(rowsFor){
+ return C.teamGroups.filter(([title])=>(title==='הגנה')===(view==='defense')).map(([title,metrics])=>
+  `<section class="dna-team-metrics"><h4>${title}</h4><div class="dna-chart">${rowsFor(metrics)}</div></section>`
+ ).join('');
+}
 function renderHistory(out,metrics,games){
  const game=games.find(g=>String(g.code)===teamGame);
  teams.$('[data-team-switch]').hidden=!game;
@@ -767,7 +772,8 @@ function renderHistory(out,metrics,games){
  <p>${fullDate.format(new Date(game.date))}</p></header>
  ${teamMetricTable(view==='defense'?'מה היריבות עשו מול כל קבוצה במשחק':'איך הקבוצות שיחקו בהתקפה',
   view==='defense'?'מדדי היריבה מופיעים תחת הקבוצה שמולה שיחקה. חטיפות הן של הקבוצה עצמה.':'הערכים מתייחסים למשחק שנבחר.',
-  comparisonRows(metrics,ownStats,rivalStats,undefined,{names:[game.team,game.opponent]}))}`;
+  comparisonRows(metrics,ownStats,rivalStats,undefined,{names:[game.team,game.opponent]}))}
+ ${extraTeamRows(extra=>comparisonRows(extra,C.summarize([game],extra),C.summarize(other?[other]:[],extra),undefined,{names:[game.team,game.opponent]}))}`;
 }
 function renderTeams(updateGames=true){
  if(!model)return;
@@ -801,6 +807,10 @@ function renderTeams(updateGames=true){
  const description=(view==='defense'?'מדדי היריבות מופיעים תחת הקבוצה שמולה שיחקו. חטיפות הן של הקבוצה עצמה. ':'')+
   'הדירוג הוא ביחס לליגה בטווח שנבחר.';
  const metricTable=teamMetricTable(title,description,comparisonRows(metrics,ownStats,rivalStats,benchmarks,{names:[own.team,heading]}));
+ const extras=extraTeamRows(extra=>{
+  const {stats,benchmarks}=teamAnalysis(Number(selectedRange),extra);
+  return comparisonRows(extra,stats.get(own),stats.get(rival),benchmarks,{names:[own.team,heading]});
+ });
  out.innerHTML=`<section class="dna-profile">
  <span class="dna-kicker">השוואת סגנונות</span>
  <div class="dna-team-pair">
@@ -808,7 +818,7 @@ function renderTeams(updateGames=true){
   <span class="dna-versus">מול</span>
   <div class="dna-identity">${rival?portrait(heading,clubCrests.get(heading),'club'):''}<div><h3><bdi>${esc(heading)}</bdi></h3>${rival?`<p>${selectedGames(rival)} משחקים בטווח</p>`:''}</div></div>
  </div>${match?'<p class="dna-fixture">'+esc(match)+'</p>':''}</section>
- ${metricTable}${sizeNote}`;
+ ${metricTable}${sizeNote}${extras}`;
  loadPortraits(out);
 }
 function paint(){

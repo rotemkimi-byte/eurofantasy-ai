@@ -207,12 +207,6 @@ function seasonContext(official,advanced,asOf=Date.now(),{pregame=false,fixtureC
  return {...empty,games,players,opponents,positional};
 }
 
-function zone(s){
- if(s.type.startsWith('3'))return 3;
- if(Math.hypot(s.x,s.y)<=200)return 0;
- return Math.abs(s.x)<=245&&s.y<=422.5?1:2;
-}
-
 function shotLedger(g){
  if(!g.event?.shotCoverage)return null;
  const rows=g.event.shots.filter(s=>!s.type.startsWith('FT'));
@@ -220,7 +214,7 @@ function shotLedger(g){
  const bins=Array.from({length:4},()=>({attempts:0,made:0,points:0}));
  let distance=0,paint=0;
  for(const s of rows){
-  const bin=bins[zone(s)];
+  const bin=bins[A.shotZone(s)];
   bin.attempts++;bin.made+=Number(s.made);bin.points+=s.points;
   distance+=Math.hypot(s.x,s.y)/100;
   if(s.type.startsWith('2')&&Math.abs(s.x)<=245&&s.y<=422.5)paint+=s.points;

@@ -2,6 +2,9 @@
 'use strict';
 const key=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9 ]/g,' ').split(/\s+/).filter(Boolean).sort().join(' ');
 const valid=v=>v!==null&&v!==undefined&&Number.isFinite(Number(v));
+const trueShootingParts=(points,fga,fta)=>[points,2*(fga+.44*fta)];
+const effectiveFieldGoalParts=(made2,made3,fga)=>[made2+1.5*made3,fga];
+const percent=([n,d])=>100*n/d;
 function aggregate(games){
  const rows=games.filter(g=>g.minutes>0),sum=f=>rows.reduce((s,g)=>s+f(g),0),complete=k=>rows.length&&rows.every(g=>valid(g.metrics?.[k]));
  const minutes=sum(g=>g.minutes),total=k=>complete(k)?sum(g=>g.metrics[k]):null;
@@ -13,8 +16,8 @@ function aggregate(games){
   fgaPerMinute:minutes&&fga!==null?fga/minutes:null,threePerMinute:minutes&&three!==null?three/minutes:null,twoPerMinute:minutes&&two!==null?two/minutes:null,ftaPerMinute:minutes&&fta!==null?fta/minutes:null,
   usagePct:events!==null&&exposure>0?100*events/exposure:null,
   threeAttemptSharePct:fga>0&&three!==null?100*three/fga:null,
-  efgPct:fga>0&&shots?100*sum(g=>g.stats.fieldGoalsMade2+1.5*g.stats.fieldGoalsMade3)/fga:null,
-  tsPct:fga!==null&&fta!==null&&fga+.44*fta>0&&pts?100*sum(g=>g.stats.points)/(2*(fga+.44*fta)):null};
+  efgPct:fga>0&&shots?percent(effectiveFieldGoalParts(sum(g=>g.stats.fieldGoalsMade2),sum(g=>g.stats.fieldGoalsMade3),fga)):null,
+  tsPct:fga!==null&&fta!==null&&fga+.44*fta>0&&pts?percent(trueShootingParts(sum(g=>g.stats.points),fga,fta)):null};
 }
 function report(data,player,{gameCode=null,minutes=null,asOf=new Date().toISOString()}={}){
  if(data?.schema!=='official-offense-v1'||data.season!=='E2026')return null;
@@ -39,5 +42,5 @@ function report(data,player,{gameCode=null,minutes=null,asOf=new Date().toISOStr
  const trend=baseline.games>=3&&prior.games>=3&&prior.fgaPerMinute>0&&baseline.fgaPerMinute!==null?100*(baseline.fgaPerMinute/prior.fgaPerMinute-1):null;
  return {observed,latest,baseline,season,prior,projected,peers,trend,cutoff,positionName:latest?.positionName,source:observed?.source||latest?.source,updatedAt:data.updated_at};
 }
-const api={key,aggregate,report};if(typeof module!=='undefined'&&module.exports)module.exports=api;root.OfficialOffense=api;
+const api={key,aggregate,report,trueShootingParts,effectiveFieldGoalParts};if(typeof module!=='undefined'&&module.exports)module.exports=api;root.OfficialOffense=api;
 })(typeof window!=='undefined'?window:globalThis);

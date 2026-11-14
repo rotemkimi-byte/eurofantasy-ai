@@ -33,7 +33,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/advanced-players.json
+          git add data/advanced-players.json data/team-dna-events.json
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh verified advanced player data'
             git push origin "HEAD:${{ github.ref_name }}"
