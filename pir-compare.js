@@ -14,19 +14,19 @@ const fmt=v=>numeric(v)?Number(v).toFixed(1):'—';
 const name=p=>typeof reorderCommaName==='function'?reorderCommaName(p.name):p.name;
 const date=d=>new Date(d).toLocaleDateString('he-IL',{timeZone:'Asia/Jerusalem'});
 const section=document.createElement('section');section.id='pirCompare';section.hidden=true;
-section.innerHTML=`<div><div class="sectionHead"><h4>השוואת ביצועים</h4><button class="secondary" data-refresh>רענן</button></div><div class="player-picker-modes" role="group" aria-label="בחירת רשימת שחקנים"><button type="button" data-scope="all" aria-pressed="true">כל השחקנים · לפי מחיר</button><button type="button" data-scope="team" aria-pressed="false">לפי קבוצה</button></div><div class="pc-controls player-picker-controls"><label data-team-label hidden>בחר קבוצה<select data-team><option value="">בחר קבוצה</option></select></label><label><span data-player-label>הוסף שחקן · מהמחיר הגבוה לנמוך</span><select data-player></select></label><label>מדד<select data-metric><option value="pir">PIR</option><option value="minutes">דקות</option><option value="coach">נקודות פנטזי למאמנים</option></select></label><label>טווח תצוגה<select data-range><option value="1">אחרון</option><option value="3">3 אחרונים</option><option value="0" selected>כל העונה · 2026/27</option></select></label></div><p role="status" data-status></p><div class="pc-selection-head"><strong data-count>נבחרו 0 מתוך 6</strong><button type="button" data-compare disabled>השווה שחקנים</button><button type="button" data-clear disabled>נקה בחירה</button></div><div class="pc-selected" data-selected></div><div data-results></div><details data-picker open><summary>בחירת שחקנים · מהמחיר הגבוה לנמוך</summary><div class="pc-picker" data-options></div></details><details class="ef-help"><summary>הסבר</summary><p>נתוני עונת 2026/27. PIR ודקות מגיעים מדוחות המשחקים. נקודות המאמן מחושבות לפי תוצאות המשחקים וכללי הפנטזי. הטווח נקבע לפי הרישומים האחרונים של כל שחקן, כולל רישום שבו לא שיחק. משחקים ללא נתון אינם נכנסים לממוצע. הגרף מציג מחזורים משותפים בציר האופקי. הפירוט מחשב ממוצעים לפי המשחקים האחרונים של כל שחקן.</p></details></div>`;
+section.innerHTML=`<div><div class="sectionHead"><h4>השוואת ביצועים</h4><button class="secondary" data-refresh>רענן</button></div><div class="pc-controls player-picker-controls"><label data-team-label hidden>בחר קבוצה<select data-team><option value="">בחר קבוצה</option></select></label><label><span data-player-label>הוסף שחקן · מהמחיר הגבוה לנמוך</span><select data-player></select></label><label>מדד<select data-metric><option value="pir">PIR</option><option value="minutes">דקות</option><option value="coach">נקודות פנטזי למאמנים</option></select></label></div><p role="status" data-status></p><div class="pc-selection-head"><strong data-count>נבחרו 0 מתוך 6</strong><button type="button" data-compare disabled>השווה שחקנים</button><button type="button" data-clear disabled>נקה בחירה</button></div><div class="pc-selected" data-selected></div><div data-results></div><details data-picker open><summary>בחירת שחקנים · מהמחיר הגבוה לנמוך</summary><div class="pc-picker" data-options></div></details><details class="ef-help"><summary>הסבר</summary><p>נתוני עונת 2026/27. PIR ודקות מגיעים מדוחות המשחקים. נקודות המאמן מחושבות לפי תוצאות המשחקים וכללי הפנטזי. הטווח נקבע לפי הרישומים האחרונים של כל שחקן, כולל רישום שבו לא שיחק. משחקים ללא נתון אינם נכנסים לממוצע. הגרף מציג מחזורים משותפים בציר האופקי. הפירוט מחשב ממוצעים לפי המשחקים האחרונים של כל שחקן.</p></details></div>`;
 document.getElementById('pirSingle').after(section);
-const style=document.createElement('style');style.textContent=`.pc-controls{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}.pc-controls label{flex:1;min-width:180px}.pc-controls input,.pc-controls select{margin-top:6px;min-height:44px;font-size:16px}.pc-picker{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;max-height:260px;overflow:auto;padding:12px 2px}.pc-picker button{background:var(--card2);color:var(--text);border:1px solid var(--line);min-height:48px;text-align:right}.pc-picker button[aria-pressed=true]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}.pc-picker small,.pc-selected small{display:block}.pc-selected{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.pc-selected button{min-height:44px;background:var(--card2);color:var(--text);border:1px solid var(--line)}#pirCompare summary{cursor:pointer;padding:12px 0}.pc-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:20px 0}.pc-card{background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:16px;min-width:0}.pc-card h4{margin:0 0 6px;font-size:17px}.pc-value{font-size:38px;font-weight:850;display:block;color:var(--accent);direction:ltr;text-align:right}.pc-value.negative{color:var(--bad)}.pc-meta{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;margin:12px 0}.pc-game{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:13px}.pc-game small{display:block;margin-top:4px}.pc-game strong{white-space:nowrap;direction:ltr}.pc-table-wrap{overflow:auto}.pc-table{min-width:600px}.pc-table th,.pc-table td{background:var(--card2);color:var(--text)}.pc-table .pc-current{font-weight:850;color:var(--accent)}`;style.textContent+=`
+const style=document.createElement('style');style.textContent=`.pc-controls{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}.pc-controls label{flex:1;min-width:0}.pc-controls input,.pc-controls select{margin-top:6px;min-height:44px;font-size:16px}.pc-picker{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;max-height:260px;overflow:auto;padding:12px 2px}.pc-picker button{background:var(--card2);color:var(--text);border:1px solid var(--line);min-height:48px;text-align:right}.pc-picker button[aria-pressed=true]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}.pc-picker small,.pc-selected small{display:block}.pc-selected{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.pc-selected button{min-height:44px;background:var(--card2);color:var(--text);border:1px solid var(--line)}#pirCompare summary{cursor:pointer;padding:12px 0}.pc-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px;margin:20px 0}.pc-card{background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:16px;min-width:0}.pc-card h4{margin:0 0 6px;font-size:17px}.pc-value{font-size:38px;font-weight:850;display:block;color:var(--accent);direction:ltr;text-align:right}.pc-value.negative{color:var(--bad)}.pc-meta{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;margin:12px 0}.pc-game{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:13px}.pc-game small{display:block;margin-top:4px}.pc-game strong{white-space:nowrap;direction:ltr}.pc-table-wrap{overflow:auto}.pc-table{min-width:600px}.pc-table th,.pc-table td{background:var(--card2);color:var(--text)}.pc-table .pc-current{font-weight:850;color:var(--accent)}`;style.textContent+=`
 #pirCompare{--pc-bg:#fff;--pc-soft:#f2f5f9;--pc-text:#142237;--pc-muted:#526176;--pc-border:#b9c5d4;--pc-accent:#006b4c;--pc-selected:#e2f6ee;--pc-negative:#a9213e}
 html[data-theme="dark"] #pirCompare{--pc-bg:#162237;--pc-soft:#203149;--pc-text:#f4f7fc;--pc-muted:#c0cde0;--pc-border:#667b98;--pc-accent:#76efbe;--pc-selected:#153f36;--pc-negative:#ff9eaf}
 #pirCompare .card,#pirCompare .pc-card{background:var(--pc-bg);color:var(--pc-text)}
-#pirCompare button:not(.player-picker-modes button){color:var(--pc-text);background:var(--pc-soft);border:1px solid var(--pc-border);min-height:44px}
+#pirCompare button{color:var(--pc-text);background:var(--pc-soft);border:1px solid var(--pc-border);min-height:44px}
 #pirCompare button bdi,#pirCompare button strong{color:inherit}
 #pirCompare .pc-picker button[aria-pressed="true"]{background:var(--pc-selected);color:var(--pc-text);border:2px solid var(--pc-accent)}
 #pirCompare label,#pirCompare small{color:var(--pc-muted)}
 #pirCompare input,#pirCompare select{background:var(--pc-bg);color:var(--pc-text);border-color:var(--pc-border)}
 #pirCompare input::placeholder{color:var(--pc-muted);opacity:1}
-#pirCompare .pc-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+#pirCompare .pc-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:12px}
 #pirCompare [hidden]{display:none!important}
 #pirCompare .pc-selection-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:16px 0}
 #pirCompare .pc-selection-head strong{flex:1;min-width:130px}
@@ -59,7 +59,7 @@ html[data-theme="dark"] .pc-chart{--pc-chart-bg:#080b10;--pc-chart-grid:#536175;
 @media(max-width:360px){#pirCompare .pc-picker button{grid-template-columns:minmax(0,1fr) 48px 48px;gap:6px;padding:10px 8px}}
 `;document.head.append(style);
 const $=s=>section.querySelector(s);
-let data=null,busy=false,scope='all',metric='pir';
+let data=null,busy=false,metric='pir';
 const selectionKey=()=>metric==='coach'?'efa-coach-compare':'efa-pir-compare';
 function restore(){
  try{const saved=JSON.parse(localStorage.getItem(selectionKey())||'[]');return Array.isArray(saved)?saved.filter(s=>typeof s==='string').slice(0,6):[];}
@@ -85,10 +85,10 @@ function catalog(){
  return historical.sort((a,b)=>(b.price??-Infinity)-(a.price??-Infinity)||a.name.localeCompare(b.name));
 }
 function options(){if(!data)return;
+ const scope=root.PIRHistoryUI.getScope();
  const all=catalog(),old=$('[data-team]').value,teams=[...new Set(all.map(r=>r.team).filter(Boolean))].sort();
  $('[data-team]').innerHTML='<option value="">בחר קבוצה</option>'+teams.map(t=>`<option value="${esc(t)}">${esc(t)}</option>`).join('');if(teams.includes(old))$('[data-team]').value=old;
  $('[data-team-label]').hidden=scope!=='team';
- section.querySelectorAll('[data-scope]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.scope===scope)));
  const rows=all.filter(r=>scope==='all'||r.team===$('[data-team]').value);
  const remaining=rows.filter(r=>!selected.includes(r.id));
  const picker=$('[data-player]');
@@ -98,13 +98,14 @@ function options(){if(!data)return;
  $('[data-options]').innerHTML=scope==='team'&&!$('[data-team]').value?'<p class="pc-empty">בחר קבוצה למעלה כדי לראות את השחקנים שלה.</p>':rows.map(r=>{const on=selected.includes(r.id);return `<button type="button" data-add="${esc(r.id)}" aria-pressed="${on}" ${!on&&selected.length>=6?'disabled':''}><span class="pc-player-info"><bdi>${esc(r.name)}</bdi><small>${esc(r.team)}${r.pos?' · '+esc(r.pos):''}</small></span><span class="pc-price"><strong>${fmt(r.price)}</strong><small>קרדיט</small></span><span class="pc-pick-action">${on?'✓ נבחר':'+ הוסף'}</span></button>`;}).join('')||'<p class="pc-empty">לא נמצאו שחקנים.</p>';
 }
 function roundSeries(picks,range){
- let latest=0;
+ let earliest=Infinity,latest=0;
  const series=picks.map(({p})=>{
   const values=new Map();
-  for(const g of summarize(p.games,0).rows){
+  for(const g of summarize(p.games,range).rows){
    const round=Number(g.round);
    if(!Number.isInteger(round)||round<1)continue;
    latest=Math.max(latest,round);
+   earliest=Math.min(earliest,round);
    if(!g.dnp&&numeric(g.value)&&!values.has(round)){
     values.set(round,Number(g.value));
    }
@@ -112,7 +113,7 @@ function roundSeries(picks,range){
   return {player:p,values};
  });
  if(!series.some(({values})=>values.size))return {series,rounds:[]};
- const first=Number(range)>0?Math.max(1,latest-Number(range)+1):1;
+ const first=Number(range)>0?earliest:1;
  return {series,rounds:Array.from({length:latest-first+1},(_,i)=>first+i)};
 }
 
@@ -191,7 +192,7 @@ function drawComparisonChart(container,picks,range,{label='PIR',format=String}={
 }
 root.drawRoundComparisonChart=drawComparisonChart;
 
-function render(){if(!data)return;const range=$('[data-range]').value,label=measure(),coach=metric==='coach';
+function render(){if(!data)return;const range=root.PIRHistoryUI.getRange(),label=measure(),coach=metric==='coach';
  $('[data-player-label]').textContent=coach?'הוסף מאמן':'הוסף שחקן · מהמחיר הגבוה לנמוך';
  $('[data-compare]').textContent=coach?'השווה מאמנים':'השווה שחקנים';const playersById=new Map(catalog().map(r=>[r.id,r]));const picks=selected.map(id=>playersById.get(id)).filter(Boolean);
  $('[data-count]').textContent=`נבחרו ${picks.length} מתוך 6`;$('[data-compare]').disabled=picks.length<2;$('[data-clear]').disabled=!picks.length;
@@ -201,13 +202,12 @@ function render(){if(!data)return;const range=$('[data-range]').value,label=meas
  options();
 }
 async function load(force=false){if(busy)return;if(data&&!force){data=root.PIRHistoryUI.getData()||data;render();return;}busy=true;$('[data-refresh]').disabled=true;$('[data-status]').textContent='טוען דוחות משחק להשוואה…';try{if(force||!root.PIRHistoryUI.getData())await root.PIRHistoryUI.load(force);data=root.PIRHistoryUI.getData();if(!data)throw Error();const ids=new Set(catalog().map(r=>r.id));selected=selected.filter(id=>ids.has(id));render();$('[data-status]').textContent=`עונת 2026/27 · בחר עד 6 שחקנים${data.missing?' · חסרים '+data.missing+' דוחות משחק; ההשוואה חלקית':''}`;}catch{$('[data-status]').textContent='לא ניתן לטעון את הנתונים. לחץ על רענן לניסיון נוסף.';}finally{busy=false;$('[data-refresh]').disabled=false;}}
-root.PIRCompareUI={load};
+root.PIRCompareUI={load,render,refreshPicker:options};
 $('[data-metric]').onchange=e=>{const oldKey=selectionKey();metric=e.target.value;if(selectionKey()!==oldKey)selected=restore();render();};
 $('[data-team]').onchange=options;
- for(const b of section.querySelectorAll('[data-scope]'))b.onclick=()=>{scope=b.dataset.scope;options();};
  $('[data-clear]').onclick=()=>{selected=[];persist();render();};
  $('[data-compare]').onclick=()=>{$('[data-picker]').open=false;const result=$('[data-results]');result.setAttribute('tabindex','-1');result.focus({preventScroll:true});result.scrollIntoView({block:'start',behavior:'smooth'});};
- $('[data-refresh]').onclick=()=>void load(true);$('[data-range]').onchange=render;
+ $('[data-refresh]').onclick=()=>void load(true);
 function toggle(id){
  if(!id)return;
  if(selected.includes(id))selected=selected.filter(k=>k!==id);

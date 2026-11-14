@@ -237,14 +237,51 @@ html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method sum
   <div id="pmHistoryResult"></div>
 </div></div></section>
 <section id="pirGraph" class="tab"><div class="card"><h3>גרפי ביצועים</h3>
-<div class="pa-views" id="pirModes" role="group" aria-label="סוג גרף">
-  <button type="button" data-pir-mode="pir" aria-pressed="true">PIR</button>
-  <button type="button" data-pir-mode="minutes" aria-pressed="false">דקות</button>
-  <button type="button" data-pir-mode="credit" aria-pressed="false">קרדיט</button>
-  <button type="button" data-pir-mode="compare" aria-pressed="false">השוואה</button>
-  <button type="button" data-pir-mode="mixed" aria-pressed="false">גרף משולב</button>
+<svg hidden xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="pir-icon-bar" viewBox="0 0 24 24"><path d="M3 3v18h18M8 16v-3m5 3V8m5 8V5"/></symbol>
+  <symbol id="pir-icon-timer" viewBox="0 0 24 24"><circle cx="12" cy="14" r="8"/><path d="M10 2h4m-2 6V6m0 8 3-3m3-3 2-2"/></symbol>
+  <symbol id="pir-icon-coins" viewBox="0 0 24 24"><ellipse cx="8" cy="7" rx="5" ry="3"/><path d="M3 7v4c0 1.7 2.2 3 5 3m-5-3v4c0 1.7 2.2 3 5 3"/><ellipse cx="16" cy="13" rx="5" ry="3"/><path d="M11 13v4c0 1.7 2.2 3 5 3s5-1.3 5-3v-4"/></symbol>
+  <symbol id="pir-icon-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4m-5 3h18m-10 4 1-1v5"/></symbol>
+  <symbol id="pir-icon-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5m-18 4 9 5 9-5"/></symbol>
+  <symbol id="pir-icon-trophy" viewBox="0 0 24 24"><path d="M8 21h8m-4-5v5M7 4h10v7a5 5 0 0 1-10 0V4ZM7 6H3v2a4 4 0 0 0 4 4m10-6h4v2a4 4 0 0 1-4 4"/></symbol>
+  <symbol id="pir-icon-scale" viewBox="0 0 24 24"><path d="M12 3v18m-5 0h10M5 7h14M2 14l3-7 3 7a3 3 0 0 1-6 0Zm14 0 3-7 3 7a3 3 0 0 1-6 0Z"/></symbol>
+  <symbol id="pir-icon-mixed" viewBox="0 0 24 24"><path d="M3 3v18h18M8 17v-2m5 2v-5m5 5v-7M7 10l4-4 3 2 5-5m-4 0h4v4"/></symbol>
+  <symbol id="pir-icon-sort" viewBox="0 0 24 24"><path d="M9 6h12M9 11h9m-9 5h6m-6 4h3M4 5v15m-2-2 2 2 2-2"/></symbol>
+  <symbol id="pir-icon-shield" viewBox="0 0 24 24"><path d="M12 22s7-3.5 7-10V5l-7-3-7 3v7c0 6.5 7 10 7 10Z"/><path d="m9 12 2 2 4-4"/></symbol>
+</svg>
+<div class="pir-toolbar" id="pirModes">
+ <div class="pir-control-group" role="group" aria-labelledby="pirMetricsLabel">
+  <span class="pir-control-label" id="pirMetricsLabel">מדד לתצוגה</span>
+  <div class="pir-control-row pir-control-three">
+    <button type="button" data-pir-mode="pir" aria-pressed="true"><svg aria-hidden="true" focusable="false"><use href="#pir-icon-bar"/></svg><span class="pir-control-title">PIR</span><small>מדד ביצוע</small></button>
+    <button type="button" data-pir-mode="minutes" aria-pressed="false"><svg aria-hidden="true" focusable="false"><use href="#pir-icon-timer"/></svg><span class="pir-control-title">דקות</span><small>זמן משחק</small></button>
+    <button type="button" data-pir-mode="credit" aria-pressed="false"><svg aria-hidden="true" focusable="false"><use href="#pir-icon-coins"/></svg><span class="pir-control-title">קרדיט</span><small>שווי שחקן</small></button>
+  </div>
+ </div>
+ <div class="pir-control-group" id="pirRange" role="group" aria-labelledby="pirRangeLabel">
+  <span class="pir-control-label" id="pirRangeLabel">טווח נתונים</span>
+  <div class="pir-control-row pir-control-three">
+    <button type="button" data-pir-range="1" aria-pressed="false"><svg aria-hidden="true" focusable="false"><use href="#pir-icon-calendar"/></svg><span class="pir-control-title">משחק אחד</span><small>אחרון</small></button>
+    <button type="button" data-pir-range="3" aria-pressed="false"><svg aria-hidden="true" focusable="false"><use href="#pir-icon-layers"/></svg><span class="pir-control-title">3 משחקים</span><small>אחרונים</small></button>
+    <button type="button" data-pir-range="0" aria-pressed="true"><svg aria-hidden="true" focusable="false"><use href="#pir-icon-trophy"/></svg><span class="pir-control-title">עונה שלמה</span><small>2026/27</small></button>
+  </div>
+ </div>
+ <div class="pir-control-group" role="group" aria-labelledby="pirChartTypeLabel">
+  <span class="pir-control-label" id="pirChartTypeLabel">סוג הגרף</span>
+  <div class="pir-control-row">
+    <button type="button" data-pir-mode="compare" aria-pressed="false"><svg aria-hidden="true" focusable="false"><use href="#pir-icon-scale"/></svg><span class="pir-control-title">השוואה</span><small>שחקן מול שחקן</small></button>
+    <button type="button" data-pir-mode="mixed" aria-pressed="false"><svg aria-hidden="true" focusable="false"><use href="#pir-icon-mixed"/></svg><span class="pir-control-title">גרף משולב</span><small>כמה מדדים יחד</small></button>
+  </div>
+ </div>
+ <div class="pir-control-group" role="group" aria-labelledby="pirScopeLabel">
+  <span class="pir-control-label" id="pirScopeLabel">בחירת שחקנים</span>
+  <div class="pir-control-row" id="pirPickerModes">
+    <button type="button" data-pir-scope="all" aria-pressed="true"><svg aria-hidden="true" focusable="false"><use href="#pir-icon-sort"/></svg><span class="pir-control-title">כל השחקנים · לפי מחיר</span><small>כל השחקנים</small></button>
+    <button type="button" data-pir-scope="team" aria-pressed="false"><svg aria-hidden="true" focusable="false"><use href="#pir-icon-shield"/></svg><span class="pir-control-title">לפי קבוצה</span><small>בחירת סגל</small></button>
+  </div>
+ </div>
 </div>
-<div id="pirSingle"><div class="player-picker-modes" role="group" aria-label="בחירת רשימת שחקנים"><button type="button" data-pir-scope="all" aria-pressed="true">כל השחקנים · לפי מחיר</button><button type="button" data-pir-scope="team" aria-pressed="false">לפי קבוצה</button></div><div class="filters pirControls player-picker-controls"><label id="pirTeamLabel" hidden>קבוצה<select id="pirTeam"></select></label><label>שחקנים או מאמנים<select id="pirKind"><option value="player">שחקנים</option><option value="coach">מאמנים</option></select></label></div>
+<div id="pirSingle"><div class="filters pirControls player-picker-controls"><label id="pirTeamLabel" hidden>קבוצה<select id="pirTeam"></select></label><label>שחקנים או מאמנים<select id="pirKind"><option value="player">שחקנים</option><option value="coach">מאמנים</option></select></label></div>
 <label class="player-result-picker player-picker-controls"><span>שחקן או מאמן · מהמחיר הגבוה לנמוך</span><select id="pirPerson"></select></label>
 <p id="pirLegend" class="pirLegend" hidden><span>PIR · ציר שמאל</span><span>דקות · ציר ימין</span></p><div id="pirChart" class="pirChart player-result-summary" dir="ltr"></div>
 <section id="pirSummary" class="pirOverview" aria-label="סיכום ביצועים">
@@ -252,7 +289,7 @@ html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method sum
  <dl id="pirStats" class="pirOverviewStats" hidden></dl>
  <div id="pirDetail" class="pirOverviewDetail" aria-live="polite"></div>
 </section>
-<div class="filters pirControls player-picker-controls"><label>טווח<select id="pirRange"><option value="0">כל העונה</option><option value="5">5 משחקים אחרונים</option><option value="10">10 משחקים אחרונים</option><option value="1">משחק אחרון</option><option value="3">3 משחקים אחרונים</option></select></label><button id="pirReload" class="secondary">רענן נתונים</button></div><p id="pirStatus" class="muted" role="status" aria-live="polite"></p><details class="ef-help"><summary>כל המשחקים בטווח שנבחר</summary><div id="pirGames"></div></details><details class="ef-help pir-help"><summary>הסבר על הגרף</summary><div class="ef-help-body"><p class="muted pirNote">הגרף נפתח במשחקים האחרונים מימין · גלול שמאלה למשחקים קודמים · לחץ על נקודה לפרטי המשחק</p><p id="pirNote" class="muted pirNote"></p><p id="pirCoverage" class="muted pirNote">מוצגים משחקים שזמינים בדוחות העונה בלבד. היעדרות מרישום המשחק אינה מוצגת כאפס.</p></div></details></div></div></section>
+<div class="filters pirControls player-picker-controls"><button id="pirReload" class="secondary">רענן נתונים</button></div><p id="pirStatus" class="muted" role="status" aria-live="polite"></p><details class="ef-help"><summary>כל המשחקים בטווח שנבחר</summary><div id="pirGames"></div></details><details class="ef-help pir-help"><summary>הסבר על הגרף</summary><div class="ef-help-body"><p class="muted pirNote">הגרף נפתח במשחקים האחרונים מימין · גלול שמאלה למשחקים קודמים · לחץ על נקודה לפרטי המשחק</p><p id="pirNote" class="muted pirNote"></p><p id="pirCoverage" class="muted pirNote">מוצגים משחקים שזמינים בדוחות העונה בלבד. היעדרות מרישום המשחק אינה מוצגת כאפס.</p></div></details></div></div></section>
 <section id="pirWeakness" class="tab"><div class="card"><h3>חולשת PIR · מול מי השחקנים מצליחים?</h3><p class="muted weakHelp">ככל שהקבוצה אפשרה ליריבות יותר PIR, היא מדורגת גבוה יותר. הפירוט לפי עמדה מראה היכן נצבר המדד. אלה ביצועים בפועל בעונת 2026/27; המדגם מושפע מהיריבות, מדקות המשחק ומההרכבים.</p><div class="filters weakControls"><label>עמדת היריבים<select id="weakPos"><option value="">כל העמדות</option><option value="G">G · גארדים</option><option value="F">F · פורוורדים</option><option value="C">C · סנטרים</option></select></label><label>מול קבוצה<select id="weakTeam"><option value="">כל הקבוצות</option></select></label><label>מיון<select id="weakSort"><option value="perGame">PIR שספגה למשחק</option><option value="per30">PIR ל־30 דקות שחקן</option></select></label><button class="secondary" id="weakReload">רענן נתונים</button></div><div id="weakRange"></div><div id="weakGames" hidden></div><p id="weakStatus" class="muted weakHelp" role="status" aria-live="polite"></p><div id="weakList"></div></div></section>
 <section id="absencePicks" class="tab"><div class="card"><h3>המלצות בעקבות חיסורים</h3><p class="muted">מי עשוי להרוויח דקות ואחריות כששחקן מפתח חסר?</p><div class="filters"><label>קבוצה<select id="absenceTeam"><option value="">כל הקבוצות</option></select></label><label>זמינות<select id="absenceStatus"><option value="all">בחוץ ובספק</option><option value="out">בחוץ בלבד</option></select></label></div><p class="notice">הערכה לפי המודל הקיים: עמדה, מחיר ותפקיד משוער. שחקן מפתח מוגדר כאן במחיר מעל 8 CR. תוספת הדקות אינה הבטחה לפתיחה בחמישייה; אין כאן ניתוח מאומת של משחקים ללא השחקן החסר.</p><div id="absenceCards" class="absenceGrid"></div></div></section>
 <section id="injuries" class="tab"><div class="card"><h3>פציעות וזמינות</h3><p class="muted">המודל מוריד דקות לשחקן בספק ומעלה מעט דקות לחברים פעילים באותה עמדה כאשר חסרים שחקנים.</p><div class="filters injuryControls"><label>קבוצה<select id="injuryTeam"><option value="">כל הקבוצות</option></select></label></div><p id="injurySummary" class="muted injurySummary" aria-live="polite"></p><div id="injuryCards" class="injuryList"></div></div></section>
@@ -2147,25 +2184,24 @@ function rankingChart(ranked,getValue,label,format){
    <div class="pa-bar-track" style="--bar-zero:${position(0)}%" aria-hidden="true"><span class="${value<0?'negative':''}" style="left:${position(Math.min(0,value))}%;width:${100*Math.abs(value)/span}%"></span></div></li>`).join('')}
  </ol></div>`;
 }
-let data=null,loading=null,errors=0;
+let data=null,loading=null,historyUnavailable=false,errors=0;
 const pirSection=document.getElementById('pirGraph');
-let mode='pir',creditData=null,creditLoading=false,creditError=false,priorKind='player';
+let mode='pir',range='0',creditData=null,creditLoading=false,creditError=false,priorKind='player';
 
 function setupGraph(section){
  const $=id=>section.querySelector('#pir'+id);
  const format=v=>mode==='minutes'?formatMinutes(v):fmt(v);
  const kind=()=>$('Kind').value;
  const metricLabel=()=>mode==='credit'?'קרדיט':mode==='minutes'?'דקות':kind()==='coach'?'נקודות פנטזי':'PIR';
- const scopes=section.querySelectorAll('[data-pir-scope]');
- let selectedRows=[],catalog=[],scope='all';
+ let selectedRows=[],catalog=[];
  const selections={player:'',coach:''};
  const analytics=window.PlayerAnalysis.mount(section,$('Person').closest('label'),$('Status'),
   [$('Person').closest('label'),$('Legend'),$('Chart'),$('Summary'),$('Games').closest('details'),section.querySelector('.pir-help')],{
    views:[['detail','תצוגה אישית'],['ranking','טבלה כללית']],
-   metrics:{get average(){return mode==='credit'?'קרדיט נוכחי':'ממוצע '+metricLabel();}},team:()=>scope==='team'?$('Team').value:'',
+   metrics:{get average(){return mode==='credit'?'קרדיט נוכחי':'ממוצע '+metricLabel();}},team:()=>pickerScope()==='team'?$('Team').value:'',
    rows:()=>catalog.map(([id,p])=>{
-    const coach=kind()==='coach',games=data?.[coach?'coaches':'players'].get(id)?.games||[],range=Number($('Range').value);
-    const values=(range?games.slice(-range):games).filter(g=>!g.dnp).map(g=>num(mode==='minutes'?g.minutes:g.value)).filter(n=>n!==null);
+    const coach=kind()==='coach',games=data?.[coach?'coaches':'players'].get(id)?.games||[];
+    const values=gamesInRange(games).filter(g=>!g.dnp).map(g=>num(mode==='minutes'?g.minutes:g.value)).filter(n=>n!==null);
     return {...p,id,games,name:reorderCommaName(p.name),values:{average:mode==='credit'?p.price:values.length?values.reduce((a,b)=>a+b,0)/values.length:null}};
    }),format,
    renderRanking:(ranked,sort)=>sort==='price'||mode==='credit'
@@ -2184,11 +2220,10 @@ function setupGraph(section){
   const shared=restore===true&&type==='player'?window.playerToolSelection?.find(all.map(([id,p])=>({...p,id}))):null;
   if(shared){
    old=shared.row.id;
-   if(scope==='team'&&teams.includes(shared.row.team))$('Team').value=shared.row.team;
-   if(shared.range&&mode!=='credit')$('Range').value=shared.range;
+   if(pickerScope()==='team'&&teams.includes(shared.row.team))$('Team').value=shared.row.team;
   }
-  $('TeamLabel').hidden=scope!=='team';
-  const filtered=all.filter(([,e])=>(scope==='all'||e.team===$('Team').value));
+  $('TeamLabel').hidden=pickerScope()!=='team';
+  const filtered=all.filter(([,e])=>(pickerScope()==='all'||e.team===$('Team').value));
   $('Person').disabled=!filtered.length;
   $('Person').replaceChildren(...(filtered.length?filtered.map(([k,e],i)=>new Option(`${i+1}. ${reorderCommaName(e.name)} · ${num(e.price)===null?'מחיר לא זמין':fmt(e.price)+' cr'}`,k)):[new Option('לא נמצאו תוצאות','')]));
   if(filtered.some(([k])=>k===old))$('Person').value=old;
@@ -2211,13 +2246,20 @@ function setupGraph(section){
   // Open at the newest round on the right.
   requestAnimationFrame(()=>{scroller.scrollLeft=scroller.scrollWidth;});
  }
- function renderCredit(player,limit){
+ function renderCredit(player){
   const credits=creditData||[],all=player?window.PlayerCredits.rows(credits,player):[];
-  const rows=(limit?all.slice(-limit):all).map(r=>({...r,value:r.price>0?r.price:null}));
+  const games=data?.players.get($('Person').value)?.games||[];
+  const rounds=new Set(gamesInRange(games).map(game=>Number(game.round)));
+  const prices=range==='0'?all:all.filter(row=>!row.current&&rounds.has(row.round));
+  const rows=prices.map(r=>({...r,value:r.price>0?r.price:null}));
   selectedRows=rows;
   analytics.render();
   const latest=rows.at(-1),known=rows.filter(r=>r.value!==null),first=known[0];
-  $('Status').textContent=creditLoading?'טוען מחירי קרדיט…':creditError?'היסטוריית המחירים לא זמינה כרגע. אפשר לנסות לרענן.':'עונת 2026/27 · מחירים מתועדים לפני המחזור.';
+  const waitingForGames=range!=='0'&&loading;
+  const missingGames=range!=='0'&&historyUnavailable;
+  $('Status').textContent=creditLoading||waitingForGames?'טוען נתוני קרדיט…':
+   creditError||missingGames?'נתוני הקרדיט בטווח לא זמינים כרגע. אפשר לנסות לרענן.':
+   'עונת 2026/27 · מחירים מתועדים לפני המחזור.';
   $('Legend').hidden=true;
   $('Note').textContent='״עכשיו״ מציג את המחיר הנוכחי בשוק. מחזור ללא מחיר מתועד נשאר ריק.';
   renderSummary(player,known.length?[
@@ -2230,10 +2272,10 @@ function setupGraph(section){
  }
  function render(){
   const minutes=mode==='minutes',mixed=mode==='mixed';
-  if(mode==='credit'){renderCredit(catalog.find(([id])=>id===$('Person').value)?.[1],Number($('Range').value));return;}
+  if(mode==='credit'){renderCredit(catalog.find(([id])=>id===$('Person').value)?.[1]);return;}
   $('Legend').hidden=!mixed;
-  const coach=kind()==='coach',entity=data?.[coach?'coaches':'players'].get($('Person').value),limit=Number($('Range').value)||0;
-  const games=entity?.games||[],windowRows=limit?games.slice(-limit):games;
+  const coach=kind()==='coach',entity=data?.[coach?'coaches':'players'].get($('Person').value);
+  const games=entity?.games||[],windowRows=gamesInRange(games);
   const rows=minutes?windowRows.map(g=>({...g,value:g.dnp?null:g.minutes})):windowRows;
   selectedRows=rows;
   analytics.render();
@@ -2251,22 +2293,20 @@ function setupGraph(section){
   showDetail(latest,$('Person').value?'אין משחקים זמינים לבחירה זו.':minutes?'בחר שחקן מהרשימה.':'בחר שחקן או מאמן מהרשימה.');
   $('Games').innerHTML=rows.length?`<table class="pirTable"><thead><tr><th>משחק</th><th>${minutes?'דקות':coach?'פנטזי':'PIR'}</th>${coach||minutes?'':'<th>דקות</th>'}<th>תוצאה</th></tr></thead><tbody>${rows.map((g,i)=>`<tr data-pir-index="${i}"><td><b>${esc(g.opponent||'—')}</b><small>${g.round?'מ׳ '+esc(g.round)+' · ':''}${dateLabel(g.date)} · ${g.home?'בית':'חוץ'}${g.ot?' · הארכה':''}</small></td><td class="${g.value<0?'bad':'good'}">${g.dnp?'לא שיחק':format(g.value)}</td>${coach||minutes?'':`<td>${formatMinutes(g.minutes)}</td>`}<td dir="ltr">${g.score}–${g.against}</td></tr>`).join('')}</tbody></table>`:'<p class="muted">אין נתוני משחקים זמינים בעונה הנוכחית.</p>';
  }
- for(const b of scopes)b.onclick=()=>{
-  scope=b.dataset.pirScope;
-  for(const item of scopes)item.setAttribute('aria-pressed',String(item===b));
-  options();
- };
  $('Kind').addEventListener('change',options);
  $('Team').addEventListener('change',()=>{selections[kind()]='';options()});$('Person').addEventListener('change',()=>{
   selections[kind()]=$('Person').value;
   rememberGraphPlayer();render();
   if(!section.classList.contains('pa-expanded'))$('Chart').scrollIntoView({block:'nearest'});
- });$('Range').addEventListener('change',()=>{rememberGraphPlayer();render();});
+ });
  function rememberGraphPlayer(){
-  if(kind()==='player')window.playerToolSelection?.set(catalog.find(([id])=>id===$('Person').value)?.[1].name,mode==='credit'?null:$('Range').value);
+  if(kind()==='player')window.playerToolSelection?.set(catalog.find(([id])=>id===$('Person').value)?.[1].name,range);
  }
  $('Reload').onclick=()=>{
-  if(mode==='credit'){void loadCredits(true);return;}
+  if(mode==='credit'){
+   if(range!=='0')void load(true);
+   void loadCredits(true);return;
+  }
   void load(true);
  };
  async function loadCredits(force=false){
@@ -2285,16 +2325,12 @@ function setupGraph(section){
   $('Kind').value=next==='pir'?priorKind:'player';
   $('Kind').closest('label').hidden=next!=='pir';
   $('Person').closest('label').querySelector('span').textContent=next==='pir'?'שחקן או מאמן · מהמחיר הגבוה לנמוך':'שחקן · מהמחיר הגבוה לנמוך';
-  $('Range').options[1].textContent=next==='credit'?'5 נקודות מחיר אחרונות':'5 משחקים אחרונים';
-  $('Range').options[2].textContent=next==='credit'?'10 נקודות מחיר אחרונות':'10 משחקים אחרונים';
-  $('Range').options[3].textContent=next==='credit'?'נקודת מחיר אחרונה':'משחק אחרון';
-  $('Range').options[4].textContent=next==='credit'?'3 נקודות מחיר אחרונות':'3 משחקים אחרונים';
   $('Coverage').hidden=next==='credit';
   $('Games').closest('details').querySelector('summary').textContent=next==='credit'?'כל המחירים בטווח שנבחר':'כל המשחקים בטווח שנבחר';
   $('Reload').disabled=next==='credit'?creditLoading:!!loading;
   options(restore);
   if(next==='credit')void loadCredits();
-  else if(!data)void load();
+  if(!data&&(next!=='credit'||range!=='0'))void load();
  }
  function showDetail(g,message='',inspected=false){
   const detail=$('Detail');
@@ -2321,8 +2357,11 @@ function setupGraph(section){
   if(game)showDetail(game,'',true);
  }
  $('Chart').onclick=inspect;$('Games').onclick=inspect;$('Chart').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();inspect(e)}};
- return {options,setMode,status:$('Status'),reload:$('Reload')};
+ return {options,setMode,render,rememberGraphPlayer,status:$('Status'),reload:$('Reload')};
 }
+const gamesInRange=games=>range==='0'?games:games.slice(-Number(range));
+const scopeButtons=pirSection.querySelectorAll('[data-pir-scope]');
+const pickerScope=()=>pirSection.querySelector('[data-pir-scope][aria-pressed="true"]').dataset.pirScope;
 const graph=setupGraph(document.getElementById('pirSingle'));
 const modes=pirSection.querySelectorAll('[data-pir-mode]');
 function activateMode(next,restore=false){
@@ -2335,10 +2374,25 @@ function activateMode(next,restore=false){
 }
 for(const button of modes)button.addEventListener('click',()=>activateMode(button.dataset.pirMode));
 document.querySelector('[data-tab="pirGraph"]').addEventListener('click',()=>activateMode(pirSection.querySelector('[data-pir-mode][aria-pressed="true"]').dataset.pirMode,true));
+for(const button of scopeButtons)button.addEventListener('click',()=>{
+ for(const item of scopeButtons)item.setAttribute('aria-pressed',String(item===button));
+ if(document.getElementById('pirSingle').hidden)window.PIRCompareUI.refreshPicker();
+ else graph.options();
+});
+const rangeButtons=pirSection.querySelectorAll('[data-pir-range]');
+for(const button of rangeButtons)button.addEventListener('click',()=>{
+ range=button.dataset.pirRange;
+ for(const item of rangeButtons)item.setAttribute('aria-pressed',String(item===button));
+ if(document.getElementById('pirSingle').hidden){window.PIRCompareUI.render();return;}
+ graph.rememberGraphPlayer();
+ if(mode==='credit'&&range!=='0'&&!data)void load();
+ graph.render();
+});
 function report(message){if(mode!=='credit')graph.status.textContent=message;}
 async function load(force=false){
  if(loading)return loading;
  if(data&&!force)return;
+ historyUnavailable=false;
  if(mode!=='credit')graph.reload.disabled=true;
  report('טוען היסטוריית משחקים…');
  loading=(async()=>{try{
@@ -2347,17 +2401,16 @@ async function load(force=false){
   if(!history.games)throw Error('No completed games in performance history');
   data=history;errors=history.missing;
   return true;
- }catch(error){report('לא ניתן לטעון נתוני משחקים כרגע. לחץ על רענון כדי לנסות שוב.');console.warn('PIR history unavailable',error);return false}
+ }catch(error){historyUnavailable=!data;report('לא ניתן לטעון נתוני משחקים כרגע. לחץ על רענון כדי לנסות שוב.');console.warn('PIR history unavailable',error);return false}
  })().then(success=>{
   loading=null;
-  if(mode!=='credit'){
-   graph.reload.disabled=false;
-   if(success)graph.options();
-  }
+  if(mode!=='credit')graph.reload.disabled=false;
+  if(success)graph.options();
+  else if(mode==='credit')graph.render();
  });
  return loading;
 }
-window.PIRHistoryUI={load,getData:()=>data};
+window.PIRHistoryUI={load,getData:()=>data,getRange:()=>range,getScope:pickerScope};
 })();
 
 </script><script>
@@ -2479,10 +2532,10 @@ for (const id of ['data', 'learning']) {
 <script src="./usage-core.js?v=2"></script><script src="./usage-ui.js?v=market-player-tools-1"></script>
 <script src="./defense-core.js?v=2"></script><script src="./defense-ui.js?v=market-player-tools-1"></script>
 <script src="./team-metrics-core.js?v=1"></script><script src="./team-metrics-ui.js?v=qa-1"></script>
-<link rel="stylesheet" href="./app-design.css?v=nav-pinned-2">
+<link rel="stylesheet" href="./app-design.css?v=performance-controls-1">
 <script src="./surprises.js?v=2"></script>
 <script src="./free-throws.js?v=market-player-tools-1"></script>
-<script src="./pir-compare.js?v=graph-modes-2"></script>
+<script src="./pir-compare.js?v=performance-controls-1"></script>
 <script src="./advanced-player-core.js?v=team-dna-1"></script>
 <script src="./advanced-player-tools.js?v=market-player-tools-1"></script>
 <link rel="stylesheet" href="./dna-tools.css?v=24">
@@ -3084,7 +3137,6 @@ html.ef-redesign[data-theme="dark"] #playerMatchups .pmCompare tr:not(.pmForecas
 .pmBrowse{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:12px 0}.pmBrowse button{min-height:44px}
 .pmAllGames{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;align-items:flex-start;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;padding-bottom:12px}
 .pmGameSlide{flex:0 0 100%;min-width:0;scroll-snap-align:start}.pmGameSlide>h3{margin:12px 0 6px}.pmGameSlide .pmList{width:100%}
-#pirGraph #pirModes button{flex:1 1 95px}
 #pirGraph [hidden]{display:none!important}
 .pirOverview{margin:10px 0 12px;padding:10px;border:1px solid var(--line);border-radius:13px;background:var(--card2)}
 .pirOverviewHead{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:1px 2px 8px}

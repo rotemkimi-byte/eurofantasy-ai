@@ -318,3 +318,88 @@ html.ef-redesign[data-theme="light"] #market.pmReference>.filters,
 html.ef-redesign[data-theme="light"] #market.pmReference :is(select,input){background:var(--card);color:var(--text);border-color:var(--line)}
 html.ef-redesign[data-theme="light"] #market.pmReference :is(h3,.pmSummary,.marketHelp){color:var(--text)}
 #market .marketRefSelect{min-height:36px}
+
+/* Performance chart controls */
+#pirGraph .pir-toolbar {
+  --pir-button-bg: #f5f8fc;
+  --pir-button-border: #cbd6e3;
+  --pir-button-ink: #142237;
+  --pir-button-caption: #475970;
+  --pir-button-active: #08664e;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 10px 14px;
+  margin: 0 0 12px;
+}
+html[data-theme="dark"] #pirGraph .pir-toolbar {
+  --pir-button-bg: #172437;
+  --pir-button-border: #536781;
+  --pir-button-ink: #f0f5fd;
+  --pir-button-caption: #c1cee0;
+  --pir-button-active: #086f54;
+}
+#pirGraph .pir-control-group,
+#pirGraph .pir-control-row {min-width:0}
+#pirGraph .pir-control-label {
+  display: block;
+  margin: 0 2px 4px;
+  color: var(--pir-button-ink);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+#pirGraph .pir-control-row {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 5px;
+}
+#pirGraph .pir-control-three {grid-template-columns:repeat(3,minmax(0,1fr))}
+#pirGraph #pirPickerModes {grid-template-columns:minmax(0,1.36fr) minmax(0,1fr)}
+#pirGraph .pir-control-row > button {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 2px;
+  min-width: 0;
+  min-height: 56px;
+  padding: 4px 2px;
+  border: 1px solid var(--pir-button-border);
+  border-radius: 10px;
+  background: var(--pir-button-bg);
+  color: var(--pir-button-ink);
+  text-align: center;
+  line-height: 1.15;
+}
+#pirGraph .pir-control-row > button[aria-pressed="true"] {
+  background: var(--pir-button-active);
+  border-color: var(--pir-button-active);
+  color: #fff;
+}
+#pirGraph .pir-control-row > button:focus-visible {
+  outline: 2px solid var(--pir-button-ink);
+  outline-offset: 2px;
+}
+#pirGraph .pir-control-row svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+#pirGraph .pir-control-title,
+#pirGraph .pir-control-row small {
+  max-width: 100%;
+  white-space: nowrap;
+}
+#pirGraph .pir-control-title {font-size:12px}
+#pirGraph .pir-control-row small {
+  color: var(--pir-button-caption);
+  font-size: 11px;
+  font-weight: 500;
+}
+#pirGraph .pir-control-row [aria-pressed="true"] small {color:inherit}
+@media (max-width: 620px) {
+  #pirGraph .pir-toolbar {grid-template-columns:minmax(0,1fr);gap:7px}
+}

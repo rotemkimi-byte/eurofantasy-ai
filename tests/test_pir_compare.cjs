@@ -18,7 +18,15 @@ assert.equal(series[0].values.has(2),false);
 assert.equal(series[1].values.get(2),0);
 assert.equal(series[1].values.get(3),22);
 assert.equal(series[1].values.has(4),false);
-assert.deepEqual(roundSeries(picks,3).rounds,[2,3,4]);
-assert.deepEqual(roundSeries(picks,1).rounds,[4]);
+assert.deepEqual(roundSeries(picks,3).rounds,[1,2,3,4]);
+const differentLatestGames=[
+ {p:{games:[{code:1,round:1,value:30},{code:3,round:3,value:12}]}},
+ {p:{games:[{code:2,round:2,value:0},{code:4,round:4,value:22}]}}
+];
+const single=roundSeries(differentLatestGames,1);
+assert.deepEqual(single.rounds,[3,4]);
+assert.deepEqual([...single.series[0].values],[[3,12]]);
+assert.deepEqual([...single.series[1].values],[[4,22]]);
+assert.deepEqual(roundSeries(differentLatestGames,3).rounds,[1,2,3,4]);
 assert.deepEqual(roundSeries([{p:{games:[]}}],0).rounds,[]);
 console.log('PIR compare calculations and round alignment passed');
