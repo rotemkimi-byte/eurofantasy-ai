@@ -80,6 +80,21 @@ const server=http.createServer((req,res)=>{
     await toggle.locator('.dna-category-title').click();
     assert.equal(await category.getAttribute('open'),null);
    }
+   const boards=panel.locator('[data-dna-group="boards"]');
+   await boards.locator(':scope > summary').click();
+   const card=boards.locator('.dna-category-grid > .dna-expanded-row').first();
+   const bounds=await card.locator(':scope > summary').evaluate(summary=>{
+    const box=summary.getBoundingClientRect();
+    const name=summary.querySelector('.dna-expanded-name').getBoundingClientRect();
+    const values=summary.querySelector('.dna-expanded-cells').getBoundingClientRect();
+    return {height:box.height,sideBySide:values.right<=name.left};
+   });
+   assert.ok(bounds.sideBySide&&bounds.height<=112,JSON.stringify(bounds));
+   await card.getByText('מה זה אומר?').click();
+   assert.ok(await card.locator(':scope > .dna-expanded-help').isVisible());
+   if(process.env.DNA_SCREENSHOT_DIR&&width===390){
+    await boards.screenshot({path:path.join(process.env.DNA_SCREENSHOT_DIR,'compact-boards.png')});
+   }
    const shooting=panel.locator('[data-dna-group="shooting"]');
    await shooting.locator(':scope > summary').click();
    await shooting.locator('[data-metric=ts] > summary').click();
@@ -104,6 +119,7 @@ const server=http.createServer((req,res)=>{
    await panel.locator('[data-player-view=player]').click();
    await panel.locator('[data-compare-player]').selectOption({index:1});
    assert.equal(await panel.locator('.dna-radar-other').count(),1);
+   assert.equal(await panel.locator('.dna-compact-metrics').count(),0);
    assert.equal(await panel.locator('.dna-summary').count(),1);
    assert.equal(await panel.locator('.dna-radar-inline-score').count(),0);
    const marker=panel.locator('.dna-radar-own .dna-radar-hit').first();

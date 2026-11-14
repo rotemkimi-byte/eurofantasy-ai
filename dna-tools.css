@@ -494,6 +494,30 @@ html.ef-redesign .dna-row summary{padding:12px}
 #playerDna .dna-bar-row>summary:has(.dna-expanded-cells:not(.dna-two-cells)){grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);align-items:start}
 #playerDna .dna-bar-row>summary:has(.dna-expanded-cells:not(.dna-two-cells)) .dna-expanded-cells{grid-row:span 2}
 @media(max-width:570px){.dna-radar-layout{grid-template-columns:minmax(0,1fr);gap:8px}}
+#playerDna .dna-compact-metrics .dna-category-grid{gap:5px;padding:0 8px 8px}
+#playerDna .dna-compact-metrics .dna-expanded-row>summary{
+ grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto 1fr;align-items:start;
+ gap:4px 8px;padding:6px 8px
+}
+#playerDna .dna-compact-metrics .dna-expanded-cells{grid-column:2;grid-row:1 / 3}
+#playerDna .dna-compact-metrics .dna-expanded-row>summary>.dna-detail-action{
+ grid-column:1;align-self:end;padding:3px 6px;font-size:11px
+}
+#playerDna .dna-compact-metrics .dna-expanded-name b{font-size:13px}
+#playerDna .dna-compact-metrics .dna-expanded-value{gap:2px}
+#playerDna .dna-compact-metrics .dna-expanded-value small,
+#playerDna .dna-compact-metrics .dna-expanded-name small,
+#playerDna .dna-compact-metrics :is(.dna-raw,.dna-rank-line) span{font-size:11px;line-height:1.25}
+#playerDna .dna-compact-metrics .dna-raw strong{font-size:16px}
+#playerDna .dna-compact-metrics .dna-rank-line{gap:1px 4px}
+#playerDna .dna-compact-metrics .dna-rank-line bdi{font-size:12px}
+#playerDna .dna-compact-metrics .dna-rank-track{height:4px}
+#playerDna .dna-compact-metrics .dna-unavailable>summary{
+ grid-template-columns:minmax(0,1fr) auto;gap:2px 6px;padding:5px 8px
+}
+#playerDna .dna-compact-metrics .dna-unavailable>summary .dna-detail-action{
+ grid-column:2;grid-row:1 / 3;padding:3px 6px;font-size:11px
+}
 .dna-two-cells .dna-own{--dna-color:var(--dna-primary)}
 .dna-two-cells .dna-other{--dna-color:var(--dna-secondary)}
 .dna-player-compare .dna-metric-name b::after{content:none}

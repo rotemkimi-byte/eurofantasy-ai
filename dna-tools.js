@@ -627,7 +627,7 @@ const categoryMeta={
  lineups:['▦','תפוקה בחמישיות ועם שחקנים שונים'],
  summary:['≋','יציבות ותלות בדקות ובסגנון']
 };
-function expandedMetrics(report,ranks,{other,otherRanks,opponent,compareName,ownName}={}){
+function expandedMetrics(report,ranks,{other,otherRanks,opponent,compareName,ownName,compact=false}={}){
  const metric=(spec,child=false)=>{
   const {id,group,label,source,help,unit}=spec,stat=report.stats[id];
   const compare=other&&group!=='opponent'&&!['matchFit','projection'].includes(id)
@@ -644,7 +644,7 @@ function expandedMetrics(report,ranks,{other,otherRanks,opponent,compareName,own
    ${metricPair(spec,stat,stat?.rank??ranks?.[id],compare,subject)}
    ${metricAction('מה זה אומר?','סגור הסבר')}</summary>${more}</details>`;
  };
- return `<section class="dna-expanded-groups"><h4>ניתוח לפי קטגוריות</h4>
+ return `<section class="dna-expanded-groups${compact?' dna-compact-metrics':''}"><h4>ניתוח לפי קטגוריות</h4>
  ${Object.entries(M.groups).map(([group,label])=>{
   if(group==='opponent'&&!opponent&&!ownName)return '';
   const rows=M.catalog.filter(m=>m.group===group&&!insideRows.has(m.id));
@@ -720,7 +720,7 @@ function renderPlayer(){
  out.innerHTML=`${playerProfile(record,games,tags)}
  ${style}
  ${charts}
- ${expandedMetrics(withRival,reports.detailRanks.get(record),{other,otherRanks:reports.detailRanks.get(compare),opponent,compareName:compare?.name,ownName:record.name})}`;
+ ${expandedMetrics(withRival,reports.detailRanks.get(record),{other,otherRanks:reports.detailRanks.get(compare),opponent,compareName:compare?.name,ownName:record.name,compact:profile})}`;
  loadPortraits(out);
 }
 function comparisonRows(metrics,ownStats,rivalStats,benchmarks,{highlightAdvantage=true,singleGame=!benchmarks,names=[],playerComparison=false}={}){
