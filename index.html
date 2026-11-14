@@ -567,8 +567,8 @@ function physicalUpdate(){
   const value=physicalText(p);if(el.textContent!==value)el.textContent=value;
  });
 }
-async function physicalLoad(selected){
- const targets=selected.flatMap(p=>[p,squadOpponentFor(p,model(p).match).rival]).filter(Boolean);
+async function physicalLoad(selected, includeRivals){
+ const targets=includeRivals?selected.flatMap(p=>[p,squadOpponentFor(p,model(p).match).rival]).filter(Boolean):selected;
  const codes=[...new Set(targets.map(p=>{const r=model(p).recentForm;return r?.latestSeason==='E2026'?Number(r.lastGame?.gameCode):null}).filter(c=>Number.isInteger(c)&&c>0))];
  await Promise.all(codes.map(code=>{
   if(!physicalRequests.has(code))physicalRequests.set(code,lastThreeFetch(`./data/backtest/cache/E2026-${code}-stats.json`).then(box=>physicalAddBox(code,box)).catch(()=>{physicalRequests.delete(code)}));
@@ -647,21 +647,27 @@ function squadOpponentCard(p,match){
 
 function renderTeam(){
  const selected=myTeam.map(n=>players.find(p=>p.name===n)).filter(Boolean),basket=selected.filter(p=>['G','F','C'].includes(p.pos));
- const root=document.getElementById('teamCards');root.className='squadBoard';
+ const root=document.getElementById('teamCards');root.classList.add('squadBoard');root.classList.remove('grid2');
  const cost=selected.reduce((s,p)=>s+Number(p.price||0),0),proj=selected.reduce((s,p)=>s+Number(model(p).expected||0),0);
  document.getElementById('teamCost').textContent=n1(cost);document.getElementById('teamProj').textContent=n1(proj);
  const {slots,bench}=squadArrangement(basket);
  const captain=basket.find(p=>p.name===squadPreferences.captain)||[...basket].filter(p=>p.status!=='out').sort((a,b)=>model(b).expected-model(a).expected)[0];
+ const optimizing=root.classList.contains('squadOptimizing');
  const signed=v=>v==null||!Number.isFinite(Number(v))?'—':`${Number(v)>0?'+':''}${Number(v).toFixed(1)}`;
  const card=(p,slot)=>{
   if(!p)return `<div class="squadEmpty"><span>${slot<5?SQUAD_SLOTS[slot][1]:'שחקן שישי'}</span><small>הוסף שחקן מהשוק</small></div>`;
-  const x=model(p),r=x.recentForm,current=r?.latestSeason==='E2026'&&Number(r.currentSeasonGames)>0,m=x.match||{},isCaptain=captain?.name===p.name;
-  return `<article class="squadPlayer" data-player="${esc(p.name)}">${squadOpponentCard(p,m)}<section class="squadOwnCard">${isCaptain?'<span class="squadCaptain" title="קפטן">C</span>':''}<button class="squadOpen squadIdentity" data-details="${esc(p.name)}" aria-label="פרטים מלאים: ${esc(p.name)}">${squadJersey(p)}<span class="squadIdentityText"><span class="squadName">${esc(p.name)} <small>${esc(p.pos)}</small></span><span class="squadClub">${esc(p.team||'קבוצה לא זמינה')}</span></span></button><div class="squadInfo">${physicalLine(p)}<div class="squadTop"><b><span data-squad-price="${esc(p.name)}">${clubNumber(p.price)}</span><small>קרדיט כעת</small></b><b>${clubNumber(x.expected)}<small>PIR צפוי</small></b></div><div class="squadCreditChange"><span>שינוי קרדיט</span><b data-squad-credit="${esc(p.name)}" dir="ltr">${window.RoundReviewUI?signed(window.RoundReviewUI.delta(p)):'—'}</b></div><div class="squadStatus ${statusClass(p.status)}">${statusText(p.status)}</div><details class="squadActions"><summary>הרכב וקפטן</summary><label>תפקיד<select data-role="${esc(p.name)}">${SQUAD_SLOTS.map(([pos,label],i)=>(pos==='*'||p.pos===pos)?`<option value="${i}" ${slot===i?'selected':''}>${label}</option>`:'').join('')}<option value="bench" ${slot==='bench'?'selected':''}>ספסל</option></select></label><button class="squadCaptainAction" data-captain="${esc(p.name)}">${isCaptain?'קפטן נבחר':'בחר כקפטן'}</button></details><button class="squadDetails" data-details="${esc(p.name)}">פרטי שחקן</button></div></section></article>`;
+  const x=model(p),m=x.match||{},isCaptain=captain?.name===p.name;
+  const panel='squad-panel-'+basket.indexOf(p);
+  const creditChange=`<div class="squadCreditChange"><span>שינוי קרדיט</span><b data-squad-credit="${esc(p.name)}" dir="ltr">${window.RoundReviewUI?signed(window.RoundReviewUI.delta(p)):'—'}</b></div>`;
+  return `<article class="squadPlayer" data-player="${esc(p.name)}">${optimizing?'':squadOpponentCard(p,m)}<section class="squadOwnCard">${isCaptain?'<span class="squadCaptain" title="קפטן">C</span>':''}<button class="squadOpen squadIdentity" data-details="${esc(p.name)}" aria-label="פרטים מלאים: ${esc(p.name)}">${squadJersey(p)}<span class="squadIdentityText"><span class="squadName"><bdi>${esc(p.name)}</bdi> <small>${esc(p.pos)}</small></span><span class="squadClub"><bdi>${esc(optimizing?canonicalTeam(p.team):p.team||'קבוצה לא זמינה')}</bdi></span></span></button>
+  ${optimizing?window.SquadOptimizer.fixtureLine(p):''}<div class="squadInfo">${optimizing?'':physicalLine(p)}<div class="squadTop"><b><span data-squad-price="${esc(p.name)}">${clubNumber(p.price)}</span><small>קרדיט כעת</small></b><b>${clubNumber(x.expected)}<small>PIR צפוי</small></b></div>${optimizing?'':creditChange}<div class="squadStatus ${statusClass(p.status)}">${statusText(p.status)}</div>
+  ${optimizing?window.SquadOptimizer.controls(panel):''}
+  <details class="squadActions"><summary>הרכב וקפטן</summary>${optimizing?physicalLine(p)+creditChange:''}<label>תפקיד<select data-role="${esc(p.name)}">${SQUAD_SLOTS.map(([pos,label],i)=>(pos==='*'||p.pos===pos)?`<option value="${i}" ${slot===i?'selected':''}>${label}</option>`:'').join('')}<option value="bench" ${slot==='bench'?'selected':''}>ספסל</option></select></label><button class="squadCaptainAction" data-captain="${esc(p.name)}">${isCaptain?'קפטן נבחר':'בחר כקפטן'}</button></details>${optimizing?'':`<button class="squadDetails" data-details="${esc(p.name)}">פרטי שחקן</button>`}</div></section></article>`;
  };
  const coach=COACHES.find(c=>c.name===squadPreferences.coach);
  const coachHtml=coach?`<div class="squadCoach">${squadJersey({...coach,pos:'מאמן'},true)}<div class="squadName">${esc(coach.name)}</div><div class="squadInfo"><div class="squadTop"><b>${clubNumber(coach.price)}<small>קרדיט</small></b><b>${clubNumber(coachExpected(coach.team))}<small>נק׳ צפויות</small></b></div><span>${esc(coach.team)}</span><span>מול ${esc(MATCHUPS[coach.team]?.opponent||'—')}</span><span>ניצחון ${pct(MATCHUPS[coach.team]?.winProb)}</span></div></div>`:'<p class="squadCoachEmpty">בחר מאמן</p>';
  root.innerHTML=`<div class="squadCourt"><div class="squadCourtLines" aria-hidden="true"></div><div class="squadCourtRow squadCenter">${card(slots[0],0)}</div><div class="squadCourtRow">${card(slots[1],1)}${card(slots[2],2)}</div><div class="squadCourtRow">${card(slots[3],3)}${card(slots[4],4)}</div></div><div class="squadLower"><section class="squadReserve"><h4>ספסל <small>FPT 50%</small></h4><div class="squadBenchGrid">${bench.map(p=>card(p,'bench')).join('')||'<p class="squadCoachEmpty">אין שחקני ספסל</p>'}</div></section><section class="squadSixth"><h4>שחקן שישי <small>FPT 100%</small></h4>${card(slots[5],5)}<h4>מאמן</h4><select id="squadCoachSelect" aria-label="בחר מאמן"><option value="">בחר מאמן</option>${COACHES.map(c=>`<option value="${esc(c.name)}" ${coach?.name===c.name?'selected':''}>${esc(c.name)} · ${clubNumber(c.price)}</option>`).join('')}</select>${coachHtml}</section></div><p class="squadFootnote">לחץ על הגופייה לפרטי השחקן. ההרכב והקפטן נשמרים במכשיר. התחזיות הן אומדן; מכפילי FPT מסמנים תפקיד בלבד. עלות מאמן ${coach?clubNumber(coach.price):'—'} · סך עלות כולל מאמן ${clubNumber(cost+Number(coach?.price||0))}</p>`;
- void physicalLoad(basket);
+ void physicalLoad(basket, !optimizing);
  root.onclick=e=>{
   const remove=e.target.closest('[data-remove]');if(remove){toggle(remove.dataset.remove);return}
   const detail=e.target.closest('[data-details]');if(detail){showPlayer(detail.dataset.details);return}
@@ -1027,7 +1033,7 @@ for(const id of ['clubSelect','clubSort','clubView'])document.getElementById(id)
 renderAll();
 if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
 </script>
-<script src="./live.js?v=qa-1"></script><script src="./roster-live.js"></script><script src="./position-matchups.js"></script><script>
+<script src="./live.js?v=qa-1"></script><script src="./roster-live.js?v=1"></script><script src="./position-matchups.js"></script><script>
 (async () => {
   try {
     const response = await fetch(
@@ -2398,80 +2404,8 @@ for (const id of ['data', 'learning']) {
 #teamView{display:flex;flex-wrap:wrap;gap:6px}
 #teamView button{font-size:12px;padding:10px;white-space:nowrap}
 #teamView #squadOptimizer[aria-pressed="true"]{background:#087e51;color:white}
-#teamCards.squadOptimizing .squadCourtRow,#teamCards.squadOptimizing .squadBenchGrid{display:grid;grid-template-columns:1fr}
-#teamCards.squadOptimizing .squadPlayer{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;width:100%;max-width:none;align-items:start}
-#teamCards.squadOptimizing .squadRival{grid-column:1;grid-row:1}
-#teamCards.squadOptimizing .squadOwnCard{grid-column:1;grid-row:2}
-#teamCards.squadOptimizing .squadAlternatives{grid-column:2;grid-row:1 / span 2;min-width:0;background:#f7f4ff;border:1px solid #c5b9dd;border-radius:12px;padding:10px 7px;color:#25133c;text-align:right;cursor:default}
-#teamCards.squadOptimizing #squadCoachSelect{grid-column:1/-1}
-#teamCards.squadOptimizing .squadCoach{grid-column:1;min-width:0}
-#teamCards.squadOptimizing .squadCoachAlternatives{grid-column:2;grid-row:auto}
-.squadAlternatives h4{color:#25133c!important;margin:0 0 6px!important;font-size:13px!important}
-.squadAlternatives p{font-size:11px;line-height:1.5;margin:0 0 8px}
-.squadAlt{display:block;width:100%;text-align:right;background:white;color:#25133c;border:1px solid #ded7ea;border-radius:9px;margin-top:8px;padding:10px 7px;overflow-wrap:anywhere}
-.squadAlt b,.squadAlt span,.squadAlt small{display:block;line-height:1.5}
-.squadAlt b{font-size:12px}.squadAlt small{font-size:10px;color:#61536f}.squadAlt span{font-size:12px;color:#087e51}
 </style>
-<script>
-(()=>{
- const button=document.getElementById('squadOptimizer');
- let enabled=false;
- const num=v=>v===null||v===undefined||v===''||!Number.isFinite(Number(v))?null:Number(v);
- function rank(source,pool,owned){
-  const budget=num(source.price);
-  if(budget===null||budget<=0)return [];
-  return pool.filter(q=>q.p.name!==source.name&&!owned.has(q.p.name)&&q.p.pos===source.pos&&q.p.status!=='out'&&q.price!==null&&q.price>0&&q.price<=budget+1e-8&&q.score!==null)
-   .sort((a,b)=>b.score-a.score||a.price-b.price||a.p.name.localeCompare(b.p.name)).slice(0,3);
- }
- function coachPool(){
-  return COACHES.map(c=>{
-   const team=canonicalTeam(c.team),match=MATCHUPS[team];
-   return {p:{...c,pos:'coach'},price:num(c.price),score:match?num(coachExpected(team)):null,match};
-  });
- }
- window.SquadAlternativesCore={rank,coachPool};
- function paint(){
-  const root=document.getElementById('teamCards');
-  root.classList.toggle('squadOptimizing',enabled);
-  root.querySelectorAll('.squadAlternatives').forEach(el=>el.remove());
-  if(!enabled)return;
-  const owned=new Set(myTeam);
-  const pool=players.map(p=>({p,price:num(p.price),score:num(model(p).expected)}));
-  for(const card of root.querySelectorAll('.squadPlayer[data-player]')){
-   const source=players.find(p=>p.name===card.dataset.player);if(!source)continue;
-   const options=rank(source,pool,owned),panel=document.createElement('aside');panel.className='squadAlternatives';
-   panel.setAttribute('aria-label','חלופות עבור '+source.name);
-   panel.innerHTML=`<h4>החלופות המובילות</h4><p>עמדה ${esc(source.pos)} · עד ${num(source.price)===null?'—':Number(source.price).toFixed(1)} קרדיט<br>לפי PIR צפוי למחזור הבא</p>`+options.map((q,i)=>`<button class="squadAlt" data-details="${esc(q.p.name)}"><b>${i+1}. ${esc(q.p.name)}</b><small>${esc(q.p.team)} · ${esc(q.p.pos)} · ${esc(statusText(q.p.status))}</small><span>${q.price.toFixed(1)} קרדיט</span><span>${q.score.toFixed(1)} PIR צפוי</span><small>לפרטי השחקן</small></button>`).join('')+(options.length?'':'<p>אין חלופות זמינות בעמדה ובמחיר הזה.</p>');
-   panel.addEventListener('click',e=>{if(!e.target.closest('[data-details]'))e.stopPropagation()});
-   card.appendChild(panel);
-  }
-  paintCoach(root);
- }
- function paintCoach(root){
-  const source=COACHES.find(c=>c.name===squadPreferences.coach),card=root.querySelector('.squadCoach');
-  if(!source||!card)return;
-  const options=rank({...source,pos:'coach'},coachPool(),new Set()),panel=document.createElement('aside');
-  panel.className='squadAlternatives squadCoachAlternatives';
-  panel.setAttribute('aria-label','חלופות למאמן '+source.name);
-  panel.innerHTML=`<h4>חלופות למאמן</h4><p>עד ${num(source.price)===null?'—':Number(source.price).toFixed(1)} קרדיט<br>לפי נקודות פנטזי צפויות</p>`+options.map((q,i)=>{
-   const win=num(q.match?.winProb),venue=q.match?.home===true?'בית':q.match?.home===false?'חוץ':'';
-   return `<article class="squadAlt"><b>${i+1}. ${esc(q.p.name)}</b><small>${esc(q.p.team)}</small><span>${q.price.toFixed(1)} קרדיט</span><span>${q.score.toFixed(1)} נק׳ צפויות</span><small>מול ${esc(q.match?.opponent||'טרם נקבעה')}${venue?' · '+venue:''}</small><small>סיכוי לניצחון: ${win===null?'—':Math.round(win*100)+'%'}</small></article>`;
-  }).join('')+(options.length?'':'<p>אין חלופות למאמן עם תחזית זמינה במחיר הזה.</p>');
-  card.after(panel);
- }
- const original=renderTeam;renderTeam=function(){original.apply(this,arguments);paint()};
- button.addEventListener('click',()=>{
-  enabled=!enabled;button.setAttribute('aria-pressed',String(enabled));
-  if(enabled)document.querySelector('[data-team-view="forecast"]').click();
-  paint();
- });
- // Refresh suggestions when live prices change, as well as on squad rerenders.
- const observer=new MutationObserver(records=>{
-  if(enabled&&records.some(r=>r.target.nodeType===1&&r.target.matches('[data-squad-price]')))paint();
- });
- observer.observe(document.getElementById('teamCards'),{childList:true,subtree:true});
-})();
-</script>
+<link rel="stylesheet" href="./squad-optimizer.css?v=option-b-1">
 <script src="./game-data-store.js?v=1"></script>
 <script src="./usage-core.js?v=2"></script><script src="./usage-ui.js?v=market-player-tools-1"></script>
 <script src="./defense-core.js?v=2"></script><script src="./defense-ui.js?v=market-player-tools-1"></script>
@@ -2486,12 +2420,12 @@ for (const id of ['data', 'learning']) {
 <script src="./official-offense-core.js?v=team-dna-1"></script>
 <script src="./dna-core.js?v=team-dna-1"></script>
 <link rel="stylesheet" href="./weighted-forecast.css?v=round-evidence-1">
-<script src="./weighted-forecast-core.js?v=dna-1"></script>
+<script src="./weighted-forecast-core.js?v=squad-matchup-1"></script>
 <script src="./unified-forecast-core.js?v=1"></script>
 <script src="./dna-player-core.js?v=explanations-1"></script>
 <script src="./dna-metric-explanations.js?v=1"></script>
 <script src="./dna-tools.js?v=explanations-1"></script>
-<script src="./weighted-forecast.js?v=dna-1"></script>
+<script src="./weighted-forecast.js?v=squad-matchup-1"></script>
 <link rel="stylesheet" href="./popularity.css?v=2">
 <script src="./popularity.js?v=4"></script>
 <script src="./app-navigation.js?v=nav-pinned-2"></script>
@@ -3132,4 +3066,4 @@ html.ef-redesign[data-theme=light] #playerMatchups .pmModes button[aria-pressed=
 .pmHistoryPosition::after{content:'⌄';display:block;font-size:14px;line-height:1}
 .pmHistoryPair[open] .pmHistoryPosition::after{content:'⌃'}
 .pmHistoryPair .pmCompare th,.pmHistoryPair .pmCompare td{font-size:12px}
-</style><script src="./player-matchup-history.js?v=2"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script></body></html>
+</style><script src="./player-matchup-history.js?v=2"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script><script src="./squad-matchup.js?v=1"></script><script src="./squad-optimizer.js?v=1"></script></body></html>

@@ -14,7 +14,13 @@
       ? roster.players
       : [];
 
+    const snapshot = JSON.stringify([roster.team_id, roster.matchday_id, [...names].sort()]);
+
     const applyRoster = () => {
+      cacheValue('efa2_roster_snapshot', JSON.stringify(snapshot));
+      // A local same-position replacement survives refreshes of the same official squad.
+      if (cachedValue('efa2_optimizer_roster_override', null) === snapshot) return;
+
       const available = new Set(
         (Array.isArray(players) ? players : [])
           .map(p => p.name)

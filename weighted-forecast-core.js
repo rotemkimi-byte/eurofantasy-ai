@@ -306,10 +306,14 @@ function input(p,x,values,data){
  const base=x.expected;
  return {base,scale:p.status==='out'||!(x.minutes>0)?0:Math.min(5,Math.max(0,base)*.30),signals:values,...(data?{minutes:x.minutes}:{})};
 }
+// Opponent-dependent signals using current-season observations. The legacy position
+// prior (pirWeakness) is excluded from this breakdown and kept in both projections.
+const matchupSignals = new Set(['playerMatchup','defense','shotMap','playerDna',
+ 'teamMatchup','teamMetrics','teamFreeThrows','teamDna']);
 function project(frozen,weights=defaults,omit=-1){
  const w=valid(weights)?weights:defaults;
  return Math.max(0,frozen.base+frozen.scale*sum(definitions,({id})=>{
-  const i=indices[id];return i===omit?0:(frozen.signals[i]??0)*w[id]/100;
+  const i=indices[id];return (i===omit||(omit instanceof Set&&omit.has(id)))?0:(frozen.signals[i]??0)*w[id]/100;
  }));
 }
 const indices=Object.fromEntries(definitions.map(({id},i)=>[id,i]));
@@ -317,9 +321,11 @@ function apply(x,p,frozen,weights){
  if(!frozen)return x;
  const expected=project(frozen,weights),delta=expected-x.expected;
  x.weightedForecast=frozen;
+ const w=valid(weights)?weights:defaults;
+ x.weightedMatchupBase=definitions.some(({id},i)=>matchupSignals.has(id)&&w[id]>0&&num(frozen.signals[i])!==null)
+  ? project(frozen,w,matchupSignals) : null;
  x.expected=expected;
  if(num(frozen.minutes)!==null){
-  const w=valid(weights)?weights:defaults;
   const minutesDelta=(frozen.signals[indices.teamMarket]??0)*w.teamMarket*.15
    +(frozen.signals[indices.injuries]??0)*w.injuries*.1
    +(frozen.signals[indices.absence]??0)*w.absence*.1;

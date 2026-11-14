@@ -332,7 +332,9 @@ model=function(p){
   row={signature,signals:C.signals(p,x,evidence,players)};
   signalCache.set(p,row);
  }
- return C.apply(x,p,C.input(p,x,row.signals,evidence),weights);
+ const result=C.apply(x,p,C.input(p,x,row.signals,evidence),weights);
+ result.weightedMatchupOpponent=P.team(x.match?.opponent||p.opponent);
+ return result;
 };
 window.getPlayerDnaForecast = name => {
  if(!modelReady||!evidence)return null;
