@@ -35,6 +35,30 @@ const toolbar=document.createElement('div');toolbar.id='efToolbar';toolbar.inner
 original.before(toolbar);
 const subnav=document.createElement('nav');subnav.id='efSectionNavigation';subnav.setAttribute('aria-label','כלים באזור הנבחר');toolbar.after(subnav);
 const bottom=document.createElement('nav');bottom.id='efNavigation';bottom.setAttribute('aria-label','ניווט ראשי');bottom.innerHTML=groups.map(g=>`<button type="button" data-ef-group="${g.id}">${icon(g)}<span>${g.title}</span></button>`).join('');document.body.appendChild(bottom);
+// Mobile browser controls can move the visible bottom without changing the fixed layout viewport.
+const viewport=window.visualViewport;
+if(viewport){
+ let frame=null,shift=0;
+ function alignBottom(){
+  frame=null;
+  if(!viewport.height)return;
+  const fixedBottom=bottom.getBoundingClientRect().bottom-shift;
+  const next=viewport.scale===1?Math.round(viewport.offsetTop+viewport.height-fixedBottom):0;
+  if(next===shift)return;
+  shift=next;
+  bottom.style.setProperty('--ef-nav-viewport-shift',shift+'px');
+ }
+ function scheduleAlignment(){
+  if(frame===null)frame=requestAnimationFrame(alignBottom);
+ }
+ viewport.addEventListener('resize',scheduleAlignment,{passive:true});
+ viewport.addEventListener('scroll',scheduleAlignment,{passive:true});
+ window.addEventListener('resize',scheduleAlignment,{passive:true});
+ window.addEventListener('scroll',scheduleAlignment,{passive:true});
+ window.addEventListener('pageshow',scheduleAlignment);
+ scheduleAlignment();
+}
+
 function tools(g){
  const byId=new Map(buttons().map(b=>[b.dataset.tab,b]));
  return [...g.tabs,...(g.id==='home'?[...byId.keys()].filter(id=>!groups.some(group=>group.tabs.includes(id))):[])]
