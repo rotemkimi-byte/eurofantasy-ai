@@ -35,7 +35,6 @@
 #teamCards .squadStatus {line-height:1.25}
 #teamCards .squadActions summary {cursor:pointer;padding:3px;color:var(--opt-muted)}
 .squadPanelControls {display:grid;grid-template-columns:1fr;gap:3px}
-#teamCards.squadOptimizing .squadPanelControls {grid-template-columns:1fr 1fr}
 #teamCards .squadPanelControls button {
   display:flex;align-items:center;justify-content:center;gap:3px;min-width:0;min-height:44px;
   padding:2px;background:var(--opt-soft);color:var(--opt-navy);border:1px solid #c7d4e6;
@@ -124,3 +123,48 @@
 #teamCards .squadPhysical small {font-size:9px;color:var(--opt-muted)}
 #teamCards .squadPhysical bdi {white-space:nowrap;font-size:10px}
 #teamCards .squadRivalProfile .squadPhysical {margin-top:4px}
+
+#teamCards.squadOptimizing [data-squad-panel="alternatives"] {
+  min-height:46px;background:#087854;color:white;border-color:#076346;font-size:13px;
+}
+#teamCards.squadOptimizing [data-squad-panel="alternatives"][aria-expanded="true"] {
+  background:#055139;box-shadow:inset 0 0 0 2px #8fe1c0;
+}
+#teamCards.squadOptimizing [data-squad-panel="matchup"] {
+  min-height:44px;min-width:92px;justify-self:center;padding-inline:7px;
+  border-color:transparent;font-size:10px;
+}
+#teamCards .squadRivalPreview {border-top:1px solid var(--opt-line);padding-top:3px}
+#teamCards .squadRivalPreview .squadAltIdentity {width:100%;min-height:36px;justify-content:center}
+#teamCards .squadRivalPreview .squadJersey {width:24px;height:30px}
+#teamCards .squadRivalPreview .squadAltIdentity strong {font-size:11px}
+#teamCards .squadRivalUnavailable {
+  min-height:60px;display:grid;place-items:center;color:var(--opt-muted);font-size:10px;
+}
+
+#teamCards .squadCourtLines::before {top:-115px;height:360px}
+#teamCards .squadCourtLines::after {top:-72px;height:220px}
+#teamCards .squadLower {background:none;padding-inline:0}
+#teamCards .squadReserve {background:#fff6;border:1px solid #fff8}
+#teamCards .squadLower h4,
+#teamCards .squadCoachEmpty,
+#teamCards .squadLower h4 small {color:#282037}
+#teamCards .squadFootnote {background:none;color:#302337;padding:8px 0 0}
+#teamCards .squadRosterTools {
+  direction:rtl;background:#fff9;border-radius:8px;padding:8px;color:var(--opt-navy);
+}
+#teamCards .squadRosterTools summary {cursor:pointer;font-weight:750}
+#teamCards .squadRosterTools .squadActions {padding:4px}
+
+#teamCards .squadCoach,
+#teamCards .squadCoachAlternatives {grid-column:1/-1;width:100%;max-width:300px;justify-self:center}
+#teamCards .squadCoachControl {
+  position:relative;display:flex;align-items:center;justify-content:space-between;
+  gap:8px;padding:6px 9px;background:var(--opt-navy);color:white;
+  min-height:49px;text-align:start;cursor:pointer;
+}
+#teamCards .squadCoachControl:focus-within {outline:2px solid #68dbad;outline-offset:-3px}
+#teamCards .squadCoachControl .squadJersey {width:28px;height:37px;margin:0;flex:none}
+#teamCards .squadCoachControl small {display:block;color:#a5ebcb;font-size:10px}
+#teamCards .squadCoachControl bdi {font-size:13px;font-weight:800;overflow-wrap:anywhere}
+#teamCards #squadCoachSelect {position:absolute;inset:0;margin:0;width:100%;height:100%;opacity:0;cursor:pointer}

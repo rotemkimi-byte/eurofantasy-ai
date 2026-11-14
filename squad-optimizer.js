@@ -9,7 +9,7 @@ const num = value => value == null || value === '' || !Number.isFinite(Number(va
 const fmt = (value, unit = '') => num(value) === null ? '—' : Number(value).toFixed(1) + unit;
 const name = value => '<bdi>' + esc(value) + '</bdi>';
 const chart = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13V8m5 5V4m5 9V2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
-let open = null, schedule = null, games = null, statsRequest = null;
+let open = null, autoOpen = false, schedule = null, games = null, statsRequest = null;
 
 function nextGame(p) {
   if (!schedule) return null;
@@ -26,7 +26,24 @@ function fixtureLine(p) {
   return `<div class="squadFixture">${next ? `${name(next.team)} <b>${next.home?'בית':'חוץ'}</b>` : 'מועד המשחק טרם אומת'}</div>`;
 }
 
-window.SquadOptimizer = {controls, fixtureLine};
+function rivalFor(p, next) {
+  if (!games || !next) return null;
+  return S.positionPlayer(games, players.filter(q => canonicalTeam(q.team)===next.team),
+    next.team, p.pos, window.OfficialOffense.key);
+}
+
+function rivalPreview(p) {
+  const next = nextGame(p);
+  const rival = rivalFor(p, next);
+  if (!rival) return `<div class="squadRivalPreview squadRivalUnavailable">${next && games ? 'אין שחקן יריב מזוהה בעמדה' : ''}</div>`;
+  return `<div class="squadRivalPreview">
+    <button type="button" class="squadAltIdentity" data-details="${esc(rival.player.name)}" aria-label="פרטי ${esc(rival.player.name)}">
+     ${squadJersey(rival.player)}<span><small>יריב בעמדה ${esc(p.pos)}</small><strong>${name(rival.player.name)}</strong></span></button>
+    ${physicalLine(rival.player,true)}
+  </div>`;
+}
+
+window.SquadOptimizer = {controls, fixtureLine, rivalPreview};
 
 function rank(source, pool, owned) {
   const price = num(source.price);
@@ -114,8 +131,7 @@ function matchup(p) {
   if (!next) return '<p class="squadPanelNote">המשחק הבא טרם אומת בלוח היורוליג. ניתוח יופיע כשיהיה משחק זמין.</p>';
   const fixture = `<div class="squadMatchHero"><strong>${name(next.team)}</strong><small>מחזור ${esc(next.round)} · ${next.home?'בית':'חוץ'} · עמדה ${esc(p.pos)}</small></div>`;
   if (!games?.length) return fixture+ (!games ?'<p class="squadPanelNote" role="status">טוען נתוני עונת 2026/27…</p>' : '<p class="squadPanelNote">אין דוחות משחק זמינים בעונה הנוכחית.</p>') + (games ? matchupForecast(p,next) : '');
-  const rival = S.positionPlayer(games, players.filter(q => canonicalTeam(q.team)===next.team),
-    next.team, p.pos, window.OfficialOffense.key);
+  const rival = rivalFor(p, next);
   const identity = rival ? `<div class="squadRivalProfile">
     <button type="button" class="squadAltIdentity" data-details="${esc(rival.player.name)}">${squadJersey(rival.player)}
      <span><small>שחקן רוטציה בעמדה ${esc(p.pos)}</small><strong>${name(rival.player.name)}</strong>
@@ -129,27 +145,14 @@ function matchup(p) {
     '<p class="squadPanelNote">מקור: דוחות המשחק הרשמיים של יורוליג · 2026/27</p>';
 }
 
-function loadStats(panel, p) {
-  if (games) return;
+function loadStats() {
+  if (games) return Promise.resolve();
   statsRequest ||= window.loadGameData('official-offense.json').then(data => {
     if (data.season !== 'E2026' || data.schema !== 'official-offense-v1') throw Error('Unexpected season');
     games = S.gameStats(data, canonicalTeam);
+    renderTeam();
   }).finally(() => { statsRequest = null; });
-  statsRequest.then(() => {
-    if (panel.isConnected) {
-      panel.querySelector('.squadPanelBody').innerHTML = matchup(p);
-      loadRivalPhysical(panel);
-    }
-  }).catch(() => {
-    if (panel.isConnected) panel.querySelector('.squadPanelBody').innerHTML =
-      '<p class="squadPanelNote" role="status">טעינת הנתונים נכשלה. סגור ופתח את הניתוח כדי לנסות שוב.</p>';
-  });
-}
-
-function loadRivalPhysical(panel) {
-  const target = panel.querySelector('[data-physical-player]');
-  const rival = target && players.find(p => p.name === target.dataset.physicalPlayer);
-  if (rival) void physicalLoad([rival]);
+  return statsRequest;
 }
 
 function playerCard(value) {
@@ -187,8 +190,10 @@ function paint() {
   } else card.after(panel);
   button.setAttribute('aria-expanded','true');
   if (open.kind === 'matchup' && nextGame(p)) {
-    if (games) loadRivalPhysical(panel);
-    else loadStats(panel,p);
+    if (!games) void loadStats().catch(() => {
+      if (panel.isConnected) panel.querySelector('.squadPanelBody').innerHTML =
+        '<p class="squadPanelNote" role="status">טעינת הנתונים נכשלה. סגור ופתח את הניתוח כדי לנסות שוב.</p>';
+    });
   }
 }
 
@@ -233,7 +238,17 @@ function replace(candidate) {
 const original = renderTeam;
 renderTeam = function () {
   original();
+  if (autoOpen) {
+    const first = root.querySelector('.squadPlayer[data-player]');
+    if (first) {
+      autoOpen = false;
+      open = {name:first.dataset.player,kind:'alternatives'};
+    }
+  }
   paint();
+  const rivals = new Set([...root.querySelectorAll('.squadRivalPreview [data-physical-player]')]
+    .map(el => el.dataset.physicalPlayer));
+  if (rivals.size) void physicalLoad(players.filter(p => rivals.has(p.name)));
   if (root.classList.contains('squadOptimizing')) paintCoach();
 };
 
@@ -259,14 +274,17 @@ function setMode(active) {
   root.classList.toggle('squadOptimizing',active);
   optimizer.setAttribute('aria-pressed',String(active));
   open = null;
+  autoOpen = active;
   renderTeam();
 }
 
 function loadSchedule() {
   return window.loadGameData('context/E2026-schedule.json').then(data => {
-    if (schedule === data) return;
-    schedule = data;
-    renderTeam();
+    if (schedule !== data) {
+      schedule = data;
+      renderTeam();
+    }
+    return loadStats();
   }).catch(() => {});
 }
 
