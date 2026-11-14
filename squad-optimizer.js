@@ -16,9 +16,9 @@ function nextGame(p) {
   return S.fixture(schedule, canonicalTeam(p.team), canonicalTeam);
 }
 
-function controls(id) {
+function controls(id, optimizing) {
   const button = (kind, label, icon) => `<button type="button" data-squad-panel="${kind}" aria-expanded="false" aria-controls="${id}">${icon}${label}</button>`;
-  return `<div class="squadPanelControls">${button('alternatives','חלופות','<span aria-hidden="true">⇄</span>')}${button('matchup','ניתוח יריב',chart)}</div>`;
+  return `<div class="squadPanelControls">${optimizing?button('alternatives','חלופות','<span aria-hidden="true">⇄</span>'):''}${button('matchup','ניתוח יריב',chart)}</div>`;
 }
 
 function fixtureLine(p) {
@@ -116,13 +116,11 @@ function matchup(p) {
   if (!games?.length) return fixture+ (!games ?'<p class="squadPanelNote" role="status">טוען נתוני עונת 2026/27…</p>' : '<p class="squadPanelNote">אין דוחות משחק זמינים בעונה הנוכחית.</p>') + (games ? matchupForecast(p,next) : '');
   const rival = S.positionPlayer(games, players.filter(q => canonicalTeam(q.team)===next.team),
     next.team, p.pos, window.OfficialOffense.key);
-  const profile = rival && window.__matchupContextData?.season === 'E2026'
-    ? window.__matchupContextData.players?.[window.OfficialOffense.key(rival.player.name)] : null;
-  const height = profile?.team === next.team ? num(profile.height) : num(rival?.player.height);
   const identity = rival ? `<div class="squadRivalProfile">
     <button type="button" class="squadAltIdentity" data-details="${esc(rival.player.name)}">${squadJersey(rival.player)}
      <span><small>שחקן רוטציה בעמדה ${esc(p.pos)}</small><strong>${name(rival.player.name)}</strong>
-     <small>${name(next.team)} · ${height>0?height+' ס״מ':'גובה חסר'} · ${rival.games} משחקים</small></span></button>
+     <small>${name(next.team)} · ${rival.games} משחקים</small></span></button>
+    ${physicalLine(rival.player,true)}
     <h5>ממוצעים אישיים של השחקן</h5><div class="squadRivalMetrics">
      ${metric('PIR',rival.pir)}${metric('נקודות',rival.points)}${metric('ריבאונדים',rival.rebounds)}${metric('חסימות',rival.blocks)}${metric('דקות',rival.minutes)}</div>
     <p class="squadPanelNote">מוביל בדקות בין השחקנים הזמינים בעמדה. אין זיהוי מאומת של השומר הישיר או נתוני הגנה בזמן שהיה על המגרש.</p>
@@ -138,11 +136,20 @@ function loadStats(panel, p) {
     games = S.gameStats(data, canonicalTeam);
   }).finally(() => { statsRequest = null; });
   statsRequest.then(() => {
-    if (panel.isConnected) panel.querySelector('.squadPanelBody').innerHTML = matchup(p);
+    if (panel.isConnected) {
+      panel.querySelector('.squadPanelBody').innerHTML = matchup(p);
+      loadRivalPhysical(panel);
+    }
   }).catch(() => {
     if (panel.isConnected) panel.querySelector('.squadPanelBody').innerHTML =
       '<p class="squadPanelNote" role="status">טעינת הנתונים נכשלה. סגור ופתח את הניתוח כדי לנסות שוב.</p>';
   });
+}
+
+function loadRivalPhysical(panel) {
+  const target = panel.querySelector('[data-physical-player]');
+  const rival = target && players.find(p => p.name === target.dataset.physicalPlayer);
+  if (rival) void physicalLoad([rival]);
 }
 
 function playerCard(value) {
@@ -179,7 +186,10 @@ function paint() {
     lastInRow.after(panel);
   } else card.after(panel);
   button.setAttribute('aria-expanded','true');
-  if (open.kind === 'matchup' && nextGame(p)) loadStats(panel,p);
+  if (open.kind === 'matchup' && nextGame(p)) {
+    if (games) loadRivalPhysical(panel);
+    else loadStats(panel,p);
+  }
 }
 
 function paintCoach() {
@@ -223,10 +233,8 @@ function replace(candidate) {
 const original = renderTeam;
 renderTeam = function () {
   original();
-  if (root.classList.contains('squadOptimizing')) {
-    paint();
-    paintCoach();
-  }
+  paint();
+  if (root.classList.contains('squadOptimizing')) paintCoach();
 };
 
 root.addEventListener('click', event => {
@@ -250,8 +258,16 @@ root.addEventListener('click', event => {
 function setMode(active) {
   root.classList.toggle('squadOptimizing',active);
   optimizer.setAttribute('aria-pressed',String(active));
-  if (!active) open = null;
+  open = null;
   renderTeam();
+}
+
+function loadSchedule() {
+  return window.loadGameData('context/E2026-schedule.json').then(data => {
+    if (schedule === data) return;
+    schedule = data;
+    renderTeam();
+  }).catch(() => {});
 }
 
 tabs.addEventListener('click', event => {
@@ -260,16 +276,18 @@ tabs.addEventListener('click', event => {
     const active = optimizer.getAttribute('aria-pressed') !== 'true';
     forecast.click();
     setMode(active);
-    if (active) {
-      forecast.setAttribute('aria-pressed','false');
-      void window.loadGameData('context/E2026-schedule.json').then(data => {
-        if (schedule === data) return;
-        schedule = data;
-        if (root.classList.contains('squadOptimizing')) renderTeam();
-      }).catch(() => {});
+    if (active) forecast.setAttribute('aria-pressed','false');
+  } else if (button?.dataset.teamView) {
+    if (root.classList.contains('squadOptimizing')) setMode(false);
+    if (button === forecast) void loadSchedule();
+    else {
+      open = null;
+      removePanel();
     }
-  } else if (button?.dataset.teamView && root.classList.contains('squadOptimizing')) {
-    setMode(false);
   }
 });
+
+document.querySelector('[data-tab="team"]').addEventListener('click',loadSchedule);
+renderTeam();
+if (document.getElementById('team').classList.contains('active')) void loadSchedule();
 })();
