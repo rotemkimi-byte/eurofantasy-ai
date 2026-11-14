@@ -90,7 +90,8 @@ const server=http.createServer((req,res)=>{
     return {height:box.height,sideBySide:values.right<=name.left};
    });
    assert.ok(bounds.sideBySide&&bounds.height<=112,JSON.stringify(bounds));
-   await card.getByText('מה זה אומר?').click();
+   assert.equal(await panel.getByText('מה זה אומר?',{exact:true}).count(),0);
+   await card.locator(':scope > summary').click();
    assert.ok(await card.locator(':scope > .dna-expanded-help').isVisible());
    if(process.env.DNA_SCREENSHOT_DIR&&width===390){
     await boards.screenshot({path:path.join(process.env.DNA_SCREENSHOT_DIR,'compact-boards.png')});
@@ -118,29 +119,35 @@ const server=http.createServer((req,res)=>{
    await panel.locator('[data-venue=all]').click();
    await panel.locator('[data-player-view=player]').click();
    await panel.locator('[data-compare-player]').selectOption({index:1});
-   assert.equal(await panel.locator('.dna-radar-other').count(),1);
+   assert.equal(await panel.locator('.dna-radar-card svg').count(),0);
    assert.equal(await panel.locator('.dna-compact-metrics').count(),0);
-   assert.equal(await panel.locator('.dna-radar-comparison + .dna-style-compare').count(),1);
-   assert.equal(await panel.locator('.dna-bars, .dna-summary, .dna-radar-scores').count(),0);
-   const compareRadar=panel.locator('.dna-radar-comparison');
-   assert.deepEqual(await compareRadar.locator('.dna-radar-score-own').allTextContents(),scores);
-   assert.equal(await compareRadar.locator('.dna-radar-score-other').count(),10);
-   assert.ok(await compareRadar.locator('.dna-radar-diamond').count());
-   const fits=await compareRadar.locator('svg').evaluate(svg=>{
-    const {x,y,width,height}=svg.viewBox.baseVal;
-    const boxes=[...svg.querySelectorAll('text')].map(el=>el.getBBox());
-    return boxes.every((a,i)=>a.x>=x&&a.y>=y&&a.x+a.width<=x+width&&a.y+a.height<=y+height&&
-     boxes.slice(i+1).every(b=>a.x+a.width<=b.x||b.x+b.width<=a.x||a.y+a.height<=b.y||b.y+b.height<=a.y));
-   });
-   assert.ok(fits);
+   assert.equal(await panel.locator('.dna-comparison-scores + .dna-style-compare').count(),1);
+   assert.equal(await panel.locator('.dna-bars, .dna-summary').count(),0);
+   assert.equal(await panel.getByText('מה זה אומר?',{exact:true}).count(),0);
+   const scoreTable=panel.locator('.dna-comparison-scores');
+   const scoreRows=scoreTable.locator('.dna-radar-scores > li');
+   assert.equal(await scoreRows.count(),10);
+   assert.deepEqual(await scoreRows.locator('.dna-own').allTextContents(),scores);
+   assert.equal(await scoreRows.locator('.dna-other').count(),10);
+   assert.equal(await scoreRows.nth(0).evaluate((first,second)=>{
+    const a=first.getBoundingClientRect(),b=second.getBoundingClientRect();
+    return Math.abs(a.top-b.top)<1&&a.left>=b.right;
+   },await scoreRows.nth(1).elementHandle()),true);
    const styleRows=panel.locator('.dna-style-compare');
    assert.ok(await styleRows.locator('.dna-ahead').count());
    assert.equal(await styleRows.locator('.dna-ahead').count(),await styleRows.locator('.dna-behind').count());
+   assert.equal(await styleRows.locator('.dna-even .dna-track').count(),0);
+   for(const id of ['rim','fastbreak']){
+    const row=styleRows.locator(`[data-metric="${id}"]`);
+    assert.equal(await row.locator('.dna-ahead').count(),1);
+    assert.equal(await row.locator('.dna-behind').count(),1);
+    assert.match(await row.locator('.dna-metric-name small').textContent(),/ערך גבוה יותר אצל/);
+   }
    assert.equal(await styleRows.locator('.dna-value.dna-other:not(.dna-ahead,.dna-behind,.dna-even)').count(),0);
    assert.equal(await panel.locator('[data-metric=ts] .dna-expanded-value').count(),2);
    assert.match(await panel.locator('[data-metric=ts] .dna-metric-gap').textContent(),/פער|שוויון/);
    if(process.env.DNA_SCREENSHOT_DIR&&width===390){
-    await compareRadar.screenshot({path:path.join(process.env.DNA_SCREENSHOT_DIR,'comparison.png')});
+    await scoreTable.screenshot({path:path.join(process.env.DNA_SCREENSHOT_DIR,'comparison.png')});
    }
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
    await panel.locator('[data-player-view=team]').click();

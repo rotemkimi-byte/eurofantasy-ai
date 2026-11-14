@@ -348,12 +348,11 @@ function valueCell(stat,rating,unit,side,{league=false,singleGame=false,bar=rati
   ${singleGame?'':`<small>${esc(sample)}${showRank&&real&&!league&&rating===null?' · ללא דירוג':''}</small>`}
  </div>`;
 }
-function row(metric,left,right='',difference='',playerComparison=false){
+function row(metric,left,right='',difference=''){
  const [id,label,,source,help]=metric;
  return `<details class="dna-row" data-metric="${id}">
   <summary><span class="dna-metric-name"><b>${label}</b><small>${sources[source]}${difference}</small></span>
   <div class="dna-values${right?' dna-pair':''}">${left}${right}</div>
- ${playerComparison?metricAction('מה זה אומר?','סגור הסבר'):''}
   ${id==='usage'?'<span class="dna-context">החלק מהתקפות הקבוצה שהשחקן סיים בזריקה, בעונשין או באיבוד, כשהיה על המגרש.</span>':''}</summary>
   <p>${help}</p>
  </details>`;
@@ -457,14 +456,29 @@ const radarAxes=[
  ['מתפרצות',['fastbreak']],['ריבאונד',['offRebound','defRebound']],['הגנה',['steals','blocks']],
  ['סחיטת עבירות',['drawn']],['יציבות',['pirStability']],['יעילות',['pir40']]
 ];
-function playerRadar(reports,record,compare,{profile=false}={}){
- const values=p=>radarAxes.map(([,ids])=>{
-  const ranks={...reports.baseRanks.get(p),...reports.detailRanks.get(p)};
+function radarValues(reports,record){
+ const ranks={...reports.baseRanks.get(record),...reports.detailRanks.get(record)};
+ return radarAxes.map(([,ids])=>{
   const available=ids.map(id=>ranks[id]).filter(Number.isFinite);
   return available.length===ids.length?available.reduce((a,b)=>a+b,0)/available.length:null;
  });
- const first=values(record),second=compare?values(compare):null;
- const inline=profile||!!second;
+}
+function playerComparisonScores(reports,record,compare){
+ const own=radarValues(reports,record),other=radarValues(reports,compare);
+ return `<section class="dna-radar-card dna-comparison-scores">
+  <h4>אחוזוני DNA</h4>
+  ${legend(record.name,compare.name)}
+  <ul class="dna-radar-scores" aria-label="אחוזונים מתוך 100">
+   ${radarAxes.map(([label],i)=>`<li>
+    <span>${label}</span>
+    <strong><bdi class="dna-own" aria-label="${esc(record.name+' '+(own[i]??'ללא דירוג'))}">${fmt(own[i])}</bdi>
+    <bdi class="dna-other" aria-label="${esc(compare.name+' '+(other[i]??'ללא דירוג'))}">${fmt(other[i])}</bdi></strong>
+   </li>`).join('')}
+  </ul>
+ </section>`;
+}
+function playerRadar(reports,record,{profile=false}={}){
+ const first=radarValues(reports,record);
  const point=(i,scale)=>{
   const angle=2*Math.PI*i/radarAxes.length-Math.PI/2;
   return [170+Math.cos(angle)*104*scale,129+Math.sin(angle)*104*scale];
@@ -475,7 +489,7 @@ function playerRadar(reports,record,compare,{profile=false}={}){
   const [x,y]=point(i,1);
   return `<line x1="170" y1="129" x2="${x}" y2="${y}"/>`;
  }).join('');
- const display=(r,kind)=>{
+ const display=r=>{
   const points=r.map((v,i)=>v==null?null:point(i,v/100));
   const area=points.every(Boolean)?`<polygon class="dna-radar-fill" points="${points.join(' ')}"/>`:'';
   const edges=points.map((p,i)=>{
@@ -485,40 +499,33 @@ function playerRadar(reports,record,compare,{profile=false}={}){
   const markers=points.map((p,i)=>{
    if(!p)return '';
    const [x,y]=p;
-   const dot=second&&kind==='dna-radar-other'
-    ?`<path class="dna-radar-diamond" d="M${x} ${y-5}l5 5-5 5-5-5z"/>`
-    :`<circle class="dna-radar-dot" cx="${x}" cy="${y}" r="3.5"/>`;
-   return inline?dot:`<g data-radar-axis="${i}"><circle class="dna-radar-hit" cx="${x}" cy="${y}" r="13"/>${dot}</g>`;
+   const dot=`<circle class="dna-radar-dot" cx="${x}" cy="${y}" r="3.5"/>`;
+   return profile?dot:`<g data-radar-axis="${i}"><circle class="dna-radar-hit" cx="${x}" cy="${y}" r="13"/>${dot}</g>`;
   }).join('');
-  return `<g class="${kind}">${area}${edges}${markers}</g>`;
+  return `<g class="dna-radar-own">${area}${edges}${markers}</g>`;
  };
  const labels=radarAxes.map(([label],i)=>{
-  const [x,y]=point(i,inline?1.19:1.14);
+  const [x,y]=point(i,profile?1.19:1.14);
   const name=`<text x="${x}" y="${y}" direction="rtl">${label}</text>`;
-  const score=(value,offset,kind='')=>`<text class="dna-radar-inline-score ${kind}" x="${x+offset}" y="${y+18}" direction="ltr">${fmt(value)}</text>`;
-  if(second)return name+score(first[i],17,'dna-radar-score-own')+score(second[i],-17,'dna-radar-score-other');
-  return profile?name+score(first[i],0):name;
+  return profile?name+`<text class="dna-radar-inline-score" x="${x}" y="${y+18}" direction="ltr">${fmt(first[i])}</text>`:name;
  }).join('');
  const score=(n,kind)=>`<bdi class="${kind}">${n??'—'}</bdi>`;
- const scores=inline?'':radarAxes.map(([label],i)=>{
+ const scores=profile?'':radarAxes.map(([label],i)=>{
   const rank=first[i];
   return `<li><button type="button" data-radar-score="${i}" aria-pressed="false">
    <span>${label}</span><strong>${score(rank,'dna-own')}</strong></button>
    <template>${label} · <span><bdi>${esc(record.name)}</bdi> · ${rank==null?'ללא דירוג':`<bdi>${rank}</bdi> מתוך 100`}</span></template></li>`;
  }).join('');
- const accessibleScores=inline?radarAxes.map(([label],i)=>{
-  const read=value=>value==null?'ללא דירוג':fmt(value)+' מתוך 100';
-  return second?`${label}: ${record.name} ${read(first[i])}, ${compare.name} ${read(second[i])}`:`${label}: ${read(first[i])}`;
- }).join('; '):'';
- const accessibility=inline?`role="img" aria-label="${esc(accessibleScores)}"`:'aria-hidden="true"';
- return `<section class="dna-radar-card${profile?' dna-radar-profile':second?' dna-radar-comparison':''}"><h4>רדאר DNA שחקן</h4>
+ const accessibleScores=profile?radarAxes.map(([label],i)=>
+  `${label}: ${first[i]==null?'ללא דירוג':fmt(first[i])+' מתוך 100'}`).join(', '):'';
+ const accessibility=profile?`role="img" aria-label="${esc(accessibleScores)}"`:'aria-hidden="true"';
+ return `<section class="dna-radar-card${profile?' dna-radar-profile':''}"><h4>רדאר DNA שחקן</h4>
  <p class="dna-explain">ככל שנקודה רחוקה מהמרכז, האחוזון של השחקן בעמדתו גבוה יותר בטווח שנבחר. נקודה חסרה מציינת מדגם שאינו מספיק לדירוג.</p>
- ${compare?legend(record.name,compare.name):''}
- <div class="dna-radar-layout"><div><svg viewBox="${inline?'-8 -5 356 291':'0 0 340 258'}" ${accessibility}>
-  <g class="dna-radar-grid">${rings}${spokes}</g>${display(first,'dna-radar-own')}${second?display(second,'dna-radar-other'):''}${labels}
+ <div class="dna-radar-layout"><div><svg viewBox="${profile?'-8 -5 356 291':'0 0 340 258'}" ${accessibility}>
+  <g class="dna-radar-grid">${rings}${spokes}</g>${display(first)}${labels}
  </svg><div class="dna-radar-scale"><span>אחוזון</span><bdi>0 · 25 · 50 · 75 · 100</bdi></div></div>
- ${inline?'':`<ul class="dna-radar-scores" aria-label="ערכי הצירים">${scores}</ul>`}</div>
- ${inline?'':`<p class="dna-radar-selection" aria-live="polite">לחצו על נקודה או על שם ציר להצגת הציון המדויק.</p>`}</section>`;
+ ${profile?'':`<ul class="dna-radar-scores" aria-label="ערכי הצירים">${scores}</ul>`}</div>
+ ${profile?'':`<p class="dna-radar-selection" aria-live="polite">לחצו על נקודה או על שם ציר להצגת הציון המדויק.</p>`}</section>`;
 }
 
 function selectRadarAxis(event){
@@ -565,7 +572,7 @@ function metricValue(stat,rank,spec,{name,side='',advantage=0,subject='עמדה'
   <div class="dna-raw"><strong><bdi>${visible?fmt(stat.value):'אין מספיק נתונים'}</bdi></strong>
   ${visible&&spec.unit?`<span>${esc(spec.unit)}</span>`:''}</div>
   ${Number.isFinite(rank)?`<div class="dna-rank-line"><bdi>${rank} / 100</bdi><span>אחוזון ${subject}</span></div>
-   <div class="dna-rank-track ${tone}" aria-hidden="true"><i style="--dna-width:${rank}%"></i></div>
+   ${!side||advantage?`<div class="dna-rank-track ${tone}" aria-hidden="true"><i style="--dna-width:${rank}%"></i></div>`:''}
    <small>${meaning}</small>`:`<small>${visible?'ללא אחוזון זמין':'אין ערך בטווח שנבחר'}</small>`}
   ${sample?`<small>${sample}</small>`:''}</div>`;
 }
@@ -574,12 +581,12 @@ function metricPair(spec,stat,rank,comparison,subject){
  const paired=!!comparison;
  const gap=stat?.value!=null&&other?.value!=null?stat.value-other.value:null;
  const tied=gap!=null&&fmt(stat.value)===fmt(other.value);
- const advantage=gap==null||tied?0:Math.sign(spec.direction*gap);
+ const advantage=gap==null||tied?0:Math.sign((spec.direction||1)*gap);
  const unit=spec.unit==='%'?'נק׳ אחוז':spec.unit;
  return `<div class="dna-expanded-cells${paired?' dna-two-cells':''}">
   ${metricValue(stat,rank,spec,{name:ownName,side:paired?'dna-own':'',advantage,subject})}
   ${paired?metricValue(other,otherRank,spec,{name,side:'dna-other',advantage:-advantage}):''}</div>
-  ${paired&&gap!=null?`<small class="dna-metric-gap">${tied?'שוויון בערכים המוצגים':`פער <bdi>${fmt(Math.abs(gap))}</bdi> ${esc(unit)}${advantage?` · יתרון ל־<bdi>${esc(advantage>0?ownName:name)}</bdi>`:''}`}</small>`:''}`;
+  ${paired&&gap!=null?`<small class="dna-metric-gap">${tied?'שוויון בערכים המוצגים':`פער <bdi>${fmt(Math.abs(gap))}</bdi> ${esc(unit)}${advantage?` · ${spec.direction?'יתרון ל־':'ערך גבוה יותר אצל '}<bdi>${esc(advantage>0?ownName:name)}</bdi>`:''}`}</small>`:''}`;
 }
 function metricAction(label,close){
  return `<span class="dna-detail-action"><span>${label}</span><span>${close}</span><i aria-hidden="true"></i></span>`;
@@ -593,7 +600,7 @@ function playerBars(reports,record,compare){
   return `<details class="dna-expanded-row dna-bar-row" data-dna-bar="${id}"><summary>
    <span class="dna-expanded-name"><b>${label}</b></span>
    ${metricPair(spec,stat(record,id),own[id],compare&&{stat:stat(compare,id),rank:other[id],name:compare.name,ownName:record.name})}
-   ${metricAction('מה זה אומר?','סגור הסבר')}</summary><div class="dna-expanded-help"><p>${help}</p></div></details>`;
+   </summary><div class="dna-expanded-help"><p>${help}</p></div></details>`;
  };
  return `<section class="dna-bars"><h4>אחוזונים לפי מדד</h4>
  <p class="dna-explain">אורך הפס מציין את האחוזון בעמדה. צבע הפס מתחשב בכיוון המדד. למשל, פחות איבודים נחשבים ליתרון.</p>
@@ -647,7 +654,7 @@ function expandedMetrics(report,ranks,{other,otherRanks,opponent,compareName,own
   return `<details class="dna-expanded-row${child?' dna-submetric':''}" data-metric="${id}"><summary>
    <span class="dna-expanded-name"><b>${label}</b><small>${source}${stat?.context?` · מול <bdi>${esc(stat.context)}</bdi>`:''}</small></span>
    ${metricPair(spec,stat,stat?.rank??ranks?.[id],compare,subject)}
-   ${metricAction('מה זה אומר?','סגור הסבר')}</summary>${more}</details>`;
+   </summary>${more}</details>`;
  };
  return `<section class="dna-expanded-groups${compact?' dna-compact-metrics':''}"><h4>ניתוח לפי קטגוריות</h4>
  ${Object.entries(M.groups).map(([group,label])=>{
@@ -659,7 +666,7 @@ function expandedMetrics(report,ranks,{other,otherRanks,opponent,compareName,own
    <span class="dna-category-title"><b>${label}</b><small>${description}${group==='opponent'?` · <bdi>${esc(opponent||'אין יריבה מזוהה כרגע')}</bdi>`:''}</small></span>
    ${metricAction('הצג מדדים','סגור מדדים')}</summary>
    <div class="dna-category-grid">${rows.map(m=>metric(m)).join('')}
-   ${M.missing.filter(([g])=>g===group).map(([,name,why])=>`<details class="dna-unavailable"><summary><b>${name}</b><small>אין מספיק נתונים</small>${metricAction('מה זה אומר?','סגור הסבר')}</summary><p>${why}</p></details>`).join('')}</div>
+   ${M.missing.filter(([g])=>g===group).map(([,name,why])=>`<details class="dna-unavailable"><summary><b>${name}</b><small>אין מספיק נתונים</small></summary><p>${why}</p></details>`).join('')}</div>
   </details>`;
  }).join('')}</section>`;
 }
@@ -716,14 +723,13 @@ function renderPlayer(){
   if(projection)withRival.stats.projection={...projection,context:forecast.opponent};
  }
  const profile=playerView==='profile';
- const hasChart=(playerView!=='player'||compare)&&(games.length||compare&&M.select(compare.games,limit,playerVenue).length);
- const radar=hasChart?playerRadar(reports,record,compare,{profile}):'';
- const teamCharts=playerView==='team'&&hasChart?radar+playerBars(reports,record,null)+playerDnaSummary(reports,record):'';
+ const radar=playerView!=='player'&&games.length?playerRadar(reports,record,{profile}):'';
+ const teamCharts=playerView==='team'&&games.length?radar+playerBars(reports,record,null)+playerDnaSummary(reports,record):'';
  const style=profile
   ?games.length?playerStyle(own,ratings,positionLabels[record.position],radar):empty('אין מספיק נתונים להופעות בטווח ובסינון שנבחרו.')
   :playerStyleComparison(record,limit,rival);
  out.innerHTML=`${playerProfile(record,games,tags)}
- ${compare?radar:''}
+ ${compare?playerComparisonScores(reports,record,compare):''}
  ${style}
  ${teamCharts}
  ${expandedMetrics(withRival,reports.detailRanks.get(record),{other,otherRanks:reports.detailRanks.get(compare),opponent,compareName:compare?.name,ownName:record.name,compact:profile})}`;
@@ -733,14 +739,15 @@ function comparisonRows(metrics,ownStats,rivalStats,benchmarks,{highlightAdvanta
  return metrics.map(metric=>{
   const [id,,unit]=metric,ref=benchmarks?.[id],a=ownStats[id],b=rivalStats?.[id]||{value:ref.mean,count:ref.count};
   const gap=a.value==null||b.value==null?null:a.value-b.value;
-  const lead=playerComparison&&gap!=null&&fmt(a.value)!==fmt(b.value)&&!styleOnly.has(id)
+  const tied=gap!=null&&fmt(a.value)===fmt(b.value);
+  const lead=playerComparison&&gap!=null&&!tied
    ?names[(lowerIsBetter.has(id)?gap<0:gap>0)?0:1]:null;
-  const diff=gap==null?'':` · פער <bdi>${fmt(Math.abs(gap))}</bdi>${unit==='%'?' נק׳ אחוז':unitLabels[unit]||''}${lead?` · יתרון ל־<bdi>${esc(lead)}</bdi>`:''}`;
+  const diff=gap==null?'':` · פער <bdi>${fmt(Math.abs(gap))}</bdi>${unit==='%'?' נק׳ אחוז':unitLabels[unit]||''}${lead?` · ${styleOnly.has(id)?'ערך גבוה יותר אצל ':'יתרון ל־'}<bdi>${esc(lead)}</bdi>`:playerComparison&&tied?' · שוויון':''}`;
   const max=unit==='%'?100:Math.max(a.value??0,b.value??0);
-  const width=stat=>stat.value==null?null:max>0?Math.min(100,stat.value/max*100):0;
-  const [ownSide,rivalSide]=highlightAdvantage&&(!playerComparison||!styleOnly.has(id))?comparisonSides(id,a.value,b.value):['dna-even','dna-even'];
+  const width=stat=>stat.value==null||playerComparison&&(gap==null||tied)?null:max>0?Math.min(100,stat.value/max*100):0;
+  const [ownSide,rivalSide]=highlightAdvantage?comparisonSides(id,a.value,b.value):['dna-even','dna-even'];
   return row(metric,valueCell(a,ref?.percentile(a)??null,unit,ownSide,{singleGame,bar:ref?undefined:width(a),showRank:!!ref,name:names[0]}),
-   valueCell(b,rivalStats?(ref?.percentile(b)??null):null,unit,rivalSide,{league:!rivalStats,singleGame,bar:ref?undefined:width(b),showRank:!!ref,name:names[1]}),diff,playerComparison);
+   valueCell(b,rivalStats?(ref?.percentile(b)??null):null,unit,rivalSide,{league:!rivalStats,singleGame,bar:ref?undefined:width(b),showRank:!!ref,name:names[1]}),diff);
  }).join('');
 }
 function legend(own,rival){
