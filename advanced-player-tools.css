@@ -64,7 +64,7 @@ html[data-theme="dark"] .ap-screen{--ap-bg:#152237;--ap-soft:#20324a;--ap-ink:#f
 @media(max-width:430px){.ap-screen .ap-player-row.ap-no-plus{grid-template-columns:minmax(0,1fr) 58px 70px 12px}}
 
 /* Keep the selected analysis compact; filters return with the roster. */
-.ap-screen.ap-detail-open .ap-controls label:has([data-team]),
+.ap-screen.ap-detail-open:not(.performance-tool) .ap-controls label:has([data-team]),
 .ap-screen.ap-detail-open .ap-controls label:has([data-sort]){display:none}
 .ap-screen .ap-row-stat b{direction:ltr;unicode-bidi:isolate}
 html.ef-redesign .ap-screen button{color:var(--ap-ink)}

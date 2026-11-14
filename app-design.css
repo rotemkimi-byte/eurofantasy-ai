@@ -432,10 +432,24 @@ html[data-theme] :is(#usage,#defense,#playerFreeThrows,#playerNegative,#playerPl
   border-color: var(--pir-button-active);
 }
 #usage .us-switch.pir-control-row {
+  grid-template-columns: repeat(6,minmax(0,1fr));
   padding: 0;
   border: 0;
   background: transparent;
 }
+#usage .us-view-picker .us-switch.pir-control-row > button {
+  grid-column: span 2;
+  grid-template-columns: auto minmax(0,auto);
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  min-height: 44px;
+}
+#usage .us-view-picker .us-switch.pir-control-row > button:nth-child(-n+2) {
+  grid-column: span 3;
+}
+#usage .us-switch.pir-control-row button svg {width:14px;height:14px}
+#usage .us-switch.pir-control-row small {grid-column:1/-1;white-space:normal}
 :is(#usage,#defense,#playerFreeThrows,#playerNegative,#playerPlusMinus) :is(.pa-views,.pa-sort,.us-switch) .pir-control-title {
   white-space: normal;
 }

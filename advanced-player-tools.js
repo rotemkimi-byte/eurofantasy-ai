@@ -136,24 +136,32 @@ for(const [id,title,kind] of tools){
    });
   },format:fmt
  }):null;
- const syncRange=['boxScore','negative','plus'].includes(kind)
+ const alwaysPickPlayer=['boxScore','negative','plus'].includes(kind);
+ const syncRange=alwaysPickPlayer
   ?window.PerformanceControls.mount(section,$('[data-range]'),{specificGames:true}):null;
+ if(alwaysPickPlayer)$('[data-player-label]').firstChild.textContent='בחר שחקן';
  function renderBrowser(){
-  $('[data-team-label]').hidden=scope!=='team'||!browseOpen;
-  $('[data-player-label]').hidden=!browseOpen;
-  $('.player-picker-modes').hidden=!browseOpen;
-  const host=$('[data-browser]');host.hidden=!browseOpen;if(!browseOpen)return;
+  const showPicker=browseOpen||alwaysPickPlayer;
+  $('[data-team-label]').hidden=scope!=='team'||!showPicker;
+  $('[data-player-label]').hidden=!showPicker;
+  $('.player-picker-modes').hidden=!showPicker;
+  const host=$('[data-browser]');host.hidden=!browseOpen;if(!showPicker)return;
   const team=scope==='team'?$('[data-team]').value:'',range=$('[data-range]').value,sort=$('[data-sort]').value;
   const prices=marketPrices();
-  const rows=records.filter(p=>scope==='all'||p.team===team).map(p=>{
-   const games=C.select(p.games,range).filter(g=>g.minutes>0),minutes=games.reduce((sum,g)=>sum+(Number(g.minutes)||0),0);
-   return {p,price:prices.get(marketKey(p.name))??null,games:games.length,minutes,pir:games.length?C.n(games[0].stats?.valuation):null,pm:kind==='plus'?C.plus(games).total:null};
-  });
   const cmpName=(a,b)=>a.p.name.localeCompare(b.p.name,'he');
+  const rows=records.filter(p=>scope==='all'||p.team===team).map(p=>({p,price:prices.get(marketKey(p.name))??null}));
   const byPrice=[...rows].sort((a,b)=>(b.price??-Infinity)-(a.price??-Infinity)||cmpName(a,b));
   const player=$('[data-player]');
   player.replaceChildren(new Option(byPrice.length?'בחר שחקן':scope==='team'&&!team?'בחר קבוצה תחילה':'לא נמצאו שחקנים',''),...byPrice.map(({p,price})=>new Option(p.name+' · '+(price===null?'מחיר לא זמין':fmt(price)+' cr'),p.id)));
   if(byPrice.some(({p})=>p.id===selected))player.value=selected;
+  if(!browseOpen)return;
+  for(const row of rows){
+   const games=C.select(row.p.games,range).filter(g=>g.minutes>0);
+   row.games=games.length;
+   row.minutes=games.reduce((sum,g)=>sum+(Number(g.minutes)||0),0);
+   row.pir=games.length?C.n(games[0].stats?.valuation):null;
+   row.pm=kind==='plus'?C.plus(games).total:null;
+  }
   rows.sort((a,b)=>sort==='price'?(b.price??-Infinity)-(a.price??-Infinity)||cmpName(a,b):sort==='minutes'?b.minutes-a.minutes||cmpName(a,b):sort==='pir'?(b.pir??-Infinity)-(a.pir??-Infinity)||cmpName(a,b):sort==='plus'&&kind==='plus'?(b.pm??-Infinity)-(a.pm??-Infinity)||cmpName(a,b):sort==='team'?a.p.team.localeCompare(b.p.team,'he')||cmpName(a,b):cmpName(a,b));
   const visible=rows.slice(0,shown);
   const pickRows=visible.map(({p,price,games,minutes,pm})=>'<button type="button" class="ap-player-row'+(kind==='plus'?'':' ap-no-plus')+(p.id===selected?' is-selected':'')+'" data-pick="'+esc(p.id)+'" aria-label="בחר '+esc(p.name)+'"><span class="ap-row-name"><strong><bdi>'+esc(p.name)+'</bdi></strong><small>'+esc(p.team)+' · '+games+' הופעות</small></span><span class="ap-row-appearances"><b>'+fmt(price)+'</b><small>CR</small></span><span class="ap-row-stat"><b>'+fmt(minutes)+'</b><small>דקות</small></span>'+(kind==='plus'?'<span class="ap-row-stat ap-plus-value"><b>'+(pm>0?'+':'')+fmt(pm)+'</b><small>+/−</small></span>':'')+'<span class="ap-row-arrow" aria-hidden="true">‹</span></button>').join('');
@@ -178,7 +186,7 @@ for(const [id,title,kind] of tools){
   picked.innerHTML=window.PlayerAnalysis.profile(p,{
    meta,
    action:'<div class="pa-profile-actions">'+(price!=null?'<bdi class="pa-credit">'+fmt(price)+' CR</bdi>':'')+
-    '<button type="button" data-back>חזרה לרשימה <span aria-hidden="true">←</span></button></div>'
+    (alwaysPickPlayer?'':'<button type="button" data-back>חזרה לרשימה <span aria-hidden="true">←</span></button>')+'</div>'
   });
   if(kind==='boxScore'){
    const range=$('[data-range]').value;
@@ -197,7 +205,10 @@ for(const [id,title,kind] of tools){
    $('[data-team]').innerHTML='<option value="">בחר קבוצה</option>'+[...new Set(records.map(p=>p.team))].sort().map(t=>'<option>'+esc(t)+'</option>').join('');
    if([...$('[data-team]').options].some(o=>o.value===team))$('[data-team]').value=team;
    const shared=section.classList.contains('active')?window.playerToolSelection?.find(records):null;
-   if(shared){selected=shared.row.id;browseOpen=false;}
+   if(shared){
+    selected=shared.row.id;browseOpen=false;
+    if(alwaysPickPlayer&&scope==='team')$('[data-team]').value=shared.row.team;
+   }
    controls();ranges();
    if(shared?.range)$('[data-range]').value=shared.range;
    render();$('[role=status]').textContent='עונת 2026/27 · עודכן '+date(data.updated_at)+' · '+Object.keys(data.games).length+' משחקים במאגר';
@@ -208,7 +219,11 @@ for(const [id,title,kind] of tools){
  for(const button of section.querySelectorAll('[data-scope]'))button.onclick=()=>{
   scope=button.dataset.scope;
   for(const item of section.querySelectorAll('[data-scope]'))item.setAttribute('aria-pressed',String(item===button));
-  $('[data-sort]').value='price';shown=36;renderBrowser();analytics?.render();
+  $('[data-sort]').value='price';shown=36;
+  if(alwaysPickPlayer){
+   browseOpen=true;ranges();render();
+  }else analytics?.render();
+  renderBrowser();
  };
  function choose(id){
   if(!id)return;selected=id;browseOpen=false;ranges();
@@ -218,7 +233,7 @@ for(const [id,title,kind] of tools){
  $('[data-player]').onchange=()=>choose($('[data-player]').value);
  $('[data-team]').onchange=()=>{
   const team=$('[data-team]').value;
-  if(team&&selected&&records.find(p=>p.id===selected)?.team!==team)selected='';
+  if(selected&&(team||alwaysPickPlayer)&&records.find(p=>p.id===selected)?.team!==team)selected='';
   browseOpen=true;shown=36;ranges();controls();render();
  };
  $('[data-sort]').onchange=()=>{shown=36;controls();};

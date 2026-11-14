@@ -50,7 +50,6 @@ const server=http.createServer((req,res)=>{
     await page.evaluate(()=>document.querySelector('nav.tabs [data-tab="playerBoxScore"]').click());
     const box=page.locator('#playerBoxScore');
     await box.locator('[data-refresh]:enabled').waitFor();
-    if(await box.locator('[data-back]').isVisible())await box.locator('[data-back]').click();
     await box.locator('[data-player]').selectOption(boxPlayer.id);
     for(const range of ['3','0']){
      await box.locator('[data-performance-range="'+range+'"]').click();
@@ -68,6 +67,17 @@ const server=http.createServer((req,res)=>{
     assert.equal(await box.locator('[data-performance-range][aria-pressed=true]').count(),0);
     await box.locator('[data-performance-range="1"]').click();
     assert.equal(await box.locator('.ap-box-average').count(),0);
+    assert.equal(await box.locator('[data-back]').count(),0);
+    const picker=box.locator('[data-player]');
+    const nextId=await picker.locator('option').evaluateAll((options,id)=>options.find(option=>option.value&&option.value!==id).value,boxPlayer.id);
+    await picker.selectOption(nextId);
+    assert.equal(await picker.inputValue(),nextId);
+    await box.locator('[data-scope=team]').click();
+    await box.locator('[data-team]').selectOption({index:1});
+    await picker.selectOption({index:1});
+    assert(await box.locator('[data-team]').isVisible());
+    assert(await picker.isVisible());
+    await box.locator('[data-scope=all]').click();
     for(const [id,p] of [['playerNegative',shot],['playerShots',shot],['playerPlusMinus',shot],['playerLineups',line]]){
      await page.evaluate(id=>document.querySelector('nav.tabs [data-tab="'+id+'"]').click(),id);
      const section=page.locator('#'+id);
@@ -78,6 +88,8 @@ const server=http.createServer((req,res)=>{
      if(['playerNegative','playerPlusMinus'].includes(id)){
       await section.locator('[data-performance-range="0"]').click();
       assert.equal(await section.locator('[data-range]').inputValue(),'0');
+      assert(await section.locator('[data-player]').isVisible());
+      assert.equal(await section.locator('[data-back]').count(),0);
      }else await section.locator('[data-range]').selectOption('0');
      await section.locator('.ap-profile').waitFor({state:'visible'});
      if(id==='playerShots')assert(await section.locator('svg.ap-court').count());
