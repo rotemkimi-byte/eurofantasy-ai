@@ -27,22 +27,21 @@ const server=http.createServer((req,res)=>{
    await panel.locator('.dna-radar-card').waitFor({timeout:60000});
    await page.locator('html').evaluate(el=>el.dataset.theme='light');
    assert.equal(await panel.evaluate(el=>getComputedStyle(el).direction),'rtl');
-   assert.equal(await panel.locator('.dna-player-style + .dna-radar-card').count(),1);
-   const marker=panel.locator('.dna-radar-hit').first();
-   await marker.click();
-   assert.match(await panel.locator('.dna-radar-selection').textContent(),/מתוך 100/);
-   const axis=panel.locator('[data-radar-score]').last();
-   await axis.focus();
-   await axis.press('Enter');
-   assert.equal(await axis.getAttribute('aria-pressed'),'true');
-   const radarBounds=await panel.locator('.dna-radar-card svg').evaluate(svg=>{
-    const {width,height}=svg.viewBox.baseVal;
+   assert.equal(await panel.locator('.dna-shot-split + .dna-radar-profile + .dna-player-metrics').count(),1);
+   assert.equal(await panel.locator('.dna-bars, .dna-radar-scores').count(),0);
+   const radar = panel.locator('.dna-radar-profile');
+   assert.ok(await radar.locator('svg').evaluate(svg=>svg.getBoundingClientRect().bottom>svg.getBoundingClientRect().top));
+   assert.ok(await radar.evaluate(el=>el.getBoundingClientRect().top>=el.previousElementSibling.getBoundingClientRect().bottom));
+   const scores=await radar.locator('.dna-radar-inline-score').allTextContents();
+   assert.equal(scores.length,10);
+   assert.ok(scores.some(score=>/^\d+(\.\d+)?$/.test(score)));
+   const radarBounds=await radar.locator('svg').evaluate(svg=>{
+    const {x,y,width,height}=svg.viewBox.baseVal;
     const labels=[...svg.querySelectorAll('text')].map(label=>label.getBBox());
-    return labels.every((box,i)=>box.x>=0&&box.y>=0&&box.x+box.width<=width&&box.y+box.height<=height&&
+    return labels.every((box,i)=>box.x>=x&&box.y>=y&&box.x+box.width<=x+width&&box.y+box.height<=y+height&&
      labels.slice(i+1).every(b=>box.x+box.width<=b.x||b.x+b.width<=box.x||box.y+box.height<=b.y||b.y+b.height<=box.y));
    });
    assert.equal(radarBounds,true);
-   assert.equal(await panel.locator('.dna-radar-card svg text').count(),10);
    assert.ok(await panel.locator('.dna-player-photo').count());
    assert.ok(await panel.locator('.dna-player-club').count());
    const defaultPrice=await panel.locator('[data-player] option:checked').textContent();
@@ -61,12 +60,6 @@ const server=http.createServer((req,res)=>{
     await toggle.locator('.dna-category-title').click();
     assert.equal(await category.getAttribute('open'),null);
    }
-   await panel.locator('.dna-more-bars > summary').click();
-   const turnovers=panel.locator('[data-dna-bar=turnovers]');
-   const rank=Number((await turnovers.locator('.dna-rank-line bdi').textContent()).split('/')[0]);
-   const tone=rank<=25?'strong':rank>=75?'weak':'middle';
-   assert.equal(await turnovers.locator('.dna-rank-'+tone).count(),1);
-   assert.equal(await panel.locator('[data-dna-bar=usage] .dna-rank-neutral').count(),1);
    const shooting=panel.locator('[data-dna-group="shooting"]');
    await shooting.locator(':scope > summary').click();
    await shooting.locator('[data-metric=ts] > summary').click();
@@ -74,7 +67,6 @@ const server=http.createServer((req,res)=>{
    if(process.env.DNA_SCREENSHOT_DIR&&width===390){
     await panel.locator('.dna-radar-card').screenshot({path:path.join(process.env.DNA_SCREENSHOT_DIR,'radar.png')});
     await shooting.screenshot({path:path.join(process.env.DNA_SCREENSHOT_DIR,'category.png')});
-    await panel.locator('[data-dna-bar=drawn]').screenshot({path:path.join(process.env.DNA_SCREENSHOT_DIR,'bar.png')});
    }
    const seasonSummary=await panel.locator('.dna-summary').textContent();
    for(const range of ['5','3','1']){
@@ -85,7 +77,8 @@ const server=http.createServer((req,res)=>{
     assert.ok(Number(appearances)<=Number(range));
    }
    assert.notEqual(await panel.locator('.dna-summary').textContent(),seasonSummary);
-   assert.equal(await panel.locator('.dna-bars .dna-rank-track').count(),0);
+   assert.equal(await panel.locator('.dna-bars, .dna-radar-scores').count(),0);
+   assert.ok((await radar.locator('.dna-radar-inline-score').allTextContents()).every(score=>score==='—'));
    await panel.locator('[data-venue=away]').click();
    assert.equal(await panel.locator('[data-venue=away]').getAttribute('aria-pressed'),'true');
    await panel.locator('[data-season-range="0"]').click();
@@ -93,6 +86,24 @@ const server=http.createServer((req,res)=>{
    await panel.locator('[data-player-view=player]').click();
    await panel.locator('[data-compare-player]').selectOption({index:1});
    assert.equal(await panel.locator('.dna-radar-other').count(),1);
+   assert.equal(await panel.locator('.dna-radar-inline-score').count(),0);
+   const marker=panel.locator('.dna-radar-own .dna-radar-hit').first();
+   await marker.click();
+   assert.match(await panel.locator('.dna-radar-selection').textContent(),/מתוך 100/);
+   const axis=panel.locator('[data-radar-score]').last();
+   await axis.focus();
+   await axis.press('Enter');
+   assert.equal(await axis.getAttribute('aria-pressed'),'true');
+   assert.deepEqual(await panel.locator('.dna-radar-scores button strong bdi:first-child').allTextContents(),scores);
+   await panel.locator('.dna-more-bars > summary').click();
+   const turnovers=panel.locator('[data-dna-bar=turnovers]');
+   const rank=Number((await turnovers.locator('.dna-rank-line bdi').first().textContent()).split('/')[0]);
+   const tone=rank<=25?'strong':rank>=75?'weak':'middle';
+   assert.equal(await turnovers.locator('.dna-expanded-value').first().locator('.dna-rank-'+tone).count(),1);
+   assert.equal(await panel.locator('[data-dna-bar=usage] .dna-rank-neutral').count(),2);
+   if(process.env.DNA_SCREENSHOT_DIR&&width===390){
+    await panel.locator('[data-dna-bar=drawn]').screenshot({path:path.join(process.env.DNA_SCREENSHOT_DIR,'bar.png')});
+   }
    assert.equal(await panel.locator('[data-metric=ts] .dna-expanded-value').count(),2);
    assert.equal(await panel.locator('[data-dna-bar=turnovers] .dna-expanded-value').count(),2);
    assert.match(await panel.locator('[data-dna-bar=turnovers] .dna-metric-gap').textContent(),/פער|שוויון/);
@@ -101,6 +112,9 @@ const server=http.createServer((req,res)=>{
    await panel.locator('[data-player-view=team]').click();
    await panel.locator('[data-compare-club]').selectOption({index:1});
    assert.equal(await panel.locator('.dna-style-compare').count(),1);
+   assert.equal(await panel.locator('.dna-style-compare + .dna-radar-card').count(),1);
+   assert.equal(await panel.locator('.dna-bars').count(),1);
+   assert.equal(await panel.locator('.dna-radar-scores').count(),1);
    await panel.locator('[data-dna-group=opponent] > summary').click();
    assert.match(await panel.locator('[data-metric=allowedThree] .dna-expanded-value').textContent(),/%/);
    await panel.locator('[data-season-range=history]').click();
