@@ -16,7 +16,7 @@ const server=http.createServer((req,res)=>{
 });
 (async()=>{
  await new Promise(r=>server.listen(0,'127.0.0.1',r));
- const browser=await chromium.launch({headless:true});
+ const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH});
  try{
   const data=JSON.parse(fs.readFileSync(path.join(root,'data/advanced-players.json'),'utf8'));
   const profiles=Object.values(data.games).flatMap(g=>Object.values(g.players)).filter(p=>p.minutes>0);
@@ -24,6 +24,7 @@ const server=http.createServer((req,res)=>{
   const shot=profiles.find(p=>p.shotCoverage&&p.shots.some(s=>s.x!==null)),line=profiles.find(p=>p.lineupCoverage&&p.lineups.some(l=>l.points>0));
   assert(shot,'At least one real shot map');assert(line,'At least one real reconstructed scoring lineup');
   const page=await browser.newPage();
+  await page.route('**/*',route=>route.request().url().startsWith('http://127.0.0.1:')?route.continue():route.abort());
   const boxPlayer=profiles.find(p=>p.name.includes('VEZENKOV'))||shot;
   const boxGames=Object.values(data.games).filter(g=>g.players[boxPlayer.id]?.minutes>0).sort((a,b)=>Date.parse(b.date)-Date.parse(a.date));
   for(const width of [390,1280]){
@@ -48,9 +49,11 @@ const server=http.createServer((req,res)=>{
     }
     await page.evaluate(()=>document.querySelector('nav.tabs [data-tab="playerBoxScore"]').click());
     const box=page.locator('#playerBoxScore');
+    await box.locator('[data-refresh]:enabled').waitFor();
+    if(await box.locator('[data-back]').isVisible())await box.locator('[data-back]').click();
     await box.locator('[data-player]').selectOption(boxPlayer.id);
     for(const range of ['3','0']){
-     await box.locator('[data-range]').selectOption(range);
+     await box.locator('[data-performance-range="'+range+'"]').click();
      const games=range==='3'?boxGames.slice(0,3):boxGames;
      const points=games.map(g=>g.players[boxPlayer.id].stats.points).filter(Number.isFinite);
      const average=(points.reduce((sum,n)=>sum+n,0)/points.length).toLocaleString('he-IL',{maximumFractionDigits:1});
@@ -58,14 +61,24 @@ const server=http.createServer((req,res)=>{
      assert.match(await output.locator(':scope > small').textContent(),new RegExp('^'+games.length+' '));
      assert.equal(await output.locator('.ap-metric').filter({has:page.getByText('נקודות',{exact:true})}).locator('strong').textContent(),average);
     }
-    await box.locator('[data-range]').selectOption('1');
+    await box.locator('[data-performance-range="1"]').click();
+    const game=box.locator('.performance-game-picker select');
+    await game.selectOption({index:1});
+    assert.match(await box.locator('[data-range]').inputValue(),/^game:/);
+    assert.equal(await box.locator('[data-performance-range][aria-pressed=true]').count(),0);
+    await box.locator('[data-performance-range="1"]').click();
     assert.equal(await box.locator('.ap-box-average').count(),0);
     for(const [id,p] of [['playerNegative',shot],['playerShots',shot],['playerPlusMinus',shot],['playerLineups',line]]){
      await page.evaluate(id=>document.querySelector('nav.tabs [data-tab="'+id+'"]').click(),id);
      const section=page.locator('#'+id);
+     await section.locator('[data-refresh]:enabled').waitFor();
+     if(await section.locator('[data-back]').isVisible())await section.locator('[data-back]').click();
      await section.locator('[data-player] option[value="'+p.id+'"]').waitFor({state:'attached'});
      await section.locator('[data-player]').selectOption(p.id);
-     await section.locator('[data-range]').selectOption('0');
+     if(['playerNegative','playerPlusMinus'].includes(id)){
+      await section.locator('[data-performance-range="0"]').click();
+      assert.equal(await section.locator('[data-range]').inputValue(),'0');
+     }else await section.locator('[data-range]').selectOption('0');
      await section.locator('.ap-profile').waitFor({state:'visible'});
      if(id==='playerShots')assert(await section.locator('svg.ap-court').count());
      if(id==='playerLineups')assert(await section.locator('.ap-record').count());

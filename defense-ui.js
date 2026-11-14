@@ -46,7 +46,9 @@ const analytics=window.PlayerAnalysis.mount(section,section.querySelector('.us-c
  }):[],format:(n,metric)=>value(metric,n)
 });
 
+const syncRange=window.PerformanceControls.mount(section,$('dfRange'));
 function render(){
+ syncRange();
  if(!data)return;analytics.render();const p=records.find(p=>p.id===$('dfPlayer').value),games=D.selectGames(data.players[p?.id],data,$('dfRange').value),metric=$('dfMetric').value||'stocks',s=D.summarize(games,data,env);
  $('dfStatus').textContent=`עונת 2026/27 · ${games.length} משחקים ברישום · ${s.played} עם דקות · בסיס PER: ${env.games} משחקים · עודכן ${new Date(data.updated_at).toLocaleString('he-IL',{day:'numeric',month:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Jerusalem'})}`;
  if(!p||!games.length){$('dfResult').innerHTML='<p class="notice">אין נתוני משחק לשחקן בעונה הנוכחית.</p>';$('dfGames').innerHTML='';return;}

@@ -319,28 +319,30 @@ html.ef-redesign[data-theme="light"] #market.pmReference :is(select,input){backg
 html.ef-redesign[data-theme="light"] #market.pmReference :is(h3,.pmSummary,.marketHelp){color:var(--text)}
 #market .marketRefSelect{min-height:36px}
 
-/* Performance chart controls */
-#pirGraph .pir-toolbar {
+/* Shared player performance controls */
+:is(#pirGraph,.performance-tool) {
   --pir-button-bg: #f5f8fc;
   --pir-button-border: #cbd6e3;
   --pir-button-ink: #142237;
   --pir-button-caption: #475970;
   --pir-button-active: #08664e;
+}
+:is(#pirGraph,.performance-tool) .pir-toolbar {
   display: grid;
   grid-template-columns: repeat(2, minmax(0,1fr));
   gap: 10px 14px;
   margin: 0 0 12px;
 }
-html[data-theme="dark"] #pirGraph .pir-toolbar {
+html[data-theme="dark"] :is(#pirGraph,.performance-tool) {
   --pir-button-bg: #172437;
   --pir-button-border: #536781;
   --pir-button-ink: #f0f5fd;
   --pir-button-caption: #c1cee0;
   --pir-button-active: #086f54;
 }
-#pirGraph .pir-control-group,
-#pirGraph .pir-control-row {min-width:0}
-#pirGraph .pir-control-label {
+:is(#pirGraph,.performance-tool) .pir-control-group,
+:is(#pirGraph,.performance-tool) .pir-control-row {min-width:0}
+:is(#pirGraph,.performance-tool) .pir-control-label {
   display: block;
   margin: 0 2px 4px;
   color: var(--pir-button-ink);
@@ -348,14 +350,14 @@ html[data-theme="dark"] #pirGraph .pir-toolbar {
   font-weight: 800;
   line-height: 1.2;
 }
-#pirGraph .pir-control-row {
+:is(#pirGraph,.performance-tool) .pir-control-row {
   display: grid;
   grid-template-columns: repeat(2,minmax(0,1fr));
   gap: 5px;
 }
-#pirGraph .pir-control-three {grid-template-columns:repeat(3,minmax(0,1fr))}
-#pirGraph #pirPickerModes {grid-template-columns:minmax(0,1.36fr) minmax(0,1fr)}
-#pirGraph .pir-control-row > button {
+:is(#pirGraph,.performance-tool) .pir-control-three {grid-template-columns:repeat(3,minmax(0,1fr))}
+:is(#pirGraph,.performance-tool) :is(#pirPickerModes,.performance-picker-row) {grid-template-columns:minmax(0,1.36fr) minmax(0,1fr)}
+:is(#pirGraph,.performance-tool) .pir-control-row > button {
   display: grid;
   justify-items: center;
   align-content: center;
@@ -370,16 +372,16 @@ html[data-theme="dark"] #pirGraph .pir-toolbar {
   text-align: center;
   line-height: 1.15;
 }
-#pirGraph .pir-control-row > button[aria-pressed="true"] {
+:is(#pirGraph,.performance-tool) .pir-control-row > button[aria-pressed="true"] {
   background: var(--pir-button-active);
   border-color: var(--pir-button-active);
   color: #fff;
 }
-#pirGraph .pir-control-row > button:focus-visible {
+:is(#pirGraph,.performance-tool) .pir-control-row > button:focus-visible {
   outline: 2px solid var(--pir-button-ink);
   outline-offset: 2px;
 }
-#pirGraph .pir-control-row svg {
+:is(#pirGraph,.performance-tool) .pir-control-row svg {
   width: 16px;
   height: 16px;
   fill: none;
@@ -388,18 +390,69 @@ html[data-theme="dark"] #pirGraph .pir-toolbar {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-#pirGraph .pir-control-title,
-#pirGraph .pir-control-row small {
+:is(#pirGraph,.performance-tool) .pir-control-title,
+:is(#pirGraph,.performance-tool) .pir-control-row small {
   max-width: 100%;
   white-space: nowrap;
 }
-#pirGraph .pir-control-title {font-size:12px}
-#pirGraph .pir-control-row small {
+:is(#pirGraph,.performance-tool) .pir-control-title {font-size:12px}
+:is(#pirGraph,.performance-tool) .pir-control-row small {
   color: var(--pir-button-caption);
   font-size: 11px;
   font-weight: 500;
 }
-#pirGraph .pir-control-row [aria-pressed="true"] small {color:inherit}
+:is(#pirGraph,.performance-tool) .pir-control-row [aria-pressed="true"] small {color:inherit}
 @media (max-width: 620px) {
-  #pirGraph .pir-toolbar {grid-template-columns:minmax(0,1fr);gap:7px}
+  :is(#pirGraph,.performance-tool) .pir-toolbar {grid-template-columns:minmax(0,1fr);gap:7px}
 }
+
+.performance-tool .performance-picker-row {
+  margin: 0;
+}
+.performance-tool .performance-toolbar .pir-control-group:has(.performance-picker-row[hidden]) {
+  display: none;
+}
+.performance-tool .performance-toolbar:has(.performance-picker-row[hidden]) {
+  grid-template-columns: minmax(0,1fr);
+}
+.performance-tool .performance-game-picker select {
+  min-height: 44px;
+}
+:is(#usage,#defense,#playerFreeThrows,#playerNegative,#playerPlusMinus) :is(.pa-views,.pa-sort).pir-control-row {
+  grid-template-columns: repeat(auto-fit,minmax(min(100%,85px),1fr));
+}
+html[data-theme] :is(#usage,#defense,#playerFreeThrows,#playerNegative,#playerPlusMinus) .pir-control-row > button[aria-pressed="false"] {
+  background: var(--pir-button-bg);
+  color: var(--pir-button-ink);
+  border-color: var(--pir-button-border);
+}
+html[data-theme] :is(#usage,#defense,#playerFreeThrows,#playerNegative,#playerPlusMinus,#playerBoxScore) .pir-control-row > button[aria-pressed="true"] {
+  background: var(--pir-button-active);
+  color: #fff;
+  border-color: var(--pir-button-active);
+}
+#usage .us-switch.pir-control-row {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+:is(#usage,#defense,#playerFreeThrows,#playerNegative,#playerPlusMinus) :is(.pa-views,.pa-sort,.us-switch) .pir-control-title {
+  white-space: normal;
+}
+#efToolGroups .ef-performance-tools button {
+  border-color: #cbd6e3;
+  font-weight: 750;
+}
+html[data-theme="light"] #efToolGroups .ef-performance-tools button {
+  background: #f5f8fc;
+  color: #142237;
+}
+#efToolGroups .ef-performance-tools button:is(:hover,:focus-visible) {
+  background: #08664e;
+  border-color: #08664e;
+  color: #fff;
+}
+#efToolGroups .ef-performance-tools button:is(:hover,:focus-visible) :is(svg,span) {
+  color: inherit;
+}
+#efToolGroups .ef-performance-tools button svg {flex-shrink:0}

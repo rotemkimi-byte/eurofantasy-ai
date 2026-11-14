@@ -136,10 +136,12 @@ for(const [id,title,kind] of tools){
    });
   },format:fmt
  }):null;
+ const syncRange=['boxScore','negative','plus'].includes(kind)
+  ?window.PerformanceControls.mount(section,$('[data-range]'),{specificGames:true}):null;
  function renderBrowser(){
   $('[data-team-label]').hidden=scope!=='team'||!browseOpen;
   $('[data-player-label]').hidden=!browseOpen;
-  $('[data-player-label]').closest('.ap-shell').querySelector('.player-picker-modes').hidden=!browseOpen;
+  $('.player-picker-modes').hidden=!browseOpen;
   const host=$('[data-browser]');host.hidden=!browseOpen;if(!browseOpen)return;
   const team=scope==='team'?$('[data-team]').value:'',range=$('[data-range]').value,sort=$('[data-sort]').value;
   const prices=marketPrices();
@@ -164,6 +166,7 @@ for(const [id,title,kind] of tools){
   if([...$('[data-range]').options].some(o=>o.value===old))$('[data-range]').value=old;
  }
  function render(){
+  syncRange?.();
   analytics?.render();
   const p=records.find(p=>p.id===selected),picked=$('[data-picked]'),output=$('[data-output]');
   picked.hidden=!p||browseOpen;output.hidden=!p||browseOpen;

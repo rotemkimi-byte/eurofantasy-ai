@@ -30,6 +30,9 @@ section.innerHTML=`<div class="card"><div class="us-heading"><div><h3>מדד Usa
 <details class="us-explain"><summary>מה ההבדל ואיך מחשבים?</summary><p><b>Usage רגיל:</b> אומדן חלקו של השחקן בסיומי ההתקפה: זריקות מהשדה, 0.44 מניסיונות העונשין ואיבודים, ביחס לאירועי הקבוצה בזמן דקותיו.</p><p><b>Usage כולל (״אמיתי״):</b> מדד המעורבות המורחב כאן מוסיף גם אסיסטים לאותו מונה. זהו מדד מותאם לאפליקציה, ואינו USG% רשמי. אסיסט וקליעה של חבר לקבוצה יכולים לתאר אותו פוזשן, ולכן זה אינו אחוז פוזשנים ייחודיים.</p><p class="us-formula">USG = 100 × (FGA + 0.44 × FTA + TOV) / exposure<br>Combined = 100 × (FGA + 0.44 × FTA + TOV + AST) / exposure<br>exposure = (player minutes / game minutes) × (team FGA + 0.44 × team FTA + team TOV)</p><p>החשיפה היא אומדן מבוקס סקור ודקות המשחק, כולל הארכות; אין כאן מדידה של זמן החזקת הכדור או נגיעות. בטווח של כמה משחקים מחברים מונים ומכנים, ולא עושים ממוצע פשוט של האחוזים. משחק ללא דקות מוצג כ״לא שיחק״. נתון חסר אינו מוחלף באפס.</p><p><a href="https://mediagamecenter.euroleague.net/" target="_blank" rel="noopener">מקור הנתונים ונוסחת ה־Usage הרגיל: EuroLeague</a> · המחירים הם המחירים העדכניים לבחירת השחקן.</p></details></div>`;
 main.appendChild(section);
 const $=id=>document.getElementById(id);let scope='all',metric='regular',view='regular',data=null,market=null,loading=null,loadedAt=0,records=[],rankingSort='metric';
+const syncRange=window.PerformanceControls.mount(section,$('usRange'));
+window.PerformanceControls.styleButtons(section.querySelector('.us-switch'),'data-us-view');
+window.PerformanceControls.styleButtons(section.querySelector('#usRankingPanel .pa-sort'),'data-us-sort');
 const comparison=window.PlayerAnalysis.create($('usComparePanel'),{
  marketStyle:true,
  metrics:{regular:'Usage רגיל',combined:'Usage כולל · אמיתי'},
@@ -144,6 +147,7 @@ function showView(next){
  }
 }
 function render(updateRanking=true){
+ syncRange();
  $('usMetricNote').textContent=metric==='regular'?'Usage רגיל: זריקות, עונשין ואיבודים.':'Usage כולל: זריקות, עונשין, איבודים וגם אסיסטים · מדד מעורבות מותאם לאפליקציה.';
  if(!data)return;
  if(updateRanking)renderRanking();

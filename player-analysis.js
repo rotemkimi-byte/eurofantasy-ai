@@ -42,6 +42,7 @@ function create(host,{metrics,rows,team=()=>'',initial=Object.keys(metrics)[0],f
    <div class="pa-controls">${measure()}<label>קרדיט מקסימלי<select data-pa-cap><option value="">ללא הגבלה</option>${[5,7,9,12,15].map(n=>`<option value="${n}" ${String(n)===cap?'selected':''}>עד ${n} CR</option>`).join('')}</select></label></div>
    ${ranked.length?(renderRanking?renderRanking(ranked,sort):''):'<p class="muted">אין שחקנים במסנן שנבחר.</p>'}
    ${ranked.length?rankingTable(ranked):''}`;
+  if(host.closest('.performance-tool'))window.PerformanceControls.styleButtons(host.querySelector('.pa-sort'),'data-pa-sort');
  }
  function comparisonCards(selected){
   const maximum=Math.max(1,...selected.map(r=>Math.abs(r.values[metric]??0)));
