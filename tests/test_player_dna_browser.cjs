@@ -16,7 +16,8 @@ const server=http.createServer((req,res)=>{
  if(!production)await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
  const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH});
  try{
-  for(const width of [390,1280]){
+  const widths=[375,390,430,1280];
+  for(const width of widths){
    const page=await browser.newPage({viewport:{width,height:900}});
    const errors=[];
    page.on('pageerror',error=>errors.push(error.message));
@@ -24,6 +25,23 @@ const server=http.createServer((req,res)=>{
    await page.locator('nav.tabs [data-tab="playerDna"]').evaluate(el=>el.click());
    const panel=page.locator('#playerDna');
    await panel.locator('.dna-radar-card').waitFor({timeout:60000});
+   await page.locator('html').evaluate(el=>el.dataset.theme='light');
+   assert.equal(await panel.evaluate(el=>getComputedStyle(el).direction),'rtl');
+   assert.equal(await panel.locator('.dna-player-style + .dna-radar-card').count(),1);
+   const marker=panel.locator('.dna-radar-hit').first();
+   await marker.click();
+   assert.match(await panel.locator('.dna-radar-selection').textContent(),/מתוך 100/);
+   const axis=panel.locator('[data-radar-score]').last();
+   await axis.focus();
+   await axis.press('Enter');
+   assert.equal(await axis.getAttribute('aria-pressed'),'true');
+   const radarBounds=await panel.locator('.dna-radar-card svg').evaluate(svg=>{
+    const {width,height}=svg.viewBox.baseVal;
+    const labels=[...svg.querySelectorAll('text')].map(label=>label.getBBox());
+    return labels.every((box,i)=>box.x>=0&&box.y>=0&&box.x+box.width<=width&&box.y+box.height<=height&&
+     labels.slice(i+1).every(b=>box.x+box.width<=b.x||b.x+b.width<=box.x||box.y+box.height<=b.y||b.y+b.height<=box.y));
+   });
+   assert.equal(radarBounds,true);
    assert.equal(await panel.locator('.dna-radar-card svg text').count(),10);
    assert.ok(await panel.locator('.dna-player-photo').count());
    assert.ok(await panel.locator('.dna-player-club').count());
@@ -32,12 +50,33 @@ const server=http.createServer((req,res)=>{
    assert.equal(Number(defaultPrice.match(/([0-9.]+) CR/)?.[1]),Math.max(...prices));
    assert.equal(await panel.locator('[data-dna-group="summary"] [data-metric]').count(),7);
    await page.waitForFunction(()=>window.__weightedForecastReady===true,null,{timeout:80000});
-   const projection=await panel.locator('[data-metric=projection] .dna-expanded-value strong').textContent();
+   const projection=await panel.locator('[data-metric=projection] .dna-expanded-value .dna-raw').textContent();
    assert.match(projection,/PIR/);
+   for(const group of ['shooting','creation','transition','boards']){
+    const category=panel.locator(`[data-dna-group="${group}"]`);
+    const toggle=category.locator(':scope > summary');
+    assert.equal(await toggle.getByText('הצג מדדים').isVisible(),true);
+    await toggle.getByText('הצג מדדים').click();
+    assert.equal(await toggle.getByText('סגור מדדים').isVisible(),true);
+    await toggle.locator('.dna-category-title').click();
+    assert.equal(await category.getAttribute('open'),null);
+   }
+   await panel.locator('.dna-more-bars > summary').click();
+   const turnovers=panel.locator('[data-dna-bar=turnovers]');
+   const rank=Number((await turnovers.locator('.dna-rank-line bdi').textContent()).split('/')[0]);
+   const tone=rank<=25?'strong':rank>=75?'weak':'middle';
+   assert.equal(await turnovers.locator('.dna-rank-'+tone).count(),1);
+   assert.equal(await panel.locator('[data-dna-bar=usage] .dna-rank-neutral').count(),1);
    const shooting=panel.locator('[data-dna-group="shooting"]');
    await shooting.locator(':scope > summary').click();
    await shooting.locator('[data-metric=ts] > summary').click();
    assert.match(await shooting.locator('[data-metric=ts] .dna-expanded-value').textContent(),/%/);
+   if(process.env.DNA_SCREENSHOT_DIR&&width===390){
+    await panel.locator('.dna-radar-card').screenshot({path:path.join(process.env.DNA_SCREENSHOT_DIR,'radar.png')});
+    await shooting.screenshot({path:path.join(process.env.DNA_SCREENSHOT_DIR,'category.png')});
+    await panel.locator('[data-dna-bar=drawn]').screenshot({path:path.join(process.env.DNA_SCREENSHOT_DIR,'bar.png')});
+   }
+   const seasonSummary=await panel.locator('.dna-summary').textContent();
    for(const range of ['5','3','1']){
     const b=panel.locator('[data-season-range="'+range+'"]');
     await b.click();
@@ -45,6 +84,8 @@ const server=http.createServer((req,res)=>{
     const appearances=await panel.locator('.dna-headline-stats div').last().locator('dd').textContent();
     assert.ok(Number(appearances)<=Number(range));
    }
+   assert.notEqual(await panel.locator('.dna-summary').textContent(),seasonSummary);
+   assert.equal(await panel.locator('.dna-bars .dna-rank-track').count(),0);
    await panel.locator('[data-venue=away]').click();
    assert.equal(await panel.locator('[data-venue=away]').getAttribute('aria-pressed'),'true');
    await panel.locator('[data-season-range="0"]').click();
@@ -53,6 +94,10 @@ const server=http.createServer((req,res)=>{
    await panel.locator('[data-compare-player]').selectOption({index:1});
    assert.equal(await panel.locator('.dna-radar-other').count(),1);
    assert.equal(await panel.locator('[data-metric=ts] .dna-expanded-value').count(),2);
+   assert.equal(await panel.locator('[data-dna-bar=turnovers] .dna-expanded-value').count(),2);
+   assert.match(await panel.locator('[data-dna-bar=turnovers] .dna-metric-gap').textContent(),/פער|שוויון/);
+   assert.equal(await panel.locator('.dna-radar-scores [data-radar-score]').last().locator('strong bdi').count(),2);
+   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
    await panel.locator('[data-player-view=team]').click();
    await panel.locator('[data-compare-club]').selectOption({index:1});
    assert.equal(await panel.locator('.dna-style-compare').count(),1);
@@ -65,6 +110,6 @@ const server=http.createServer((req,res)=>{
    assert.deepEqual(errors,[]);
    await page.close();
   }
-  console.log('Player DNA passed at 390px and 1280px'+(production?' on GitHub Pages.':' locally.'));
+  console.log('Player DNA passed at '+widths.join(', ')+'px'+(production?' on GitHub Pages.':' locally.'));
  }finally{await browser.close();server.close();}
 })().catch(error=>{console.error(error);server.close();process.exitCode=1;});
