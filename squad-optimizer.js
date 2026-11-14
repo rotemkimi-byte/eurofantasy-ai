@@ -250,6 +250,7 @@ renderTeam = function () {
     .map(el => el.dataset.physicalPlayer));
   if (rivals.size) void physicalLoad(players.filter(p => rivals.has(p.name)));
   if (root.classList.contains('squadOptimizing')) paintCoach();
+  renderUpgrade();
 };
 
 root.addEventListener('click', event => {
@@ -297,6 +298,7 @@ tabs.addEventListener('click', event => {
     if (active) forecast.setAttribute('aria-pressed','false');
   } else if (button?.dataset.teamView) {
     if (root.classList.contains('squadOptimizing')) setMode(false);
+    if (button.dataset.teamView === 'upgrade') renderUpgrade();
     if (button === forecast) void loadSchedule();
     else {
       open = null;

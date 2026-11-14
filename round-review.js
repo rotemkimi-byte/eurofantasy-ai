@@ -113,7 +113,10 @@ document.getElementById('teamView').addEventListener('click',e=>{
  const button=e.target.closest('[data-team-view]');if(!button)return;
  state.review=button.dataset.teamView==='review';
  document.querySelectorAll('[data-team-view]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
- document.getElementById('teamCards').hidden=state.review;
+ const upgrading=button.dataset.teamView==='upgrade';
+ document.getElementById('teamCards').hidden=state.review||upgrading;
+ const upgrade=document.getElementById('squadUpgrade');
+ if(upgrade)upgrade.hidden=!upgrading;
  document.getElementById('roundReview').hidden=!state.review;
  if(state.review)void renderReview();
 });

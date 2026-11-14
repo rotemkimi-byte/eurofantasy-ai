@@ -212,8 +212,10 @@ html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method sum
 </section>
 
 <section id="clubMarket" class="tab"><div class="card"><h3>שוק קבוצות</h3><div class="filters"><label>קבוצה<select id="clubSelect"></select></label><label>מיון<select id="clubSort"><option value="price">מחיר: מהגבוה לנמוך</option><option value="minutes">דקות במשחק האחרון</option><option value="pir">PIR במשחק האחרון</option></select></label><label>תצוגה<select id="clubView"><option value="court">מגרש</option><option value="list">רשימה</option></select></label></div><p class="muted">נתונים בפועל · 2026/27. החמישייה בתצוגת המגרש נבחרת לפי דקות במשחק האחרון, במבנה 2 גארדים, 2 פורוורדים וסנטר; זו אינה חמישייה פותחת מאומתת. גם החמישייה השנייה נבחרת באותו מבנה מתוך השחקנים שנותרו, לפי דקות במשחק האחרון. שאר הסגל מופיע מתחת לשני המגרשים. — מציין נתון חסר.</p><p id="clubSummary" class="muted"></p><div id="clubRoster"></div></div></section>
-<section id="team" class="tab"><div class="card"><div class="sectionHead"><div><h3>הסגל שלי</h3><p class="muted">הוסף שחקנים מהשוק. לחץ על גופייה לפרטים; בחר הרכב וקפטן בכרטיס השחקן.</p></div><button class="secondary" id="clearTeam">נקה</button></div><div id="teamView" class="rr-toggle" role="group" aria-label="תצוגת הסגל"><button data-team-view="forecast" aria-pressed="true">לקראת המחזור</button><button data-team-view="review" aria-pressed="false">מה היה</button><button id="squadOptimizer" aria-pressed="false" aria-controls="teamCards">אופטימייזר</button></div><div id="roundReview" hidden></div><div id="teamCards" class="grid2"></div></div>
-<div class="card"><h3>איפה הקרדיט הבא נותן הכי הרבה?</h3><div class="grid3"><label>קרדיט נוסף<input id="extraCredit" type="number" step=".1" value="0"></label><label>סף איכות נתונים פנימי<input id="minConf" type="number" value="45"></label><div style="align-self:end"><button id="findUpgrade">מצא שדרוג</button></div></div><div id="upgradeList" class="rank" style="margin-top:12px"></div></div></section>
+<section id="team" class="tab"><div class="card"><div class="sectionHead"><div><h3>הסגל שלי</h3><p class="muted">הוסף שחקנים מהשוק. לחץ על גופייה לפרטים; בחר הרכב וקפטן בכרטיס השחקן.</p></div><button class="secondary" id="clearTeam">נקה</button></div><div id="teamView" class="rr-toggle" role="group" aria-label="תצוגת הסגל"><button data-team-view="forecast" aria-pressed="true">לקראת המחזור</button><button data-team-view="review" aria-pressed="false">מה היה</button><button id="squadOptimizer" aria-pressed="false" aria-controls="teamCards">אופטימייזר</button></div><div id="roundReview" hidden></div><div id="teamCards" class="grid2"></div><section id="squadUpgrade" hidden aria-label="שדרוג">
+ <label class="squadUpgradeBudget" for="extraCredit">קרדיט נוסף<input id="extraCredit" type="number" inputmode="decimal" min="0" step=".1" value="0"></label>
+ <div id="upgradeList" aria-live="polite"></div>
+</section></div></section>
 
 <section id="captain" class="tab"><div class="card"><h3>דירוג קפטן</h3><p class="muted">מדורג לפי תחזית PIR למשחק הקרוב. הגבול העליון מציג תרחיש אפשרי ואינו מגדיל את ציון הדירוג. מאמנים ושחקנים בחוץ אינם מועמדים.</p><div id="captainList" class="rank"></div></div></section>
 
@@ -799,10 +801,39 @@ injuryCards.addEventListener('error',event=>{if(event.target.matches('img'))even
 document.addEventListener('fantasy-player-media-ready',renderInjuries);
 
 function renderUpgrade(){
-  const extra=+document.getElementById("extraCredit").value||0,min=+document.getElementById("minConf").value||0,sel=myTeam.map(n=>players.find(p=>p.name===n)).filter(Boolean);let ideas=[];
-  for(const out of sel)for(const inn of players){if(inn.pos!==out.pos||myTeam.includes(inn.name)||inn.status==="out")continue;const xi=model(inn),xo=model(out);if(+inn.price<=+out.price+extra+1e-9&&xi.confidence>=min&&xi.expected>xo.expected)ideas.push({out,inn,gain:xi.expected-xo.expected,cost:+inn.price-(+out.price),conf:xi.confidence})}
-  ideas.sort((a,b)=>b.gain-a.gain);
-  document.getElementById("upgradeList").innerHTML=ideas.slice(0,10).map((x,i)=>`<div class="rankItem"><div class="rankNo">${i+1}</div><div><b>${esc(x.out.name)} → ${esc(x.inn.name)}</b><div class="upgradeTeam">קבוצת השחקן המוצע: <strong>${esc(x.inn.team||"—")}</strong></div><small>תוספת ${n1(x.cost)} קרדיט • ${dataQuality(x.inn,model(x.inn))}</small></div><div class="good">+${n1(x.gain)} PIR</div></div>`).join("")||`<p class="muted">לא נמצא שדרוג במסגרת הזו.</p>`;
+  const panel=document.getElementById('squadUpgrade');
+  if(panel.hidden)return;
+  const input=document.getElementById('extraCredit');
+  const list=document.getElementById('upgradeList');
+  const extra=input.valueAsNumber;
+  if(!Number.isFinite(extra)||extra<0){
+    list.innerHTML='<p class="muted">הזן כמות קרדיט זמינה.</p>';
+    return;
+  }
+  const owned=new Set(myTeam), positions=['G','F','C'];
+  const selected=players.filter(p=>owned.has(p.name)&&positions.includes(p.pos));
+  const pool=players.filter(p=>!owned.has(p.name)&&positions.includes(p.pos)&&p.status!=='out'&&Number(p.price)>0)
+    .map(p=>({p,x:model(p)})).filter(({x})=>x.confidence>=45);
+  const ideas=[];
+  for(const out of selected){
+    const expected=model(out).expected;
+    if(!(Number(out.price)>0))continue;
+    for(const {p:inn,x} of pool){
+      const cost=Number(inn.price)-Number(out.price);
+      if(inn.pos===out.pos&&cost<=extra+1e-9&&x.expected>expected)
+        ideas.push({out,inn,gain:x.expected-expected,cost,x});
+    }
+  }
+  ideas.sort((a,b)=>b.gain-a.gain||a.cost-b.cost||a.inn.name.localeCompare(b.inn.name));
+  const player=(p,label)=>`<button type="button" class="squadUpgradePlayer" data-upgrade-player="${esc(p.name)}">
+    ${squadJersey(p)}<span><small>${label}</small><strong><bdi>${esc(p.name)}</bdi></strong>
+    <small><bdi>${esc(canonicalTeam(p.team))}</bdi> · ${esc(p.pos)} · <bdi>${clubNumber(p.price)}</bdi> קרדיט</small></span></button>`;
+  list.innerHTML=ideas.slice(0,10).map(({out,inn,gain,cost,x})=>`<article class="squadUpgradeIdea">
+    <div class="squadUpgradePair">${player(out,'יוצא')}<span aria-hidden="true">←</span>${player(inn,'נכנס')}</div>
+    <div class="squadUpgradeMetrics"><strong><bdi>+${n1(gain)} PIR</bdi></strong>
+     <span>${cost>1e-8?'תוספת '+n1(cost)+' קרדיט':cost< -1e-8?'חיסכון '+n1(-cost)+' קרדיט':'אותו מחיר'}</span>
+     <small>${esc(dataQuality(inn,x))}</small></div></article>`).join('')
+    || `<p class="muted">${selected.length?'לא נמצאה החלפה שמשפרת את ה־PIR הצפוי בתקציב הזה.':'הוסף שחקנים לסגל כדי לראות הצעות לשדרוג.'}</p>`;
 }
 function optimize(){
   const B=Math.round((+document.getElementById("budget").value||0)*10),min=+document.getElementById("optConf").value||0,exq=document.getElementById("excludeQ").value==="yes",needs={G:4,F:4,C:2};
@@ -1057,7 +1088,12 @@ document.getElementById('absenceCards').addEventListener('click',e=>{const b=e.t
 document.getElementById('injuryTeam').addEventListener('change',renderInjuries);
 document.getElementById("coachBudget").addEventListener("input",renderCoaches);
 document.getElementById("clearTeam").onclick=()=>{myTeam=[];save();renderAll()};
-document.getElementById("findUpgrade").onclick=renderUpgrade;document.getElementById("optBtn").onclick=optimize;
+document.getElementById('extraCredit').addEventListener('input',renderUpgrade);
+document.getElementById('upgradeList').addEventListener('click',e=>{
+ const player=e.target.closest('[data-upgrade-player]');
+ if(player)showPlayer(player.dataset.upgradePlayer);
+});
+document.getElementById("optBtn").onclick=optimize;
 document.getElementById("syncBtn").onclick=()=>syncOfficial(true);
 document.getElementById("csvFile").onchange=async e=>{const f=e.target.files[0];if(!f)return;const arr=csvParse(await f.text());if(arr.length){players=arr;save();renderAll()}};
 document.getElementById("resetSeed").onclick=()=>{players=SEED;try{localStorage.removeItem(LS.players)}catch{}myTeam=myTeam.filter(n=>players.some(p=>p.name===n));save();renderAll()};
@@ -2425,7 +2461,7 @@ $('weakReload').onclick=()=>void load(true);
 document.querySelector('[data-tab="pirWeakness"]').addEventListener('click',()=>void load());
 })();
 
-</script><script src="./round-review.js?v=5"></script><script src="./round-lab.js?v=current-price-center-1"></script>
+</script><script src="./round-review.js?v=6"></script><script src="./round-lab.js?v=current-price-center-1"></script>
 <script>
 // In this RTL navigation, the last buttons appear at the far left.
 for (const id of ['data', 'learning']) {
@@ -2438,7 +2474,7 @@ for (const id of ['data', 'learning']) {
 #teamView button{font-size:12px;padding:10px;white-space:nowrap}
 #teamView #squadOptimizer[aria-pressed="true"]{background:#087e51;color:white}
 </style>
-<link rel="stylesheet" href="./squad-optimizer.css?v=court-3">
+<link rel="stylesheet" href="./squad-optimizer.css?v=upgrade-4">
 <script src="./game-data-store.js?v=1"></script>
 <script src="./usage-core.js?v=2"></script><script src="./usage-ui.js?v=market-player-tools-1"></script>
 <script src="./defense-core.js?v=2"></script><script src="./defense-ui.js?v=market-player-tools-1"></script>
@@ -2632,7 +2668,12 @@ button.textContent='סימולציית הרכב';
 button.dataset.teamView='simulation';
 button.setAttribute('aria-pressed','false');
 button.setAttribute('aria-controls','squadSimulation');
-view.append(button,view.querySelector('[data-team-view="review"]'));
+const upgradeButton=document.createElement('button');
+upgradeButton.textContent='שדרוג';
+upgradeButton.dataset.teamView='upgrade';
+upgradeButton.setAttribute('aria-pressed','false');
+upgradeButton.setAttribute('aria-controls','squadUpgrade');
+view.append(button,upgradeButton,view.querySelector('[data-team-view="review"]'));
 const root=document.createElement('section');
 root.id='squadSimulation';
 root.hidden=true;
@@ -3099,4 +3140,4 @@ html.ef-redesign[data-theme=light] #playerMatchups .pmModes button[aria-pressed=
 .pmHistoryPosition::after{content:'⌄';display:block;font-size:14px;line-height:1}
 .pmHistoryPair[open] .pmHistoryPosition::after{content:'⌃'}
 .pmHistoryPair .pmCompare th,.pmHistoryPair .pmCompare td{font-size:12px}
-</style><script src="./player-matchup-history.js?v=2"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script><script src="./squad-matchup.js?v=1"></script><script src="./squad-optimizer.js?v=3"></script></body></html>
+</style><script src="./player-matchup-history.js?v=2"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script><script src="./squad-matchup.js?v=1"></script><script src="./squad-optimizer.js?v=4"></script></body></html>
