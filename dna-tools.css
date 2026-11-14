@@ -414,11 +414,18 @@ html.ef-redesign .dna-row summary{padding:12px}
 .dna-radar-layout svg{display:block;width:100%;max-width:440px;margin:auto}
 .dna-radar-layout svg text{font-size:13px;text-anchor:middle;dominant-baseline:central;fill:var(--text);font-weight:700}
 #playerDna .dna-radar-profile{margin:0;min-width:0}
-.dna-radar-profile .dna-radar-layout{grid-template-columns:minmax(0,1fr)}
+.dna-radar-profile .dna-radar-layout,.dna-radar-comparison .dna-radar-layout{grid-template-columns:minmax(0,1fr)}
 .dna-radar-layout svg text.dna-radar-inline-score{
  fill:var(--dna-primary);font-size:15px;font-weight:800;direction:ltr;
  paint-order:stroke;stroke:var(--card);stroke-width:2px;stroke-linejoin:round
 }
+#playerDna .dna-radar-comparison .dna-radar-inline-score{font-size:13px}
+#playerDna .dna-radar-comparison .dna-radar-score-other{fill:var(--dna-secondary)}
+.dna-radar-comparison .dna-radar-other>line{stroke-width:2.4;stroke-dasharray:5 4}
+.dna-radar-comparison .dna-radar-other .dna-radar-fill{opacity:.06}
+.dna-radar-diamond{fill:none;stroke-width:2}
+.dna-radar-comparison .dna-legend .dna-own i{border-radius:0;width:14px;height:3px}
+.dna-radar-comparison .dna-legend .dna-other i{border-radius:0;width:14px;height:0;background:none;border-top:3px dashed var(--dna-secondary)}
 .dna-radar-grid{fill:none;stroke:var(--dna-muted);stroke-width:1;opacity:.42}
 .dna-radar-own{--dna-series:var(--dna-primary)}
 .dna-radar-other{--dna-series:var(--dna-secondary)}
@@ -518,8 +525,7 @@ html.ef-redesign .dna-row summary{padding:12px}
 #playerDna .dna-compact-metrics .dna-unavailable>summary .dna-detail-action{
  grid-column:2;grid-row:1 / 3;padding:3px 6px;font-size:11px
 }
-.dna-two-cells .dna-own{--dna-color:var(--dna-primary)}
-.dna-two-cells .dna-other{--dna-color:var(--dna-secondary)}
+.dna-two-cells .dna-rank-track{--dna-rank-color:var(--dna-color)}
 .dna-player-compare .dna-metric-name b::after{content:none}
 #playerDna .dna-player-compare .dna-row>summary{align-items:start;min-height:44px}
 #playerDna .dna-player-compare .dna-detail-action{grid-column:1/-1}
