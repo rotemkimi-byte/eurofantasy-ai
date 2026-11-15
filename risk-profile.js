@@ -16,7 +16,7 @@ section.innerHTML=`<div class="risk-shell" dir="rtl">
  </div>
  <div class="player-picker-controls risk-picker">
   <label hidden>קבוצה<select data-team></select></label>
-  <label class="risk-player-picker">שחקן · לפי מחיר<select data-player></select></label>
+  <label class="risk-player-picker">שחקן · לפי מחיר<select data-player dir="ltr"></select></label>
   <button type="button" class="risk-refresh" data-refresh>רענון</button>
  </div>
  <p class="risk-status" data-status role="status"></p>

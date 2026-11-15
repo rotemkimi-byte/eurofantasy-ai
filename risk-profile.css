@@ -27,6 +27,7 @@
 #playerRisk .risk-picker {display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:end;margin-bottom:12px}
 #playerRisk .risk-picker label:has([data-team]) {grid-column:1/-1}
 #playerRisk .risk-picker label {color:var(--risk-muted)}
+#playerRisk .risk-picker [data-player] {text-align:start;text-overflow:ellipsis}
 #playerRisk .risk-status {color:var(--risk-muted);font-size:13px}
 #playerRisk .risk-status:empty {display:none}
 #playerRisk [hidden] {display:none!important}
