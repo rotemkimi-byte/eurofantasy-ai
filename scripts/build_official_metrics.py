@@ -68,24 +68,24 @@ def metrics(stats, total, player_seconds, game_seconds):
       'efgPct':100*(m2+1.5*m3)/fga if fga and m2 is not None and m3 is not None else None,
       'tsPct':100*v('points')/(2*(fga+.44*ft)) if fga is not None and ft is not None and fga+.44*ft>0 and v('points') is not None else None}
 
-def build(root=ROOT,offline=False):
+def build(root=ROOT,offline=False,replay=None):
     warnings=[]
     schedule_path=root/'data/context/E2026-schedule.json'
-    payload=load(schedule_path,{})
+    payload=replay['schedule'] if replay else load(schedule_path,{})
     refreshed_schedule=None
-    if not offline:
+    if not offline and replay is None:
         try:
             schedule=api('E2026','games?limit=500')
             if not schedule.get('data') or any(g.get('season',{}).get('code')!='E2026' for g in schedule['data']):
                 raise ValueError('Invalid current-season schedule')
             refreshed_schedule=payload=schedule
         except Exception:warnings.append('Official schedule refresh failed; using cached official schedule')
-    profiles={};team_games={};performance={};now=datetime.now(timezone.utc)
+    profiles={};team_games={};performance={};now=stamp(replay['cutoff']) if replay else datetime.now(timezone.utc)
     for g in payload.get('data',[]):
         date=stamp(g.get('utcDate'))
         if not g.get('played') or not date or date>=now or g.get('season',{}).get('code')!='E2026':continue
-        code=int(g['gameCode']);path=root/f'data/backtest/cache/E2026-{code}-stats.json';box=load(path)
-        if box is None and not offline:
+        code=int(g['gameCode']);path=root/f'data/backtest/cache/E2026-{code}-stats.json';box=replay['boxes'].get(str(code)) if replay else load(path)
+        if box is None and not offline and replay is None:
             try:box=api('E2026',f'games/{code}/stats');save(path,box)
             except Exception:warnings.append(f'Missing official box score {code}');continue
         if not box:continue
@@ -120,12 +120,13 @@ def build(root=ROOT,offline=False):
                   'stats':{f:number(stats.get(f)) for f in FIELDS},'metrics':metrics(stats,total,secs,game_seconds),
                   'source':SOURCE+f'games/{code}/stats'})
     for p in profiles.values():p['games'].sort(key=lambda g:g['date'])
-    if not profiles:raise RuntimeError('No official box scores; previous dataset preserved')
+    if not profiles and replay is None:raise RuntimeError('No official box scores; previous dataset preserved')
     results=team_results(payload,now)
-    standings=fetch_standings(results,offline,warnings)
+    standings=fetch_standings(results,offline or replay is not None,warnings)
     result={'schema':'official-offense-v1','season':'E2026','updated_at':now.isoformat(),'source':SOURCE,'methodSource':METHOD,
       'method':'USG=100*(FGA+0.44*FTA+TO)/(playerSeconds/gameSeconds*(teamFGA+0.44*teamFTA+teamTO)); eFG=100*(2PM+1.5*3PM)/FGA; TS=100*PTS/(2*(FGA+0.44*FTA))',
       'players':profiles,'defenseVersion':1,'teamGames':team_games,'teamMetricsVersion':1,'teamResults':results,'officialStandings':standings,'warnings':warnings}
+    if replay is not None:return result
     if refreshed_schedule is not None:save(schedule_path,refreshed_schedule)
     save(root/'data/performance-history.json',{'season':'E2026','version':1,'games':performance,
                                                'missing':sum(1 for r in results if str(r['gameCode']) not in performance)})

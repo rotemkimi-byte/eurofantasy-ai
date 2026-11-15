@@ -132,13 +132,13 @@ function selectPlayers(){
  const scope=player.$('[data-scope]').value;
  const select=player.$('[data-player]');
  const previous=select.value;
- const records=model.players.filter(p=>!scope||p.team===scope);
+ const records=window.playerToolSelection?.rows(model.players,scope)||model.players.filter(p=>!scope||p.team===scope);
  updateOptions(select,records.length?records.map(p=>playerOption(p,!scope)):[option('','אין שחקנים בסינון')],records[0]?.id);
  if(!manualPlayer&&records.length)select.value=records[0].id;
  if(select.value!==previous)playerGame='';
 }
 function playerOption(p,showTeam=true){
- return option(p.id,p.name+(price(p)?' · '+price(p):'')+(showTeam?' · '+p.team:''));
+ return window.playerToolSelection?.option(p,showTeam)||option(p.id,p.name+(price(p)?' · '+price(p):'')+(showTeam?' · '+p.team:''));
 }
 function selectedPlayer(){
  return model.players.find(p=>p.id===player.$('[data-player]').value);

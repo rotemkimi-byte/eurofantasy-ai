@@ -180,7 +180,7 @@ function seasonContext(official,advanced,asOf=Date.now(),{pregame=false,fixtureC
  const games=new Map((official.teamResults||[]).filter(g=>Number(g.gameCode)>0&&String(g.gameCode)!==String(fixtureCode)&&
   Date.parse(g.date)+(pregame?4*3600000:0)<=asOf&&g.home&&g.away&&g.home!==g.away&&
   finite(g.homeScore)&&finite(g.awayScore)&&g.homeScore!==g.awayScore).map(g=>[String(g.gameCode),g]));
- const extra=!pregame&&dnaEvents?.season==='E2026'&&dnaEvents.version===1&&Array.isArray(dnaEvents.fields)?dnaEvents:null;
+ const extra=(!pregame||published(dnaEvents))&&dnaEvents?.season==='E2026'&&dnaEvents.version===1&&Array.isArray(dnaEvents.fields)?dnaEvents:null;
  const ledgers=new Map();
  const players=new Map();
  for(const p of Object.values(official.players||{})){
@@ -221,7 +221,7 @@ function seasonContext(official,advanced,asOf=Date.now(),{pregame=false,fixtureC
   if(a?.team===team&&b?.team===rival&&a.gameMinutes>0)append(opponents,team,{...g,home,minutes:a.gameMinutes,own:a.stats,rival:b.stats,shots:allowed.get(team+'|'+code)||[]});
  }
  for(const rows of opponents.values())rows.sort((a,b)=>Date.parse(b.date)-Date.parse(a.date)||b.gameCode-a.gameCode);
- return {...empty,games,players,opponents,positional};
+ return {...empty,games,players,opponents,positional,events:advanced?.season==='E2026'&&(!pregame||published(advanced))?advanced:null};
 }
 
 function testExtra(data,game,event,home){
@@ -409,7 +409,7 @@ function summarize(record,context,options={}){
  }
  if(history.length>=2&&games.length)set('rest',(Date.parse(history[0].date)-Date.parse(history[1].date))/86400000,history.slice(0,2));
  if(history.length>=3&&games.length)set('load',minuteSum(history.slice(0,5)),history.slice(0,5));
- if(!context.pregame)summarizeOnCourt(games,set,stats,context);
+ summarizeOnCourt(games,set,stats,context);
  const lineupRows=games.filter(g=>g.event?.lineupCoverage&&g.event.lineups.every(l=>finite(l.minutes))&&g.event.lineups.some(l=>l.minutes>0));
  const combination=A.lineups(lineupRows.map(g=>({...g.event,gameCode:g.gameCode}))).filter(l=>l.minutes>=10).sort((a,b)=>b.minutes-a.minutes);
  if(combination.length)set('lineupRate',combination[0].per40,lineupRows,0,
