@@ -92,26 +92,8 @@
  font-size:12px;
  line-height:1.3;
 }
-#playerRisk .risk-metrics {
- display:grid;
- grid-template-columns:repeat(2,minmax(0,1fr));
- gap:8px 12px;
- margin:0;
- padding:9px 0 8px;
- border-top:1px solid var(--risk-line);
- border-bottom:1px solid var(--risk-line);
-}
-#playerRisk .risk-metrics > div {display:grid;grid-template-rows:1fr auto;gap:3px;min-width:0}
-#playerRisk :is(.risk-metrics,.risk-projection) dt {color:var(--risk-muted,var(--muted));font-size:12px;line-height:1.3}
-#playerRisk :is(.risk-metrics,.risk-projection) dd {
- margin:0;
- color:var(--risk-tone,inherit);
- font-weight:800;
- line-height:1.06;
- font-variant-numeric:tabular-nums;
-}
-#playerRisk .risk-metrics dd {font-size:clamp(25px,7vw,35px)}
-#playerRisk .risk-unrated {color:var(--risk-muted);font-size:13px;font-weight:650}
+#playerRisk .risk-projection dt {color:var(--muted);font-size:12px;line-height:1.3}
+#playerRisk .risk-projection dd {margin:0;font-weight:800;line-height:1.06;font-variant-numeric:tabular-nums}
 #playerRisk [data-level="0"] {--risk-tone:var(--risk-low,#08704d)}
 #playerRisk [data-level="1"] {--risk-tone:var(--risk-mid,#8a5800)}
 #playerRisk [data-level="2"],#playerRisk [data-tone=watch] {--risk-tone:var(--risk-high,#aa4711)}
@@ -138,46 +120,79 @@ html[data-theme=dark] #playerRisk .risk-forecast {
  font-size:13px;
 }
 #playerRisk .risk-scenario small {display:block;margin-top:3px}
-#playerRisk .risk-primary .risk-badge {
- padding:2px 6px;
- border-radius:6px;
- background:#25364b;
-}
 #playerRisk .risk-factors {
- display:grid;
- grid-template-columns:repeat(2,minmax(0,1fr));
- gap:12px;
  border-top:1px solid var(--risk-line);
- padding-top:8px;
- font-size:12px;
- line-height:1.3;
+ padding-top:10px;
 }
-#playerRisk .risk-factors h4 {
- display:flex;
+#playerRisk .risk-factors h4 {color:inherit;font-size:15px;margin-bottom:3px}
+#playerRisk .risk-factor summary {
+ display:grid;
+ grid-template-columns:20px minmax(0,1fr) 12px;
  align-items:center;
- gap:5px;
- color:var(--risk-tone);
- font-size:13px;
+ gap:9px;
+ min-height:44px;
+ padding-block:5px;
+ color:var(--risk-text);
+ font-size:14px;
+ font-weight:650;
+ line-height:1.35;
+ cursor:pointer;
+ list-style:none;
 }
+#playerRisk .risk-factor summary::-webkit-details-marker {display:none}
+#playerRisk .risk-factor summary:hover {color:var(--risk-muted)}
 #playerRisk .risk-factor-icon {
  display:grid;
  place-items:center;
- border:1px solid currentColor;
- border-radius:50%;
- width:16px;
- height:16px;
- font-size:11px;
+ width:19px;
+ height:19px;
+ color:var(--risk-tone);
+ font-size:20px;
  line-height:1;
 }
-#playerRisk .risk-factors ul {
- margin:5px 0 0;
- padding-inline-start:13px;
+#playerRisk .risk-factor[data-tone=support] .risk-factor-icon {
+ border:1.5px solid currentColor;
+ border-radius:50%;
+ font-size:13px;
 }
-#playerRisk .risk-factors li + li {margin-top:2px}
-#playerRisk .risk-factors p {margin:5px 0 0;color:var(--risk-muted)}
+#playerRisk .risk-factor:not([data-tone=support]) .risk-factor-icon {
+ position:relative;
+ isolation:isolate;
+ padding-top:4px;
+ font-size:12px;
+ font-weight:800;
+}
+#playerRisk .risk-factor:not([data-tone=support]) .risk-factor-icon::before,
+#playerRisk .risk-factor:not([data-tone=support]) .risk-factor-icon::after {
+ content:"";
+ position:absolute;
+ clip-path:polygon(50% 0,100% 100%,0 100%);
+}
+#playerRisk .risk-factor:not([data-tone=support]) .risk-factor-icon::before {
+ inset:1px 0;
+ background:currentColor;
+ z-index:-2;
+}
+#playerRisk .risk-factor:not([data-tone=support]) .risk-factor-icon::after {
+ inset:4px 2.5px 2.5px;
+ background:#172435;
+ z-index:-1;
+}
+#playerRisk .risk-chevron {
+ width:7px;
+ height:7px;
+ border:solid var(--risk-muted);
+ border-width:0 1.5px 1.5px 0;
+ transform:translateY(-2px) rotate(45deg);
+}
+#playerRisk .risk-factor[open] .risk-chevron {transform:translateY(2px) rotate(225deg)}
+#playerRisk .risk-factor-body {
+ margin:0 29px 5px 0;
+ padding:0 0 5px;
+ border-bottom:1px solid var(--risk-line);
+}
 #playerRisk .risk-note {margin:5px 0;color:var(--risk-muted,var(--muted));font-size:12px;line-height:1.4}
-#playerRisk .risk-forecast {margin-top:14px}
-#playerRisk .risk-forecast h3 {color:inherit;font-size:16px}
+#playerRisk .risk-forecast {padding-bottom:6px}
 #playerRisk .risk-projection {
  display:grid;
  grid-template-columns:repeat(3,minmax(0,1fr));
@@ -188,16 +203,16 @@ html[data-theme=dark] #playerRisk .risk-forecast {
 #playerRisk .risk-projection dd bdi {white-space:nowrap}
 #playerRisk .risk-projection dd small {display:block;margin-top:4px;font-weight:400}
 #playerRisk .risk-forecast .risk-scenario {border-top:1px solid var(--line)}
-#playerRisk .risk-factor-details summary,
-#playerRisk .risk-full summary {
+#playerRisk :is(.risk-more,.risk-full) > summary {
  display:list-item;
  align-content:center;
  min-height:44px;
  cursor:pointer;
- font-weight:750;
+ font-size:13px;
+ font-weight:700;
 }
-#playerRisk .risk-factor-details summary {color:var(--risk-muted);font-size:12px}
-#playerRisk .risk-full {margin-top:6px;border-top:1px solid var(--line)}
+#playerRisk .risk-more {margin-top:4px}
+#playerRisk .risk-full {border-top:1px solid var(--line)}
 #playerRisk .risk-evidence {
  display:grid;
  grid-template-columns:minmax(0,1fr) auto;
@@ -208,9 +223,8 @@ html[data-theme=dark] #playerRisk .risk-forecast {
 }
 #playerRisk .risk-evidence:last-child {border-bottom:0}
 #playerRisk .risk-evidence small {display:block;margin-top:2px}
-#playerRisk .risk-evidence strong {color:var(--risk-tone,inherit);text-align:end}
+#playerRisk .risk-evidence strong {text-align:end}
 #playerRisk .risk-evidence bdi {overflow-wrap:anywhere}
-#playerRisk .risk-factor-info,
 #playerRisk .risk-details {
  grid-column:1/-1;
  margin:0;

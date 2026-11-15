@@ -28,12 +28,6 @@ const $=s=>section.querySelector(s), decimal=new Intl.NumberFormat('he-IL',{maxi
  date=new Intl.DateTimeFormat('he-IL',{timeZone:'Asia/Jerusalem',day:'numeric',month:'numeric'});
 const levels=['נמוך','בינוני','גבוה','גבוה מאוד'];
 const titles={low:'10 PIR ומטה',miss5:'5 PIR ומעלה מתחת לתחזית',miss10:'10 PIR ומעלה מתחת לתחזית'};
-const personalMetrics=[
- ['pirStability','יציבות ביום קליעה חלש'],
- ['ftPoints','שיעור נקודות מהעונשין'],
- ['fta','ניסיונות עונשין למשחק'],
- ['turnovers','איבודים למשחק']
-];
 const positions={G:'גארד',F:'פורוורד',C:'סנטר'};
 const out=$('[data-result]'), select=$('[data-player]'), team=$('[data-team]'), status=$('[data-status]');
 let data, pending, loadedAt=0, scope='all', selected='', shownProfile, revealOnMobile=false;
@@ -64,16 +58,28 @@ function imageFallbacks() {
   if (img.complete && !img.naturalWidth) fail();
  }
 }
-const descriptions=new Map(R.metrics.map(m=>[m.id,m.help]));
 function details(f) {
  return f.details?.length?'<ul class="risk-details">'+f.details.map(([label,value,unit])=>
   '<li><span>'+esc(label)+'</span><bdi>'+esc(Number.isFinite(value)?fmt(value,unit):value??'—')+'</bdi></li>').join('')+'</ul>':'';
 }
-function evidence(f,tone) {
- return `<article class="risk-evidence" data-factor="${esc(f.id)}"${tone?' data-tone="'+tone+'"':''}>
-   <div><b>${esc(f.label)}</b><small>${sample(f.id,f.count)}</small></div><strong>${text(f.id==='availability'?f.details[0][0]:fmt(f.value,f.unit))}</strong>
-   ${tone && descriptions.has(f.id)?'<p class="risk-factor-info">'+esc(descriptions.get(f.id))+'</p>':''}
-   ${f.id==='availability'?'':details(f)}</article>`;
+function evidence(f) {
+ return `<div class="risk-evidence" data-factor="${esc(f.id)}">
+   <div><b>${esc(f.label)}</b><small>${sample(f.id,f.count)}</small></div>
+   <strong>${text(f.id==='availability'?f.details[0][0]:fmt(f.value,f.unit))}</strong>
+   ${f.id==='availability'?'':details(f)}</div>`;
+}
+const factorLabels={risk:'חולשה משמעותית',watch:'דורש תשומת לב',support:'יתרון'};
+function factorRow(f,open) {
+ return `<details class="risk-factor" data-tone="${f.tone}" data-key="${esc(f.id)}"${open?' open':''}>
+  <summary>
+   <span class="risk-factor-icon" aria-label="${factorLabels[f.tone]}" role="img">${f.tone==='support'?'✓':'!'}</span>
+   <span>${esc(f.title)}</span><span class="risk-chevron" aria-hidden="true"></span>
+  </summary>
+  <div class="risk-factor-body">
+   <p class="risk-note">${esc(f.reason)}</p>
+   ${f.id==='availability'?'':evidence(f)}
+  </div>
+ </details>`;
 }
 function riskBadge(result,label) {
  return `<strong class="risk-badge" data-level="${result?.level??'unknown'}">${label||(result?'סיכון '+levels[result.level]:'אין דירוג')}</strong>`;
@@ -99,14 +105,6 @@ function fixtureFor(player) {
 function forecastCard(label,value,caption='') {
  return `<div><dt>${label}</dt><dd>${text(value)}${caption?'<small>'+caption+'</small>':''}</dd></div>`;
 }
-function personalMetric([id,label],row,stabilityRisk) {
- return `<div data-metric="${id}"${id==='pirStability' && stabilityRisk?' data-tone="risk"':''}>
-  <dt>${label}</dt><dd>${row?text(fmt(row.value,row.unit)):'<span class="risk-unrated">אין נתון</span>'}</dd></div>`;
-}
-function factorList(factors,tone,label,icon) {
- return `<div data-tone="${tone}"><h4><span class="risk-factor-icon" aria-hidden="true">${icon}</span>${label}</h4>
-  ${factors.length?`<ul>${factors.map(f=>`<li>${esc(f.label)}</li>`).join('')}</ul>`:'<p>אין גורמים בולטים</p>'}</div>`;
-}
 function render() {
  const p=identity();
  if (!data || !p) {out.replaceChildren();return;}
@@ -119,66 +117,53 @@ function render() {
   forecast.missingStars?.join('|')].join('/');
  if (shownProfile?.key!==cacheKey) {
   const profile=R.describe(data.prepared,p,f||{},forecast);
-  shownProfile={key:cacheKey,profile,analysis:R.evaluate(profile,forecast,p,data.calibration)};
+  shownProfile={key:cacheKey,profile,analysis:R.evaluate(profile,forecast,p,data.calibration),
+   factors:R.matchupFactors(data.prepared,profile,p,f)};
  }
- const {profile,analysis}=shownProfile, {risks,factors}=analysis;
- const primary=risks.miss5;
+ const {profile,analysis,factors}=shownProfile, {risks}=analysis;
  const photo=playerCardImageUrl(playerCardProfile(p)?.photo);
  const opponentCrest=f && (playerCardCrests.get(f.opponent)||playerCardImageUrl(f.crest));
- const best=factors.slice(0,6);
- const positives=best.filter(r=>r.effect<0), negatives=best.filter(r=>r.effect>0);
  const projection=window.getPlayerDnaForecast?.(p.name);
  const projected=f && projection?.opponent===f.opponent ?
   window.PlayerDnaMetrics.projection(projection.frozen,window.WeightedForecast,projection.weights,projection.profile):null;
  const allStats={...profile.rows};
  if (projected) allStats.projection={id:'projection',label:'התאמת PIR צפוי לסגנון',unit:'PIR',...projected};
- const stabilityRisk=factors.some(f=>f.group==='stability'&&f.effect>0);
- const expanded=out.querySelector('.risk-full')?.open;
- const factorsExpanded=out.querySelector('.risk-factor-details')?.open;
- const oldName=out.dataset.renderedPlayer;
+ const samePlayer=out.dataset.renderedPlayer===p.id;
+ const expanded=samePlayer && out.querySelector('.risk-full')?.open;
+ const forecastExpanded=samePlayer && out.querySelector('.risk-more')?.open;
+ const openFactors=new Set(samePlayer?[...out.querySelectorAll('.risk-factor[open]')].map(el=>el.dataset.key):[]);
  out.dataset.renderedPlayer=p.id;
  const range=Number.isFinite(forecast.floor)&&Number.isFinite(forecast.ceiling)?
   fmt(forecast.floor)+'–'+fmt(forecast.ceiling):'—';
  out.innerHTML=`<article class="risk-hero" aria-label="פרופיל סיכון של השחקן">
   <div class="risk-player"><div class="risk-portrait">${image(photo,'risk-photo')}${squadJersey(p)}</div>
    <div><h3>${text(typeof reorderCommaName==='function'?reorderCommaName(p.name):p.name)}</h3>
-   <p>${text(p.team)} · ${positions[p.pos]} · ${text(fmt(Number(p.price),'CR'))}</p></div></div>
+   <p>${text(p.team)}</p></div></div>
   <div class="risk-opponent">${image(opponentCrest)}
    <b>${f?'מול '+text(f.opponent):'היריבה טרם נקבעה'}</b>
    ${f?'<small>מחזור '+esc(f.round)+' · '+date.format(f.start)+' · '+(f.neutral?'ניטרלי':f.home?'בית':'חוץ')+'</small>':''}
   </div>
-  <dl class="risk-metrics" aria-label="מדדי סיכון אישיים">
-   ${personalMetrics.map(metric=>personalMetric(metric,profile.rows[metric[0]],stabilityRisk)).join('')}
-  </dl>
-  <div class="risk-primary risk-scenario"><div><b>${titles.miss5}</b>
-   <small>${p.status==='out'?'השחקן מסומן בחוץ':riskConfidence(primary)+riskProbability(primary)}</small></div>
-   ${riskBadge(primary)}</div>
-  ${p.status==='questionable'?'<p class="risk-note">השחקן בספק. הדירוג מתייחס למקרה שבו ישחק.</p>':''}
-  ${best.length?`<div class="risk-factors">
-   ${factorList(negatives,'risk','גורמי סיכון','↑')}
-   ${factorList(positives,'support','גורמים חיוביים','✓')}
-   </div>
-   <details class="risk-factor-details"${factorsExpanded && oldName===p.id?' open':''}>
-    <summary>פירוט הגורמים</summary>
-    <p class="risk-note">הכיוון מבוסס על מודל ההחמצה של 5 PIR. המדדים מתארים קשר היסטורי.</p>
-    ${negatives.map((f,i)=>evidence(f,i?'watch':'risk')).join('')}
-    ${positives.map(f=>evidence(f,'support')).join('')}
-   </details>`:
-   '<p class="risk-note">נדרש מדגם מתאים כדי לדרג את הגורמים. המדדים הזמינים מופיעים בניתוח המלא.</p>'}
+  <div class="risk-factors">
+   <h4>יתרונות ונקודות תורפה</h4>
+   ${factors.map(f=>factorRow(f,openFactors.has(f.id))).join('') ||
+    (f?'<p class="risk-note">הנתונים הזמינים עדיין לא מצביעים על גורמים בולטים.</p>':'')}
+  </div>
  </article>
- ${f && currentOpponent!==f.opponent?'<p class="risk-note">ממתין לסנכרון התחזית מול היריבה הבאה.</p>':''}
- <section class="risk-forecast" aria-labelledby="risk-forecast-title">
-  <h3 id="risk-forecast-title">תחזית מורחבת</h3>
+ <details class="risk-more"${forecastExpanded?' open':''}><summary>נתוני תחזית</summary>
+  <div class="risk-forecast">
+   ${f && currentOpponent!==f.opponent?'<p class="risk-note">ממתין לסנכרון התחזית מול היריבה הבאה.</p>':''}
   <dl class="risk-projection">
    ${forecastCard('PIR צפוי',fmt(forecast.expected))}
    ${forecastCard('דקות צפויות',fmt(forecast.minutes))}
    ${forecastCard('טווח PIR חזוי',range,range==='—'?'':forecast.rangeSample?'מבוסס על שגיאות עבר':'טווח נוסחתי של מנוע החיזוי')}
   </dl>
+  ${riskTile('miss5',risks.miss5)}
   ${riskTile('low',risks.low)}
   ${riskTile('miss10',risks.miss10)}
   ${R.endpoints.some(id=>risks[id] && risks[id].probability==null)?
    '<p class="risk-note">רמות הסיכון הן דירוג יחסי לפי מחזורי העונה שנבדקו. הסתברות מוצגת אחרי כיול מול משחקים מחוץ לאימון.</p>':''}
- </section>
+  </div>
+ </details>
  <details class="risk-full"${expanded && oldName===p.id?' open':''}><summary>ניתוח מלא</summary>
   <p class="risk-note">${profile.games} הופעות בקבוצה הנוכחית · ${R.metrics.filter(m=>allStats[m.id]).length} מתוך ${R.metrics.length} מדדי DNA זמינים בהקשר הזה</p>
   <div class="risk-analysis">${Object.values(allStats).map(f=>evidence(f)).join('')||'<p>אין עדיין נתוני משחק לשחקן בקבוצה הנוכחית.</p>'}</div>

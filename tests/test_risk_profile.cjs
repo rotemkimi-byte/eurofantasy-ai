@@ -41,4 +41,28 @@ assert.equal(R.evaluate({...high,games:2},forecast,player,runtime).risks.miss5,n
 runtime.validation.miss5.calibrated=true;
 assert.ok(R.evaluate({...high,games:6},forecast,player,runtime).risks.miss5.probability>0.9);
 assert.equal(R.evaluate({...high,games:5},forecast,player,runtime).risks.miss5.probability,null);
+// Pregame explanations are based on measured matchup factors without calibration.
+const metric = (id,value,count,extra={}) => ({id,value,count,details:[],...extra});
+const explain = (rows, next=fixture, status='active') => R.matchupFactors(
+ prepared,{rows,games:0,averageMinutes:22}, {...player,pos:'G',status},next);
+const minutes = metric('minVar',3,6);
+const defense = rank => metric('pirWeakness',16,7,{rank});
+const offense = {
+ pirWeakness:defense(8),minVar:minutes,
+ matchFit:metric('matchFit',28,5)
+};
+assert.deepEqual(explain(offense).map(f=>[f.id,f.tone]),[
+ ['pirWeakness','risk'],['matchFit','watch'],['minVar','support']
+]);
+assert.equal(explain({...offense,pirWeakness:defense(89)})[0].tone,'support');
+assert.deepEqual(explain({...offense,pirWeakness:metric('pirWeakness',16,2,{rank:8})}).map(f=>f.id),
+ ['matchFit','minVar']);
+assert.deepEqual(explain(offense,null),[]);
+const unavailable = metric('availability',1,1,{details:[['בחוץ','עדכון סגל','']]});
+assert.deepEqual(explain({...offense,availability:unavailable},fixture,'out').map(f=>f.id),['availability']);
+assert.deepEqual(explain({}),[]);
+const realFactors=R.matchupFactors(prepared,profile,player,fixture);
+assert.ok(realFactors.length<=4);
+assert.equal(new Set(realFactors.map(f=>f.group)).size,realFactors.length);
+assert.ok(realFactors.every(f=>f.reason && f.title && Number.isFinite(f.value)));
 console.log('Risk profile season, pregame boundaries, scoring, feature families and calibration guards passed.');
