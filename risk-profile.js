@@ -28,9 +28,15 @@ const $=s=>section.querySelector(s), decimal=new Intl.NumberFormat('he-IL',{maxi
  date=new Intl.DateTimeFormat('he-IL',{timeZone:'Asia/Jerusalem',day:'numeric',month:'numeric'});
 const levels=['נמוך','בינוני','גבוה','גבוה מאוד'];
 const titles={low:'10 PIR ומטה',miss5:'5 PIR ומעלה מתחת לתחזית',miss10:'10 PIR ומעלה מתחת לתחזית'};
+const personalMetrics=[
+ ['pirStability','יציבות ביום קליעה חלש'],
+ ['ftPoints','שיעור נקודות מהעונשין'],
+ ['fta','ניסיונות עונשין למשחק'],
+ ['turnovers','איבודים למשחק']
+];
 const positions={G:'גארד',F:'פורוורד',C:'סנטר'};
 const out=$('[data-result]'), select=$('[data-player]'), team=$('[data-team]'), status=$('[data-status]');
-let data, pending, loadedAt=0, scope='all', selected='', shownProfile;
+let data, pending, loadedAt=0, scope='all', selected='', shownProfile, revealOnMobile=false;
 const fmt=(value,unit='')=>!Number.isFinite(value)?'—':decimal.format(value)+(unit==='%'?'%':unit?' '+unit:'');
 const text=value=>'<bdi>'+esc(value)+'</bdi>';
 const sample=(id,count)=>['positionLow','peerLow'].includes(id)?count+' הופעות יריבים':
@@ -69,11 +75,18 @@ function evidence(f,tone) {
    ${tone && descriptions.has(f.id)?'<p class="risk-factor-info">'+esc(descriptions.get(f.id))+'</p>':''}
    ${f.id==='availability'?'':details(f)}</article>`;
 }
+function riskBadge(result,label) {
+ return `<strong class="risk-badge" data-level="${result?.level??'unknown'}">${label||(result?'סיכון '+levels[result.level]:'אין דירוג')}</strong>`;
+}
+function riskConfidence(result) {
+ return result?`ביטחון ${result.confidence} · ${result.sample} תחזיות היסטוריות`:'נדרש מדגם מתאים';
+}
+function riskProbability(result) {
+ return result?.probability==null?'':` · הסתברות ${text(fmt(Math.round(100*result.probability),'%'))}`;
+}
 function riskTile(id,result) {
- return `<article class="risk-tile"><span>${titles[id]}</span>${result?
-  `<strong data-level="${result.level}">${result.probability==null?levels[result.level]:text(Math.round(100*result.probability)+'%')}</strong>
-   <small>ביטחון ${result.confidence} · ${result.sample} תחזיות היסטוריות</small>`:
-  '<strong class="risk-unrated">אין דירוג</strong><small>נדרש מדגם מתאים</small>'}</article>`;
+ return `<div class="risk-scenario"><div><b>${titles[id]}</b><small>${riskConfidence(result)}${riskProbability(result)}</small></div>
+  ${riskBadge(result)}</div>`;
 }
 function fixtureFor(player) {
  const games=data?.fixtures||[];
@@ -84,7 +97,15 @@ function fixtureFor(player) {
  return {...game,home,opponent:home?game.away:game.home,crest:home?game.awayCrest:game.homeCrest};
 }
 function forecastCard(label,value,caption='') {
- return `<article class="risk-tile"><span>${label}</span><strong>${text(value)}</strong>${caption?'<small>'+caption+'</small>':''}</article>`;
+ return `<div><dt>${label}</dt><dd>${text(value)}${caption?'<small>'+caption+'</small>':''}</dd></div>`;
+}
+function personalMetric([id,label],row,stabilityRisk) {
+ return `<div data-metric="${id}"${id==='pirStability' && stabilityRisk?' data-tone="risk"':''}>
+  <dt>${label}</dt><dd>${row?text(fmt(row.value,row.unit)):'<span class="risk-unrated">אין נתון</span>'}</dd></div>`;
+}
+function factorList(factors,tone,label,icon) {
+ return `<div data-tone="${tone}"><h4><span class="risk-factor-icon" aria-hidden="true">${icon}</span>${label}</h4>
+  ${factors.length?`<ul>${factors.map(f=>`<li>${esc(f.label)}</li>`).join('')}</ul>`:'<p>אין גורמים בולטים</p>'}</div>`;
 }
 function render() {
  const p=identity();
@@ -111,47 +132,66 @@ function render() {
   window.PlayerDnaMetrics.projection(projection.frozen,window.WeightedForecast,projection.weights,projection.profile):null;
  const allStats={...profile.rows};
  if (projected) allStats.projection={id:'projection',label:'התאמת PIR צפוי לסגנון',unit:'PIR',...projected};
- const riskSummary=p.status==='out'?'מסומן בחוץ':primary?'סיכון '+levels[primary.level]:'אין דירוג סיכון';
+ const stabilityRisk=factors.some(f=>f.group==='stability'&&f.effect>0);
  const expanded=out.querySelector('.risk-full')?.open;
+ const factorsExpanded=out.querySelector('.risk-factor-details')?.open;
  const oldName=out.dataset.renderedPlayer;
  out.dataset.renderedPlayer=p.id;
  const range=Number.isFinite(forecast.floor)&&Number.isFinite(forecast.ceiling)?
   fmt(forecast.floor)+'–'+fmt(forecast.ceiling):'—';
- out.innerHTML=`<article class="risk-hero">
+ out.innerHTML=`<article class="risk-hero" aria-label="פרופיל סיכון של השחקן">
   <div class="risk-player"><div class="risk-portrait">${image(photo,'risk-photo')}${squadJersey(p)}</div>
    <div><h3>${text(typeof reorderCommaName==='function'?reorderCommaName(p.name):p.name)}</h3>
-   <p>${text(p.team)} · ${positions[p.pos]} · ${text(fmt(Number(p.price),'CR'))}</p>
-   <span class="risk-badge" data-level="${primary?.level??'unknown'}">${riskSummary}</span>
-   ${primary?'<small>5 PIR ומעלה מתחת לתחזית · ביטחון '+primary.confidence+'</small>':''}</div></div>
-  <div class="risk-opponent">${image(opponentCrest)}<div>
+   <p>${text(p.team)} · ${positions[p.pos]} · ${text(fmt(Number(p.price),'CR'))}</p></div></div>
+  <div class="risk-opponent">${image(opponentCrest)}
    <b>${f?'מול '+text(f.opponent):'היריבה טרם נקבעה'}</b>
    ${f?'<small>מחזור '+esc(f.round)+' · '+date.format(f.start)+' · '+(f.neutral?'ניטרלי':f.home?'בית':'חוץ')+'</small>':''}
-  </div></div>
+  </div>
+  <dl class="risk-metrics" aria-label="מדדי סיכון אישיים">
+   ${personalMetrics.map(metric=>personalMetric(metric,profile.rows[metric[0]],stabilityRisk)).join('')}
+  </dl>
+  <div class="risk-primary risk-scenario"><div><b>${titles.miss5}</b>
+   <small>${p.status==='out'?'השחקן מסומן בחוץ':riskConfidence(primary)+riskProbability(primary)}</small></div>
+   ${riskBadge(primary)}</div>
+  ${p.status==='questionable'?'<p class="risk-note">השחקן בספק. הדירוג מתייחס למקרה שבו ישחק.</p>':''}
+  ${best.length?`<div class="risk-factors">
+   ${factorList(negatives,'risk','גורמי סיכון','↑')}
+   ${factorList(positives,'support','גורמים חיוביים','✓')}
+   </div>
+   <details class="risk-factor-details"${factorsExpanded && oldName===p.id?' open':''}>
+    <summary>פירוט הגורמים</summary>
+    <p class="risk-note">הכיוון מבוסס על מודל ההחמצה של 5 PIR. המדדים מתארים קשר היסטורי.</p>
+    ${negatives.map((f,i)=>evidence(f,i?'watch':'risk')).join('')}
+    ${positives.map(f=>evidence(f,'support')).join('')}
+   </details>`:
+   '<p class="risk-note">נדרש מדגם מתאים כדי לדרג את הגורמים. המדדים הזמינים מופיעים בניתוח המלא.</p>'}
  </article>
  ${f && currentOpponent!==f.opponent?'<p class="risk-note">ממתין לסנכרון התחזית מול היריבה הבאה.</p>':''}
- ${p.status==='questionable'?'<p class="risk-note">השחקן בספק. דירוג הסיכון מתייחס למקרה שבו ישחק.</p>':''}
- <div class="risk-grid" aria-label="תחזית למשחק">
-  ${forecastCard('PIR צפוי',fmt(forecast.expected))}
-  ${forecastCard('דקות צפויות',fmt(forecast.minutes))}
-  ${forecastCard('טווח PIR חזוי',range,range==='—'?'':forecast.rangeSample?'מבוסס על שגיאות עבר':'טווח נוסחתי של מנוע החיזוי')}
+ <section class="risk-forecast" aria-labelledby="risk-forecast-title">
+  <h3 id="risk-forecast-title">תחזית מורחבת</h3>
+  <dl class="risk-projection">
+   ${forecastCard('PIR צפוי',fmt(forecast.expected))}
+   ${forecastCard('דקות צפויות',fmt(forecast.minutes))}
+   ${forecastCard('טווח PIR חזוי',range,range==='—'?'':forecast.rangeSample?'מבוסס על שגיאות עבר':'טווח נוסחתי של מנוע החיזוי')}
+  </dl>
   ${riskTile('low',risks.low)}
-  ${riskTile('miss5',risks.miss5)}
   ${riskTile('miss10',risks.miss10)}
- </div>
- ${R.endpoints.some(id=>risks[id] && risks[id].probability==null)?
-  '<p class="risk-note">רמות הסיכון הן דירוג יחסי לפי מחזורי העונה שנבדקו. הסתברות מוצגת אחרי כיול מול משחקים מחוץ לאימון.</p>':''}
- ${best.length?`<section class="risk-factors"><h3>מה משפיע על הסיכון?</h3>
-  <div class="risk-grid">${best.map(r=>`<article class="risk-tile" data-tone="${r.effect<0?'support':r===negatives[0]?'risk':'watch'}">
-  <span>${esc(r.label)}</span><strong>${text(r.id==='availability'?r.details[0][0]:fmt(r.value,r.unit))}</strong><small>${sample(r.id,r.count)}</small></article>`).join('')}</div>
-  <p class="risk-note">הכיוון מבוסס על מודל ההחמצה של 5 PIR. המדדים מתארים קשר היסטורי.</p>
-  ${negatives.length?`<div class="risk-direction" data-tone="risk"><h4>מעלים את דירוג הסיכון</h4>${negatives.map((f,i)=>evidence(f,i?'watch':'risk')).join('')}</div>`:''}
-  ${positives.length?`<div class="risk-direction" data-tone="support"><h4>תומכים בביצוע טוב</h4>${positives.map(f=>evidence(f,'support')).join('')}</div>`:''}</section>`:
-  '<p class="risk-note">נדרש מדגם מתאים כדי לדרג את הגורמים. המדדים הזמינים מופיעים בניתוח המלא.</p>'}
+  ${R.endpoints.some(id=>risks[id] && risks[id].probability==null)?
+   '<p class="risk-note">רמות הסיכון הן דירוג יחסי לפי מחזורי העונה שנבדקו. הסתברות מוצגת אחרי כיול מול משחקים מחוץ לאימון.</p>':''}
+ </section>
  <details class="risk-full"${expanded && oldName===p.id?' open':''}><summary>ניתוח מלא</summary>
   <p class="risk-note">${profile.games} הופעות בקבוצה הנוכחית · ${R.metrics.filter(m=>allStats[m.id]).length} מתוך ${R.metrics.length} מדדי DNA זמינים בהקשר הזה</p>
   <div class="risk-analysis">${Object.values(allStats).map(f=>evidence(f)).join('')||'<p>אין עדיין נתוני משחק לשחקן בקבוצה הנוכחית.</p>'}</div>
  </details>`;
  imageFallbacks();
+ if (revealOnMobile) {
+  revealOnMobile=false;
+  requestAnimationFrame(()=>{
+   if (section.classList.contains('active')) {
+    document.getElementById('efSectionNavigation')?.scrollIntoView({block:'start',behavior:'instant'});
+   }
+  });
+ }
 }
 function refresh(force=false) {
  if (pending) return pending;
@@ -194,6 +234,7 @@ button.onclick=()=>{
  document.querySelectorAll('.tabs button,.tab').forEach(node=>node.classList.remove('active'));
  button.classList.add('active');
  section.classList.add('active');
+ revealOnMobile=matchMedia('(max-width:760px)').matches;
  identity();
  void refresh();
 };
