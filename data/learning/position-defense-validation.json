@@ -1,0 +1,1570 @@
+{
+  "schema": "position-defense-validation-v2",
+  "protocol": "train-7-9-holdout-10-11-v2",
+  "season": "E2026",
+  "created_at": "2026-11-17T16:06:07.511Z",
+  "cutoffSafe": true,
+  "coefficient": 0,
+  "activate": false,
+  "method": "Current weighted core replayed from frozen pregame inputs with Git-published official/advanced/roster revisions strictly before each cutoff. Fit one ridge coefficient on rounds 7-9; untouched holdout rounds 10-11. Activation requires >=2% MAE improvement over legacy and source-corrected baseline, no RMSE deterioration, neither holdout round worse. E2026 outcomes only.",
+  "limitations": [
+    "Replay of current core with archived inputs, not a claim to reproduce every historical served version.",
+    "No calibrated on-ball defender, height or weight effect.",
+    "Invalid E2025 positional signal removed from the source-corrected baseline; rebuilt positional effects stay gated.",
+    "Default tool weights evaluated; custom weights retain their values but have no separate held-out accuracy guarantee.",
+    "Position prior and reliability constants fixed before holdout; thresholds ±0.5 are preliminary, diagnosed on baseline effects and not selected on holdout.",
+    "Final-round sample is small; future model selection must use a new untouched holdout."
+  ],
+  "train": {
+    "legacy": {
+      "n": 438,
+      "games": 20,
+      "mae": 5.691607211749704,
+      "rmse": 7.123211747618257,
+      "largeMisses": 67
+    },
+    "baseline": {
+      "n": 438,
+      "games": 20,
+      "mae": 5.698264877579103,
+      "rmse": 7.129327966986702,
+      "largeMisses": 67
+    },
+    "candidate": {
+      "n": 438,
+      "games": 20,
+      "mae": 5.699896779402801,
+      "rmse": 7.130215307951054,
+      "largeMisses": 67
+    }
+  },
+  "holdout": {
+    "legacy": {
+      "n": 441,
+      "games": 20,
+      "mae": 5.985637109819422,
+      "rmse": 7.579273902224858,
+      "largeMisses": 77
+    },
+    "baseline": {
+      "n": 441,
+      "games": 20,
+      "mae": 5.984077041262161,
+      "rmse": 7.582225238254272,
+      "largeMisses": 76
+    },
+    "candidate": {
+      "n": 441,
+      "games": 20,
+      "mae": 5.984689171693716,
+      "rmse": 7.585652525421623,
+      "largeMisses": 76
+    },
+    "perRound": [
+      {
+        "round": 10,
+        "legacy": {
+          "n": 222,
+          "games": 10,
+          "mae": 6.093947413022184,
+          "rmse": 7.689038851742326,
+          "largeMisses": 42
+        },
+        "baseline": {
+          "n": 222,
+          "games": 10,
+          "mae": 6.09525457652852,
+          "rmse": 7.697385399981186,
+          "largeMisses": 42
+        },
+        "candidate": {
+          "n": 222,
+          "games": 10,
+          "mae": 6.097074049059846,
+          "rmse": 7.701984369263084,
+          "largeMisses": 42
+        }
+      },
+      {
+        "round": 11,
+        "legacy": {
+          "n": 219,
+          "games": 10,
+          "mae": 5.875843103833061,
+          "rmse": 7.466358511460037,
+          "largeMisses": 35
+        },
+        "baseline": {
+          "n": 219,
+          "games": 10,
+          "mae": 5.871376526060656,
+          "rmse": 7.463674228454073,
+          "largeMisses": 34
+        },
+        "candidate": {
+          "n": 219,
+          "games": 10,
+          "mae": 5.870764775459564,
+          "rmse": 7.465877247221589,
+          "largeMisses": 34
+        }
+      }
+    ]
+  },
+  "byPosition": {
+    "G": {
+      "legacy": {
+        "n": 191,
+        "games": 20,
+        "mae": 6.196859348220939,
+        "rmse": 7.764226460243641,
+        "largeMisses": 31
+      },
+      "baseline": {
+        "n": 191,
+        "games": 20,
+        "mae": 6.192683758425325,
+        "rmse": 7.76530417605654,
+        "largeMisses": 31
+      },
+      "candidate": {
+        "n": 191,
+        "games": 20,
+        "mae": 6.191887328001047,
+        "rmse": 7.767162175077179,
+        "largeMisses": 31
+      }
+    },
+    "F": {
+      "legacy": {
+        "n": 167,
+        "games": 20,
+        "mae": 5.180565541119237,
+        "rmse": 6.665183428252416,
+        "largeMisses": 24
+      },
+      "baseline": {
+        "n": 167,
+        "games": 20,
+        "mae": 5.181995374888211,
+        "rmse": 6.6711106762949575,
+        "largeMisses": 24
+      },
+      "candidate": {
+        "n": 167,
+        "games": 20,
+        "mae": 5.182443019562643,
+        "rmse": 6.6711672258341155,
+        "largeMisses": 24
+      }
+    },
+    "C": {
+      "legacy": {
+        "n": 83,
+        "games": 20,
+        "mae": 7.119414271725949,
+        "rmse": 8.781418469357495,
+        "largeMisses": 22
+      },
+      "baseline": {
+        "n": 83,
+        "games": 20,
+        "mae": 7.11785722567527,
+        "rmse": 8.783706472845857,
+        "largeMisses": 21
+      },
+      "candidate": {
+        "n": 83,
+        "games": 20,
+        "mae": 7.122041696406865,
+        "rmse": 8.795554436979648,
+        "largeMisses": 21
+      }
+    }
+  },
+  "byDefense": {
+    "strong": {
+      "legacy": {
+        "n": 206,
+        "games": 20,
+        "mae": 6.250892477542053,
+        "rmse": 7.8129020462877286,
+        "largeMisses": 40
+      },
+      "baseline": {
+        "n": 206,
+        "games": 20,
+        "mae": 6.2588774529558036,
+        "rmse": 7.82231604831293,
+        "largeMisses": 39
+      },
+      "candidate": {
+        "n": 206,
+        "games": 20,
+        "mae": 6.261487132558171,
+        "rmse": 7.827196070186551,
+        "largeMisses": 39
+      }
+    },
+    "weak": {
+      "legacy": {
+        "n": 235,
+        "games": 19,
+        "mae": 5.753115383220004,
+        "rmse": 7.368386166727468,
+        "largeMisses": 37
+      },
+      "baseline": {
+        "n": 235,
+        "games": 19,
+        "mae": 5.74318816973498,
+        "rmse": 7.365328235946578,
+        "largeMisses": 37
+      },
+      "candidate": {
+        "n": 235,
+        "games": 19,
+        "mae": 5.742049257063613,
+        "rmse": 7.367405829448886,
+        "largeMisses": 37
+      }
+    }
+  },
+  "thresholdAudit": [
+    {
+      "label": "hard",
+      "legacy": {
+        "n": 0,
+        "games": 0,
+        "mae": null,
+        "rmse": null
+      },
+      "baseline": {
+        "n": 0,
+        "games": 0,
+        "mae": null,
+        "rmse": null
+      },
+      "candidate": {
+        "n": 0,
+        "games": 0,
+        "mae": null,
+        "rmse": null
+      },
+      "meanActualMinusNeutral": null
+    },
+    {
+      "label": "neutral",
+      "legacy": {
+        "n": 441,
+        "games": 20,
+        "mae": 5.985637109819422,
+        "rmse": 7.579273902224858,
+        "largeMisses": 77
+      },
+      "baseline": {
+        "n": 441,
+        "games": 20,
+        "mae": 5.984077041262161,
+        "rmse": 7.582225238254272,
+        "largeMisses": 76
+      },
+      "candidate": {
+        "n": 441,
+        "games": 20,
+        "mae": 5.984689171693716,
+        "rmse": 7.585652525421623,
+        "largeMisses": 76
+      },
+      "meanActualMinusNeutral": -0.2335533674853259
+    },
+    {
+      "label": "positive",
+      "legacy": {
+        "n": 0,
+        "games": 0,
+        "mae": null,
+        "rmse": null
+      },
+      "baseline": {
+        "n": 0,
+        "games": 0,
+        "mae": null,
+        "rmse": null
+      },
+      "candidate": {
+        "n": 0,
+        "games": 0,
+        "mae": null,
+        "rmse": null
+      },
+      "meanActualMinusNeutral": null
+    }
+  ],
+  "largestMisses": [
+    {
+      "name": "Austin Wiley",
+      "gameCode": 94,
+      "round": 10,
+      "pos": "C",
+      "opponent": "ASVEL",
+      "actual": 32,
+      "legacy": 8.188727320974374,
+      "baseline": 8.048623640626548,
+      "base": 7.978908209402071,
+      "raw": 0,
+      "defense": "weak",
+      "sample": 8,
+      "features": [
+        {
+          "id": "pir",
+          "value": null
+        },
+        {
+          "id": "rebounds",
+          "value": null
+        },
+        {
+          "id": "two",
+          "value": null
+        },
+        {
+          "id": "three",
+          "value": null
+        },
+        {
+          "id": "blocked",
+          "value": null
+        },
+        {
+          "id": "turnovers",
+          "value": null
+        },
+        {
+          "id": "foulsAndFt",
+          "value": null
+        }
+      ],
+      "candidate": 7.978908209402071
+    },
+    {
+      "name": "Nadir Hifi",
+      "gameCode": 95,
+      "round": 10,
+      "pos": "G",
+      "opponent": "Anadolu Efes",
+      "actual": 39,
+      "legacy": 17.438620395861726,
+      "baseline": 17.596726555282014,
+      "base": 17.595359838505797,
+      "raw": 0,
+      "defense": "weak",
+      "sample": 9,
+      "features": [
+        {
+          "id": "pir",
+          "value": null
+        },
+        {
+          "id": "rebounds",
+          "value": null
+        },
+        {
+          "id": "two",
+          "value": null
+        },
+        {
+          "id": "three",
+          "value": null
+        },
+        {
+          "id": "blocked",
+          "value": null
+        },
+        {
+          "id": "turnovers",
+          "value": null
+        },
+        {
+          "id": "foulsAndFt",
+          "value": null
+        }
+      ],
+      "candidate": 17.595359838505797
+    },
+    {
+      "name": "Frank Ntilikina",
+      "gameCode": 101,
+      "round": 11,
+      "pos": "G",
+      "opponent": "Fenerbahce",
+      "actual": 21,
+      "legacy": 0.13237630829041738,
+      "baseline": 0.1347611380689813,
+      "base": 0.13488740382732972,
+      "raw": -0.13488740382732972,
+      "defense": "strong",
+      "sample": 10,
+      "features": [
+        {
+          "id": "pir",
+          "value": null
+        },
+        {
+          "id": "rebounds",
+          "value": 0.027442078214998628
+        },
+        {
+          "id": "two",
+          "value": -0.03421466039832365
+        },
+        {
+          "id": "three",
+          "value": -0.444648148422616
+        },
+        {
+          "id": "blocked",
+          "value": null
+        },
+        {
+          "id": "turnovers",
+          "value": -0.04556783805392446
+        },
+        {
+          "id": "foulsAndFt",
+          "value": 0
+        }
+      ],
+      "candidate": 0.13488740382732972
+    },
+    {
+      "name": "Jonas Valanciunas",
+      "gameCode": 104,
+      "round": 11,
+      "pos": "C",
+      "opponent": "Milano",
+      "actual": 36,
+      "legacy": 15.063227526234863,
+      "baseline": 15.160808341653409,
+      "base": 15.148397316953584,
+      "raw": -1.22937065046772,
+      "defense": "strong",
+      "sample": 10,
+      "features": [
+        {
+          "id": "pir",
+          "value": -0.06986846294207137
+        },
+        {
+          "id": "rebounds",
+          "value": -0.7886951667944696
+        },
+        {
+          "id": "two",
+          "value": 0.5392035706090356
+        },
+        {
+          "id": "three",
+          "value": 0.11640306680114296
+        },
+        {
+          "id": "blocked",
+          "value": 0.057570298972758165
+        },
+        {
+          "id": "turnovers",
+          "value": -0.19855003883342076
+        },
+        {
+          "id": "foulsAndFt",
+          "value": -0.8854339182806946
+        }
+      ],
+      "candidate": 15.148397316953584
+    },
+    {
+      "name": "Talen Horton-Tucker",
+      "gameCode": 101,
+      "round": 11,
+      "pos": "G",
+      "opponent": "Paris",
+      "actual": 33,
+      "legacy": 12.244816354324888,
+      "baseline": 12.177048168011643,
+      "base": 12.096235989360057,
+      "raw": 0.2626679815927595,
+      "defense": "weak",
+      "sample": 10,
+      "features": [
+        {
+          "id": "pir",
+          "value": null
+        },
+        {
+          "id": "rebounds",
+          "value": -0.07113933553120536
+        },
+        {
+          "id": "two",
+          "value": 0.3114052868150217
+        },
+        {
+          "id": "three",
+          "value": 0.3098923629234369
+        },
+        {
+          "id": "blocked",
+          "value": null
+        },
+        {
+          "id": "turnovers",
+          "value": -0.03952707405968142
+        },
+        {
+          "id": "foulsAndFt",
+          "value": -0.2479632585548124
+        }
+      ],
+      "candidate": 12.096235989360057
+    },
+    {
+      "name": "Vladimir Lucic",
+      "gameCode": 94,
+      "round": 10,
+      "pos": "F",
+      "opponent": "ASVEL",
+      "actual": 28,
+      "legacy": 7.782354398625647,
+      "baseline": 7.767676333414812,
+      "base": 7.715933233124828,
+      "raw": 0,
+      "defense": "weak",
+      "sample": 9,
+      "features": [
+        {
+          "id": "pir",
+          "value": null
+        },
+        {
+          "id": "rebounds",
+          "value": null
+        },
+        {
+          "id": "two",
+          "value": null
+        },
+        {
+          "id": "three",
+          "value": null
+        },
+        {
+          "id": "blocked",
+          "value": null
+        },
+        {
+          "id": "turnovers",
+          "value": null
+        },
+        {
+          "id": "foulsAndFt",
+          "value": null
+        }
+      ],
+      "candidate": 7.715933233124828
+    },
+    {
+      "name": "Tremont Waters",
+      "gameCode": 108,
+      "round": 11,
+      "pos": "G",
+      "opponent": "Besiktas",
+      "actual": 30,
+      "legacy": 10.04921126245944,
+      "baseline": 10.04921126245944,
+      "base": 10.013475908700201,
+      "raw": 0.10708314588989509,
+      "defense": "weak",
+      "sample": 10,
+      "features": [
+        {
+          "id": "pir",
+          "value": -0.0319982148485442
+        },
+        {
+          "id": "rebounds",
+          "value": 0.12178935209995935
+        },
+        {
+          "id": "two",
+          "value": 0.12880558741309864
+        },
+        {
+          "id": "three",
+          "value": -0.6447128879770235
+        },
+        {
+          "id": "blocked",
+          "value": 0.03995139494499123
+        },
+        {
+          "id": "turnovers",
+          "value": 0.022409771369377038
+        },
+        {
+          "id": "foulsAndFt",
+          "value": 0.47083814288803694
+        }
+      ],
+      "candidate": 10.013475908700201
+    },
+    {
+      "name": "Gabriele Procida",
+      "gameCode": 106,
+      "round": 11,
+      "pos": "F",
+      "opponent": "Crvena Zvezda",
+      "actual": 22,
+      "legacy": 2.176089172338991,
+      "baseline": 2.17926642379599,
+      "base": 2.1787380854842344,
+      "raw": -0.42705184624185,
+      "defense": "strong",
+      "sample": 10,
+      "features": [
+        {
+          "id": "pir",
+          "value": -0.037001206058397317
+        },
+        {
+          "id": "rebounds",
+          "value": 0.09574715931689959
+        },
+        {
+          "id": "two",
+          "value": -0.05020172001620938
+        },
+        {
+          "id": "three",
+          "value": -0.52325721991926
+        },
+        {
+          "id": "blocked",
+          "value": 0.005093053115443558
+        },
+        {
+          "id": "turnovers",
+          "value": 0
+        },
+        {
+          "id": "foulsAndFt",
+          "value": 0.08256808731967345
+        }
+      ],
+      "candidate": 2.1787380854842344
+    },
+    {
+      "name": "Cameron Payne",
+      "gameCode": 95,
+      "round": 10,
+      "pos": "G",
+      "opponent": "Paris",
+      "actual": 29,
+      "legacy": 9.434994559766777,
+      "baseline": 9.381323545806124,
+      "base": 9.33624411839804,
+      "raw": 0,
+      "defense": "weak",
+      "sample": 9,
+      "features": [
+        {
+          "id": "pir",
+          "value": null
+        },
+        {
+          "id": "rebounds",
+          "value": null
+        },
+        {
+          "id": "two",
+          "value": null
+        },
+        {
+          "id": "three",
+          "value": null
+        },
+        {
+          "id": "blocked",
+          "value": null
+        },
+        {
+          "id": "turnovers",
+          "value": null
+        },
+        {
+          "id": "foulsAndFt",
+          "value": null
+        }
+      ],
+      "candidate": 9.33624411839804
+    },
+    {
+      "name": "Evan Fournier",
+      "gameCode": 107,
+      "round": 11,
+      "pos": "G",
+      "opponent": "Dubai",
+      "actual": 28,
+      "legacy": 8.505448083000202,
+      "baseline": 8.50681504730327,
+      "base": 8.544719210650346,
+      "raw": -0.8133222537752749,
+      "defense": "strong",
+      "sample": 10,
+      "features": [
+        {
+          "id": "pir",
+          "value": -0.1529730966583996
+        },
+        {
+          "id": "rebounds",
+          "value": 0.03251761773346891
+        },
+        {
+          "id": "two",
+          "value": -0.2357033806686799
+        },
+        {
+          "id": "three",
+          "value": -0.29285831043509153
+        },
+        {
+          "id": "blocked",
+          "value": -0.01691493110594386
+        },
+        {
+          "id": "turnovers",
+          "value": 0.2127141413971989
+        },
+        {
+          "id": "foulsAndFt",
+          "value": -0.360104294037828
+        }
+      ],
+      "candidate": 8.544719210650346
+    },
+    {
+      "name": "Alberto Abalde",
+      "gameCode": 91,
+      "round": 10,
+      "pos": "F",
+      "opponent": "Panathinaikos",
+      "actual": 23,
+      "legacy": 4.0518991190230995,
+      "baseline": 4.062765752040775,
+      "base": 4.061115329828126,
+      "raw": 0,
+      "defense": "strong",
+      "sample": 9,
+      "features": [
+        {
+          "id": "pir",
+          "value": null
+        },
+        {
+          "id": "rebounds",
+          "value": null
+        },
+        {
+          "id": "two",
+          "value": null
+        },
+        {
+          "id": "three",
+          "value": null
+        },
+        {
+          "id": "blocked",
+          "value": null
+        },
+        {
+          "id": "turnovers",
+          "value": null
+        },
+        {
+          "id": "foulsAndFt",
+          "value": null
+        }
+      ],
+      "candidate": 4.061115329828126
+    },
+    {
+      "name": "Timothé Luwawu-Cabarrot",
+      "gameCode": 106,
+      "round": 11,
+      "pos": "F",
+      "opponent": "Crvena Zvezda",
+      "actual": 24,
+      "legacy": 5.432546632932448,
+      "baseline": 5.440727333798406,
+      "base": 5.476073577034127,
+      "raw": -1.5084817977911045,
+      "defense": "strong",
+      "sample": 10,
+      "features": [
+        {
+          "id": "pir",
+          "value": -0.07483378456914697
+        },
+        {
+          "id": "rebounds",
+          "value": 0.15348396967371197
+        },
+        {
+          "id": "two",
+          "value": -0.24953710208301855
+        },
+        {
+          "id": "three",
+          "value": -1.3599471778664276
+        },
+        {
+          "id": "blocked",
+          "value": 0.025315979507720424
+        },
+        {
+          "id": "turnovers",
+          "value": -0.151866142205002
+        },
+        {
+          "id": "foulsAndFt",
+          "value": 0.14890245975105826
+        }
+      ],
+      "candidate": 5.476073577034127
+    },
+    {
+      "name": "Moses Wright",
+      "gameCode": 104,
+      "round": 11,
+      "pos": "C",
+      "opponent": "Zalgiris",
+      "actual": -2,
+      "legacy": 16.539343302143635,
+      "baseline": 16.479527230715064,
+      "base": 16.591930033300795,
+      "raw": -1.7831175249264213,
+      "defense": "strong",
+      "sample": 10,
+      "features": [
+        {
+          "id": "pir",
+          "value": -0.44700577827079374
+        },
+        {
+          "id": "rebounds",
+          "value": -0.4561842506093848
+        },
+        {
+          "id": "two",
+          "value": -0.6182709551377014
+        },
+        {
+          "id": "three",
+          "value": -0.30778413245422837
+        },
+        {
+          "id": "blocked",
+          "value": 0.05936591790650617
+        },
+        {
+          "id": "turnovers",
+          "value": 0.22007193264914415
+        },
+        {
+          "id": "foulsAndFt",
+          "value": -0.23331025900996355
+        }
+      ],
+      "candidate": 16.591930033300795
+    },
+    {
+      "name": "Jordan Loyd",
+      "gameCode": 109,
+      "round": 11,
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "actual": 28,
+      "legacy": 9.943902565059995,
+      "baseline": 9.935806076894231,
+      "base": 9.904257058659848,
+      "raw": 0.31511199035058546,
+      "defense": "weak",
+      "sample": 10,
+      "features": [
+        {
+          "id": "pir",
+          "value": -0.1527204794338815
+        },
+        {
+          "id": "rebounds",
+          "value": 0.05013773867950424
+        },
+        {
+          "id": "two",
+          "value": -0.3269600870862326
+        },
+        {
+          "id": "three",
+          "value": 0.8291476459040438
+        },
+        {
+          "id": "blocked",
+          "value": -0.09262179428231987
+        },
+        {
+          "id": "turnovers",
+          "value": 0.07827882272505328
+        },
+        {
+          "id": "foulsAndFt",
+          "value": -0.07014985615558211
+        }
+      ],
+      "candidate": 9.904257058659848
+    },
+    {
+      "name": "Kendrick Nunn",
+      "gameCode": 91,
+      "round": 10,
+      "pos": "G",
+      "opponent": "Real Madrid",
+      "actual": 31,
+      "legacy": 13.027975865331715,
+      "baseline": 13.080048688505723,
+      "base": 13.070778836999292,
+      "raw": 0,
+      "defense": "weak",
+      "sample": 9,
+      "features": [
+        {
+          "id": "pir",
+          "value": null
+        },
+        {
+          "id": "rebounds",
+          "value": null
+        },
+        {
+          "id": "two",
+          "value": null
+        },
+        {
+          "id": "three",
+          "value": null
+        },
+        {
+          "id": "blocked",
+          "value": null
+        },
+        {
+          "id": "turnovers",
+          "value": null
+        },
+        {
+          "id": "foulsAndFt",
+          "value": null
+        }
+      ],
+      "candidate": 13.070778836999292
+    },
+    {
+      "name": "Scottie Wilbekin",
+      "gameCode": 97,
+      "round": 10,
+      "pos": "G",
+      "opponent": "Zalgiris",
+      "actual": -5,
+      "legacy": 11.821482047064027,
+      "baseline": 12.017270494953499,
+      "base": 11.99926260827032,
+      "raw": -1.4059462370508662,
+      "defense": "strong",
+      "sample": 9,
+      "features": [
+        {
+          "id": "pir",
+          "value": null
+        },
+        {
+          "id": "rebounds",
+          "value": 0.034014759265996564
+        },
+        {
+          "id": "two",
+          "value": -0.0529807424355287
+        },
+        {
+          "id": "three",
+          "value": -1.2203276551839206
+        },
+        {
+          "id": "blocked",
+          "value": null
+        },
+        {
+          "id": "turnovers",
+          "value": 0.033914534627952415
+        },
+        {
+          "id": "foulsAndFt",
+          "value": -0.20056713332536627
+        }
+      ],
+      "candidate": 11.99926260827032
+    },
+    {
+      "name": "Ante Zizic",
+      "gameCode": 97,
+      "round": 10,
+      "pos": "C",
+      "opponent": "Zalgiris",
+      "actual": -4,
+      "legacy": 12.9149333747458,
+      "baseline": 12.86774959040283,
+      "base": 12.932086966365883,
+      "raw": -0.8628986845119311,
+      "defense": "strong",
+      "sample": 9,
+      "features": [
+        {
+          "id": "pir",
+          "value": null
+        },
+        {
+          "id": "rebounds",
+          "value": -0.45740088005095747
+        },
+        {
+          "id": "two",
+          "value": -0.2405200653827847
+        },
+        {
+          "id": "three",
+          "value": 0
+        },
+        {
+          "id": "blocked",
+          "value": null
+        },
+        {
+          "id": "turnovers",
+          "value": 0.07928030852612712
+        },
+        {
+          "id": "foulsAndFt",
+          "value": -0.24425804760431685
+        }
+      ],
+      "candidate": 12.932086966365883
+    },
+    {
+      "name": "Antonio Blakeney",
+      "gameCode": 93,
+      "round": 10,
+      "pos": "G",
+      "opponent": "Barcelona",
+      "actual": -4,
+      "legacy": 12.729151939987704,
+      "baseline": 12.810873287403963,
+      "base": 12.832018596756894,
+      "raw": 0,
+      "defense": "weak",
+      "sample": 9,
+      "features": [
+        {
+          "id": "pir",
+          "value": null
+        },
+        {
+          "id": "rebounds",
+          "value": null
+        },
+        {
+          "id": "two",
+          "value": null
+        },
+        {
+          "id": "three",
+          "value": null
+        },
+        {
+          "id": "blocked",
+          "value": null
+        },
+        {
+          "id": "turnovers",
+          "value": null
+        },
+        {
+          "id": "foulsAndFt",
+          "value": null
+        }
+      ],
+      "candidate": 12.832018596756894
+    },
+    {
+      "name": "Andres Feliz",
+      "gameCode": 91,
+      "round": 10,
+      "pos": "G",
+      "opponent": "Panathinaikos",
+      "actual": 28,
+      "legacy": 11.480687753779913,
+      "baseline": 11.374243392669646,
+      "base": 11.359231873126161,
+      "raw": 0,
+      "defense": "strong",
+      "sample": 9,
+      "features": [
+        {
+          "id": "pir",
+          "value": null
+        },
+        {
+          "id": "rebounds",
+          "value": null
+        },
+        {
+          "id": "two",
+          "value": null
+        },
+        {
+          "id": "three",
+          "value": null
+        },
+        {
+          "id": "blocked",
+          "value": null
+        },
+        {
+          "id": "turnovers",
+          "value": null
+        },
+        {
+          "id": "foulsAndFt",
+          "value": null
+        }
+      ],
+      "candidate": 11.359231873126161
+    },
+    {
+      "name": "Marcus Bingham",
+      "gameCode": 101,
+      "round": 11,
+      "pos": "C",
+      "opponent": "Paris",
+      "actual": 25,
+      "legacy": 8.60836596775788,
+      "baseline": 8.45755465924677,
+      "base": 8.405645712040304,
+      "raw": -0.5064386211001235,
+      "defense": "weak",
+      "sample": 9,
+      "features": [
+        {
+          "id": "pir",
+          "value": null
+        },
+        {
+          "id": "rebounds",
+          "value": 0.5039486421827135
+        },
+        {
+          "id": "two",
+          "value": 0.20085430765767276
+        },
+        {
+          "id": "three",
+          "value": -0.9965127938581123
+        },
+        {
+          "id": "blocked",
+          "value": null
+        },
+        {
+          "id": "turnovers",
+          "value": -0.41970943585577297
+        },
+        {
+          "id": "foulsAndFt",
+          "value": 0.20498065877337557
+        }
+      ],
+      "candidate": 8.405645712040304
+    }
+  ],
+  "sources": [
+    {
+      "game": 68,
+      "round": 7,
+      "cutoff": "2026-10-22T18:12:35.259349+00:00",
+      "official": "d0e72a6abe1b7667d59c0770699856087f961109",
+      "advanced": null,
+      "latestObservation": 1792598400000
+    },
+    {
+      "game": 70,
+      "round": 7,
+      "cutoff": "2026-10-22T20:02:39.802034+00:00",
+      "official": "c88673a332ea87b52007e3b6184c8f4a06c62991",
+      "advanced": null,
+      "latestObservation": 1792598400000
+    },
+    {
+      "game": 69,
+      "round": 7,
+      "cutoff": "2026-10-22T20:02:39.802034+00:00",
+      "official": "c88673a332ea87b52007e3b6184c8f4a06c62991",
+      "advanced": null,
+      "latestObservation": 1792598400000
+    },
+    {
+      "game": 72,
+      "round": 8,
+      "cutoff": "2026-10-26T19:36:36.770854+00:00",
+      "official": "384fbb665b2e6a509702d8ebca8b2e1606f3a81f",
+      "advanced": null,
+      "latestObservation": 1792781100000
+    },
+    {
+      "game": 71,
+      "round": 8,
+      "cutoff": "2026-10-26T19:36:36.770854+00:00",
+      "official": "384fbb665b2e6a509702d8ebca8b2e1606f3a81f",
+      "advanced": null,
+      "latestObservation": 1792781100000
+    },
+    {
+      "game": 74,
+      "round": 8,
+      "cutoff": "2026-10-26T19:36:36.770854+00:00",
+      "official": "384fbb665b2e6a509702d8ebca8b2e1606f3a81f",
+      "advanced": null,
+      "latestObservation": 1792781100000
+    },
+    {
+      "game": 76,
+      "round": 8,
+      "cutoff": "2026-10-26T19:36:36.770854+00:00",
+      "official": "384fbb665b2e6a509702d8ebca8b2e1606f3a81f",
+      "advanced": null,
+      "latestObservation": 1792781100000
+    },
+    {
+      "game": 75,
+      "round": 8,
+      "cutoff": "2026-10-26T19:36:36.770854+00:00",
+      "official": "384fbb665b2e6a509702d8ebca8b2e1606f3a81f",
+      "advanced": null,
+      "latestObservation": 1792781100000
+    },
+    {
+      "game": 73,
+      "round": 8,
+      "cutoff": "2026-10-26T23:24:03.574943+00:00",
+      "official": "a5f68549c03bf42eb61d3e7a49e6902740b9c917",
+      "advanced": null,
+      "latestObservation": 1792781100000
+    },
+    {
+      "game": 79,
+      "round": 8,
+      "cutoff": "2026-10-27T20:13:15.432572+00:00",
+      "official": "0302bc6d9fbff8a7de54b6bb1d708141200a4a4b",
+      "advanced": null,
+      "latestObservation": 1792781100000
+    },
+    {
+      "game": 77,
+      "round": 8,
+      "cutoff": "2026-10-27T20:13:15.432572+00:00",
+      "official": "0302bc6d9fbff8a7de54b6bb1d708141200a4a4b",
+      "advanced": null,
+      "latestObservation": 1792781100000
+    },
+    {
+      "game": 78,
+      "round": 8,
+      "cutoff": "2026-10-27T20:13:15.432572+00:00",
+      "official": "0302bc6d9fbff8a7de54b6bb1d708141200a4a4b",
+      "advanced": null,
+      "latestObservation": 1792781100000
+    },
+    {
+      "game": 80,
+      "round": 8,
+      "cutoff": "2026-10-27T20:13:15.432572+00:00",
+      "official": "0302bc6d9fbff8a7de54b6bb1d708141200a4a4b",
+      "advanced": null,
+      "latestObservation": 1792781100000
+    },
+    {
+      "game": 84,
+      "round": 9,
+      "cutoff": "2026-10-29T19:54:52.877127+00:00",
+      "official": "57251d8e4c4573279b04226596a157af5fbec6a1",
+      "advanced": null,
+      "latestObservation": 1793215800000
+    },
+    {
+      "game": 88,
+      "round": 9,
+      "cutoff": "2026-10-29T19:54:52.877127+00:00",
+      "official": "57251d8e4c4573279b04226596a157af5fbec6a1",
+      "advanced": null,
+      "latestObservation": 1793215800000
+    },
+    {
+      "game": 86,
+      "round": 9,
+      "cutoff": "2026-10-29T19:54:52.877127+00:00",
+      "official": "57251d8e4c4573279b04226596a157af5fbec6a1",
+      "advanced": null,
+      "latestObservation": 1793215800000
+    },
+    {
+      "game": 85,
+      "round": 9,
+      "cutoff": "2026-10-29T19:54:52.877127+00:00",
+      "official": "57251d8e4c4573279b04226596a157af5fbec6a1",
+      "advanced": null,
+      "latestObservation": 1793215800000
+    },
+    {
+      "game": 90,
+      "round": 9,
+      "cutoff": "2026-10-29T19:54:52.877127+00:00",
+      "official": "57251d8e4c4573279b04226596a157af5fbec6a1",
+      "advanced": null,
+      "latestObservation": 1793215800000
+    },
+    {
+      "game": 87,
+      "round": 9,
+      "cutoff": "2026-10-29T19:54:52.877127+00:00",
+      "official": "57251d8e4c4573279b04226596a157af5fbec6a1",
+      "advanced": null,
+      "latestObservation": 1793215800000
+    },
+    {
+      "game": 89,
+      "round": 9,
+      "cutoff": "2026-10-29T19:54:52.877127+00:00",
+      "official": "57251d8e4c4573279b04226596a157af5fbec6a1",
+      "advanced": null,
+      "latestObservation": 1793215800000
+    },
+    {
+      "game": 91,
+      "round": 10,
+      "cutoff": "2026-11-03T23:30:15.808223+00:00",
+      "official": "9fd5261503e101e91f169e86c4edd671c7ba54ed",
+      "advanced": null,
+      "latestObservation": 1793388600000
+    },
+    {
+      "game": 95,
+      "round": 10,
+      "cutoff": "2026-11-04T18:41:25.544682+00:00",
+      "official": "824374c123edc79fd46622fe2154736b4276c012",
+      "advanced": null,
+      "latestObservation": 1793388600000
+    },
+    {
+      "game": 92,
+      "round": 10,
+      "cutoff": "2026-11-04T18:41:25.544682+00:00",
+      "official": "824374c123edc79fd46622fe2154736b4276c012",
+      "advanced": null,
+      "latestObservation": 1793388600000
+    },
+    {
+      "game": 93,
+      "round": 10,
+      "cutoff": "2026-11-04T23:57:26.832631+00:00",
+      "official": "22e9456f09ba143837894923c429b0b7c6ce963f",
+      "advanced": null,
+      "latestObservation": 1793821500000
+    },
+    {
+      "game": 94,
+      "round": 10,
+      "cutoff": "2026-11-04T23:57:26.832631+00:00",
+      "official": "22e9456f09ba143837894923c429b0b7c6ce963f",
+      "advanced": null,
+      "latestObservation": 1793821500000
+    },
+    {
+      "game": 96,
+      "round": 10,
+      "cutoff": "2026-11-04T23:57:26.832631+00:00",
+      "official": "22e9456f09ba143837894923c429b0b7c6ce963f",
+      "advanced": null,
+      "latestObservation": 1793821500000
+    },
+    {
+      "game": 97,
+      "round": 10,
+      "cutoff": "2026-11-05T21:36:20.505518+00:00",
+      "official": "7ddbc5fa96e0eea8f8551dcafca50f46f0140866",
+      "advanced": "7ddbc5fa96e0eea8f8551dcafca50f46f0140866",
+      "latestObservation": 1793821500000
+    },
+    {
+      "game": 100,
+      "round": 10,
+      "cutoff": "2026-11-05T21:36:20.505518+00:00",
+      "official": "7ddbc5fa96e0eea8f8551dcafca50f46f0140866",
+      "advanced": "7ddbc5fa96e0eea8f8551dcafca50f46f0140866",
+      "latestObservation": 1793821500000
+    },
+    {
+      "game": 98,
+      "round": 10,
+      "cutoff": "2026-11-05T21:36:20.505518+00:00",
+      "official": "7ddbc5fa96e0eea8f8551dcafca50f46f0140866",
+      "advanced": "7ddbc5fa96e0eea8f8551dcafca50f46f0140866",
+      "latestObservation": 1793821500000
+    },
+    {
+      "game": 99,
+      "round": 10,
+      "cutoff": "2026-11-05T21:36:20.505518+00:00",
+      "official": "7ddbc5fa96e0eea8f8551dcafca50f46f0140866",
+      "advanced": "7ddbc5fa96e0eea8f8551dcafca50f46f0140866",
+      "latestObservation": 1793821500000
+    },
+    {
+      "game": 101,
+      "round": 11,
+      "cutoff": "2026-11-11T00:05:44.614114+00:00",
+      "official": "87e04233959fc5b550c5f5a2fd103d14b6e7a009",
+      "advanced": "87e04233959fc5b550c5f5a2fd103d14b6e7a009",
+      "latestObservation": 1793994300000
+    },
+    {
+      "game": 102,
+      "round": 11,
+      "cutoff": "2026-11-11T00:05:44.614114+00:00",
+      "official": "87e04233959fc5b550c5f5a2fd103d14b6e7a009",
+      "advanced": "87e04233959fc5b550c5f5a2fd103d14b6e7a009",
+      "latestObservation": 1793994300000
+    },
+    {
+      "game": 103,
+      "round": 11,
+      "cutoff": "2026-11-12T11:53:28.261928+00:00",
+      "official": "3a8a066d19c44f1bd1fb3fa7fbd9cb77a001afcb",
+      "advanced": "3a8a066d19c44f1bd1fb3fa7fbd9cb77a001afcb",
+      "latestObservation": 1794426300000
+    },
+    {
+      "game": 107,
+      "round": 11,
+      "cutoff": "2026-11-12T11:53:28.261928+00:00",
+      "official": "3a8a066d19c44f1bd1fb3fa7fbd9cb77a001afcb",
+      "advanced": "3a8a066d19c44f1bd1fb3fa7fbd9cb77a001afcb",
+      "latestObservation": 1794426300000
+    },
+    {
+      "game": 104,
+      "round": 11,
+      "cutoff": "2026-11-12T11:53:28.261928+00:00",
+      "official": "3a8a066d19c44f1bd1fb3fa7fbd9cb77a001afcb",
+      "advanced": "3a8a066d19c44f1bd1fb3fa7fbd9cb77a001afcb",
+      "latestObservation": 1794426300000
+    },
+    {
+      "game": 105,
+      "round": 11,
+      "cutoff": "2026-11-12T11:53:28.261928+00:00",
+      "official": "3a8a066d19c44f1bd1fb3fa7fbd9cb77a001afcb",
+      "advanced": "3a8a066d19c44f1bd1fb3fa7fbd9cb77a001afcb",
+      "latestObservation": 1794426300000
+    },
+    {
+      "game": 106,
+      "round": 11,
+      "cutoff": "2026-11-12T11:53:28.261928+00:00",
+      "official": "3a8a066d19c44f1bd1fb3fa7fbd9cb77a001afcb",
+      "advanced": "3a8a066d19c44f1bd1fb3fa7fbd9cb77a001afcb",
+      "latestObservation": 1794426300000
+    },
+    {
+      "game": 109,
+      "round": 11,
+      "cutoff": "2026-11-12T18:27:25.364539+00:00",
+      "official": "a7b91c5a98e7a59914f1a1e02194d5d2e2b2002f",
+      "advanced": "a7b91c5a98e7a59914f1a1e02194d5d2e2b2002f",
+      "latestObservation": 1794426300000
+    },
+    {
+      "game": 110,
+      "round": 11,
+      "cutoff": "2026-11-12T23:54:51.636968+00:00",
+      "official": "886b1fdde82b2e6707c303e262402394ba06f868",
+      "advanced": "886b1fdde82b2e6707c303e262402394ba06f868",
+      "latestObservation": 1794511800000
+    },
+    {
+      "game": 108,
+      "round": 11,
+      "cutoff": "2026-11-12T23:54:51.636968+00:00",
+      "official": "886b1fdde82b2e6707c303e262402394ba06f868",
+      "advanced": "886b1fdde82b2e6707c303e262402394ba06f868",
+      "latestObservation": 1794511800000
+    }
+  ],
+  "skipped": [
+    {
+      "game": 61,
+      "reason": "No pregame published source"
+    },
+    {
+      "game": 64,
+      "reason": "No pregame published source"
+    },
+    {
+      "game": 65,
+      "reason": "No pregame published source"
+    },
+    {
+      "game": 62,
+      "reason": "No pregame published source"
+    },
+    {
+      "game": 67,
+      "reason": "No pregame published source"
+    },
+    {
+      "game": 63,
+      "reason": "No pregame published source"
+    },
+    {
+      "game": 66,
+      "reason": "No pregame published source"
+    },
+    {
+      "game": 81,
+      "reason": "No frozen pregame input"
+    },
+    {
+      "game": 82,
+      "reason": "No frozen pregame input"
+    },
+    {
+      "game": 83,
+      "reason": "No frozen pregame input"
+    }
+  ]
+}

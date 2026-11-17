@@ -17,7 +17,7 @@ const definitions=[
  ['playerDna','DNA שחקן',4,'שיעור נקודות במתפרצת, בהזדמנות שנייה ואחרי איבוד, מול מה שהיריבה מאפשרת.'],
  ['teamMarket','שוק קבוצות',2,'מגמת חלקו של השחקן בדקות הקבוצה.'],
  ['teamMatchup','מאצ׳אפ קבוצות',4,'קצב הפוזשנים של שתי הקבוצות לעומת הליגה.'],
- ['pirWeakness','חולשת PIR',7,'PIR לדקה שהיריבה מאפשרת לעמדת השחקן, לפי המדד הקיים.'],
+ ['pirWeakness','חולשת PIR',7,'נתוני E2026 לפי עמדה. ההשפעה החדשה כבויה עד לאימות כרונולוגי; נתוני E2025 הוסרו.'],
  ['teamMetrics','מדד קבוצות',2,'נקודות שהיריבה מאפשרת ל־100 פוזשנים לעומת הליגה.'],
  ['teamFreeThrows','עונשין · קבוצות',2,'עבירות שהיריבה מבצעת ל־100 פוזשנים, לפי הנטייה של השחקן לסחוט עבירות.'],
  ['teamDna','DNA קבוצתי',2,'התאמה בין סגנון המסירות של קבוצת השחקן, המסירות שהיריבה מאפשרת ותמהיל הקליעה שלו.'],
@@ -88,7 +88,7 @@ function addEvents(target,rows){
 function build(official,advanced,{key,team,asOf=Date.now()}){
  // Official results files contain completed box scores. This additional gate
  // also excludes the current fixture and protects replay from future rows.
- const before=date=>Date.parse(date)+4*3600000<=asOf;
+ const before=date=>official?.season==='E2026'&&Date.parse(date)+4*3600000<=asOf;
  const profiles=new Map(),teams=new Map(),league=[],allowed=new Map(),leagueEvents=events(),byGame=new Map();
  for(const [code,g] of Object.entries(official?.teamGames||{})){
   if(!before(g.date)||!g.local?.stats||!g.road?.stats)continue;
@@ -164,7 +164,9 @@ function build(official,advanced,{key,team,asOf=Date.now()}){
   if(!contexts.has(fixtureCode))contexts.set(fixtureCode,dna.seasonContext(official,advanced,asOf,{pregame:true,fixtureCode}));
   return dna.features(record,contexts.get(fixtureCode));
  };
- return {key,team,profiles,clubs,all,allowed,leagueEvents,personalEvents,playerDna,
+ const PD=root.PositionDefense||(typeof module==='object'&&module.exports?require('./position-defense-core.js'):null);
+ const positionDefense=PD?.build(official,{key,team,asOf});
+ return {key,team,profiles,clubs,all,allowed,leagueEvents,personalEvents,playerDna,positionDefense,
   completedCodes:[...new Set([...byGame.keys()].map(k=>k.split('|')[0]))]};
 }
 function signals(p,x,data,roster,{unified=false}={}){
@@ -256,7 +258,9 @@ function signals(p,x,data,roster,{unified=false}={}){
  if(same.length>=5)set('teamMarket',compare(rate(same.slice(-3),g=>g.minutes,g=>g.teamMinutes),
   rate(same.slice(0,-3),g=>g.minutes,g=>g.teamMinutes),.16),same.length);
  if(coverage&&own?.games>=3&&own.pace>0&&rival.pace>0)set('teamMatchup',relative((own.pace+rival.pace)/2,all.pace,.08),Math.min(own.games,rival.games));
- if(x.positionMatchup?.sampleGames>=3)set('pirWeakness',compare(num(x.positionMatchPct),0,12),x.positionMatchup.sampleGames,8);
+ // The E2025 position prior is invalid for this season. The rebuilt E2026
+ // metric is descriptive until the position-defense candidate passes validation.
+ s.pirWeakness=null;
  if(coverage){
   set('teamMetrics',relative(rival.allowed,all.allowed,.13),rival.games);
   const fouls=relative(rival.fouls,all.fouls,.25),drawn=rate(rows,stat('foulsReceived'));
@@ -306,15 +310,18 @@ function input(p,x,values,data){
  const base=x.expected;
  return {base,scale:p.status==='out'||!(x.minutes>0)?0:Math.min(5,Math.max(0,base)*.30),signals:values,...(data?{minutes:x.minutes}:{})};
 }
-// Opponent-dependent signals using current-season observations. The legacy position
-// prior (pirWeakness) is excluded from this breakdown and kept in both projections.
-const matchupSignals = new Set(['playerMatchup','defense','shotMap','playerDna',
+// Every opponent-dependent component, including positional PIR, is neutralized.
+const matchupSignals = new Set(['pirWeakness','playerMatchup','defense','shotMap','playerDna',
  'teamMatchup','teamMetrics','teamFreeThrows','teamDna']);
-function project(frozen,weights=defaults,omit=-1){
+function legacyProject(frozen,weights=defaults,omit=-1){
  const w=valid(weights)?weights:defaults;
  return Math.max(0,frozen.base+frozen.scale*sum(definitions,({id})=>{
   const i=indices[id];return (i===omit||(omit instanceof Set&&omit.has(id)))?0:(frozen.signals[i]??0)*w[id]/100;
  }));
+}
+function project(frozen,weights=defaults,omit=-1){
+ if(!frozen.position)return legacyProject(frozen,weights,omit);
+ return positionProject(frozen,frozen.position.features,weights,frozen.position.coefficient,omit).expected;
 }
 const indices=Object.fromEntries(definitions.map(({id},i)=>[id,i]));
 function apply(x,p,frozen,weights){
@@ -322,8 +329,9 @@ function apply(x,p,frozen,weights){
  const expected=project(frozen,weights),delta=expected-x.expected;
  x.weightedForecast=frozen;
  const w=valid(weights)?weights:defaults;
- x.weightedMatchupBase=definitions.some(({id},i)=>matchupSignals.has(id)&&w[id]>0&&num(frozen.signals[i])!==null)
+ x.weightedMatchupBase=frozen.position?positionProject(frozen,frozen.position.features,w,frozen.position.coefficient).base:definitions.some(({id},i)=>matchupSignals.has(id)&&w[id]>0&&num(frozen.signals[i])!==null)
   ? project(frozen,w,matchupSignals) : null;
+ x.weightedMatchupLedger=matchupLedger(frozen,w);
  x.expected=expected;
  if(num(frozen.minutes)!==null){
   const minutesDelta=(frozen.signals[indices.teamMarket]??0)*w.teamMarket*.15
@@ -339,6 +347,47 @@ function apply(x,p,frozen,weights){
  x.value=expected/Math.max(.1,Number(p.price)||0);
  return x;
 }
+function matchupLedger(frozen,weights=defaults){
+ const w=valid(weights)?weights:defaults;
+ if(frozen.position)return positionProject(frozen,frozen.position.features,w,frozen.position.coefficient);
+ const base=project(frozen,w,matchupSignals),expected=project(frozen,w);
+ const entries=definitions.filter(d=>matchupSignals.has(d.id)).map(d=>{
+  const signal=num(frozen.signals[indices[d.id]]);
+  return {id:d.id,label:d.label,weight:w[d.id],available:signal!==null,
+   contribution:signal===null?0:frozen.scale*signal*w[d.id]/100};
+ });
+ const raw=sum(entries,r=>r.contribution),total=expected-base;
+ // Allocate the zero-PIR floor proportionally; the ledger always reconciles.
+ const scale=raw===0?0:total/raw;
+ return {base,expected,total,clipped:Math.abs(raw-total)>1e-10,
+  rows:entries.map(r=>({...r,contribution:r.contribution*scale}))};
+}
+function positionFeatures(p,x,data){
+ const PD=root.PositionDefense||(typeof module==='object'&&module.exports?require('./position-defense-core.js'):null);
+ const U=root.UnifiedForecast||(typeof module==='object'&&module.exports?require('./unified-forecast-core.js'):null);
+ const rows=(data.profiles.get(data.key(p.name))||[]).filter(g=>g.team===data.team(p.team));
+ const profile=U?.statProfile(rows);
+ const position=data.positionDefense?.defense?.[data.team(x.match?.opponent||p.opponent)]?.[p.pos];
+ return PD?.features(profile,position,x.minutes)||[];
+}
+function positionValidated(report){
+ const a=report?.holdout?.baseline,b=report?.holdout?.candidate,old=report?.holdout?.legacy;
+ return report?.schema==='position-defense-validation-v2'&&report.season==='E2026'&&report.activate===true&&
+  report.protocol==='train-7-9-holdout-10-11-v2'&&report.cutoffSafe===true&&num(report.coefficient)!==null&&report.coefficient>0&&report.coefficient<=1&&
+  report.train?.baseline?.n>=60&&report.train.baseline.games>=6&&
+  b?.n>=60&&b?.games>=6&&a?.n===b.n&&old?.n===b.n&&b.mae<Math.min(a.mae,old.mae)*.98&&b.rmse<=Math.min(a.rmse,old.rmse)&&
+  report.holdout.perRound?.length===2&&report.holdout.perRound.every(r=>r.candidate.mae<=Math.min(r.baseline.mae,r.legacy.mae));
+}
+function positionProject(frozen,features,weights=defaults,coefficient=0,omit=-1){
+ const w=valid(weights)?weights:defaults;
+ const excluded=omit instanceof Set?omit:new Set([definitions[omit]?.id]);
+ const base=legacyProject(frozen,w,new Set([...matchupSignals,...excluded]));
+ const contributions=features.map(f=>({id:f.id,label:f.label,tool:f.tool,weight:w[f.tool],available:num(f.value)!==null,
+  contribution:excluded.has(f.tool)?0:(f.value??0)*coefficient*w[f.tool]/defaults[f.tool]}));
+ const raw=sum(contributions,r=>r.contribution),expected=Math.max(0,base+raw),total=expected-base;
+ const scale=raw===0?0:total/raw;
+ return {base,expected,total,rows:contributions.map(r=>({...r,contribution:r.contribution*scale}))};
+}
 function assess(games,settingsFor=game=>game.weights||defaults){
  const totals=definitions.map(d=>({...d,n:0,delta:0,weightSum:0,enabled:0,available:0,games:0}));
  let n=0,baseError=0,fullError=0,coveredGames=0;
@@ -347,8 +396,8 @@ function assess(games,settingsFor=game=>game.weights||defaults){
   if(!valid(weights))continue;
   let used=false;
   const gameFactors=new Set();
-  for(const [actual,base,scale,signals] of game.players){
-   const row={base,scale,signals},full=project(row,weights),error=Math.abs(actual-full);
+  for(const [actual,base,scale,signals,metadata] of game.players){
+   const row={base,scale,signals,...(metadata?.position?{position:metadata.position}:{})},full=project(row,weights),error=Math.abs(actual-full);
    n++;used=true;fullError+=error;baseError+=Math.abs(actual-base);
    totals.forEach((item,i)=>{
     if(!weights[item.id])return;
@@ -366,6 +415,6 @@ function assess(games,settingsFor=game=>game.weights||defaults){
  return {n,games:coveredGames,baseMae:divide(baseError,n),fullMae:divide(fullError,n),
   rows:totals.map(({weightSum,delta,...r})=>({...r,weight:divide(weightSum,r.n),delta:divide(delta,r.n)}))};
 }
-const api={definitions,defaults,valid,normalize,build,signals,input,project,apply,assess};
+const api={definitions,defaults,valid,normalize,build,signals,input,project,apply,assess,matchupSignals,matchupLedger,positionFeatures,positionProject,positionValidated};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.WeightedForecast=api;
 })(typeof globalThis!=='undefined'?globalThis:this);

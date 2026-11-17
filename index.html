@@ -1139,7 +1139,7 @@ for(const id of ['clubSelect','clubSort','clubView'])document.getElementById(id)
 renderAll();
 if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
 </script>
-<script src="./live.js?v=qa-1"></script><script src="./roster-live.js?v=1"></script><script src="./position-matchups.js"></script><script>
+<script src="./live.js?v=qa-1"></script><script src="./roster-live.js?v=1"></script><script src="./position-matchups.js?v=position-defense-2"></script><script>
 (async () => {
   try {
     const response = await fetch(
@@ -2527,7 +2527,7 @@ for (const id of ['data', 'learning']) {
 #teamView button{font-size:12px;padding:10px;white-space:nowrap}
 #teamView #squadOptimizer[aria-pressed="true"]{background:#087e51;color:white}
 </style>
-<link rel="stylesheet" href="./squad-optimizer.css?v=upgrade-4">
+<link rel="stylesheet" href="./squad-optimizer.css?v=position-defense-2">
 <script src="./game-data-store.js?v=player-picker-2"></script>
 <script src="./performance-controls.js?v=1"></script>
 <script src="./usage-core.js?v=2"></script><script src="./usage-ui.js?v=performance-tools-2"></script>
@@ -2543,12 +2543,13 @@ for (const id of ['data', 'learning']) {
 <script src="./official-offense-core.js?v=team-dna-1"></script>
 <script src="./dna-core.js?v=team-dna-1"></script>
 <link rel="stylesheet" href="./weighted-forecast.css?v=round-evidence-1">
-<script src="./weighted-forecast-core.js?v=squad-matchup-1"></script>
+<script src="./position-defense-core.js?v=position-defense-2"></script>
+<script src="./weighted-forecast-core.js?v=position-defense-2"></script>
 <script src="./unified-forecast-core.js?v=1"></script>
 <script src="./dna-player-core.js?v=risk-profile-1"></script>
 <script src="./dna-metric-explanations.js?v=1"></script>
 <script src="./dna-tools.js?v=risk-profile-1"></script>
-<script src="./weighted-forecast.js?v=squad-matchup-1"></script>
+<script src="./weighted-forecast.js?v=position-defense-2"></script>
 <link rel="stylesheet" href="./popularity.css?v=2">
 <script src="./popularity.js?v=4"></script>
 <link rel="stylesheet" href="./risk-profile.css?v=4">
@@ -3196,4 +3197,4 @@ html.ef-redesign[data-theme=light] #playerMatchups .pmModes button[aria-pressed=
 .pmHistoryPosition::after{content:'⌄';display:block;font-size:14px;line-height:1}
 .pmHistoryPair[open] .pmHistoryPosition::after{content:'⌃'}
 .pmHistoryPair .pmCompare th,.pmHistoryPair .pmCompare td{font-size:12px}
-</style><script src="./player-matchup-history.js?v=2"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script><script src="./squad-matchup.js?v=1"></script><script src="./squad-optimizer.js?v=4"></script></body></html>
+</style><script src="./player-matchup-history.js?v=2"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script><script src="./squad-matchup.js?v=position-defense-2"></script><script src="./squad-optimizer.js?v=position-defense-2"></script></body></html>

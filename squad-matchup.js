@@ -75,7 +75,13 @@ function positionPlayer(games, roster, team, pos, key) {
   return ranked[0] || null;
 }
 
-const api = { fixture, gameStats, comparison, positionPlayer };
+function impact(before,after) {
+  if(number(before)===null||number(after)===null)return null;
+  const delta=after-before;
+  return {delta,label:delta>.5?'מאצ׳אפ חיובי':delta<-.5?'מאצ׳אפ קשה':'מאצ׳אפ ניטרלי',
+    display:(Math.abs(delta)<.00005?0:delta).toFixed(4)};
+}
+const api = { fixture, gameStats, comparison, positionPlayer, impact };
 if (typeof module === 'object' && module.exports) module.exports = api;
 else root.SquadMatchup = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this);

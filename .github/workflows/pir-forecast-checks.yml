@@ -32,6 +32,8 @@ jobs:
         run: |
           node tests/test_unified_forecast.cjs
           node tests/test_weighted_forecast.cjs
+          node tests/test_position_defense.cjs
+          node tests/test_squad_matchup.cjs
           node tests/test_advanced_players.cjs
           node tests/test_capture.cjs
           node tests/test_replay.cjs

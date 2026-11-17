@@ -85,19 +85,39 @@ function signed(value,unit = '') {
 }
 
 function compareTable(p, next) {
-  const result = S.comparison(games, p.pos, next.team);
-  const rows = result.rows.map(({label,normal,actual,percent}) => {
-    const delta = normal === null || actual === null ? null : (Math.round(actual*10)-Math.round(normal*10))/10;
-    const color = delta > 0 ? 'up' : delta < 0 ? 'down' : '';
+  const x=model(p), position=x.positionDefense;
+  if(!position)return '<p class="squadPanelNote">אין מספיק נתוני הגנה בעמדה לעונת 2026/27.</p>';
+  const o=position.observed,e=position.expected;
+  const field=(label,key,negative=false)=>({label,normal:e[key]===null?null:40*e[key],actual:o[key]===null?null:40*o[key],negative});
+  const shooting=(label,made,attempt)=>({label,percent:true,normal:e[attempt]>0?100*e[made]/e[attempt]:null,actual:o[attempt]>0?100*o[made]/o[attempt]:null});
+  const rows=[field('PIR','valuation'),field('ריבאונדים','totalRebounds'),
+   shooting('קליעה ל־2','fieldGoalsMade2','fieldGoalsAttempted2'),shooting('קליעה ל־3','fieldGoalsMade3','fieldGoalsAttempted3'),
+   field('זריקות שנחסמו','blocksAgainst',true),field('איבודים','turnovers',true),
+   field('סחיטת עבירות','foulsReceived'),field('זריקות עונשין','freeThrowsAttempted')].map(({label,normal,actual,percent,negative})=>{
+    const delta=normal===null||actual===null?null:actual-normal;
+    const benefit=negative?-delta:delta;
     return `<tr><th scope="row">${label}</th><td><bdi>${fmt(normal,percent?'%':'')}</bdi></td>
      <td><bdi>${fmt(actual,percent?'%':'')}</bdi></td>
-     <td class="${color}">${delta===null?'—':`<span aria-hidden="true">${delta>0?'↑':delta<0?'↓':'='}</span> <bdi>${signed(delta)}</bdi>${percent?'<small>נק׳ אחוז</small>':''}`}</td></tr>`;
+     <td class="${benefit>0?'up':benefit<0?'down':''}">${delta===null?'—':`<bdi>${signed(delta)}</bdi>${percent?'<small>נק׳ אחוז</small>':''}`}</td></tr>`;
   }).join('');
   return `<h5>מה הקבוצה מאפשרת בעמדה ${esc(p.pos)}?</h5>
-   <p class="squadPanelNote">הגנת קבוצה · ${result.games} משחקים · ${result.appearances} הופעות בעמדה${result.games<3?' · מדגם קטן':''}</p>
-   <table class="squadDefenseTable"><thead><tr><th scope="col">מדד</th><th scope="col">ממוצע רגיל</th><th scope="col">מול הקבוצה</th><th scope="col">שינוי</th></tr></thead>
+   <p class="squadPanelNote">הגנת קבוצה · ${position.sampleGames} משחקים · ${position.appearances} הופעות · ${fmt(position.minutes)} דקות${position.sampleGames<3?' · מדגם קטן':''}</p>
+   <table class="squadDefenseTable"><thead><tr><th scope="col">מדד</th><th scope="col">צפוי לפי היריבים</th><th scope="col">מול הקבוצה</th><th scope="col">שינוי</th></tr></thead>
    <tbody>${rows}</tbody></table>
-   <p class="squadPanelNote">הממוצע מבוסס על הופעות בעמדה מול שאר הליגה. אחוזי קליעה משוקללים לפי מספר הזריקות.</p>`;
+   <p class="squadPanelNote">ל־40 דקות שחקן בעמדה; קליעה לפי ניסיונות. הבסיס מתחשב בתפוקת השחקנים מול שאר היריבות בעונת 2026/27 בלבד, עם ייצוב לליגה במדגם קטן. עונשין וסחיטת עבירות מחושבים יחד בתחזית.</p>`;
+}
+function influenceDetails(x){
+ const ledger=x.weightedMatchupLedger;
+ if(!ledger)return '';
+ const exact=v=>`${v>0?'+':v<0?'−':''}${Math.abs(v).toFixed(4)}`;
+ const rows=ledger.rows.map(r=>`<tr><th scope="row">${esc(r.label)}</th><td><bdi>${fmt(r.weight)}%</bdi></td>
+  <td class="${r.contribution>0?'up':r.contribution<0?'down':''}"><bdi>${exact(r.contribution)}</bdi></td><td>${r.id==='pirWeakness'&&!x.positionDefenseActive?'כבוי · הנתון הישן הוסר':!r.available?'אין מספיק נתונים':r.weight===0?'משקל כבוי':'פעיל'}</td></tr>`).join('');
+ const pending=!x.positionDefenseActive?(x.positionFeatures||[]).map(r=>`<tr><th scope="row">${esc(r.label)} · עמדה</th><td><bdi>${fmt(x.matchupWeights?.[r.tool])}%</bdi></td><td>0.0000</td><td>${r.value===null?'אין מספיק נתונים':'לא הופעל · טרם עבר אימות'}</td></tr>`).join(''):'';
+ return `<details class="squadInfluence"><summary>מה השפיע על התחזית?</summary>
+  <table class="squadDefenseTable"><thead><tr><th>מדד</th><th>משקל הכלי</th><th>תרומת PIR</th><th>מצב</th></tr></thead><tbody>${rows}${pending}
+  <tr><th>סך ההשפעה</th><td></td><td><bdi>${exact(ledger.total)}</bdi></td><td></td></tr></tbody></table>
+  <p class="squadPanelNote">לפני: <bdi>${ledger.base.toFixed(4)}</bdi> · סופי: <bdi>${ledger.expected.toFixed(4)}</bdi>. התרומות מחושבות לפני עיגול; הפרש תצוגה אפשרי של עד 0.0001 לשורה.${ledger.clipped?' התרומות הותאמו לרצפת 0 PIR.':''} ${x.positionDefenseActive?'משקלי הכלים האישיים ומקדם שנלמד בתקופת האימון חלים על התרומות.':'נתוני העמדה המפורטים מוצגים לניתוח; השפעתם הנוספת כבויה עד לאימות כרונולוגי.'}</p>
+  <p class="squadPanelNote">גובה, משקל וזהות השומר אינם מוסיפים PIR: אין זיהוי מאומת של שמירה ישירה או מקדמים מאומתים לחלוקת דקות הרוטציה.</p></details>`;
 }
 
 function matchupForecast(p, next) {
@@ -107,23 +127,18 @@ function matchupForecast(p, next) {
   if (p.status !== 'out' && next && x.weightedForecast &&
       x.weightedMatchupOpponent === next.team && (x.match?.home === next.home || x.match?.home === Number(next.home))) {
     base = num(x.weightedMatchupBase);
-    method = 'השפעת רכיבי מאצ׳אפ מעונת 2026/27 במודל המשוקלל. מקדם העמדה ההיסטורי נשאר זהה בשתי התחזיות.';
-  } else if (next && !x.weightedForecast && x.context?.opponent === next.team &&
-      (x.match?.home === next.home || x.match?.home === Number(next.home)) &&
-      num(x.context.defensePointsDelta) !== null && x.context.defenseSample >= 3 && x.context.defenseFactor > 0) {
-    base = expected === null ? null : expected / x.context.defenseFactor;
-    method = `התאמת קליעה לפי הגנת הקבוצה · ${x.context.defenseSample} משחקים. יתר רכיבי התחזית נשמרו.`;
+    method = 'כל רכיבי היריבה, כולל חולשת PIR, נוטרלו בתחזית שלפני ההתאמה. ספי הסיווג ±0.5 PIR ראשוניים.';
   }
   if (base === null || expected === null) {
     return `<section class="squadForecastImpact"><h5>השפעה על תחזית PIR</h5>
      <p>התחזית המוצגת היא ${fmt(expected)} PIR. למודל אין כרגע השפעת מאצ׳אפ נפרדת שאפשר להציג למשחק הזה.</p></section>`;
   }
-  const rounded = (Math.round(expected*10)-Math.round(base*10))/10;
-  return `<section class="squadForecastImpact"><h5>${rounded>0?'מאצ׳אפ חיובי':rounded<0?'מאצ׳אפ קשה':'השפעה זניחה'} · תחזית PIR</h5>
+  const impact=S.impact(base,expected), rounded=impact.delta;
+  return `<section class="squadForecastImpact"><h5>${impact.label} · תחזית PIR</h5>
     <div class="squadImpactMetrics">${metric('לפני ההתאמה',base)}
-     <div class="squadPanelMetric ${rounded>0?'up':rounded<0?'down':''}"><bdi>${signed(rounded)}</bdi><small>השפעת מאצ׳אפ</small></div>
+     <div class="squadPanelMetric ${rounded>0?'up':rounded<0?'down':''}"><bdi>${rounded>0?'+':''}${impact.display}</bdi><small>השפעת מאצ׳אפ</small></div>
      ${metric('תחזית סופית',expected)}</div>
-    <p>${method} ההשפעה כבר כלולה בתחזית הסופית. ${num(x.confidence)===null?'':esc(dataQuality(p,x))+' · איכות נתונים לתחזית.'}</p></section>`;
+    <p>${method} ההשפעה כבר כלולה בתחזית הסופית. ${num(x.confidence)===null?'':esc(dataQuality(p,x))+' · איכות נתונים לתחזית.'}</p>${influenceDetails(x)}</section>`;
 }
 
 function matchup(p) {

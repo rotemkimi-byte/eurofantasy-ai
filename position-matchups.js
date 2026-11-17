@@ -19,7 +19,7 @@
       await response.json();
 
     const defense =
-      data.defense || {};
+      data.schema === 'position-defense-v2' && data.season === 'E2026' && data.seasonsUsed?.length === 1 && data.seasonsUsed[0] === 'E2026' ? data.defense || {} : {};
     window.__positionDefense = defense;
 
     if (
@@ -214,42 +214,8 @@
       x.positionMatchup =
         row || null;
 
-      if (
-        p.status !== "out" && !x.personalModel
-        &&
-        Number.isFinite(factor)
-        &&
-        factor > 0
-      ) {
-        x.expected *=
-          factor;
-
-        x.floor *=
-          factor;
-
-        x.ceiling *=
-          factor;
-
-        x.value =
-          x.expected
-          /
-          Math.max(
-            0.1,
-            Number(p.price)
-          );
-
-        const teamFactor =
-          1
-          + teamMatchPct
-          / 100;
-
-        x.matchPct =
-          (
-            teamFactor
-            * factor
-            - 1
-          ) * 100;
-      }
+      // Descriptive current-season data only. Validated opponent effects are
+      // applied once by WeightedForecast, respecting the saved tool weights.
 
       return x;
     };

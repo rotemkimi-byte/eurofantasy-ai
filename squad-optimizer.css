@@ -203,3 +203,13 @@
   #team #teamView {flex-wrap:wrap;overflow:visible;padding-inline:4px}
   #team #teamView [data-team-view="review"] {margin-inline-start:0}
 }
+
+/* Disclosure only: preserve the optimizer's existing card layout. */
+#teamCards .squadInfluence summary {
+  display:inline-block;min-height:36px;padding:8px 10px;cursor:pointer;
+  border:1px solid var(--opt-line);border-radius:8px;color:var(--opt-navy);
+  background:#fff;font-size:12px;font-weight:750;
+}
+#teamCards .squadInfluence[open] summary {margin-bottom:8px}
+#teamCards .squadInfluence .squadDefenseTable {table-layout:fixed;width:100%}
+#teamCards .squadInfluence td,#teamCards .squadInfluence th {overflow-wrap:anywhere;font-size:11px}

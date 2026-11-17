@@ -28,8 +28,17 @@ assert.equal(S.positionPlayer(games,[{name:'Mathias Lessort',pos:'C',status:'out
 const signals = W.definitions.map(d => ({market:.8,playerMatchup:-.5,pirWeakness:.7}[d.id]??null));
 const frozen = W.input({pos:'C',status:'active'},{minutes:22,expected:16},signals);
 const forecast = W.apply({expected:16},{price:10},frozen,W.defaults);
-const before = W.project(frozen,W.defaults,W.definitions.findIndex(d=>d.id==='playerMatchup'));
+const before = W.project(frozen,W.defaults,W.matchupSignals);
 assert.equal(forecast.expected,W.project(frozen,W.defaults));
 assert.equal(forecast.weightedMatchupBase,before);
 assert.equal(W.apply({expected:16},{price:10},{...frozen,signals:signals.map(()=>null)},W.defaults).weightedMatchupBase,null);
 console.log('PASS: schedule, venue, season, official comparison, missing samples, unavailable rival and unchanged served forecast');
+
+const diopImpact=S.impact(4.7477,4.7561);
+assert.ok(Math.abs(diopImpact.delta-.0084)<1e-12);
+assert.equal(diopImpact.display,'0.0084');
+assert.equal(diopImpact.label,'מאצ׳אפ ניטרלי');
+for(const delta of [-.5,0,.5])assert.equal(S.impact(5,5+delta).label,'מאצ׳אפ ניטרלי');
+assert.equal(S.impact(5,5.5001).label,'מאצ׳אפ חיובי');
+assert.equal(S.impact(5,4.4999).label,'מאצ׳אפ קשה');
+console.log('PASS: Diop raw delta +0.0084, neutral threshold and complete opponent neutralization');

@@ -35,6 +35,8 @@ def game_rows(game, snapshot, observed):
         metadata = {'name': p.get('name'), 'team': club,
                     'expectedPir': num(p.get('expectedPir')), 'expectedMinutes': num(p.get('expectedMinutes')),
                     'actualMinutes': num(actual.get('actualMinutes'))}
+        if isinstance(frozen.get('position'), dict):
+            metadata['position'] = frozen['position']
         for side in ('local', 'road'):
             for entry in (box.get(side) or {}).get('players', []):
                 if key(entry.get('player', {}).get('person', {}).get('name')) == key(p.get('name')):

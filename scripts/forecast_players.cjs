@@ -23,7 +23,7 @@ extension.applyTeams(matches, matchupContext);
 const defense = load('data/position-matchups.json').defense || {};
 const games = load('data/euroleague-live-E2026.json');
 const modelFiles = ['index.html','live.js','roster-live.js','position-matchups.js','matchup-live.js',
-  'model-stability.js','personal-model-core.js','personal-model.js','matchup-context-core.js','matchup-context.js','data/player-history.json','weighted-forecast-core.js','weighted-forecast.js'];
+  'model-stability.js','personal-model-core.js','personal-model.js','matchup-context-core.js','matchup-context.js','data/player-history.json','weighted-forecast-core.js','weighted-forecast.js','position-defense-core.js','data/learning/position-defense-validation.json'];
 const fingerprint = crypto.createHash('sha256');
 for (const file of modelFiles) if (fs.existsSync(path.join(root, file))) {
   fingerprint.update(file); fingerprint.update(fs.readFileSync(path.join(root, file)));
@@ -60,7 +60,10 @@ const forecasts = players.filter(p => ['G', 'F', 'C'].includes(p.pos)).map(p => 
     x = core.calibrate(x,p,{...rolling,schema:'learning-v1',modelId:rollingId,active:rolling.validation?.active},rollingId);
   if(evidence){
     Object.assign(x,{...context,positionMatchPct:positionPct,positionMatchup:defense[match.opponent || p.opponent]?.[p.pos]});
-    weighted.apply(x,p,weighted.input(p,x,weighted.signals(p,x,evidence,players),evidence),weighted.defaults);
+    const frozen=weighted.input(p,x,weighted.signals(p,x,evidence,players),evidence);
+    const validation=load('data/learning/position-defense-validation.json');
+    if(weighted.positionValidated(validation)&&frozen)frozen.position={features:weighted.positionFeatures(p,x,evidence),coefficient:validation.coefficient};
+    weighted.apply(x,p,frozen,weighted.defaults);
   }
   return {...p, expectedPir: x.expected, expectedMinutes: x.minutes,
     detail: {reason: x.source, teamMatchPct: teamPct, positionMatchPct: positionPct,

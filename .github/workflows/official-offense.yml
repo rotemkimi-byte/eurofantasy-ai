@@ -5,6 +5,13 @@ on:
     paths:
       - '.github/workflows/official-offense.yml'
       - 'scripts/build_official_metrics.py'
+      - 'position-defense-core.js'
+      - 'scripts/build-position-defense.cjs'
+      - 'tests/test_position_defense.cjs'
+      - 'squad-matchup.js'
+      - 'squad-optimizer.js'
+      - 'weighted-forecast-core.js'
+      - 'weighted-forecast.js'
       - 'scripts/backtest-risk-profile.cjs'
       - 'risk-profile-core.js'
       - 'tests/test_risk_profile.cjs'
@@ -63,6 +70,10 @@ jobs:
       - name: Fetch official box scores and verify derived metrics
         run: |
           python scripts/build_official_metrics.py
+          node scripts/build-position-defense.cjs
+          node tests/test_position_defense.cjs
+          node tests/test_squad_matchup.cjs
+          node tests/test_weighted_forecast.cjs
           python scripts/build_player_media.py
           node tests/test_advanced_players.cjs
           node scripts/build_advanced_players.cjs
@@ -82,7 +93,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/performance-history.json data/official-offense.json data/player-media.json data/advanced-players.json data/team-dna-events.json data/player-dna-events.json data/context/E2026-schedule.json data/risk-profile.json
+          git add data/position-matchups.json data/performance-history.json data/official-offense.json data/player-media.json data/advanced-players.json data/team-dna-events.json data/player-dna-events.json data/context/E2026-schedule.json data/risk-profile.json
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh player metrics from official EuroLeague box scores'
             for attempt in 1 2 3; do

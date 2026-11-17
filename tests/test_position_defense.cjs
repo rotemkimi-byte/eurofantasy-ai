@@ -1,0 +1,55 @@
+'use strict';
+const assert=require('node:assert/strict');
+const D=require('../position-defense-core.js'),W=require('../weighted-forecast-core.js'),P=require('../personal-model-core.js'),U=require('../unified-forecast-core.js');
+const official=require('../data/official-offense.json');
+const cutoff=Date.parse('2026-11-14T16:25:00Z');
+const data=D.build(official,{...P,asOf:cutoff});
+assert.equal(data.season,'E2026');assert.deepEqual(data.seasonsUsed,['E2026']);
+assert(data.rows.length>2000);assert(data.rows.every(g=>Date.parse(g.date)+4*3600000<=cutoff));
+assert.equal(D.build({...official,season:'E2025'},P).rows.length,0);
+assert.equal(D.build(official,{...P,asOf:Date.parse('2026-09-01')}).rows.length,0);
+const future={...official,players:{...official.players,FUTURE:{name:'FUTURE',games:[{...data.rows[0],date:'2027-01-01',stats:{valuation:9999}}]}}};
+assert.deepEqual(D.build(future,{...P,asOf:cutoff}).defense,data.defense);
+const duplicate={...official,players:Object.fromEntries(Object.entries(official.players).map(([id,p])=>[id,{...p,games:[...p.games,...p.games]}]))};
+assert.deepEqual(D.build(duplicate,{...P,asOf:cutoff}).defense,data.defense);
+for(const team of Object.values(data.defense))for(const pos of ['G','F','C']){
+ assert(team[pos]);const d=team[pos];assert(d.factor>=.88&&d.factor<=1.12);
+ assert(d.minutes>0);assert(d.reliability>=0&&d.reliability<1);
+ assert.equal(d.allowedPirPer40,40*d.observed.valuation);
+}
+const diop=Object.values(official.players).find(p=>P.key(p.name)===P.key('Ousmane Diop'));
+assert(diop,'real Ousmane Diop official record');
+const profile=U.statProfile(diop.games);
+const f=D.features(profile,data.defense['Crvena Zvezda'].C,15);
+assert.equal(f.length,7);assert(f.every(r=>Number.isFinite(r.value)));
+assert(D.features(null,null,15).every(r=>r.value===null));
+const values=W.definitions.map((d,i)=>i%3===0?null:(i%2?.8:-.4));
+for(const base of [0,.1,5,20])for(const scale of [0,1,5]){
+ const frozen={base,scale,signals:values},ledger=W.matchupLedger(frozen);
+ assert(Math.abs(ledger.rows.reduce((s,r)=>s+r.contribution,0)-ledger.total)<1e-10);
+ assert.equal(ledger.base,W.project(frozen,W.defaults,W.matchupSignals));
+ assert(ledger.rows.some(r=>r.id==='pirWeakness'));
+ const candidate=W.positionProject(frozen,f,W.defaults,.5);
+ assert(Math.abs(candidate.rows.reduce((s,r)=>s+r.contribution,0)-candidate.total)<1e-10);
+}
+const frozen={base:5,scale:1,signals:values};
+const zero=W.normalize(Object.fromEntries(W.definitions.map(d=>[d.id,d.id==='market'?100:0])));
+assert.equal(W.positionProject(frozen,f,zero,.5).total,0,'personal zero weights honored');
+assert.equal(W.positionValidated(null),false);
+assert.equal(W.positionValidated({activate:true}),false);
+const missing={...official,players:{...official.players}};
+assert(f.every(r=>r.tool!=='playerDna'),'DNA supplies style; no duplicate DNA points');
+console.log('PASS E2026 defense, cutoff, future/duplicate rejection, minutes, quality adjustment, real Diop, component coverage, ledger reconciliation and personal weights');
+const gated={...frozen,position:{features:f,coefficient:.4}};
+const projected=W.positionProject(frozen,f,W.defaults,.4);
+assert.equal(W.project(gated),projected.expected,'frozen active inputs replay exactly');
+assert.equal(W.project(gated,W.defaults,W.matchupSignals),projected.base);
+assert.equal(W.matchupLedger(gated).total,projected.total);
+const restored=JSON.parse(JSON.stringify(gated));
+assert.equal(W.project(restored),W.project(gated),'JSON snapshot preserves position effects');
+const applied=W.apply({expected:5},{status:'active',price:5},gated,W.defaults);
+assert.equal(applied.expected,W.project(gated));assert.equal(applied.weightedMatchupBase,projected.base);
+assert.equal(W.assess([{weights:W.defaults,players:[[6,gated.base,gated.scale,gated.signals,{position:gated.position}]]}]).fullMae,Math.abs(6-W.project(gated)));
+const validation=require('../data/learning/position-defense-validation.json');
+assert.equal(W.positionValidated(validation),false,'failed out-of-sample model remains disabled');
+assert.equal(W.positionValidated({...validation,activate:true}),false,'activate flag alone cannot override evidence');

@@ -17,6 +17,7 @@ try{
   .sort((a,b)=>Date.parse(a.savedAt)-Date.parse(b.savedAt));
 }catch{}
 let weights=versions.at(-1)?.weights||C.defaults,draft={...weights};
+let positionValidation=null;
 let evidence=null,shadowEvidence=null,report=null,modelReady=false,loading=null,lastLoaded=0,lastError=false;
 let reportLoading=null,reportError=false,auditLimit=5;
 let signalCache=new WeakMap(),currentRoster=null;
@@ -292,7 +293,8 @@ async function refreshEvidence(){
  loading=(async()=>{
   lastLoaded=Date.now();
   try{
-   const [official,advanced]=await Promise.all([json('official-offense.json'),json('advanced-players.json').catch(()=>null)]);
+   const [official,advanced,validation]=await Promise.all([json('official-offense.json'),json('advanced-players.json').catch(()=>null),json('learning/position-defense-validation.json').catch(()=>null)]);
+   positionValidation=validation;
    if(official.season!=='E2026'||official.schema!=='official-offense-v1')throw Error('Wrong season');
    evidence=C.build(official,advanced,P);signalCache=new WeakMap();lastError=!advanced;
    const published=data=>Number.isFinite(Date.parse(data?.updated_at))&&Date.parse(data.updated_at)<=Date.now();
@@ -329,10 +331,15 @@ model=function(p){
   x.injuryUsagePct,x.positionMatchPct,x.positionMatchup?.sampleGames].join('|');
  let row=signalCache.get(p);
  if(row?.signature!==signature){
-  row={signature,signals:C.signals(p,x,evidence,players)};
+  row={signature,signals:C.signals(p,x,evidence,players),positionFeatures:C.positionFeatures(p,x,evidence)};
   signalCache.set(p,row);
  }
- const result=C.apply(x,p,C.input(p,x,row.signals,evidence),weights);
+ const frozen=C.input(p,x,row.signals,evidence);
+ const active=C.positionValidated(positionValidation);
+ if(active&&frozen)frozen.position={features:row.positionFeatures,coefficient:positionValidation.coefficient};
+ const result=C.apply(x,p,frozen,weights);
+ result.positionDefense=evidence.positionDefense?.defense?.[P.team(x.match?.opponent||p.opponent)]?.[p.pos]||null;
+ result.positionFeatures=row.positionFeatures;result.matchupWeights={...weights};result.positionDefenseActive=active;
  result.weightedMatchupOpponent=P.team(x.match?.opponent||p.opponent);
  return result;
 };
