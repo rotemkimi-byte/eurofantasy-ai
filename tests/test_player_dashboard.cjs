@@ -42,7 +42,7 @@ for(const width of [320,390,650]){
  assert.equal(layout.x,0);assert.equal(layout.y,0);assert.equal(layout.width,width);assert.equal(layout.height,844);assert.equal(layout.overflow,false);assert(layout.rows.every(y=>y===layout.rows[0]));
 }
 await page.setViewportSize({width:390,height:844});
-assert.equal(await page.locator('#playerModal .close').getAttribute('aria-label'),'סגור כרטיס שחקן');
+assert.match(await page.locator('#playerModal .close').textContent(),/חזרה לרשימת השחקנים/);
 
 if(process.env.MEDIA_FIXTURE)await page.locator('.ef-player-avatar img').waitFor();
 if(process.env.SCREENSHOT_DIR)await page.screenshot({path:path.join(process.env.SCREENSHOT_DIR,'player-dashboard-mobile.png')});
