@@ -36,6 +36,9 @@ jobs:
         run: |
           python scripts/build_player_identities.py
           git diff --exit-code -- data/player-identities.json player-identities.js
+          node tests/test_fantasy_compact.cjs
+          node tests/test_surprises.cjs
+          node tests/test_team_metrics.cjs
           node tests/test_player_identity.cjs
           node tests/test_weighted_forecast.cjs
           node tests/test_player_dna.cjs
@@ -73,3 +76,4 @@ jobs:
     steps:
       - uses: actions/deploy-pages@v4
         id: deployment
+

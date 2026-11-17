@@ -7,6 +7,7 @@
 <title>EuroFantasy AI v2</title>
 <script src="./player-identities.js?v=identity-1"></script>
 <script src="./player-identity-core.js?v=identity-1"></script>
+<script src="./fantasy-compact.js?v=1"></script>
 <script>try{document.documentElement.dataset.theme=localStorage.getItem('eurofantasy-theme')==='dark'?'dark':'light'}catch{document.documentElement.dataset.theme='light'}</script>
 
 <style>
@@ -839,6 +840,7 @@ injuryCards.addEventListener('click',event=>{
 });
 injuryCards.addEventListener('error',event=>{if(event.target.matches('img'))event.target.remove()},true);
 document.addEventListener('fantasy-player-media-ready',renderInjuries);
+document.addEventListener('fantasy-player-media-ready',renderAbsencePicks);
 
 function renderUpgrade(){
   const panel=document.getElementById('squadUpgrade');
@@ -1111,11 +1113,11 @@ function renderAbsencePicks(){
  select.replaceChildren(new Option('כל הקבוצות',''),...groups.map(g=>new Option(g.team,g.team)));if(groups.some(g=>g.team===old))select.value=old;
  const fmt=v=>v==null||!Number.isFinite(Number(v))?'—':Number(v).toFixed(1);
  const host=document.getElementById('absenceCards');
- host.innerHTML=groups.filter(g=>!select.value||g.team===select.value).map(g=>`<article class="absenceClub"><h4>${esc(g.team)}</h4><div class="absenceMissing">${g.missing.map(p=>{
+ host.innerHTML=groups.filter(g=>!select.value||g.team===select.value).map(g=>`<article class="absenceClub"><h4>${esc(g.team)}</h4><details class="absenceMissing"><summary>חסרים בקבוצה · ${g.missing.length}</summary>${g.missing.map(p=>{
  const date=p.injury_updated||p.status_updated||p.data_updated;const parsed=date?new Date(date):null;const valid=parsed&&!Number.isNaN(parsed.getTime());const stale=valid&&Date.now()-parsed.getTime()>72*3600000;
  let source='';try{const url=new URL(p.injury_source);if(['https:','http:'].includes(url.protocol))source=` · <a href="${esc(url.href)}" target="_blank" rel="noopener noreferrer">מקור</a>`}catch{}
  return `<button type="button" data-absence-player="${esc(p.name)}">${p.status==='out'?'🔴 בחוץ':'🟠 בספק'} · <bdi>${esc(p.name)}</bdi> · ${esc(p.pos)}</button><small>${valid?'תאריך נתון: '+parsed.toLocaleDateString('he-IL')+(stale?' · נתון ישן — יש לאמת זמינות':''):'מועד עדכון לא זמין — יש לאמת זמינות'}${source}</small>`;
- }).join('')}</div>${g.picks.map(({p,x,same,boost},i)=>`<div class="absencePick"><div aria-hidden="true">${squadJersey(p)}</div><div><button type="button" data-absence-player="${esc(p.name)}"><b>${i+1}. <bdi>${esc(p.name)}</bdi></b></button><p>${same.length?'מועמד להרוויח באותה עמדה: '+same.map(m=>esc(m.name)).join(', '):'מועמד לתוספת אחריות התקפית בעמדה אחרת'}${g.missing.some(m=>m.status==='questionable')?' · כולל תרחיש חיסור של שחקן בספק':''}</p><div class="absenceMetrics"><span><b>${fmt(p.price)}</b>CR</span><span><b>+${fmt(boost)}</b>דקות במודל</span><span><b>${fmt(x.minutes)}</b>דקות צפויות</span><span><b>${fmt(x.expected)}</b>PIR צפוי</span></div><p>ביטחון בהחלפה: מוגבל · דירוג משוער לפי עמדה ותוספת דקות, ללא אישור רוטציה. תחזית ה־PIR ותוספת הדקות כבר כוללות את כל החיסורים והספקות בקבוצה; הסינון משנה את התצוגה בלבד.</p></div></div>`).join('')||'<p class="absenceEmpty">אין כרגע מועמד פעיל עם תוספת דקות במודל. לא הומצא מחליף.</p>'}</article>`).join('')||'<p class="absenceEmpty">לא נמצאו חיסורים של שחקנים מעל 8 CR בסינון הנבחר. הרשימה תתעדכן עם נתוני הזמינות.</p>';
+ }).join('')}</details>${g.picks.map(({p,x,same,boost},i)=>`<article class="fc-player">${FantasyCompactUI.header(p,i+1)}${FantasyCompactUI.metrics([['CR',fmt(p.price)],['PIR צפוי',fmt(x.expected)],['דקות צפויות',fmt(x.minutes)],['שינוי דקות במודל',(boost>0?'+':'')+fmt(boost)]])}<details><summary>הסבר ההמלצה</summary><p>${same.length?'מועמד להרוויח באותה עמדה: '+same.map(m=>esc(m.name)).join(', '):'מועמד לתוספת אחריות התקפית בעמדה אחרת'}${g.missing.some(m=>m.status==='questionable')?' · כולל תרחיש חיסור של שחקן בספק':''}</p><p>ביטחון בהחלפה: מוגבל · דירוג משוער לפי עמדה ותוספת דקות, ללא אישור רוטציה. תחזית ה־PIR ותוספת הדקות כבר כוללות את כל החיסורים והספקות בקבוצה; הסינון משנה את התצוגה בלבד.</p></details></article>`).join('')||'<p class="absenceEmpty">אין כרגע מועמד פעיל עם תוספת דקות במודל. לא הומצא מחליף.</p>'}</article>`).join('')||'<p class="absenceEmpty">לא נמצאו חיסורים של שחקנים מעל 8 CR בסינון הנבחר. הרשימה תתעדכן עם נתוני הזמינות.</p>';
 }
 
 function renderAll(){renderAbsencePicks();renderClubMarket();renderPlayerMatchups();document.getElementById("cntPlayers").textContent=players.length;renderMarket();renderTeam();renderCaptain();renderCoaches();renderGames();renderInjuries();}
@@ -2518,8 +2520,8 @@ for (const id of ['data', 'learning']) {
 <script src="./defense-core.js?v=2"></script><script src="./defense-ui.js?v=performance-tools-2"></script>
 <script src="./team-metrics-core.js?v=1"></script><script src="./team-metrics-ui.js?v=qa-1"></script>
 <link rel="stylesheet" href="./app-design.css?v=performance-picker-3">
-<script src="./surprises.js?v=2"></script>
-<script src="./free-throws.js?v=performance-tools-2"></script>
+<script src="./surprises.js?v=compact-3"></script>
+<script src="./free-throws.js?v=compact-3"></script>
 <script src="./pir-compare.js?v=performance-controls-1"></script>
 <script src="./advanced-player-core.js?v=team-dna-1"></script>
 <script src="./advanced-player-tools.js?v=performance-picker-3"></script>
@@ -3181,4 +3183,5 @@ html.ef-redesign[data-theme=light] #playerMatchups .pmModes button[aria-pressed=
 .pmHistoryPosition::after{content:'⌄';display:block;font-size:14px;line-height:1}
 .pmHistoryPair[open] .pmHistoryPosition::after{content:'⌃'}
 .pmHistoryPair .pmCompare th,.pmHistoryPair .pmCompare td{font-size:12px}
-</style><script src="./player-matchup-history.js?v=2"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script><script src="./squad-matchup.js?v=position-defense-2"></script><script src="./squad-optimizer.js?v=position-defense-2"></script></body></html>
+</style><script src="./player-matchup-history.js?v=2"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script><script src="./squad-matchup.js?v=position-defense-2"></script><script src="./squad-optimizer.js?v=position-defense-2"></script><link rel="stylesheet" href="./fantasy-compact.css?v=1"></body></html>
+
