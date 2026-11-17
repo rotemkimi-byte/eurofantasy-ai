@@ -16,7 +16,7 @@ async function load(force){
  if(pending)return pending;
  pending=(async()=>{const d=await (window.loadGameData?window.loadGameData('advanced-players.json',force):(async()=>{const r=await fetch('./data/advanced-players.json?t='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(30000)});if(!r.ok)throw Error('HTTP '+r.status);const d=await r.json();return d;})());if(d.season!=='E2026'||d.schema!=='advanced-players-v1')throw Error('Wrong season');data=d;return d;})().finally(()=>pending=null);return pending;
 }
-const marketKey=s=>String(name(s)||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9 ]/g,'').split(/\s+/).filter(Boolean).sort().join(' ');
+const marketKey=value=>window.PlayerIdentity.key(value);
 function marketPrices(){
  const map=new Map();
  for(const p of (typeof players!=='undefined'&&Array.isArray(players)?players:[])){

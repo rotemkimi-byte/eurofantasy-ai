@@ -3,8 +3,8 @@
   'use strict';
   const clip = (v, a, b) => Math.max(a, Math.min(b, v));
   const number = v => v == null || v === '' || !Number.isFinite(Number(v)) ? null : Number(v);
-  const key = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim().split(/\s+/).sort().join(' ');
+  const identity=typeof module!=='undefined'&&module.exports?require('./player-identity-core.js'):root.PlayerIdentity;
+  const key = value => identity.key(value);
   const priorMinutes = price => price >= 14 ? 27 : price >= 10 ? 23 : price >= 7 ? 19 : 14;
   const team = value => {
     const text = String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
@@ -93,6 +93,8 @@
         currentSeasonWeight: recentWeight, minutesWeight, momentumPir, momentumEnabled: config.momentum?.active === true,
         hot, streaks: history?.streaks || []},
       recentRate: rate, currentSeasonGames: games, currentSeasonWeight: recentWeight,
+      dataQuality:{partial:!hasCurrent,currentSeasonGames:games,source:hasCurrent?(recent.identityRecovered?'official-box-recovery':'current-season-observations'):'price-prior-no-current-games',confidenceCap:!hasCurrent?35:games<2?50:null},
+      ...(!hasCurrent?{confidence:35}:{}),
       source: usableHistory ? '2025/26 personal prior + 2026/27 form' : 'price prior + 2026/27 form'};
   }
   function calibrate(x, player, report, modelId) {

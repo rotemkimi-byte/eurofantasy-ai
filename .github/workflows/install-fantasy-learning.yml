@@ -36,6 +36,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          python scripts/build_player_identities.py
+          node scripts/audit_player_identities.cjs
+          git add player-identities.js data/player-identities.json data/integrity/player-identities.json
           git add index.html learning.js learning.css learning-model-version.js scripts/install_learning.py scripts/fantasy_learning.py scripts/snapshot_live_model.py data/learning data/backtest/cache scripts/.learning-report-v2-installed
           if ! git diff --cached --quiet; then
           git commit -m "Audit forecasts and update validated learning calibration"

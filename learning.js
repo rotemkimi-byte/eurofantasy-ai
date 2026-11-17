@@ -1,7 +1,7 @@
 (async()=>{
   const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const num=n=>n==null||!Number.isFinite(Number(n))?'—':Number(n).toFixed(1);
-  const key=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim().split(/\s+/).sort().join(' ');
+  const key = value => globalThis.PlayerIdentity.key(value);
   const labels={minutes:'פער בדקות המשחק',efficiency:'פער בביצועים לדקה',availability:'שיחק למרות תחזית לאפס דקות','did-not-play':'לא שיחק למרות דקות צפויות'};
   let data=null;
   try{const r=await fetch('./data/learning/latest.json?t='+Date.now(),{cache:'no-store'});if(r.ok)data=await r.json();}catch(e){console.warn('Learning report unavailable',e);}

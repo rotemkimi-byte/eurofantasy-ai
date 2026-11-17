@@ -1,7 +1,8 @@
 const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict'),path=require('path');
 (async()=>{
 const root=path.resolve(__dirname,'..'),sandbox={window:{__learningReady:true,__rollingModelId:'test'},Date,console,fetch:async()=>({ok:false}),AbortSignal,document:{getElementById:()=>null},setTimeout,model:()=>({}),renderAll(){}};vm.createContext(sandbox);
-for(const file of ['personal-model-core.js','matchup-context-core.js'])vm.runInContext(fs.readFileSync(path.join(root,file),'utf8'),sandbox);
+sandbox.window.PlayerIdentityRegistry=require('../data/player-identities.json');
+for(const file of ['player-identity-core.js','personal-model-core.js','matchup-context-core.js'])vm.runInContext(fs.readFileSync(path.join(root,file),'utf8'),sandbox);
 sandbox.PersonalForecast=sandbox.window.PersonalForecast;sandbox.MatchupContext=sandbox.window.MatchupContext;
 await vm.runInContext(fs.readFileSync(path.join(root,'rolling-learning.js'),'utf8'),sandbox);
 const p={name:'Test',team:'A',opponent:'B',pos:'C',price:10,status:'active'},ctx={margin:0};

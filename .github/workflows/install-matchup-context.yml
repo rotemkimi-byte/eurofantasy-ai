@@ -48,6 +48,9 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python scripts/build_player_identities.py
+          node scripts/audit_player_identities.cjs
+          git add player-identities.js data/player-identities.json data/integrity/player-identities.json
           git add index.html matchup-context-core.js matchup-context.js learning.js learning-model-version.js scripts/build_matchup_context.py scripts/fantasy_learning.py scripts/forecast_players.cjs scripts/snapshot_live_model.py tests/test_matchup_context.py tests/test_matchup_context.cjs tests/test_context_browser.cjs data/context data/matchup-context.json data/learning data/backtest/cache
           if ! git diff --cached --quiet; then
             git commit -m 'Add attack involvement defense minute scenarios and calibrated team context'
@@ -58,6 +61,8 @@ jobs:
             if [ "${pushed:-no}" != yes ]; then exit 1; fi
           fi
       - uses: actions/configure-pages@v5
+      - name: Reject inconsistent identity data before publication
+        run: node scripts/audit_player_identities.cjs
       - uses: actions/upload-pages-artifact@v4
         with:
           path: '.'

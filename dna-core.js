@@ -5,8 +5,8 @@ const O=typeof module!=='undefined'&&module.exports?require('./official-offense-
 const number=value=>typeof value==='number'&&Number.isFinite(value)&&value>=0?value:null;
 const add=(a,b)=>a===null||b===null?null:a+b;
 const pair=(a,b)=>a===null||b===null||b<0?null:[a,b];
-const key=name=>String(name||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')
- .replace(/[^a-z0-9 ]/g,' ').split(/\s+/).filter(Boolean).sort().join(' ');
+const identity=typeof module!=='undefined'&&module.exports?require('./player-identity-core.js'):root.PlayerIdentity;
+  const key = value => identity.key(value);
 const field=(s,k)=>number(s?.[k]);
 const totalShots=s=>add(field(s,'fieldGoalsAttempted2'),field(s,'fieldGoalsAttempted3'));
 const madeShots=s=>add(field(s,'fieldGoalsMade2'),field(s,'fieldGoalsMade3'));

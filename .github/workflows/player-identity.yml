@@ -1,0 +1,75 @@
+name: Player identity integrity and Pages
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '*identity*.js'
+      - 'player-identities.js'
+      - 'data/player-identities.json'
+      - 'scripts/*identit*'
+      - 'tests/test_player_identity*'
+      - '.github/workflows/player-identity.yml'
+  pull_request:
+    paths:
+      - '*identity*.js'
+      - 'scripts/*identit*'
+      - 'data/**'
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify identities and regression boundaries
+        run: |
+          python scripts/build_player_identities.py
+          git diff --exit-code -- data/player-identities.json player-identities.js
+          node tests/test_player_identity.cjs
+          node tests/test_weighted_forecast.cjs
+          node tests/test_player_dna.cjs
+          node tests/test_risk_profile.cjs
+          node tests/test_replay.cjs
+          node tests/test_unified_forecast.cjs
+          node scripts/audit_player_identities.cjs
+      - name: Install browser regression dependencies
+        run: |
+          npm install --prefix /tmp/identity-browser --no-save --package-lock=false playwright
+          node /tmp/identity-browser/node_modules/playwright/cli.js install --with-deps chromium
+      - name: Verify real mobile profiles and advanced tools
+        env:
+          NODE_PATH: /tmp/identity-browser/node_modules
+        run: |
+          node tests/test_player_identity_browser.cjs
+          node tests/test_player_dashboard.cjs
+          node tests/test_advanced_players_browser.cjs
+      - uses: actions/configure-pages@v5
+        if: github.event_name != 'pull_request'
+      - uses: actions/upload-pages-artifact@v4
+        if: github.event_name != 'pull_request'
+        with:
+          path: '.'
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: verify
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment

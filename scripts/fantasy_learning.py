@@ -16,12 +16,10 @@ def save(path,data):
     Path(path).parent.mkdir(parents=True,exist_ok=True)
     Path(path).write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
 
-def key(s):
-    s=''.join(c for c in unicodedata.normalize('NFKD',str(s or '')) if not unicodedata.combining(c))
-    return ' '.join(sorted(re.sub('[^a-z0-9]+',' ',s.lower()).split()))
+from player_identity import key as key
 
 def canon(s):
-    n=key(s)
+    n=' '.join(sorted(re.sub('[^a-z0-9]+',' ',str(s or '').lower()).split()))
     for needles,name in [(['efes'],'Anadolu Efes'),(['milan','milano','armani'],'Milano'),(['besiktas'],'Besiktas'),(['crvena','red star'],'Crvena Zvezda'),(['dubai'],'Dubai'),(['barcelona'],'Barcelona'),(['bayern'],'Bayern Munich'),(['fenerbahce'],'Fenerbahce'),(['hapoel'],'Hapoel Tel Aviv'),(['baskonia'],'Baskonia'),(['asvel'],'ASVEL'),(['maccabi'],'Maccabi Tel Aviv'),(['olympiacos'],'Olympiacos'),(['panathinaikos'],'Panathinaikos'),(['paris'],'Paris'),(['partizan'],'Partizan'),(['real madrid'],'Real Madrid'),(['valencia'],'Valencia'),(['virtus'],'Virtus Bologna'),(['zalgiris'],'Zalgiris'),(['monaco'],'Monaco')]:
         if any(all(t in n.split() for t in x.split()) for x in needles): return name
     return s
@@ -43,7 +41,7 @@ def api(path):
     with urllib.request.urlopen(req,timeout=40) as r: return json.load(r)
 
 def model_id():
-    files=['index.html','live.js','roster-live.js','position-matchups.js','matchup-live.js','model-stability.js','personal-model-core.js','personal-model.js','matchup-context-core.js','matchup-context.js','data/player-history.json','weighted-forecast-core.js','weighted-forecast.js','position-defense-core.js','data/learning/position-defense-validation.json']
+    files=['player-identity-core.js','data/player-identities.json','index.html','live.js','roster-live.js','position-matchups.js','matchup-live.js','model-stability.js','personal-model-core.js','personal-model.js','matchup-context-core.js','matchup-context.js','data/player-history.json','weighted-forecast-core.js','weighted-forecast.js','position-defense-core.js','data/learning/position-defense-validation.json']
     return hashlib.sha256(b''.join(n.encode()+ (ROOT/n).read_bytes() for n in files if (ROOT/n).exists())).hexdigest()[:20]
 
 def prepare():
@@ -76,7 +74,7 @@ def actuals(g):
             p=r.get('player',{});stats=r.get('stats',{})
             pir=num(stats.get('valuation'));seconds=num(stats.get('timePlayed'))
             if pir is None or seconds is None:continue
-            rows[key(p.get('person',{}).get('name'))]={'actualPir':pir,'actualMinutes':seconds/60,'fouls':num(stats.get('foulsCommited')),'team':canon(p.get('club',{}).get('name')),'actualStats':{k:num(stats.get(k)) for k in ['points','totalRebounds','assistances','turnovers','foulsCommited','fieldGoalsMadeTotal','fieldGoalsAttemptedTotal']}}
+            rows[key({'name':p.get('person',{}).get('name'),'playerCode':p.get('person',{}).get('code')})]={'actualPir':pir,'actualMinutes':seconds/60,'fouls':num(stats.get('foulsCommited')),'team':canon(p.get('club',{}).get('name')),'actualStats':{k:num(stats.get(k)) for k in ['points','totalRebounds','assistances','turnovers','foulsCommited','fieldGoalsMadeTotal','fieldGoalsAttemptedTotal']}}
     return rows
 
 def tolerance(row):
@@ -131,7 +129,7 @@ def collect(schedule):
             if p.get('pos') not in ['G','F','C'] or canon(p.get('team')) not in [g['home'],g['away']]:continue
             opponent=g['away'] if canon(p['team'])==g['home'] else g['home']
             if canon(p.get('opponent'))!=opponent:continue
-            a=actual.get(key(p['name']))
+            a=actual.get(key(p))
             if a is None or a['team']!=canon(p['team']):continue
             pred=num(p.get('basePir',p.get('expectedPir')));minutes=num(p.get('baseMinutes',p.get('expectedMinutes')))
             if pred is None or minutes is None:continue

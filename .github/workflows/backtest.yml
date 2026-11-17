@@ -86,12 +86,9 @@ jobs:
                   text.lower(),
               ).strip()
 
-          def fantasy_key(value):
-              raw = str(value or "").strip()
-              if "," in raw:
-                  last, first = raw.split(",", 1)
-                  raw = f"{first.strip()} {last.strip()}"
-              return norm(raw)
+          import sys
+          sys.path.insert(0, 'scripts')
+          from player_identity import key as fantasy_key
 
           def clamp(x, low, high):
               return max(low, min(high, x))
@@ -924,7 +921,7 @@ jobs:
                   []
               ):
                   actual = actual_by_key.get(
-                      prediction.get("key")
+                      fantasy_key(prediction.get("name"))
                   )
 
                   if not actual:
@@ -1308,6 +1305,9 @@ jobs:
           git config user.name "eurofantasy-bot"
           git config user.email "actions@users.noreply.github.com"
 
+          python scripts/build_player_identities.py
+          node scripts/audit_player_identities.cjs
+          git add player-identities.js data/player-identities.json data/integrity/player-identities.json
           git add data/backtest/
 
           if git diff --cached --quiet; then

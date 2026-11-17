@@ -1,6 +1,7 @@
 (function(root){
 'use strict';
-const key=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9 ]/g,' ').split(/\s+/).filter(Boolean).sort().join(' ');
+const identity=typeof module!=='undefined'&&module.exports?require('./player-identity-core.js'):root.PlayerIdentity;
+  const key = value => identity.key(value);
 const valid=v=>v!==null&&v!==undefined&&Number.isFinite(Number(v));
 const trueShootingParts=(points,fga,fta)=>[points,2*(fga+.44*fta)];
 const effectiveFieldGoalParts=(made2,made3,fga)=>[made2+1.5*made3,fga];
@@ -21,7 +22,7 @@ function aggregate(games){
 }
 function report(data,player,{gameCode=null,minutes=null,asOf=new Date().toISOString()}={}){
  if(data?.schema!=='official-offense-v1'||data.season!=='E2026')return null;
- const profile=data.players?.[key(player.name)];if(!profile)return null;
+ const profile=data.players?.[key(player)];if(!profile)return null;
  const observed=gameCode==null?null:profile.games.find(g=>Number(g.gameCode)===Number(gameCode));
  if(gameCode!=null&&!observed)return null;
  const cutoff=observed?.date||asOf,club=observed?.team||player.team;
@@ -29,7 +30,7 @@ function report(data,player,{gameCode=null,minutes=null,asOf=new Date().toISOStr
  const played=games.filter(g=>g.minutes>0),last=played.slice(-3),baseline=aggregate(last),season=aggregate(played),prior=aggregate(played.slice(0,-3)),latest=observed||played.at(-1);
  const projected=minutes!==null&&valid(minutes)&&Number(minutes)>=0?Object.fromEntries(['fga','three','two','fta'].map(k=>[k,baseline[k+'PerMinute']!==null?baseline[k+'PerMinute']*Number(minutes):null])):null;
  const position=latest?.position;
- const peers=Object.entries(data.players).filter(([k])=>k!==key(player.name)).map(([,p])=>{
+ const peers=Object.entries(data.players).filter(([k])=>k!==key(player)).map(([,p])=>{
   const teamGames=p.games.filter(g=>Date.parse(g.date)<=Date.parse(cutoff)).sort((a,b)=>Date.parse(a.date)-Date.parse(b.date));
   const recent=teamGames.at(-1);if(!recent||recent.team!==club||position==null||recent.position!==position)return null;
   const same=teamGames.filter(g=>g.team===club),map=new Map(same.map(g=>[g.gameCode,g]));

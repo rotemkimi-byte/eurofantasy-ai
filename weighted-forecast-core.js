@@ -113,7 +113,7 @@ function build(official,advanced,{key,team,asOf=Date.now()}){
   if(!before(g.date))continue;
   const byOpponent=new Map(),roster=new Map();
   for(const p of Object.values(g.players||{})){
-   const name=key(p.name),club=team(p.team),opponent=team(p.opponent);
+   const name=key(p),club=team(p.team),opponent=team(p.opponent);
    eventRows.set(code+'|'+name+'|'+club,p);
    roster.set(name+'|'+club,p.minutes);
    if(!opponent)continue;
@@ -127,7 +127,7 @@ function build(official,advanced,{key,team,asOf=Date.now()}){
   }
  }
  for(const p of Object.values(official?.players||{})){
-  const id=key(p.name);
+  const id=key(p);
   const rows=(p.games||[]).filter(g=>g.minutes>0&&before(g.date)).map(g=>{
    const club=team(g.team),code=String(g.gameCode),a=eventRows.get(code+'|'+id+'|'+club);
    return {...g,team:club,opponent:team(g.opponent),
@@ -171,7 +171,7 @@ function build(official,advanced,{key,team,asOf=Date.now()}){
 }
 function signals(p,x,data,roster,{unified=false}={}){
  const {key,team,profiles,clubs,all,allowed,leagueEvents,personalEvents}=data;
- const id=key(p.name),club=team(p.team),opp=team(x.match?.opponent||p.opponent);
+ const id=key(p),club=team(p.team),opp=team(x.match?.opponent||p.opponent);
  const rows=profiles.get(id)||[],same=rows.filter(g=>g.team===club),recent=rows.slice(-3),prior=rows.slice(0,-3);
  const opposed=rows.filter(g=>g.opponent===opp),other=rows.filter(g=>g.opponent!==opp);
  const own=clubs.get(club),rival=clubs.get(opp),coverage=rival?.games>=3;
@@ -244,7 +244,7 @@ function signals(p,x,data,roster,{unified=false}={}){
    s.playerDna=exposure>=15&&playerMinutes>0?24*effect/playerMinutes:null;
   }
  }
- const mates=new Map(roster.filter(q=>team(q.team)===club).map(q=>[key(q.name),q.status]));
+ const mates=new Map(roster.filter(q=>team(q.team)===club).map(q=>[key(q),q.status]));
  const knownLineups=same.flatMap(g=>g.event?.lineupCoverage?g.event.lineups:[]).filter(r=>r.minutes>0);
  const lineRate=r=>rate(r,l=>l.points,l=>l.minutes);
  const available=knownLineups.filter(l=>l.teammates.every(t=>mates.get(key(t.name))==='active'));
@@ -291,7 +291,7 @@ function signals(p,x,data,roster,{unified=false}={}){
  return definitions.map(({id})=>s[id]);
 }
 function baseline(p,x,data){
- const rows=data.profiles.get(data.key(p.name))||[];
+ const rows=data.profiles.get(data.key(p))||[];
  const stable=rows.length>=5?rows.slice(0,-3):rows;
  const minutes=rate(stable,g=>g.minutes,()=>1)??num(x.personalPrior?.avgMinutes)??15;
  const observed=rate(stable,stat('valuation'));
@@ -365,7 +365,7 @@ function matchupLedger(frozen,weights=defaults){
 function positionFeatures(p,x,data){
  const PD=root.PositionDefense||(typeof module==='object'&&module.exports?require('./position-defense-core.js'):null);
  const U=root.UnifiedForecast||(typeof module==='object'&&module.exports?require('./unified-forecast-core.js'):null);
- const rows=(data.profiles.get(data.key(p.name))||[]).filter(g=>g.team===data.team(p.team));
+ const rows=(data.profiles.get(data.key(p))||[]).filter(g=>g.team===data.team(p.team));
  const profile=U?.statProfile(rows);
  const position=data.positionDefense?.defense?.[data.team(x.match?.opponent||p.opponent)]?.[p.pos];
  return PD?.features(profile,position,x.minutes)||[];

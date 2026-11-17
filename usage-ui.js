@@ -56,7 +56,7 @@ function restorePlayer(){
 }
 function options(){
  const selected=$('usPlayer').value,oldTeam=$('usTeam').value,byKey=new Map();
- for(const p of marketRows())if(['G','F','C'].includes(p.pos)&&U.key(p.name))byKey.set(U.key(p.name),{...p,team:team(p.team),id:U.key(p.name),price:U.num(p.price)});
+ for(const p of marketRows())if(['G','F','C'].includes(p.pos)&&U.key(p))byKey.set(U.key(p),{...p,team:team(p.team),id:U.key(p),price:U.num(p.price)});
  for(const [id,p] of Object.entries(data?.players||{}))if(!byKey.has(id)){
   const latest=U.selectGames(p,'1')[0];byKey.set(id,{id,name:p.name,team:team(latest?.team)||'',price:null,pos:({1:'G',2:'F',3:'C'})[latest?.position]||''});
  }

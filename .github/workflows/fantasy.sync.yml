@@ -34,6 +34,9 @@ jobs:
         run: |
           git config user.name "eurofantasy-bot"
           git config user.email "actions@users.noreply.github.com"
+          python scripts/build_player_identities.py
+          node scripts/audit_player_identities.cjs
+          git add player-identities.js data/player-identities.json data/integrity/player-identities.json
           git add data/
           if git diff --cached --quiet; then
             echo "No new data"

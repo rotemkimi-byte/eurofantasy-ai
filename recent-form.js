@@ -17,7 +17,7 @@
       await response.json();
 
     const form =
-      payload.players || {};
+      Object.fromEntries(Object.entries(payload.players || {}).map(([k,v])=>[window.PlayerIdentity.key(v.name||k),v]));
 
     const sleep = ms =>
       new Promise(resolve =>
@@ -52,23 +52,7 @@
 
     const originalModel = model;
 
-    const norm = value =>
-      String(value || "")
-        .normalize("NFD")
-        .replace(
-          /[\u0300-\u036f]/g,
-          ""
-        )
-        .toLowerCase()
-        .replace(
-          /[^a-z0-9 ]/g,
-          " "
-        )
-        .replace(
-          /\s+/g,
-          " "
-        )
-        .trim();
+    const norm = value => window.PlayerIdentity.key(value);
 
     const clampValue = (
       x,

@@ -24,11 +24,10 @@ def number(x):
     except (ValueError, TypeError): return None
 
 def clip(x,a,b): return max(a,min(b,x))
-def key(s):
-    s=''.join(c for c in unicodedata.normalize('NFKD',str(s or '')) if not unicodedata.combining(c))
-    return ' '.join(sorted(re.sub('[^a-z0-9]+',' ',s.lower()).split()))
+from player_identity import key as key
+
 def team(s):
-    n=key(s)
+    n=' '.join(sorted(re.sub('[^a-z0-9]+',' ',str(s or '').lower()).split()))
     for needle,name in [('efes','Anadolu Efes'),('armani','Milano'),('milan','Milano'),('besiktas','Besiktas'),('crvena','Crvena Zvezda'),('dubai','Dubai'),('barcelona','Barcelona'),('bayern','Bayern Munich'),('fenerbahce','Fenerbahce'),('hapoel','Hapoel Tel Aviv'),('baskonia','Baskonia'),('asvel','ASVEL'),('maccabi','Maccabi Tel Aviv'),('olympiacos','Olympiacos'),('panathinaikos','Panathinaikos'),('paris','Paris'),('partizan','Partizan'),('real madrid','Real Madrid'),('valencia','Valencia'),('virtus','Virtus Bologna'),('zalgiris','Zalgiris'),('monaco','Monaco')]:
         if needle in n:return name
     return str(s or '')
@@ -63,7 +62,7 @@ def strength_history(games):
 
 STAT_FIELDS=['points','valuation','fieldGoalsAttempted2','fieldGoalsMade2','fieldGoalsAttempted3','fieldGoalsMade3','freeThrowsAttempted','freeThrowsMade','assistances','turnovers','steals','blocksFavour','totalRebounds','foulsCommited']
 def player_context(games, boxes, players):
-    roster={key(p.get('name')):p for p in players if p.get('pos') in ['G','F','C']}
+    roster={key(p):p for p in players if p.get('pos') in ['G','F','C']}
     logs=defaultdict(list); defense=defaultdict(list)
     for g in games:
         if g['season']!='E2026' or g['gameCode'] not in boxes:continue
@@ -78,7 +77,7 @@ def player_context(games, boxes, players):
                 fields={f:number(s.get(f)) for f in STAT_FIELDS}
                 for f in ['fieldGoalsAttempted2','fieldGoalsMade2','fieldGoalsAttempted3','fieldGoalsMade3','freeThrowsAttempted','freeThrowsMade']:
                     if fields[f] is not None:shot[f]+=fields[f];valid[f]+=1
-                k=key(person.get('name'));p=roster.get(k)
+                k=key({'name':person.get('name'),'playerCode':person.get('code')});p=roster.get(k)
                 # Transfers: old-club observations cannot describe current role.
                 if p and team(p.get('team'))==t:
                     logs[k].append({'gameCode':g['gameCode'],'date':g['start'],'team':t,'opponent':opp,'minutes':minutes,'margin':g['homeScore']-g['awayScore'] if side=='local' else g['awayScore']-g['homeScore'],'height':number(person.get('height')),'weight':number(person.get('weight')),**fields})

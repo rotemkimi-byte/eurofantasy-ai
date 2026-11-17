@@ -45,6 +45,9 @@ jobs:
             git reset --hard origin/main
             python scripts/round_lab.py
             git diff --check
+            python scripts/build_player_identities.py
+            node scripts/audit_player_identities.cjs
+            git add player-identities.js data/player-identities.json data/integrity/player-identities.json
             git add data/round-lab.json
             if git diff --cached --quiet; then exit 0; fi
             git commit -m 'Refresh round bargains and actual-round fantasy squads'
@@ -52,6 +55,8 @@ jobs:
           done
           exit 1
       - uses: actions/configure-pages@v5
+      - name: Reject inconsistent identity data before publication
+        run: node scripts/audit_player_identities.cjs
       - uses: actions/upload-pages-artifact@v4
         with:
           path: '.'

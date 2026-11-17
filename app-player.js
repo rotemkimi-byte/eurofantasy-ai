@@ -56,13 +56,13 @@ function creditHistory(force=false){
  return creditPromise;
 }
 function creditRows(rounds,player){
- const key=U.key(player.name),prices=new Map();
+ const key=U.key(player),prices=new Map();
  let last=0;
  for(const r of rounds){
   const round=Number(r.round);
   if(!Number.isInteger(round)||round<=0)continue;
   last=Math.max(last,round);
-  if(r.priceSource==='pre-round')prices.set(round,U.num(r.players?.find(p=>U.key(p.name)===key)?.price));
+  if(r.priceSource==='pre-round')prices.set(round,U.num(r.players?.find(p=>U.key(p)===key)?.price));
  }
  const rows=Array.from({length:last},(_,i)=>({round:i+1,price:prices.get(i+1)??null}));
  const current=U.num(player.price);

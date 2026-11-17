@@ -27,9 +27,7 @@ def date(v):
     try:return dt.datetime.fromisoformat(str(v).replace('Z','+00:00')).astimezone(dt.timezone.utc)
     except (ValueError,TypeError):return None
 
-def name_key(value):
-    s=''.join(c for c in unicodedata.normalize('NFKD',str(value or '')) if not unicodedata.combining(c)).lower()
-    return ' '.join(sorted(re.findall(r'[a-z0-9]+',s)))
+from player_identity import key as name_key
 
 ALIASES=[('efes','Anadolu Efes'),('armani','Milano'),('milan','Milano'),('besiktas','Besiktas'),('crvena','Crvena Zvezda'),('dubai','Dubai'),('barcelona','Barcelona'),('bayern','Bayern Munich'),('fenerbahce','Fenerbahce'),('hapoel','Hapoel Tel Aviv'),('baskonia','Baskonia'),('asvel','ASVEL'),('maccabi','Maccabi Tel Aviv'),('olympiacos','Olympiacos'),('panathinaikos','Panathinaikos'),('paris','Paris'),('partizan','Partizan'),('real madrid','Real Madrid'),('valencia','Valencia'),('virtus','Virtus Bologna'),('zalgiris','Zalgiris')]
 def team(value):

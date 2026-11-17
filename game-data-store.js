@@ -26,8 +26,7 @@
     return entry.promise;
   };
 
-  const key = name => String(name || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase().match(/[a-z0-9\u0590-\u05ff]+/g)?.sort().join(' ');
+  const key = value => globalThis.PlayerIdentity.key(value);
   let selected = null;
   const creditFormat = new Intl.NumberFormat('he-IL',{maximumFractionDigits:1});
   window.playerToolSelection = {

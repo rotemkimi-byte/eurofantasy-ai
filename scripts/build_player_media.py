@@ -17,7 +17,7 @@ def build(root=ROOT):
                 p=row.get('player') or {};person=p.get('person') or {};name=person.get('name')
                 if not name:continue
                 images=p.get('images') or {};club=p.get('club') or {}
-                players[key(name)]={'name':name,'playerCode':person.get('code'),
+                players[key({'name':name,'playerCode':person.get('code')})]={'name':name,'playerCode':person.get('code'),
                     'photo':safe(images.get('headshot')) or safe(images.get('action')),
                     'club':club.get('name'),'crest':safe((club.get('images') or {}).get('crest')),
                     'source':'https://api-live.euroleague.net/v2/competitions/E/seasons/E2026/games/'+path.name.split('-')[1]+'/stats'}

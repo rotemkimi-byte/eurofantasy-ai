@@ -1,7 +1,8 @@
 (function(root){
 'use strict';
 const num=v=>v===null||v===undefined||v===''||!Number.isFinite(Number(v))?null:Number(v);
-const key=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9 ]/g,' ').split(/\s+/).filter(Boolean).sort().join(' ');
+const identity=typeof module!=='undefined'&&module.exports?require('./player-identity-core.js'):root.PlayerIdentity;
+  const key = value => identity.key(value);
 function events(game){
  const m=game.metrics||{},s=game.stats||{};
  const parts=[s.fieldGoalsAttempted2,s.fieldGoalsAttempted3,s.freeThrowsAttempted,s.turnovers].map(num);

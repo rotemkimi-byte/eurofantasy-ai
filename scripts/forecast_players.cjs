@@ -2,6 +2,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const core = require('../personal-model-core.js');
+const identity=require('../player-identity-core.js');
 const extension = require('../matchup-context-core.js');
 const weighted = require('../weighted-forecast-core.js');
 const crypto = require('node:crypto');
@@ -22,7 +23,7 @@ const matchupContext = load('data/matchup-context.json');
 extension.applyTeams(matches, matchupContext);
 const defense = load('data/position-matchups.json').defense || {};
 const games = load('data/euroleague-live-E2026.json');
-const modelFiles = ['index.html','live.js','roster-live.js','position-matchups.js','matchup-live.js',
+const modelFiles = ['player-identity-core.js','data/player-identities.json','index.html','live.js','roster-live.js','position-matchups.js','matchup-live.js',
   'model-stability.js','personal-model-core.js','personal-model.js','matchup-context-core.js','matchup-context.js','data/player-history.json','weighted-forecast-core.js','weighted-forecast.js','position-defense-core.js','data/learning/position-defense-validation.json'];
 const fingerprint = crypto.createHash('sha256');
 for (const file of modelFiles) if (fs.existsSync(path.join(root, file))) {
@@ -50,7 +51,7 @@ for (const [k, rows] of Object.entries(logs)) {
   logs[k] = rows.filter((g, i) => rows.findIndex(x => x.gameCode === g.gameCode) === i);
 }
 const forecasts = players.filter(p => ['G', 'F', 'C'].includes(p.pos)).map(p => {
-  const k = core.key(p.name), h = history.players?.[k], r = recent[k] ? {...recent[k], gameLog: logs[k] || []} : null;
+  const k = core.key(p), h = identity.lookup(history.players,p), r = identity.recentFromOfficial(identity.lookup(official.players,p),recent[k] ? {...recent[k], gameLog: logs[k] || []} : null);
   const match = matches[p.team] || {teamPoints: Number(p.home) === 1 ? 85.5 : 82.5};
   const positionPct = (Number(defense[match.opponent || p.opponent]?.[p.pos]?.factor || 1) - 1) * 100;
   const teamPct = (Math.max(.92, Math.min(1.08, 1 + (Number(match.teamPoints ?? 84) - 84) * .006)) - 1) * 100;
@@ -67,6 +68,6 @@ const forecasts = players.filter(p => ['G', 'F', 'C'].includes(p.pos)).map(p => 
   }
   return {...p, expectedPir: x.expected, expectedMinutes: x.minutes,
     detail: {reason: x.source, teamMatchPct: teamPct, positionMatchPct: positionPct,
-      ...context, personalPrior: x.personalPrior}};
+      ...context, personalPrior: x.personalPrior, dataQuality:x.dataQuality}};
 });
 console.log(JSON.stringify({model: 'shared-personal-model-v1', predictions: forecasts}));

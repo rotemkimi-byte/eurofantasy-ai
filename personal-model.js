@@ -23,6 +23,8 @@
       await fetch('./data/euroleague-live-E2026.json', requestOptions()) : null;
     if (response?.ok) gameData = await response.json();
   } catch (error) { console.warn('Momentum game log unavailable', error); }
+  let official=null;
+  try {const response=await fetch('./data/official-offense.json',requestOptions());if(response.ok){const d=await response.json();if(d.season==='E2026')official=d;}}catch(error){console.warn('Official form recovery unavailable',error);}
   const logs = {};
   if (gameData?.season === 'E2026') for (const game of Object.values(gameData.games || {})) {
     for (const row of game.rows || []) {
@@ -37,9 +39,9 @@
   }
   window.__playerHistory = history;
   model = function (p) {
-    const x = previous(p), k = PersonalForecast.key(p.name);
-    const recent = byKey[k] ? {...byKey[k], gameLog: logs[k] || []} : null;
-    const h = history?.players?.[k];
+    const x = previous(p), k = PersonalForecast.key(p);
+    const recent = window.PlayerIdentity.recentFromOfficial(window.PlayerIdentity.lookup(official?.players,p),byKey[k] ? {...byKey[k], gameLog: logs[k] || []} : null);
+    const h = window.PlayerIdentity.lookup(history?.players,p);
     const injury = PersonalForecast.opportunity(p, players);
     Object.assign(x, injury);
     const position = window.__positionDefense?.[PersonalForecast.team(x.match?.opponent || p.opponent)]?.[p.pos];

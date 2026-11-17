@@ -54,7 +54,7 @@ function evaluate(player,x,weights,overrides={}){
 }
 // Historical inputs are isolated from today's status, opponent and availability.
 function historical(player,game,snapshot,logs=[]){
- const key=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9 ]/g,' ').split(/\s+/).filter(Boolean).sort().join(' ');
+ const key = value => (typeof module!=='undefined'&&module.exports?require('./player-identity-core.js'):root.PlayerIdentity).key(value);
  const when=Date.parse(snapshot?.created_at),kickoff=Date.parse(game.date||game.start);
  const saved=snapshot?.season==='E2026'&&Number(snapshot.gameCode)===Number(game.gameCode)&&when<kickoff?snapshot.predictions?.find(p=>key(p.name)===key(player.name)&&p.team===(game.team||player.team)):null;
  if(!saved)return {missing:true,actual:game.valuation??game.pir,actualMinutes:game.minutes};

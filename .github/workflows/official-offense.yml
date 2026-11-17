@@ -93,6 +93,9 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python scripts/build_player_identities.py
+          node scripts/audit_player_identities.cjs
+          git add player-identities.js data/player-identities.json data/integrity/player-identities.json
           git add data/position-matchups.json data/performance-history.json data/official-offense.json data/player-media.json data/advanced-players.json data/team-dna-events.json data/player-dna-events.json data/context/E2026-schedule.json data/risk-profile.json
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh player metrics from official EuroLeague box scores'
@@ -103,6 +106,8 @@ jobs:
             if [ "${pushed:-no}" != yes ]; then exit 1; fi
           fi
       - uses: actions/configure-pages@v5
+      - name: Reject inconsistent identity data before publication
+        run: node scripts/audit_player_identities.cjs
       - uses: actions/upload-pages-artifact@v4
         with:
           path: '.'

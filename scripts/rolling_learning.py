@@ -7,7 +7,7 @@ ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'data/learning'
 
 def engine_id():
-    names=['personal-model-core.js','matchup-context-core.js','personal-model.js','scripts/fantasy_learning.py','scripts/replay-engine.cjs','rolling-learning.js']
+    names=['player-identity-core.js','data/player-identities.json','personal-model-core.js','matchup-context-core.js','personal-model.js','scripts/fantasy_learning.py','scripts/replay-engine.cjs','rolling-learning.js']
     return hashlib.sha256(b''.join(n.encode()+(ROOT/n).read_bytes() for n in names)).hexdigest()[:20]
 
 def quantile(values,p=.8):

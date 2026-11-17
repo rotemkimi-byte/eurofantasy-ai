@@ -3,7 +3,8 @@
 'use strict';
 const num=v=>v==null||v===''||!Number.isFinite(Number(v))?null:Number(v);
 const clip=(v,a,b)=>Math.max(a,Math.min(b,v));
-const key=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim().split(/\s+/).sort().join(' ');
+const identity=typeof module!=='undefined'&&module.exports?require('./player-identity-core.js'):root.PlayerIdentity;
+  const key = value => identity.key(value);
 function cdf(x){const z=Math.abs(x)/Math.sqrt(2),t=1/(1+.3275911*z);const erf=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-.284496736)*t+.254829592)*t*Math.exp(-z*z);return .5*(1+(x<0?-erf:erf));}
 function tails(margin,winProb=null){const normalWin=1-cdf(-margin/11.5),p=num(winProb);return {win:(1-cdf((15-margin)/11.5))*(p==null?1:p/normalWin),loss:cdf((-15-margin)/11.5)*(p==null?1:(1-p)/(1-normalWin))};}
 function valid(data,now=Date.now()){
@@ -11,7 +12,7 @@ function valid(data,now=Date.now()){
 }
 function project(x,p,data,now=Date.now()){
  const y={...x};if(!valid(data,now)||p.status==='out'||!['G','F','C'].includes(p.pos))return y;
- const profile=data.players?.[key(p.name)],opp=x.match?.opponent||p.opponent,defense=data.defense?.[opp];
+ const profile=data.players?.[key(p)],opp=x.match?.opponent||p.opponent,defense=data.defense?.[opp];
  const margin=num(x.match?.margin)||0;const tail=tails(margin,x.match?.winProb);let baseMin=num(x.minutes)||0;
  if(baseMin<=0)return y;
  // The base model already reduces expensive-player minutes at margin >= 10.
@@ -57,7 +58,7 @@ function rosterMatches(info, roster, team){
  const missing=rows.filter(p=>['out','questionable'].includes(p.status));
  const saved=info?.availability?.missing;
  if(!Array.isArray(saved)||missing.length!==saved.length)return false;
- return missing.every(p=>saved.some(m=>key(m.name)===key(p.name)&&m.status===p.status&&
+ return missing.every(p=>saved.some(m=>key(m.name)===key(p)&&m.status===p.status&&
   Math.abs((num(m.missingProbability)??0)-(p.status==='out'?1:1-clip(num(p.probability_of_playing)??.5,0,1)))<.001));
 }
 const matchFields=['margin','winProb','teamPoints','p20','p11_20','p1_10','l1_10','l11_20','l20','source'];

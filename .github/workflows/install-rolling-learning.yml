@@ -80,6 +80,9 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python scripts/build_player_identities.py
+          node scripts/audit_player_identities.cjs
+          git add player-identities.js data/player-identities.json data/integrity/player-identities.json
           git add index.html rolling-learning.js rolling-model-version.js learning-model-version.js scripts/rolling_learning.py scripts/replay-engine.cjs scripts/snapshot_replay.py tests/test_rolling_learning.py tests/test_replay.cjs tests/test_capture.cjs data/learning data/backtest/cache
           if ! git diff --cached --quiet; then
             git commit -m 'Add chronological replay diagnostics complete-input capture and guarded calibration'
@@ -90,6 +93,8 @@ jobs:
             if [ "${pushed:-no}" != yes ]; then exit 1; fi
           fi
       - uses: actions/configure-pages@v5
+      - name: Reject inconsistent identity data before publication
+        run: node scripts/audit_player_identities.cjs
       - uses: actions/upload-pages-artifact@v4
         with:
           path: '.'

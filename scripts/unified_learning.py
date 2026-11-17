@@ -10,7 +10,7 @@ from pathlib import Path
 from fantasy_learning import ROOT, OUT, actuals, canon, date, key, load, num, save
 from rolling_learning import input_ok
 
-SOURCES = ('unified-forecast-core.js', 'weighted-forecast-core.js', 'personal-model-core.js',
+SOURCES = ('player-identity-core.js','data/player-identities.json','unified-forecast-core.js', 'weighted-forecast-core.js', 'personal-model-core.js',
            'personal-model.js', 'model-stability.js', 'matchup-context-core.js',
            'advanced-player-core.js', 'weighted-forecast.js', 'scripts/snapshot_live_model.py',
            'matchup-context.js', 'learning.js', 'rolling-learning.js', 'scripts/unified-replay.cjs',

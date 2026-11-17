@@ -24,6 +24,9 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python scripts/build_player_identities.py
+          node scripts/audit_player_identities.cjs
+          git add player-identities.js data/player-identities.json data/integrity/player-identities.json
           git add data/position-matchups.json
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh E2026 position defense'

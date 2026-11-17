@@ -36,7 +36,7 @@ class RollingTests(unittest.TestCase):
     def test_partial_replay_cannot_activate(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);out=root/'data/learning';out.mkdir(parents=True)
-            for name in ['personal-model-core.js','matchup-context-core.js','personal-model.js','scripts/fantasy_learning.py','scripts/replay-engine.cjs','rolling-learning.js']:
+            for name in ['player-identities.js','player-identity-core.js','data/player-identities.json','personal-model-core.js','matchup-context-core.js','personal-model.js','scripts/fantasy_learning.py','scripts/replay-engine.cjs','rolling-learning.js']:
                 target=root/name;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(rolling.ROOT/name,target)
             rows=self.sample();schedule={}
             for r in rows:

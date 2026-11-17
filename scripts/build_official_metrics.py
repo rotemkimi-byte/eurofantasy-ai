@@ -113,7 +113,7 @@ def build(root=ROOT,offline=False,replay=None):
                 p=r.get('player') or {};person=p.get('person') or {};stats=r.get('stats') or {};name=person.get('name');secs=number(stats.get('timePlayed'))
                 if not name or secs is None:continue
                 club=team((g.get(side) or {}).get('club',{}).get('name'))
-                profile=profiles.setdefault(key(name),{'name':name,'playerCode':person.get('code'),'games':[]})
+                profile=profiles.setdefault(key({"name":name,"playerCode":person.get("code")}),{'name':name,'playerCode':person.get('code'),'games':[]})
                 profile['games'].append({'gameCode':code,'date':date.isoformat(),'round':g.get('roundNumber') or (g.get('round') if isinstance(g.get('round'),int) else (g.get('round') or {}).get('round')),'team':club,
                   'opponent':team((g.get(other) or {}).get('club',{}).get('name')),'home':side=='local',
                   'position':p.get('position'),'positionName':p.get('positionName'),'minutes':secs/60,

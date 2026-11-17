@@ -49,7 +49,7 @@ function prepare(official, advanced, asOf, options = {}) {
  const teamModel = D.build(teamData, context.events, T, asOf, options.teamEvents);
  const byName = new Map();
  for (const record of context.players.values()) {
-  const key = D.key(record.name);
+  const key = D.key(record);
   if (!byName.has(key)) byName.set(key, []);
   byName.get(key).push(record);
  }
@@ -71,7 +71,7 @@ function reportFor(data, record, team, position) {
 }
 
 function describe(data, player, fixture, forecast) {
- const record = data.byName.get(D.key(player.name));
+ const record = data.byName.get(D.key(player));
  const p = record?.length === 1 ? record[0] : {id:null};
  const report = reportFor(data, p, player.team, player.pos);
  const {games, stats} = report;

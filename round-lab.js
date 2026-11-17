@@ -5,7 +5,7 @@ const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const num=v=>v===null||v===undefined||v===''||!Number.isFinite(Number(v))?null:Number(v);
 const fmt=v=>num(v)===null?'—':Number(v).toFixed(1);
-const key=s=>String(s||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().match(/[a-z0-9]+/g)?.sort().join(' ')||'';
+const key = value => globalThis.PlayerIdentity.key(value);
 function bargainRows(report,{min=0,max=9.9,minPir=15,pos='',sort='points',current=false}={}){
  return (report?.players||[]).filter(p=>['G','F','C'].includes(p.pos)&&p.played&&num(p.pir)!==null&&p.pir>=minPir&&(!pos||p.pos===pos)&&num(current?p.currentPrice:p.price)!==null&&(current?p.currentPrice:p.price)>=min&&(current?p.currentPrice:p.price)<=max).slice().sort((a,b)=>sort==='price'?(current?a.currentPrice-b.currentPrice:a.price-b.price)||b.points-a.points:sort==='ratio'?b.points/(current?b.currentPrice:b.price)-a.points/(current?a.currentPrice:a.price):b[sort]-a[sort]||a.price-b.price||a.name.localeCompare(b.name));
 }
