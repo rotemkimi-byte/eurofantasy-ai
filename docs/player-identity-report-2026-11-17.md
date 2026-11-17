@@ -41,7 +41,7 @@ Baldwin: 11 appearances, 13.82 PIR, 23.86 minutes. Horton-Tucker: 11 appearances
 - Every scheduled data writer rebuilds the registry and emits an integrity report before commit. Scheduled Pages uploads validate again after rebasing. A dedicated identity workflow validates deterministic generation, corruption guards, core regressions and mobile browser acceptance before deployment.
 - Report covers duplicate official/fantasy IDs, ambiguous aliases, official ID/name conflicts, wrong photos, source-appearance reconciliation, mismatched advanced minutes/team, active players with existing games but missing form, and unjustified price fallbacks. Missing current records/photos remain warnings.
 - Removed the scheduled heredoc that rewrote recent-form.js with an obsolete independent matcher. Scheduled backtesting and recent-form generation import the same Python identity adapter.
-- Local: 23 Node regression suites passed, 30 Python tests passed, personal-model tests passed, all workflow YAML parsed, git diff --check passed.
+- Local: 26 Node regression suites passed, 30 Python tests passed, personal-model tests passed, all workflow YAML parsed, git diff --check passed.
 - Local real-browser test execution is unavailable: Chromium cannot create its required Unix socket in this executor, and the connected browser cannot access the executor loopback. Browser suites are configured in GitHub Actions; their final result and deployment status will be reported separately.
 
 ## Forecast comparison
@@ -202,3 +202,5 @@ Baldwin: 11 appearances, 13.82 PIR, 23.86 minutes. Horton-Tucker: 11 appearances
 - `usage-core.js`
 - `usage-ui.js`
 - `weighted-forecast-core.js`
+
+CI follow-up: updated the isolated algorithm UI harness to load the shared identity dependency and made the round-lab Python adapter importable when tests load it by file path. These isolated entry points now pass locally.

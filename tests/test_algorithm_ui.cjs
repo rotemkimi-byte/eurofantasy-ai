@@ -25,6 +25,7 @@ const snapshot=code=>({season:'E2026',gameCode:code,created_at:`2026-10-${10+cod
 let missing=false;
 const context={document,console,Map,Set,Date,Number,String,JSON,Math,AbortSignal,setTimeout,clearTimeout,players:[player,{...player,name:'Teammate',price:10},{...player,name:'Other Team Player',team:'Team B'}],model,localStorage:{getItem(){return null},setItem(){}},fetch:async url=>({ok:!missing,json:async()=>url.includes('snapshots')?snapshot(Number(url.match(/E2026-(\d+)/)[1])):url.includes('official-offense')?{schema:'official-offense-v1',season:'E2026',players:{}}:{data:[]}})};
 context.window=context;context.window.scrollTo=()=>{};context.__rollingReady=true;context.__matchupContextData={players:{test:{name:player.name,logs:games}}};
+context.PlayerIdentity=require('../player-identity-core.js');
 vm.createContext(context);vm.runInContext(fs.readFileSync('algorithm-core.js','utf8'),context);
 const settle=async()=>{for(let i=0;i<12;i++)await new Promise(r=>setTimeout(r,0));};
 (async()=>{

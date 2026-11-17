@@ -27,6 +27,8 @@ def date(v):
     try:return dt.datetime.fromisoformat(str(v).replace('Z','+00:00')).astimezone(dt.timezone.utc)
     except (ValueError,TypeError):return None
 
+import sys
+sys.path.insert(0,str(Path(__file__).resolve().parent))
 from player_identity import key as name_key
 
 ALIASES=[('efes','Anadolu Efes'),('armani','Milano'),('milan','Milano'),('besiktas','Besiktas'),('crvena','Crvena Zvezda'),('dubai','Dubai'),('barcelona','Barcelona'),('bayern','Bayern Munich'),('fenerbahce','Fenerbahce'),('hapoel','Hapoel Tel Aviv'),('baskonia','Baskonia'),('asvel','ASVEL'),('maccabi','Maccabi Tel Aviv'),('olympiacos','Olympiacos'),('panathinaikos','Panathinaikos'),('paris','Paris'),('partizan','Partizan'),('real madrid','Real Madrid'),('valencia','Valencia'),('virtus','Virtus Bologna'),('zalgiris','Zalgiris')]
