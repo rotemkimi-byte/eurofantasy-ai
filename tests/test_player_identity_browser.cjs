@@ -23,7 +23,9 @@ const server=http.createServer((req,res)=>{const file=path.resolve(root,'.'+deco
   for(const tool of ['playerBoxScore','playerNegative','playerShots','playerPlusMinus','playerLineups']){
    await page.evaluate(tool=>document.querySelector('nav.tabs [data-tab="'+tool+'"]').click(),tool);
    const section=page.locator('#'+tool);await section.locator('[data-refresh]:enabled').waitFor();
-   await section.locator('[data-player]').selectOption(id);
+   const picker=section.locator('[data-player]');
+   if(!await picker.isVisible())await section.locator('[data-back]').click();
+   await picker.selectOption(id);
    assert.equal(await section.locator('[data-player] option[value="'+id+'"]').count(),1,p.name+' unique option');
    assert.equal(await section.locator('[data-player] option[value^="market:"]').evaluateAll((opts,name)=>opts.filter(o=>o.textContent.includes(name)).length,p.name),0);
    const text=await section.locator('[data-output]').textContent();assert(!text.includes('אין עדיין נתוני משחק לשחקן בעונה הנוכחית'),p.name+' '+tool);
