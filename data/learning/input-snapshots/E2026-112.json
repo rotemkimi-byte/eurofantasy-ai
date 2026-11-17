@@ -1,8 +1,8 @@
 {
   "schema": "frozen-replay-input-v1",
   "season": "E2026",
-  "created_at": "2026-11-17T16:17:26.237750+00:00",
-  "engineId": "3cdc89e6f4daae3588fb",
+  "created_at": "2026-11-17T17:00:11.722147+00:00",
+  "engineId": "c8f2dc7e3420e0902b28",
   "gameCode": 112,
   "predictions": [
     {
@@ -21,7 +21,7 @@
           "fantasy_id": 11549,
           "jerseyNumber": "17",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.641697+00:00",
+          "data_updated": "2026-11-17T16:49:31.656200+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 16.3
@@ -69,8 +69,8 @@
         "context": {
           "injuryBoost": 0.049999999999999996,
           "injuryUsagePct": 0.0857142857142857,
-          "margin": 8.0797,
-          "teamPct": 3.191910000000009,
+          "margin": 8.3297,
+          "teamPct": 3.2669100000000117,
           "positionPct": 12.00000000000001
         },
         "config": {
@@ -79,21 +79,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.810Z",
+        "asOf": "2026-11-17T17:00:08.944Z",
         "complete": true,
         "match": {
           "opponent": "Bayern Munich",
           "home": true,
-          "margin": 8.0797,
+          "margin": 8.3297,
           "total": 170.56,
-          "teamPoints": 89.31985,
-          "winProb": 0.7543940967868881,
-          "p20": 0.14909426123193384,
-          "p11_20": 0.28205547969337885,
-          "p1_10": 0.32324435586157535,
-          "l1_10": 0.1865787539370166,
-          "l11_20": 0.051583458372641416,
-          "l20": 0.007443690903453917,
+          "teamPoints": 89.44485,
+          "winProb": 0.7607705916044264,
+          "p20": 0.15412702153266028,
+          "p11_20": 0.28536204770396867,
+          "p1_10": 0.32128152236779745,
+          "l1_10": 0.18261386848110625,
+          "l11_20": 0.04959448288833144,
+          "l20": 0.007021057026135881,
           "sampleGames": 53,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -225,16 +225,16 @@
             "home": true,
             "baseMargin": 7.59,
             "strengthDelta": 0.7497,
-            "rosterDelta": -0.26,
-            "margin": 8.0797,
-            "rawWinProb": 0.7543940967868881,
-            "winProb": 0.7543940967868881
+            "rosterDelta": -0.01,
+            "margin": 8.3297,
+            "rawWinProb": 0.7607705916044264,
+            "winProb": 0.7607705916044264
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "jonas valanciunas": {
               "name": "Jonas Valanciunas",
@@ -527,9 +527,18 @@
           "teams": {
             "Bayern Munich": {
               "availability": {
-                "missing": [],
-                "marginPenalty": 0,
-                "available": 18,
+                "missing": [
+                  {
+                    "name": "Vladimir Lucic",
+                    "status": "questionable",
+                    "missingProbability": 0.75,
+                    "avgMinutes": 18.54,
+                    "sampleGames": 11,
+                    "impactProxy": 0.25
+                  }
+                ],
+                "marginPenalty": 0.25,
+                "available": 17,
                 "rosterCount": 18
               },
               "rating": -5.823525335660025,
@@ -676,10 +685,10 @@
               "home": false,
               "baseMargin": -7.59,
               "strengthDelta": -0.7497,
-              "rosterDelta": 0.26,
-              "margin": -8.0797,
-              "rawWinProb": 0.24560590321311196,
-              "winProb": 0.24560590321311196
+              "rosterDelta": 0.01,
+              "margin": -8.3297,
+              "rawWinProb": 0.2392294083955737,
+              "winProb": 0.2392294083955737
             }
           }
         }
@@ -701,7 +710,7 @@
           "fantasy_id": 7221,
           "jerseyNumber": "10",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.641796+00:00",
+          "data_updated": "2026-11-17T16:49:31.656291+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 18.3
@@ -782,8 +791,8 @@
         "context": {
           "injuryBoost": 0.04875,
           "injuryUsagePct": 0.08357142857142857,
-          "margin": 8.0797,
-          "teamPct": 3.191910000000009,
+          "margin": 8.3297,
+          "teamPct": 3.2669100000000117,
           "positionPct": 9.144768420428239
         },
         "config": {
@@ -792,21 +801,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.815Z",
+        "asOf": "2026-11-17T17:00:08.964Z",
         "complete": true,
         "match": {
           "opponent": "Bayern Munich",
           "home": true,
-          "margin": 8.0797,
+          "margin": 8.3297,
           "total": 170.56,
-          "teamPoints": 89.31985,
-          "winProb": 0.7543940967868881,
-          "p20": 0.14909426123193384,
-          "p11_20": 0.28205547969337885,
-          "p1_10": 0.32324435586157535,
-          "l1_10": 0.1865787539370166,
-          "l11_20": 0.051583458372641416,
-          "l20": 0.007443690903453917,
+          "teamPoints": 89.44485,
+          "winProb": 0.7607705916044264,
+          "p20": 0.15412702153266028,
+          "p11_20": 0.28536204770396867,
+          "p1_10": 0.32128152236779745,
+          "l1_10": 0.18261386848110625,
+          "l11_20": 0.04959448288833144,
+          "l20": 0.007021057026135881,
           "sampleGames": 53,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -938,16 +947,16 @@
             "home": true,
             "baseMargin": 7.59,
             "strengthDelta": 0.7497,
-            "rosterDelta": -0.26,
-            "margin": 8.0797,
-            "rawWinProb": 0.7543940967868881,
-            "winProb": 0.7543940967868881
+            "rosterDelta": -0.01,
+            "margin": 8.3297,
+            "rawWinProb": 0.7607705916044264,
+            "winProb": 0.7607705916044264
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "azuolas tubelis": {
               "name": "Azuolas Tubelis",
@@ -1240,9 +1249,18 @@
           "teams": {
             "Bayern Munich": {
               "availability": {
-                "missing": [],
-                "marginPenalty": 0,
-                "available": 18,
+                "missing": [
+                  {
+                    "name": "Vladimir Lucic",
+                    "status": "questionable",
+                    "missingProbability": 0.75,
+                    "avgMinutes": 18.54,
+                    "sampleGames": 11,
+                    "impactProxy": 0.25
+                  }
+                ],
+                "marginPenalty": 0.25,
+                "available": 17,
                 "rosterCount": 18
               },
               "rating": -5.823525335660025,
@@ -1389,10 +1407,10 @@
               "home": false,
               "baseMargin": -7.59,
               "strengthDelta": -0.7497,
-              "rosterDelta": 0.26,
-              "margin": -8.0797,
-              "rawWinProb": 0.24560590321311196,
-              "winProb": 0.24560590321311196
+              "rosterDelta": 0.01,
+              "margin": -8.3297,
+              "rawWinProb": 0.2392294083955737,
+              "winProb": 0.2392294083955737
             }
           }
         }
@@ -1414,7 +1432,7 @@
           "fantasy_id": 3899,
           "jerseyNumber": "3",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.641940+00:00",
+          "data_updated": "2026-11-17T16:49:31.656365+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 3.5
@@ -1495,8 +1513,8 @@
         "context": {
           "injuryBoost": 0.12178571428571427,
           "injuryUsagePct": 0.13285714285714284,
-          "margin": 8.0797,
-          "teamPct": 3.191910000000009,
+          "margin": 8.3297,
+          "teamPct": 3.2669100000000117,
           "positionPct": 11.71023746989961
         },
         "config": {
@@ -1505,21 +1523,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.819Z",
+        "asOf": "2026-11-17T17:00:08.985Z",
         "complete": true,
         "match": {
           "opponent": "Bayern Munich",
           "home": true,
-          "margin": 8.0797,
+          "margin": 8.3297,
           "total": 170.56,
-          "teamPoints": 89.31985,
-          "winProb": 0.7543940967868881,
-          "p20": 0.14909426123193384,
-          "p11_20": 0.28205547969337885,
-          "p1_10": 0.32324435586157535,
-          "l1_10": 0.1865787539370166,
-          "l11_20": 0.051583458372641416,
-          "l20": 0.007443690903453917,
+          "teamPoints": 89.44485,
+          "winProb": 0.7607705916044264,
+          "p20": 0.15412702153266028,
+          "p11_20": 0.28536204770396867,
+          "p1_10": 0.32128152236779745,
+          "l1_10": 0.18261386848110625,
+          "l11_20": 0.04959448288833144,
+          "l20": 0.007021057026135881,
           "sampleGames": 53,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -1651,16 +1669,16 @@
             "home": true,
             "baseMargin": 7.59,
             "strengthDelta": 0.7497,
-            "rosterDelta": -0.26,
-            "margin": 8.0797,
-            "rawWinProb": 0.7543940967868881,
-            "winProb": 0.7543940967868881
+            "rosterDelta": -0.01,
+            "margin": 8.3297,
+            "rawWinProb": 0.7607705916044264,
+            "winProb": 0.7607705916044264
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "carsen edwards": {
               "name": "Carsen Edwards",
@@ -1953,9 +1971,18 @@
           "teams": {
             "Bayern Munich": {
               "availability": {
-                "missing": [],
-                "marginPenalty": 0,
-                "available": 18,
+                "missing": [
+                  {
+                    "name": "Vladimir Lucic",
+                    "status": "questionable",
+                    "missingProbability": 0.75,
+                    "avgMinutes": 18.54,
+                    "sampleGames": 11,
+                    "impactProxy": 0.25
+                  }
+                ],
+                "marginPenalty": 0.25,
+                "available": 17,
                 "rosterCount": 18
               },
               "rating": -5.823525335660025,
@@ -2102,10 +2129,10 @@
               "home": false,
               "baseMargin": -7.59,
               "strengthDelta": -0.7497,
-              "rosterDelta": 0.26,
-              "margin": -8.0797,
-              "rawWinProb": 0.24560590321311196,
-              "winProb": 0.24560590321311196
+              "rosterDelta": 0.01,
+              "margin": -8.3297,
+              "rawWinProb": 0.2392294083955737,
+              "winProb": 0.2392294083955737
             }
           }
         }
@@ -2127,7 +2154,7 @@
           "fantasy_id": 7269,
           "jerseyNumber": "50",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.641969+00:00",
+          "data_updated": "2026-11-17T16:49:31.656390+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.4
@@ -2173,10 +2200,10 @@
         },
         "history": null,
         "context": {
-          "injuryBoost": 0,
-          "injuryUsagePct": 0,
-          "margin": -8.0797,
-          "teamPct": -1.6559100000000049,
+          "injuryBoost": 0.0815625,
+          "injuryUsagePct": 0.13982142857142857,
+          "margin": -8.3297,
+          "teamPct": -1.7309099999999966,
           "positionPct": -12
         },
         "config": {
@@ -2185,21 +2212,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.820Z",
+        "asOf": "2026-11-17T17:00:08.991Z",
         "complete": true,
         "match": {
           "opponent": "Zalgiris",
           "home": false,
-          "margin": -8.0797,
+          "margin": -8.3297,
           "total": 170.56,
-          "teamPoints": 81.24015,
-          "winProb": 0.24560590321311196,
-          "p20": 0.007443690903453975,
-          "p11_20": 0.051583458372641375,
-          "p1_10": 0.18657875393701662,
-          "l1_10": 0.3232443558615753,
-          "l11_20": 0.28205547969337896,
-          "l20": 0.14909426123193378,
+          "teamPoints": 81.11515,
+          "winProb": 0.2392294083955737,
+          "p20": 0.007021057026135884,
+          "p11_20": 0.04959448288833146,
+          "p1_10": 0.18261386848110633,
+          "l1_10": 0.3212815223677974,
+          "l11_20": 0.28536204770396856,
+          "l20": 0.15412702153266034,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -2217,9 +2244,18 @@
           },
           "context": {
             "availability": {
-              "missing": [],
-              "marginPenalty": 0,
-              "available": 18,
+              "missing": [
+                {
+                  "name": "Vladimir Lucic",
+                  "status": "questionable",
+                  "missingProbability": 0.75,
+                  "avgMinutes": 18.54,
+                  "sampleGames": 11,
+                  "impactProxy": 0.25
+                }
+              ],
+              "marginPenalty": 0.25,
+              "available": 17,
               "rosterCount": 18
             },
             "rating": -5.823525335660025,
@@ -2366,16 +2402,16 @@
             "home": false,
             "baseMargin": -7.59,
             "strengthDelta": -0.7497,
-            "rosterDelta": 0.26,
-            "margin": -8.0797,
-            "rawWinProb": 0.24560590321311196,
-            "winProb": 0.24560590321311196
+            "rosterDelta": 0.01,
+            "margin": -8.3297,
+            "rawWinProb": 0.2392294083955737,
+            "winProb": 0.2392294083955737
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "austin wiley": {
               "name": "Austin Wiley",
@@ -2782,10 +2818,10 @@
               "home": true,
               "baseMargin": 7.59,
               "strengthDelta": 0.7497,
-              "rosterDelta": -0.26,
-              "margin": 8.0797,
-              "rawWinProb": 0.7543940967868881,
-              "winProb": 0.7543940967868881
+              "rosterDelta": -0.01,
+              "margin": 8.3297,
+              "rawWinProb": 0.7607705916044264,
+              "winProb": 0.7607705916044264
             }
           }
         }
@@ -2807,7 +2843,7 @@
           "fantasy_id": 11504,
           "jerseyNumber": "32",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.641978+00:00",
+          "data_updated": "2026-11-17T16:49:31.656399+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 1.2
@@ -2853,10 +2889,10 @@
         },
         "history": null,
         "context": {
-          "injuryBoost": 0,
-          "injuryUsagePct": 0,
-          "margin": -8.0797,
-          "teamPct": -1.6559100000000049,
+          "injuryBoost": 0.07874999999999997,
+          "injuryUsagePct": 0.13499999999999995,
+          "margin": -8.3297,
+          "teamPct": -1.7309099999999966,
           "positionPct": -12
         },
         "config": {
@@ -2865,21 +2901,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.821Z",
+        "asOf": "2026-11-17T17:00:08.993Z",
         "complete": true,
         "match": {
           "opponent": "Zalgiris",
           "home": false,
-          "margin": -8.0797,
+          "margin": -8.3297,
           "total": 170.56,
-          "teamPoints": 81.24015,
-          "winProb": 0.24560590321311196,
-          "p20": 0.007443690903453975,
-          "p11_20": 0.051583458372641375,
-          "p1_10": 0.18657875393701662,
-          "l1_10": 0.3232443558615753,
-          "l11_20": 0.28205547969337896,
-          "l20": 0.14909426123193378,
+          "teamPoints": 81.11515,
+          "winProb": 0.2392294083955737,
+          "p20": 0.007021057026135884,
+          "p11_20": 0.04959448288833146,
+          "p1_10": 0.18261386848110633,
+          "l1_10": 0.3212815223677974,
+          "l11_20": 0.28536204770396856,
+          "l20": 0.15412702153266034,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -2897,9 +2933,18 @@
           },
           "context": {
             "availability": {
-              "missing": [],
-              "marginPenalty": 0,
-              "available": 18,
+              "missing": [
+                {
+                  "name": "Vladimir Lucic",
+                  "status": "questionable",
+                  "missingProbability": 0.75,
+                  "avgMinutes": 18.54,
+                  "sampleGames": 11,
+                  "impactProxy": 0.25
+                }
+              ],
+              "marginPenalty": 0.25,
+              "available": 17,
               "rosterCount": 18
             },
             "rating": -5.823525335660025,
@@ -3046,16 +3091,16 @@
             "home": false,
             "baseMargin": -7.59,
             "strengthDelta": -0.7497,
-            "rosterDelta": 0.26,
-            "margin": -8.0797,
-            "rawWinProb": 0.24560590321311196,
-            "winProb": 0.24560590321311196
+            "rosterDelta": 0.01,
+            "margin": -8.3297,
+            "rawWinProb": 0.2392294083955737,
+            "winProb": 0.2392294083955737
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "johannes thiemann": {
               "name": "Johannes Thiemann",
@@ -3462,10 +3507,10 @@
               "home": true,
               "baseMargin": 7.59,
               "strengthDelta": 0.7497,
-              "rosterDelta": -0.26,
-              "margin": 8.0797,
-              "rawWinProb": 0.7543940967868881,
-              "winProb": 0.7543940967868881
+              "rosterDelta": -0.01,
+              "margin": 8.3297,
+              "rawWinProb": 0.7607705916044264,
+              "winProb": 0.7607705916044264
             }
           }
         }
@@ -3487,7 +3532,7 @@
           "fantasy_id": 3888,
           "jerseyNumber": "0",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.641992+00:00",
+          "data_updated": "2026-11-17T16:49:31.656411+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 1.9
@@ -3568,8 +3613,8 @@
         "context": {
           "injuryBoost": 0.10607142857142858,
           "injuryUsagePct": 0.11571428571428571,
-          "margin": 8.0797,
-          "teamPct": 3.191910000000009,
+          "margin": 8.3297,
+          "teamPct": 3.2669100000000117,
           "positionPct": 11.71023746989961
         },
         "config": {
@@ -3578,21 +3623,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.822Z",
+        "asOf": "2026-11-17T17:00:08.995Z",
         "complete": true,
         "match": {
           "opponent": "Bayern Munich",
           "home": true,
-          "margin": 8.0797,
+          "margin": 8.3297,
           "total": 170.56,
-          "teamPoints": 89.31985,
-          "winProb": 0.7543940967868881,
-          "p20": 0.14909426123193384,
-          "p11_20": 0.28205547969337885,
-          "p1_10": 0.32324435586157535,
-          "l1_10": 0.1865787539370166,
-          "l11_20": 0.051583458372641416,
-          "l20": 0.007443690903453917,
+          "teamPoints": 89.44485,
+          "winProb": 0.7607705916044264,
+          "p20": 0.15412702153266028,
+          "p11_20": 0.28536204770396867,
+          "p1_10": 0.32128152236779745,
+          "l1_10": 0.18261386848110625,
+          "l11_20": 0.04959448288833144,
+          "l20": 0.007021057026135881,
           "sampleGames": 53,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -3724,16 +3769,16 @@
             "home": true,
             "baseMargin": 7.59,
             "strengthDelta": 0.7497,
-            "rosterDelta": -0.26,
-            "margin": 8.0797,
-            "rawWinProb": 0.7543940967868881,
-            "winProb": 0.7543940967868881
+            "rosterDelta": -0.01,
+            "margin": 8.3297,
+            "rawWinProb": 0.7607705916044264,
+            "winProb": 0.7607705916044264
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "brown sterling": {
               "name": "Sterling Brown",
@@ -4026,9 +4071,18 @@
           "teams": {
             "Bayern Munich": {
               "availability": {
-                "missing": [],
-                "marginPenalty": 0,
-                "available": 18,
+                "missing": [
+                  {
+                    "name": "Vladimir Lucic",
+                    "status": "questionable",
+                    "missingProbability": 0.75,
+                    "avgMinutes": 18.54,
+                    "sampleGames": 11,
+                    "impactProxy": 0.25
+                  }
+                ],
+                "marginPenalty": 0.25,
+                "available": 17,
                 "rosterCount": 18
               },
               "rating": -5.823525335660025,
@@ -4175,10 +4229,10 @@
               "home": false,
               "baseMargin": -7.59,
               "strengthDelta": -0.7497,
-              "rosterDelta": 0.26,
-              "margin": -8.0797,
-              "rawWinProb": 0.24560590321311196,
-              "winProb": 0.24560590321311196
+              "rosterDelta": 0.01,
+              "margin": -8.3297,
+              "rawWinProb": 0.2392294083955737,
+              "winProb": 0.2392294083955737
             }
           }
         }
@@ -4200,7 +4254,7 @@
           "fantasy_id": 3806,
           "jerseyNumber": "4",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642086+00:00",
+          "data_updated": "2026-11-17T16:49:31.656497+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 1.6
@@ -4279,10 +4333,10 @@
           ]
         },
         "context": {
-          "injuryBoost": 0,
-          "injuryUsagePct": 0,
-          "margin": -8.0797,
-          "teamPct": -1.6559100000000049,
+          "injuryBoost": 0.06328124999999998,
+          "injuryUsagePct": 0.10848214285714283,
+          "margin": -8.3297,
+          "teamPct": -1.7309099999999966,
           "positionPct": -5.369807778416524
         },
         "config": {
@@ -4291,21 +4345,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.826Z",
+        "asOf": "2026-11-17T17:00:09.011Z",
         "complete": true,
         "match": {
           "opponent": "Zalgiris",
           "home": false,
-          "margin": -8.0797,
+          "margin": -8.3297,
           "total": 170.56,
-          "teamPoints": 81.24015,
-          "winProb": 0.24560590321311196,
-          "p20": 0.007443690903453975,
-          "p11_20": 0.051583458372641375,
-          "p1_10": 0.18657875393701662,
-          "l1_10": 0.3232443558615753,
-          "l11_20": 0.28205547969337896,
-          "l20": 0.14909426123193378,
+          "teamPoints": 81.11515,
+          "winProb": 0.2392294083955737,
+          "p20": 0.007021057026135884,
+          "p11_20": 0.04959448288833146,
+          "p1_10": 0.18261386848110633,
+          "l1_10": 0.3212815223677974,
+          "l11_20": 0.28536204770396856,
+          "l20": 0.15412702153266034,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -4323,9 +4377,18 @@
           },
           "context": {
             "availability": {
-              "missing": [],
-              "marginPenalty": 0,
-              "available": 18,
+              "missing": [
+                {
+                  "name": "Vladimir Lucic",
+                  "status": "questionable",
+                  "missingProbability": 0.75,
+                  "avgMinutes": 18.54,
+                  "sampleGames": 11,
+                  "impactProxy": 0.25
+                }
+              ],
+              "marginPenalty": 0.25,
+              "available": 17,
               "rosterCount": 18
             },
             "rating": -5.823525335660025,
@@ -4472,16 +4535,16 @@
             "home": false,
             "baseMargin": -7.59,
             "strengthDelta": -0.7497,
-            "rosterDelta": 0.26,
-            "margin": -8.0797,
-            "rawWinProb": 0.24560590321311196,
-            "winProb": 0.24560590321311196
+            "rosterDelta": 0.01,
+            "margin": -8.3297,
+            "rawWinProb": 0.2392294083955737,
+            "winProb": 0.2392294083955737
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "duane washington": {
               "name": "Duane Washington",
@@ -4864,10 +4927,10 @@
               "home": true,
               "baseMargin": 7.59,
               "strengthDelta": 0.7497,
-              "rosterDelta": -0.26,
-              "margin": 8.0797,
-              "rawWinProb": 0.7543940967868881,
-              "winProb": 0.7543940967868881
+              "rosterDelta": -0.01,
+              "margin": 8.3297,
+              "rawWinProb": 0.7607705916044264,
+              "winProb": 0.7607705916044264
             }
           }
         }
@@ -4885,11 +4948,11 @@
           "price": 9.5,
           "opponent": "Zalgiris",
           "home": 0,
-          "status": "active",
+          "status": "questionable",
           "fantasy_id": 3859,
           "jerseyNumber": "11",
-          "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642090+00:00",
+          "probability_of_playing": 0.25,
+          "data_updated": "2026-11-17T16:49:31.656500+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 1.5
@@ -4970,8 +5033,8 @@
         "context": {
           "injuryBoost": 0,
           "injuryUsagePct": 0,
-          "margin": -8.0797,
-          "teamPct": -1.6559100000000049,
+          "margin": -8.3297,
+          "teamPct": -1.7309099999999966,
           "positionPct": 2.3196114279440128
         },
         "config": {
@@ -4980,21 +5043,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.826Z",
+        "asOf": "2026-11-17T17:00:09.011Z",
         "complete": true,
         "match": {
           "opponent": "Zalgiris",
           "home": false,
-          "margin": -8.0797,
+          "margin": -8.3297,
           "total": 170.56,
-          "teamPoints": 81.24015,
-          "winProb": 0.24560590321311196,
-          "p20": 0.007443690903453975,
-          "p11_20": 0.051583458372641375,
-          "p1_10": 0.18657875393701662,
-          "l1_10": 0.3232443558615753,
-          "l11_20": 0.28205547969337896,
-          "l20": 0.14909426123193378,
+          "teamPoints": 81.11515,
+          "winProb": 0.2392294083955737,
+          "p20": 0.007021057026135884,
+          "p11_20": 0.04959448288833146,
+          "p1_10": 0.18261386848110633,
+          "l1_10": 0.3212815223677974,
+          "l11_20": 0.28536204770396856,
+          "l20": 0.15412702153266034,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -5012,9 +5075,18 @@
           },
           "context": {
             "availability": {
-              "missing": [],
-              "marginPenalty": 0,
-              "available": 18,
+              "missing": [
+                {
+                  "name": "Vladimir Lucic",
+                  "status": "questionable",
+                  "missingProbability": 0.75,
+                  "avgMinutes": 18.54,
+                  "sampleGames": 11,
+                  "impactProxy": 0.25
+                }
+              ],
+              "marginPenalty": 0.25,
+              "available": 17,
               "rosterCount": 18
             },
             "rating": -5.823525335660025,
@@ -5161,16 +5233,16 @@
             "home": false,
             "baseMargin": -7.59,
             "strengthDelta": -0.7497,
-            "rosterDelta": 0.26,
-            "margin": -8.0797,
-            "rawWinProb": 0.24560590321311196,
-            "winProb": 0.24560590321311196
+            "rosterDelta": 0.01,
+            "margin": -8.3297,
+            "rawWinProb": 0.2392294083955737,
+            "winProb": 0.2392294083955737
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "lucic vladimir": {
               "name": "Vladimir Lucic",
@@ -5577,10 +5649,10 @@
               "home": true,
               "baseMargin": 7.59,
               "strengthDelta": 0.7497,
-              "rosterDelta": -0.26,
-              "margin": 8.0797,
-              "rawWinProb": 0.7543940967868881,
-              "winProb": 0.7543940967868881
+              "rosterDelta": -0.01,
+              "margin": 8.3297,
+              "rawWinProb": 0.7607705916044264,
+              "winProb": 0.7607705916044264
             }
           }
         }
@@ -5602,7 +5674,7 @@
           "fantasy_id": 3946,
           "jerseyNumber": "13",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642130+00:00",
+          "data_updated": "2026-11-17T16:49:31.656537+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 2
@@ -5681,10 +5753,10 @@
           ]
         },
         "context": {
-          "injuryBoost": 0,
-          "injuryUsagePct": 0,
-          "margin": -8.0797,
-          "teamPct": -1.6559100000000049,
+          "injuryBoost": 0.05906249999999998,
+          "injuryUsagePct": 0.10124999999999997,
+          "margin": -8.3297,
+          "teamPct": -1.7309099999999966,
           "positionPct": -5.369807778416524
         },
         "config": {
@@ -5693,21 +5765,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.828Z",
+        "asOf": "2026-11-17T17:00:09.018Z",
         "complete": true,
         "match": {
           "opponent": "Zalgiris",
           "home": false,
-          "margin": -8.0797,
+          "margin": -8.3297,
           "total": 170.56,
-          "teamPoints": 81.24015,
-          "winProb": 0.24560590321311196,
-          "p20": 0.007443690903453975,
-          "p11_20": 0.051583458372641375,
-          "p1_10": 0.18657875393701662,
-          "l1_10": 0.3232443558615753,
-          "l11_20": 0.28205547969337896,
-          "l20": 0.14909426123193378,
+          "teamPoints": 81.11515,
+          "winProb": 0.2392294083955737,
+          "p20": 0.007021057026135884,
+          "p11_20": 0.04959448288833146,
+          "p1_10": 0.18261386848110633,
+          "l1_10": 0.3212815223677974,
+          "l11_20": 0.28536204770396856,
+          "l20": 0.15412702153266034,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -5725,9 +5797,18 @@
           },
           "context": {
             "availability": {
-              "missing": [],
-              "marginPenalty": 0,
-              "available": 18,
+              "missing": [
+                {
+                  "name": "Vladimir Lucic",
+                  "status": "questionable",
+                  "missingProbability": 0.75,
+                  "avgMinutes": 18.54,
+                  "sampleGames": 11,
+                  "impactProxy": 0.25
+                }
+              ],
+              "marginPenalty": 0.25,
+              "available": 17,
               "rosterCount": 18
             },
             "rating": -5.823525335660025,
@@ -5874,16 +5955,16 @@
             "home": false,
             "baseMargin": -7.59,
             "strengthDelta": -0.7497,
-            "rosterDelta": 0.26,
-            "margin": -8.0797,
-            "rawWinProb": 0.24560590321311196,
-            "winProb": 0.24560590321311196
+            "rosterDelta": 0.01,
+            "margin": -8.3297,
+            "rawWinProb": 0.2392294083955737,
+            "winProb": 0.2392294083955737
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "andreas obst": {
               "name": "Andreas Obst",
@@ -6290,10 +6371,10 @@
               "home": true,
               "baseMargin": 7.59,
               "strengthDelta": 0.7497,
-              "rosterDelta": -0.26,
-              "margin": 8.0797,
-              "rawWinProb": 0.7543940967868881,
-              "winProb": 0.7543940967868881
+              "rosterDelta": -0.01,
+              "margin": 8.3297,
+              "rawWinProb": 0.7607705916044264,
+              "winProb": 0.7607705916044264
             }
           }
         }
@@ -6315,7 +6396,7 @@
           "fantasy_id": 11503,
           "jerseyNumber": "3",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642150+00:00",
+          "data_updated": "2026-11-17T16:49:31.656556+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.3
@@ -6361,10 +6442,10 @@
         },
         "history": null,
         "context": {
-          "injuryBoost": 0,
-          "injuryUsagePct": 0,
-          "margin": -8.0797,
-          "teamPct": -1.6559100000000049,
+          "injuryBoost": 0.1767857142857143,
+          "injuryUsagePct": 0.19285714285714284,
+          "margin": -8.3297,
+          "teamPct": -1.7309099999999966,
           "positionPct": 2.3196114279440128
         },
         "config": {
@@ -6373,21 +6454,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.829Z",
+        "asOf": "2026-11-17T17:00:09.023Z",
         "complete": true,
         "match": {
           "opponent": "Zalgiris",
           "home": false,
-          "margin": -8.0797,
+          "margin": -8.3297,
           "total": 170.56,
-          "teamPoints": 81.24015,
-          "winProb": 0.24560590321311196,
-          "p20": 0.007443690903453975,
-          "p11_20": 0.051583458372641375,
-          "p1_10": 0.18657875393701662,
-          "l1_10": 0.3232443558615753,
-          "l11_20": 0.28205547969337896,
-          "l20": 0.14909426123193378,
+          "teamPoints": 81.11515,
+          "winProb": 0.2392294083955737,
+          "p20": 0.007021057026135884,
+          "p11_20": 0.04959448288833146,
+          "p1_10": 0.18261386848110633,
+          "l1_10": 0.3212815223677974,
+          "l11_20": 0.28536204770396856,
+          "l20": 0.15412702153266034,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -6405,9 +6486,18 @@
           },
           "context": {
             "availability": {
-              "missing": [],
-              "marginPenalty": 0,
-              "available": 18,
+              "missing": [
+                {
+                  "name": "Vladimir Lucic",
+                  "status": "questionable",
+                  "missingProbability": 0.75,
+                  "avgMinutes": 18.54,
+                  "sampleGames": 11,
+                  "impactProxy": 0.25
+                }
+              ],
+              "marginPenalty": 0.25,
+              "available": 17,
               "rosterCount": 18
             },
             "rating": -5.823525335660025,
@@ -6554,16 +6644,16 @@
             "home": false,
             "baseMargin": -7.59,
             "strengthDelta": -0.7497,
-            "rosterDelta": 0.26,
-            "margin": -8.0797,
-            "rawWinProb": 0.24560590321311196,
-            "winProb": 0.24560590321311196
+            "rosterDelta": 0.01,
+            "margin": -8.3297,
+            "rawWinProb": 0.2392294083955737,
+            "winProb": 0.2392294083955737
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "beauchamp marjon": {
               "name": "Marjon Beauchamp",
@@ -6946,10 +7036,10 @@
               "home": true,
               "baseMargin": 7.59,
               "strengthDelta": 0.7497,
-              "rosterDelta": -0.26,
-              "margin": 8.0797,
-              "rawWinProb": 0.7543940967868881,
-              "winProb": 0.7543940967868881
+              "rosterDelta": -0.01,
+              "margin": 8.3297,
+              "rawWinProb": 0.7607705916044264,
+              "winProb": 0.7607705916044264
             }
           }
         }
@@ -6971,7 +7061,7 @@
           "fantasy_id": 3892,
           "jerseyNumber": "31",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642181+00:00",
+          "data_updated": "2026-11-17T16:49:31.656585+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 1.3
@@ -7017,10 +7107,10 @@
         },
         "history": null,
         "context": {
-          "injuryBoost": 0,
-          "injuryUsagePct": 0,
-          "margin": -8.0797,
-          "teamPct": -1.6559100000000049,
+          "injuryBoost": 0.05203124999999998,
+          "injuryUsagePct": 0.08919642857142854,
+          "margin": -8.3297,
+          "teamPct": -1.7309099999999966,
           "positionPct": -5.369807778416524
         },
         "config": {
@@ -7029,21 +7119,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.831Z",
+        "asOf": "2026-11-17T17:00:09.029Z",
         "complete": true,
         "match": {
           "opponent": "Zalgiris",
           "home": false,
-          "margin": -8.0797,
+          "margin": -8.3297,
           "total": 170.56,
-          "teamPoints": 81.24015,
-          "winProb": 0.24560590321311196,
-          "p20": 0.007443690903453975,
-          "p11_20": 0.051583458372641375,
-          "p1_10": 0.18657875393701662,
-          "l1_10": 0.3232443558615753,
-          "l11_20": 0.28205547969337896,
-          "l20": 0.14909426123193378,
+          "teamPoints": 81.11515,
+          "winProb": 0.2392294083955737,
+          "p20": 0.007021057026135884,
+          "p11_20": 0.04959448288833146,
+          "p1_10": 0.18261386848110633,
+          "l1_10": 0.3212815223677974,
+          "l11_20": 0.28536204770396856,
+          "l20": 0.15412702153266034,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -7061,9 +7151,18 @@
           },
           "context": {
             "availability": {
-              "missing": [],
-              "marginPenalty": 0,
-              "available": 18,
+              "missing": [
+                {
+                  "name": "Vladimir Lucic",
+                  "status": "questionable",
+                  "missingProbability": 0.75,
+                  "avgMinutes": 18.54,
+                  "sampleGames": 11,
+                  "impactProxy": 0.25
+                }
+              ],
+              "marginPenalty": 0.25,
+              "available": 17,
               "rosterCount": 18
             },
             "rating": -5.823525335660025,
@@ -7210,16 +7309,16 @@
             "home": false,
             "baseMargin": -7.59,
             "strengthDelta": -0.7497,
-            "rosterDelta": 0.26,
-            "margin": -8.0797,
-            "rawWinProb": 0.24560590321311196,
-            "winProb": 0.24560590321311196
+            "rosterDelta": 0.01,
+            "margin": -8.3297,
+            "rawWinProb": 0.2392294083955737,
+            "winProb": 0.2392294083955737
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "jokubaitis rokas": {
               "name": "Rokas Jokubaitis",
@@ -7626,10 +7725,10 @@
               "home": true,
               "baseMargin": 7.59,
               "strengthDelta": 0.7497,
-              "rosterDelta": -0.26,
-              "margin": 8.0797,
-              "rawWinProb": 0.7543940967868881,
-              "winProb": 0.7543940967868881
+              "rosterDelta": -0.01,
+              "margin": 8.3297,
+              "rawWinProb": 0.7607705916044264,
+              "winProb": 0.7607705916044264
             }
           }
         }
@@ -7651,7 +7750,7 @@
           "fantasy_id": 3914,
           "jerseyNumber": "1",
           "probability_of_playing": 0,
-          "data_updated": "2026-11-17T10:37:33.642214+00:00",
+          "data_updated": "2026-11-17T16:49:31.656616+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.5
@@ -7732,8 +7831,8 @@
         "context": {
           "injuryBoost": 0,
           "injuryUsagePct": 0,
-          "margin": 8.0797,
-          "teamPct": 3.191910000000009,
+          "margin": 8.3297,
+          "teamPct": 3.2669100000000117,
           "positionPct": 11.71023746989961
         },
         "config": {
@@ -7742,21 +7841,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.832Z",
+        "asOf": "2026-11-17T17:00:09.036Z",
         "complete": true,
         "match": {
           "opponent": "Bayern Munich",
           "home": true,
-          "margin": 8.0797,
+          "margin": 8.3297,
           "total": 170.56,
-          "teamPoints": 89.31985,
-          "winProb": 0.7543940967868881,
-          "p20": 0.14909426123193384,
-          "p11_20": 0.28205547969337885,
-          "p1_10": 0.32324435586157535,
-          "l1_10": 0.1865787539370166,
-          "l11_20": 0.051583458372641416,
-          "l20": 0.007443690903453917,
+          "teamPoints": 89.44485,
+          "winProb": 0.7607705916044264,
+          "p20": 0.15412702153266028,
+          "p11_20": 0.28536204770396867,
+          "p1_10": 0.32128152236779745,
+          "l1_10": 0.18261386848110625,
+          "l11_20": 0.04959448288833144,
+          "l20": 0.007021057026135881,
           "sampleGames": 53,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -7888,16 +7987,16 @@
             "home": true,
             "baseMargin": 7.59,
             "strengthDelta": 0.7497,
-            "rosterDelta": -0.26,
-            "margin": 8.0797,
-            "rawWinProb": 0.7543940967868881,
-            "winProb": 0.7543940967868881
+            "rosterDelta": -0.01,
+            "margin": 8.3297,
+            "rawWinProb": 0.7607705916044264,
+            "winProb": 0.7607705916044264
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "goss nigel williams": {
               "name": "Nigel Williams-Goss",
@@ -7998,9 +8097,18 @@
           "teams": {
             "Bayern Munich": {
               "availability": {
-                "missing": [],
-                "marginPenalty": 0,
-                "available": 18,
+                "missing": [
+                  {
+                    "name": "Vladimir Lucic",
+                    "status": "questionable",
+                    "missingProbability": 0.75,
+                    "avgMinutes": 18.54,
+                    "sampleGames": 11,
+                    "impactProxy": 0.25
+                  }
+                ],
+                "marginPenalty": 0.25,
+                "available": 17,
                 "rosterCount": 18
               },
               "rating": -5.823525335660025,
@@ -8147,10 +8255,10 @@
               "home": false,
               "baseMargin": -7.59,
               "strengthDelta": -0.7497,
-              "rosterDelta": 0.26,
-              "margin": -8.0797,
-              "rawWinProb": 0.24560590321311196,
-              "winProb": 0.24560590321311196
+              "rosterDelta": 0.01,
+              "margin": -8.3297,
+              "rawWinProb": 0.2392294083955737,
+              "winProb": 0.2392294083955737
             }
           }
         }
@@ -8172,7 +8280,7 @@
           "fantasy_id": 3788,
           "jerseyNumber": "34",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642341+00:00",
+          "data_updated": "2026-11-17T16:49:31.656742+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.6
@@ -8253,8 +8361,8 @@
         "context": {
           "injuryBoost": 0.056964285714285724,
           "injuryUsagePct": 0.062142857142857146,
-          "margin": 8.0797,
-          "teamPct": 3.191910000000009,
+          "margin": 8.3297,
+          "teamPct": 3.2669100000000117,
           "positionPct": 11.71023746989961
         },
         "config": {
@@ -8263,21 +8371,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.838Z",
+        "asOf": "2026-11-17T17:00:09.067Z",
         "complete": true,
         "match": {
           "opponent": "Bayern Munich",
           "home": true,
-          "margin": 8.0797,
+          "margin": 8.3297,
           "total": 170.56,
-          "teamPoints": 89.31985,
-          "winProb": 0.7543940967868881,
-          "p20": 0.14909426123193384,
-          "p11_20": 0.28205547969337885,
-          "p1_10": 0.32324435586157535,
-          "l1_10": 0.1865787539370166,
-          "l11_20": 0.051583458372641416,
-          "l20": 0.007443690903453917,
+          "teamPoints": 89.44485,
+          "winProb": 0.7607705916044264,
+          "p20": 0.15412702153266028,
+          "p11_20": 0.28536204770396867,
+          "p1_10": 0.32128152236779745,
+          "l1_10": 0.18261386848110625,
+          "l11_20": 0.04959448288833144,
+          "l20": 0.007021057026135881,
           "sampleGames": 53,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -8409,16 +8517,16 @@
             "home": true,
             "baseMargin": 7.59,
             "strengthDelta": 0.7497,
-            "rosterDelta": -0.26,
-            "margin": 8.0797,
-            "rawWinProb": 0.7543940967868881,
-            "winProb": 0.7543940967868881
+            "rosterDelta": -0.01,
+            "margin": 8.3297,
+            "rawWinProb": 0.7607705916044264,
+            "winProb": 0.7607705916044264
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "evans keenan": {
               "name": "Keenan Evans",
@@ -8567,9 +8675,18 @@
           "teams": {
             "Bayern Munich": {
               "availability": {
-                "missing": [],
-                "marginPenalty": 0,
-                "available": 18,
+                "missing": [
+                  {
+                    "name": "Vladimir Lucic",
+                    "status": "questionable",
+                    "missingProbability": 0.75,
+                    "avgMinutes": 18.54,
+                    "sampleGames": 11,
+                    "impactProxy": 0.25
+                  }
+                ],
+                "marginPenalty": 0.25,
+                "available": 17,
                 "rosterCount": 18
               },
               "rating": -5.823525335660025,
@@ -8716,10 +8833,10 @@
               "home": false,
               "baseMargin": -7.59,
               "strengthDelta": -0.7497,
-              "rosterDelta": 0.26,
-              "margin": -8.0797,
-              "rawWinProb": 0.24560590321311196,
-              "winProb": 0.24560590321311196
+              "rosterDelta": 0.01,
+              "margin": -8.3297,
+              "rawWinProb": 0.2392294083955737,
+              "winProb": 0.2392294083955737
             }
           }
         }
@@ -8741,7 +8858,7 @@
           "fantasy_id": 4670,
           "jerseyNumber": "7",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642348+00:00",
+          "data_updated": "2026-11-17T16:49:31.656748+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.6
@@ -8822,8 +8939,8 @@
         "context": {
           "injuryBoost": 0.056964285714285724,
           "injuryUsagePct": 0.062142857142857146,
-          "margin": 8.0797,
-          "teamPct": 3.191910000000009,
+          "margin": 8.3297,
+          "teamPct": 3.2669100000000117,
           "positionPct": 11.71023746989961
         },
         "config": {
@@ -8832,21 +8949,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.838Z",
+        "asOf": "2026-11-17T17:00:09.068Z",
         "complete": true,
         "match": {
           "opponent": "Bayern Munich",
           "home": true,
-          "margin": 8.0797,
+          "margin": 8.3297,
           "total": 170.56,
-          "teamPoints": 89.31985,
-          "winProb": 0.7543940967868881,
-          "p20": 0.14909426123193384,
-          "p11_20": 0.28205547969337885,
-          "p1_10": 0.32324435586157535,
-          "l1_10": 0.1865787539370166,
-          "l11_20": 0.051583458372641416,
-          "l20": 0.007443690903453917,
+          "teamPoints": 89.44485,
+          "winProb": 0.7607705916044264,
+          "p20": 0.15412702153266028,
+          "p11_20": 0.28536204770396867,
+          "p1_10": 0.32128152236779745,
+          "l1_10": 0.18261386848110625,
+          "l11_20": 0.04959448288833144,
+          "l20": 0.007021057026135881,
           "sampleGames": 53,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -8978,16 +9095,16 @@
             "home": true,
             "baseMargin": 7.59,
             "strengthDelta": 0.7497,
-            "rosterDelta": -0.26,
-            "margin": 8.0797,
-            "rawWinProb": 0.7543940967868881,
-            "winProb": 0.7543940967868881
+            "rosterDelta": -0.01,
+            "margin": 8.3297,
+            "rawWinProb": 0.7607705916044264,
+            "winProb": 0.7607705916044264
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "lee saben": {
               "name": "Saben Lee",
@@ -9232,9 +9349,18 @@
           "teams": {
             "Bayern Munich": {
               "availability": {
-                "missing": [],
-                "marginPenalty": 0,
-                "available": 18,
+                "missing": [
+                  {
+                    "name": "Vladimir Lucic",
+                    "status": "questionable",
+                    "missingProbability": 0.75,
+                    "avgMinutes": 18.54,
+                    "sampleGames": 11,
+                    "impactProxy": 0.25
+                  }
+                ],
+                "marginPenalty": 0.25,
+                "available": 17,
                 "rosterCount": 18
               },
               "rating": -5.823525335660025,
@@ -9381,10 +9507,10 @@
               "home": false,
               "baseMargin": -7.59,
               "strengthDelta": -0.7497,
-              "rosterDelta": 0.26,
-              "margin": -8.0797,
-              "rawWinProb": 0.24560590321311196,
-              "winProb": 0.24560590321311196
+              "rosterDelta": 0.01,
+              "margin": -8.3297,
+              "rawWinProb": 0.2392294083955737,
+              "winProb": 0.2392294083955737
             }
           }
         }
@@ -9406,7 +9532,7 @@
           "fantasy_id": 7203,
           "jerseyNumber": "0",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642358+00:00",
+          "data_updated": "2026-11-17T16:49:31.656757+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.3
@@ -9485,10 +9611,10 @@
           ]
         },
         "context": {
-          "injuryBoost": 0,
-          "injuryUsagePct": 0,
-          "margin": -8.0797,
-          "teamPct": -1.6559100000000049,
+          "injuryBoost": 0.12374999999999999,
+          "injuryUsagePct": 0.13499999999999995,
+          "margin": -8.3297,
+          "teamPct": -1.7309099999999966,
           "positionPct": 2.3196114279440128
         },
         "config": {
@@ -9497,21 +9623,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.839Z",
+        "asOf": "2026-11-17T17:00:09.068Z",
         "complete": true,
         "match": {
           "opponent": "Zalgiris",
           "home": false,
-          "margin": -8.0797,
+          "margin": -8.3297,
           "total": 170.56,
-          "teamPoints": 81.24015,
-          "winProb": 0.24560590321311196,
-          "p20": 0.007443690903453975,
-          "p11_20": 0.051583458372641375,
-          "p1_10": 0.18657875393701662,
-          "l1_10": 0.3232443558615753,
-          "l11_20": 0.28205547969337896,
-          "l20": 0.14909426123193378,
+          "teamPoints": 81.11515,
+          "winProb": 0.2392294083955737,
+          "p20": 0.007021057026135884,
+          "p11_20": 0.04959448288833146,
+          "p1_10": 0.18261386848110633,
+          "l1_10": 0.3212815223677974,
+          "l11_20": 0.28536204770396856,
+          "l20": 0.15412702153266034,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -9529,9 +9655,18 @@
           },
           "context": {
             "availability": {
-              "missing": [],
-              "marginPenalty": 0,
-              "available": 18,
+              "missing": [
+                {
+                  "name": "Vladimir Lucic",
+                  "status": "questionable",
+                  "missingProbability": 0.75,
+                  "avgMinutes": 18.54,
+                  "sampleGames": 11,
+                  "impactProxy": 0.25
+                }
+              ],
+              "marginPenalty": 0.25,
+              "available": 17,
               "rosterCount": 18
             },
             "rating": -5.823525335660025,
@@ -9678,16 +9813,16 @@
             "home": false,
             "baseMargin": -7.59,
             "strengthDelta": -0.7497,
-            "rosterDelta": 0.26,
-            "margin": -8.0797,
-            "rawWinProb": 0.24560590321311196,
-            "winProb": 0.24560590321311196
+            "rosterDelta": 0.01,
+            "margin": -8.3297,
+            "rawWinProb": 0.2392294083955737,
+            "winProb": 0.2392294083955737
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "miles norris": {
               "name": "Miles Norris",
@@ -10070,10 +10205,10 @@
               "home": true,
               "baseMargin": 7.59,
               "strengthDelta": 0.7497,
-              "rosterDelta": -0.26,
-              "margin": 8.0797,
-              "rawWinProb": 0.7543940967868881,
-              "winProb": 0.7543940967868881
+              "rosterDelta": -0.01,
+              "margin": 8.3297,
+              "rawWinProb": 0.7607705916044264,
+              "winProb": 0.7607705916044264
             }
           }
         }
@@ -10095,7 +10230,7 @@
           "fantasy_id": 3957,
           "jerseyNumber": "1",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642377+00:00",
+          "data_updated": "2026-11-17T16:49:31.656777+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 1
@@ -10174,10 +10309,10 @@
           ]
         },
         "context": {
-          "injuryBoost": 0,
-          "injuryUsagePct": 0,
-          "margin": -8.0797,
-          "teamPct": -1.6559100000000049,
+          "injuryBoost": 0.12374999999999999,
+          "injuryUsagePct": 0.13499999999999995,
+          "margin": -8.3297,
+          "teamPct": -1.7309099999999966,
           "positionPct": 2.3196114279440128
         },
         "config": {
@@ -10186,21 +10321,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.840Z",
+        "asOf": "2026-11-17T17:00:09.071Z",
         "complete": true,
         "match": {
           "opponent": "Zalgiris",
           "home": false,
-          "margin": -8.0797,
+          "margin": -8.3297,
           "total": 170.56,
-          "teamPoints": 81.24015,
-          "winProb": 0.24560590321311196,
-          "p20": 0.007443690903453975,
-          "p11_20": 0.051583458372641375,
-          "p1_10": 0.18657875393701662,
-          "l1_10": 0.3232443558615753,
-          "l11_20": 0.28205547969337896,
-          "l20": 0.14909426123193378,
+          "teamPoints": 81.11515,
+          "winProb": 0.2392294083955737,
+          "p20": 0.007021057026135884,
+          "p11_20": 0.04959448288833146,
+          "p1_10": 0.18261386848110633,
+          "l1_10": 0.3212815223677974,
+          "l11_20": 0.28536204770396856,
+          "l20": 0.15412702153266034,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -10218,9 +10353,18 @@
           },
           "context": {
             "availability": {
-              "missing": [],
-              "marginPenalty": 0,
-              "available": 18,
+              "missing": [
+                {
+                  "name": "Vladimir Lucic",
+                  "status": "questionable",
+                  "missingProbability": 0.75,
+                  "avgMinutes": 18.54,
+                  "sampleGames": 11,
+                  "impactProxy": 0.25
+                }
+              ],
+              "marginPenalty": 0.25,
+              "available": 17,
               "rosterCount": 18
             },
             "rating": -5.823525335660025,
@@ -10367,16 +10511,16 @@
             "home": false,
             "baseMargin": -7.59,
             "strengthDelta": -0.7497,
-            "rosterDelta": 0.26,
-            "margin": -8.0797,
-            "rawWinProb": 0.24560590321311196,
-            "winProb": 0.24560590321311196
+            "rosterDelta": 0.01,
+            "margin": -8.3297,
+            "rawWinProb": 0.2392294083955737,
+            "winProb": 0.2392294083955737
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "da oscar silva": {
               "name": "Oscar Da Silva",
@@ -10759,10 +10903,10 @@
               "home": true,
               "baseMargin": 7.59,
               "strengthDelta": 0.7497,
-              "rosterDelta": -0.26,
-              "margin": 8.0797,
-              "rawWinProb": 0.7543940967868881,
-              "winProb": 0.7543940967868881
+              "rosterDelta": -0.01,
+              "margin": 8.3297,
+              "rawWinProb": 0.7607705916044264,
+              "winProb": 0.7607705916044264
             }
           }
         }
@@ -10784,7 +10928,7 @@
           "fantasy_id": 4280,
           "jerseyNumber": "22",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642436+00:00",
+          "data_updated": "2026-11-17T16:49:31.656831+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.2
@@ -10832,8 +10976,8 @@
         "context": {
           "injuryBoost": 0.017499999999999998,
           "injuryUsagePct": 0.029999999999999995,
-          "margin": 8.0797,
-          "teamPct": 3.191910000000009,
+          "margin": 8.3297,
+          "teamPct": 3.2669100000000117,
           "positionPct": 12.00000000000001
         },
         "config": {
@@ -10842,21 +10986,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.843Z",
+        "asOf": "2026-11-17T17:00:09.084Z",
         "complete": true,
         "match": {
           "opponent": "Bayern Munich",
           "home": true,
-          "margin": 8.0797,
+          "margin": 8.3297,
           "total": 170.56,
-          "teamPoints": 89.31985,
-          "winProb": 0.7543940967868881,
-          "p20": 0.14909426123193384,
-          "p11_20": 0.28205547969337885,
-          "p1_10": 0.32324435586157535,
-          "l1_10": 0.1865787539370166,
-          "l11_20": 0.051583458372641416,
-          "l20": 0.007443690903453917,
+          "teamPoints": 89.44485,
+          "winProb": 0.7607705916044264,
+          "p20": 0.15412702153266028,
+          "p11_20": 0.28536204770396867,
+          "p1_10": 0.32128152236779745,
+          "l1_10": 0.18261386848110625,
+          "l11_20": 0.04959448288833144,
+          "l20": 0.007021057026135881,
           "sampleGames": 53,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -10988,16 +11132,16 @@
             "home": true,
             "baseMargin": 7.59,
             "strengthDelta": 0.7497,
-            "rosterDelta": -0.26,
-            "margin": 8.0797,
-            "rawWinProb": 0.7543940967868881,
-            "winProb": 0.7543940967868881
+            "rosterDelta": -0.01,
+            "margin": 8.3297,
+            "rawWinProb": 0.7607705916044264,
+            "winProb": 0.7607705916044264
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "blazevic marek": {
               "name": "Marek Blazevic",
@@ -11194,9 +11338,18 @@
           "teams": {
             "Bayern Munich": {
               "availability": {
-                "missing": [],
-                "marginPenalty": 0,
-                "available": 18,
+                "missing": [
+                  {
+                    "name": "Vladimir Lucic",
+                    "status": "questionable",
+                    "missingProbability": 0.75,
+                    "avgMinutes": 18.54,
+                    "sampleGames": 11,
+                    "impactProxy": 0.25
+                  }
+                ],
+                "marginPenalty": 0.25,
+                "available": 17,
                 "rosterCount": 18
               },
               "rating": -5.823525335660025,
@@ -11343,10 +11496,10 @@
               "home": false,
               "baseMargin": -7.59,
               "strengthDelta": -0.7497,
-              "rosterDelta": 0.26,
-              "margin": -8.0797,
-              "rawWinProb": 0.24560590321311196,
-              "winProb": 0.24560590321311196
+              "rosterDelta": 0.01,
+              "margin": -8.3297,
+              "rawWinProb": 0.2392294083955737,
+              "winProb": 0.2392294083955737
             }
           }
         }
@@ -11368,7 +11521,7 @@
           "fantasy_id": 3918,
           "jerseyNumber": "40",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642443+00:00",
+          "data_updated": "2026-11-17T16:49:31.656838+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 4.8
@@ -11449,8 +11602,8 @@
         "context": {
           "injuryBoost": 0.017499999999999998,
           "injuryUsagePct": 0.029999999999999995,
-          "margin": 8.0797,
-          "teamPct": 3.191910000000009,
+          "margin": 8.3297,
+          "teamPct": 3.2669100000000117,
           "positionPct": 9.144768420428239
         },
         "config": {
@@ -11459,21 +11612,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.843Z",
+        "asOf": "2026-11-17T17:00:09.086Z",
         "complete": true,
         "match": {
           "opponent": "Bayern Munich",
           "home": true,
-          "margin": 8.0797,
+          "margin": 8.3297,
           "total": 170.56,
-          "teamPoints": 89.31985,
-          "winProb": 0.7543940967868881,
-          "p20": 0.14909426123193384,
-          "p11_20": 0.28205547969337885,
-          "p1_10": 0.32324435586157535,
-          "l1_10": 0.1865787539370166,
-          "l11_20": 0.051583458372641416,
-          "l20": 0.007443690903453917,
+          "teamPoints": 89.44485,
+          "winProb": 0.7607705916044264,
+          "p20": 0.15412702153266028,
+          "p11_20": 0.28536204770396867,
+          "p1_10": 0.32128152236779745,
+          "l1_10": 0.18261386848110625,
+          "l11_20": 0.04959448288833144,
+          "l20": 0.007021057026135881,
           "sampleGames": 53,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -11605,16 +11758,16 @@
             "home": true,
             "baseMargin": 7.59,
             "strengthDelta": 0.7497,
-            "rosterDelta": -0.26,
-            "margin": 8.0797,
-            "rawWinProb": 0.7543940967868881,
-            "winProb": 0.7543940967868881
+            "rosterDelta": -0.01,
+            "margin": 8.3297,
+            "rawWinProb": 0.7607705916044264,
+            "winProb": 0.7607705916044264
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "grigonis marius": {
               "name": "Marius Grigonis",
@@ -11907,9 +12060,18 @@
           "teams": {
             "Bayern Munich": {
               "availability": {
-                "missing": [],
-                "marginPenalty": 0,
-                "available": 18,
+                "missing": [
+                  {
+                    "name": "Vladimir Lucic",
+                    "status": "questionable",
+                    "missingProbability": 0.75,
+                    "avgMinutes": 18.54,
+                    "sampleGames": 11,
+                    "impactProxy": 0.25
+                  }
+                ],
+                "marginPenalty": 0.25,
+                "available": 17,
                 "rosterCount": 18
               },
               "rating": -5.823525335660025,
@@ -12056,10 +12218,10 @@
               "home": false,
               "baseMargin": -7.59,
               "strengthDelta": -0.7497,
-              "rosterDelta": 0.26,
-              "margin": -8.0797,
-              "rawWinProb": 0.24560590321311196,
-              "winProb": 0.24560590321311196
+              "rosterDelta": 0.01,
+              "margin": -8.3297,
+              "rawWinProb": 0.2392294083955737,
+              "winProb": 0.2392294083955737
             }
           }
         }
@@ -12081,7 +12243,7 @@
           "fantasy_id": 4195,
           "jerseyNumber": "10",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642452+00:00",
+          "data_updated": "2026-11-17T16:49:31.656847+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.4
@@ -12160,10 +12322,10 @@
           ]
         },
         "context": {
-          "injuryBoost": 0,
-          "injuryUsagePct": 0,
-          "margin": -8.0797,
-          "teamPct": -1.6559100000000049,
+          "injuryBoost": 0.039374999999999986,
+          "injuryUsagePct": 0.06749999999999998,
+          "margin": -8.3297,
+          "teamPct": -1.7309099999999966,
           "positionPct": -5.369807778416524
         },
         "config": {
@@ -12172,21 +12334,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.843Z",
+        "asOf": "2026-11-17T17:00:09.087Z",
         "complete": true,
         "match": {
           "opponent": "Zalgiris",
           "home": false,
-          "margin": -8.0797,
+          "margin": -8.3297,
           "total": 170.56,
-          "teamPoints": 81.24015,
-          "winProb": 0.24560590321311196,
-          "p20": 0.007443690903453975,
-          "p11_20": 0.051583458372641375,
-          "p1_10": 0.18657875393701662,
-          "l1_10": 0.3232443558615753,
-          "l11_20": 0.28205547969337896,
-          "l20": 0.14909426123193378,
+          "teamPoints": 81.11515,
+          "winProb": 0.2392294083955737,
+          "p20": 0.007021057026135884,
+          "p11_20": 0.04959448288833146,
+          "p1_10": 0.18261386848110633,
+          "l1_10": 0.3212815223677974,
+          "l11_20": 0.28536204770396856,
+          "l20": 0.15412702153266034,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -12204,9 +12366,18 @@
           },
           "context": {
             "availability": {
-              "missing": [],
-              "marginPenalty": 0,
-              "available": 18,
+              "missing": [
+                {
+                  "name": "Vladimir Lucic",
+                  "status": "questionable",
+                  "missingProbability": 0.75,
+                  "avgMinutes": 18.54,
+                  "sampleGames": 11,
+                  "impactProxy": 0.25
+                }
+              ],
+              "marginPenalty": 0.25,
+              "available": 17,
               "rosterCount": 18
             },
             "rating": -5.823525335660025,
@@ -12353,16 +12524,16 @@
             "home": false,
             "baseMargin": -7.59,
             "strengthDelta": -0.7497,
-            "rosterDelta": 0.26,
-            "margin": -8.0797,
-            "rawWinProb": 0.24560590321311196,
-            "winProb": 0.24560590321311196
+            "rosterDelta": 0.01,
+            "margin": -8.3297,
+            "rawWinProb": 0.2392294083955737,
+            "winProb": 0.2392294083955737
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "jessup justinian": {
               "name": "Justinian Jessup",
@@ -12769,10 +12940,10 @@
               "home": true,
               "baseMargin": 7.59,
               "strengthDelta": 0.7497,
-              "rosterDelta": -0.26,
-              "margin": 8.0797,
-              "rawWinProb": 0.7543940967868881,
-              "winProb": 0.7543940967868881
+              "rosterDelta": -0.01,
+              "margin": 8.3297,
+              "rawWinProb": 0.7607705916044264,
+              "winProb": 0.7607705916044264
             }
           }
         }
@@ -12794,7 +12965,7 @@
           "fantasy_id": 4375,
           "jerseyNumber": "51",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642489+00:00",
+          "data_updated": "2026-11-17T16:49:31.656881+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 1.1
@@ -12875,8 +13046,8 @@
         "context": {
           "injuryBoost": 0.017499999999999998,
           "injuryUsagePct": 0.029999999999999995,
-          "margin": 8.0797,
-          "teamPct": 3.191910000000009,
+          "margin": 8.3297,
+          "teamPct": 3.2669100000000117,
           "positionPct": 9.144768420428239
         },
         "config": {
@@ -12885,21 +13056,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.845Z",
+        "asOf": "2026-11-17T17:00:09.095Z",
         "complete": true,
         "match": {
           "opponent": "Bayern Munich",
           "home": true,
-          "margin": 8.0797,
+          "margin": 8.3297,
           "total": 170.56,
-          "teamPoints": 89.31985,
-          "winProb": 0.7543940967868881,
-          "p20": 0.14909426123193384,
-          "p11_20": 0.28205547969337885,
-          "p1_10": 0.32324435586157535,
-          "l1_10": 0.1865787539370166,
-          "l11_20": 0.051583458372641416,
-          "l20": 0.007443690903453917,
+          "teamPoints": 89.44485,
+          "winProb": 0.7607705916044264,
+          "p20": 0.15412702153266028,
+          "p11_20": 0.28536204770396867,
+          "p1_10": 0.32128152236779745,
+          "l1_10": 0.18261386848110625,
+          "l11_20": 0.04959448288833144,
+          "l20": 0.007021057026135881,
           "sampleGames": 53,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -13031,16 +13202,16 @@
             "home": true,
             "baseMargin": 7.59,
             "strengthDelta": 0.7497,
-            "rosterDelta": -0.26,
-            "margin": 8.0797,
-            "rawWinProb": 0.7543940967868881,
-            "winProb": 0.7543940967868881
+            "rosterDelta": -0.01,
+            "margin": 8.3297,
+            "rawWinProb": 0.7607705916044264,
+            "winProb": 0.7607705916044264
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "arnas butkevicius": {
               "name": "Arnas Butkevicius",
@@ -13333,9 +13504,18 @@
           "teams": {
             "Bayern Munich": {
               "availability": {
-                "missing": [],
-                "marginPenalty": 0,
-                "available": 18,
+                "missing": [
+                  {
+                    "name": "Vladimir Lucic",
+                    "status": "questionable",
+                    "missingProbability": 0.75,
+                    "avgMinutes": 18.54,
+                    "sampleGames": 11,
+                    "impactProxy": 0.25
+                  }
+                ],
+                "marginPenalty": 0.25,
+                "available": 17,
                 "rosterCount": 18
               },
               "rating": -5.823525335660025,
@@ -13482,10 +13662,10 @@
               "home": false,
               "baseMargin": -7.59,
               "strengthDelta": -0.7497,
-              "rosterDelta": 0.26,
-              "margin": -8.0797,
-              "rawWinProb": 0.24560590321311196,
-              "winProb": 0.24560590321311196
+              "rosterDelta": 0.01,
+              "margin": -8.3297,
+              "rawWinProb": 0.2392294083955737,
+              "winProb": 0.2392294083955737
             }
           }
         }
@@ -13507,7 +13687,7 @@
           "fantasy_id": 3883,
           "jerseyNumber": "7",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642528+00:00",
+          "data_updated": "2026-11-17T16:49:31.656906+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.9
@@ -13586,10 +13766,10 @@
           ]
         },
         "context": {
-          "injuryBoost": 0,
-          "injuryUsagePct": 0,
-          "margin": -8.0797,
-          "teamPct": -1.6559100000000049,
+          "injuryBoost": 0.039374999999999986,
+          "injuryUsagePct": 0.06749999999999998,
+          "margin": -8.3297,
+          "teamPct": -1.7309099999999966,
           "positionPct": -12
         },
         "config": {
@@ -13598,21 +13778,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.846Z",
+        "asOf": "2026-11-17T17:00:09.099Z",
         "complete": true,
         "match": {
           "opponent": "Zalgiris",
           "home": false,
-          "margin": -8.0797,
+          "margin": -8.3297,
           "total": 170.56,
-          "teamPoints": 81.24015,
-          "winProb": 0.24560590321311196,
-          "p20": 0.007443690903453975,
-          "p11_20": 0.051583458372641375,
-          "p1_10": 0.18657875393701662,
-          "l1_10": 0.3232443558615753,
-          "l11_20": 0.28205547969337896,
-          "l20": 0.14909426123193378,
+          "teamPoints": 81.11515,
+          "winProb": 0.2392294083955737,
+          "p20": 0.007021057026135884,
+          "p11_20": 0.04959448288833146,
+          "p1_10": 0.18261386848110633,
+          "l1_10": 0.3212815223677974,
+          "l11_20": 0.28536204770396856,
+          "l20": 0.15412702153266034,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -13630,9 +13810,18 @@
           },
           "context": {
             "availability": {
-              "missing": [],
-              "marginPenalty": 0,
-              "available": 18,
+              "missing": [
+                {
+                  "name": "Vladimir Lucic",
+                  "status": "questionable",
+                  "missingProbability": 0.75,
+                  "avgMinutes": 18.54,
+                  "sampleGames": 11,
+                  "impactProxy": 0.25
+                }
+              ],
+              "marginPenalty": 0.25,
+              "available": 17,
               "rosterCount": 18
             },
             "rating": -5.823525335660025,
@@ -13779,16 +13968,16 @@
             "home": false,
             "baseMargin": -7.59,
             "strengthDelta": -0.7497,
-            "rosterDelta": 0.26,
-            "margin": -8.0797,
-            "rawWinProb": 0.24560590321311196,
-            "winProb": 0.24560590321311196
+            "rosterDelta": 0.01,
+            "margin": -8.3297,
+            "rawWinProb": 0.2392294083955737,
+            "winProb": 0.2392294083955737
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "johannes voigtmann": {
               "name": "Johannes Voigtmann",
@@ -14195,10 +14384,10 @@
               "home": true,
               "baseMargin": 7.59,
               "strengthDelta": 0.7497,
-              "rosterDelta": -0.26,
-              "margin": 8.0797,
-              "rawWinProb": 0.7543940967868881,
-              "winProb": 0.7543940967868881
+              "rosterDelta": -0.01,
+              "margin": 8.3297,
+              "rawWinProb": 0.7607705916044264,
+              "winProb": 0.7607705916044264
             }
           }
         }
@@ -14220,7 +14409,7 @@
           "fantasy_id": 3852,
           "jerseyNumber": "92",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642594+00:00",
+          "data_updated": "2026-11-17T16:49:31.656967+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 1.2
@@ -14301,8 +14490,8 @@
         "context": {
           "injuryBoost": 0.017499999999999998,
           "injuryUsagePct": 0.029999999999999995,
-          "margin": 8.0797,
-          "teamPct": 3.191910000000009,
+          "margin": 8.3297,
+          "teamPct": 3.2669100000000117,
           "positionPct": 9.144768420428239
         },
         "config": {
@@ -14311,21 +14500,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.849Z",
+        "asOf": "2026-11-17T17:00:09.111Z",
         "complete": true,
         "match": {
           "opponent": "Bayern Munich",
           "home": true,
-          "margin": 8.0797,
+          "margin": 8.3297,
           "total": 170.56,
-          "teamPoints": 89.31985,
-          "winProb": 0.7543940967868881,
-          "p20": 0.14909426123193384,
-          "p11_20": 0.28205547969337885,
-          "p1_10": 0.32324435586157535,
-          "l1_10": 0.1865787539370166,
-          "l11_20": 0.051583458372641416,
-          "l20": 0.007443690903453917,
+          "teamPoints": 89.44485,
+          "winProb": 0.7607705916044264,
+          "p20": 0.15412702153266028,
+          "p11_20": 0.28536204770396867,
+          "p1_10": 0.32128152236779745,
+          "l1_10": 0.18261386848110625,
+          "l11_20": 0.04959448288833144,
+          "l20": 0.007021057026135881,
           "sampleGames": 53,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -14457,16 +14646,16 @@
             "home": true,
             "baseMargin": 7.59,
             "strengthDelta": 0.7497,
-            "rosterDelta": -0.26,
-            "margin": 8.0797,
-            "rawWinProb": 0.7543940967868881,
-            "winProb": 0.7543940967868881
+            "rosterDelta": -0.01,
+            "margin": 8.3297,
+            "rawWinProb": 0.7607705916044264,
+            "winProb": 0.7607705916044264
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "edgaras ulanovas": {
               "name": "Edgaras Ulanovas",
@@ -14759,9 +14948,18 @@
           "teams": {
             "Bayern Munich": {
               "availability": {
-                "missing": [],
-                "marginPenalty": 0,
-                "available": 18,
+                "missing": [
+                  {
+                    "name": "Vladimir Lucic",
+                    "status": "questionable",
+                    "missingProbability": 0.75,
+                    "avgMinutes": 18.54,
+                    "sampleGames": 11,
+                    "impactProxy": 0.25
+                  }
+                ],
+                "marginPenalty": 0.25,
+                "available": 17,
                 "rosterCount": 18
               },
               "rating": -5.823525335660025,
@@ -14908,10 +15106,10 @@
               "home": false,
               "baseMargin": -7.59,
               "strengthDelta": -0.7497,
-              "rosterDelta": 0.26,
-              "margin": -8.0797,
-              "rawWinProb": 0.24560590321311196,
-              "winProb": 0.24560590321311196
+              "rosterDelta": 0.01,
+              "margin": -8.3297,
+              "rawWinProb": 0.2392294083955737,
+              "winProb": 0.2392294083955737
             }
           }
         }
@@ -14933,7 +15131,7 @@
           "fantasy_id": 4084,
           "jerseyNumber": "14",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642604+00:00",
+          "data_updated": "2026-11-17T16:49:31.656976+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 1.6
@@ -15014,8 +15212,8 @@
         "context": {
           "injuryBoost": 0.017499999999999998,
           "injuryUsagePct": 0.029999999999999995,
-          "margin": 8.0797,
-          "teamPct": 3.191910000000009,
+          "margin": 8.3297,
+          "teamPct": 3.2669100000000117,
           "positionPct": 9.144768420428239
         },
         "config": {
@@ -15024,21 +15222,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.850Z",
+        "asOf": "2026-11-17T17:00:09.112Z",
         "complete": true,
         "match": {
           "opponent": "Bayern Munich",
           "home": true,
-          "margin": 8.0797,
+          "margin": 8.3297,
           "total": 170.56,
-          "teamPoints": 89.31985,
-          "winProb": 0.7543940967868881,
-          "p20": 0.14909426123193384,
-          "p11_20": 0.28205547969337885,
-          "p1_10": 0.32324435586157535,
-          "l1_10": 0.1865787539370166,
-          "l11_20": 0.051583458372641416,
-          "l20": 0.007443690903453917,
+          "teamPoints": 89.44485,
+          "winProb": 0.7607705916044264,
+          "p20": 0.15412702153266028,
+          "p11_20": 0.28536204770396867,
+          "p1_10": 0.32128152236779745,
+          "l1_10": 0.18261386848110625,
+          "l11_20": 0.04959448288833144,
+          "l20": 0.007021057026135881,
           "sampleGames": 53,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -15170,16 +15368,16 @@
             "home": true,
             "baseMargin": 7.59,
             "strengthDelta": 0.7497,
-            "rosterDelta": -0.26,
-            "margin": 8.0797,
-            "rawWinProb": 0.7543940967868881,
-            "winProb": 0.7543940967868881
+            "rosterDelta": -0.01,
+            "margin": 8.3297,
+            "rawWinProb": 0.7607705916044264,
+            "winProb": 0.7607705916044264
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "dustin sleva": {
               "name": "Dustin Sleva",
@@ -15472,9 +15670,18 @@
           "teams": {
             "Bayern Munich": {
               "availability": {
-                "missing": [],
-                "marginPenalty": 0,
-                "available": 18,
+                "missing": [
+                  {
+                    "name": "Vladimir Lucic",
+                    "status": "questionable",
+                    "missingProbability": 0.75,
+                    "avgMinutes": 18.54,
+                    "sampleGames": 11,
+                    "impactProxy": 0.25
+                  }
+                ],
+                "marginPenalty": 0.25,
+                "available": 17,
                 "rosterCount": 18
               },
               "rating": -5.823525335660025,
@@ -15621,10 +15828,10 @@
               "home": false,
               "baseMargin": -7.59,
               "strengthDelta": -0.7497,
-              "rosterDelta": 0.26,
-              "margin": -8.0797,
-              "rawWinProb": 0.24560590321311196,
-              "winProb": 0.24560590321311196
+              "rosterDelta": 0.01,
+              "margin": -8.3297,
+              "rawWinProb": 0.2392294083955737,
+              "winProb": 0.2392294083955737
             }
           }
         }
@@ -15646,7 +15853,7 @@
           "fantasy_id": 7390,
           "jerseyNumber": "8",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642614+00:00",
+          "data_updated": "2026-11-17T16:49:31.656985+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.2
@@ -15692,10 +15899,10 @@
         },
         "history": null,
         "context": {
-          "injuryBoost": 0,
-          "injuryUsagePct": 0,
-          "margin": -8.0797,
-          "teamPct": -1.6559100000000049,
+          "injuryBoost": 0.039374999999999986,
+          "injuryUsagePct": 0.06749999999999998,
+          "margin": -8.3297,
+          "teamPct": -1.7309099999999966,
           "positionPct": -5.369807778416524
         },
         "config": {
@@ -15704,21 +15911,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.850Z",
+        "asOf": "2026-11-17T17:00:09.116Z",
         "complete": true,
         "match": {
           "opponent": "Zalgiris",
           "home": false,
-          "margin": -8.0797,
+          "margin": -8.3297,
           "total": 170.56,
-          "teamPoints": 81.24015,
-          "winProb": 0.24560590321311196,
-          "p20": 0.007443690903453975,
-          "p11_20": 0.051583458372641375,
-          "p1_10": 0.18657875393701662,
-          "l1_10": 0.3232443558615753,
-          "l11_20": 0.28205547969337896,
-          "l20": 0.14909426123193378,
+          "teamPoints": 81.11515,
+          "winProb": 0.2392294083955737,
+          "p20": 0.007021057026135884,
+          "p11_20": 0.04959448288833146,
+          "p1_10": 0.18261386848110633,
+          "l1_10": 0.3212815223677974,
+          "l11_20": 0.28536204770396856,
+          "l20": 0.15412702153266034,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -15736,9 +15943,18 @@
           },
           "context": {
             "availability": {
-              "missing": [],
-              "marginPenalty": 0,
-              "available": 18,
+              "missing": [
+                {
+                  "name": "Vladimir Lucic",
+                  "status": "questionable",
+                  "missingProbability": 0.75,
+                  "avgMinutes": 18.54,
+                  "sampleGames": 11,
+                  "impactProxy": 0.25
+                }
+              ],
+              "marginPenalty": 0.25,
+              "available": 17,
               "rosterCount": 18
             },
             "rating": -5.823525335660025,
@@ -15885,16 +16101,16 @@
             "home": false,
             "baseMargin": -7.59,
             "strengthDelta": -0.7497,
-            "rosterDelta": 0.26,
-            "margin": -8.0797,
-            "rawWinProb": 0.24560590321311196,
-            "winProb": 0.24560590321311196
+            "rosterDelta": 0.01,
+            "margin": -8.3297,
+            "rawWinProb": 0.2392294083955737,
+            "winProb": 0.2392294083955737
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "jensen tobias": {
               "name": "Tobias Jensen",
@@ -16133,10 +16349,10 @@
               "home": true,
               "baseMargin": 7.59,
               "strengthDelta": 0.7497,
-              "rosterDelta": -0.26,
-              "margin": 8.0797,
-              "rawWinProb": 0.7543940967868881,
-              "winProb": 0.7543940967868881
+              "rosterDelta": -0.01,
+              "margin": 8.3297,
+              "rawWinProb": 0.7607705916044264,
+              "winProb": 0.7607705916044264
             }
           }
         }
@@ -16158,7 +16374,7 @@
           "fantasy_id": 3942,
           "jerseyNumber": "12",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642634+00:00",
+          "data_updated": "2026-11-17T16:49:31.657003+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 1.2
@@ -16239,8 +16455,8 @@
         "context": {
           "injuryBoost": 0.055,
           "injuryUsagePct": 0.05999999999999999,
-          "margin": 8.0797,
-          "teamPct": 3.191910000000009,
+          "margin": 8.3297,
+          "teamPct": 3.2669100000000117,
           "positionPct": 11.71023746989961
         },
         "config": {
@@ -16249,21 +16465,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.851Z",
+        "asOf": "2026-11-17T17:00:09.121Z",
         "complete": true,
         "match": {
           "opponent": "Bayern Munich",
           "home": true,
-          "margin": 8.0797,
+          "margin": 8.3297,
           "total": 170.56,
-          "teamPoints": 89.31985,
-          "winProb": 0.7543940967868881,
-          "p20": 0.14909426123193384,
-          "p11_20": 0.28205547969337885,
-          "p1_10": 0.32324435586157535,
-          "l1_10": 0.1865787539370166,
-          "l11_20": 0.051583458372641416,
-          "l20": 0.007443690903453917,
+          "teamPoints": 89.44485,
+          "winProb": 0.7607705916044264,
+          "p20": 0.15412702153266028,
+          "p11_20": 0.28536204770396867,
+          "p1_10": 0.32128152236779745,
+          "l1_10": 0.18261386848110625,
+          "l11_20": 0.04959448288833144,
+          "l20": 0.007021057026135881,
           "sampleGames": 53,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -16395,16 +16611,16 @@
             "home": true,
             "baseMargin": 7.59,
             "strengthDelta": 0.7497,
-            "rosterDelta": -0.26,
-            "margin": 8.0797,
-            "rawWinProb": 0.7543940967868881,
-            "winProb": 0.7543940967868881
+            "rosterDelta": -0.01,
+            "margin": 8.3297,
+            "rawWinProb": 0.7607705916044264,
+            "winProb": 0.7607705916044264
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "lo maodo": {
               "name": "Maodo Lo",
@@ -16625,9 +16841,18 @@
           "teams": {
             "Bayern Munich": {
               "availability": {
-                "missing": [],
-                "marginPenalty": 0,
-                "available": 18,
+                "missing": [
+                  {
+                    "name": "Vladimir Lucic",
+                    "status": "questionable",
+                    "missingProbability": 0.75,
+                    "avgMinutes": 18.54,
+                    "sampleGames": 11,
+                    "impactProxy": 0.25
+                  }
+                ],
+                "marginPenalty": 0.25,
+                "available": 17,
                 "rosterCount": 18
               },
               "rating": -5.823525335660025,
@@ -16774,10 +16999,10 @@
               "home": false,
               "baseMargin": -7.59,
               "strengthDelta": -0.7497,
-              "rosterDelta": 0.26,
-              "margin": -8.0797,
-              "rawWinProb": 0.24560590321311196,
-              "winProb": 0.24560590321311196
+              "rosterDelta": 0.01,
+              "margin": -8.3297,
+              "rawWinProb": 0.2392294083955737,
+              "winProb": 0.2392294083955737
             }
           }
         }
@@ -16799,7 +17024,7 @@
           "fantasy_id": 7328,
           "jerseyNumber": "2",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642657+00:00",
+          "data_updated": "2026-11-17T16:49:31.657024+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.6
@@ -16847,8 +17072,8 @@
         "context": {
           "injuryBoost": 0.017499999999999998,
           "injuryUsagePct": 0.029999999999999995,
-          "margin": 8.0797,
-          "teamPct": 3.191910000000009,
+          "margin": 8.3297,
+          "teamPct": 3.2669100000000117,
           "positionPct": 12.00000000000001
         },
         "config": {
@@ -16857,21 +17082,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.853Z",
+        "asOf": "2026-11-17T17:00:09.127Z",
         "complete": true,
         "match": {
           "opponent": "Bayern Munich",
           "home": true,
-          "margin": 8.0797,
+          "margin": 8.3297,
           "total": 170.56,
-          "teamPoints": 89.31985,
-          "winProb": 0.7543940967868881,
-          "p20": 0.14909426123193384,
-          "p11_20": 0.28205547969337885,
-          "p1_10": 0.32324435586157535,
-          "l1_10": 0.1865787539370166,
-          "l11_20": 0.051583458372641416,
-          "l20": 0.007443690903453917,
+          "teamPoints": 89.44485,
+          "winProb": 0.7607705916044264,
+          "p20": 0.15412702153266028,
+          "p11_20": 0.28536204770396867,
+          "p1_10": 0.32128152236779745,
+          "l1_10": 0.18261386848110625,
+          "l11_20": 0.04959448288833144,
+          "l20": 0.007021057026135881,
           "sampleGames": 53,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -17003,16 +17228,16 @@
             "home": true,
             "baseMargin": 7.59,
             "strengthDelta": 0.7497,
-            "rosterDelta": -0.26,
-            "margin": 8.0797,
-            "rawWinProb": 0.7543940967868881,
-            "winProb": 0.7543940967868881
+            "rosterDelta": -0.01,
+            "margin": 8.3297,
+            "rawWinProb": 0.7607705916044264,
+            "winProb": 0.7607705916044264
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "akobundu ehiogu kaodirichi": {
               "name": "Kaodirichi Akobundu-Ehiogu",
@@ -17137,9 +17362,18 @@
           "teams": {
             "Bayern Munich": {
               "availability": {
-                "missing": [],
-                "marginPenalty": 0,
-                "available": 18,
+                "missing": [
+                  {
+                    "name": "Vladimir Lucic",
+                    "status": "questionable",
+                    "missingProbability": 0.75,
+                    "avgMinutes": 18.54,
+                    "sampleGames": 11,
+                    "impactProxy": 0.25
+                  }
+                ],
+                "marginPenalty": 0.25,
+                "available": 17,
                 "rosterCount": 18
               },
               "rating": -5.823525335660025,
@@ -17286,10 +17520,10 @@
               "home": false,
               "baseMargin": -7.59,
               "strengthDelta": -0.7497,
-              "rosterDelta": 0.26,
-              "margin": -8.0797,
-              "rawWinProb": 0.24560590321311196,
-              "winProb": 0.24560590321311196
+              "rosterDelta": 0.01,
+              "margin": -8.3297,
+              "rawWinProb": 0.2392294083955737,
+              "winProb": 0.2392294083955737
             }
           }
         }
@@ -17311,7 +17545,7 @@
           "fantasy_id": 3830,
           "jerseyNumber": "91",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642806+00:00",
+          "data_updated": "2026-11-17T16:49:31.657159+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 2.3
@@ -17392,8 +17626,8 @@
         "context": {
           "injuryBoost": 0.055,
           "injuryUsagePct": 0.05999999999999999,
-          "margin": 8.0797,
-          "teamPct": 3.191910000000009,
+          "margin": 8.3297,
+          "teamPct": 3.2669100000000117,
           "positionPct": 11.71023746989961
         },
         "config": {
@@ -17402,21 +17636,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.859Z",
+        "asOf": "2026-11-17T17:00:09.162Z",
         "complete": true,
         "match": {
           "opponent": "Bayern Munich",
           "home": true,
-          "margin": 8.0797,
+          "margin": 8.3297,
           "total": 170.56,
-          "teamPoints": 89.31985,
-          "winProb": 0.7543940967868881,
-          "p20": 0.14909426123193384,
-          "p11_20": 0.28205547969337885,
-          "p1_10": 0.32324435586157535,
-          "l1_10": 0.1865787539370166,
-          "l11_20": 0.051583458372641416,
-          "l20": 0.007443690903453917,
+          "teamPoints": 89.44485,
+          "winProb": 0.7607705916044264,
+          "p20": 0.15412702153266028,
+          "p11_20": 0.28536204770396867,
+          "p1_10": 0.32128152236779745,
+          "l1_10": 0.18261386848110625,
+          "l11_20": 0.04959448288833144,
+          "l20": 0.007021057026135881,
           "sampleGames": 53,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -17548,16 +17782,16 @@
             "home": true,
             "baseMargin": 7.59,
             "strengthDelta": 0.7497,
-            "rosterDelta": -0.26,
-            "margin": 8.0797,
-            "rawWinProb": 0.7543940967868881,
-            "winProb": 0.7543940967868881
+            "rosterDelta": -0.01,
+            "margin": 8.3297,
+            "rawWinProb": 0.7607705916044264,
+            "winProb": 0.7607705916044264
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "deividas sirvydis": {
               "name": "Deividas Sirvydis",
@@ -17682,9 +17916,18 @@
           "teams": {
             "Bayern Munich": {
               "availability": {
-                "missing": [],
-                "marginPenalty": 0,
-                "available": 18,
+                "missing": [
+                  {
+                    "name": "Vladimir Lucic",
+                    "status": "questionable",
+                    "missingProbability": 0.75,
+                    "avgMinutes": 18.54,
+                    "sampleGames": 11,
+                    "impactProxy": 0.25
+                  }
+                ],
+                "marginPenalty": 0.25,
+                "available": 17,
                 "rosterCount": 18
               },
               "rating": -5.823525335660025,
@@ -17831,10 +18074,10 @@
               "home": false,
               "baseMargin": -7.59,
               "strengthDelta": -0.7497,
-              "rosterDelta": 0.26,
-              "margin": -8.0797,
-              "rawWinProb": 0.24560590321311196,
-              "winProb": 0.24560590321311196
+              "rosterDelta": 0.01,
+              "margin": -8.3297,
+              "rawWinProb": 0.2392294083955737,
+              "winProb": 0.2392294083955737
             }
           }
         }
@@ -17856,7 +18099,7 @@
           "fantasy_id": 3972,
           "jerseyNumber": "21",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642826+00:00",
+          "data_updated": "2026-11-17T16:49:31.657179+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 1.1
@@ -17935,10 +18178,10 @@
           ]
         },
         "context": {
-          "injuryBoost": 0,
-          "injuryUsagePct": 0,
-          "margin": -8.0797,
-          "teamPct": -1.6559100000000049,
+          "injuryBoost": 0.039374999999999986,
+          "injuryUsagePct": 0.06749999999999998,
+          "margin": -8.3297,
+          "teamPct": -1.7309099999999966,
           "positionPct": -5.369807778416524
         },
         "config": {
@@ -17947,21 +18190,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.860Z",
+        "asOf": "2026-11-17T17:00:09.165Z",
         "complete": true,
         "match": {
           "opponent": "Zalgiris",
           "home": false,
-          "margin": -8.0797,
+          "margin": -8.3297,
           "total": 170.56,
-          "teamPoints": 81.24015,
-          "winProb": 0.24560590321311196,
-          "p20": 0.007443690903453975,
-          "p11_20": 0.051583458372641375,
-          "p1_10": 0.18657875393701662,
-          "l1_10": 0.3232443558615753,
-          "l11_20": 0.28205547969337896,
-          "l20": 0.14909426123193378,
+          "teamPoints": 81.11515,
+          "winProb": 0.2392294083955737,
+          "p20": 0.007021057026135884,
+          "p11_20": 0.04959448288833146,
+          "p1_10": 0.18261386848110633,
+          "l1_10": 0.3212815223677974,
+          "l11_20": 0.28536204770396856,
+          "l20": 0.15412702153266034,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -17979,9 +18222,18 @@
           },
           "context": {
             "availability": {
-              "missing": [],
-              "marginPenalty": 0,
-              "available": 18,
+              "missing": [
+                {
+                  "name": "Vladimir Lucic",
+                  "status": "questionable",
+                  "missingProbability": 0.75,
+                  "avgMinutes": 18.54,
+                  "sampleGames": 11,
+                  "impactProxy": 0.25
+                }
+              ],
+              "marginPenalty": 0.25,
+              "available": 17,
               "rosterCount": 18
             },
             "rating": -5.823525335660025,
@@ -18128,16 +18380,16 @@
             "home": false,
             "baseMargin": -7.59,
             "strengthDelta": -0.7497,
-            "rosterDelta": 0.26,
-            "margin": -8.0797,
-            "rawWinProb": 0.24560590321311196,
-            "winProb": 0.24560590321311196
+            "rosterDelta": 0.01,
+            "margin": -8.3297,
+            "rawWinProb": 0.2392294083955737,
+            "winProb": 0.2392294083955737
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "hollatz justus": {
               "name": "Justus Hollatz",
@@ -18448,10 +18700,10 @@
               "home": true,
               "baseMargin": 7.59,
               "strengthDelta": 0.7497,
-              "rosterDelta": -0.26,
-              "margin": 8.0797,
-              "rawWinProb": 0.7543940967868881,
-              "winProb": 0.7543940967868881
+              "rosterDelta": -0.01,
+              "margin": 8.3297,
+              "rawWinProb": 0.7607705916044264,
+              "winProb": 0.7607705916044264
             }
           }
         }
@@ -18473,7 +18725,7 @@
           "fantasy_id": 3986,
           "jerseyNumber": "5",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642840+00:00",
+          "data_updated": "2026-11-17T16:49:31.657192+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 2.8
@@ -18552,10 +18804,10 @@
           ]
         },
         "context": {
-          "injuryBoost": 0,
-          "injuryUsagePct": 0,
-          "margin": -8.0797,
-          "teamPct": -1.6559100000000049,
+          "injuryBoost": 0.12374999999999999,
+          "injuryUsagePct": 0.13499999999999995,
+          "margin": -8.3297,
+          "teamPct": -1.7309099999999966,
           "positionPct": 2.3196114279440128
         },
         "config": {
@@ -18564,21 +18816,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.860Z",
+        "asOf": "2026-11-17T17:00:09.167Z",
         "complete": true,
         "match": {
           "opponent": "Zalgiris",
           "home": false,
-          "margin": -8.0797,
+          "margin": -8.3297,
           "total": 170.56,
-          "teamPoints": 81.24015,
-          "winProb": 0.24560590321311196,
-          "p20": 0.007443690903453975,
-          "p11_20": 0.051583458372641375,
-          "p1_10": 0.18657875393701662,
-          "l1_10": 0.3232443558615753,
-          "l11_20": 0.28205547969337896,
-          "l20": 0.14909426123193378,
+          "teamPoints": 81.11515,
+          "winProb": 0.2392294083955737,
+          "p20": 0.007021057026135884,
+          "p11_20": 0.04959448288833146,
+          "p1_10": 0.18261386848110633,
+          "l1_10": 0.3212815223677974,
+          "l11_20": 0.28536204770396856,
+          "l20": 0.15412702153266034,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -18596,9 +18848,18 @@
           },
           "context": {
             "availability": {
-              "missing": [],
-              "marginPenalty": 0,
-              "available": 18,
+              "missing": [
+                {
+                  "name": "Vladimir Lucic",
+                  "status": "questionable",
+                  "missingProbability": 0.75,
+                  "avgMinutes": 18.54,
+                  "sampleGames": 11,
+                  "impactProxy": 0.25
+                }
+              ],
+              "marginPenalty": 0.25,
+              "available": 17,
               "rosterCount": 18
             },
             "rating": -5.823525335660025,
@@ -18745,16 +19006,16 @@
             "home": false,
             "baseMargin": -7.59,
             "strengthDelta": -0.7497,
-            "rosterDelta": 0.26,
-            "margin": -8.0797,
-            "rawWinProb": 0.24560590321311196,
-            "winProb": 0.24560590321311196
+            "rosterDelta": 0.01,
+            "margin": -8.3297,
+            "rawWinProb": 0.2392294083955737,
+            "winProb": 0.2392294083955737
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "giffey niels": {
               "name": "Niels Giffey",
@@ -19017,10 +19278,10 @@
               "home": true,
               "baseMargin": 7.59,
               "strengthDelta": 0.7497,
-              "rosterDelta": -0.26,
-              "margin": 8.0797,
-              "rawWinProb": 0.7543940967868881,
-              "winProb": 0.7543940967868881
+              "rosterDelta": -0.01,
+              "margin": 8.3297,
+              "rawWinProb": 0.7607705916044264,
+              "winProb": 0.7607705916044264
             }
           }
         }
@@ -19042,7 +19303,7 @@
           "fantasy_id": 3998,
           "jerseyNumber": "9",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642847+00:00",
+          "data_updated": "2026-11-17T16:49:31.657199+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 1.5
@@ -19123,8 +19384,8 @@
         "context": {
           "injuryBoost": 0.055,
           "injuryUsagePct": 0.05999999999999999,
-          "margin": 8.0797,
-          "teamPct": 3.191910000000009,
+          "margin": 8.3297,
+          "teamPct": 3.2669100000000117,
           "positionPct": 11.71023746989961
         },
         "config": {
@@ -19133,21 +19394,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.861Z",
+        "asOf": "2026-11-17T17:00:09.169Z",
         "complete": true,
         "match": {
           "opponent": "Bayern Munich",
           "home": true,
-          "margin": 8.0797,
+          "margin": 8.3297,
           "total": 170.56,
-          "teamPoints": 89.31985,
-          "winProb": 0.7543940967868881,
-          "p20": 0.14909426123193384,
-          "p11_20": 0.28205547969337885,
-          "p1_10": 0.32324435586157535,
-          "l1_10": 0.1865787539370166,
-          "l11_20": 0.051583458372641416,
-          "l20": 0.007443690903453917,
+          "teamPoints": 89.44485,
+          "winProb": 0.7607705916044264,
+          "p20": 0.15412702153266028,
+          "p11_20": 0.28536204770396867,
+          "p1_10": 0.32128152236779745,
+          "l1_10": 0.18261386848110625,
+          "l11_20": 0.04959448288833144,
+          "l20": 0.007021057026135881,
           "sampleGames": 53,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -19279,16 +19540,16 @@
             "home": true,
             "baseMargin": 7.59,
             "strengthDelta": 0.7497,
-            "rosterDelta": -0.26,
-            "margin": 8.0797,
-            "rawWinProb": 0.7543940967868881,
-            "winProb": 0.7543940967868881
+            "rosterDelta": -0.01,
+            "margin": 8.3297,
+            "rawWinProb": 0.7607705916044264,
+            "winProb": 0.7607705916044264
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "dovydas giedraitis": {
               "name": "Dovydas Giedraitis",
@@ -19437,9 +19698,18 @@
           "teams": {
             "Bayern Munich": {
               "availability": {
-                "missing": [],
-                "marginPenalty": 0,
-                "available": 18,
+                "missing": [
+                  {
+                    "name": "Vladimir Lucic",
+                    "status": "questionable",
+                    "missingProbability": 0.75,
+                    "avgMinutes": 18.54,
+                    "sampleGames": 11,
+                    "impactProxy": 0.25
+                  }
+                ],
+                "marginPenalty": 0.25,
+                "available": 17,
                 "rosterCount": 18
               },
               "rating": -5.823525335660025,
@@ -19586,10 +19856,10 @@
               "home": false,
               "baseMargin": -7.59,
               "strengthDelta": -0.7497,
-              "rosterDelta": 0.26,
-              "margin": -8.0797,
-              "rawWinProb": 0.24560590321311196,
-              "winProb": 0.24560590321311196
+              "rosterDelta": 0.01,
+              "margin": -8.3297,
+              "rawWinProb": 0.2392294083955737,
+              "winProb": 0.2392294083955737
             }
           }
         }
@@ -19611,7 +19881,7 @@
           "fantasy_id": 9006,
           "jerseyNumber": "37",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642953+00:00",
+          "data_updated": "2026-11-17T16:49:31.657306+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.2
@@ -19619,10 +19889,10 @@
         "recent": null,
         "history": null,
         "context": {
-          "injuryBoost": 0,
-          "injuryUsagePct": 0,
-          "margin": -8.0797,
-          "teamPct": -1.6559100000000049,
+          "injuryBoost": 0.039374999999999986,
+          "injuryUsagePct": 0.06749999999999998,
+          "margin": -8.3297,
+          "teamPct": -1.7309099999999966,
           "positionPct": -5.369807778416524
         },
         "config": {
@@ -19631,21 +19901,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.867Z",
+        "asOf": "2026-11-17T17:00:09.205Z",
         "complete": true,
         "match": {
           "opponent": "Zalgiris",
           "home": false,
-          "margin": -8.0797,
+          "margin": -8.3297,
           "total": 170.56,
-          "teamPoints": 81.24015,
-          "winProb": 0.24560590321311196,
-          "p20": 0.007443690903453975,
-          "p11_20": 0.051583458372641375,
-          "p1_10": 0.18657875393701662,
-          "l1_10": 0.3232443558615753,
-          "l11_20": 0.28205547969337896,
-          "l20": 0.14909426123193378,
+          "teamPoints": 81.11515,
+          "winProb": 0.2392294083955737,
+          "p20": 0.007021057026135884,
+          "p11_20": 0.04959448288833146,
+          "p1_10": 0.18261386848110633,
+          "l1_10": 0.3212815223677974,
+          "l11_20": 0.28536204770396856,
+          "l20": 0.15412702153266034,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -19663,9 +19933,18 @@
           },
           "context": {
             "availability": {
-              "missing": [],
-              "marginPenalty": 0,
-              "available": 18,
+              "missing": [
+                {
+                  "name": "Vladimir Lucic",
+                  "status": "questionable",
+                  "missingProbability": 0.75,
+                  "avgMinutes": 18.54,
+                  "sampleGames": 11,
+                  "impactProxy": 0.25
+                }
+              ],
+              "marginPenalty": 0.25,
+              "available": 17,
               "rosterCount": 18
             },
             "rating": -5.823525335660025,
@@ -19812,16 +20091,16 @@
             "home": false,
             "baseMargin": -7.59,
             "strengthDelta": -0.7497,
-            "rosterDelta": 0.26,
-            "margin": -8.0797,
-            "rawWinProb": 0.24560590321311196,
-            "winProb": 0.24560590321311196
+            "rosterDelta": 0.01,
+            "margin": -8.3297,
+            "rawWinProb": 0.2392294083955737,
+            "winProb": 0.2392294083955737
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {},
           "defense": {
             "Zalgiris": {
@@ -19953,10 +20232,10 @@
               "home": true,
               "baseMargin": 7.59,
               "strengthDelta": 0.7497,
-              "rosterDelta": -0.26,
-              "margin": 8.0797,
-              "rawWinProb": 0.7543940967868881,
-              "winProb": 0.7543940967868881
+              "rosterDelta": -0.01,
+              "margin": 8.3297,
+              "rawWinProb": 0.7607705916044264,
+              "winProb": 0.7607705916044264
             }
           }
         }
@@ -19978,7 +20257,7 @@
           "fantasy_id": 9062,
           "jerseyNumber": "17",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642960+00:00",
+          "data_updated": "2026-11-17T16:49:31.657312+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 2.7
@@ -19986,10 +20265,10 @@
         "recent": null,
         "history": null,
         "context": {
-          "injuryBoost": 0,
-          "injuryUsagePct": 0,
-          "margin": -8.0797,
-          "teamPct": -1.6559100000000049,
+          "injuryBoost": 0.12374999999999999,
+          "injuryUsagePct": 0.13499999999999995,
+          "margin": -8.3297,
+          "teamPct": -1.7309099999999966,
           "positionPct": 2.3196114279440128
         },
         "config": {
@@ -19998,21 +20277,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.867Z",
+        "asOf": "2026-11-17T17:00:09.207Z",
         "complete": true,
         "match": {
           "opponent": "Zalgiris",
           "home": false,
-          "margin": -8.0797,
+          "margin": -8.3297,
           "total": 170.56,
-          "teamPoints": 81.24015,
-          "winProb": 0.24560590321311196,
-          "p20": 0.007443690903453975,
-          "p11_20": 0.051583458372641375,
-          "p1_10": 0.18657875393701662,
-          "l1_10": 0.3232443558615753,
-          "l11_20": 0.28205547969337896,
-          "l20": 0.14909426123193378,
+          "teamPoints": 81.11515,
+          "winProb": 0.2392294083955737,
+          "p20": 0.007021057026135884,
+          "p11_20": 0.04959448288833146,
+          "p1_10": 0.18261386848110633,
+          "l1_10": 0.3212815223677974,
+          "l11_20": 0.28536204770396856,
+          "l20": 0.15412702153266034,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -20030,9 +20309,18 @@
           },
           "context": {
             "availability": {
-              "missing": [],
-              "marginPenalty": 0,
-              "available": 18,
+              "missing": [
+                {
+                  "name": "Vladimir Lucic",
+                  "status": "questionable",
+                  "missingProbability": 0.75,
+                  "avgMinutes": 18.54,
+                  "sampleGames": 11,
+                  "impactProxy": 0.25
+                }
+              ],
+              "marginPenalty": 0.25,
+              "available": 17,
               "rosterCount": 18
             },
             "rating": -5.823525335660025,
@@ -20179,16 +20467,16 @@
             "home": false,
             "baseMargin": -7.59,
             "strengthDelta": -0.7497,
-            "rosterDelta": 0.26,
-            "margin": -8.0797,
-            "rawWinProb": 0.24560590321311196,
-            "winProb": 0.24560590321311196
+            "rosterDelta": 0.01,
+            "margin": -8.3297,
+            "rawWinProb": 0.2392294083955737,
+            "winProb": 0.2392294083955737
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {},
           "defense": {
             "Zalgiris": {
@@ -20320,10 +20608,10 @@
               "home": true,
               "baseMargin": 7.59,
               "strengthDelta": 0.7497,
-              "rosterDelta": -0.26,
-              "margin": 8.0797,
-              "rawWinProb": 0.7543940967868881,
-              "winProb": 0.7543940967868881
+              "rosterDelta": -0.01,
+              "margin": 8.3297,
+              "rawWinProb": 0.7607705916044264,
+              "winProb": 0.7607705916044264
             }
           }
         }
@@ -20345,7 +20633,7 @@
           "fantasy_id": 12467,
           "jerseyNumber": "42",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642992+00:00",
+          "data_updated": "2026-11-17T16:49:31.657344+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.6
@@ -20353,10 +20641,10 @@
         "recent": null,
         "history": null,
         "context": {
-          "injuryBoost": 0,
-          "injuryUsagePct": 0,
-          "margin": -8.0797,
-          "teamPct": -1.6559100000000049,
+          "injuryBoost": 0.039374999999999986,
+          "injuryUsagePct": 0.06749999999999998,
+          "margin": -8.3297,
+          "teamPct": -1.7309099999999966,
           "positionPct": -5.369807778416524
         },
         "config": {
@@ -20365,21 +20653,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.869Z",
+        "asOf": "2026-11-17T17:00:09.223Z",
         "complete": true,
         "match": {
           "opponent": "Zalgiris",
           "home": false,
-          "margin": -8.0797,
+          "margin": -8.3297,
           "total": 170.56,
-          "teamPoints": 81.24015,
-          "winProb": 0.24560590321311196,
-          "p20": 0.007443690903453975,
-          "p11_20": 0.051583458372641375,
-          "p1_10": 0.18657875393701662,
-          "l1_10": 0.3232443558615753,
-          "l11_20": 0.28205547969337896,
-          "l20": 0.14909426123193378,
+          "teamPoints": 81.11515,
+          "winProb": 0.2392294083955737,
+          "p20": 0.007021057026135884,
+          "p11_20": 0.04959448288833146,
+          "p1_10": 0.18261386848110633,
+          "l1_10": 0.3212815223677974,
+          "l11_20": 0.28536204770396856,
+          "l20": 0.15412702153266034,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -20397,9 +20685,18 @@
           },
           "context": {
             "availability": {
-              "missing": [],
-              "marginPenalty": 0,
-              "available": 18,
+              "missing": [
+                {
+                  "name": "Vladimir Lucic",
+                  "status": "questionable",
+                  "missingProbability": 0.75,
+                  "avgMinutes": 18.54,
+                  "sampleGames": 11,
+                  "impactProxy": 0.25
+                }
+              ],
+              "marginPenalty": 0.25,
+              "available": 17,
               "rosterCount": 18
             },
             "rating": -5.823525335660025,
@@ -20546,16 +20843,16 @@
             "home": false,
             "baseMargin": -7.59,
             "strengthDelta": -0.7497,
-            "rosterDelta": 0.26,
-            "margin": -8.0797,
-            "rawWinProb": 0.24560590321311196,
-            "winProb": 0.24560590321311196
+            "rosterDelta": 0.01,
+            "margin": -8.3297,
+            "rawWinProb": 0.2392294083955737,
+            "winProb": 0.2392294083955737
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {},
           "defense": {
             "Zalgiris": {
@@ -20687,10 +20984,10 @@
               "home": true,
               "baseMargin": 7.59,
               "strengthDelta": 0.7497,
-              "rosterDelta": -0.26,
-              "margin": 8.0797,
-              "rawWinProb": 0.7543940967868881,
-              "winProb": 0.7543940967868881
+              "rosterDelta": -0.01,
+              "margin": 8.3297,
+              "rawWinProb": 0.7607705916044264,
+              "winProb": 0.7607705916044264
             }
           }
         }
@@ -20712,7 +21009,7 @@
           "fantasy_id": 12468,
           "jerseyNumber": "39",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642996+00:00",
+          "data_updated": "2026-11-17T16:49:31.657347+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.8
@@ -20720,10 +21017,10 @@
         "recent": null,
         "history": null,
         "context": {
-          "injuryBoost": 0,
-          "injuryUsagePct": 0,
-          "margin": -8.0797,
-          "teamPct": -1.6559100000000049,
+          "injuryBoost": 0.039374999999999986,
+          "injuryUsagePct": 0.06749999999999998,
+          "margin": -8.3297,
+          "teamPct": -1.7309099999999966,
           "positionPct": -5.369807778416524
         },
         "config": {
@@ -20732,21 +21029,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.869Z",
+        "asOf": "2026-11-17T17:00:09.224Z",
         "complete": true,
         "match": {
           "opponent": "Zalgiris",
           "home": false,
-          "margin": -8.0797,
+          "margin": -8.3297,
           "total": 170.56,
-          "teamPoints": 81.24015,
-          "winProb": 0.24560590321311196,
-          "p20": 0.007443690903453975,
-          "p11_20": 0.051583458372641375,
-          "p1_10": 0.18657875393701662,
-          "l1_10": 0.3232443558615753,
-          "l11_20": 0.28205547969337896,
-          "l20": 0.14909426123193378,
+          "teamPoints": 81.11515,
+          "winProb": 0.2392294083955737,
+          "p20": 0.007021057026135884,
+          "p11_20": 0.04959448288833146,
+          "p1_10": 0.18261386848110633,
+          "l1_10": 0.3212815223677974,
+          "l11_20": 0.28536204770396856,
+          "l20": 0.15412702153266034,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -20764,9 +21061,18 @@
           },
           "context": {
             "availability": {
-              "missing": [],
-              "marginPenalty": 0,
-              "available": 18,
+              "missing": [
+                {
+                  "name": "Vladimir Lucic",
+                  "status": "questionable",
+                  "missingProbability": 0.75,
+                  "avgMinutes": 18.54,
+                  "sampleGames": 11,
+                  "impactProxy": 0.25
+                }
+              ],
+              "marginPenalty": 0.25,
+              "available": 17,
               "rosterCount": 18
             },
             "rating": -5.823525335660025,
@@ -20913,16 +21219,16 @@
             "home": false,
             "baseMargin": -7.59,
             "strengthDelta": -0.7497,
-            "rosterDelta": 0.26,
-            "margin": -8.0797,
-            "rawWinProb": 0.24560590321311196,
-            "winProb": 0.24560590321311196
+            "rosterDelta": 0.01,
+            "margin": -8.3297,
+            "rawWinProb": 0.2392294083955737,
+            "winProb": 0.2392294083955737
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {},
           "defense": {
             "Zalgiris": {
@@ -21054,10 +21360,10 @@
               "home": true,
               "baseMargin": 7.59,
               "strengthDelta": 0.7497,
-              "rosterDelta": -0.26,
-              "margin": 8.0797,
-              "rawWinProb": 0.7543940967868881,
-              "winProb": 0.7543940967868881
+              "rosterDelta": -0.01,
+              "margin": 8.3297,
+              "rawWinProb": 0.7607705916044264,
+              "winProb": 0.7607705916044264
             }
           }
         }

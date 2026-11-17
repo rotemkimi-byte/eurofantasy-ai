@@ -1,8 +1,8 @@
 {
   "schema": "frozen-replay-input-v1",
   "season": "E2026",
-  "created_at": "2026-11-17T16:17:26.237750+00:00",
-  "engineId": "3cdc89e6f4daae3588fb",
+  "created_at": "2026-11-17T17:00:11.722147+00:00",
+  "engineId": "c8f2dc7e3420e0902b28",
   "gameCode": 117,
   "predictions": [
     {
@@ -21,18 +21,89 @@
           "fantasy_id": 3771,
           "jerseyNumber": "2",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.641763+00:00",
+          "data_updated": "2026-11-17T16:49:31.656261+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 2.3
         },
-        "recent": null,
-        "history": null,
+        "recent": {
+          "name": "WADE BALDWIN IV",
+          "latestSeason": "E2026",
+          "gamesAvailable": 11,
+          "gamesLatestSeason": 11,
+          "currentSeasonGames": 11,
+          "lastGame": {
+            "season": "E2026",
+            "gameCode": 101,
+            "date": "2026-11-11T20:45:00",
+            "pir": 24,
+            "minutes": 30.42,
+            "pirPerMinute": 0.78904
+          },
+          "previous4": {
+            "games": 4,
+            "avgPir": 10.25,
+            "avgMinutes": 24.29,
+            "pirPerMinute": 0.42196
+          },
+          "last5": {
+            "games": 5,
+            "avgPir": 13,
+            "avgMinutes": 25.52,
+            "sdPir": 8.65
+          },
+          "last10": {
+            "games": 10,
+            "avgPir": 13.9,
+            "avgMinutes": 23.92
+          },
+          "season": {
+            "games": 11,
+            "avgPir": 13.82,
+            "avgMinutes": 23.86,
+            "pirPerMinute": 0.57912
+          },
+          "gameLog": []
+        },
+        "history": {
+          "games": 42,
+          "avgPir": 16.404761904761905,
+          "avgMinutes": 25.846823809523812,
+          "pirPerMinute": 0.634691597917622,
+          "sdPir": 6.690645651133002,
+          "name": "BALDWIN IV, WADE",
+          "playerCode": "009863",
+          "team": "Fenerbahce",
+          "pos": "G",
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 4,
+              "nextGameSamples": 6,
+              "nextGameAvgPir": 15.666666666666666,
+              "continuedRate": 0.5
+            },
+            {
+              "threshold": 25,
+              "longestRun": 3,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 23,
+              "continuedRate": 0.5
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
         "context": {
           "injuryBoost": 0,
           "injuryUsagePct": 0,
-          "margin": 8.2118,
-          "teamPct": 2.250540000000001,
+          "margin": 8.2228,
+          "teamPct": 2.253839999999996,
           "positionPct": -3.226085993079686
         },
         "config": {
@@ -41,21 +112,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.813Z",
+        "asOf": "2026-11-17T17:00:08.958Z",
         "complete": true,
         "match": {
           "opponent": "ASVEL",
           "home": true,
-          "margin": 8.2118,
+          "margin": 8.2228,
           "total": 167.29,
-          "teamPoints": 87.7509,
-          "winProb": 0.7577760493304876,
-          "p20": 0.15173973766040183,
-          "p11_20": 0.28381320500014734,
-          "p1_10": 0.3222231066699385,
-          "l1_10": 0.18448133346351436,
-          "l11_20": 0.05052501387702617,
-          "l20": 0.007217603328971869,
+          "teamPoints": 87.7564,
+          "winProb": 0.7580563647964582,
+          "p20": 0.15196141946587122,
+          "p11_20": 0.2839585028944186,
+          "p1_10": 0.3221364424361684,
+          "l1_10": 0.1843069367592571,
+          "l11_20": 0.050437639133605855,
+          "l20": 0.007199059310678843,
           "sampleGames": 54,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -195,17 +266,292 @@
             "home": true,
             "baseMargin": 7.54,
             "strengthDelta": 0.7658,
-            "rosterDelta": -0.094,
-            "margin": 8.2118,
-            "rawWinProb": 0.7577760493304876,
-            "winProb": 0.7577760493304876
+            "rosterDelta": -0.083,
+            "margin": 8.2228,
+            "rawWinProb": 0.7580563647964582,
+            "winProb": 0.7580563647964582
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
-          "players": {},
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
+          "players": {
+            "baldwin iv wade": {
+              "name": "Wade Baldwin",
+              "team": "Fenerbahce",
+              "pos": "G",
+              "games": 11,
+              "avgMinutes": 23.860606060606063,
+              "averages": {
+                "points": 12.272727272727273,
+                "valuation": 13.818181818181818,
+                "fieldGoalsAttempted2": 5.909090909090909,
+                "fieldGoalsMade2": 3.727272727272727,
+                "fieldGoalsAttempted3": 3.272727272727273,
+                "fieldGoalsMade3": 0.9090909090909091,
+                "freeThrowsAttempted": 2.8181818181818183,
+                "freeThrowsMade": 2.090909090909091,
+                "assistances": 4.454545454545454,
+                "turnovers": 1.9090909090909092,
+                "steals": 1.0909090909090908,
+                "blocksFavour": 0,
+                "totalRebounds": 2.909090909090909,
+                "foulsCommited": 2.6363636363636362
+              },
+              "shotEventsPerMinute": 0.5167894335788671,
+              "recentEventsPerMinute": 0.5695636750620787,
+              "previousEventsPerMinute": 0.5052826978111222,
+              "recentGames": 2,
+              "previousGames": 9,
+              "minutesSd": 4.41840316193276,
+              "height": 193,
+              "weight": 90,
+              "logs": [
+                {
+                  "gameCode": 17,
+                  "date": "2026-09-29T17:45:00+00:00",
+                  "team": "Fenerbahce",
+                  "opponent": "Bayern Munich",
+                  "minutes": 17.233333333333334,
+                  "margin": 24,
+                  "height": 193,
+                  "weight": 90,
+                  "points": 13,
+                  "valuation": 22,
+                  "fieldGoalsAttempted2": 3,
+                  "fieldGoalsMade2": 2,
+                  "fieldGoalsAttempted3": 4,
+                  "fieldGoalsMade3": 3,
+                  "freeThrowsAttempted": 0,
+                  "freeThrowsMade": 0,
+                  "assistances": 8,
+                  "turnovers": 2,
+                  "steals": 2,
+                  "blocksFavour": 0,
+                  "totalRebounds": 4,
+                  "foulsCommited": 2
+                },
+                {
+                  "gameCode": 29,
+                  "date": "2026-10-02T17:45:00+00:00",
+                  "team": "Fenerbahce",
+                  "opponent": "Dubai",
+                  "minutes": 25.683333333333334,
+                  "margin": 10,
+                  "height": 193,
+                  "weight": 90,
+                  "points": 14,
+                  "valuation": 17,
+                  "fieldGoalsAttempted2": 7,
+                  "fieldGoalsMade2": 4,
+                  "fieldGoalsAttempted3": 6,
+                  "fieldGoalsMade3": 2,
+                  "freeThrowsAttempted": 0,
+                  "freeThrowsMade": 0,
+                  "assistances": 5,
+                  "turnovers": 0,
+                  "steals": 1,
+                  "blocksFavour": 0,
+                  "totalRebounds": 3,
+                  "foulsCommited": 2
+                },
+                {
+                  "gameCode": 36,
+                  "date": "2026-10-08T18:15:00+00:00",
+                  "team": "Fenerbahce",
+                  "opponent": "Panathinaikos",
+                  "minutes": 25.683333333333334,
+                  "margin": -18,
+                  "height": 193,
+                  "weight": 90,
+                  "points": 9,
+                  "valuation": 9,
+                  "fieldGoalsAttempted2": 6,
+                  "fieldGoalsMade2": 4,
+                  "fieldGoalsAttempted3": 4,
+                  "fieldGoalsMade3": 0,
+                  "freeThrowsAttempted": 2,
+                  "freeThrowsMade": 1,
+                  "assistances": 5,
+                  "turnovers": 4,
+                  "steals": 0,
+                  "blocksFavour": 0,
+                  "totalRebounds": 3,
+                  "foulsCommited": 1
+                },
+                {
+                  "gameCode": 46,
+                  "date": "2026-10-13T17:45:00+00:00",
+                  "team": "Fenerbahce",
+                  "opponent": "Zalgiris",
+                  "minutes": 17.683333333333334,
+                  "margin": 19,
+                  "height": 193,
+                  "weight": 90,
+                  "points": 6,
+                  "valuation": 16,
+                  "fieldGoalsAttempted2": 3,
+                  "fieldGoalsMade2": 3,
+                  "fieldGoalsAttempted3": 0,
+                  "fieldGoalsMade3": 0,
+                  "freeThrowsAttempted": 0,
+                  "freeThrowsMade": 0,
+                  "assistances": 7,
+                  "turnovers": 0,
+                  "steals": 0,
+                  "blocksFavour": 0,
+                  "totalRebounds": 3,
+                  "foulsCommited": 3
+                },
+                {
+                  "gameCode": 54,
+                  "date": "2026-10-15T17:45:00+00:00",
+                  "team": "Fenerbahce",
+                  "opponent": "Partizan",
+                  "minutes": 25.333333333333332,
+                  "margin": 9,
+                  "height": 193,
+                  "weight": 90,
+                  "points": 11,
+                  "valuation": 10,
+                  "fieldGoalsAttempted2": 3,
+                  "fieldGoalsMade2": 3,
+                  "fieldGoalsAttempted3": 2,
+                  "fieldGoalsMade3": 0,
+                  "freeThrowsAttempted": 6,
+                  "freeThrowsMade": 5,
+                  "assistances": 2,
+                  "turnovers": 4,
+                  "steals": 1,
+                  "blocksFavour": 0,
+                  "totalRebounds": 3,
+                  "foulsCommited": 4
+                },
+                {
+                  "gameCode": 70,
+                  "date": "2026-10-23T18:15:00+00:00",
+                  "team": "Fenerbahce",
+                  "opponent": "Olympiacos",
+                  "minutes": 26.733333333333334,
+                  "margin": 3,
+                  "height": 193,
+                  "weight": 90,
+                  "points": 14,
+                  "valuation": 7,
+                  "fieldGoalsAttempted2": 10,
+                  "fieldGoalsMade2": 3,
+                  "fieldGoalsAttempted3": 5,
+                  "fieldGoalsMade3": 2,
+                  "freeThrowsAttempted": 4,
+                  "freeThrowsMade": 2,
+                  "assistances": 5,
+                  "turnovers": 1,
+                  "steals": 1,
+                  "blocksFavour": 0,
+                  "totalRebounds": 1,
+                  "foulsCommited": 4
+                },
+                {
+                  "gameCode": 75,
+                  "date": "2026-10-27T19:30:00+00:00",
+                  "team": "Fenerbahce",
+                  "opponent": "Valencia",
+                  "minutes": 26.633333333333333,
+                  "margin": -8,
+                  "height": 193,
+                  "weight": 90,
+                  "points": 19,
+                  "valuation": 23,
+                  "fieldGoalsAttempted2": 7,
+                  "fieldGoalsMade2": 7,
+                  "fieldGoalsAttempted3": 2,
+                  "fieldGoalsMade3": 0,
+                  "freeThrowsAttempted": 5,
+                  "freeThrowsMade": 5,
+                  "assistances": 3,
+                  "turnovers": 2,
+                  "steals": 1,
+                  "blocksFavour": 0,
+                  "totalRebounds": 3,
+                  "foulsCommited": 2
+                },
+                {
+                  "gameCode": 83,
+                  "date": "2026-10-29T19:45:00+00:00",
+                  "team": "Fenerbahce",
+                  "opponent": "Real Madrid",
+                  "minutes": 27.233333333333334,
+                  "margin": -19,
+                  "height": 193,
+                  "weight": 90,
+                  "points": 7,
+                  "valuation": 7,
+                  "fieldGoalsAttempted2": 4,
+                  "fieldGoalsMade2": 3,
+                  "fieldGoalsAttempted3": 5,
+                  "fieldGoalsMade3": 0,
+                  "freeThrowsAttempted": 2,
+                  "freeThrowsMade": 1,
+                  "assistances": 3,
+                  "turnovers": 1,
+                  "steals": 2,
+                  "blocksFavour": 0,
+                  "totalRebounds": 4,
+                  "foulsCommited": 3
+                },
+                {
+                  "gameCode": 92,
+                  "date": "2026-11-05T18:00:00+00:00",
+                  "team": "Fenerbahce",
+                  "opponent": "Baskonia",
+                  "minutes": 16.566666666666666,
+                  "margin": 19,
+                  "height": 193,
+                  "weight": 90,
+                  "points": 8,
+                  "valuation": 4,
+                  "fieldGoalsAttempted2": 9,
+                  "fieldGoalsMade2": 4,
+                  "fieldGoalsAttempted3": 0,
+                  "fieldGoalsMade3": 0,
+                  "freeThrowsAttempted": 0,
+                  "freeThrowsMade": 0,
+                  "assistances": 1,
+                  "turnovers": 1,
+                  "steals": 1,
+                  "blocksFavour": 0,
+                  "totalRebounds": 3,
+                  "foulsCommited": 3
+                },
+                {
+                  "gameCode": 101,
+                  "date": "2026-11-11T19:45:00+00:00",
+                  "team": "Fenerbahce",
+                  "opponent": "Paris",
+                  "minutes": 30.416666666666668,
+                  "margin": -2,
+                  "height": 193,
+                  "weight": 90,
+                  "points": 22,
+                  "valuation": 24,
+                  "fieldGoalsAttempted2": 9,
+                  "fieldGoalsMade2": 5,
+                  "fieldGoalsAttempted3": 4,
+                  "fieldGoalsMade3": 3,
+                  "freeThrowsAttempted": 4,
+                  "freeThrowsMade": 3,
+                  "assistances": 4,
+                  "turnovers": 2,
+                  "steals": 3,
+                  "blocksFavour": 0,
+                  "totalRebounds": 1,
+                  "foulsCommited": 3
+                }
+              ],
+              "offensiveShareProxy": 0.13271044226517573
+            }
+          },
           "defense": {
             "ASVEL": {
               "games": 11,
@@ -233,14 +579,14 @@
                   },
                   {
                     "name": "Juhann Begarin",
-                    "status": "questionable",
-                    "missingProbability": 0.5,
+                    "status": "out",
+                    "missingProbability": 1,
                     "avgMinutes": 14,
                     "sampleGames": 0,
-                    "impactProxy": 0.011
+                    "impactProxy": 0.022
                   }
                 ],
-                "marginPenalty": 0.359,
+                "marginPenalty": 0.37,
                 "available": 14,
                 "rosterCount": 16
               },
@@ -377,10 +723,10 @@
               "home": false,
               "baseMargin": -7.54,
               "strengthDelta": -0.7658,
-              "rosterDelta": 0.094,
-              "margin": -8.2118,
-              "rawWinProb": 0.2422239506695124,
-              "winProb": 0.2422239506695124
+              "rosterDelta": 0.083,
+              "margin": -8.2228,
+              "rawWinProb": 0.24194363520354176,
+              "winProb": 0.24194363520354176
             }
           }
         }
@@ -402,7 +748,7 @@
           "fantasy_id": 8567,
           "jerseyNumber": "8",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.641786+00:00",
+          "data_updated": "2026-11-17T16:49:31.656282+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 6
@@ -483,8 +829,8 @@
         "context": {
           "injuryBoost": 0,
           "injuryUsagePct": 0,
-          "margin": 8.2118,
-          "teamPct": 2.250540000000001,
+          "margin": 8.2228,
+          "teamPct": 2.253839999999996,
           "positionPct": -3.226085993079686
         },
         "config": {
@@ -493,21 +839,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.814Z",
+        "asOf": "2026-11-17T17:00:08.962Z",
         "complete": true,
         "match": {
           "opponent": "ASVEL",
           "home": true,
-          "margin": 8.2118,
+          "margin": 8.2228,
           "total": 167.29,
-          "teamPoints": 87.7509,
-          "winProb": 0.7577760493304876,
-          "p20": 0.15173973766040183,
-          "p11_20": 0.28381320500014734,
-          "p1_10": 0.3222231066699385,
-          "l1_10": 0.18448133346351436,
-          "l11_20": 0.05052501387702617,
-          "l20": 0.007217603328971869,
+          "teamPoints": 87.7564,
+          "winProb": 0.7580563647964582,
+          "p20": 0.15196141946587122,
+          "p11_20": 0.2839585028944186,
+          "p1_10": 0.3221364424361684,
+          "l1_10": 0.1843069367592571,
+          "l11_20": 0.050437639133605855,
+          "l20": 0.007199059310678843,
           "sampleGames": 54,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -647,16 +993,16 @@
             "home": true,
             "baseMargin": 7.54,
             "strengthDelta": 0.7658,
-            "rosterDelta": -0.094,
-            "margin": 8.2118,
-            "rawWinProb": 0.7577760493304876,
-            "winProb": 0.7577760493304876
+            "rosterDelta": -0.083,
+            "margin": 8.2228,
+            "rawWinProb": 0.7580563647964582,
+            "winProb": 0.7580563647964582
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "horton talen tucker": {
               "name": "Talen Horton-Tucker",
@@ -930,7 +1276,7 @@
                   "foulsCommited": 2
                 }
               ],
-              "offensiveShareProxy": 0.17391013794101154
+              "offensiveShareProxy": 0.1508304466204622
             }
           },
           "defense": {
@@ -960,14 +1306,14 @@
                   },
                   {
                     "name": "Juhann Begarin",
-                    "status": "questionable",
-                    "missingProbability": 0.5,
+                    "status": "out",
+                    "missingProbability": 1,
                     "avgMinutes": 14,
                     "sampleGames": 0,
-                    "impactProxy": 0.011
+                    "impactProxy": 0.022
                   }
                 ],
-                "marginPenalty": 0.359,
+                "marginPenalty": 0.37,
                 "available": 14,
                 "rosterCount": 16
               },
@@ -1104,10 +1450,10 @@
               "home": false,
               "baseMargin": -7.54,
               "strengthDelta": -0.7658,
-              "rosterDelta": 0.094,
-              "margin": -8.2118,
-              "rawWinProb": 0.2422239506695124,
-              "winProb": 0.2422239506695124
+              "rosterDelta": 0.083,
+              "margin": -8.2228,
+              "rawWinProb": 0.24194363520354176,
+              "winProb": 0.24194363520354176
             }
           }
         }
@@ -1129,7 +1475,7 @@
           "fantasy_id": 3775,
           "jerseyNumber": "31",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.641799+00:00",
+          "data_updated": "2026-11-17T16:49:31.656294+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 5.3
@@ -1210,8 +1556,8 @@
         "context": {
           "injuryBoost": 0,
           "injuryUsagePct": 0,
-          "margin": 8.2118,
-          "teamPct": 2.250540000000001,
+          "margin": 8.2228,
+          "teamPct": 2.253839999999996,
           "positionPct": 7.601023558787534
         },
         "config": {
@@ -1220,21 +1566,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.815Z",
+        "asOf": "2026-11-17T17:00:08.971Z",
         "complete": true,
         "match": {
           "opponent": "ASVEL",
           "home": true,
-          "margin": 8.2118,
+          "margin": 8.2228,
           "total": 167.29,
-          "teamPoints": 87.7509,
-          "winProb": 0.7577760493304876,
-          "p20": 0.15173973766040183,
-          "p11_20": 0.28381320500014734,
-          "p1_10": 0.3222231066699385,
-          "l1_10": 0.18448133346351436,
-          "l11_20": 0.05052501387702617,
-          "l20": 0.007217603328971869,
+          "teamPoints": 87.7564,
+          "winProb": 0.7580563647964582,
+          "p20": 0.15196141946587122,
+          "p11_20": 0.2839585028944186,
+          "p1_10": 0.3221364424361684,
+          "l1_10": 0.1843069367592571,
+          "l11_20": 0.050437639133605855,
+          "l20": 0.007199059310678843,
           "sampleGames": 54,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -1374,16 +1720,16 @@
             "home": true,
             "baseMargin": 7.54,
             "strengthDelta": 0.7658,
-            "rosterDelta": -0.094,
-            "margin": 8.2118,
-            "rawWinProb": 0.7577760493304876,
-            "winProb": 0.7577760493304876
+            "rosterDelta": -0.083,
+            "margin": 8.2228,
+            "rawWinProb": 0.7580563647964582,
+            "winProb": 0.7580563647964582
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "shavon shields": {
               "name": "Shavon Shields",
@@ -1657,7 +2003,7 @@
                   "foulsCommited": 3
                 }
               ],
-              "offensiveShareProxy": 0.13031979200146376
+              "offensiveShareProxy": 0.11302499476904379
             }
           },
           "defense": {
@@ -1687,14 +2033,14 @@
                   },
                   {
                     "name": "Juhann Begarin",
-                    "status": "questionable",
-                    "missingProbability": 0.5,
+                    "status": "out",
+                    "missingProbability": 1,
                     "avgMinutes": 14,
                     "sampleGames": 0,
-                    "impactProxy": 0.011
+                    "impactProxy": 0.022
                   }
                 ],
-                "marginPenalty": 0.359,
+                "marginPenalty": 0.37,
                 "available": 14,
                 "rosterCount": 16
               },
@@ -1831,10 +2177,10 @@
               "home": false,
               "baseMargin": -7.54,
               "strengthDelta": -0.7658,
-              "rosterDelta": 0.094,
-              "margin": -8.2118,
-              "rawWinProb": 0.2422239506695124,
-              "winProb": 0.2422239506695124
+              "rosterDelta": 0.083,
+              "margin": -8.2228,
+              "rawWinProb": 0.24194363520354176,
+              "winProb": 0.24194363520354176
             }
           }
         }
@@ -1856,7 +2202,7 @@
           "fantasy_id": 11514,
           "jerseyNumber": "8",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.641818+00:00",
+          "data_updated": "2026-11-17T16:49:31.656312+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 2.5
@@ -1904,8 +2250,8 @@
         "context": {
           "injuryBoost": 0.1593749999999999,
           "injuryUsagePct": 0.2732142857142856,
-          "margin": -8.2118,
-          "teamPct": -2.676540000000005,
+          "margin": -8.2228,
+          "teamPct": -2.67984,
           "positionPct": -9.371649826813599
         },
         "config": {
@@ -1914,21 +2260,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.816Z",
+        "asOf": "2026-11-17T17:00:08.975Z",
         "complete": true,
         "match": {
           "opponent": "Fenerbahce",
           "home": false,
-          "margin": -8.2118,
+          "margin": -8.2228,
           "total": 167.29,
-          "teamPoints": 79.53909999999999,
-          "winProb": 0.2422239506695124,
-          "p20": 0.007217603328971869,
-          "p11_20": 0.05052501387702617,
-          "p1_10": 0.18448133346351436,
-          "l1_10": 0.3222231066699385,
-          "l11_20": 0.28381320500014734,
-          "l20": 0.15173973766040183,
+          "teamPoints": 79.53359999999999,
+          "winProb": 0.24194363520354176,
+          "p20": 0.007199059310678841,
+          "p11_20": 0.05043763913360584,
+          "p1_10": 0.18430693675925705,
+          "l1_10": 0.32213644243616835,
+          "l11_20": 0.28395850289441865,
+          "l20": 0.15196141946587122,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -1957,14 +2303,14 @@
                 },
                 {
                   "name": "Juhann Begarin",
-                  "status": "questionable",
-                  "missingProbability": 0.5,
+                  "status": "out",
+                  "missingProbability": 1,
                   "avgMinutes": 14,
                   "sampleGames": 0,
-                  "impactProxy": 0.011
+                  "impactProxy": 0.022
                 }
               ],
-              "marginPenalty": 0.359,
+              "marginPenalty": 0.37,
               "available": 14,
               "rosterCount": 16
             },
@@ -2101,16 +2447,16 @@
             "home": false,
             "baseMargin": -7.54,
             "strengthDelta": -0.7658,
-            "rosterDelta": 0.094,
-            "margin": -8.2118,
-            "rawWinProb": 0.2422239506695124,
-            "winProb": 0.2422239506695124
+            "rosterDelta": 0.083,
+            "margin": -8.2228,
+            "rawWinProb": 0.24194363520354176,
+            "winProb": 0.24194363520354176
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "mills patty": {
               "name": "Patty Mills",
@@ -2384,7 +2730,7 @@
                   "foulsCommited": 2
                 }
               ],
-              "offensiveShareProxy": 0.12813134582472444
+              "offensiveShareProxy": 0.11821814603222096
             }
           },
           "defense": {
@@ -2525,10 +2871,10 @@
               "home": true,
               "baseMargin": 7.54,
               "strengthDelta": 0.7658,
-              "rosterDelta": -0.094,
-              "margin": 8.2118,
-              "rawWinProb": 0.7577760493304876,
-              "winProb": 0.7577760493304876
+              "rosterDelta": -0.083,
+              "margin": 8.2228,
+              "rawWinProb": 0.7580563647964582,
+              "winProb": 0.7580563647964582
             }
           }
         }
@@ -2550,7 +2896,7 @@
           "fantasy_id": 3767,
           "jerseyNumber": "0",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.641929+00:00",
+          "data_updated": "2026-11-17T16:49:31.656355+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.8
@@ -2631,8 +2977,8 @@
         "context": {
           "injuryBoost": 0,
           "injuryUsagePct": 0,
-          "margin": 8.2118,
-          "teamPct": 2.250540000000001,
+          "margin": 8.2228,
+          "teamPct": 2.253839999999996,
           "positionPct": -3.226085993079686
         },
         "config": {
@@ -2641,21 +2987,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.818Z",
+        "asOf": "2026-11-17T17:00:08.985Z",
         "complete": true,
         "match": {
           "opponent": "ASVEL",
           "home": true,
-          "margin": 8.2118,
+          "margin": 8.2228,
           "total": 167.29,
-          "teamPoints": 87.7509,
-          "winProb": 0.7577760493304876,
-          "p20": 0.15173973766040183,
-          "p11_20": 0.28381320500014734,
-          "p1_10": 0.3222231066699385,
-          "l1_10": 0.18448133346351436,
-          "l11_20": 0.05052501387702617,
-          "l20": 0.007217603328971869,
+          "teamPoints": 87.7564,
+          "winProb": 0.7580563647964582,
+          "p20": 0.15196141946587122,
+          "p11_20": 0.2839585028944186,
+          "p1_10": 0.3221364424361684,
+          "l1_10": 0.1843069367592571,
+          "l11_20": 0.050437639133605855,
+          "l20": 0.007199059310678843,
           "sampleGames": 54,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -2795,16 +3141,16 @@
             "home": true,
             "baseMargin": 7.54,
             "strengthDelta": 0.7658,
-            "rosterDelta": -0.094,
-            "margin": 8.2118,
-            "rawWinProb": 0.7577760493304876,
-            "winProb": 0.7577760493304876
+            "rosterDelta": -0.083,
+            "margin": 8.2228,
+            "rawWinProb": 0.7580563647964582,
+            "winProb": 0.7580563647964582
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "larkin shane": {
               "name": "Shane Larkin",
@@ -3006,7 +3352,7 @@
                   "foulsCommited": 1
                 }
               ],
-              "offensiveShareProxy": 0.07934835376662135
+              "offensiveShareProxy": 0.06881799864523941
             }
           },
           "defense": {
@@ -3036,14 +3382,14 @@
                   },
                   {
                     "name": "Juhann Begarin",
-                    "status": "questionable",
-                    "missingProbability": 0.5,
+                    "status": "out",
+                    "missingProbability": 1,
                     "avgMinutes": 14,
                     "sampleGames": 0,
-                    "impactProxy": 0.011
+                    "impactProxy": 0.022
                   }
                 ],
-                "marginPenalty": 0.359,
+                "marginPenalty": 0.37,
                 "available": 14,
                 "rosterCount": 16
               },
@@ -3180,10 +3526,10 @@
               "home": false,
               "baseMargin": -7.54,
               "strengthDelta": -0.7658,
-              "rosterDelta": 0.094,
-              "margin": -8.2118,
-              "rawWinProb": 0.2422239506695124,
-              "winProb": 0.2422239506695124
+              "rosterDelta": 0.083,
+              "margin": -8.2228,
+              "rawWinProb": 0.24194363520354176,
+              "winProb": 0.24194363520354176
             }
           }
         }
@@ -3205,7 +3551,7 @@
           "fantasy_id": 3777,
           "jerseyNumber": "21",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.641933+00:00",
+          "data_updated": "2026-11-17T16:49:31.656358+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 2.3
@@ -3286,8 +3632,8 @@
         "context": {
           "injuryBoost": 0,
           "injuryUsagePct": 0,
-          "margin": 8.2118,
-          "teamPct": 2.250540000000001,
+          "margin": 8.2228,
+          "teamPct": 2.253839999999996,
           "positionPct": 7.601023558787534
         },
         "config": {
@@ -3296,21 +3642,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.818Z",
+        "asOf": "2026-11-17T17:00:08.985Z",
         "complete": true,
         "match": {
           "opponent": "ASVEL",
           "home": true,
-          "margin": 8.2118,
+          "margin": 8.2228,
           "total": 167.29,
-          "teamPoints": 87.7509,
-          "winProb": 0.7577760493304876,
-          "p20": 0.15173973766040183,
-          "p11_20": 0.28381320500014734,
-          "p1_10": 0.3222231066699385,
-          "l1_10": 0.18448133346351436,
-          "l11_20": 0.05052501387702617,
-          "l20": 0.007217603328971869,
+          "teamPoints": 87.7564,
+          "winProb": 0.7580563647964582,
+          "p20": 0.15196141946587122,
+          "p11_20": 0.2839585028944186,
+          "p1_10": 0.3221364424361684,
+          "l1_10": 0.1843069367592571,
+          "l11_20": 0.050437639133605855,
+          "l20": 0.007199059310678843,
           "sampleGames": 54,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -3450,16 +3796,16 @@
             "home": true,
             "baseMargin": 7.54,
             "strengthDelta": 0.7658,
-            "rosterDelta": -0.094,
-            "margin": 8.2118,
-            "rawWinProb": 0.7577760493304876,
-            "winProb": 0.7577760493304876
+            "rosterDelta": -0.083,
+            "margin": 8.2228,
+            "rawWinProb": 0.7580563647964582,
+            "winProb": 0.7580563647964582
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "clyburn will": {
               "name": "Will Clyburn",
@@ -3733,7 +4079,7 @@
                   "foulsCommited": 2
                 }
               ],
-              "offensiveShareProxy": 0.1317637786164384
+              "offensiveShareProxy": 0.11427734928172016
             }
           },
           "defense": {
@@ -3763,14 +4109,14 @@
                   },
                   {
                     "name": "Juhann Begarin",
-                    "status": "questionable",
-                    "missingProbability": 0.5,
+                    "status": "out",
+                    "missingProbability": 1,
                     "avgMinutes": 14,
                     "sampleGames": 0,
-                    "impactProxy": 0.011
+                    "impactProxy": 0.022
                   }
                 ],
-                "marginPenalty": 0.359,
+                "marginPenalty": 0.37,
                 "available": 14,
                 "rosterCount": 16
               },
@@ -3907,10 +4253,10 @@
               "home": false,
               "baseMargin": -7.54,
               "strengthDelta": -0.7658,
-              "rosterDelta": 0.094,
-              "margin": -8.2118,
-              "rawWinProb": 0.2422239506695124,
-              "winProb": 0.2422239506695124
+              "rosterDelta": 0.083,
+              "margin": -8.2228,
+              "rawWinProb": 0.24194363520354176,
+              "winProb": 0.24194363520354176
             }
           }
         }
@@ -3932,7 +4278,7 @@
           "fantasy_id": 11515,
           "jerseyNumber": "51",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.641988+00:00",
+          "data_updated": "2026-11-17T16:49:31.656408+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.3
@@ -3980,8 +4326,8 @@
         "context": {
           "injuryBoost": 0.11687499999999995,
           "injuryUsagePct": 0.20035714285714276,
-          "margin": -8.2118,
-          "teamPct": -2.676540000000005,
+          "margin": -8.2228,
+          "teamPct": -2.67984,
           "positionPct": -9.371649826813599
         },
         "config": {
@@ -3990,21 +4336,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.821Z",
+        "asOf": "2026-11-17T17:00:08.995Z",
         "complete": true,
         "match": {
           "opponent": "Fenerbahce",
           "home": false,
-          "margin": -8.2118,
+          "margin": -8.2228,
           "total": 167.29,
-          "teamPoints": 79.53909999999999,
-          "winProb": 0.2422239506695124,
-          "p20": 0.007217603328971869,
-          "p11_20": 0.05052501387702617,
-          "p1_10": 0.18448133346351436,
-          "l1_10": 0.3222231066699385,
-          "l11_20": 0.28381320500014734,
-          "l20": 0.15173973766040183,
+          "teamPoints": 79.53359999999999,
+          "winProb": 0.24194363520354176,
+          "p20": 0.007199059310678841,
+          "p11_20": 0.05043763913360584,
+          "p1_10": 0.18430693675925705,
+          "l1_10": 0.32213644243616835,
+          "l11_20": 0.28395850289441865,
+          "l20": 0.15196141946587122,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -4033,14 +4379,14 @@
                 },
                 {
                   "name": "Juhann Begarin",
-                  "status": "questionable",
-                  "missingProbability": 0.5,
+                  "status": "out",
+                  "missingProbability": 1,
                   "avgMinutes": 14,
                   "sampleGames": 0,
-                  "impactProxy": 0.011
+                  "impactProxy": 0.022
                 }
               ],
-              "marginPenalty": 0.359,
+              "marginPenalty": 0.37,
               "available": 14,
               "rosterCount": 16
             },
@@ -4177,16 +4523,16 @@
             "home": false,
             "baseMargin": -7.54,
             "strengthDelta": -0.7658,
-            "rosterDelta": 0.094,
-            "margin": -8.2118,
-            "rawWinProb": 0.2422239506695124,
-            "winProb": 0.2422239506695124
+            "rosterDelta": 0.083,
+            "margin": -8.2228,
+            "rawWinProb": 0.24194363520354176,
+            "winProb": 0.24194363520354176
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "tremont waters": {
               "name": "Tremont Waters",
@@ -4460,7 +4806,7 @@
                   "foulsCommited": 3
                 }
               ],
-              "offensiveShareProxy": 0.11384575821798158
+              "offensiveShareProxy": 0.10503779838988678
             }
           },
           "defense": {
@@ -4601,10 +4947,10 @@
               "home": true,
               "baseMargin": 7.54,
               "strengthDelta": 0.7658,
-              "rosterDelta": -0.094,
-              "margin": 8.2118,
-              "rawWinProb": 0.7577760493304876,
-              "winProb": 0.7577760493304876
+              "rosterDelta": -0.083,
+              "margin": 8.2228,
+              "rawWinProb": 0.7580563647964582,
+              "winProb": 0.7580563647964582
             }
           }
         }
@@ -4626,7 +4972,7 @@
           "fantasy_id": 4712,
           "jerseyNumber": "30",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642013+00:00",
+          "data_updated": "2026-11-17T16:49:31.656430+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.7
@@ -4674,8 +5020,8 @@
         "context": {
           "injuryBoost": 0,
           "injuryUsagePct": 0,
-          "margin": 8.2118,
-          "teamPct": 2.250540000000001,
+          "margin": 8.2228,
+          "teamPct": 2.253839999999996,
           "positionPct": 12.00000000000001
         },
         "config": {
@@ -4684,21 +5030,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.823Z",
+        "asOf": "2026-11-17T17:00:08.998Z",
         "complete": true,
         "match": {
           "opponent": "ASVEL",
           "home": true,
-          "margin": 8.2118,
+          "margin": 8.2228,
           "total": 167.29,
-          "teamPoints": 87.7509,
-          "winProb": 0.7577760493304876,
-          "p20": 0.15173973766040183,
-          "p11_20": 0.28381320500014734,
-          "p1_10": 0.3222231066699385,
-          "l1_10": 0.18448133346351436,
-          "l11_20": 0.05052501387702617,
-          "l20": 0.007217603328971869,
+          "teamPoints": 87.7564,
+          "winProb": 0.7580563647964582,
+          "p20": 0.15196141946587122,
+          "p11_20": 0.2839585028944186,
+          "p1_10": 0.3221364424361684,
+          "l1_10": 0.1843069367592571,
+          "l11_20": 0.050437639133605855,
+          "l20": 0.007199059310678843,
           "sampleGames": 54,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -4838,16 +5184,16 @@
             "home": true,
             "baseMargin": 7.54,
             "strengthDelta": 0.7658,
-            "rosterDelta": -0.094,
-            "margin": 8.2118,
-            "rawWinProb": 0.7577760493304876,
-            "winProb": 0.7577760493304876
+            "rosterDelta": -0.083,
+            "margin": 8.2228,
+            "rawWinProb": 0.7580563647964582,
+            "winProb": 0.7580563647964582
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "bingham marcus": {
               "name": "Marcus Bingham",
@@ -5121,7 +5467,7 @@
                   "foulsCommited": 3
                 }
               ],
-              "offensiveShareProxy": 0.08775828652508541
+              "offensiveShareProxy": 0.07611184550790732
             }
           },
           "defense": {
@@ -5151,14 +5497,14 @@
                   },
                   {
                     "name": "Juhann Begarin",
-                    "status": "questionable",
-                    "missingProbability": 0.5,
+                    "status": "out",
+                    "missingProbability": 1,
                     "avgMinutes": 14,
                     "sampleGames": 0,
-                    "impactProxy": 0.011
+                    "impactProxy": 0.022
                   }
                 ],
-                "marginPenalty": 0.359,
+                "marginPenalty": 0.37,
                 "available": 14,
                 "rosterCount": 16
               },
@@ -5295,10 +5641,10 @@
               "home": false,
               "baseMargin": -7.54,
               "strengthDelta": -0.7658,
-              "rosterDelta": 0.094,
-              "margin": -8.2118,
-              "rawWinProb": 0.2422239506695124,
-              "winProb": 0.2422239506695124
+              "rosterDelta": 0.083,
+              "margin": -8.2228,
+              "rawWinProb": 0.24194363520354176,
+              "winProb": 0.24194363520354176
             }
           }
         }
@@ -5320,7 +5666,7 @@
           "fantasy_id": 3822,
           "jerseyNumber": "21",
           "probability_of_playing": 0,
-          "data_updated": "2026-11-17T10:37:33.642066+00:00",
+          "data_updated": "2026-11-17T16:49:31.656479+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 1.6
@@ -5401,8 +5747,8 @@
         "context": {
           "injuryBoost": 0,
           "injuryUsagePct": 0,
-          "margin": -8.2118,
-          "teamPct": -2.676540000000005,
+          "margin": -8.2228,
+          "teamPct": -2.67984,
           "positionPct": -2.307540306733813
         },
         "config": {
@@ -5411,21 +5757,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.825Z",
+        "asOf": "2026-11-17T17:00:09.008Z",
         "complete": true,
         "match": {
           "opponent": "Fenerbahce",
           "home": false,
-          "margin": -8.2118,
+          "margin": -8.2228,
           "total": 167.29,
-          "teamPoints": 79.53909999999999,
-          "winProb": 0.2422239506695124,
-          "p20": 0.007217603328971869,
-          "p11_20": 0.05052501387702617,
-          "p1_10": 0.18448133346351436,
-          "l1_10": 0.3222231066699385,
-          "l11_20": 0.28381320500014734,
-          "l20": 0.15173973766040183,
+          "teamPoints": 79.53359999999999,
+          "winProb": 0.24194363520354176,
+          "p20": 0.007199059310678841,
+          "p11_20": 0.05043763913360584,
+          "p1_10": 0.18430693675925705,
+          "l1_10": 0.32213644243616835,
+          "l11_20": 0.28395850289441865,
+          "l20": 0.15196141946587122,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -5454,14 +5800,14 @@
                 },
                 {
                   "name": "Juhann Begarin",
-                  "status": "questionable",
-                  "missingProbability": 0.5,
+                  "status": "out",
+                  "missingProbability": 1,
                   "avgMinutes": 14,
                   "sampleGames": 0,
-                  "impactProxy": 0.011
+                  "impactProxy": 0.022
                 }
               ],
-              "marginPenalty": 0.359,
+              "marginPenalty": 0.37,
               "available": 14,
               "rosterCount": 16
             },
@@ -5598,16 +5944,16 @@
             "home": false,
             "baseMargin": -7.54,
             "strengthDelta": -0.7658,
-            "rosterDelta": 0.094,
-            "margin": -8.2118,
-            "rawWinProb": 0.2422239506695124,
-            "winProb": 0.2422239506695124
+            "rosterDelta": 0.083,
+            "margin": -8.2228,
+            "rawWinProb": 0.24194363520354176,
+            "winProb": 0.24194363520354176
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "bolomboy joel": {
               "name": "Joel Bolomboy",
@@ -5881,7 +6227,7 @@
                   "foulsCommited": 2
                 }
               ],
-              "offensiveShareProxy": 0.055575216387836655
+              "offensiveShareProxy": 0.05127550174722192
             }
           },
           "defense": {
@@ -6022,10 +6368,10 @@
               "home": true,
               "baseMargin": 7.54,
               "strengthDelta": 0.7658,
-              "rosterDelta": -0.094,
-              "margin": 8.2118,
-              "rawWinProb": 0.7577760493304876,
-              "winProb": 0.7577760493304876
+              "rosterDelta": -0.083,
+              "margin": 8.2228,
+              "rawWinProb": 0.7580563647964582,
+              "winProb": 0.7580563647964582
             }
           }
         }
@@ -6047,7 +6393,7 @@
           "fantasy_id": 11519,
           "jerseyNumber": "25",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642077+00:00",
+          "data_updated": "2026-11-17T16:49:31.656488+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.6
@@ -6095,8 +6441,8 @@
         "context": {
           "injuryBoost": 0.09987499999999994,
           "injuryUsagePct": 0.17121428571428562,
-          "margin": -8.2118,
-          "teamPct": -2.676540000000005,
+          "margin": -8.2228,
+          "teamPct": -2.67984,
           "positionPct": -9.371649826813599
         },
         "config": {
@@ -6105,21 +6451,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.825Z",
+        "asOf": "2026-11-17T17:00:09.010Z",
         "complete": true,
         "match": {
           "opponent": "Fenerbahce",
           "home": false,
-          "margin": -8.2118,
+          "margin": -8.2228,
           "total": 167.29,
-          "teamPoints": 79.53909999999999,
-          "winProb": 0.2422239506695124,
-          "p20": 0.007217603328971869,
-          "p11_20": 0.05052501387702617,
-          "p1_10": 0.18448133346351436,
-          "l1_10": 0.3222231066699385,
-          "l11_20": 0.28381320500014734,
-          "l20": 0.15173973766040183,
+          "teamPoints": 79.53359999999999,
+          "winProb": 0.24194363520354176,
+          "p20": 0.007199059310678841,
+          "p11_20": 0.05043763913360584,
+          "p1_10": 0.18430693675925705,
+          "l1_10": 0.32213644243616835,
+          "l11_20": 0.28395850289441865,
+          "l20": 0.15196141946587122,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -6148,14 +6494,14 @@
                 },
                 {
                   "name": "Juhann Begarin",
-                  "status": "questionable",
-                  "missingProbability": 0.5,
+                  "status": "out",
+                  "missingProbability": 1,
                   "avgMinutes": 14,
                   "sampleGames": 0,
-                  "impactProxy": 0.011
+                  "impactProxy": 0.022
                 }
               ],
-              "marginPenalty": 0.359,
+              "marginPenalty": 0.37,
               "available": 14,
               "rosterCount": 16
             },
@@ -6292,16 +6638,16 @@
             "home": false,
             "baseMargin": -7.54,
             "strengthDelta": -0.7658,
-            "rosterDelta": 0.094,
-            "margin": -8.2118,
-            "rawWinProb": 0.2422239506695124,
-            "winProb": 0.2422239506695124
+            "rosterDelta": 0.083,
+            "margin": -8.2228,
+            "rawWinProb": 0.24194363520354176,
+            "winProb": 0.24194363520354176
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "besson hugo": {
               "name": "Hugo Besson",
@@ -6575,7 +6921,7 @@
                   "foulsCommited": 2
                 }
               ],
-              "offensiveShareProxy": 0.09504377737345433
+              "offensiveShareProxy": 0.08769047948937429
             }
           },
           "defense": {
@@ -6716,10 +7062,10 @@
               "home": true,
               "baseMargin": 7.54,
               "strengthDelta": 0.7658,
-              "rosterDelta": -0.094,
-              "margin": 8.2118,
-              "rawWinProb": 0.7577760493304876,
-              "winProb": 0.7577760493304876
+              "rosterDelta": -0.083,
+              "margin": 8.2228,
+              "rawWinProb": 0.7580563647964582,
+              "winProb": 0.7580563647964582
             }
           }
         }
@@ -6741,18 +7087,56 @@
           "fantasy_id": 11517,
           "jerseyNumber": "3",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642108+00:00",
+          "data_updated": "2026-11-17T16:49:31.656516+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 1
         },
-        "recent": null,
+        "recent": {
+          "name": "TYTY WASHINGTON JR",
+          "latestSeason": "E2026",
+          "gamesAvailable": 7,
+          "gamesLatestSeason": 7,
+          "currentSeasonGames": 7,
+          "lastGame": {
+            "season": "E2026",
+            "gameCode": 108,
+            "date": "2026-11-13T20:30:00",
+            "pir": 8,
+            "minutes": 18.23,
+            "pirPerMinute": 0.43876
+          },
+          "previous4": {
+            "games": 4,
+            "avgPir": 10.25,
+            "avgMinutes": 21.55,
+            "pirPerMinute": 0.47564
+          },
+          "last5": {
+            "games": 5,
+            "avgPir": 9.8,
+            "avgMinutes": 20.89,
+            "sdPir": 9.91
+          },
+          "last10": {
+            "games": 7,
+            "avgPir": 11.71,
+            "avgMinutes": 21.01
+          },
+          "season": {
+            "games": 7,
+            "avgPir": 11.71,
+            "avgMinutes": 21.01,
+            "pirPerMinute": 0.55744
+          },
+          "gameLog": []
+        },
         "history": null,
         "context": {
           "injuryBoost": 0.09562499999999995,
           "injuryUsagePct": 0.16392857142857134,
-          "margin": -8.2118,
-          "teamPct": -2.676540000000005,
+          "margin": -8.2228,
+          "teamPct": -2.67984,
           "positionPct": -9.371649826813599
         },
         "config": {
@@ -6761,21 +7145,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.827Z",
+        "asOf": "2026-11-17T17:00:09.014Z",
         "complete": true,
         "match": {
           "opponent": "Fenerbahce",
           "home": false,
-          "margin": -8.2118,
+          "margin": -8.2228,
           "total": 167.29,
-          "teamPoints": 79.53909999999999,
-          "winProb": 0.2422239506695124,
-          "p20": 0.007217603328971869,
-          "p11_20": 0.05052501387702617,
-          "p1_10": 0.18448133346351436,
-          "l1_10": 0.3222231066699385,
-          "l11_20": 0.28381320500014734,
-          "l20": 0.15173973766040183,
+          "teamPoints": 79.53359999999999,
+          "winProb": 0.24194363520354176,
+          "p20": 0.007199059310678841,
+          "p11_20": 0.05043763913360584,
+          "p1_10": 0.18430693675925705,
+          "l1_10": 0.32213644243616835,
+          "l11_20": 0.28395850289441865,
+          "l20": 0.15196141946587122,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -6804,14 +7188,14 @@
                 },
                 {
                   "name": "Juhann Begarin",
-                  "status": "questionable",
-                  "missingProbability": 0.5,
+                  "status": "out",
+                  "missingProbability": 1,
                   "avgMinutes": 14,
                   "sampleGames": 0,
-                  "impactProxy": 0.011
+                  "impactProxy": 0.022
                 }
               ],
-              "marginPenalty": 0.359,
+              "marginPenalty": 0.37,
               "available": 14,
               "rosterCount": 16
             },
@@ -6948,17 +7332,220 @@
             "home": false,
             "baseMargin": -7.54,
             "strengthDelta": -0.7658,
-            "rosterDelta": 0.094,
-            "margin": -8.2118,
-            "rawWinProb": 0.2422239506695124,
-            "winProb": 0.2422239506695124
+            "rosterDelta": 0.083,
+            "margin": -8.2228,
+            "rawWinProb": 0.24194363520354176,
+            "winProb": 0.24194363520354176
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
-          "players": {},
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
+          "players": {
+            "jr tyty washington": {
+              "name": "Tyty Washington",
+              "team": "ASVEL",
+              "pos": "G",
+              "games": 7,
+              "avgMinutes": 21.014285714285712,
+              "averages": {
+                "points": 9.285714285714286,
+                "valuation": 11.714285714285714,
+                "fieldGoalsAttempted2": 4.285714285714286,
+                "fieldGoalsMade2": 2.5714285714285716,
+                "fieldGoalsAttempted3": 1.7142857142857142,
+                "fieldGoalsMade3": 1,
+                "freeThrowsAttempted": 1.5714285714285714,
+                "freeThrowsMade": 1.1428571428571428,
+                "assistances": 4,
+                "turnovers": 1.7142857142857142,
+                "steals": 0.14285714285714285,
+                "blocksFavour": 0.42857142857142855,
+                "totalRebounds": 2.857142857142857,
+                "foulsCommited": 1.7142857142857142
+              },
+              "shotEventsPerMinute": 0.39999999999999997,
+              "recentEventsPerMinute": 0.27499999999999997,
+              "previousEventsPerMinute": 0.4519730510105871,
+              "recentGames": 2,
+              "previousGames": 5,
+              "minutesSd": 4.42884151762158,
+              "height": 189,
+              "weight": 89,
+              "logs": [
+                {
+                  "gameCode": 41,
+                  "date": "2026-10-13T18:00:00+00:00",
+                  "team": "ASVEL",
+                  "opponent": "Crvena Zvezda",
+                  "minutes": 14.3,
+                  "margin": -2,
+                  "height": 189,
+                  "weight": 89,
+                  "points": 7,
+                  "valuation": 9,
+                  "fieldGoalsAttempted2": 2,
+                  "fieldGoalsMade2": 1,
+                  "fieldGoalsAttempted3": 3,
+                  "fieldGoalsMade3": 1,
+                  "freeThrowsAttempted": 2,
+                  "freeThrowsMade": 2,
+                  "assistances": 2,
+                  "turnovers": 1,
+                  "steals": 0,
+                  "blocksFavour": 0,
+                  "totalRebounds": 3,
+                  "foulsCommited": 0
+                },
+                {
+                  "gameCode": 53,
+                  "date": "2026-10-15T19:00:00+00:00",
+                  "team": "ASVEL",
+                  "opponent": "Real Madrid",
+                  "minutes": 28.366666666666667,
+                  "margin": -19,
+                  "height": 189,
+                  "weight": 89,
+                  "points": 17,
+                  "valuation": 24,
+                  "fieldGoalsAttempted2": 6,
+                  "fieldGoalsMade2": 4,
+                  "fieldGoalsAttempted3": 3,
+                  "fieldGoalsMade3": 2,
+                  "freeThrowsAttempted": 3,
+                  "freeThrowsMade": 3,
+                  "assistances": 6,
+                  "turnovers": 1,
+                  "steals": 1,
+                  "blocksFavour": 1,
+                  "totalRebounds": 1,
+                  "foulsCommited": 1
+                },
+                {
+                  "gameCode": 68,
+                  "date": "2026-10-23T17:00:00+00:00",
+                  "team": "ASVEL",
+                  "opponent": "Zalgiris",
+                  "minutes": 17.516666666666666,
+                  "margin": -20,
+                  "height": 189,
+                  "weight": 89,
+                  "points": 7,
+                  "valuation": 4,
+                  "fieldGoalsAttempted2": 4,
+                  "fieldGoalsMade2": 2,
+                  "fieldGoalsAttempted3": 2,
+                  "fieldGoalsMade3": 1,
+                  "freeThrowsAttempted": 0,
+                  "freeThrowsMade": 0,
+                  "assistances": 4,
+                  "turnovers": 3,
+                  "steals": 0,
+                  "blocksFavour": 0,
+                  "totalRebounds": 0,
+                  "foulsCommited": 1
+                },
+                {
+                  "gameCode": 78,
+                  "date": "2026-10-28T19:00:00+00:00",
+                  "team": "ASVEL",
+                  "opponent": "Partizan",
+                  "minutes": 21.1,
+                  "margin": 7,
+                  "height": 189,
+                  "weight": 89,
+                  "points": 2,
+                  "valuation": 1,
+                  "fieldGoalsAttempted2": 5,
+                  "fieldGoalsMade2": 1,
+                  "fieldGoalsAttempted3": 0,
+                  "fieldGoalsMade3": 0,
+                  "freeThrowsAttempted": 2,
+                  "freeThrowsMade": 0,
+                  "assistances": 6,
+                  "turnovers": 3,
+                  "steals": 0,
+                  "blocksFavour": 0,
+                  "totalRebounds": 4,
+                  "foulsCommited": 3
+                },
+                {
+                  "gameCode": 85,
+                  "date": "2026-10-30T19:00:00+00:00",
+                  "team": "ASVEL",
+                  "opponent": "Baskonia",
+                  "minutes": 22.616666666666667,
+                  "margin": 15,
+                  "height": 189,
+                  "weight": 89,
+                  "points": 21,
+                  "valuation": 29,
+                  "fieldGoalsAttempted2": 7,
+                  "fieldGoalsMade2": 7,
+                  "fieldGoalsAttempted3": 3,
+                  "fieldGoalsMade3": 2,
+                  "freeThrowsAttempted": 2,
+                  "freeThrowsMade": 1,
+                  "assistances": 4,
+                  "turnovers": 0,
+                  "steals": 0,
+                  "blocksFavour": 0,
+                  "totalRebounds": 5,
+                  "foulsCommited": 2
+                },
+                {
+                  "gameCode": 94,
+                  "date": "2026-11-05T19:00:00+00:00",
+                  "team": "ASVEL",
+                  "opponent": "Bayern Munich",
+                  "minutes": 24.966666666666665,
+                  "margin": -4,
+                  "height": 189,
+                  "weight": 89,
+                  "points": 9,
+                  "valuation": 7,
+                  "fieldGoalsAttempted2": 3,
+                  "fieldGoalsMade2": 2,
+                  "fieldGoalsAttempted3": 1,
+                  "fieldGoalsMade3": 1,
+                  "freeThrowsAttempted": 2,
+                  "freeThrowsMade": 2,
+                  "assistances": 2,
+                  "turnovers": 4,
+                  "steals": 0,
+                  "blocksFavour": 1,
+                  "totalRebounds": 4,
+                  "foulsCommited": 5
+                },
+                {
+                  "gameCode": 108,
+                  "date": "2026-11-13T19:30:00+00:00",
+                  "team": "ASVEL",
+                  "opponent": "Besiktas",
+                  "minutes": 18.233333333333334,
+                  "margin": -4,
+                  "height": 189,
+                  "weight": 89,
+                  "points": 2,
+                  "valuation": 8,
+                  "fieldGoalsAttempted2": 3,
+                  "fieldGoalsMade2": 1,
+                  "fieldGoalsAttempted3": 0,
+                  "fieldGoalsMade3": 0,
+                  "freeThrowsAttempted": 0,
+                  "freeThrowsMade": 0,
+                  "assistances": 4,
+                  "turnovers": 0,
+                  "steals": 0,
+                  "blocksFavour": 1,
+                  "totalRebounds": 3,
+                  "foulsCommited": 0
+                }
+              ],
+              "offensiveShareProxy": 0.07736748356693376
+            }
+          },
           "defense": {
             "Fenerbahce": {
               "games": 11,
@@ -7097,10 +7684,10 @@
               "home": true,
               "baseMargin": 7.54,
               "strengthDelta": 0.7658,
-              "rosterDelta": -0.094,
-              "margin": 8.2118,
-              "rawWinProb": 0.7577760493304876,
-              "winProb": 0.7577760493304876
+              "rosterDelta": -0.083,
+              "margin": 8.2228,
+              "rawWinProb": 0.7580563647964582,
+              "winProb": 0.7580563647964582
             }
           }
         }
@@ -7122,7 +7709,7 @@
           "fantasy_id": 11516,
           "jerseyNumber": "99",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642111+00:00",
+          "data_updated": "2026-11-17T16:49:31.656519+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 2.1
@@ -7170,8 +7757,8 @@
         "context": {
           "injuryBoost": 0.09349999999999994,
           "injuryUsagePct": 0.1602857142857142,
-          "margin": -8.2118,
-          "teamPct": -2.676540000000005,
+          "margin": -8.2228,
+          "teamPct": -2.67984,
           "positionPct": -12
         },
         "config": {
@@ -7180,21 +7767,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.827Z",
+        "asOf": "2026-11-17T17:00:09.015Z",
         "complete": true,
         "match": {
           "opponent": "Fenerbahce",
           "home": false,
-          "margin": -8.2118,
+          "margin": -8.2228,
           "total": 167.29,
-          "teamPoints": 79.53909999999999,
-          "winProb": 0.2422239506695124,
-          "p20": 0.007217603328971869,
-          "p11_20": 0.05052501387702617,
-          "p1_10": 0.18448133346351436,
-          "l1_10": 0.3222231066699385,
-          "l11_20": 0.28381320500014734,
-          "l20": 0.15173973766040183,
+          "teamPoints": 79.53359999999999,
+          "winProb": 0.24194363520354176,
+          "p20": 0.007199059310678841,
+          "p11_20": 0.05043763913360584,
+          "p1_10": 0.18430693675925705,
+          "l1_10": 0.32213644243616835,
+          "l11_20": 0.28395850289441865,
+          "l20": 0.15196141946587122,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -7223,14 +7810,14 @@
                 },
                 {
                   "name": "Juhann Begarin",
-                  "status": "questionable",
-                  "missingProbability": 0.5,
+                  "status": "out",
+                  "missingProbability": 1,
                   "avgMinutes": 14,
                   "sampleGames": 0,
-                  "impactProxy": 0.011
+                  "impactProxy": 0.022
                 }
               ],
-              "marginPenalty": 0.359,
+              "marginPenalty": 0.37,
               "available": 14,
               "rosterCount": 16
             },
@@ -7367,16 +7954,16 @@
             "home": false,
             "baseMargin": -7.54,
             "strengthDelta": -0.7658,
-            "rosterDelta": 0.094,
-            "margin": -8.2118,
-            "rawWinProb": 0.2422239506695124,
-            "winProb": 0.2422239506695124
+            "rosterDelta": 0.083,
+            "margin": -8.2228,
+            "rawWinProb": 0.24194363520354176,
+            "winProb": 0.24194363520354176
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "crowder jae": {
               "name": "Jae Crowder",
@@ -7650,7 +8237,7 @@
                   "foulsCommited": 2
                 }
               ],
-              "offensiveShareProxy": 0.12777221094075608
+              "offensiveShareProxy": 0.11788679651048634
             }
           },
           "defense": {
@@ -7791,10 +8378,10 @@
               "home": true,
               "baseMargin": 7.54,
               "strengthDelta": 0.7658,
-              "rosterDelta": -0.094,
-              "margin": 8.2118,
-              "rawWinProb": 0.7577760493304876,
-              "winProb": 0.7577760493304876
+              "rosterDelta": -0.083,
+              "margin": 8.2228,
+              "rawWinProb": 0.7580563647964582,
+              "winProb": 0.7580563647964582
             }
           }
         }
@@ -7816,7 +8403,7 @@
           "fantasy_id": 7338,
           "jerseyNumber": "14",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642144+00:00",
+          "data_updated": "2026-11-17T16:49:31.656550+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.9
@@ -7864,8 +8451,8 @@
         "context": {
           "injuryBoost": 0.08499999999999995,
           "injuryUsagePct": 0.14571428571428563,
-          "margin": -8.2118,
-          "teamPct": -2.676540000000005,
+          "margin": -8.2228,
+          "teamPct": -2.67984,
           "positionPct": -12
         },
         "config": {
@@ -7874,21 +8461,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.829Z",
+        "asOf": "2026-11-17T17:00:09.020Z",
         "complete": true,
         "match": {
           "opponent": "Fenerbahce",
           "home": false,
-          "margin": -8.2118,
+          "margin": -8.2228,
           "total": 167.29,
-          "teamPoints": 79.53909999999999,
-          "winProb": 0.2422239506695124,
-          "p20": 0.007217603328971869,
-          "p11_20": 0.05052501387702617,
-          "p1_10": 0.18448133346351436,
-          "l1_10": 0.3222231066699385,
-          "l11_20": 0.28381320500014734,
-          "l20": 0.15173973766040183,
+          "teamPoints": 79.53359999999999,
+          "winProb": 0.24194363520354176,
+          "p20": 0.007199059310678841,
+          "p11_20": 0.05043763913360584,
+          "p1_10": 0.18430693675925705,
+          "l1_10": 0.32213644243616835,
+          "l11_20": 0.28395850289441865,
+          "l20": 0.15196141946587122,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -7917,14 +8504,14 @@
                 },
                 {
                   "name": "Juhann Begarin",
-                  "status": "questionable",
-                  "missingProbability": 0.5,
+                  "status": "out",
+                  "missingProbability": 1,
                   "avgMinutes": 14,
                   "sampleGames": 0,
-                  "impactProxy": 0.011
+                  "impactProxy": 0.022
                 }
               ],
-              "marginPenalty": 0.359,
+              "marginPenalty": 0.37,
               "available": 14,
               "rosterCount": 16
             },
@@ -8061,16 +8648,16 @@
             "home": false,
             "baseMargin": -7.54,
             "strengthDelta": -0.7658,
-            "rosterDelta": 0.094,
-            "margin": -8.2118,
-            "rawWinProb": 0.2422239506695124,
-            "winProb": 0.2422239506695124
+            "rosterDelta": 0.083,
+            "margin": -8.2228,
+            "rawWinProb": 0.24194363520354176,
+            "winProb": 0.24194363520354176
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "both gach": {
               "name": "Both Gach",
@@ -8344,7 +8931,7 @@
                   "foulsCommited": 3
                 }
               ],
-              "offensiveShareProxy": 0.0750918393752101
+              "offensiveShareProxy": 0.0692821727263377
             }
           },
           "defense": {
@@ -8485,10 +9072,10 @@
               "home": true,
               "baseMargin": 7.54,
               "strengthDelta": 0.7658,
-              "rosterDelta": -0.094,
-              "margin": 8.2118,
-              "rawWinProb": 0.7577760493304876,
-              "winProb": 0.7577760493304876
+              "rosterDelta": -0.083,
+              "margin": 8.2228,
+              "rawWinProb": 0.7580563647964582,
+              "winProb": 0.7580563647964582
             }
           }
         }
@@ -8510,7 +9097,7 @@
           "fantasy_id": 11505,
           "jerseyNumber": "9",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642231+00:00",
+          "data_updated": "2026-11-17T16:49:31.656631+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.2
@@ -8558,8 +9145,8 @@
         "context": {
           "injuryBoost": 0,
           "injuryUsagePct": 0,
-          "margin": 8.2118,
-          "teamPct": 2.250540000000001,
+          "margin": 8.2228,
+          "teamPct": 2.253839999999996,
           "positionPct": 7.601023558787534
         },
         "config": {
@@ -8568,21 +9155,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.833Z",
+        "asOf": "2026-11-17T17:00:09.047Z",
         "complete": true,
         "match": {
           "opponent": "ASVEL",
           "home": true,
-          "margin": 8.2118,
+          "margin": 8.2228,
           "total": 167.29,
-          "teamPoints": 87.7509,
-          "winProb": 0.7577760493304876,
-          "p20": 0.15173973766040183,
-          "p11_20": 0.28381320500014734,
-          "p1_10": 0.3222231066699385,
-          "l1_10": 0.18448133346351436,
-          "l11_20": 0.05052501387702617,
-          "l20": 0.007217603328971869,
+          "teamPoints": 87.7564,
+          "winProb": 0.7580563647964582,
+          "p20": 0.15196141946587122,
+          "p11_20": 0.2839585028944186,
+          "p1_10": 0.3221364424361684,
+          "l1_10": 0.1843069367592571,
+          "l11_20": 0.050437639133605855,
+          "l20": 0.007199059310678843,
           "sampleGames": 54,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -8722,16 +9309,16 @@
             "home": true,
             "baseMargin": 7.54,
             "strengthDelta": 0.7658,
-            "rosterDelta": -0.094,
-            "margin": 8.2118,
-            "rawWinProb": 0.7577760493304876,
-            "winProb": 0.7577760493304876
+            "rosterDelta": -0.083,
+            "margin": 8.2228,
+            "rawWinProb": 0.7580563647964582,
+            "winProb": 0.7580563647964582
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "johnny juzang": {
               "name": "Johnny Juzang",
@@ -8885,7 +9472,7 @@
                   "foulsCommited": 0
                 }
               ],
-              "offensiveShareProxy": 0.04437551366144025
+              "offensiveShareProxy": 0.03848641961768617
             }
           },
           "defense": {
@@ -8915,14 +9502,14 @@
                   },
                   {
                     "name": "Juhann Begarin",
-                    "status": "questionable",
-                    "missingProbability": 0.5,
+                    "status": "out",
+                    "missingProbability": 1,
                     "avgMinutes": 14,
                     "sampleGames": 0,
-                    "impactProxy": 0.011
+                    "impactProxy": 0.022
                   }
                 ],
-                "marginPenalty": 0.359,
+                "marginPenalty": 0.37,
                 "available": 14,
                 "rosterCount": 16
               },
@@ -9059,10 +9646,10 @@
               "home": false,
               "baseMargin": -7.54,
               "strengthDelta": -0.7658,
-              "rosterDelta": 0.094,
-              "margin": -8.2118,
-              "rawWinProb": 0.2422239506695124,
-              "winProb": 0.2422239506695124
+              "rosterDelta": 0.083,
+              "margin": -8.2228,
+              "rawWinProb": 0.24194363520354176,
+              "winProb": 0.24194363520354176
             }
           }
         }
@@ -9084,7 +9671,7 @@
           "fantasy_id": 3815,
           "jerseyNumber": "11",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642235+00:00",
+          "data_updated": "2026-11-17T16:49:31.656634+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.6
@@ -9165,8 +9752,8 @@
         "context": {
           "injuryBoost": 0,
           "injuryUsagePct": 0,
-          "margin": 8.2118,
-          "teamPct": 2.250540000000001,
+          "margin": 8.2228,
+          "teamPct": 2.253839999999996,
           "positionPct": -3.226085993079686
         },
         "config": {
@@ -9175,21 +9762,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.833Z",
+        "asOf": "2026-11-17T17:00:09.048Z",
         "complete": true,
         "match": {
           "opponent": "ASVEL",
           "home": true,
-          "margin": 8.2118,
+          "margin": 8.2228,
           "total": 167.29,
-          "teamPoints": 87.7509,
-          "winProb": 0.7577760493304876,
-          "p20": 0.15173973766040183,
-          "p11_20": 0.28381320500014734,
-          "p1_10": 0.3222231066699385,
-          "l1_10": 0.18448133346351436,
-          "l11_20": 0.05052501387702617,
-          "l20": 0.007217603328971869,
+          "teamPoints": 87.7564,
+          "winProb": 0.7580563647964582,
+          "p20": 0.15196141946587122,
+          "p11_20": 0.2839585028944186,
+          "p1_10": 0.3221364424361684,
+          "l1_10": 0.1843069367592571,
+          "l11_20": 0.050437639133605855,
+          "l20": 0.007199059310678843,
           "sampleGames": 54,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -9329,16 +9916,16 @@
             "home": true,
             "baseMargin": 7.54,
             "strengthDelta": 0.7658,
-            "rosterDelta": -0.094,
-            "margin": 8.2118,
-            "rawWinProb": 0.7577760493304876,
-            "winProb": 0.7577760493304876
+            "rosterDelta": -0.083,
+            "margin": 8.2228,
+            "rawWinProb": 0.7580563647964582,
+            "winProb": 0.7580563647964582
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "forrest trent": {
               "name": "Trent Forrest",
@@ -9612,7 +10199,7 @@
                   "foulsCommited": 1
                 }
               ],
-              "offensiveShareProxy": 0.06145968029985929
+              "offensiveShareProxy": 0.05330333894578866
             }
           },
           "defense": {
@@ -9642,14 +10229,14 @@
                   },
                   {
                     "name": "Juhann Begarin",
-                    "status": "questionable",
-                    "missingProbability": 0.5,
+                    "status": "out",
+                    "missingProbability": 1,
                     "avgMinutes": 14,
                     "sampleGames": 0,
-                    "impactProxy": 0.011
+                    "impactProxy": 0.022
                   }
                 ],
-                "marginPenalty": 0.359,
+                "marginPenalty": 0.37,
                 "available": 14,
                 "rosterCount": 16
               },
@@ -9786,10 +10373,10 @@
               "home": false,
               "baseMargin": -7.54,
               "strengthDelta": -0.7658,
-              "rosterDelta": 0.094,
-              "margin": -8.2118,
-              "rawWinProb": 0.2422239506695124,
-              "winProb": 0.2422239506695124
+              "rosterDelta": 0.083,
+              "margin": -8.2228,
+              "rawWinProb": 0.24194363520354176,
+              "winProb": 0.24194363520354176
             }
           }
         }
@@ -9811,7 +10398,7 @@
           "fantasy_id": 11518,
           "jerseyNumber": "12",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642270+00:00",
+          "data_updated": "2026-11-17T16:49:31.656677+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0
@@ -9859,8 +10446,8 @@
         "context": {
           "injuryBoost": 0.07012499999999998,
           "injuryUsagePct": 0.12021428571428569,
-          "margin": -8.2118,
-          "teamPct": -2.676540000000005,
+          "margin": -8.2228,
+          "teamPct": -2.67984,
           "positionPct": -12
         },
         "config": {
@@ -9869,21 +10456,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.835Z",
+        "asOf": "2026-11-17T17:00:09.054Z",
         "complete": true,
         "match": {
           "opponent": "Fenerbahce",
           "home": false,
-          "margin": -8.2118,
+          "margin": -8.2228,
           "total": 167.29,
-          "teamPoints": 79.53909999999999,
-          "winProb": 0.2422239506695124,
-          "p20": 0.007217603328971869,
-          "p11_20": 0.05052501387702617,
-          "p1_10": 0.18448133346351436,
-          "l1_10": 0.3222231066699385,
-          "l11_20": 0.28381320500014734,
-          "l20": 0.15173973766040183,
+          "teamPoints": 79.53359999999999,
+          "winProb": 0.24194363520354176,
+          "p20": 0.007199059310678841,
+          "p11_20": 0.05043763913360584,
+          "p1_10": 0.18430693675925705,
+          "l1_10": 0.32213644243616835,
+          "l11_20": 0.28395850289441865,
+          "l20": 0.15196141946587122,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -9912,14 +10499,14 @@
                 },
                 {
                   "name": "Juhann Begarin",
-                  "status": "questionable",
-                  "missingProbability": 0.5,
+                  "status": "out",
+                  "missingProbability": 1,
                   "avgMinutes": 14,
                   "sampleGames": 0,
-                  "impactProxy": 0.011
+                  "impactProxy": 0.022
                 }
               ],
-              "marginPenalty": 0.359,
+              "marginPenalty": 0.37,
               "available": 14,
               "rosterCount": 16
             },
@@ -10056,16 +10643,16 @@
             "home": false,
             "baseMargin": -7.54,
             "strengthDelta": -0.7658,
-            "rosterDelta": 0.094,
-            "margin": -8.2118,
-            "rawWinProb": 0.2422239506695124,
-            "winProb": 0.2422239506695124
+            "rosterDelta": 0.083,
+            "margin": -8.2228,
+            "rawWinProb": 0.24194363520354176,
+            "winProb": 0.24194363520354176
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "dossou mathis yovo": {
               "name": "Mathis Dossou-yovo",
@@ -10123,7 +10710,7 @@
                   "foulsCommited": 3
                 }
               ],
-              "offensiveShareProxy": 0.053072155075329655
+              "offensiveShareProxy": 0.04896609598967733
             }
           },
           "defense": {
@@ -10264,10 +10851,10 @@
               "home": true,
               "baseMargin": 7.54,
               "strengthDelta": 0.7658,
-              "rosterDelta": -0.094,
-              "margin": 8.2118,
-              "rawWinProb": 0.7577760493304876,
-              "winProb": 0.7577760493304876
+              "rosterDelta": -0.083,
+              "margin": 8.2228,
+              "rawWinProb": 0.7580563647964582,
+              "winProb": 0.7580563647964582
             }
           }
         }
@@ -10289,7 +10876,7 @@
           "fantasy_id": 13948,
           "jerseyNumber": "7",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642273+00:00",
+          "data_updated": "2026-11-17T16:49:31.656680+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 3.3
@@ -10337,8 +10924,8 @@
         "context": {
           "injuryBoost": 0,
           "injuryUsagePct": 0,
-          "margin": 8.2118,
-          "teamPct": 2.250540000000001,
+          "margin": 8.2228,
+          "teamPct": 2.253839999999996,
           "positionPct": 12.00000000000001
         },
         "config": {
@@ -10347,21 +10934,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.835Z",
+        "asOf": "2026-11-17T17:00:09.055Z",
         "complete": true,
         "match": {
           "opponent": "ASVEL",
           "home": true,
-          "margin": 8.2118,
+          "margin": 8.2228,
           "total": 167.29,
-          "teamPoints": 87.7509,
-          "winProb": 0.7577760493304876,
-          "p20": 0.15173973766040183,
-          "p11_20": 0.28381320500014734,
-          "p1_10": 0.3222231066699385,
-          "l1_10": 0.18448133346351436,
-          "l11_20": 0.05052501387702617,
-          "l20": 0.007217603328971869,
+          "teamPoints": 87.7564,
+          "winProb": 0.7580563647964582,
+          "p20": 0.15196141946587122,
+          "p11_20": 0.2839585028944186,
+          "p1_10": 0.3221364424361684,
+          "l1_10": 0.1843069367592571,
+          "l11_20": 0.050437639133605855,
+          "l20": 0.007199059310678843,
           "sampleGames": 54,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -10501,16 +11088,16 @@
             "home": true,
             "baseMargin": 7.54,
             "strengthDelta": 0.7658,
-            "rosterDelta": -0.094,
-            "margin": 8.2118,
-            "rawWinProb": 0.7577760493304876,
-            "winProb": 0.7577760493304876
+            "rosterDelta": -0.083,
+            "margin": 8.2228,
+            "rawWinProb": 0.7580563647964582,
+            "winProb": 0.7580563647964582
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "dwight powell": {
               "name": "Dwight Powell",
@@ -10592,7 +11179,7 @@
                   "foulsCommited": 4
                 }
               ],
-              "offensiveShareProxy": 0.01513929716637503
+              "offensiveShareProxy": 0.01313015434384148
             }
           },
           "defense": {
@@ -10622,14 +11209,14 @@
                   },
                   {
                     "name": "Juhann Begarin",
-                    "status": "questionable",
-                    "missingProbability": 0.5,
+                    "status": "out",
+                    "missingProbability": 1,
                     "avgMinutes": 14,
                     "sampleGames": 0,
-                    "impactProxy": 0.011
+                    "impactProxy": 0.022
                   }
                 ],
-                "marginPenalty": 0.359,
+                "marginPenalty": 0.37,
                 "available": 14,
                 "rosterCount": 16
               },
@@ -10766,10 +11353,10 @@
               "home": false,
               "baseMargin": -7.54,
               "strengthDelta": -0.7658,
-              "rosterDelta": 0.094,
-              "margin": -8.2118,
-              "rawWinProb": 0.2422239506695124,
-              "winProb": 0.2422239506695124
+              "rosterDelta": 0.083,
+              "margin": -8.2228,
+              "rawWinProb": 0.24194363520354176,
+              "winProb": 0.24194363520354176
             }
           }
         }
@@ -10791,7 +11378,7 @@
           "fantasy_id": 3801,
           "jerseyNumber": "4",
           "probability_of_playing": 0,
-          "data_updated": "2026-11-17T10:37:33.642351+00:00",
+          "data_updated": "2026-11-17T16:49:31.656751+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 1.6
@@ -10872,8 +11459,8 @@
         "context": {
           "injuryBoost": 0,
           "injuryUsagePct": 0,
-          "margin": 8.2118,
-          "teamPct": 2.250540000000001,
+          "margin": 8.2228,
+          "teamPct": 2.253839999999996,
           "positionPct": 7.601023558787534
         },
         "config": {
@@ -10882,21 +11469,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.839Z",
+        "asOf": "2026-11-17T17:00:09.068Z",
         "complete": true,
         "match": {
           "opponent": "ASVEL",
           "home": true,
-          "margin": 8.2118,
+          "margin": 8.2228,
           "total": 167.29,
-          "teamPoints": 87.7509,
-          "winProb": 0.7577760493304876,
-          "p20": 0.15173973766040183,
-          "p11_20": 0.28381320500014734,
-          "p1_10": 0.3222231066699385,
-          "l1_10": 0.18448133346351436,
-          "l11_20": 0.05052501387702617,
-          "l20": 0.007217603328971869,
+          "teamPoints": 87.7564,
+          "winProb": 0.7580563647964582,
+          "p20": 0.15196141946587122,
+          "p11_20": 0.2839585028944186,
+          "p1_10": 0.3221364424361684,
+          "l1_10": 0.1843069367592571,
+          "l11_20": 0.050437639133605855,
+          "l20": 0.007199059310678843,
           "sampleGames": 54,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -11036,16 +11623,16 @@
             "home": true,
             "baseMargin": 7.54,
             "strengthDelta": 0.7658,
-            "rosterDelta": -0.094,
-            "margin": 8.2118,
-            "rawWinProb": 0.7577760493304876,
-            "winProb": 0.7577760493304876
+            "rosterDelta": -0.083,
+            "margin": 8.2228,
+            "rawWinProb": 0.7580563647964582,
+            "winProb": 0.7580563647964582
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "melli nicolo": {
               "name": "Nicolo Melli",
@@ -11319,7 +11906,7 @@
                   "foulsCommited": 0
                 }
               ],
-              "offensiveShareProxy": 0.06710927793094768
+              "offensiveShareProxy": 0.05820317597663502
             }
           },
           "defense": {
@@ -11349,14 +11936,14 @@
                   },
                   {
                     "name": "Juhann Begarin",
-                    "status": "questionable",
-                    "missingProbability": 0.5,
+                    "status": "out",
+                    "missingProbability": 1,
                     "avgMinutes": 14,
                     "sampleGames": 0,
-                    "impactProxy": 0.011
+                    "impactProxy": 0.022
                   }
                 ],
-                "marginPenalty": 0.359,
+                "marginPenalty": 0.37,
                 "available": 14,
                 "rosterCount": 16
               },
@@ -11493,10 +12080,10 @@
               "home": false,
               "baseMargin": -7.54,
               "strengthDelta": -0.7658,
-              "rosterDelta": 0.094,
-              "margin": -8.2118,
-              "rawWinProb": 0.2422239506695124,
-              "winProb": 0.2422239506695124
+              "rosterDelta": 0.083,
+              "margin": -8.2228,
+              "rawWinProb": 0.24194363520354176,
+              "winProb": 0.24194363520354176
             }
           }
         }
@@ -11518,7 +12105,7 @@
           "fantasy_id": 8727,
           "jerseyNumber": "12",
           "probability_of_playing": 0,
-          "data_updated": "2026-11-17T10:37:33.642390+00:00",
+          "data_updated": "2026-11-17T16:49:31.656789+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 7.2
@@ -11599,8 +12186,8 @@
         "context": {
           "injuryBoost": 0,
           "injuryUsagePct": 0,
-          "margin": 8.2118,
-          "teamPct": 2.250540000000001,
+          "margin": 8.2228,
+          "teamPct": 2.253839999999996,
           "positionPct": 7.601023558787534
         },
         "config": {
@@ -11609,21 +12196,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.840Z",
+        "asOf": "2026-11-17T17:00:09.074Z",
         "complete": true,
         "match": {
           "opponent": "ASVEL",
           "home": true,
-          "margin": 8.2118,
+          "margin": 8.2228,
           "total": 167.29,
-          "teamPoints": 87.7509,
-          "winProb": 0.7577760493304876,
-          "p20": 0.15173973766040183,
-          "p11_20": 0.28381320500014734,
-          "p1_10": 0.3222231066699385,
-          "l1_10": 0.18448133346351436,
-          "l11_20": 0.05052501387702617,
-          "l20": 0.007217603328971869,
+          "teamPoints": 87.7564,
+          "winProb": 0.7580563647964582,
+          "p20": 0.15196141946587122,
+          "p11_20": 0.2839585028944186,
+          "p1_10": 0.3221364424361684,
+          "l1_10": 0.1843069367592571,
+          "l11_20": 0.050437639133605855,
+          "l20": 0.007199059310678843,
           "sampleGames": 54,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -11763,16 +12350,16 @@
             "home": true,
             "baseMargin": 7.54,
             "strengthDelta": 0.7658,
-            "rosterDelta": -0.094,
-            "margin": 8.2118,
-            "rawWinProb": 0.7577760493304876,
-            "winProb": 0.7577760493304876
+            "rosterDelta": -0.083,
+            "margin": 8.2228,
+            "rawWinProb": 0.7580563647964582,
+            "winProb": 0.7580563647964582
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "braxton key": {
               "name": "Braxton Key",
@@ -12046,7 +12633,7 @@
                   "foulsCommited": 3
                 }
               ],
-              "offensiveShareProxy": 0.11005885481010047
+              "offensiveShareProxy": 0.09545289551305328
             }
           },
           "defense": {
@@ -12076,14 +12663,14 @@
                   },
                   {
                     "name": "Juhann Begarin",
-                    "status": "questionable",
-                    "missingProbability": 0.5,
+                    "status": "out",
+                    "missingProbability": 1,
                     "avgMinutes": 14,
                     "sampleGames": 0,
-                    "impactProxy": 0.011
+                    "impactProxy": 0.022
                   }
                 ],
-                "marginPenalty": 0.359,
+                "marginPenalty": 0.37,
                 "available": 14,
                 "rosterCount": 16
               },
@@ -12220,10 +12807,10 @@
               "home": false,
               "baseMargin": -7.54,
               "strengthDelta": -0.7658,
-              "rosterDelta": 0.094,
-              "margin": -8.2118,
-              "rawWinProb": 0.2422239506695124,
-              "winProb": 0.2422239506695124
+              "rosterDelta": 0.083,
+              "margin": -8.2228,
+              "rawWinProb": 0.24194363520354176,
+              "winProb": 0.24194363520354176
             }
           }
         }
@@ -12245,7 +12832,7 @@
           "fantasy_id": 7243,
           "jerseyNumber": "77",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642535+00:00",
+          "data_updated": "2026-11-17T16:49:31.656912+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.3
@@ -12326,8 +12913,8 @@
         "context": {
           "injuryBoost": 0.05949999999999996,
           "injuryUsagePct": 0.10199999999999994,
-          "margin": -8.2118,
-          "teamPct": -2.676540000000005,
+          "margin": -8.2228,
+          "teamPct": -2.67984,
           "positionPct": -12
         },
         "config": {
@@ -12336,21 +12923,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.847Z",
+        "asOf": "2026-11-17T17:00:09.100Z",
         "complete": true,
         "match": {
           "opponent": "Fenerbahce",
           "home": false,
-          "margin": -8.2118,
+          "margin": -8.2228,
           "total": 167.29,
-          "teamPoints": 79.53909999999999,
-          "winProb": 0.2422239506695124,
-          "p20": 0.007217603328971869,
-          "p11_20": 0.05052501387702617,
-          "p1_10": 0.18448133346351436,
-          "l1_10": 0.3222231066699385,
-          "l11_20": 0.28381320500014734,
-          "l20": 0.15173973766040183,
+          "teamPoints": 79.53359999999999,
+          "winProb": 0.24194363520354176,
+          "p20": 0.007199059310678841,
+          "p11_20": 0.05043763913360584,
+          "p1_10": 0.18430693675925705,
+          "l1_10": 0.32213644243616835,
+          "l11_20": 0.28395850289441865,
+          "l20": 0.15196141946587122,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -12379,14 +12966,14 @@
                 },
                 {
                   "name": "Juhann Begarin",
-                  "status": "questionable",
-                  "missingProbability": 0.5,
+                  "status": "out",
+                  "missingProbability": 1,
                   "avgMinutes": 14,
                   "sampleGames": 0,
-                  "impactProxy": 0.011
+                  "impactProxy": 0.022
                 }
               ],
-              "marginPenalty": 0.359,
+              "marginPenalty": 0.37,
               "available": 14,
               "rosterCount": 16
             },
@@ -12523,16 +13110,16 @@
             "home": false,
             "baseMargin": -7.54,
             "strengthDelta": -0.7658,
-            "rosterDelta": 0.094,
-            "margin": -8.2118,
-            "rawWinProb": 0.2422239506695124,
-            "winProb": 0.2422239506695124
+            "rosterDelta": 0.083,
+            "margin": -8.2228,
+            "rawWinProb": 0.24194363520354176,
+            "winProb": 0.24194363520354176
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "nathan sestina": {
               "name": "Nathan Sestina",
@@ -12806,7 +13393,7 @@
                   "foulsCommited": 0
                 }
               ],
-              "offensiveShareProxy": 0.051838762544529106
+              "offensiveShareProxy": 0.04782812793523507
             }
           },
           "defense": {
@@ -12947,10 +13534,10 @@
               "home": true,
               "baseMargin": 7.54,
               "strengthDelta": 0.7658,
-              "rosterDelta": -0.094,
-              "margin": 8.2118,
-              "rawWinProb": 0.7577760493304876,
-              "winProb": 0.7577760493304876
+              "rosterDelta": -0.083,
+              "margin": 8.2228,
+              "rawWinProb": 0.7580563647964582,
+              "winProb": 0.7580563647964582
             }
           }
         }
@@ -12972,7 +13559,7 @@
           "fantasy_id": 11520,
           "jerseyNumber": "35",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642590+00:00",
+          "data_updated": "2026-11-17T16:49:31.656963+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.2
@@ -13020,8 +13607,8 @@
         "context": {
           "injuryBoost": 0.05949999999999996,
           "injuryUsagePct": 0.10199999999999994,
-          "margin": -8.2118,
-          "teamPct": -2.676540000000005,
+          "margin": -8.2228,
+          "teamPct": -2.67984,
           "positionPct": -12
         },
         "config": {
@@ -13030,21 +13617,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.849Z",
+        "asOf": "2026-11-17T17:00:09.110Z",
         "complete": true,
         "match": {
           "opponent": "Fenerbahce",
           "home": false,
-          "margin": -8.2118,
+          "margin": -8.2228,
           "total": 167.29,
-          "teamPoints": 79.53909999999999,
-          "winProb": 0.2422239506695124,
-          "p20": 0.007217603328971869,
-          "p11_20": 0.05052501387702617,
-          "p1_10": 0.18448133346351436,
-          "l1_10": 0.3222231066699385,
-          "l11_20": 0.28381320500014734,
-          "l20": 0.15173973766040183,
+          "teamPoints": 79.53359999999999,
+          "winProb": 0.24194363520354176,
+          "p20": 0.007199059310678841,
+          "p11_20": 0.05043763913360584,
+          "p1_10": 0.18430693675925705,
+          "l1_10": 0.32213644243616835,
+          "l11_20": 0.28395850289441865,
+          "l20": 0.15196141946587122,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -13073,14 +13660,14 @@
                 },
                 {
                   "name": "Juhann Begarin",
-                  "status": "questionable",
-                  "missingProbability": 0.5,
+                  "status": "out",
+                  "missingProbability": 1,
                   "avgMinutes": 14,
                   "sampleGames": 0,
-                  "impactProxy": 0.011
+                  "impactProxy": 0.022
                 }
               ],
-              "marginPenalty": 0.359,
+              "marginPenalty": 0.37,
               "available": 14,
               "rosterCount": 16
             },
@@ -13217,16 +13804,16 @@
             "home": false,
             "baseMargin": -7.54,
             "strengthDelta": -0.7658,
-            "rosterDelta": 0.094,
-            "margin": -8.2118,
-            "rawWinProb": 0.2422239506695124,
-            "winProb": 0.2422239506695124
+            "rosterDelta": 0.083,
+            "margin": -8.2228,
+            "rawWinProb": 0.24194363520354176,
+            "winProb": 0.24194363520354176
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "pons yves": {
               "name": "Yves Pons",
@@ -13476,7 +14063,7 @@
                   "foulsCommited": 1
                 }
               ],
-              "offensiveShareProxy": 0.030016582277358535
+              "offensiveShareProxy": 0.027694274841279485
             }
           },
           "defense": {
@@ -13617,10 +14204,10 @@
               "home": true,
               "baseMargin": 7.54,
               "strengthDelta": 0.7658,
-              "rosterDelta": -0.094,
-              "margin": 8.2118,
-              "rawWinProb": 0.7577760493304876,
-              "winProb": 0.7577760493304876
+              "rosterDelta": -0.083,
+              "margin": 8.2228,
+              "rawWinProb": 0.7580563647964582,
+              "winProb": 0.7580563647964582
             }
           }
         }
@@ -13642,7 +14229,7 @@
           "fantasy_id": 4129,
           "jerseyNumber": "0",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642600+00:00",
+          "data_updated": "2026-11-17T16:49:31.656973+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.3
@@ -13723,8 +14310,8 @@
         "context": {
           "injuryBoost": 0.05949999999999996,
           "injuryUsagePct": 0.10199999999999994,
-          "margin": -8.2118,
-          "teamPct": -2.676540000000005,
+          "margin": -8.2228,
+          "teamPct": -2.67984,
           "positionPct": -9.371649826813599
         },
         "config": {
@@ -13733,21 +14320,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.850Z",
+        "asOf": "2026-11-17T17:00:09.112Z",
         "complete": true,
         "match": {
           "opponent": "Fenerbahce",
           "home": false,
-          "margin": -8.2118,
+          "margin": -8.2228,
           "total": 167.29,
-          "teamPoints": 79.53909999999999,
-          "winProb": 0.2422239506695124,
-          "p20": 0.007217603328971869,
-          "p11_20": 0.05052501387702617,
-          "p1_10": 0.18448133346351436,
-          "l1_10": 0.3222231066699385,
-          "l11_20": 0.28381320500014734,
-          "l20": 0.15173973766040183,
+          "teamPoints": 79.53359999999999,
+          "winProb": 0.24194363520354176,
+          "p20": 0.007199059310678841,
+          "p11_20": 0.05043763913360584,
+          "p1_10": 0.18430693675925705,
+          "l1_10": 0.32213644243616835,
+          "l11_20": 0.28395850289441865,
+          "l20": 0.15196141946587122,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -13776,14 +14363,14 @@
                 },
                 {
                   "name": "Juhann Begarin",
-                  "status": "questionable",
-                  "missingProbability": 0.5,
+                  "status": "out",
+                  "missingProbability": 1,
                   "avgMinutes": 14,
                   "sampleGames": 0,
-                  "impactProxy": 0.011
+                  "impactProxy": 0.022
                 }
               ],
-              "marginPenalty": 0.359,
+              "marginPenalty": 0.37,
               "available": 14,
               "rosterCount": 16
             },
@@ -13920,16 +14507,16 @@
             "home": false,
             "baseMargin": -7.54,
             "strengthDelta": -0.7658,
-            "rosterDelta": 0.094,
-            "margin": -8.2118,
-            "rawWinProb": 0.2422239506695124,
-            "winProb": 0.2422239506695124
+            "rosterDelta": 0.083,
+            "margin": -8.2228,
+            "rawWinProb": 0.24194363520354176,
+            "winProb": 0.24194363520354176
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "cale myles": {
               "name": "Myles Cale",
@@ -14083,7 +14670,7 @@
                   "foulsCommited": 3
                 }
               ],
-              "offensiveShareProxy": 0.05849908221085208
+              "offensiveShareProxy": 0.05397315542922328
             }
           },
           "defense": {
@@ -14224,10 +14811,10 @@
               "home": true,
               "baseMargin": 7.54,
               "strengthDelta": 0.7658,
-              "rosterDelta": -0.094,
-              "margin": 8.2118,
-              "rawWinProb": 0.7577760493304876,
-              "winProb": 0.7577760493304876
+              "rosterDelta": -0.083,
+              "margin": 8.2228,
+              "rawWinProb": 0.7580563647964582,
+              "winProb": 0.7580563647964582
             }
           }
         }
@@ -14245,11 +14832,11 @@
           "price": 5.4,
           "opponent": "Fenerbahce",
           "home": 0,
-          "status": "questionable",
+          "status": "out",
           "fantasy_id": 3922,
           "jerseyNumber": "97",
-          "probability_of_playing": 0.5,
-          "data_updated": "2026-11-17T10:37:33.642647+00:00",
+          "probability_of_playing": 0,
+          "data_updated": "2026-11-17T16:49:31.657015+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.2
@@ -14292,8 +14879,8 @@
         "context": {
           "injuryBoost": 0,
           "injuryUsagePct": 0,
-          "margin": -8.2118,
-          "teamPct": -2.676540000000005,
+          "margin": -8.2228,
+          "teamPct": -2.67984,
           "positionPct": -12
         },
         "config": {
@@ -14302,21 +14889,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.852Z",
+        "asOf": "2026-11-17T17:00:09.124Z",
         "complete": true,
         "match": {
           "opponent": "Fenerbahce",
           "home": false,
-          "margin": -8.2118,
+          "margin": -8.2228,
           "total": 167.29,
-          "teamPoints": 79.53909999999999,
-          "winProb": 0.2422239506695124,
-          "p20": 0.007217603328971869,
-          "p11_20": 0.05052501387702617,
-          "p1_10": 0.18448133346351436,
-          "l1_10": 0.3222231066699385,
-          "l11_20": 0.28381320500014734,
-          "l20": 0.15173973766040183,
+          "teamPoints": 79.53359999999999,
+          "winProb": 0.24194363520354176,
+          "p20": 0.007199059310678841,
+          "p11_20": 0.05043763913360584,
+          "p1_10": 0.18430693675925705,
+          "l1_10": 0.32213644243616835,
+          "l11_20": 0.28395850289441865,
+          "l20": 0.15196141946587122,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -14345,14 +14932,14 @@
                 },
                 {
                   "name": "Juhann Begarin",
-                  "status": "questionable",
-                  "missingProbability": 0.5,
+                  "status": "out",
+                  "missingProbability": 1,
                   "avgMinutes": 14,
                   "sampleGames": 0,
-                  "impactProxy": 0.011
+                  "impactProxy": 0.022
                 }
               ],
-              "marginPenalty": 0.359,
+              "marginPenalty": 0.37,
               "available": 14,
               "rosterCount": 16
             },
@@ -14489,16 +15076,16 @@
             "home": false,
             "baseMargin": -7.54,
             "strengthDelta": -0.7658,
-            "rosterDelta": 0.094,
-            "margin": -8.2118,
-            "rawWinProb": 0.2422239506695124,
-            "winProb": 0.2422239506695124
+            "rosterDelta": 0.083,
+            "margin": -8.2228,
+            "rawWinProb": 0.24194363520354176,
+            "winProb": 0.24194363520354176
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {},
           "defense": {
             "Fenerbahce": {
@@ -14638,10 +15225,10 @@
               "home": true,
               "baseMargin": 7.54,
               "strengthDelta": 0.7658,
-              "rosterDelta": -0.094,
-              "margin": 8.2118,
-              "rawWinProb": 0.7577760493304876,
-              "winProb": 0.7577760493304876
+              "rosterDelta": -0.083,
+              "margin": 8.2228,
+              "rawWinProb": 0.7580563647964582,
+              "winProb": 0.7580563647964582
             }
           }
         }
@@ -14663,7 +15250,7 @@
           "fantasy_id": 7232,
           "jerseyNumber": "10",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642650+00:00",
+          "data_updated": "2026-11-17T16:49:31.657018+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.4
@@ -14744,8 +15331,8 @@
         "context": {
           "injuryBoost": 0.05949999999999996,
           "injuryUsagePct": 0.10199999999999994,
-          "margin": -8.2118,
-          "teamPct": -2.676540000000005,
+          "margin": -8.2228,
+          "teamPct": -2.67984,
           "positionPct": -12
         },
         "config": {
@@ -14754,21 +15341,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.852Z",
+        "asOf": "2026-11-17T17:00:09.125Z",
         "complete": true,
         "match": {
           "opponent": "Fenerbahce",
           "home": false,
-          "margin": -8.2118,
+          "margin": -8.2228,
           "total": 167.29,
-          "teamPoints": 79.53909999999999,
-          "winProb": 0.2422239506695124,
-          "p20": 0.007217603328971869,
-          "p11_20": 0.05052501387702617,
-          "p1_10": 0.18448133346351436,
-          "l1_10": 0.3222231066699385,
-          "l11_20": 0.28381320500014734,
-          "l20": 0.15173973766040183,
+          "teamPoints": 79.53359999999999,
+          "winProb": 0.24194363520354176,
+          "p20": 0.007199059310678841,
+          "p11_20": 0.05043763913360584,
+          "p1_10": 0.18430693675925705,
+          "l1_10": 0.32213644243616835,
+          "l11_20": 0.28395850289441865,
+          "l20": 0.15196141946587122,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -14797,14 +15384,14 @@
                 },
                 {
                   "name": "Juhann Begarin",
-                  "status": "questionable",
-                  "missingProbability": 0.5,
+                  "status": "out",
+                  "missingProbability": 1,
                   "avgMinutes": 14,
                   "sampleGames": 0,
-                  "impactProxy": 0.011
+                  "impactProxy": 0.022
                 }
               ],
-              "marginPenalty": 0.359,
+              "marginPenalty": 0.37,
               "available": 14,
               "rosterCount": 16
             },
@@ -14941,16 +15528,16 @@
             "home": false,
             "baseMargin": -7.54,
             "strengthDelta": -0.7658,
-            "rosterDelta": 0.094,
-            "margin": -8.2118,
-            "rawWinProb": 0.2422239506695124,
-            "winProb": 0.2422239506695124
+            "rosterDelta": 0.083,
+            "margin": -8.2228,
+            "rawWinProb": 0.24194363520354176,
+            "winProb": 0.24194363520354176
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "bodian massa": {
               "name": "Bodian Massa",
@@ -15224,7 +15811,7 @@
                   "foulsCommited": 3
                 }
               ],
-              "offensiveShareProxy": 0.029710249491930952
+              "offensiveShareProxy": 0.02741164225259448
             }
           },
           "defense": {
@@ -15365,10 +15952,10 @@
               "home": true,
               "baseMargin": 7.54,
               "strengthDelta": 0.7658,
-              "rosterDelta": -0.094,
-              "margin": 8.2118,
-              "rawWinProb": 0.7577760493304876,
-              "winProb": 0.7577760493304876
+              "rosterDelta": -0.083,
+              "margin": 8.2228,
+              "rawWinProb": 0.7580563647964582,
+              "winProb": 0.7580563647964582
             }
           }
         }
@@ -15390,7 +15977,7 @@
           "fantasy_id": 11506,
           "jerseyNumber": "43",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642677+00:00",
+          "data_updated": "2026-11-17T16:49:31.657044+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.9
@@ -15438,8 +16025,8 @@
         "context": {
           "injuryBoost": 0,
           "injuryUsagePct": 0,
-          "margin": 8.2118,
-          "teamPct": 2.250540000000001,
+          "margin": 8.2228,
+          "teamPct": 2.253839999999996,
           "positionPct": -3.226085993079686
         },
         "config": {
@@ -15448,21 +16035,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.854Z",
+        "asOf": "2026-11-17T17:00:09.134Z",
         "complete": true,
         "match": {
           "opponent": "ASVEL",
           "home": true,
-          "margin": 8.2118,
+          "margin": 8.2228,
           "total": 167.29,
-          "teamPoints": 87.7509,
-          "winProb": 0.7577760493304876,
-          "p20": 0.15173973766040183,
-          "p11_20": 0.28381320500014734,
-          "p1_10": 0.3222231066699385,
-          "l1_10": 0.18448133346351436,
-          "l11_20": 0.05052501387702617,
-          "l20": 0.007217603328971869,
+          "teamPoints": 87.7564,
+          "winProb": 0.7580563647964582,
+          "p20": 0.15196141946587122,
+          "p11_20": 0.2839585028944186,
+          "p1_10": 0.3221364424361684,
+          "l1_10": 0.1843069367592571,
+          "l11_20": 0.050437639133605855,
+          "l20": 0.007199059310678843,
           "sampleGames": 54,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -15602,16 +16189,16 @@
             "home": true,
             "baseMargin": 7.54,
             "strengthDelta": 0.7658,
-            "rosterDelta": -0.094,
-            "margin": 8.2118,
-            "rawWinProb": 0.7577760493304876,
-            "winProb": 0.7577760493304876
+            "rosterDelta": -0.083,
+            "margin": 8.2228,
+            "rawWinProb": 0.7580563647964582,
+            "winProb": 0.7580563647964582
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "ignas sargiunas": {
               "name": "Ignas Sargiunas",
@@ -15837,7 +16424,7 @@
                   "foulsCommited": 0
                 }
               ],
-              "offensiveShareProxy": 0.04945090099016763
+              "offensiveShareProxy": 0.04288825004935106
             }
           },
           "defense": {
@@ -15867,14 +16454,14 @@
                   },
                   {
                     "name": "Juhann Begarin",
-                    "status": "questionable",
-                    "missingProbability": 0.5,
+                    "status": "out",
+                    "missingProbability": 1,
                     "avgMinutes": 14,
                     "sampleGames": 0,
-                    "impactProxy": 0.011
+                    "impactProxy": 0.022
                   }
                 ],
-                "marginPenalty": 0.359,
+                "marginPenalty": 0.37,
                 "available": 14,
                 "rosterCount": 16
               },
@@ -16011,10 +16598,10 @@
               "home": false,
               "baseMargin": -7.54,
               "strengthDelta": -0.7658,
-              "rosterDelta": 0.094,
-              "margin": -8.2118,
-              "rawWinProb": 0.2422239506695124,
-              "winProb": 0.2422239506695124
+              "rosterDelta": 0.083,
+              "margin": -8.2228,
+              "rawWinProb": 0.24194363520354176,
+              "winProb": 0.24194363520354176
             }
           }
         }
@@ -16036,7 +16623,7 @@
           "fantasy_id": 3985,
           "jerseyNumber": "23",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642738+00:00",
+          "data_updated": "2026-11-17T16:49:31.657098+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 2.9
@@ -16117,8 +16704,8 @@
         "context": {
           "injuryBoost": 0.05949999999999996,
           "injuryUsagePct": 0.10199999999999994,
-          "margin": -8.2118,
-          "teamPct": -2.676540000000005,
+          "margin": -8.2228,
+          "teamPct": -2.67984,
           "positionPct": -12
         },
         "config": {
@@ -16127,21 +16714,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.856Z",
+        "asOf": "2026-11-17T17:00:09.147Z",
         "complete": true,
         "match": {
           "opponent": "Fenerbahce",
           "home": false,
-          "margin": -8.2118,
+          "margin": -8.2228,
           "total": 167.29,
-          "teamPoints": 79.53909999999999,
-          "winProb": 0.2422239506695124,
-          "p20": 0.007217603328971869,
-          "p11_20": 0.05052501387702617,
-          "p1_10": 0.18448133346351436,
-          "l1_10": 0.3222231066699385,
-          "l11_20": 0.28381320500014734,
-          "l20": 0.15173973766040183,
+          "teamPoints": 79.53359999999999,
+          "winProb": 0.24194363520354176,
+          "p20": 0.007199059310678841,
+          "p11_20": 0.05043763913360584,
+          "p1_10": 0.18430693675925705,
+          "l1_10": 0.32213644243616835,
+          "l11_20": 0.28395850289441865,
+          "l20": 0.15196141946587122,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -16170,14 +16757,14 @@
                 },
                 {
                   "name": "Juhann Begarin",
-                  "status": "questionable",
-                  "missingProbability": 0.5,
+                  "status": "out",
+                  "missingProbability": 1,
                   "avgMinutes": 14,
                   "sampleGames": 0,
-                  "impactProxy": 0.011
+                  "impactProxy": 0.022
                 }
               ],
-              "marginPenalty": 0.359,
+              "marginPenalty": 0.37,
               "available": 14,
               "rosterCount": 16
             },
@@ -16314,16 +16901,16 @@
             "home": false,
             "baseMargin": -7.54,
             "strengthDelta": -0.7658,
-            "rosterDelta": 0.094,
-            "margin": -8.2118,
-            "rawWinProb": 0.2422239506695124,
-            "winProb": 0.2422239506695124
+            "rosterDelta": 0.083,
+            "margin": -8.2228,
+            "rawWinProb": 0.24194363520354176,
+            "winProb": 0.24194363520354176
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "david lighty": {
               "name": "David Lighty",
@@ -16597,7 +17184,7 @@
                   "foulsCommited": 2
                 }
               ],
-              "offensiveShareProxy": 0.03312021707708542
+              "offensiveShareProxy": 0.03055778922664074
             }
           },
           "defense": {
@@ -16738,10 +17325,10 @@
               "home": true,
               "baseMargin": 7.54,
               "strengthDelta": 0.7658,
-              "rosterDelta": -0.094,
-              "margin": 8.2118,
-              "rawWinProb": 0.7577760493304876,
-              "winProb": 0.7577760493304876
+              "rosterDelta": -0.083,
+              "margin": 8.2228,
+              "rawWinProb": 0.7580563647964582,
+              "winProb": 0.7580563647964582
             }
           }
         }
@@ -16763,7 +17350,7 @@
           "fantasy_id": 11521,
           "jerseyNumber": "1",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642768+00:00",
+          "data_updated": "2026-11-17T16:49:31.657126+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 3.7
@@ -16811,8 +17398,8 @@
         "context": {
           "injuryBoost": 0.05949999999999996,
           "injuryUsagePct": 0.10199999999999994,
-          "margin": -8.2118,
-          "teamPct": -2.676540000000005,
+          "margin": -8.2228,
+          "teamPct": -2.67984,
           "positionPct": -9.371649826813599
         },
         "config": {
@@ -16821,21 +17408,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.857Z",
+        "asOf": "2026-11-17T17:00:09.154Z",
         "complete": true,
         "match": {
           "opponent": "Fenerbahce",
           "home": false,
-          "margin": -8.2118,
+          "margin": -8.2228,
           "total": 167.29,
-          "teamPoints": 79.53909999999999,
-          "winProb": 0.2422239506695124,
-          "p20": 0.007217603328971869,
-          "p11_20": 0.05052501387702617,
-          "p1_10": 0.18448133346351436,
-          "l1_10": 0.3222231066699385,
-          "l11_20": 0.28381320500014734,
-          "l20": 0.15173973766040183,
+          "teamPoints": 79.53359999999999,
+          "winProb": 0.24194363520354176,
+          "p20": 0.007199059310678841,
+          "p11_20": 0.05043763913360584,
+          "p1_10": 0.18430693675925705,
+          "l1_10": 0.32213644243616835,
+          "l11_20": 0.28395850289441865,
+          "l20": 0.15196141946587122,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -16864,14 +17451,14 @@
                 },
                 {
                   "name": "Juhann Begarin",
-                  "status": "questionable",
-                  "missingProbability": 0.5,
+                  "status": "out",
+                  "missingProbability": 1,
                   "avgMinutes": 14,
                   "sampleGames": 0,
-                  "impactProxy": 0.011
+                  "impactProxy": 0.022
                 }
               ],
-              "marginPenalty": 0.359,
+              "marginPenalty": 0.37,
               "available": 14,
               "rosterCount": 16
             },
@@ -17008,16 +17595,16 @@
             "home": false,
             "baseMargin": -7.54,
             "strengthDelta": -0.7658,
-            "rosterDelta": 0.094,
-            "margin": -8.2118,
-            "rawWinProb": 0.2422239506695124,
-            "winProb": 0.2422239506695124
+            "rosterDelta": 0.083,
+            "margin": -8.2228,
+            "rawWinProb": 0.24194363520354176,
+            "winProb": 0.24194363520354176
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "dada fodzo marc owen": {
               "name": "Marc-owen Fodzo Dada",
@@ -17291,7 +17878,7 @@
                   "foulsCommited": 0
                 }
               ],
-              "offensiveShareProxy": 0.06408562485036046
+              "offensiveShareProxy": 0.05912748132287351
             }
           },
           "defense": {
@@ -17432,10 +18019,10 @@
               "home": true,
               "baseMargin": 7.54,
               "strengthDelta": 0.7658,
-              "rosterDelta": -0.094,
-              "margin": 8.2118,
-              "rawWinProb": 0.7577760493304876,
-              "winProb": 0.7577760493304876
+              "rosterDelta": -0.083,
+              "margin": 8.2228,
+              "rawWinProb": 0.7580563647964582,
+              "winProb": 0.7580563647964582
             }
           }
         }
@@ -17457,7 +18044,7 @@
           "fantasy_id": 3984,
           "jerseyNumber": "21",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642837+00:00",
+          "data_updated": "2026-11-17T16:49:31.657189+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 17.7
@@ -17538,8 +18125,8 @@
         "context": {
           "injuryBoost": 0,
           "injuryUsagePct": 0,
-          "margin": 8.2118,
-          "teamPct": 2.250540000000001,
+          "margin": 8.2228,
+          "teamPct": 2.253839999999996,
           "positionPct": 12.00000000000001
         },
         "config": {
@@ -17548,21 +18135,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.860Z",
+        "asOf": "2026-11-17T17:00:09.166Z",
         "complete": true,
         "match": {
           "opponent": "ASVEL",
           "home": true,
-          "margin": 8.2118,
+          "margin": 8.2228,
           "total": 167.29,
-          "teamPoints": 87.7509,
-          "winProb": 0.7577760493304876,
-          "p20": 0.15173973766040183,
-          "p11_20": 0.28381320500014734,
-          "p1_10": 0.3222231066699385,
-          "l1_10": 0.18448133346351436,
-          "l11_20": 0.05052501387702617,
-          "l20": 0.007217603328971869,
+          "teamPoints": 87.7564,
+          "winProb": 0.7580563647964582,
+          "p20": 0.15196141946587122,
+          "p11_20": 0.2839585028944186,
+          "p1_10": 0.3221364424361684,
+          "l1_10": 0.1843069367592571,
+          "l11_20": 0.050437639133605855,
+          "l20": 0.007199059310678843,
           "sampleGames": 54,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -17702,16 +18289,16 @@
             "home": true,
             "baseMargin": 7.54,
             "strengthDelta": 0.7658,
-            "rosterDelta": -0.094,
-            "margin": 8.2118,
-            "rawWinProb": 0.7577760493304876,
-            "winProb": 0.7577760493304876
+            "rosterDelta": -0.083,
+            "margin": 8.2228,
+            "rawWinProb": 0.7580563647964582,
+            "winProb": 0.7580563647964582
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "sanli sertac": {
               "name": "Sertac Sanli",
@@ -17961,7 +18548,7 @@
                   "foulsCommited": 3
                 }
               ],
-              "offensiveShareProxy": 0.049306126290489166
+              "offensiveShareProxy": 0.04276268846409574
             }
           },
           "defense": {
@@ -17991,14 +18578,14 @@
                   },
                   {
                     "name": "Juhann Begarin",
-                    "status": "questionable",
-                    "missingProbability": 0.5,
+                    "status": "out",
+                    "missingProbability": 1,
                     "avgMinutes": 14,
                     "sampleGames": 0,
-                    "impactProxy": 0.011
+                    "impactProxy": 0.022
                   }
                 ],
-                "marginPenalty": 0.359,
+                "marginPenalty": 0.37,
                 "available": 14,
                 "rosterCount": 16
               },
@@ -18135,10 +18722,10 @@
               "home": false,
               "baseMargin": -7.54,
               "strengthDelta": -0.7658,
-              "rosterDelta": 0.094,
-              "margin": -8.2118,
-              "rawWinProb": 0.2422239506695124,
-              "winProb": 0.2422239506695124
+              "rosterDelta": 0.083,
+              "margin": -8.2228,
+              "rawWinProb": 0.24194363520354176,
+              "winProb": 0.24194363520354176
             }
           }
         }
@@ -18160,7 +18747,7 @@
           "fantasy_id": 4000,
           "jerseyNumber": "10",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642850+00:00",
+          "data_updated": "2026-11-17T16:49:31.657202+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 2.4
@@ -18203,8 +18790,8 @@
         "context": {
           "injuryBoost": 0,
           "injuryUsagePct": 0,
-          "margin": 8.2118,
-          "teamPct": 2.250540000000001,
+          "margin": 8.2228,
+          "teamPct": 2.253839999999996,
           "positionPct": -3.226085993079686
         },
         "config": {
@@ -18213,21 +18800,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.861Z",
+        "asOf": "2026-11-17T17:00:09.171Z",
         "complete": true,
         "match": {
           "opponent": "ASVEL",
           "home": true,
-          "margin": 8.2118,
+          "margin": 8.2228,
           "total": 167.29,
-          "teamPoints": 87.7509,
-          "winProb": 0.7577760493304876,
-          "p20": 0.15173973766040183,
-          "p11_20": 0.28381320500014734,
-          "p1_10": 0.3222231066699385,
-          "l1_10": 0.18448133346351436,
-          "l11_20": 0.05052501387702617,
-          "l20": 0.007217603328971869,
+          "teamPoints": 87.7564,
+          "winProb": 0.7580563647964582,
+          "p20": 0.15196141946587122,
+          "p11_20": 0.2839585028944186,
+          "p1_10": 0.3221364424361684,
+          "l1_10": 0.1843069367592571,
+          "l11_20": 0.050437639133605855,
+          "l20": 0.007199059310678843,
           "sampleGames": 54,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -18367,16 +18954,16 @@
             "home": true,
             "baseMargin": 7.54,
             "strengthDelta": 0.7658,
-            "rosterDelta": -0.094,
-            "margin": 8.2118,
-            "rawWinProb": 0.7577760493304876,
-            "winProb": 0.7577760493304876
+            "rosterDelta": -0.083,
+            "margin": 8.2228,
+            "rawWinProb": 0.7580563647964582,
+            "winProb": 0.7580563647964582
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {},
           "defense": {
             "ASVEL": {
@@ -18405,14 +18992,14 @@
                   },
                   {
                     "name": "Juhann Begarin",
-                    "status": "questionable",
-                    "missingProbability": 0.5,
+                    "status": "out",
+                    "missingProbability": 1,
                     "avgMinutes": 14,
                     "sampleGames": 0,
-                    "impactProxy": 0.011
+                    "impactProxy": 0.022
                   }
                 ],
-                "marginPenalty": 0.359,
+                "marginPenalty": 0.37,
                 "available": 14,
                 "rosterCount": 16
               },
@@ -18549,10 +19136,10 @@
               "home": false,
               "baseMargin": -7.54,
               "strengthDelta": -0.7658,
-              "rosterDelta": 0.094,
-              "margin": -8.2118,
-              "rawWinProb": 0.2422239506695124,
-              "winProb": 0.2422239506695124
+              "rosterDelta": 0.083,
+              "margin": -8.2228,
+              "rawWinProb": 0.24194363520354176,
+              "winProb": 0.24194363520354176
             }
           }
         }
@@ -18574,7 +19161,7 @@
           "fantasy_id": 4005,
           "jerseyNumber": "11",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642853+00:00",
+          "data_updated": "2026-11-17T16:49:31.657205+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 5.5
@@ -18655,8 +19242,8 @@
         "context": {
           "injuryBoost": 0.05949999999999996,
           "injuryUsagePct": 0.10199999999999994,
-          "margin": -8.2118,
-          "teamPct": -2.676540000000005,
+          "margin": -8.2228,
+          "teamPct": -2.67984,
           "positionPct": -12
         },
         "config": {
@@ -18665,21 +19252,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.861Z",
+        "asOf": "2026-11-17T17:00:09.171Z",
         "complete": true,
         "match": {
           "opponent": "Fenerbahce",
           "home": false,
-          "margin": -8.2118,
+          "margin": -8.2228,
           "total": 167.29,
-          "teamPoints": 79.53909999999999,
-          "winProb": 0.2422239506695124,
-          "p20": 0.007217603328971869,
-          "p11_20": 0.05052501387702617,
-          "p1_10": 0.18448133346351436,
-          "l1_10": 0.3222231066699385,
-          "l11_20": 0.28381320500014734,
-          "l20": 0.15173973766040183,
+          "teamPoints": 79.53359999999999,
+          "winProb": 0.24194363520354176,
+          "p20": 0.007199059310678841,
+          "p11_20": 0.05043763913360584,
+          "p1_10": 0.18430693675925705,
+          "l1_10": 0.32213644243616835,
+          "l11_20": 0.28395850289441865,
+          "l20": 0.15196141946587122,
           "sampleGames": 49,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -18708,14 +19295,14 @@
                 },
                 {
                   "name": "Juhann Begarin",
-                  "status": "questionable",
-                  "missingProbability": 0.5,
+                  "status": "out",
+                  "missingProbability": 1,
                   "avgMinutes": 14,
                   "sampleGames": 0,
-                  "impactProxy": 0.011
+                  "impactProxy": 0.022
                 }
               ],
-              "marginPenalty": 0.359,
+              "marginPenalty": 0.37,
               "available": 14,
               "rosterCount": 16
             },
@@ -18852,16 +19439,16 @@
             "home": false,
             "baseMargin": -7.54,
             "strengthDelta": -0.7658,
-            "rosterDelta": 0.094,
-            "margin": -8.2118,
-            "rawWinProb": 0.2422239506695124,
-            "winProb": 0.2422239506695124
+            "rosterDelta": 0.083,
+            "margin": -8.2228,
+            "rawWinProb": 0.24194363520354176,
+            "winProb": 0.24194363520354176
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {
             "edwin jackson": {
               "name": "Edwin Jackson",
@@ -18943,7 +19530,7 @@
                   "foulsCommited": 0
                 }
               ],
-              "offensiveShareProxy": 0.08419717835259066
+              "offensiveShareProxy": 0.07768305454001441
             }
           },
           "defense": {
@@ -19084,10 +19671,10 @@
               "home": true,
               "baseMargin": 7.54,
               "strengthDelta": 0.7658,
-              "rosterDelta": -0.094,
-              "margin": 8.2118,
-              "rawWinProb": 0.7577760493304876,
-              "winProb": 0.7577760493304876
+              "rosterDelta": -0.083,
+              "margin": 8.2228,
+              "rawWinProb": 0.7580563647964582,
+              "winProb": 0.7580563647964582
             }
           }
         }
@@ -19109,7 +19696,7 @@
           "fantasy_id": 4698,
           "jerseyNumber": "17",
           "probability_of_playing": 1,
-          "data_updated": "2026-11-17T10:37:33.642900+00:00",
+          "data_updated": "2026-11-17T16:49:31.657250+00:00",
           "fantasy_source": "Fantaking API",
           "popularity_round": 11,
           "previous_round_popularity": 0.5
@@ -19152,8 +19739,8 @@
         "context": {
           "injuryBoost": 0,
           "injuryUsagePct": 0,
-          "margin": 8.2118,
-          "teamPct": 2.250540000000001,
+          "margin": 8.2228,
+          "teamPct": 2.253839999999996,
           "positionPct": 7.601023558787534
         },
         "config": {
@@ -19162,21 +19749,21 @@
             "coefficient": 0
           }
         },
-        "asOf": "2026-11-17T16:17:23.863Z",
+        "asOf": "2026-11-17T17:00:09.185Z",
         "complete": true,
         "match": {
           "opponent": "ASVEL",
           "home": true,
-          "margin": 8.2118,
+          "margin": 8.2228,
           "total": 167.29,
-          "teamPoints": 87.7509,
-          "winProb": 0.7577760493304876,
-          "p20": 0.15173973766040183,
-          "p11_20": 0.28381320500014734,
-          "p1_10": 0.3222231066699385,
-          "l1_10": 0.18448133346351436,
-          "l11_20": 0.05052501387702617,
-          "l20": 0.007217603328971869,
+          "teamPoints": 87.7564,
+          "winProb": 0.7580563647964582,
+          "p20": 0.15196141946587122,
+          "p11_20": 0.2839585028944186,
+          "p1_10": 0.3221364424361684,
+          "l1_10": 0.1843069367592571,
+          "l11_20": 0.050437639133605855,
+          "l20": 0.007199059310678843,
           "sampleGames": 54,
           "currentSeasonGames": 11,
           "source": "EuroLeague model + available roster + opponent strength",
@@ -19316,16 +19903,16 @@
             "home": true,
             "baseMargin": 7.54,
             "strengthDelta": 0.7658,
-            "rosterDelta": -0.094,
-            "margin": 8.2118,
-            "rawWinProb": 0.7577760493304876,
-            "winProb": 0.7577760493304876
+            "rosterDelta": -0.083,
+            "margin": 8.2228,
+            "rawWinProb": 0.7580563647964582,
+            "winProb": 0.7580563647964582
           }
         },
         "contextData": {
           "schema": "matchup-context-v1",
           "season": "E2026",
-          "updated_at": "2026-11-17T10:37:37.326797+00:00",
+          "updated_at": "2026-11-17T16:49:34.408866+00:00",
           "players": {},
           "defense": {
             "ASVEL": {
@@ -19354,14 +19941,14 @@
                   },
                   {
                     "name": "Juhann Begarin",
-                    "status": "questionable",
-                    "missingProbability": 0.5,
+                    "status": "out",
+                    "missingProbability": 1,
                     "avgMinutes": 14,
                     "sampleGames": 0,
-                    "impactProxy": 0.011
+                    "impactProxy": 0.022
                   }
                 ],
-                "marginPenalty": 0.359,
+                "marginPenalty": 0.37,
                 "available": 14,
                 "rosterCount": 16
               },
@@ -19498,10 +20085,10 @@
               "home": false,
               "baseMargin": -7.54,
               "strengthDelta": -0.7658,
-              "rosterDelta": 0.094,
-              "margin": -8.2118,
-              "rawWinProb": 0.2422239506695124,
-              "winProb": 0.2422239506695124
+              "rosterDelta": 0.083,
+              "margin": -8.2228,
+              "rawWinProb": 0.24194363520354176,
+              "winProb": 0.24194363520354176
             }
           }
         }
