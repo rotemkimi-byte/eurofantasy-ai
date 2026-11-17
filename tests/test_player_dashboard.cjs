@@ -2,7 +2,7 @@
 const {chromium}=require('playwright'),fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..');
 const server=http.createServer((req,res)=>{const rel=decodeURIComponent(req.url.split('?')[0]);const p=path.join(root,rel==='/'?'index.html':rel);try{res.setHeader('Content-Type',p.endsWith('.js')?'application/javascript':p.endsWith('.css')?'text/css':p.endsWith('.json')?'application/json':'text/html');res.end(fs.readFileSync(p));}catch{res.writeHead(404);res.end('{}');}});
-(async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||undefined,args:['--no-sandbox','--no-zygote','--single-process','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});try{
+(async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||undefined,headless:true});try{
 const page=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true}),errors=[];page.on('pageerror',e=>errors.push(e.message));
 // Load downloaded official images in isolated test environments; otherwise exercise real URLs.
 if(process.env.MEDIA_FIXTURE){const m=JSON.parse(fs.readFileSync(path.join(root,'data/player-media.json'))).players;for(const [key,prefix] of [['bryant elijah','bryant'],['sasha vezenkov','sasha']])for(const field of ['photo','crest']){const file=`${process.env.MEDIA_FIXTURE}/ef-${prefix}-${field}.png`;if(m[key]?.[field]&&fs.existsSync(file))await page.route(m[key][field],r=>r.fulfill({path:file,contentType:'image/png'}));}}

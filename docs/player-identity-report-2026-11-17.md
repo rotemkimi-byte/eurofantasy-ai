@@ -199,8 +199,21 @@ Baldwin: 11 appearances, 13.82 PIR, 23.86 minutes. Horton-Tucker: 11 appearances
 - `tests/test_player_identity.cjs`
 - `tests/test_player_identity_browser.cjs`
 - `tests/test_rolling_learning.py`
+- `tests/test_algorithm_ui.cjs`
+- `tests/test_player_dashboard.cjs`
 - `usage-core.js`
 - `usage-ui.js`
 - `weighted-forecast-core.js`
 
 CI follow-up: updated the isolated algorithm UI harness to load the shared identity dependency and made the round-lab Python adapter importable when tests load it by file path. These isolated entry points now pass locally.
+
+## Publication evidence
+
+- Core implementation: bf7da644079aa4844ac82c0bcbf6c6321c536821, with isolated-test follow-ups 83355c63220bc11aebff03a2dbac264617ec5dc2, b835d7ce40388733ff387406ae4c8a8bccd72be8, a02d090737e7eb941c425af1a235aa4bf7d0cf82.
+- Official metrics and Pages: https://github.com/rotemkimi-byte/eurofantasy-ai/actions/runs/44130499311 — update, integrity gate and deploy all succeeded.
+- Bargains/Super Squad pipeline and Pages: https://github.com/rotemkimi-byte/eurofantasy-ai/actions/runs/44130499170 — verification, integrity gate and deploy all succeeded.
+- Mobile identity acceptance: https://github.com/rotemkimi-byte/eurofantasy-ai/actions/runs/44130607999 — all eight requested players passed profiles, photo URLs, unique selections and five advanced tools; all 342 forecasts were finite. An unrelated older dashboard assertion expected an aria-label, while the existing button has visible return text; the assertion was aligned with that existing accessible name without changing the UI.
+- Published URL: https://rotemkimi-byte.github.io/eurofantasy-ai/
+- Direct interactive verification could not be completed: the connected browser timed out opening the published page. Automated real-browser checks ran on GitHub's runner.
+
+Additional CI compatibility: removed the old single-process Chromium test flag (it crashed when the existing dashboard suite opened its second context), and made the scheduled learning workflow check out current main so retries do not replay obsolete snapshots over already archived predictions.
