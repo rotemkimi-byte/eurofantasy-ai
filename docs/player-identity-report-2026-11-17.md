@@ -217,3 +217,16 @@ CI follow-up: updated the isolated algorithm UI harness to load the shared ident
 - Direct interactive verification could not be completed: the connected browser timed out opening the published page. Automated real-browser checks ran on GitHub's runner.
 
 Additional CI compatibility: removed the old single-process Chromium test flag (it crashed when the existing dashboard suite opened its second context), and made the scheduled learning workflow check out current main so retries do not replay obsolete snapshots over already archived predictions.
+
+## Unified historical/tool-impact validation
+
+Ran `python scripts/unified_learning.py --historical --output /tmp/identity-unified-validation.json` with the corrected resolver. The separate result is saved as `data/integrity/unified-identity-validation.json`: 949 eligible archived inputs across 40 games; 641 held-out predictions across 27 games, with per-version accuracy, per-tool ablations and coverage. Prospective paired validation remains empty (0), so this does not authorize activating new learned coefficients. This compares the existing unified candidate with served model versions, and must not be described as a pure before/after identity improvement. The 36-case paired diagnostic above is the isolated form-repair comparison.
+
+## Final validation and deployment result
+
+- https://github.com/rotemkimi-byte/eurofantasy-ai/actions/runs/44131830203 : the complete `verify` job succeeded, including all three real-browser suites. All eight acceptance players, all 342 finite forecasts, dashboard tabs/ranges/Usage/PIR, missing-image and data-failure behavior, rapid player switching, and advanced tools at 390/1280 px in light/dark themes passed.
+- That run's separate deploy job was rejected because a newer Pages deployment was already in progress. Its older artifact was not retried over the newer data.
+- https://github.com/rotemkimi-byte/eurofantasy-ai/actions/runs/44131830727 : learning update, replay/input capture, integrity gate and Pages deployment all succeeded.
+- https://github.com/rotemkimi-byte/eurofantasy-ai/actions/runs/44132126968 : latest main version 2e9a99e51b274887b0ff3a85761d5a7eaf17aacf was published successfully. This includes the identity implementation and follow-up fixes.
+- Verification evidence: 26 local Node suites, 30 Python tests, the personal-model regression suite, three successful cloud browser suites and a 949-input historical unified replay. No algorithm weights were changed by this task.
+- Additional report artifact: `data/integrity/unified-identity-validation.json`.
