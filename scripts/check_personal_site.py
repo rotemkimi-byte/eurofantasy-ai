@@ -42,6 +42,34 @@ try:
         assert algorithm.locator('[data-mode="weights"]').get_attribute('aria-pressed') == 'true'
         assert algorithm.locator('[data-list] .wf-row').count() == 22
         algorithm.locator('[data-mode="report"]').click()
+        report_players = algorithm.locator('[data-report-player]')
+        report_teams = algorithm.locator('[data-report-team]')
+        audit_filter = algorithm.locator('[data-audit-filter]')
+        audit_cards = algorithm.locator('[data-audit-rows] .ac-row')
+        page.set_viewport_size({'width': 390, 'height': 844})
+        page.wait_for_function("document.querySelectorAll('#algorithm [data-report-player] option').length > 1")
+        assert report_teams.is_hidden()
+        prices = report_players.locator('option').evaluate_all(r"""options => options
+          .map(option => option.textContent.match(/ · ([\d.]+) CR/)?.[1])
+          .filter(Boolean).map(Number)""")
+        assert len(prices) > 1 and prices == sorted(prices, reverse=True)
+        for result, badge in [('miss', 'miss'), ('hit', 'hit')]:
+            audit_filter.select_option(result)
+            assert algorithm.locator('[data-audit-details]').evaluate('(el) => el.open')
+            gaps = [abs(float(value)) for value in audit_cards.locator('.ac-values span:last-child b').all_text_contents()]
+            assert gaps and gaps == sorted(gaps, reverse=result == 'miss'), (result, gaps)
+            assert audit_cards.locator(f'.ac-badge.{badge}').count() == len(gaps)
+        algorithm.locator('[data-report-scope="team"]').click()
+        assert report_teams.is_visible()
+        team = report_teams.locator('option').last.get_attribute('value')
+        report_teams.select_option(team)
+        assert report_players.locator('option').count() > 1
+        audit_filter.select_option('all')
+        clubs = audit_cards.locator('.ac-rowhead small').all_text_contents()
+        assert clubs and all(club.startswith(team + ' מול ') for club in clubs)
+        algorithm.locator('[data-report-scope="price"]').click()
+        assert report_teams.is_hidden()
+        page.set_viewport_size({'width': 1280, 'height': 720})
         historical = page.evaluate('''async () => {
           const {rounds} = await (await fetch('./data/learning/tool-impacts.json')).json();
           const round = rounds.find(r => r.games.some(g => g.players.some(p => Number.isFinite(p[4]?.expectedPir))));

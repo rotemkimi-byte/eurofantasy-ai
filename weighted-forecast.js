@@ -42,12 +42,26 @@ section.innerHTML=`<div class="card wf-shell">
   <div class="wf-list" data-list></div>
  </div>
  <div data-panel="report" hidden>
-  <div class="wf-controls"><label>מחזור<select data-round></select></label><label>שחקן<select data-report-player><option value="">כל השחקנים</option></select></label></div>
+  <div class="player-picker-modes" role="group" aria-label="בחירת רשימת שחקנים">
+   <button type="button" data-report-scope="price" aria-pressed="true">לפי מחיר</button>
+   <button type="button" data-report-scope="team" aria-pressed="false">לפי קבוצה</button>
+  </div>
+  <div class="wf-controls">
+   <label>מחזור<select data-round></select></label>
+   <label hidden>קבוצה<select data-report-team data-control="selection"></select></label>
+   <label>שחקן<select data-report-player dir="ltr"><option value="">כל השחקנים</option></select></label>
+  </div>
   <div class="wf-audit audit-compact">
    <h3>דיוק התחזיות</h3>
    <div data-audit-summary aria-live="polite"></div>
+   <div class="wf-controls" data-audit-controls hidden>
+    <label>מיון תוצאות<select data-audit-filter data-control="filter">
+     <option value="all">כל התוצאות · לפי גודל הפער</option>
+     <option value="miss">פספוסים · מהגדול לקטן</option>
+     <option value="hit">פגיעות · מהמדויקת ביותר</option>
+    </select></label>
+   </div>
    <details data-audit-details hidden><summary>פגיעות ופספוסים לפי שחקן</summary>
-    <div class="wf-controls"><label>תוצאה<select data-audit-filter><option value="all">כל התוצאות</option><option value="hit">פגיעות</option><option value="miss">פספוסים</option></select></label></div>
     <div data-audit-rows></div><button type="button" class="secondary" data-audit-more>הצג עוד</button>
    </details>
   </div>
@@ -69,6 +83,8 @@ section.innerHTML=`<div class="card wf-shell">
  </div>`;
 main.append(section);
 const $=selector=>section.querySelector(selector),modeButtons=[...section.querySelectorAll('[data-mode]')];
+const reportScopeButtons=[...section.querySelectorAll('[data-report-scope]')];
+let reportScope='price';
 const playerList=()=>typeof players!=='undefined'?players.filter(p=>['G','F','C'].includes(p.pos)):[];
 function options(select,entries){
  const before=select.value;
@@ -93,13 +109,13 @@ function drawWeights(){
   return `<article class="wf-row"><span><b>${d.label}</b><small>${d.description}</small></span><span class="wf-number"><b dir="ltr">${weights[d.id]}%</b>${f?`<small ${active?'dir="ltr"':''}>${active?effect.format(delta)+' PIR':'אין מדגם'}</small>`:''}</span></article>`;
  }).join('');
 }
-function drawAudit(round,rows){
+function drawAudit(round,sample){
  const host=$('[data-audit-summary]'),details=$('[data-audit-details]'),audit=window.AuditCompact;
- const sample=rows.filter(r=>Number(r.round)===round?.round&&(!$('[data-report-player]').value||r.name===$('[data-report-player]').value));
  details.hidden=!sample.length||!audit;
+ $('[data-audit-controls]').hidden=details.hidden;
  if(details.hidden){
   host.textContent=window.__learningReport===undefined?'טוען את בדיקת התחזיות…':
-   window.__learningReport===null?'בדיקת התחזיות לא זמינה כרגע.':'אין תחזיות שנבדקו במחזור הזה.';
+   window.__learningReport===null?'בדיקת התחזיות לא זמינה כרגע.':'אין תחזיות שנבדקו עבור הבחירה הזאת.';
   return;
  }
  const scope={round:String(round.round),source:'all',team:'',sort:'error'};
@@ -120,6 +136,38 @@ function drawAudit(round,rows){
  $('[data-audit-rows]').innerHTML=selected.slice(0,auditLimit).map(r=>audit.card(r,id)).join('')||'<p>אין תוצאות במסנן הזה.</p>';
  $('[data-audit-more]').hidden=selected.length<=auditLimit;
 }
+function reportPlayerOptions(roundRows,games){
+ const playerSelect=$('[data-report-player]'),teamSelect=$('[data-report-team]');
+ const roster=new Map(playerList().map(p=>[P.key(p.name),p]));
+ const records=new Map();
+ for(const entry of [...roundRows,...games.flatMap(game=>game.players.map(row=>row[4]))]){
+  if(!entry?.name)continue;
+  const {name}=entry,player=roster.get(P.key(name));
+  const record=records.get(name)||{name,price:Number(player?.price)||0,teams:new Set()};
+  const team=P.team(entry.team||player?.team);
+  if(team)record.teams.add(team);
+  records.set(name,record);
+ }
+ teamSelect.closest('label').hidden=reportScope!=='team';
+ let selectedTeam='';
+ if(reportScope==='team'){
+  const teams=[...new Set([...records.values()].flatMap(p=>[...p.teams]))].sort();
+  const previousTeam=teamSelect.value;
+  options(teamSelect,teams.map(team=>[team,team]));
+  teamSelect.disabled=!teams.length;
+  if(!teams.includes(previousTeam)){
+   teamSelect.value=records.get(playerSelect.value)?.teams.values().next().value||teams[0]||'';
+  }
+  selectedTeam=teamSelect.value;
+ }
+ const choices=[...records.values()].filter(p=>!selectedTeam||p.teams.has(selectedTeam))
+  .sort((a,b)=>b.price-a.price||a.name.localeCompare(b.name));
+ options(playerSelect,[['','כל השחקנים'],...choices.map(p=>[p.name,[
+  p.name,p.price>0?fmt(p.price)+' CR':'',reportScope==='price'?[...p.teams].join(' / '):''
+ ].filter(Boolean).join(' · ')])]);
+ playerSelect.disabled=!choices.length;
+ return entry=>!selectedTeam||P.team(entry?.team||roster.get(P.key(entry?.name))?.team)===selectedTeam;
+}
 function drawReport(){
  const host=$('[data-report]'),select=$('[data-round]');
  const rows=window.__learningReport?.rows||[];
@@ -131,20 +179,19 @@ function drawReport(){
  if(!$('[data-round]').dataset.chosen&&latest)select.value=String(latest.round);
  select.disabled=!rounds.length;
  const round=rounds.find(r=>String(r.round)===select.value);
- const names=[...new Set([
-  ...rows.filter(r=>Number(r.round)===round?.round).map(r=>r.name),
-  ...(round?.games||[]).flatMap(game=>game.players.map(row=>row[4]?.name))
- ].filter(Boolean))].sort();
- options($('[data-report-player]'),[['','כל השחקנים'],...names.map(name=>[name,name])]);
- drawAudit(round,rows);
- const personal=$('[data-report-mode]').value==='device';
+ const roundRows=rows.filter(r=>Number(r.round)===round?.round);
+ const matchesTeam=reportPlayerOptions(roundRows,round?.games||[]);
  const selectedName=$('[data-report-player]').value;
+ const matches=entry=>matchesTeam(entry)&&(!selectedName||entry?.name===selectedName);
+ const auditRows=roundRows.filter(matches);
+ drawAudit(round,auditRows);
+ const personal=$('[data-report-mode]').value==='device';
  const settings=game=>personal?versions.findLast(v=>Date.parse(v.savedAt)<=Date.parse(game.savedAt))?.weights:game.weights;
- const games=(round?.games||[]).map(game=>({...game,players:game.players.filter(row=>!selectedName||row[4]?.name===selectedName)}))
+ const games=(round?.games||[]).map(game=>({...game,players:game.players.filter(row=>matches(row[4]))}))
   .filter(game=>game.players.length);
  if(selectedName){
   const gameCodes=new Set(games.map(game=>String(game.gameCode)));
-  const history=rows.filter(r=>Number(r.round)===round?.round&&r.name===selectedName&&!gameCodes.has(String(r.gameCode)));
+  const history=auditRows.filter(r=>!gameCodes.has(String(r.gameCode)));
   host.innerHTML=games.flatMap(game=>game.players.map(row=>playerImpact(game,row,settings(game),personal))).join('')
    +history.map(r=>`<p><b>${esc(r.name)}</b> · משחק ${esc(r.gameCode)} · גרסה <bdi>${esc(r.modelId||'legacy')}</bdi>
     <br>תחזית שנשמרה ${exact(r.servedPir)} · בפועל ${exact(r.actualPir)} · טעות מוחלטת ${exact(Math.abs(r.actualPir-r.servedPir))} PIR</p>
@@ -251,9 +298,15 @@ $('[data-import]').onchange=async event=>{
 };
 $('[data-team]').onchange=()=>{rosterOptions();drawWeights();};
 $('[data-player]').onchange=drawWeights;
+for(const button of reportScopeButtons)button.onclick=()=>{
+ reportScope=button.dataset.reportScope;
+ for(const choice of reportScopeButtons)choice.setAttribute('aria-pressed',String(choice===button));
+ auditLimit=5;drawReport();
+};
 $('[data-round]').onchange=event=>{event.target.dataset.chosen='true';auditLimit=5;drawReport();};
+$('[data-report-team]').onchange=()=>{auditLimit=5;drawReport();};
 $('[data-report-player]').onchange=()=>{auditLimit=5;$('[data-audit-details]').open=true;drawReport();};
-$('[data-audit-filter]').onchange=()=>{auditLimit=5;drawReport();};
+$('[data-audit-filter]').onchange=()=>{auditLimit=5;$('[data-audit-details]').open=true;drawReport();};
 $('[data-audit-more]').onclick=()=>{auditLimit+=5;drawReport();};
 $('[data-report-mode]').onchange=drawReport;
 tab.onclick=()=>{
@@ -363,7 +416,10 @@ if(typeof renderAll==='function')renderAll();
 window.addEventListener('focus',()=>void refreshEvidence());
 document.addEventListener('fantasy-live-updated',()=>{
  signalCache=new WeakMap();
- if(section.classList.contains('active')){rosterOptions();drawWeights();}
+ if(section.classList.contains('active')){
+  rosterOptions();drawWeights();
+  if(!$('[data-panel="report"]').hidden)drawReport();
+ }
  void refreshEvidence();
 });
 })();
