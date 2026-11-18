@@ -26,3 +26,7 @@ Implementation commit: `d01e21ad1efc0938f5e9b4608a6c642e758142a8`.
 - [Rolling learning, restarted attempt](https://github.com/rotemkimi-byte/eurofantasy-ai/actions/runs/44232473611): **success**, including replay checks, immutable input snapshots, the two integrity audits and Pages deployment. Generated commit: `8018b89e`.
 - [Identity and real mobile checks](https://github.com/rotemkimi-byte/eurofantasy-ai/actions/runs/44234371853): **success**, including all three browser suites and Pages deployment.
 - The identity workflow could finish after a newer official/learning deployment and overwrite it with its older artifact. Its deploy job now checks the current main head and skips a superseded artifact. The final report commit publishes the current source, preserving the newly refreshed data.
+
+## Final confirmation
+
+[Run 44235028020](https://github.com/rotemkimi-byte/eurofantasy-ai/actions/runs/44235028020) on final repair commit `1ecb01fa55624121fa894c80c7d87d4e9aafb268`: **success**. All identity/forecast checks and the three real browser suites passed on the refreshed source. The new source-freshness check passed, and Pages deployment completed successfully. A direct request to the public site's `data/official-offense.json` confirmed E2026, 119 completed results and 315 official profiles.
