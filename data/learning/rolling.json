@@ -1,9 +1,9 @@
 {
   "schema": "rolling-learning-v1",
   "season": "E2026",
-  "engineId": "4d3286df7dfe9e4d7a4f",
-  "updated_at": "2026-11-18T12:20:09.228775+00:00",
-  "exactCount": 1803,
+  "engineId": "23b4b2f038dd9cada7b3",
+  "updated_at": "2026-11-18T20:41:59.058255+00:00",
+  "exactCount": 1827,
   "diagnostic": {
     "n": 451,
     "mae": 5.167981383984494,
@@ -16,10 +16,10 @@
   },
   "missingInputs": 347,
   "validation": {
-    "n": 1533,
-    "games": 66,
-    "baselineMae": 5.70311984528916,
-    "candidateMae": 5.658806776811642,
+    "n": 1557,
+    "games": 67,
+    "baselineMae": 5.712713718377659,
+    "candidateMae": 5.668028386671631,
     "active": false,
     "reason": "collecting-or-no-improvement",
     "folds": [
@@ -616,33 +616,42 @@
         "testN": 23,
         "baselineMae": 4.398496376846981,
         "candidateMae": 4.338290387185366
+      },
+      {
+        "gameCode": 120,
+        "round": 12,
+        "trainingN": 1768,
+        "trainingGames": 76,
+        "testN": 24,
+        "baselineMae": 6.325522361905558,
+        "candidateMae": 6.257058716478423
       }
     ],
-    "intervalCoverage": 0.8023483365949119
+    "intervalCoverage": 0.8041104688503532
   },
   "coefficients": {
     "G": {
-      "n": 725,
-      "minutes": -0.4264181115450295,
-      "efficiencyPir": -0.20798192950366878
+      "n": 732,
+      "minutes": -0.4111160975250776,
+      "efficiencyPir": -0.20364875046583697
     },
     "F": {
-      "n": 613,
-      "minutes": -0.41179909162286565,
-      "efficiencyPir": -0.16794461323383023
+      "n": 623,
+      "minutes": -0.40709992103017567,
+      "efficiencyPir": -0.20818509923785383
     },
     "C": {
-      "n": 326,
-      "minutes": -0.9787200943956592,
-      "efficiencyPir": 0.5104751307526775
+      "n": 331,
+      "minutes": -1.0158841193044037,
+      "efficiencyPir": 0.4774457360782745
     }
   },
   "interval": {
     "active": true,
     "targetCoverage": 0.8,
-    "coverage": 0.8023483365949119,
-    "n": 1533,
-    "radius": 9.002988632209847
+    "coverage": 0.8041104688503532,
+    "n": 1557,
+    "radius": 8.956597571468336
   },
   "limitations": [
     "Partial historical reconstructions exclude unrecoverable pregame defensive context and momentum configuration; never activate live corrections.",
@@ -868,14 +877,14 @@
     {
       "round": 12,
       "kind": "exact-frozen-input",
-      "n": 212,
-      "mae": 5.411335929886415,
-      "bias": -0.14182956389322962,
-      "minutesMae": 5.554001212896349,
-      "hits": 76,
-      "hitRate": 35.84905660377358,
-      "over": 77,
-      "under": 59
+      "n": 236,
+      "mae": 5.504304041617176,
+      "bias": -0.3271794325861322,
+      "minutesMae": 5.630619108571891,
+      "hits": 81,
+      "hitRate": 34.32203389830508,
+      "over": 90,
+      "under": 65
     },
     {
       "round": 12,
@@ -1685,6 +1694,98 @@
       "baseCeiling": 14.577972935880545
     },
     {
+      "name": "DaQuan Jeffries",
+      "key": "daquan jeffries",
+      "team": "Besiktas",
+      "pos": "F",
+      "opponent": "Real Madrid",
+      "gameCode": 120,
+      "round": 12,
+      "start": "2026-11-18T17:00:00Z",
+      "basePir": 2.936083369137511,
+      "baseMinutes": 10.7145,
+      "servedPir": 2.305561503927382,
+      "servedMinutes": 7.380786666666666,
+      "status": "active",
+      "modelId": "d3bd9bfae8bd3f9147cb",
+      "eligible": true,
+      "snapshotAt": "2026-11-18T04:03:54.342227+00:00",
+      "home": true,
+      "features": {
+        "basePir": 6.138,
+        "baseMin": 14,
+        "injuryBoost": 0.024499999999999973,
+        "injuryUsagePct": 0.041999999999999954,
+        "missingStars": [],
+        "positionMatchPct": -0.030804111260718248,
+        "teamPoints": 88.3855,
+        "margin": -1.769,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.3333333333333333,
+          "minutesWeight": 0.5,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.3333333333333333,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 1,
+          "defenseSample": 11,
+          "rival": "Chuma Okeke",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 10.88579448622416,
+              "weight": 0.8026397313045259,
+              "observedGames": 2
+            },
+            {
+              "id": "big-win",
+              "minutes": 9.81434448622416,
+              "weight": 0.07239822763086014,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 10.13577948622416,
+              "weight": 0.1249620410646139,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 24,
+      "actualMinutes": 24.416666666666668,
+      "fouls": 2,
+      "actualStats": {
+        "points": 20,
+        "totalRebounds": 4,
+        "assistances": 0,
+        "turnovers": 2,
+        "foulsCommited": 2,
+        "fieldGoalsMadeTotal": 6,
+        "fieldGoalsAttemptedTotal": 11
+      },
+      "minutesContribution": 3.7547905801624313,
+      "efficiencyContribution": 17.30912605070006,
+      "reason": "efficiency",
+      "error": 21.06391663086249,
+      "servedError": 21.694438496072618,
+      "outcome": "miss",
+      "replayKind": "exact-frozen-input",
+      "baseFloor": 1.3946396003403179,
+      "baseCeiling": 4.550929222163142
+    },
+    {
       "name": "Nigel Hayes-davis",
       "key": "davis hayes nigel",
       "team": "Panathinaikos",
@@ -1800,100 +1901,6 @@
       "replayKind": "exact-frozen-input",
       "baseFloor": 7.3373857432978875,
       "baseCeiling": 23.028102948196448
-    },
-    {
-      "name": "Aleksander Balcerowski",
-      "key": "balcerowski olek",
-      "team": "Barcelona",
-      "pos": "C",
-      "opponent": "Paris",
-      "gameCode": 116,
-      "round": 12,
-      "start": "2026-11-17T19:30:00Z",
-      "basePir": 7.0623840760095264,
-      "baseMinutes": 14.889519143595745,
-      "servedPir": 8.442011693796388,
-      "servedMinutes": 17.845505789473684,
-      "status": "active",
-      "modelId": "12baacdc03496b0c36ad",
-      "eligible": true,
-      "snapshotAt": "2026-11-17T17:00:11.722147+00:00",
-      "home": true,
-      "features": {
-        "basePir": 6.882000000000001,
-        "baseMin": 19,
-        "injuryBoost": 0.20650000000000002,
-        "injuryUsagePct": 0.354,
-        "missingStars": [
-          "Kevin Punter"
-        ],
-        "positionMatchPct": 9.536678416758715,
-        "teamPoints": 90.58105,
-        "margin": 4.0521,
-        "lastGameWeight": null,
-        "personalPrior": {
-          "historicalGames": 0,
-          "historyWeight": 0,
-          "sameTeam": false,
-          "avgPir": null,
-          "avgMinutes": null,
-          "currentSeasonWeight": 0.7142857142857143,
-          "minutesWeight": 0.8333333333333334,
-          "momentumPir": 0,
-          "momentumEnabled": false,
-          "hot": false,
-          "streaks": []
-        },
-        "currentSeasonWeight": 0.7142857142857143,
-        "context": {
-          "involvementFactor": 1.0399189882492712,
-          "defenseFactor": 1.0039793267262513,
-          "defenseSample": 11,
-          "rival": "Allan Dokossi",
-          "scenarios": [
-            {
-              "id": "close",
-              "minutes": 14.986648303455738,
-              "weight": 0.7807416093872379,
-              "observedGames": 9
-            },
-            {
-              "id": "big-win",
-              "minutes": 14.435099999999998,
-              "weight": 0.170385691437176,
-              "observedGames": 0
-            },
-            {
-              "id": "big-loss",
-              "minutes": 14.916269999999999,
-              "weight": 0.048872699175586135,
-              "observedGames": 0
-            }
-          ],
-          "minutesCorrectionActive": true
-        }
-      },
-      "actualPir": 28,
-      "actualMinutes": 22.316666666666666,
-      "fouls": 2,
-      "actualStats": {
-        "points": 17,
-        "totalRebounds": 6,
-        "assistances": 3,
-        "turnovers": 0,
-        "foulsCommited": 2,
-        "fieldGoalsMadeTotal": 6,
-        "fieldGoalsAttemptedTotal": 6
-      },
-      "minutesContribution": 3.5228383060087487,
-      "efficiencyContribution": 17.414777617981727,
-      "reason": "efficiency",
-      "error": 20.937615923990474,
-      "servedError": 19.55798830620361,
-      "outcome": "miss",
-      "replayKind": "exact-frozen-input",
-      "baseFloor": 4.080484154981372,
-      "baseCeiling": 10.303222491327967
     }
   ]
 }
