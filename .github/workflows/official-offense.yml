@@ -70,6 +70,8 @@ jobs:
       - name: Fetch official box scores and verify derived metrics
         run: |
           python scripts/build_official_metrics.py
+          python tests/test_identity_refresh.py
+          node tests/test_identity_refresh.cjs
           node scripts/build-position-defense.cjs
           node tests/test_position_defense.cjs
           node tests/test_squad_matchup.cjs
@@ -96,7 +98,7 @@ jobs:
           python scripts/build_player_identities.py
           node scripts/audit_player_identities.cjs
           git add player-identities.js data/player-identities.json data/integrity/player-identities.json
-          git add data/position-matchups.json data/performance-history.json data/official-offense.json data/player-media.json data/advanced-players.json data/team-dna-events.json data/player-dna-events.json data/context/E2026-schedule.json data/risk-profile.json
+          git add data/position-matchups.json data/performance-history.json data/official-offense.json data/player-media.json data/advanced-players.json data/team-dna-events.json data/player-dna-events.json data/context/E2026-schedule.json data/risk-profile.json data/backtest/cache
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh player metrics from official EuroLeague box scores'
             for attempt in 1 2 3; do

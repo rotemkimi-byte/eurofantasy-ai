@@ -3,7 +3,14 @@ const assert = require('node:assert/strict');
 const S = require('../squad-matchup.js');
 const W = require('../weighted-forecast-core.js');
 const official = require('../data/official-offense.json');
-const schedule = require('../data/context/E2026-schedule.json');
+// A frozen schedule keeps the assertion valid after the live played flags move.
+const game=(gameCode,utcDate,round,played,local,road,season='E2026')=>({gameCode,utcDate,round,played,season:{code:season},local:{club:{name:local}},road:{club:{name:road}}});
+const schedule={data:[
+ game(2,'2026-11-19T20:00:00Z',13,false,'Valencia Basket','Virtus Bologna'),
+ game(1,'2026-11-17T20:00:00Z',12,false,'Virtus Bologna','Panathinaikos'),
+ game(3,'2026-11-15T20:00:00Z',11,true,'Virtus Bologna','Paris'),
+ game(4,'2026-11-15T20:00:00Z',11,false,'Virtus Bologna','Paris','E2025')
+]};
 const canonical = team => team.startsWith('Panathinaikos') ? 'Panathinaikos' : team;
 const now = Date.parse('2026-11-14T16:25:00Z');
 
@@ -12,6 +19,8 @@ assert.deepEqual(S.fixture(schedule,'Virtus Bologna',canonical,now), {
 });
 assert.equal(S.fixture(schedule,'Panathinaikos',canonical,now).home,false);
 assert.equal(S.fixture(schedule,'Unknown',canonical,now),null);
+assert.equal(S.fixture({...schedule,data:schedule.data.map(g=>g.gameCode===1?{...g,played:true}:g)},'Virtus Bologna',canonical,now).team,'Valencia Basket');
+assert.equal(S.fixture(schedule,'Virtus Bologna',canonical,Date.parse('2026-11-18T00:00:00Z')).round,13);
 assert.deepEqual(S.gameStats({...official,season:'E2025'},canonical,now),[]);
 const games = S.gameStats(official,canonical,now);
 const defense = S.comparison(games,'C','Panathinaikos');

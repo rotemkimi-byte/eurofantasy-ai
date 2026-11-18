@@ -3,7 +3,8 @@ const I=require('../player-identity-core.js'),P=require('../personal-model-core.
 const official=require('../data/official-offense.json'),recent=require('../data/recent-form.json'),media=require('../data/player-media.json'),market=require('../data/players.json');
 const cases=[[3771,'009863'],[8567,'014124'],[4096,'012606'],[7197,'014127'],[11517,'015162'],[11494,'014728'],[11512,'014734'],[4758,'012742']];
 for(const [fid,eid] of cases){const p=market.find(p=>p.fantasy_id===fid),r=I.resolve(p);assert.equal(r.euroleagueId,eid,p.name);assert.equal(I.key(p),I.key({playerCode:'P'+eid}));assert(I.lookup(official.players,p)?.games.length>0);assert(I.lookup(media.players,p)?.photo,p.name);assert(I.recentFromOfficial(I.lookup(official.players,p),I.lookup(recent.players,p)).currentSeasonGames>0);}
-for(const [fid,pir,min] of [[3771,13.8181818,23.860606],[8567,14.090909,20.696969]]){const p=market.find(p=>p.fantasy_id===fid),games=I.lookup(official.players,p).games.filter(g=>g.minutes>0);assert.equal(games.length,11);assert(Math.abs(games.reduce((s,g)=>s+g.stats.valuation,0)/11-pir)<.01);assert(Math.abs(games.reduce((s,g)=>s+g.minutes,0)/11-min)<.01);}
+// These acceptance totals describe rounds 1–11, not an ever-growing season.
+for(const [fid,pir,min] of [[3771,13.8181818,23.860606],[8567,14.090909,20.696969]]){const p=market.find(p=>p.fantasy_id===fid),games=I.lookup(official.players,p).games.filter(g=>g.minutes>0&&Date.parse(g.date)<Date.parse('2026-11-14T00:00:00Z'));assert.equal(games.length,11);assert(Math.abs(games.reduce((s,g)=>s+g.stats.valuation,0)/11-pir)<.01);assert(Math.abs(games.reduce((s,g)=>s+g.minutes,0)/11-min)<.01);}
 assert.equal(I.key('Talen Horton-Tucker'),I.key('HORTON TUCKER, TALEN'));
 assert.notEqual(I.key('Wade Baldwin'),I.key('Kamar Baldwin'));
 assert.notEqual(I.key('Wade Baldwin'),I.key('Patrick Baldwin Jr'));

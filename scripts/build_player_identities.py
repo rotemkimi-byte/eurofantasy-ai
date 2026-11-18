@@ -9,15 +9,31 @@ def normalize(value):
 VERIFIED={3771:'009863',4096:'012606',7197:'014127',11517:'015162',11494:'014728',11512:'014734',4758:'012742',3980:'007553',11538:'014739',11535:'015102',7867:'014015'}
 def build(root=ROOT):
     people={};conflicts=[]
+    # Derived profiles are also official-ID evidence. Some older update jobs
+    # saved these profiles without their raw cache; rebuilding must not drop IDs.
+    official_path=root/'data/official-offense.json'
+    official=json.loads(official_path.read_text()) if official_path.exists() else {}
+    if official and official.get('season')!='E2026':raise ValueError('Wrong official identity season')
+    official_clubs={}
+    for profile in official.get('players',{}).values():
+        pid=str(profile.get('playerCode') or '').removeprefix('P');name=profile.get('name')
+        if not pid or not name:continue
+        games=sorted(profile.get('games',[]),key=lambda g:int(g['gameCode']))
+        official_clubs.update({(pid,int(g['gameCode'])):g['team'] for g in games})
+        people[pid]={'euroleagueId':pid,'fantasyId':None,'officialName':name,'displayName':name,'aliases':[name],
+          'currentTeam':games[-1]['team'] if games else None,
+          'teamHistory':[{'gameCode':g['gameCode'],'team':g['team']} for g in games]}
     for path in sorted((root/'data/backtest/cache').glob('E2026-*-stats.json'),key=lambda p:int(p.name.split('-')[1])):
         code=int(path.name.split('-')[1]);box=json.loads(path.read_text())
         for side in ['local','road']:
             for row in (box.get(side) or {}).get('players',[]):
                 player=row.get('player') or {};person=player.get('person') or {};pid=str(person.get('code') or '').removeprefix('P')
                 if not pid or not person.get('name'):continue
-                club=(player.get('club') or {}).get('name');r=people.setdefault(pid,{'euroleagueId':pid,'fantasyId':None,'officialName':person['name'],'displayName':person['name'],'aliases':[],'currentTeam':club,'teamHistory':[]})
+                club=official_clubs.get((pid,code),(player.get('club') or {}).get('name'));r=people.setdefault(pid,{'euroleagueId':pid,'fantasyId':None,'officialName':person['name'],'displayName':person['name'],'aliases':[],'currentTeam':club,'teamHistory':[]})
                 if person['name'] not in r['aliases']:r['aliases'].append(person['name'])
                 r['officialName']=person['name'];r['currentTeam']=club
+                # Prefer the raw club label when both sources cover a game.
+                r['teamHistory']=[g for g in r['teamHistory'] if int(g['gameCode'])!=code]
                 r['teamHistory'].append({'gameCode':code,'team':club})
     index={}
     for r in people.values():
@@ -40,7 +56,9 @@ def build(root=ROOT):
         if p['name'] not in r['aliases']:r['aliases'].append(p['name'])
         for alias in old.get(fid,{}).get('aliases',[]):
             if alias not in r['aliases']:r['aliases'].append(alias)
-    for r in people.values():r['key']= ' '.join(sorted(re.sub('[^a-z0-9]+',' ',''.join(c for c in unicodedata.normalize('NFD',r['officialName'] or r['displayName']) if not unicodedata.combining(c)).lower()).split()));r['aliases'].sort()
+    for r in people.values():
+        r['key']= ' '.join(sorted(re.sub('[^a-z0-9]+',' ',''.join(c for c in unicodedata.normalize('NFD',r['officialName'] or r['displayName']) if not unicodedata.combining(c)).lower()).split()))
+        r['aliases'].sort();r['teamHistory'].sort(key=lambda g:int(g['gameCode']))
     result={'schema':'player-identities-v1','season':'E2026','players':sorted(people.values(),key=lambda r:(r['key'],str(r['fantasyId']))),'unresolved':unresolved,'conflicts':conflicts}
     if conflicts:raise ValueError('Conflicting IDs: '+str(conflicts))
     text=json.dumps(result,ensure_ascii=False,separators=(',',':'))

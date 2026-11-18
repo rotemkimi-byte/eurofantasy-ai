@@ -34,8 +34,11 @@ jobs:
           node-version: '22'
       - name: Verify identities and regression boundaries
         run: |
+          python scripts/cache_official_boxes.py
           python scripts/build_player_identities.py
           git diff --exit-code -- data/player-identities.json player-identities.js
+          python tests/test_identity_refresh.py
+          node tests/test_identity_refresh.cjs
           node tests/test_fantasy_compact.cjs
           node tests/test_surprises.cjs
           node tests/test_team_metrics.cjs
