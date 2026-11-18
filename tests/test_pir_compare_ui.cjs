@@ -69,12 +69,20 @@ for(const width of [320,375,390,430,660,1280]){
  const overflowing=await page.locator('#pirModes button').evaluateAll(buttons=>buttons.filter(b=>b.scrollWidth>b.clientWidth+1||b.offsetHeight<44).map(b=>b.textContent));
  assert.deepEqual(overflowing,[],'toolbar '+width);
 }
-for(const [theme,color] of [['light','rgb(8, 102, 78)'],['dark','rgb(8, 111, 84)']]){
+for(const theme of ['light','dark']){
  await page.locator('html').evaluate((el,value)=>el.dataset.theme=value,theme);
- for(const button of await page.locator('#pirModes button[aria-pressed=true]').all()){
+ for(const [selector,color] of [
+  ['[data-pir-range][aria-pressed=true]','rgb(33, 75, 135)'],
+  ['[data-pir-scope][aria-pressed=true]','rgb(89, 52, 141)'],
+  ['[data-pir-mode=compare]','rgb(30, 41, 59)']
+ ]){
+  const button=page.locator(selector);
   assert.equal(await button.evaluate(el=>getComputedStyle(el).backgroundColor),color);
   assert.equal(await button.locator('small').evaluate(el=>getComputedStyle(el).color),'rgb(255, 255, 255)');
  }
+ const inactive=page.locator('[data-pir-range="3"]');
+ assert.equal(await inactive.evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(233, 237, 243)');
+ assert.equal(await inactive.locator('small').evaluate(el=>getComputedStyle(el).color),'rgb(36, 50, 71)');
 }
 await page.locator('#pirCompare [data-remove]').first().click();assert.equal(await page.locator('.pc-card').count(),1);
 assert.equal(await page.locator('#pirCompare input[type=search]').count(),0);
