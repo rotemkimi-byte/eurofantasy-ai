@@ -53,3 +53,7 @@ Additionally, the latest inspected scheduled rolling-learning run, [44232473611]
 ![Team fouls ranking, three-game range](screenshots/fantasy-team-ranking-2026-11-18.jpg)
 
 ![Negative surprises, round 11, PIR ascending](screenshots/fantasy-surprises-2026-11-18.jpg)
+
+## Resolution of the data-publication blocker — 18 November 2026
+
+The previously reported blocker has now been repaired in commit `d01e21ad`. The official metrics update and Pages deployment both passed in [run 44234371864](https://github.com/rotemkimi-byte/eurofantasy-ai/actions/runs/44234371864). The refreshed dataset contains 119 completed results, and the identity audit checks all 342 market players with zero errors. Details, changes and regression coverage: [identity refresh repair report](identity-refresh-fix-2026-11-18.md).

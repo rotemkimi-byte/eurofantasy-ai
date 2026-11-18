@@ -77,6 +77,17 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Skip a verified artifact superseded by newer main data
+        id: source
+        uses: actions/github-script@v7
+        with:
+          result-encoding: string
+          script: |
+            const {data} = await github.rest.repos.getBranch({
+              owner: context.repo.owner, repo: context.repo.repo, branch: 'main'
+            });
+            return data.commit.sha === context.sha ? 'current' : 'superseded';
       - uses: actions/deploy-pages@v4
+        if: steps.source.outputs.result == 'current'
         id: deployment
 

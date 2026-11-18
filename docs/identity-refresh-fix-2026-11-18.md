@@ -11,7 +11,7 @@
 
 ## Local validation
 
-- All 342 market players checked; 308 linked, 34 without an official link, zero audit errors.
+- Initial repair: all 342 market players checked; 308 linked, 34 without an official link, zero audit errors. After the successful official refresh: 310 linked, 32 without an official link, zero audit errors; 119 completed team results and 2,847 registered player-game rows.
 - Eight identity acceptance cases and browser/Node/Python identity parity passed.
 - 32 Python tests passed.
 - Node suites passed for identity refresh, identity integrity, squad matchup, position defense, compact fantasy tools, surprises, team metrics, weighted forecasts, player DNA, risk profile, replay, unified forecast, advanced players, official offense, algorithm UI/evidence, defense and team DNA.
@@ -19,4 +19,10 @@
 
 ## Remote validation
 
-GitHub Actions and Pages results will be recorded after the repair runs complete. No remote success is implied by local checks alone.
+Implementation commit: `d01e21ad1efc0938f5e9b4608a6c642e758142a8`.
+
+- [Official update and Pages publication](https://github.com/rotemkimi-byte/eurofantasy-ai/actions/runs/44234371864): **success**. All metric/forecast tests, recalibration, raw-evidence save, final integrity gate, artifact upload and Pages deployment passed. Generated data commit: `31ff3dc3`.
+- On that updated source, registry regeneration is deterministic and the identity acceptance suite, integrity audit and 16 additional Node suites pass again. Rolands Smits and Kenan Kamenjas now have matching official profiles after the refresh; the current audit has no pending-profile warnings. The synthetic delayed/DNP cases remain partial without invented observations.
+- [Rolling learning, restarted attempt](https://github.com/rotemkimi-byte/eurofantasy-ai/actions/runs/44232473611): **success**, including replay checks, immutable input snapshots, the two integrity audits and Pages deployment. Generated commit: `8018b89e`.
+- [Identity and real mobile checks](https://github.com/rotemkimi-byte/eurofantasy-ai/actions/runs/44234371853): **success**, including all three browser suites and Pages deployment.
+- The identity workflow could finish after a newer official/learning deployment and overwrite it with its older artifact. Its deploy job now checks the current main head and skips a superseded artifact. The final report commit publishes the current source, preserving the newly refreshed data.
