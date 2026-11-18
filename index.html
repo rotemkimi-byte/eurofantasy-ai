@@ -12,7 +12,8 @@
 
 <style>
 :root{--bg:#090b0e;--card:#15191f;--card2:#1c222a;--line:#2b333e;--text:#f7f8fa;--muted:#99a3b0;--accent:#62e6a5;--warn:#ffc857;--bad:#ff7878;--blue:#7db4ff}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#07090b,#0d1116);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+/* Prevent double-tap zoom on cards, controls and nested scrollers; keep pan and pinch zoom. */
+*{box-sizing:border-box;touch-action:manipulation}body{margin:0;background:linear-gradient(180deg,#07090b,#0d1116);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
 header{position:sticky;top:0;z-index:20;background:#090b0ee8;backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:16px max(14px,calc((100vw - 1200px)/2))}
 .head{display:flex;justify-content:space-between;align-items:center;gap:12px}h1{font-size:25px;margin:2px 0 0}.eyebrow{font-size:11px;letter-spacing:1.8px;color:var(--accent)}.badge{border:1px solid var(--line);padding:8px 10px;border-radius:999px;color:var(--muted);font-size:12px}
 main{max-width:1200px;margin:auto;padding:14px}.card{background:linear-gradient(180deg,var(--card),#11151a);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:14px}
