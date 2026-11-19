@@ -149,7 +149,7 @@ html.ef-redesign #playerModal .close{position:absolute;top:24px;left:24px;margin
 .ef-dashboard .ef-player-stats small{font-size:10px;line-height:1.5;min-height:30px}
 .ef-dashboard .ef-player-stats b{font-size:25px}
 .ef-dashboard .ef-player-tabs{margin:0 0 8px;border:0;background:var(--card2)}
-.ef-dashboard .ef-chart-ranges{margin:8px 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.ef-dashboard .ef-chart-ranges{margin:8px 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
 html.ef-redesign .ef-dashboard .ef-chart-ranges button{padding:6px 3px;font-size:11px}
 html.ef-redesign .ef-dashboard .ef-data-status{font-size:10px;margin:6px 0;line-height:1.5}
 html.ef-redesign .ef-dashboard .ef-player-history{margin-top:8px;padding:12px 12px 4px;border:0;border-radius:14px 14px 0 0}
@@ -491,3 +491,9 @@ html[data-theme="light"] #efToolGroups .ef-performance-tools button {
 .squadMatchHeadline{margin:.3rem 0;font-weight:800}
 .squadMatchSummary li.up{color:#12654d}
 .squadMatchSummary li.down{color:#9d2435}
+
+.ef-trend-filters{width:max-content;max-width:100%;margin-top:8px}
+html.ef-redesign .ef-trend-filters button{min-height:40px;padding-inline:10px}
+html.ef-redesign .ef-trend-filters button[aria-pressed="true"]{background:#224a7e;color:white}
+.ef-trend-summary:not([hidden]){grid-template-columns:repeat(3,minmax(0,1fr))}
+.ef-trend-summary[hidden]{display:none}
