@@ -26,6 +26,11 @@ on:
       - 'surprises.js'
       - 'tests/test_surprises.cjs'
       - 'index.html'
+      - 'component-forecast*'
+      - 'scripts/component-forecast-*.cjs'
+      - 'scripts/component-feature-catalog.cjs'
+      - 'scripts/build-component-forecast.cjs'
+      - 'tests/test_component_forecast.cjs'
       - 'app-navigation.js'
       - 'team-metrics-core.js'
       - 'team-metrics-ui.js'
@@ -107,6 +112,19 @@ jobs:
             done
             if [ "${pushed:-no}" != yes ]; then exit 1; fi
           fi
+      - name: Freeze and grade experimental component forecasts
+        run: |
+          node tests/test_component_forecast.cjs
+          git pull --rebase origin "${{ github.ref_name }}"
+          node scripts/build-component-forecast.cjs
+          git add data/component-forecast/
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Refresh experimental component forecast evidence'
+          for attempt in 1 2 3; do
+            git pull --rebase origin "${{ github.ref_name }}"
+            if git push origin "HEAD:${{ github.ref_name }}"; then exit 0; fi
+          done
+          exit 1
       - uses: actions/configure-pages@v5
       - name: Reject inconsistent identity data before publication
         run: node scripts/audit_player_identities.cjs
