@@ -44,6 +44,23 @@ near(range.offensiveStability.value,Math.sqrt(200/3));
 near(range.topTwoShare.value,100*205/300);
 assert.equal(D.summarize([...synthetic,{metrics:{},points:80}],metrics).topTwoShare.value,null);
 const [game]=games;
+const before=Date.parse(game.date);
+const defense=D.matchupDefense(model.teams,team.team,{before,limit:1,league:true});
+const prior=team.games.find(g=>Date.parse(g.date)<before);
+const rivalBox=prior.opponentStats;
+const rivalFga=rivalBox.fieldGoalsAttempted2+rivalBox.fieldGoalsAttempted3;
+const rivalActions=rivalFga+.44*rivalBox.freeThrowsAttempted+rivalBox.turnovers;
+near(defense.allowed.allowedTwo.value,100*rivalBox.fieldGoalsMade2/rivalBox.fieldGoalsAttempted2);
+near(defense.allowed.allowedFtr.value,100*rivalBox.freeThrowsAttempted/rivalFga);
+near(defense.allowed.allowedFoulRate.value,100*rivalBox.foulsReceived/rivalActions);
+near(defense.allowed.forcedTovPct.value,100*rivalBox.turnovers/rivalActions);
+assert.equal(defense.allowed.allowedTwo.total,1);
+assert.equal(defense.league.allowedTwo.total,model.teams.length);
+const firstGame=team.games.at(-1);
+assert.equal(D.matchupDefense(model.teams,team.team,{before:Date.parse(firstGame.date)}).allowed.allowedTwo.value,null);
+const away=team.games.find(g=>!g.home);
+const awayDefense=D.matchupDefense(model.teams,team.team,{venue:'away',limit:1}).allowed;
+near(awayDefense.allowedThree.value,100*away.opponentStats.fieldGoalsMade3/away.opponentStats.fieldGoalsAttempted3);
 const verifiedLine=(stats,points)=>({
  attempts:stats.fieldGoalsAttempted2+stats.fieldGoalsAttempted3,
  located:stats.fieldGoalsAttempted2+stats.fieldGoalsAttempted3,

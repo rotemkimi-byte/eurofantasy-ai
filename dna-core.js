@@ -38,6 +38,14 @@ const defense=[
  ['steals','חטיפות','per40','box','חטיפות של הקבוצה ל־40 דקות.'],
  ['allowedFouls','עבירות שסחטו היריבות','per40','box','עבירות שהיריבות סחטו ל־40 דקות.']
 ];
+const matchupMetrics=[
+ ['threeAccuracy','דיוק משלוש','%','box','קליעות ל־3 מתוך ניסיונות ל־3.','allowedThree'],
+ ['twoAccuracy','דיוק לשתיים','%','box','קליעות ל־2 מתוך ניסיונות ל־2.','allowedTwo'],
+ ['rimAccuracy','דיוק ליד הטבעת','%','events','קליעות מתוך ניסיונות לשתיים עד שני מטרים מהטבעת.','allowedRim'],
+ ['ftr','הגעה לקו','%','box','ניסיונות עונשין ביחס לניסיונות שדה.','allowedFtr'],
+ ['foulRate','סחיטת עבירות','%','estimatedBox','עבירות שנסחטו לכל 100 פעולות סיום משוערות. פעולות הסיום כוללות ניסיונות שדה, איבודים ו־0.44 כפול ניסיונות עונשין.','allowedFoulRate'],
+ ['tovPct','שיעור איבודים','%','estimatedBox','איבודים לכל 100 פעולות סיום משוערות. פחות איבודים עדיפים לשחקן.','forcedTovPct']
+];
 const teamGroups=[
  ['קליעה ויעילות התקפית',[
   ['ts','קליעה אמיתית (TS%)','%','estimatedBox','נקודות חלקי פעמיים (ניסיונות מהשדה ועוד 0.44 כפול ניסיונות עונשין).'],
@@ -179,6 +187,12 @@ function teamMetrics(g,possessions,event,scorers){
  };
 }
 
+function matchupBox(s){
+ const fga=totalShots(s),fta=field(s,'freeThrowsAttempted'),tov=field(s,'turnovers');
+ const actions=add(add(fga,fta===null?null:.44*fta),tov);
+ return {ftr:pair(fta,fga),foulRate:pair(field(s,'foulsReceived'),actions),tovPct:pair(tov,actions)};
+}
+
 function teamGames(team,official,events,teamEvents,scorers){
  const possession=s=>{
   const fields=[totalShots(s),field(s,'freeThrowsAttempted'),field(s,'offensiveRebounds'),field(s,'turnovers')];
@@ -195,6 +209,7 @@ function teamGames(team,official,events,teamEvents,scorers){
   const coverage=boxAttempts===totalShots(s)&&boxPoints===g.points?shots(active):{};
   const candidate=teamEvents?.games?.[g.code];
   const extras=teamMetrics(g,p,Date.parse(candidate?.date)===Date.parse(g.date)?candidate:null,scorers.get(g.code+'|'+g.team));
+  const rivalBox=matchupBox(o);
   return {...g,scorers:extras.scorers,offensiveRating:extras.offensiveRating,lineups:lineupSizes(active,minutes),metrics:{
    ...extras.metrics,
    pace:p>0&&q>0?pair((p+q)/2,minutes):null,three:pair(attempts(s,3),totalShots(s)),
@@ -203,7 +218,8 @@ function teamGames(team,official,events,teamEvents,scorers){
    drawn:pair(field(s,'foulsReceived'),minutes),height:courtHeight(active,minutes),...coverage,
    allowedThree:pair(made(o,3),attempts(o,3)),allowedTwo:pair(made(o,2),attempts(o,2)),
    allowedRebound:rebound(o,s),forced:pair(field(o,'turnovers'),q),steals:pair(field(s,'steals'),minutes),
-   allowedFouls:pair(field(o,'foulsReceived'),minutes)
+   allowedFouls:pair(field(o,'foulsReceived'),minutes),
+   allowedFtr:rivalBox.ftr,allowedFoulRate:rivalBox.foulRate,forcedTovPct:rivalBox.tovPct
   }};
  });
 }
@@ -231,6 +247,7 @@ function build(official,events,teamCore,now=Date.now(),teamEvents=null){
    const usage=pair(field(g.metrics,'usageEvents'),field(g.metrics,'usageExposure'));
    return {...g,metrics:{
     assists:per('assistances'),usage,three:pair(attempts(s,3),totalShots(s)),threeAccuracy:pair(made(s,3),attempts(s,3)),
+    twoAccuracy:pair(made(s,2),attempts(s,2)),...matchupBox(s),
     offRebound:per('offensiveRebounds'),defRebound:per('defensiveRebounds'),drawn:per('foulsReceived'),
     steals:per('steals'),blocks:per('blocksFavour'),turnovers:per('turnovers'),fouls:per('foulsCommited'),
     ...(ev?.team===g.team?shots([ev]):{})
@@ -290,7 +307,16 @@ function benchmark(stats,id,player=false){
   }};
 }
 
-const api={season,key,offense,defense,playerMetrics,teamGroups,lowTeamMetrics,build,select,summarize,benchmark};
+const matchupDefenseMetrics=matchupMetrics.map(([,label,unit,source,help,id])=>[id,label,unit,source,help]);
+function matchupDefense(teams,opponent,{limit=0,before=Infinity,venue='all',league=false}={}){
+ const rows=record=>select(record.games.filter(game=>Date.parse(game.date)<before&&
+  (venue==='all'||!game.neutral&&game.home===(venue==='home'))),limit);
+ const rival=teams.find(record=>record.team===opponent);
+ return {allowed:summarize(rival?rows(rival):[],matchupDefenseMetrics),
+  league:league?summarize(teams.flatMap(rows),matchupDefenseMetrics):null};
+}
+
+const api={season,key,offense,defense,playerMetrics,teamGroups,lowTeamMetrics,build,select,summarize,benchmark,matchupMetrics,matchupDefense};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;
 else root.DnaCore=api;
 })(typeof window!=='undefined'?window:globalThis);

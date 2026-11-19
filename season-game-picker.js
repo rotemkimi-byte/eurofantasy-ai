@@ -5,11 +5,11 @@ const date=new Intl.DateTimeFormat('he-IL',{timeZone:'Asia/Jerusalem',day:'2-dig
 const ranges=[['0','כל העונה'],['3','ממוצע 3 משחקים'],['history','משחקי עבר']];
 const latestFirst=(a,b)=>Date.parse(b.date)-Date.parse(a.date)||Number(b.code)-Number(a.code);
 
-function picker(root,list,onChange,choices=ranges){
+function picker(root,list,onChange,choices=ranges,historyButton){
  let current='0';
  root.innerHTML='<div class="season-ranges" role="group" aria-label="טווח משחקים">'+choices.map(([value,label])=>
   `<button type="button" class="season-choice" data-season-range="${value}" aria-pressed="${value==='0'}">${label}</button>`).join('')+'</div>';
- const history=root.querySelector('[data-season-range="history"]');
+ const history=historyButton||root.querySelector('[data-season-range="history"]');
  history.setAttribute('aria-controls',list.id);
  function show(open){
   list.hidden=!open;
@@ -20,6 +20,7 @@ function picker(root,list,onChange,choices=ranges){
   for(const button of root.querySelectorAll('[data-season-range]')){
    button.setAttribute('aria-pressed',String(button.dataset.seasonRange===value));
   }
+  history.setAttribute('aria-pressed',String(value==='history'));
   show(value==='history');
  }
  function focusHistory(){
@@ -27,8 +28,7 @@ function picker(root,list,onChange,choices=ranges){
   history.scrollIntoView({block:'nearest'});
  }
  set(current);
- root.onclick=e=>{
-  const value=e.target.closest('[data-season-range]')?.dataset.seasonRange;
+ function choose(value){
   if(value===undefined)return;
   if(value===current){
    if(value!=='history')return;
@@ -37,7 +37,9 @@ function picker(root,list,onChange,choices=ranges){
    return;
   }
   set(value);onChange(true);
- };
+ }
+ root.onclick=e=>choose(e.target.closest('[data-season-range]')?.dataset.seasonRange);
+ if(historyButton)historyButton.onclick=()=>choose('history');
  list.addEventListener('keydown',e=>{
   if(e.key!=='Escape')return;
   e.preventDefault();
