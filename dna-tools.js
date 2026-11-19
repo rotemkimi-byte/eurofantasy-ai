@@ -396,7 +396,7 @@ function renderPlayerGame(out,record,games){
  const report=M.summarize(record,model.dna,{gameCode:game.gameCode});
  const defense=C.matchupDefense(model.teams,game.opponent,{before:Date.parse(game.date)});
  const fixture=[game.team,fullDate.format(new Date(game.date)),game.neutral?'מגרש ניטרלי':game.home?'בית':'חוץ'].join(' · ');
- out.innerHTML=`${defenseComparison(record,[game],matchupPlayerStats([game],report),game.opponent,defense,fixture)}
+ out.innerHTML=`${defenseComparison(record,[game],matchupPlayerStats([game],report),game.opponent,defense,fixture,true)}
  ${playerHistory(record,[game],'נתוני המשחק מול ממוצע העונה')}
  ${playerStyle(stats)}
  ${expandedMetrics(report,null)}`;
@@ -404,34 +404,30 @@ function renderPlayerGame(out,record,games){
 }
 function matchupPlayerStats(games,report){
  const stats=C.summarize(games,C.matchupMetrics);
+ stats.turnovers=C.summarize(games,C.playerMetrics.filter(([id])=>id==='turnovers')).turnovers;
  for(const id of ['rimAccuracy','orbPct','playerTov100']){
   if(report.stats[id])stats[id]=report.stats[id];
  }
  return stats;
 }
-function defenseComparison(record,games,stats,opponent,{allowed,league,benchmarks,count},fixture,playerBenchmarks){
- const history=!playerBenchmarks;
+function defenseComparison(record,games,stats,opponent,{allowed,count},fixture,history=false){
  const rows=C.matchupMetrics.map(([id,label,unit,source,help,defenseId])=>{
-  const actual=stats[id],defense=allowed[defenseId],average=league[defenseId].value;
-  const [ownSide,defenseSide]=comparisonSides(id==='playerTov100'?'turnovers':id,actual.value,defense.value);
-  const difference=actual.value==null||defense.value==null?'':` · פער <bdi>${fmt(Math.abs(actual.value-defense.value))}</bdi>${unit==='%'?' נק׳ אחוז':unitLabels[unit]}`;
-  const ownRank=playerBenchmarks?.[id].percentile(actual)??null;
-  const defenseRank=benchmarks[defenseId].percentile(defense);
-  const scale=Math.max(100,actual.value??0,defense.value??0);
-  const bar=(stat,rank)=>stat.value==null?null:rank??100*stat.value/scale;
-  const reference=average==null?'':` ממוצע הליגה למה שהגנות מאפשרות במדד הזה הוא ${fmt(average,unit)}.`;
-  const personal={orbPct:'לשחקן מוצג חלקו בריבאונדי ההתקפה הזמינים בדקות ששיחק.',playerTov100:'לשחקן מוצגים איבודים אישיים ל־100 פוזשנים קבוצתיים משוערים בדקות ששיחק.',steals:'לשחקן מוצגות חטיפות אישיות ל־40 דקות.',drawn:'לשחקן מוצגות עבירות שסחט ל־40 דקות.'};
-  return row([id,label,unit,source,[help,personal[id],reference].filter(Boolean).join(' ')],
-   valueCell(actual,ownRank,unit,ownSide,{name:record.name,bar:bar(actual,ownRank),showRank:!history}),
-   valueCell(defense,defenseRank,unit,defenseSide,{name:opponent,bar:bar(defense,defenseRank)}),difference);
+  const steals=defenseId==='steals';
+  const actual=steals?stats.turnovers:stats[id];
+  const personal={orbPct:'חלק השחקן בריבאונדי ההתקפה הזמינים בדקות ששיחק.',playerTov100:'איבודים אישיים ל־100 פוזשנים קבוצתיים בדקות ששיחק.',drawn:'עבירות שהשחקן סחט ל־40 דקות.',steals:'בצד השחקן נספרים כל איבודיו בהתקפה, כולל איבודים ללא חטיפה.'};
+  const ownName=steals?record.name+' · איבודים':record.name;
+  const teamName=steals?opponent+' · חטיפות':opponent;
+  return row([id,steals?'איבודי השחקן וחטיפות ההגנה':label,unit,source,[help,personal[id]].filter(Boolean).join(' ')],
+   valueCell(actual,null,unit,'',{name:ownName,showRank:false}),
+   valueCell(allowed[defenseId],null,unit,'',{name:teamName,showRank:false}));
  });
  const header=comparisonHeader(history?'משחק עבר · 2026/27':'היריבה הבאה',
   {name:record.name,image:playerPhotos[C.key(record.name)]?.photo,kind:'player',caption:history?'ביצוע במשחק':games.length+' הופעות בטווח'},
   {name:opponent,image:clubCrests.get(opponent),kind:'club',caption:count+(history?' משחקים לפני המפגש':' משחקים בטווח')},fixture);
  const title=history?'ביצוע בפועל מול דנ״א ההגנה':'מה ההגנה מאפשרת מול נתוני השחקן';
  const description=history
-  ?'ביצוע השחקן במשחק מול מה שההגנה אפשרה לפני המפגש. דירוג ההגנה הוא ביחס לליגה.'
-  :'בכל שורה מופיעים הנתון האישי והנתון הקבוצתי של היריבה. חטיפות הן של ההגנה עצמה. הפער מחושב בין שתי העמודות.';
+  ?'ביצוע השחקן במשחק מול מה שההגנה הקבוצתית אפשרה לפני המפגש.'
+  :'בכל שורה מוצגים הביצוע האישי בהתקפה ונתוני ההגנה של הקבוצה היריבה כולה.';
  return `<div class="dna-defense-compare">${history?header:''}${teamMetricTable(title,description,rows.slice(0,-1).join(''),'dnaPlayerDefenseMetricsTitle')}<section class="dna-team-metrics"><h4>הגנה</h4><div class="dna-chart">${rows.at(-1)}</div></section></div>`;
 }
 function playerStyleComparison(record,gameLimit,opponent){
@@ -815,10 +811,7 @@ function renderPlayer(){
   if(!opponent){out.innerHTML=empty('טרם נקבע משחק יורוליג קרוב לקבוצת השחקן.');return;}
   const defense=C.matchupDefense(model.teams,opponent,{limit,venue:rivalVenue});
   const stats=matchupPlayerStats(games,report);
-  const peers=model.players.filter(p=>p.position===record.position).map(p=>
-   p===record?stats:matchupPlayerStats(M.select(p.games,limit,playerVenue),reports.detail.get(p)));
-  const benchmarks=Object.fromEntries(C.matchupMetrics.map(([id])=>[id,C.benchmark(peers.map(p=>p[id]),id,true)]));
-  out.innerHTML=defenseComparison(record,games,stats,opponent,defense,fixtureFor(record.team,opponent),benchmarks);
+  out.innerHTML=defenseComparison(record,games,stats,opponent,defense,fixtureFor(record.team,opponent));
   return;
  }
  if(rival){

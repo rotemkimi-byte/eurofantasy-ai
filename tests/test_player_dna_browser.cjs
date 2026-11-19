@@ -203,12 +203,9 @@ const server=http.createServer((req,res)=>{
    assert.equal(await matchup.locator('.dna-row').count(),7);
    const threes=matchup.locator('[data-metric=threeAccuracy]');
    assert.deepEqual(await threes.locator('.dna-value-name').allTextContents(),names);
-   assert.equal(await threes.locator('.dna-track').count(),2);
-   assert.match(await threes.locator('.dna-metric-name small').textContent(),/פער/);
-   assert.ok(await matchup.locator('.dna-rank').count());
-   const colored=matchup.locator('.dna-row:has(.dna-ahead)');
-   assert.ok(await colored.count());
-   assert.ok(await matchup.locator('.dna-value.dna-behind').count());
+   assert.equal(await matchup.locator('.dna-track,.dna-rank,.dna-ahead,.dna-behind,.dna-indicator').count(),0);
+   assert.doesNotMatch(await matchup.textContent(),/פער/);
+   assert.match(await matchup.locator('[data-metric=steals] .dna-value-name').first().textContent(),/איבודים/);
    assert.ok(await threes.locator('.dna-pair').evaluate(el=>{
     const [a,b]=[...el.children].map(node=>node.getBoundingClientRect());
     return a.top===b.top&&b.right<=a.left;
