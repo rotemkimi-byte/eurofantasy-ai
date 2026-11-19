@@ -28,8 +28,9 @@
 #componentForecast .cf-ledger{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.35rem}
 #componentForecast .cf-ledger>div{display:flex;justify-content:space-between;gap:.35rem;background:#edf4ef;padding:.25rem .4rem;border-radius:6px}
 #componentForecast dd{margin:0;font-weight:700}
-#componentForecast .cf-table{width:100%;table-layout:auto;border-collapse:collapse;margin-block:.65rem;color:#19342b;font-size:.86rem}
+#componentForecast .cf-table{width:100%;min-width:0;table-layout:auto;border-collapse:collapse;margin-block:.65rem;color:#19342b;font-size:.86rem}
 #componentForecast .cf-table td,#componentForecast .cf-table th{padding:.43rem .3rem;text-align:start;border-bottom:1px solid #d8e4dd}
+#componentForecast .cf-table th{position:static}
 #componentForecast .cf-table thead{background:#e4efe9}
 #componentForecast .cf-table small{display:block;color:#496157;font-weight:450}
 @media(max-width:650px){
