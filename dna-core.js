@@ -308,12 +308,16 @@ function benchmark(stats,id,player=false){
 }
 
 const matchupDefenseMetrics=matchupMetrics.map(([,label,unit,source,help,id])=>[id,label,unit,source,help]);
-function matchupDefense(teams,opponent,{limit=0,before=Infinity,venue='all',league=false}={}){
- const rows=record=>select(record.games.filter(game=>Date.parse(game.date)<before&&
-  (venue==='all'||!game.neutral&&game.home===(venue==='home'))),limit);
- const rival=teams.find(record=>record.team===opponent);
- return {allowed:summarize(rival?rows(rival):[],matchupDefenseMetrics),
-  league:league?summarize(teams.flatMap(rows),matchupDefenseMetrics):null};
+function matchupDefense(teams,opponent,{limit=0,before=Infinity,venue='all'}={}){
+ const samples=teams.map(record=>[record.team,select(record.games.filter(game=>Date.parse(game.date)<before&&
+  (venue==='all'||!game.neutral&&game.home===(venue==='home'))),limit)]);
+ const profiles=new Map(samples.map(([team,games])=>[team,summarize(games,matchupDefenseMetrics)]));
+ const games=samples.find(([team])=>team===opponent)?.[1]||[];
+ const allowed=profiles.get(opponent)||summarize([],matchupDefenseMetrics);
+ const league=summarize(samples.flatMap(([,games])=>games),matchupDefenseMetrics);
+ const benchmarks=Object.fromEntries(matchupDefenseMetrics.map(([id])=>
+  [id,benchmark([...profiles.values()].map(profile=>profile[id]),id)]));
+ return {allowed,league,benchmarks,count:games.length};
 }
 
 const api={season,key,offense,defense,playerMetrics,teamGroups,lowTeamMetrics,build,select,summarize,benchmark,matchupMetrics,matchupDefense};
