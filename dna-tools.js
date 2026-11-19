@@ -413,11 +413,8 @@ function defenseComparison(record,games,stats,opponent,{allowed,league,benchmark
  const history=!playerBenchmarks;
  const rows=C.matchupMetrics.map(([id,label,unit,source,help,defenseId])=>{
   const actual=stats[id],defense=allowed[defenseId],average=league[defenseId].value;
-  const shooting=['allowedThree','allowedTwo','allowedRim'].includes(defenseId);
-  const playerReference=history?(shooting?defense.value:null):playerBenchmarks[id].mean;
-  const [ownSide]=comparisonSides(id==='playerTov100'?'turnovers':id,actual.value,playerReference);
-  const [defenseSide]=comparisonSides(defenseId,defense.value,average);
-  const difference=average==null||defense.value==null?'':` · פער מהליגה <bdi>${fmt(Math.abs(defense.value-average))}</bdi>${unit==='%'?' נק׳ אחוז':unitLabels[unit]}`;
+  const [ownSide,defenseSide]=comparisonSides(id==='playerTov100'?'turnovers':id,actual.value,defense.value);
+  const difference=actual.value==null||defense.value==null?'':` · פער <bdi>${fmt(Math.abs(actual.value-defense.value))}</bdi>${unit==='%'?' נק׳ אחוז':unitLabels[unit]}`;
   const ownRank=playerBenchmarks?.[id].percentile(actual)??null;
   const defenseRank=benchmarks[defenseId].percentile(defense);
   const scale=Math.max(100,actual.value??0,defense.value??0);
@@ -431,11 +428,11 @@ function defenseComparison(record,games,stats,opponent,{allowed,league,benchmark
  const header=comparisonHeader(history?'משחק עבר · 2026/27':'היריבה הבאה',
   {name:record.name,image:playerPhotos[C.key(record.name)]?.photo,kind:'player',caption:history?'ביצוע במשחק':games.length+' הופעות בטווח'},
   {name:opponent,image:clubCrests.get(opponent),kind:'club',caption:count+(history?' משחקים לפני המפגש':' משחקים בטווח')},fixture);
- const title=history?'ביצוע בפועל מול דנ״א ההגנה':'דנ״א שחקן מול הגנת היריבה הבאה';
+ const title=history?'ביצוע בפועל מול דנ״א ההגנה':'מה ההגנה מאפשרת מול נתוני השחקן';
  const description=history
   ?'ביצוע השחקן במשחק מול מה שההגנה אפשרה לפני המפגש. דירוג ההגנה הוא ביחס לליגה.'
-  :'מדדי השחקן מול מה שההגנה מאפשרת. ירוק בהגנה מציין הגנה חזקה מממוצע הליגה במדד, ואדום מציין חולשה. דירוג השחקן ביחס לעמדה ודירוג ההגנה ביחס לליגה.';
- return `<div class="dna-defense-compare">${header}${teamMetricTable(title,description,rows.slice(0,-1).join(''),'dnaPlayerDefenseMetricsTitle')}<section class="dna-team-metrics"><h4>הגנה</h4><div class="dna-chart">${rows.at(-1)}</div></section></div>`;
+  :'בכל שורה מופיעים הנתון האישי והנתון הקבוצתי של היריבה. חטיפות הן של ההגנה עצמה. הפער מחושב בין שתי העמודות.';
+ return `<div class="dna-defense-compare">${history?header:''}${teamMetricTable(title,description,rows.slice(0,-1).join(''),'dnaPlayerDefenseMetricsTitle')}<section class="dna-team-metrics"><h4>הגנה</h4><div class="dna-chart">${rows.at(-1)}</div></section></div>`;
 }
 function playerStyleComparison(record,gameLimit,opponent){
  if(!opponent)return empty('בחר שחקן כדי להשוות סגנונות.');
@@ -814,6 +811,16 @@ function renderPlayer(){
  const withRival={...report,stats:{...report.stats}};
  const next=nextGame(record.team);
  const rivalVenue=playerVenue!=='all'&&next&&!next.neutral?(next.home===opponent?'home':'away'):'all';
+ if(playerView==='team'){
+  if(!opponent){out.innerHTML=empty('טרם נקבע משחק יורוליג קרוב לקבוצת השחקן.');return;}
+  const defense=C.matchupDefense(model.teams,opponent,{limit,venue:rivalVenue});
+  const stats=matchupPlayerStats(games,report);
+  const peers=model.players.filter(p=>p.position===record.position).map(p=>
+   p===record?stats:matchupPlayerStats(M.select(p.games,limit,playerVenue),reports.detail.get(p)));
+  const benchmarks=Object.fromEntries(C.matchupMetrics.map(([id])=>[id,C.benchmark(peers.map(p=>p[id]),id,true)]));
+  out.innerHTML=defenseComparison(record,games,stats,opponent,defense,fixtureFor(record.team,opponent),benchmarks);
+  return;
+ }
  if(rival){
   const venue=rivalVenue;
   const rivals=reports.rivals.get(venue)||M.buildRivals(model.dna,{limit,venue});
@@ -827,22 +834,12 @@ function renderPlayer(){
  }
  const profile=playerView==='profile';
  const radar=playerView!=='player'&&games.length?playerRadar(reports,record,{profile}):'';
- const teamCharts=playerView==='team'&&games.length?radar+playerBars(reports,record,null)+playerDnaSummary(reports,record):'';
  let style;
  if(profile)style=games.length?playerStyle(own,ratings,positionLabels[record.position],radar):empty('אין מספיק נתונים להופעות בטווח ובסינון שנבחרו.');
- else if(playerView==='player')style=playerStyleComparison(record,limit,compare);
- else if(opponent){
-  const defense=C.matchupDefense(model.teams,opponent,{limit,venue:rivalVenue});
-  const stats=matchupPlayerStats(games,report);
-  const peers=model.players.filter(p=>p.position===record.position).map(p=>
-   p===record?stats:matchupPlayerStats(M.select(p.games,limit,playerVenue),reports.detail.get(p)));
-  const benchmarks=Object.fromEntries(C.matchupMetrics.map(([id])=>[id,C.benchmark(peers.map(p=>p[id]),id,true)]));
-  style=defenseComparison(record,games,stats,opponent,defense,fixtureFor(record.team,opponent),benchmarks);
- }else style=empty('טרם נקבע משחק יורוליג קרוב לקבוצת השחקן.');
- out.innerHTML=`${playerView==='team'&&opponent?'':playerProfile(record,games,tags)}
+ else style=playerStyleComparison(record,limit,compare);
+ out.innerHTML=`${playerProfile(record,games,tags)}
  ${compare?playerComparisonScores(reports,record,compare):''}
  ${style}
- ${teamCharts}
  ${expandedMetrics(withRival,reports.detailRanks.get(record),{other,otherRanks:reports.detailRanks.get(compare),opponent,compareName:compare?.name,ownName:record.name,compact:profile})}`;
  loadPortraits(out);
 }

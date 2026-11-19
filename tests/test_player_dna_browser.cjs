@@ -196,8 +196,8 @@ const server=http.createServer((req,res)=>{
    assert.equal(await panel.locator('[data-compare-club]').count(),0);
    const matchup=panel.locator('.dna-defense-compare');
    assert.equal(await matchup.count(),1);
-   assert.match(await matchup.locator('h4').first().textContent(),/הגנת היריבה הבאה/);
-   const names=await matchup.locator('.dna-team-pair h3').allTextContents();
+   assert.match(await matchup.locator('h4').first().textContent(),/מה ההגנה מאפשרת/);
+   const names=await matchup.locator('[data-metric=threeAccuracy] .dna-value-name').allTextContents();
    assert.equal(names.length,2);
    assert.ok(names.every(Boolean));
    assert.equal(await matchup.locator('.dna-row').count(),7);
@@ -213,11 +213,7 @@ const server=http.createServer((req,res)=>{
     const [a,b]=[...el.children].map(node=>node.getBoundingClientRect());
     return a.top===b.top&&b.right<=a.left;
    }));
-   assert.equal(await panel.locator('.dna-defense-compare + .dna-radar-card').count(),1);
-   assert.equal(await panel.locator('.dna-bars').count(),1);
-   assert.equal(await panel.locator('.dna-radar-scores').count(),1);
-   await panel.locator('[data-dna-group=opponent] > summary').click();
-   assert.match(await panel.locator('[data-metric=allowedThree] .dna-expanded-value').textContent(),/%/);
+   assert.equal(await panel.locator('[data-dna-results] > :not(.dna-defense-compare), .dna-radar-card, .dna-expanded-groups').count(),0);
    await panel.locator('[data-season-range=history]').click();
    assert.equal(await panel.locator('[data-season-range=history]').getAttribute('aria-expanded'),'true');
    await panel.locator('[data-season-game]').first().click();
@@ -229,7 +225,7 @@ const server=http.createServer((req,res)=>{
    assert.deepEqual(await threes.locator('.dna-value-name').allTextContents(),pastNames);
    assert.match(await matchup.locator('.dna-team-pair p').last().textContent(),/משחקים לפני המפגש/);
    await panel.locator('[data-player-view=team]').click();
-   assert.match(await matchup.locator('h4').first().textContent(),/הגנת היריבה הבאה/);
+   assert.match(await matchup.locator('h4').first().textContent(),/מה ההגנה מאפשרת/);
    assert.equal(await panel.locator('[data-season-range="0"]').getAttribute('aria-pressed'),'true');
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
    assert.deepEqual(errors,[]);
