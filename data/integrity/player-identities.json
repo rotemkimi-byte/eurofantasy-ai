@@ -4,18 +4,27 @@
   "ok": true,
   "counts": {
     "players": 342,
-    "linked": 310,
-    "withoutOfficial": 32,
+    "linked": 309,
+    "withoutOfficial": 33,
     "officialJoinFixed": 11,
     "recentJoinFixed": 11,
     "photoJoinFixed": 11,
     "officialRecovery": 3,
     "advancedSelectorFixed": 11,
     "affectedIdentities": 15,
-    "partial": 47
+    "partial": 48
   },
   "errors": [],
   "warnings": [
+    {
+      "kind": "no-current-official-record",
+      "name": "Killian Hayes",
+      "status": "questionable"
+    },
+    {
+      "kind": "no-photo",
+      "name": "Killian Hayes"
+    },
     {
       "kind": "no-current-official-record",
       "name": "Bobi Klintman",
@@ -1965,6 +1974,22 @@
       "advancedSelectorFixed": false,
       "officialRecovery": false,
       "partial": false
+    },
+    {
+      "name": "Killian Hayes",
+      "fantasyId": 13960,
+      "euroleagueId": null,
+      "games": 0,
+      "registered": 0,
+      "recentGames": 0,
+      "photo": false,
+      "advancedGames": 0,
+      "officialJoinFixed": false,
+      "recentJoinFixed": false,
+      "photoJoinFixed": false,
+      "advancedSelectorFixed": false,
+      "officialRecovery": false,
+      "partial": true
     },
     {
       "name": "Scottie Wilbekin",
@@ -4887,22 +4912,6 @@
       "recentGames": 11,
       "photo": true,
       "advancedGames": 11,
-      "officialJoinFixed": false,
-      "recentJoinFixed": false,
-      "photoJoinFixed": false,
-      "advancedSelectorFixed": false,
-      "officialRecovery": false,
-      "partial": false
-    },
-    {
-      "name": "Bandja Sy",
-      "fantasyId": 3968,
-      "euroleagueId": "005793",
-      "games": 5,
-      "registered": 6,
-      "recentGames": 3,
-      "photo": true,
-      "advancedGames": 5,
       "officialJoinFixed": false,
       "recentJoinFixed": false,
       "photoJoinFixed": false,
