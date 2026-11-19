@@ -43,7 +43,6 @@ html[data-theme="light"] .dna-shell{
  gap:10px;
  margin:18px 0 12px;
 }
-.dna-player-controls{grid-template-columns:repeat(3,minmax(0,1fr))}
 .dna-controls label{min-width:0;color:var(--text);font-weight:650}
 .dna-controls select{display:block;width:100%;margin-top:4px}
 .dna-switch,.dna-legend{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
@@ -58,6 +57,8 @@ html[data-theme="light"] .dna-shell{
  background:var(--card);
 }
 .dna-style-compare h4{margin:0;font-size:17px}
+.dna-defense-compare .dna-identity .dna-portrait{width:44px;height:44px}
+.dna-defense-compare .dna-team-pair .dna-identity{min-width:0}
 .season-ranges{
  display:grid;
  grid-template-columns:repeat(3,minmax(0,1fr));

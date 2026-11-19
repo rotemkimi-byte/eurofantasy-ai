@@ -486,6 +486,7 @@ function summarizeOnCourt(games,set,stats,context){
    eligible.slice(0,3).map(({group,value,seconds})=>[names(group[0].five)+' · '+(seconds/60).toFixed(1)+' דק׳',value,catalogById.get(id).unit]));
  }
  measure('astPct',['assistances','fieldGoalsMade2','fieldGoalsMade3'],({own,person})=>ratio(person.assistances,fgm(own)-fgm(person),100));
+ measure('playerTov100',possessionFields,({own,person})=>ratio(person.turnovers,ownPoss(own),100));
  measure('orbPct',['offensiveRebounds','defensiveRebounds'],({own,rival,person})=>ratio(person.offensiveRebounds,own.offensiveRebounds+rival.defensiveRebounds,100));
  measure('drbPct',['offensiveRebounds','defensiveRebounds'],({own,rival,person})=>ratio(person.defensiveRebounds,own.defensiveRebounds+rival.offensiveRebounds,100));
  measure('defRating',[...possessionFields,'points'],({rival})=>ratio(rival.points,ownPoss(rival),100));

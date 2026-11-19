@@ -231,6 +231,7 @@ function build(official,events,teamCore,now=Date.now(),teamEvents=null){
    const usage=pair(field(g.metrics,'usageEvents'),field(g.metrics,'usageExposure'));
    return {...g,metrics:{
     assists:per('assistances'),usage,three:pair(attempts(s,3),totalShots(s)),threeAccuracy:pair(made(s,3),attempts(s,3)),
+    twoAccuracy:pair(made(s,2),attempts(s,2)),
     offRebound:per('offensiveRebounds'),defRebound:per('defensiveRebounds'),drawn:per('foulsReceived'),
     steals:per('steals'),blocks:per('blocksFavour'),turnovers:per('turnovers'),fouls:per('foulsCommited'),
     ...(ev?.team===g.team?shots([ev]):{})
@@ -290,7 +291,24 @@ function benchmark(stats,id,player=false){
   }};
 }
 
-const api={season,key,offense,defense,playerMetrics,teamGroups,lowTeamMetrics,build,select,summarize,benchmark};
+const matchupDefenseMetrics=[...defense,...teamGroups.find(([title])=>title==='הגנה')[1]];
+const playerDefenseKeys={allowedThree:'threeAccuracy',allowedTwo:'twoAccuracy',allowedRebound:'orbPct',
+ forced:'playerTov100',steals:'steals',allowedFouls:'drawn',allowedRim:'rimAccuracy'};
+const matchupMetrics=matchupDefenseMetrics.map(([id,label,unit,source,help])=>
+ [playerDefenseKeys[id],label,unit,source,help,id]);
+function matchupDefense(teams,opponent,{limit=0,before=Infinity,venue='all'}={}){
+ const samples=teams.map(record=>[record.team,select(record.games.filter(game=>Date.parse(game.date)<before&&
+  (venue==='all'||!game.neutral&&game.home===(venue==='home'))),limit)]);
+ const profiles=new Map(samples.map(([team,games])=>[team,summarize(games,matchupDefenseMetrics)]));
+ const games=samples.find(([team])=>team===opponent)?.[1]||[];
+ const allowed=profiles.get(opponent)||summarize([],matchupDefenseMetrics);
+ const league=summarize(samples.flatMap(([,games])=>games),matchupDefenseMetrics);
+ const benchmarks=Object.fromEntries(matchupDefenseMetrics.map(([id])=>
+  [id,benchmark([...profiles.values()].map(profile=>profile[id]),id)]));
+ return {allowed,league,benchmarks,count:games.length};
+}
+
+const api={season,key,offense,defense,playerMetrics,teamGroups,lowTeamMetrics,build,select,summarize,benchmark,matchupMetrics,matchupDefense};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;
 else root.DnaCore=api;
 })(typeof window!=='undefined'?window:globalThis);
