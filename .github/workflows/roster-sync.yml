@@ -3,10 +3,18 @@ name: EuroFantasy Roster Sync
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "3-58/5 * * * *"
+  push:
+    paths:
+      - roster_sync.py
+      - .github/workflows/roster-sync.yml
 
 permissions:
   contents: write
+
+concurrency:
+  group: eurofantasy-roster-sync
+  cancel-in-progress: false
 
 jobs:
   sync-roster:
@@ -38,5 +46,6 @@ jobs:
             echo "No roster changes"
           else
             git commit -m "Auto update Fantasy roster"
+            git pull --rebase
             git push
           fi

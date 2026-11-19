@@ -155,7 +155,7 @@ function marketGameRow(g){
  </summary>
  <div class="ef-history-detail">
   <div class="ef-history-detail-head">${g.round?`<span>מחזור ${esc(g.round)}</span>`:''}${safeLink(g.source)}</div>
-  ${played?`<dl>${[['ריבאונדים',s.totalRebounds],['אסיסטים',s.assistances],['חטיפות',s.steals],['חסימות',s.blocksFavour],['איבודים',s.turnovers]].map(([label,value])=>
+  ${played?`<dl>${[['ריבאונדים',s.totalRebounds],['אסיסטים',s.assistances],['חטיפות',s.steals],['חסימות',s.blocksFavour],['איבודים',s.turnovers],['עבירות שסחט',s.foulsReceived]].map(([label,value])=>
    `<div><dt>${label}</dt><dd><bdi>${U.num(value)??'—'}</bdi></dd></div>`).join('')}</dl>`:''}
  </div>
  </details>`;
@@ -167,6 +167,20 @@ window.showPlayer=function(name){
  const compactMarket=body.classList.contains('ef-market-player');
  body.classList.add('ef-dashboard');body.querySelector('.ef-player-jumps')?.remove();
  renderFixtures(hero,player.team);
+ const watch=document.createElement('button');
+ watch.type='button';watch.className='ef-player-watch';
+ const paintWatch=()=>{
+  const saved=window.FantasyWatchlist.has(player);
+  watch.setAttribute('aria-pressed',String(saved));
+  watch.textContent=saved?'★ שמור · הסר':'☆ שמור למעקב';
+ };
+ if(window.FantasyWatchlist){
+  paintWatch();
+  watch.onclick=()=>{if(!window.FantasyWatchlist.toggle(player))watch.textContent='השמירה נכשלה · נסה שוב';};
+  hero.querySelector('.ef-player-identity > div:last-child').append(watch);
+  watch.setAttribute('data-watch-toggle','');
+  watch.addEventListener('watchlist-change',paintWatch);
+ }
  const tabs=document.createElement('div');tabs.className='ef-player-tabs';tabs.setAttribute('role','tablist');tabs.setAttribute('aria-label','נתוני שחקן');
  const labels={overview:'סקירה',usage:'Usage',defense:'הגנה',games:'משחקים'},panes={};
  for(const [id,label] of Object.entries(labels)){const pane=document.createElement('section');pane.id='efPane-'+id;pane.className='ef-player-pane';pane.setAttribute('role','tabpanel');pane.setAttribute('aria-labelledby','efTab-'+id);pane.hidden=id!=='overview';panes[id]=pane;tabs.insertAdjacentHTML('beforeend',`<button type="button" role="tab" id="efTab-${id}" aria-controls="efPane-${id}" aria-selected="${id==='overview'}" tabindex="${id==='overview'?0:-1}" data-player-tab="${id}">${label}</button>`);}
@@ -219,7 +233,7 @@ window.showPlayer=function(name){
   for(const el of venueControls.children)el.setAttribute('aria-pressed',String(el===button));
   render();
  };
- function gameCard(g){const s=g.stats||{};return `<article class="ef-game-card"><header><div><b>${esc(g.opponent)}</b><small>${date(g.date)} · ${g.home===true?'בית':g.home===false?'חוץ':'מיקום לא ידוע'}${g.round?' · מחזור '+esc(g.round):''}</small></div>${safeLink(g.source)}</header>${g.minutes===0?'<p class="muted">לא שיחק</p>':`<div class="ef-game-numbers">${metric('PIR',g.minutes>0?fmt(s.valuation):'—')}${metric('נקודות',fmt(s.points))}${metric('דקות',fmt(g.minutes))}</div>`}</article>`;}
+ function gameCard(g){const s=g.stats||{};return `<article class="ef-game-card"><header><div><b>${esc(g.opponent)}</b><small>${date(g.date)} · ${g.home===true?'בית':g.home===false?'חוץ':'מיקום לא ידוע'}${g.round?' · מחזור '+esc(g.round):''}</small></div>${safeLink(g.source)}</header>${g.minutes===0?'<p class="muted">לא שיחק</p>':`<div class="ef-game-numbers">${metric('PIR',g.minutes>0?fmt(s.valuation):'—')}${metric('נקודות',fmt(s.points))}${metric('דקות',fmt(g.minutes))}${metric('עבירות שסחט',fmt(s.foulsReceived))}</div>`}</article>`;}
  function render(){
   if(!data)return;
   const seasonGames=U.selectGames(profile,'0');
@@ -235,7 +249,7 @@ window.showPlayer=function(name){
   plot.innerHTML=`${chart(selected)}<p class="ef-chart-detail muted" aria-live="polite">${played.some(g=>U.num(g.stats?.valuation)!==null)?'לחץ על נקודה להצגת המשחק':''}</p>`;
   const scroll=plot.querySelector('.ef-trend-scroll');
   if(scroll)scroll.scrollLeft=scroll.scrollWidth;
-  summary.innerHTML=`<div class="ef-metric-grid ef-usage-preview">${rate('Usage רגיל',usage.regular)}${rate('Usage כולל · עם אסיסטים',usage.combined)}</div>${compactMarket?'':`<p class="ef-method muted">אומדנים מבוקס סקור ודקות; Usage כולל הוא מדד מותאם, לא אחוז פוזשנים ייחודיים.</p><h3 class="ef-last-title">המשחק האחרון</h3>${latest?gameCard(latest):'<p class="muted">אין משחקים זמינים בסינון שנבחר.</p>'}`}`;
+  summary.innerHTML=`<div class="ef-metric-grid ef-usage-preview">${rate('Usage רגיל',usage.regular)}${rate('Usage כולל · עם אסיסטים',usage.combined)}${metric('עבירות שסחט למשחק',fmt(avg('foulsReceived')))}</div>${compactMarket?'':`<p class="ef-method muted">אומדנים מבוקס סקור ודקות; Usage כולל הוא מדד מותאם, לא אחוז פוזשנים ייחודיים.</p><h3 class="ef-last-title">המשחק האחרון</h3>${latest?gameCard(latest):'<p class="muted">אין משחקים זמינים בסינון שנבחר.</p>'}`}`;
   panes.usage.innerHTML=`<h3>מעורבות בהתקפה</h3><div class="ef-metric-grid">${rate('Usage רגיל',usage.regular)}${rate('Usage כולל · עם אסיסטים',usage.combined)}${metric('זריקות מהשדה · סה״כ',fmt(usage.fga))}${metric('ניסיונות עונשין · סה״כ',fmt(usage.fta))}${metric('אסיסטים · סה״כ',fmt(usage.assists))}${metric('איבודים · סה״כ',fmt(usage.turnovers))}</div><p class="ef-method">Usage רגיל: זריקות מהשדה + 0.44 מניסיונות העונשין + איבודים, ביחס לאומדן אירועי הקבוצה בזמן דקות השחקן. Usage כולל מוסיף אסיסטים; הוא מדד מעורבות מותאם לאפליקציה. אין כאן מדידה של זמן החזקת כדור. כמה משחקים משוקללים לפי החשיפה, ולא בממוצע פשוט.</p>`;
   panes.defense.innerHTML=`<h3>הגנה וריבאונד</h3><div class="ef-metric-grid">${rate('אחוז חטיפות משוער',df.stl)}${rate('אחוז חסימות משוער',df.blk)}${rate('אחוז ריבאונד משוער',df.reb)}${rate('אחוז ריבאונד הגנה משוער',df.drb)}${metric('חטיפות · סה״כ',fmt(df.steals))}${metric('חסימות · סה״כ',fmt(df.blocks))}${metric('ריבאונדים · סה״כ',fmt(df.rebounds))}${metric('ריבאונד התקפה · סה״כ',fmt(df.offensiveRebounds))}</div><p class="ef-method">אחוזים משוערים מנתוני הבוקס סקור ודקות המשחק. הם מתארים פעולות מסוימות ואינם ציון כולל לאיכות ההגנה. נתון חסר מוצג כ־—.</p>`;
   gamesList.innerHTML='<h3>משחקים · מהחדש לישן</h3>'+(selected.length

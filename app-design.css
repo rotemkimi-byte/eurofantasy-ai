@@ -470,3 +470,24 @@ html[data-theme="light"] #efToolGroups .ef-performance-tools button {
   color: inherit;
 }
 #efToolGroups .ef-performance-tools button svg {flex-shrink:0}
+
+.squadSourceControls{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:.65rem 0}
+.squadSourceControls button{min-height:44px}
+.squadSourceControls p{flex-basis:100%;margin:.1rem 0;font-size:.85rem}
+#squadOrigin[aria-pressed="true"],.ef-player-watch[aria-pressed="true"]{background:#725012;color:#fff;border-color:#f0c76d}
+.ef-player-watch{min-height:44px;margin-top:.55rem;padding:.35rem .75rem;border:1px solid #a6c9bc;background:#162f40;color:#fff;border-radius:10px;font-weight:750}
+#modalBody.ef-dashboard .ef-usage-preview{grid-template-columns:repeat(3,minmax(0,1fr))}
+.ef-overview-summary .ef-usage-preview small{overflow-wrap:anywhere}
+.watchlistRows{display:grid;gap:.6rem;margin-top:.7rem}
+.watchlistRow{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:.55rem;border:1px solid var(--line);border-radius:12px;padding:.7rem}
+.watchlistRow small{display:block;color:var(--muted);line-height:1.2}
+.watchlistRow .watchlistPlayer{padding:0;min-height:34px;color:inherit;background:transparent;border:0;text-align:start;font-size:1rem;overflow-wrap:anywhere}
+.watchlistRow>button{grid-column:2;grid-row:1;min-height:44px}
+.watchlistMetrics{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;text-align:center}
+.watchlistMetrics bdi{font-weight:800}
+.squadMatchSummary{margin-top:.65rem}
+.squadMatchSummary ul{display:grid;gap:.3rem;padding-inline-start:1.2rem;margin:.4rem 0 .7rem}
+.squadMatchSummary li small{margin-inline-start:.25rem}
+.squadMatchHeadline{margin:.3rem 0;font-weight:800}
+.squadMatchSummary li.up{color:#12654d}
+.squadMatchSummary li.down{color:#9d2435}

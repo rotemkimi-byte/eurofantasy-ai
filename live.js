@@ -64,9 +64,9 @@
 
     remember(LS.players, JSON.stringify(players));
 
-    myTeam = myTeam.filter(name =>
-      players.some(player => player.name === name)
-    );
+    if (!window.SquadRoster?.current()) {
+      myTeam = myTeam.filter(name => players.some(player => player.name === name));
+    }
 
     remember(LS.team, JSON.stringify(myTeam));
 

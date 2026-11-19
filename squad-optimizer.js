@@ -84,27 +84,48 @@ function signed(value,unit = '') {
   return `${n>0?'+':n<0?'−':''}${Math.abs(n).toFixed(1)}${unit}`;
 }
 
-function compareTable(p, next) {
+function compareTable(p) {
   const x=model(p), position=x.positionDefense;
   if(!position)return '<p class="squadPanelNote">אין מספיק נתוני הגנה בעמדה לעונת 2026/27.</p>';
   const o=position.observed,e=position.expected;
-  const field=(label,key,negative=false)=>({label,normal:e[key]===null?null:40*e[key],actual:o[key]===null?null:40*o[key],negative});
-  const shooting=(label,made,attempt)=>({label,percent:true,normal:e[attempt]>0?100*e[made]/e[attempt]:null,actual:o[attempt]>0?100*o[made]/o[attempt]:null});
-  const rows=[field('PIR','valuation'),field('ריבאונדים','totalRebounds'),
+  const field=(label,key,threshold,negative=false)=>({label,normal:o[key]==null||e[key]==null?null:40*e[key],actual:o[key]==null?null:40*o[key],threshold,negative});
+  const impactText={
+   'ריבאונדים':['יותר ריבאונדים','פחות ריבאונדים'], 'קליעה ל־2':['אחוז טוב יותר ל־2','אחוז נמוך יותר ל־2'],
+   'קליעה ל־3':['אחוז טוב יותר ל־3','אחוז נמוך יותר ל־3'], 'זריקות שנחסמו':['פחות זריקות נחסמות','יותר זריקות נחסמות'],
+   'איבודים':['פחות איבודים','יותר איבודים'], 'סחיטת עבירות':['סוחטים יותר עבירות','סוחטים פחות עבירות'],
+   'זריקות עונשין':['יותר זריקות עונשין','פחות זריקות עונשין']
+  };
+  const shooting=(label,made,attempt)=>({label,percent:true,threshold:2,normal:e[attempt]>0&&e[made]!=null?100*e[made]/e[attempt]:null,actual:o[attempt]>0&&o[made]!=null?100*o[made]/o[attempt]:null});
+  const rows=[field('PIR','valuation',1),field('ריבאונדים','totalRebounds',0.5),
    shooting('קליעה ל־2','fieldGoalsMade2','fieldGoalsAttempted2'),shooting('קליעה ל־3','fieldGoalsMade3','fieldGoalsAttempted3'),
-   field('זריקות שנחסמו','blocksAgainst',true),field('איבודים','turnovers',true),
-   field('סחיטת עבירות','foulsReceived'),field('זריקות עונשין','freeThrowsAttempted')].map(({label,normal,actual,percent,negative})=>{
-    const delta=normal===null||actual===null?null:actual-normal;
-    const benefit=negative?-delta:delta;
-    return `<tr><th scope="row">${label}</th><td><bdi>${fmt(normal,percent?'%':'')}</bdi></td>
-     <td><bdi>${fmt(actual,percent?'%':'')}</bdi></td>
-     <td class="${benefit>0?'up':benefit<0?'down':''}">${delta===null?'—':`<bdi>${signed(delta)}</bdi>${percent?'<small>נק׳ אחוז</small>':''}`}</td></tr>`;
+   field('זריקות שנחסמו','blocksAgainst',0.4,true),field('איבודים','turnovers',0.4,true),
+   field('סחיטת עבירות','foulsReceived',0.4),field('זריקות עונשין','freeThrowsAttempted',0.5)]
+   .map(row=>({...row,delta:row.normal===null||row.actual===null?null:row.actual-row.normal}));
+  const [pir,...rest]=rows;
+  const signals=rest.filter(r=>r.delta!==null&&Math.abs(r.delta)>=r.threshold)
+   .sort((a,b)=>Math.abs(b.delta/b.threshold)-Math.abs(a.delta/a.threshold)).slice(0,3);
+  const hasSample=position.sampleGames>=3;
+  const good=r=>r.negative?r.delta<0:r.delta>0;
+  const rowHtml=rows.map(r=>{
+    const meaningful=r.delta!==null&&Math.abs(r.delta)>=r.threshold;
+    return `<tr><th scope="row">${r.label}</th><td><bdi>${fmt(r.normal,r.percent?'%':'')}</bdi></td>
+     <td><bdi>${fmt(r.actual,r.percent?'%':'')}</bdi></td>
+     <td class="${meaningful?(good(r)?'up':'down'):''}">${r.delta===null?'—':`<bdi>${signed(r.delta)}</bdi>${r.percent?'<small>נק׳ אחוז</small>':''}`}</td></tr>`;
   }).join('');
-  return `<h5>מה הקבוצה מאפשרת בעמדה ${esc(p.pos)}?</h5>
-   <p class="squadPanelNote">הגנת קבוצה · ${position.sampleGames} משחקים · ${position.appearances} הופעות · ${fmt(position.minutes)} דקות${position.sampleGames<3?' · מדגם קטן':''}</p>
-   <table class="squadDefenseTable"><thead><tr><th scope="col">מדד</th><th scope="col">צפוי לפי היריבים</th><th scope="col">מול הקבוצה</th><th scope="col">שינוי</th></tr></thead>
-   <tbody>${rows}</tbody></table>
-   <p class="squadPanelNote">ל־40 דקות שחקן בעמדה; קליעה לפי ניסיונות. הבסיס מתחשב בתפוקת השחקנים מול שאר היריבות בעונת 2026/27 בלבד, עם ייצוב לליגה במדגם קטן. עונשין וסחיטת עבירות מחושבים יחד בתחזית.</p>`;
+  const direction=pir.delta===null?'אין מספיק נתוני PIR בעמדה':Math.abs(pir.delta)<pir.threshold
+   ? 'PIR בעמדה קרוב לרגיל'
+   : pir.delta<0?'היריבה מורידה את ה־PIR של שחקנים בעמדה':'היריבה מאפשרת יותר PIR לשחקנים בעמדה';
+  return `<section class="squadMatchSummary"><h5>איך היריבה משפיעה על העמדה ${esc(p.pos)}?</h5>
+   <p class="squadPanelNote">${hasSample?direction:'המדגם עדיין קטן · '+position.sampleGames+' משחקים'}</p>
+   ${hasSample&&pir.delta!==null?`<p class="squadMatchHeadline"><bdi>${signed(pir.delta)}</bdi> PIR ל־40 דקות בעמדה</p>`:''}
+   ${hasSample&&signals.length?`<ul>${signals.map(r=>`<li class="${good(r)?'up':'down'}">${impactText[r.label][good(r)?0:1]} <bdi>${signed(r.delta)}</bdi><small>${r.percent?'נק׳ אחוז':'ל־40 דק׳'}</small></li>`).join('')}</ul>`:''}
+   <details class="squadInfluence"><summary>כל נתוני ההגנה בעמדה</summary>
+    <p class="squadPanelNote">${position.sampleGames} משחקים · ${position.appearances} הופעות · ${fmt(position.minutes)} דקות</p>
+    <table class="squadDefenseTable"><thead><tr><th scope="col">מדד</th><th scope="col">מול שאר הקבוצות</th><th scope="col">מול היריבה</th><th scope="col">פער</th></tr></thead>
+    <tbody>${rowHtml}</tbody></table>
+    <p class="squadPanelNote">ההשוואה מתייחסת לשחקנים בעמדה בעונת 2026/27. ממוצעי הפעולות מוצגים ל־40 דקות ואחוזי הקליעה לפי ניסיונות. הבסיס מיוצב לממוצע הליגה במדגם קטן.</p>
+   </details></section>`;
+
 }
 function influenceDetails(x){
  const ledger=x.weightedMatchupLedger;
@@ -134,9 +155,10 @@ function matchupForecast(p, next) {
      <p>התחזית המוצגת היא ${fmt(expected)} PIR. למודל אין כרגע השפעת מאצ׳אפ נפרדת שאפשר להציג למשחק הזה.</p></section>`;
   }
   const impact=S.impact(base,expected), rounded=impact.delta;
+  const neutral=Math.abs(rounded)<0.05;
   return `<section class="squadForecastImpact"><h5>${impact.label} · תחזית PIR</h5>
     <div class="squadImpactMetrics">${metric('לפני ההתאמה',base)}
-     <div class="squadPanelMetric ${rounded>0?'up':rounded<0?'down':''}"><bdi>${rounded>0?'+':''}${impact.display}</bdi><small>השפעת מאצ׳אפ</small></div>
+     <div class="squadPanelMetric ${neutral?'':rounded>0?'up':'down'}"><bdi>${neutral?'≈ 0':(rounded>0?'+':'')+impact.display}</bdi><small>השפעת מאצ׳אפ</small></div>
      ${metric('תחזית סופית',expected)}</div>
     <p>${method} ההשפעה כבר כלולה בתחזית הסופית. ${num(x.confidence)===null?'':esc(dataQuality(p,x))+' · איכות נתונים לתחזית.'}</p>${influenceDetails(x)}</section>`;
 }
@@ -147,7 +169,7 @@ function matchup(p) {
   const fixture = `<div class="squadMatchHero"><strong>${name(next.team)}</strong><small>מחזור ${esc(next.round)} · ${next.home?'בית':'חוץ'} · עמדה ${esc(p.pos)}</small></div>`;
   if (!games?.length) return fixture+ (!games ?'<p class="squadPanelNote" role="status">טוען נתוני עונת 2026/27…</p>' : '<p class="squadPanelNote">אין דוחות משחק זמינים בעונה הנוכחית.</p>') + (games ? matchupForecast(p,next) : '');
   const rival = rivalFor(p, next);
-  const identity = rival ? `<div class="squadRivalProfile">
+  const identity = rival ? `<details class="squadInfluence"><summary>שחקן בולט ברוטציה של היריבה</summary><div class="squadRivalProfile">
     <button type="button" class="squadAltIdentity" data-details="${esc(rival.player.name)}">${squadJersey(rival.player)}
      <span><small>שחקן רוטציה בעמדה ${esc(p.pos)}</small><strong>${name(rival.player.name)}</strong>
      <small>${name(next.team)} · ${rival.games} משחקים</small></span></button>
@@ -155,8 +177,8 @@ function matchup(p) {
     <h5>ממוצעים אישיים של השחקן</h5><div class="squadRivalMetrics">
      ${metric('PIR',rival.pir)}${metric('נקודות',rival.points)}${metric('ריבאונדים',rival.rebounds)}${metric('חסימות',rival.blocks)}${metric('דקות',rival.minutes)}</div>
     <p class="squadPanelNote">מוביל בדקות בין השחקנים הזמינים בעמדה. אין זיהוי מאומת של השומר הישיר או נתוני הגנה בזמן שהיה על המגרש.</p>
-   </div>` : '<p class="squadPanelNote">אין זיהוי מאומת של יריב ישיר. ההשוואה מבוססת על הגנת הקבוצה.</p>';
-  return fixture + identity + compareTable(p,next) + matchupForecast(p,next) +
+   </div></details>` : '';
+  return fixture + matchupForecast(p,next) + compareTable(p) + identity +
     '<p class="squadPanelNote">מקור: דוחות המשחק הרשמיים של יורוליג · 2026/27</p>';
 }
 

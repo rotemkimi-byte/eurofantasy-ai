@@ -202,7 +202,7 @@ html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method sum
 
 <nav class="tabs">
 <button class="active" data-tab="market">שוק שחקנים</button><button data-tab="clubMarket">שוק קבוצות</button><button data-tab="team">הסגל שלי</button><button data-tab="captain">קפטן</button><button data-tab="coach">מאמן</button><button data-tab="matchups">מאצ׳אפ קבוצות</button><button data-tab="playerMatchups">מאצ׳אפ שחקנים</button><button data-tab="pirGraph">גרפי ביצועים</button><button data-tab="pirWeakness">חולשת PIR</button><button data-tab="injuries">פציעות</button><button data-tab="absencePicks">המלצות חיסורים</button><button data-tab="optimizer">בניית סגל מלא</button><button data-tab="data">נתונים</button>
-<button data-tab="learning">למידה ובדיקת תחזיות</button>
+<button data-tab="watchlist">שמורים</button><button data-tab="learning">למידה ובדיקת תחזיות</button>
 </nav>
 
 <section id="market" class="tab active">
@@ -216,10 +216,12 @@ html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method sum
 </section>
 
 <section id="clubMarket" class="tab"><div class="card"><h3>שוק קבוצות</h3><div class="filters"><label>קבוצה<select id="clubSelect"></select></label><label>מיון<select id="clubSort"><option value="price">מחיר: מהגבוה לנמוך</option><option value="minutes">דקות במשחק האחרון</option><option value="pir">PIR במשחק האחרון</option></select></label><label>תצוגה<select id="clubView"><option value="court">מגרש</option><option value="list">רשימה</option></select></label></div><p class="muted">נתונים בפועל · 2026/27. החמישייה בתצוגת המגרש נבחרת לפי דקות במשחק האחרון, במבנה 2 גארדים, 2 פורוורדים וסנטר; זו אינה חמישייה פותחת מאומתת. גם החמישייה השנייה נבחרת באותו מבנה מתוך השחקנים שנותרו, לפי דקות במשחק האחרון. שאר הסגל מופיע מתחת לשני המגרשים. — מציין נתון חסר.</p><p id="clubSummary" class="muted"></p><div id="clubRoster"></div></div></section>
-<section id="team" class="tab"><div class="card"><div class="sectionHead"><div><h3>הסגל שלי</h3><p class="muted">הוסף שחקנים מהשוק. לחץ על גופייה לפרטים; בחר הרכב וקפטן בכרטיס השחקן.</p></div><button class="secondary" id="clearTeam">נקה</button></div><div id="teamView" class="rr-toggle" role="group" aria-label="תצוגת הסגל"><button data-team-view="forecast" aria-pressed="true">לקראת המחזור</button><button data-team-view="review" aria-pressed="false">מה היה</button><button id="squadOptimizer" aria-pressed="false" aria-controls="teamCards">אופטימייזר</button></div><div id="roundReview" hidden></div><div id="teamCards" class="grid2"></div><section id="squadUpgrade" hidden aria-label="שדרוג">
+<section id="team" class="tab"><div class="card"><div class="sectionHead"><div><h3>הסגל שלי</h3><p class="muted">הוסף שחקנים מהשוק. לחץ על גופייה לפרטים; בחר הרכב וקפטן בכרטיס השחקן.</p></div><button class="secondary" id="clearTeam">נקה</button></div><div class="squadSourceControls"><button type="button" class="secondary" id="refreshSquad">רענן סגל</button><button type="button" class="secondary" id="squadOrigin" aria-pressed="false" aria-controls="teamCards">חזור למקור</button><p class="muted" id="squadSyncStatus" role="status">ממתין לסנכרון עם Fantasy</p></div><div id="teamView" class="rr-toggle" role="group" aria-label="תצוגת הסגל"><button data-team-view="forecast" aria-pressed="true">לקראת המחזור</button><button data-team-view="review" aria-pressed="false">מה היה</button><button id="squadOptimizer" aria-pressed="false" aria-controls="teamCards">אופטימייזר</button></div><div id="roundReview" hidden></div><div id="teamCards" class="grid2"></div><section id="squadUpgrade" hidden aria-label="שדרוג">
  <label class="squadUpgradeBudget" for="extraCredit">קרדיט נוסף<input id="extraCredit" type="number" inputmode="decimal" min="0" step=".1" value="0"></label>
  <div id="upgradeList" aria-live="polite"></div>
 </section></div></section>
+
+<section id="watchlist" class="tab"><div class="card"><h3>שמורים</h3><div id="watchlistRows" class="watchlistRows"></div></div></section>
 
 <section id="captain" class="tab"><div class="card"><h3>דירוג קפטן</h3><p class="muted">מדורג לפי תחזית PIR למשחק הקרוב. הגבול העליון מציג תרחיש אפשרי ואינו מגדיל את ציון הדירוג. מאמנים ושחקנים בחוץ אינם מועמדים.</p><div id="captainList" class="rank"></div></div></section>
 
@@ -645,8 +647,8 @@ let squadPreferences;try{squadPreferences=JSON.parse(localStorage.getItem(SQUAD_
 if(!squadPreferences||typeof squadPreferences!=='object'||Array.isArray(squadPreferences))squadPreferences={};
 function squadSave(){cacheValue(SQUAD_KEY,JSON.stringify(squadPreferences))}
 const SQUAD_SLOTS=[['C','סנטר'],['F','פורוורד 1'],['F','פורוורד 2'],['G','גארד 1'],['G','גארד 2'],['*','שחקן שישי']];
-function squadArrangement(selected){
- const used=new Set(),slots=SQUAD_SLOTS.map(([pos],i)=>{const p=selected.find(p=>p.name===squadPreferences.slots?.[i]&&(pos==='*'||p.pos===pos)&&!used.has(p.name));if(p)used.add(p.name);return p||null});
+function squadArrangement(selected, preferences=squadPreferences){
+ const used=new Set(),slots=SQUAD_SLOTS.map(([pos],i)=>{const p=selected.find(p=>p.name===preferences.slots?.[i]&&(pos==='*'||p.pos===pos)&&!used.has(p.name));if(p)used.add(p.name);return p||null});
  slots.forEach((p,i)=>{if(p)return;const pos=SQUAD_SLOTS[i][0];const next=selected.find(p=>!used.has(p.name)&&(pos==='*'||p.pos===pos));if(next){slots[i]=next;used.add(next.name)}});
  return {slots,bench:selected.filter(p=>!used.has(p.name))};
 }
@@ -694,12 +696,14 @@ function squadOpponentFor(p,match){
  return {team,rival:null};
 }
 function renderTeam(){
- const selected=myTeam.map(n=>players.find(p=>p.name===n)).filter(Boolean),basket=selected.filter(p=>['G','F','C'].includes(p.pos));
+ const historical=window.SquadRoster?.preview();
+ const roster=historical?window.SquadRoster.resolveNames(historical.players,players):myTeam;
+ const selected=roster.map(n=>players.find(p=>p.name===n)).filter(Boolean),basket=selected.filter(p=>['G','F','C'].includes(p.pos));
  const root=document.getElementById('teamCards');root.classList.add('squadBoard');root.classList.remove('grid2');
  const cost=selected.reduce((s,p)=>s+Number(p.price||0),0),proj=selected.reduce((s,p)=>s+Number(model(p).expected||0),0);
  document.getElementById('teamCost').textContent=n1(cost);document.getElementById('teamProj').textContent=n1(proj);
- const {slots,bench}=squadArrangement(basket);
- const captain=basket.find(p=>p.name===squadPreferences.captain)||[...basket].filter(p=>p.status!=='out').sort((a,b)=>model(b).expected-model(a).expected)[0];
+ const {slots,bench}=squadArrangement(basket,historical?{}:squadPreferences);
+ const captain=historical?null:basket.find(p=>p.name===squadPreferences.captain)||[...basket].filter(p=>p.status!=='out').sort((a,b)=>model(b).expected-model(a).expected)[0];
  const optimizing=root.classList.contains('squadOptimizing');
  const signed=v=>v==null||!Number.isFinite(Number(v))?'—':`${Number(v)>0?'+':''}${Number(v).toFixed(1)}`;
  const managed=new Set([...document.querySelectorAll('#teamCards .squadRosterTools .squadActions[open] [data-role]')].map(el=>el.dataset.role));
@@ -722,14 +726,16 @@ function renderTeam(){
     <option value="bench" ${slot<0?'selected':''}>ספסל</option></select></label>
     <button class="squadCaptainAction" data-captain="${esc(p.name)}">${isCaptain?'קפטן נבחר':'בחר כקפטן'}</button></details>`;
  }).join('');
- const coach=COACHES.find(c=>c.name===squadPreferences.coach);
+ const coachName=historical?window.SquadRoster.resolveNames(historical.players,COACHES).find(n=>COACHES.some(c=>c.name===n)):squadPreferences.coach;
+ const coach=COACHES.find(c=>c.name===coachName);
+ const missing=historical?historical.players.filter((n,i)=>!selected.some(p=>p.name===roster[i])&&!window.SquadRoster.resolveNames([n],COACHES).includes(coachName)):[];
  const coachSelect=`<select id="squadCoachSelect" aria-label="בחר מאמן"><option value="">בחר מאמן</option>${COACHES.map(c=>`<option value="${esc(c.name)}" ${coach?.name===c.name?'selected':''}>${esc(c.name)} · ${clubNumber(c.price)}</option>`).join('')}</select>`;
  const coachMatch=coach&&MATCHUPS[canonicalTeam(coach.team)];
  const coachHtml=`<div class="squadCoach squadOwnCard">
   <label class="squadCoachControl" for="squadCoachSelect">
    ${squadJersey({...coach,pos:'מאמן'},true)}
-   <span><small>${coach?'החלף מאמן':'בחר מאמן'}</small>${coach?`<bdi>${esc(coach.name)}</bdi>`:''}</span>
-   <span aria-hidden="true">⌄</span>${coachSelect}
+   <span><small>${historical?'מאמן במחזור '+historical.matchday_number:coach?'החלף מאמן':'בחר מאמן'}</small>${coach?`<bdi>${esc(coach.name)}</bdi>`:''}</span>
+   <span aria-hidden="true">⌄</span>${historical?'':coachSelect}
   </label>
   ${coach?`<div class="squadInfo"><div class="squadTop"><b>${clubNumber(coach.price)}<small>קרדיט</small></b>
    <b>${clubNumber(coachExpected(coach.team))}<small>נק׳ צפויות</small></b></div>
@@ -742,7 +748,9 @@ function renderTeam(){
   <div class="squadLower"><section class="squadReserve"><h4>ספסל <small>FPT 50%</small></h4>
    <div class="squadBenchGrid">${bench.map(p=>card(p,'bench')).join('')||'<p class="squadCoachEmpty">אין שחקני ספסל</p>'}</div></section>
    <section class="squadSixth"><h4>שחקן שישי <small>FPT 100%</small></h4>${card(slots[5],5)}<h4>מאמן</h4>${coachHtml}</section></div>
-  ${rosterTools?`<details class="squadRosterTools"${managerOpen?' open':''}><summary>הרכב וקפטן</summary>${rosterTools}</details>`:''}
+  ${historical?'<p class="squadFootnote">מיקום במגרש להמחשה · מחירים ותחזיות לפי המחזור הקרוב</p>':''}
+  ${missing.length?'<p class="squadFootnote">בסגל המקורי · ללא כרטיס בשוק הנוכחי: '+missing.map(n=>'<bdi>'+esc(n)+'</bdi>').join(', ')+'</p>':''}
+  ${!historical&&rosterTools?`<details class="squadRosterTools"${managerOpen?' open':''}><summary>הרכב וקפטן</summary>${rosterTools}</details>`:''}
   <p class="squadFootnote">לחץ על הגופייה לפרטי השחקן. ההרכב והקפטן נשמרים במכשיר. התחזיות הן אומדן. עלות מאמן ${coach?clubNumber(coach.price):'—'} · סך עלות כולל מאמן ${clubNumber(cost+Number(coach?.price||0))}</p></div>`;
  void physicalLoad(basket);
  root.onclick=e=>{
@@ -1145,7 +1153,7 @@ for(const id of ['clubSelect','clubSort','clubView'])document.getElementById(id)
 renderAll();
 if(!last || Date.now()-new Date(last).getTime()>6*3600*1000)syncOfficial();
 </script>
-<script src="./live.js?v=qa-1"></script><script src="./roster-live.js?v=1"></script><script src="./position-matchups.js?v=position-defense-2"></script><script>
+<script src="./live.js?v=roster-refresh-1"></script><script src="./roster-live.js?v=2"></script><script src="./position-matchups.js?v=position-defense-2"></script><script>
 (async () => {
   try {
     const response = await fetch(
@@ -2520,7 +2528,7 @@ for (const id of ['data', 'learning']) {
 <script src="./usage-core.js?v=2"></script><script src="./usage-ui.js?v=performance-tools-2"></script>
 <script src="./defense-core.js?v=2"></script><script src="./defense-ui.js?v=performance-tools-2"></script>
 <script src="./team-metrics-core.js?v=1"></script><script src="./team-metrics-ui.js?v=qa-1"></script>
-<link rel="stylesheet" href="./app-design.css?v=performance-picker-3">
+<link rel="stylesheet" href="./app-design.css?v=watchlist-1">
 <script src="./surprises.js?v=compact-3"></script>
 <script src="./free-throws.js?v=deep-contrast-1"></script>
 <script src="./pir-compare.js?v=performance-controls-1"></script>
@@ -2544,8 +2552,9 @@ for (const id of ['data', 'learning']) {
 <script src="./risk-profile.js?v=4"></script>
 <link rel="stylesheet" href="./component-forecast.css?v=2">
 <script src="./component-forecast.js?v=1"></script>
-<script src="./app-navigation.js?v=component-forecast-1"></script>
-<script src="./app-player.js?v=player-pir-labels-1"></script>
+<script src="./app-navigation.js?v=watchlist-1"></script>
+<script src="./watchlist.js?v=1"></script>
+<script src="./app-player.js?v=watchlist-fouls-1"></script>
 <link rel="stylesheet" href="./home-dashboard.css?v=nav-pinned-2">
 <script src="./home-dashboard.js?v=reference-5"></script>
 <style id="market-reference-design">
@@ -2988,13 +2997,20 @@ try{
  if(d&&(d.bank===null||(num(d.bank)!==null&&d.bank>=0))&&Array.isArray(d.slots)&&
     d.slots.every(s=>s.original&&num(s.original.price)!==null&&(!s.current||num(s.current.price)!==null)&&['G','F','C','coach'].includes(s.pos)))draft=d;
 }catch{}
-fetch('./data/roster.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{
- finance=d;
+function updateFinance(){
+ const latest=window.SquadRoster?.current();
+ if(!latest)return;
+ const previous=finance;
+ finance=latest;
+ const changed=!previous||JSON.stringify([previous.team_id,previous.matchday_id,previous.players,previous.available_credits])!==JSON.stringify([latest.team_id,latest.matchday_id,latest.players,latest.available_credits]);
+ if(!changed)return;
  if(!root.hidden&&!picker()?.open){
   if(draft&&draft.slots.every(s=>s.current?.name===s.original.name))reset();
   render();
  }
-}).catch(()=>{});
+}
+updateFinance();
+document.addEventListener('fantasy-roster-updated',updateFinance);
 document.addEventListener('fantasy-live-updated',refreshVisible);
 document.addEventListener('fantasy-player-media-ready',refreshVisible);
 root.addEventListener('error',e=>{if(e.target.matches('.simMedia img,.simClub img'))e.target.remove()},true);
@@ -3186,5 +3202,5 @@ html.ef-redesign[data-theme=light] #playerMatchups .pmModes button[aria-pressed=
 .pmHistoryPosition::after{content:'⌄';display:block;font-size:14px;line-height:1}
 .pmHistoryPair[open] .pmHistoryPosition::after{content:'⌃'}
 .pmHistoryPair .pmCompare th,.pmHistoryPair .pmCompare td{font-size:12px}
-</style><script src="./player-matchup-history.js?v=2"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script><script src="./squad-matchup.js?v=position-defense-2"></script><script src="./squad-optimizer.js?v=position-defense-2"></script><link rel="stylesheet" href="./fantasy-compact.css?v=control-design-1"><link rel="stylesheet" href="./control-design.css?v=deep-contrast-1"></body></html>
+</style><script src="./player-matchup-history.js?v=2"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script><script src="./squad-matchup.js?v=position-defense-2"></script><script src="./squad-optimizer.js?v=matchup-summary-1"></script><link rel="stylesheet" href="./fantasy-compact.css?v=control-design-1"><link rel="stylesheet" href="./control-design.css?v=deep-contrast-1"></body></html>
 

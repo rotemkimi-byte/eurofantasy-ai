@@ -45,7 +45,7 @@ def player_name(p):
     )
 
 
-def current_matchday():
+def league_matchdays():
     cfg = api("/leagues/10/config", auth=False)
 
     data = cfg.get("data", {})
@@ -59,10 +59,21 @@ def current_matchday():
     if not md or not md.get("id"):
         raise RuntimeError("Could not determine matchday")
 
-    return {
-        "id": int(md["id"]),
-        "number": int(md.get("number") or 0),
-    }
+    return md, data.get("matchdays", [])
+
+
+def last_completed_matchday(matchdays, current):
+    schedule = json.loads((DATA_DIR / "context/E2026-schedule.json").read_text(encoding="utf-8"))
+    rounds = {}
+    for game in schedule.get("data", []):
+        round_number = game.get("round")
+        if not round_number or (game.get("season") or {}).get("code") != "E2026":
+            continue
+        rounds.setdefault(int(round_number), []).append(game.get("played") is True)
+    completed = max((number for number, played in rounds.items() if all(played)), default=0)
+    if not 0 < completed <= int(current["number"]):
+        return None
+    return next((day for day in matchdays if int(day["number"]) == completed and day.get("id")), None)
 
 
 
@@ -83,10 +94,10 @@ def available_credits(*sources):
                 return round(value, 2)
     return None
 
-def fetch_roster(team_id, matchday_id):
+def fetch_roster(team_id, matchday_id, historical=False):
     errors = []
 
-    for suffix in ("roster/preview", "roster"):
+    for suffix in (("roster",) if historical else ("roster/preview", "roster")):
         try:
             data = api(
                 f"/fantasy-teams/{team_id}/matchdays/"
@@ -116,7 +127,15 @@ def main():
     if not TOKEN:
         raise RuntimeError("FANTASY_TOKEN is missing")
 
-    md = current_matchday()
+    md, matchdays = league_matchdays()
+    last_played = last_completed_matchday(matchdays, md)
+    now = datetime.now(timezone.utc).isoformat()
+    try:
+        old = json.loads((DATA_DIR / "rosters.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        old = {}
+    archived = {str(team["team_id"]): team.get("previous") for team in old.get("teams", [])}
+
 
     result = api(
         "/user/fantasy-teams?league=10&game_mode=1"
@@ -144,13 +163,31 @@ def main():
                 if player_name(p)
             ]
 
-            synced.append({
+            entry = {
                 "team_id": team_id,
                 "team_name": team.get("name") or f"Team {team_id}",
                 "players": names,
                 "player_count": len(names),
                 "available_credits": available_credits(roster_metadata, team),
-            })
+            }
+            if last_played:
+                previous = archived.get(str(team_id))
+                if not previous or previous.get("matchday_id") != last_played["id"]:
+                    try:
+                        played_roster, _ = fetch_roster(team_id, last_played["id"], historical=True)
+                        previous = {
+                            "team_id": team_id,
+                            "matchday_id": last_played["id"],
+                            "matchday_number": last_played["number"],
+                            "players": [name for p in played_roster if (name := player_name(p))],
+                            "updated_at": now,
+                        }
+                    except Exception as e:
+                        previous = None
+                        print(f"Could not sync played roster for team {team_id}: {e}")
+                if previous and previous.get("players"):
+                    entry["previous"] = previous
+            synced.append(entry)
 
         except Exception as e:
             print(
@@ -160,16 +197,18 @@ def main():
     if not synced:
         raise RuntimeError("No rosters could be synced")
 
-    now = datetime.now(timezone.utc).isoformat()
-
     full = {
         "updated_at": now,
         "matchday_id": md["id"],
         "matchday_number": md["number"],
+        "completed_matchday_id": last_played["id"] if last_played else None,
         "team_count": len(synced),
         "teams": synced,
     }
 
+    if (DATA_DIR / "roster.json").exists() and all(old.get(k) == v for k, v in full.items() if k != "updated_at"):
+        print("Roster unchanged")
+        return
     save(DATA_DIR / "rosters.json", full)
 
     # כרגע הקבוצה הראשונה משמשת כברירת מחדל.
@@ -181,11 +220,8 @@ def main():
             "updated_at": now,
             "matchday_id": md["id"],
             "matchday_number": md["number"],
-            "team_id": primary["team_id"],
-            "team_name": primary["team_name"],
-            "players": primary["players"],
-            "player_count": primary["player_count"],
-            "available_credits": primary["available_credits"],
+            "completed_matchday_id": full["completed_matchday_id"],
+            **primary,
         },
     )
 
