@@ -404,32 +404,38 @@ function renderPlayerGame(out,record,games){
 }
 function matchupPlayerStats(games,report){
  const stats=C.summarize(games,C.matchupMetrics);
- stats.rimAccuracy=report.stats.rimAccuracy;
+ for(const id of ['rimAccuracy','orbPct','playerTov100']){
+  if(report.stats[id])stats[id]=report.stats[id];
+ }
  return stats;
 }
 function defenseComparison(record,games,stats,opponent,{allowed,league,benchmarks,count},fixture,playerBenchmarks){
  const history=!playerBenchmarks;
  const rows=C.matchupMetrics.map(([id,label,unit,source,help,defenseId])=>{
   const actual=stats[id],defense=allowed[defenseId],average=league[defenseId].value;
-  const [ownSide,defenseSide]=comparisonSides(id,actual.value,defense.value);
-  const difference=actual.value==null||defense.value==null?'':` · פער <bdi>${fmt(Math.abs(actual.value-defense.value))}</bdi> נק׳ אחוז`;
+  const shooting=['allowedThree','allowedTwo','allowedRim'].includes(defenseId);
+  const playerReference=history?(shooting?defense.value:null):playerBenchmarks[id].mean;
+  const [ownSide]=comparisonSides(id==='playerTov100'?'turnovers':id,actual.value,playerReference);
+  const [defenseSide]=comparisonSides(defenseId,defense.value,average);
+  const difference=average==null||defense.value==null?'':` · פער מהליגה <bdi>${fmt(Math.abs(defense.value-average))}</bdi>${unit==='%'?' נק׳ אחוז':unitLabels[unit]}`;
   const ownRank=playerBenchmarks?.[id].percentile(actual)??null;
   const defenseRank=benchmarks[defenseId].percentile(defense);
   const scale=Math.max(100,actual.value??0,defense.value??0);
   const bar=(stat,rank)=>stat.value==null?null:rank??100*stat.value/scale;
   const reference=average==null?'':` ממוצע הליגה למה שהגנות מאפשרות במדד הזה הוא ${fmt(average,unit)}.`;
-  return row([id,label,unit,source,help+reference],
+  const personal={orbPct:'לשחקן מוצג חלקו בריבאונדי ההתקפה הזמינים בדקות ששיחק.',playerTov100:'לשחקן מוצגים איבודים אישיים ל־100 פוזשנים קבוצתיים משוערים בדקות ששיחק.',steals:'לשחקן מוצגות חטיפות אישיות ל־40 דקות.',drawn:'לשחקן מוצגות עבירות שסחט ל־40 דקות.'};
+  return row([id,label,unit,source,[help,personal[id],reference].filter(Boolean).join(' ')],
    valueCell(actual,ownRank,unit,ownSide,{name:record.name,bar:bar(actual,ownRank),showRank:!history}),
    valueCell(defense,defenseRank,unit,defenseSide,{name:opponent,bar:bar(defense,defenseRank)}),difference);
- }).join('');
+ });
  const header=comparisonHeader(history?'משחק עבר · 2026/27':'היריבה הבאה',
   {name:record.name,image:playerPhotos[C.key(record.name)]?.photo,kind:'player',caption:history?'ביצוע במשחק':games.length+' הופעות בטווח'},
   {name:opponent,image:clubCrests.get(opponent),kind:'club',caption:count+(history?' משחקים לפני המפגש':' משחקים בטווח')},fixture);
  const title=history?'ביצוע בפועל מול דנ״א ההגנה':'דנ״א שחקן מול הגנת היריבה הבאה';
  const description=history
   ?'ביצוע השחקן במשחק מול מה שההגנה אפשרה לפני המפגש. דירוג ההגנה הוא ביחס לליגה.'
-  :'מדדי השחקן מול מה שההגנה מאפשרת. ירוק מסמן את הערך העדיף במדד. דירוג השחקן ביחס לעמדה ודירוג ההגנה ביחס לליגה.';
- return `<div class="dna-defense-compare">${header}${teamMetricTable(title,description,rows,'dnaPlayerDefenseMetricsTitle')}</div>`;
+  :'מדדי השחקן מול מה שההגנה מאפשרת. ירוק בהגנה מציין הגנה חזקה מממוצע הליגה במדד, ואדום מציין חולשה. דירוג השחקן ביחס לעמדה ודירוג ההגנה ביחס לליגה.';
+ return `<div class="dna-defense-compare">${header}${teamMetricTable(title,description,rows.slice(0,-1).join(''),'dnaPlayerDefenseMetricsTitle')}<section class="dna-team-metrics"><h4>הגנה</h4><div class="dna-chart">${rows.at(-1)}</div></section></div>`;
 }
 function playerStyleComparison(record,gameLimit,opponent){
  if(!opponent)return empty('בחר שחקן כדי להשוות סגנונות.');
