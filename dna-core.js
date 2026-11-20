@@ -81,7 +81,7 @@ const playerMetrics=[
  ['fouls','עבירות שביצע','per40','box','עבירות שביצע ל־40 דקות.']
 ];
 const units={'%':100,per40:40,per100:100,pos:40,cm:1,shots:1,ratio:1,pointsPerGame:1,pointsPer100:1,perPossession:1};
-const shootingMinimum={three:20,threeAccuracy:10,rim:20,fastbreak:20,secondChance:20,allowedThree:10,allowedTwo:10,ts:20,efg:20,midAccuracy:5,rimAccuracy:5,allowedRim:5};
+const shootingMinimum={three:20,threeAccuracy:10,twoAccuracy:10,rim:20,fastbreak:20,secondChance:20,allowedThree:10,allowedTwo:10,ts:20,efg:20,midAccuracy:5,rimAccuracy:5,allowedRim:5};
 
 function shots(rows){
  if(!rows.length||!rows.every(p=>p.styleShots))return {};
@@ -279,7 +279,7 @@ function summarize(games,metrics){
 function comparable(stat,id,player=false){
  return stat?.value!=null&&stat.count>=3&&(!player||stat.minutes>=60)&&stat.denominator>=(shootingMinimum[id]||0);
 }
-function benchmark(stats,id,player=false){
+function benchmark(stats,id,player=false,{raw=false}={}){
  const values=stats.filter(s=>comparable(s,id,player)).map(s=>s.value);
  const count=values.length;
  return {count,mean:count>=leagueMinimum?values.reduce((sum,v)=>sum+v,0)/count:null,
@@ -287,7 +287,7 @@ function benchmark(stats,id,player=false){
    if(count<leagueMinimum||!comparable(stat,id,player))return null;
    const below=values.filter(v=>v<stat.value).length,equal=values.filter(v=>v===stat.value).length;
    const rank=100*(below+equal/2)/count;
-   return Math.round(lowTeamMetrics.has(id)?100-rank:rank);
+   return Math.round(!raw&&lowTeamMetrics.has(id)?100-rank:rank);
   }};
 }
 
@@ -304,7 +304,7 @@ function matchupDefense(teams,opponent,{limit=0,before=Infinity,venue='all'}={})
  const allowed=profiles.get(opponent)||summarize([],matchupDefenseMetrics);
  const league=summarize(samples.flatMap(([,games])=>games),matchupDefenseMetrics);
  const benchmarks=Object.fromEntries(matchupDefenseMetrics.map(([id])=>
-  [id,benchmark([...profiles.values()].map(profile=>profile[id]),id)]));
+  [id,benchmark([...profiles.values()].map(profile=>profile[id]),id,false,{raw:true})]));
  return {allowed,league,benchmarks,count:games.length};
 }
 

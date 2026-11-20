@@ -203,15 +203,20 @@ const server=http.createServer((req,res)=>{
    assert.equal(await matchup.locator('.dna-row').count(),7);
    const threes=matchup.locator('[data-metric=threeAccuracy]');
    assert.deepEqual(await threes.locator('.dna-value-name').allTextContents(),names);
-   assert.equal(await matchup.locator('.dna-rank,.dna-ahead,.dna-behind,.dna-indicator').count(),0);
+   assert.equal(await matchup.locator('.dna-ahead,.dna-behind,.dna-indicator').count(),0);
+   assert.match(await matchup.locator('.dna-explain').textContent(),/אחוזון.*באותה עמדה/);
    const columnHeading=matchup.locator('.dna-defense-columns').first();
    assert.deepEqual(await columnHeading.locator('strong').allTextContents(),['דנ״א שחקן','מה ההגנה מאפשרת']);
    assert.equal(await threes.locator('.dna-track i').count(),2);
    assert.ok(await threes.evaluate(el=>[...el.querySelectorAll('.dna-value')].every(cell=>{
     const bar=cell.querySelector('.dna-track i');
-    const value=parseFloat(cell.querySelector('.dna-value-top strong').textContent);
-    return Math.abs(parseFloat(bar.style.getPropertyValue('--dna-width'))-value)<.11&&
+    const percentile=parseFloat(cell.querySelector('.dna-rank').textContent);
+    return percentile>=0&&percentile<=100&&parseFloat(bar.style.getPropertyValue('--dna-width'))===percentile&&
      getComputedStyle(bar).backgroundColor==='rgb(234, 179, 8)';
+   })));
+   assert.ok(await matchup.evaluate(el=>[...el.querySelectorAll('.dna-value')].every(cell=>{
+    const rank=cell.querySelector('.dna-rank'),bar=cell.querySelector('.dna-track i');
+    return rank?!!bar&&parseFloat(rank.textContent)===parseFloat(bar.style.getPropertyValue('--dna-width')):!bar;
    })));
    assert.ok(await columnHeading.evaluate(el=>{
     const labels=[...el.querySelectorAll('strong')].map(node=>node.getBoundingClientRect());

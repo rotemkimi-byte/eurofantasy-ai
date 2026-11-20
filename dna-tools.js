@@ -411,7 +411,18 @@ function matchupPlayerStats(games,report){
  }
  return stats;
 }
-function defenseComparison(record,games,stats,opponent,{allowed,count},fixture,history=false){
+function matchupPlayerRanks(record,stats,reports,options){
+ const peers=model.players.filter(p=>p.position===record.position);
+ const samples=peers.map(p=>matchupPlayerStats(M.select(p.games,options.limit,options.venue),reports.detail.get(p)));
+ return Object.fromEntries(C.matchupMetrics.map(([id,,,,,defenseId])=>{
+  const key=defenseId==='steals'?'turnovers':id;
+  const cohort=samples.map(s=>s[key]);
+  const rank=['rimAccuracy','orbPct','playerTov100'].includes(key)
+   ?M.rank(stats[key],key,cohort):C.benchmark(cohort,key,true,{raw:true}).percentile(stats[key]);
+  return [id,rank];
+ }));
+}
+function defenseComparison(record,games,stats,opponent,{allowed,count,benchmarks},fixture,history=false,playerRanks={}){
  const columnHeading='<div class="dna-defense-columns"><div class="dna-values dna-pair"><strong>דנ״א שחקן</strong><strong>מה ההגנה מאפשרת</strong></div></div>';
  const playerLabels={twoAccuracy:'דיוק לשתיים',orbPct:'אחוז ריבאונד התקפה (ORB%)',playerTov100:'איבודים ל־100 פוזשנים',steals:'איבודים',rimAccuracy:'דיוק ליד הטבעת'};
  const rows=C.matchupMetrics.map(([id,label,unit,source,help,defenseId])=>{
@@ -420,12 +431,10 @@ function defenseComparison(record,games,stats,opponent,{allowed,count},fixture,h
   const personal={twoAccuracy:'קליעות השחקן לשתיים מתוך ניסיונותיו לשתיים.',orbPct:'חלק השחקן בריבאונדי ההתקפה הזמינים בדקות ששיחק.',playerTov100:'איבודים אישיים ל־100 פוזשנים קבוצתיים בדקות ששיחק.',drawn:'עבירות שהשחקן סחט ל־40 דקות.',steals:'בצד השחקן נספרים כל איבודיו בהתקפה ל־40 דקות, כולל איבודים ללא חטיפה.',rimAccuracy:'קליעות השחקן מתוך ניסיונות לשתיים עד שני מטרים מהטבעת.'};
   const ownLabel=playerLabels[id]||C.playerMetrics.find(([metricId])=>metricId===id)?.[1];
   const defense=allowed[defenseId];
-  const valid=value=>Number.isFinite(value)&&value>=0;
-  const max=Math.max(0,...[actual?.value,defense?.value].filter(valid));
-  const scale=unit==='%'?Math.max(100,max):Math.max(5,Math.ceil(max/5)*5);
-  const bar=stat=>valid(stat?.value)?100*stat.value/scale:null;
-  const own=valueCell(actual,null,unit,'',{name:record.name,metricLabel:ownLabel,showRank:false,bar:bar(actual)});
-  const other=valueCell(defense,null,unit,'',{name:opponent,metricLabel:label,showRank:false,bar:bar(defense)});
+  const ownRank=playerRanks[id]??null;
+  const defenseRank=benchmarks[defenseId].percentile(defense);
+  const own=valueCell(actual,ownRank,unit,'',{name:record.name,metricLabel:ownLabel});
+  const other=valueCell(defense,defenseRank,unit,'',{name:opponent,metricLabel:label});
   const ownHelp=personal[id]||C.playerMetrics.find(([metricId])=>metricId===id)?.[4]||'קליעות השחקן מתוך ניסיונותיו בטווח המוצג.';
   return `<details class="dna-row dna-defense-row" data-metric="${id}"><summary><div class="dna-values dna-pair">${own}${other}</div></summary><p><b>${esc(ownLabel)}:</b> ${esc(ownHelp)}<br><b>${esc(label)}:</b> ${esc(help)} · ${esc(sources[source])}</p></details>`;
  });
@@ -436,7 +445,8 @@ function defenseComparison(record,games,stats,opponent,{allowed,count},fixture,h
  const description=history
   ?'ביצוע השחקן במשחק מול מה שההגנה הקבוצתית אפשרה לפני המפגש.'
   :'בכל שורה מוצגים הביצוע האישי בהתקפה ונתוני ההגנה של הקבוצה היריבה כולה.';
- return `<div class="dna-defense-compare">${history?header:''}${teamMetricTable(title,description+' הפסים הצהובים מוצגים בסולם משותף לכל מדד.',rows.slice(0,-1).join(''),'dnaPlayerDefenseMetricsTitle',columnHeading)}<section class="dna-team-metrics"><h4>הגנה</h4><div class="dna-chart">${columnHeading}${rows.at(-1)}</div></section></div>`;
+ const rankExplanation=history?'הפס הצהוב מציג את אחוזון ההגנה בליגה לפני המשחק; הופעה בודדת של השחקן אינה מדורגת.':'הפסים הצהובים מציגים אחוזון (0–100): השחקן מול שחקנים באותה עמדה, ההגנה מול קבוצות הליגה, באותו טווח. אחוזון גבוה מציין ערך גבוה, לא בהכרח יתרון.';
+ return `<div class="dna-defense-compare">${history?header:''}${teamMetricTable(title,description+' '+rankExplanation,rows.slice(0,-1).join(''),'dnaPlayerDefenseMetricsTitle',columnHeading)}<section class="dna-team-metrics"><h4>הגנה</h4><div class="dna-chart">${columnHeading}${rows.at(-1)}</div></section></div>`;
 }
 function playerStyleComparison(record,gameLimit,opponent){
  if(!opponent)return empty('בחר שחקן כדי להשוות סגנונות.');
@@ -819,7 +829,7 @@ function renderPlayer(){
   if(!opponent){out.innerHTML=empty('טרם נקבע משחק יורוליג קרוב לקבוצת השחקן.');return;}
   const defense=C.matchupDefense(model.teams,opponent,{limit,venue:rivalVenue});
   const stats=matchupPlayerStats(games,report);
-  out.innerHTML=defenseComparison(record,games,stats,opponent,defense,fixtureFor(record.team,opponent));
+  out.innerHTML=defenseComparison(record,games,stats,opponent,defense,fixtureFor(record.team,opponent),false,matchupPlayerRanks(record,stats,reports,options));
   return;
  }
  if(rival){
