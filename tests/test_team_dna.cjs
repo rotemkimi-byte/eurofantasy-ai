@@ -52,13 +52,40 @@ const rivalFga=rivalBox.fieldGoalsAttempted2+rivalBox.fieldGoalsAttempted3;
 const rivalActions=rivalFga+.44*rivalBox.freeThrowsAttempted+rivalBox.turnovers;
 near(defense.allowed.allowedTwo.value,100*rivalBox.fieldGoalsMade2/rivalBox.fieldGoalsAttempted2);
 near(defense.allowed.forced.value,100*rivalBox.turnovers/(rivalActions-rivalBox.offensiveRebounds));
-assert.deepEqual(Object.keys(defense.allowed),['allowedThree','allowedTwo','allowedRebound','forced','steals','allowedFouls','allowedRim']);
+assert.deepEqual(Object.keys(defense.allowed),['allowedThree','allowedTwo','allowedFastbreak','allowedRebound','allowedSecondChance','forced','steals','allowedFouls','allowedRim']);
 for(const spec of D.defense)assert.deepEqual(defense.allowed[spec[0]],D.summarize([prior],[spec])[spec[0]]);
 assert.equal(defense.allowed.allowedTwo.total,1);
 assert.equal(defense.count,1);
 assert.equal(defense.benchmarks.allowedTwo.percentile(defense.allowed.allowedTwo),null);
 assert.equal(defense.league.allowedTwo.total,model.teams.length);
 const seasonDefense=D.matchupDefense(model.teams,team.team,{before});
+const contextPairs=[['fastbreak','allowedFastbreak'],['secondChance','allowedSecondChance']];
+let coveredContexts=0;
+for(const t of model.teams)for(const g of t.games){
+ const opponent=model.teams.find(x=>x.team===g.opponent)?.games.find(x=>x.code===g.code);
+ for(const [offensive,allowed] of contextPairs){
+  if(g.metrics[allowed]===null)continue;
+  assert.deepEqual(g.metrics[allowed],opponent.metrics[offensive]);
+  assert.equal(g.metrics[allowed][1],g.against);
+  coveredContexts++;
+ }
+}
+assert.ok(coveredContexts>0);
+for(const [offensive,allowed] of contextPairs){
+ const covered=team.games.filter(g=>Date.parse(g.date)<before&&g.metrics[allowed]);
+ near(seasonDefense.allowed[allowed].value,100*covered.reduce((n,g)=>n+g.metrics[allowed][0],0)/covered.reduce((n,g)=>n+g.against,0));
+ assert.ok(Number.isInteger(seasonDefense.benchmarks[allowed].percentile(seasonDefense.allowed[allowed])));
+ assert.equal(D.matchupMetrics.find(spec=>spec[5]===allowed)[0],offensive);
+}
+const wrongSeason=D.build(official,{...advanced,season:'E2025'},T,Date.now(),events);
+for(const [,allowed] of contextPairs)assert.equal(D.matchupDefense(wrongSeason.teams,team.team).allowed[allowed].value,null);
+const missingTags=structuredClone(advanced.games[game.code]);
+const rivalScorer=Object.values(missingTags.players).find(p=>p.team===game.opponent&&p.minutes>0&&p.stats.points>0);
+rivalScorer.styleShots.fastbreak=null;
+const incomplete=D.build(official,{...advanced,games:{...advanced.games,[game.code]:missingTags}},T,Date.now(),events);
+const incompleteGame=incomplete.teams.find(t=>t.team===team.team).games.find(g=>g.code===game.code);
+assert.equal(incompleteGame.metrics.allowedFastbreak,null);
+assert.deepEqual(incompleteGame.metrics.allowedSecondChance,game.metrics.allowedSecondChance);
 const rankSample=[10,20,30,40,50,60].map(value=>({value,count:3,minutes:120,denominator:20}));
 assert.equal(D.benchmark(rankSample,'allowedRim',false,{raw:true}).percentile(rankSample[0]),8);
 assert.equal(D.benchmark(rankSample,'allowedRim').percentile(rankSample[0]),92);

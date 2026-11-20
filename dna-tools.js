@@ -15,7 +15,7 @@ const toPosition={Guard:'G',Forward:'F',Center:'C'};
 const styleTags={assists:'יוצר משחק',usage:'מעורבות התקפית גבוהה',three:'זורק הרבה לשלוש',
  rim:'משחק ליד הסל',fastbreak:'שחקן מתפרצות',offRebound:'ריבאונד התקפה',defRebound:'ריבאונד הגנה',
  drawn:'סוחט עבירות',steals:'חוטף כדורים',blocks:'חוסם',secondChance:'הזדמנות שנייה'};
-const lowerIsBetter=new Set(['turnovers','tovPct','fouls','allowedThree','allowedTwo','allowedRebound','allowedFouls',...C.lowTeamMetrics]);
+const lowerIsBetter=new Set(['turnovers','tovPct','fouls','allowedThree','allowedTwo','allowedRebound','allowedFouls','allowedFastbreak','allowedSecondChance',...C.lowTeamMetrics]);
 const fmt=(value,unit='')=>value==null?'—':decimal.format(value)+(unitLabels[unit]||'');
 const price=p=>Number.isFinite(p.price)&&p.price>0?fmt(p.price)+' CR':'';
 const labelName=name=>name.includes(',')?name.split(',').reverse().map(s=>s.trim()).join(' '):name;
@@ -424,7 +424,7 @@ function matchupPlayerRanks(record,stats,reports,options){
 }
 function defenseComparison(record,games,stats,opponent,{allowed,count,benchmarks},fixture,history=false,playerRanks={}){
  const columnHeading='<div class="dna-defense-columns"><div class="dna-values dna-pair"><strong>דנ״א שחקן</strong><strong>מה ההגנה מאפשרת</strong></div></div>';
- const playerLabels={twoAccuracy:'דיוק לשתיים',orbPct:'אחוז ריבאונד התקפה (ORB%)',playerTov100:'איבודים ל־100 פוזשנים',steals:'איבודים',rimAccuracy:'דיוק ליד הטבעת'};
+ const playerLabels={twoAccuracy:'דיוק לשתיים',fastbreak:'נקודות במתפרצות',secondChance:'נקודות מהזדמנות שנייה',orbPct:'אחוז ריבאונד התקפה (ORB%)',playerTov100:'איבודים ל־100 פוזשנים',steals:'איבודים',rimAccuracy:'דיוק ליד הטבעת'};
  const rows=C.matchupMetrics.map(([id,label,unit,source,help,defenseId])=>{
   const steals=defenseId==='steals';
   const actual=steals?stats.turnovers:stats[id];

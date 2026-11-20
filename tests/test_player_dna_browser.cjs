@@ -200,7 +200,7 @@ const server=http.createServer((req,res)=>{
    const names=await matchup.locator('[data-metric=threeAccuracy] .dna-value-name').allTextContents();
    assert.equal(names.length,2);
    assert.ok(names.every(Boolean));
-   assert.equal(await matchup.locator('.dna-row').count(),7);
+   assert.equal(await matchup.locator('.dna-row').count(),9);
    const threes=matchup.locator('[data-metric=threeAccuracy]');
    assert.deepEqual(await threes.locator('.dna-value-name').allTextContents(),names);
    assert.equal(await matchup.locator('.dna-ahead,.dna-behind,.dna-indicator').count(),0);
@@ -227,7 +227,7 @@ const server=http.createServer((req,res)=>{
     await matchup.locator('.dna-team-metrics').first().screenshot({path:path.join(process.env.DNA_SCREENSHOT_DIR,'defense-comparison.png')});
    }
    assert.doesNotMatch(await matchup.textContent(),/פער/);
-   const expectedLabels={threeAccuracy:['דיוק משלוש','דיוק יריבות משלוש'],twoAccuracy:['דיוק לשתיים','דיוק יריבות לשתיים'],orbPct:['אחוז ריבאונד התקפה (ORB%)','ריבאונד התקפה ליריבות'],playerTov100:['איבודים ל־100 פוזשנים','איבודי יריבות'],steals:['איבודים','חטיפות'],drawn:['סחיטת עבירות','עבירות שסחטו היריבות'],rimAccuracy:['דיוק ליד הטבעת','דיוק יריבות ליד הטבעת']};
+   const expectedLabels={threeAccuracy:['דיוק משלוש','דיוק יריבות משלוש'],twoAccuracy:['דיוק לשתיים','דיוק יריבות לשתיים'],fastbreak:['נקודות במתפרצות','נקודות במתפרצות ליריבות'],secondChance:['נקודות מהזדמנות שנייה','נקודות מהזדמנות שנייה ליריבות'],orbPct:['אחוז ריבאונד התקפה (ORB%)','ריבאונד התקפה ליריבות'],playerTov100:['איבודים ל־100 פוזשנים','איבודי יריבות'],steals:['איבודים','חטיפות'],drawn:['סחיטת עבירות','עבירות שסחטו היריבות'],rimAccuracy:['דיוק ליד הטבעת','דיוק יריבות ליד הטבעת']};
    for(const [id,labels] of Object.entries(expectedLabels)){
     const metric=matchup.locator(`[data-metric=${id}]`);
     assert.deepEqual(await metric.locator('.dna-defense-metric-label').allTextContents(),labels);
@@ -257,6 +257,16 @@ const server=http.createServer((req,res)=>{
    assert.match(await matchup.locator('h4').first().textContent(),/מה ההגנה מאפשרת/);
    assert.equal(await panel.locator('[data-season-range="0"]').getAttribute('aria-pressed'),'true');
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+   await page.locator('nav.tabs [data-tab="teamDna"]').evaluate(el=>el.click());
+   const teamPanel=page.locator('#teamDna');
+   await teamPanel.locator('[data-team]').selectOption('Olympiacos');
+   await teamPanel.locator('[data-view=defense]').click();
+   for(const id of ['allowedFastbreak','allowedSecondChance']){
+    const row=teamPanel.locator(`[data-metric=${id}]`);
+    assert.equal(await row.count(),1);
+    assert.match(await row.locator('.dna-value').first().locator('.dna-value-top strong').textContent(),/%/);
+    assert.equal(await row.locator('.dna-value').first().locator('.dna-track i').count(),1);
+   }
    assert.deepEqual(errors,[]);
    page.off('pageerror',recordError);
   }

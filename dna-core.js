@@ -33,7 +33,9 @@ const offense=[
 const defense=[
  ['allowedThree','דיוק יריבות משלוש','%','box','קליעות היריבות ל־3 מתוך ניסיונותיהן ל־3.'],
  ['allowedTwo','דיוק יריבות לשתיים','%','box','קליעות היריבות ל־2 מתוך ניסיונותיהן ל־2.'],
+ ['allowedFastbreak','נקודות במתפרצות ליריבות','%','events','אחוז נקודות היריבות שסומנו במתפרצת מתוך כלל נקודותיהן ביומן הזריקות המאומת מול הקבוצה.'],
  ['allowedRebound','ריבאונד התקפה ליריבות','%','box','שיעור ריבאונד ההתקפה של היריבות מול הקבוצה.'],
+ ['allowedSecondChance','נקודות מהזדמנות שנייה ליריבות','%','events','אחוז נקודות היריבות שסומנו כהזדמנות שנייה מתוך כלל נקודותיהן ביומן הזריקות המאומת מול הקבוצה.'],
  ['forced','איבודי יריבות','per100','estimated','איבודי היריבות ל־100 פוזשנים התקפיים משוערים של היריבות.'],
  ['steals','חטיפות','per40','box','חטיפות של הקבוצה ל־40 דקות.'],
  ['allowedFouls','עבירות שסחטו היריבות','per40','box','עבירות שהיריבות סחטו ל־40 דקות.']
@@ -81,7 +83,7 @@ const playerMetrics=[
  ['fouls','עבירות שביצע','per40','box','עבירות שביצע ל־40 דקות.']
 ];
 const units={'%':100,per40:40,per100:100,pos:40,cm:1,shots:1,ratio:1,pointsPerGame:1,pointsPer100:1,perPossession:1};
-const shootingMinimum={three:20,threeAccuracy:10,twoAccuracy:10,rim:20,fastbreak:20,secondChance:20,allowedThree:10,allowedTwo:10,ts:20,efg:20,midAccuracy:5,rimAccuracy:5,allowedRim:5};
+const shootingMinimum={three:20,threeAccuracy:10,twoAccuracy:10,rim:20,fastbreak:20,secondChance:20,allowedFastbreak:20,allowedSecondChance:20,allowedThree:10,allowedTwo:10,ts:20,efg:20,midAccuracy:5,rimAccuracy:5,allowedRim:5};
 
 function shots(rows){
  if(!rows.length||!rows.every(p=>p.styleShots))return {};
@@ -94,6 +96,11 @@ function shots(rows){
   rim:located>=sum('fieldAttempts')*.8?pair(sum('nearRim'),located):null,
   fastbreak:marked('fastbreak'),secondChance:marked('secondChance')
  };
+}
+function verifiedTeamShots(rows,stats,points){
+ const boxAttempts=rows.every(r=>totalShots(r.stats)!==null)?rows.reduce((sum,r)=>sum+totalShots(r.stats),0):null;
+ const boxPoints=rows.every(r=>field(r.stats,'points')!==null)?rows.reduce((sum,r)=>sum+r.stats.points,0):null;
+ return boxAttempts===totalShots(stats)&&boxPoints===points?shots(rows):{};
 }
 
 function validHeight(value){
@@ -189,10 +196,16 @@ function teamGames(team,official,events,teamEvents,scorers){
   const s=g.stats,o=g.opponentStats,p=possession(s),q=possession(o);
   const side=official.teamGames?.[g.code]?.[g.home?'local':'road'];
   const minutes=side?.team===g.team?number(side.gameMinutes):null;
-  const active=Object.values(events?.games?.[g.code]?.players||{}).filter(r=>r.team===g.team&&r.minutes>0);
-  const boxAttempts=active.every(r=>totalShots(r.stats)!==null)?active.reduce((sum,r)=>sum+totalShots(r.stats),0):null;
-  const boxPoints=active.every(r=>field(r.stats,'points')!==null)?active.reduce((sum,r)=>sum+r.stats.points,0):null;
-  const coverage=boxAttempts===totalShots(s)&&boxPoints===g.points?shots(active):{};
+  const eventGame=events?.games?.[g.code];
+  const eventPlayers=Object.values(eventGame?.players||{});
+  const active=eventPlayers.filter(r=>r.team===g.team&&r.minutes>0);
+  const coverage=verifiedTeamShots(active,s,g.points);
+  const rivalCoverage=events?.season===season&&Date.parse(eventGame?.date)===Date.parse(g.date)
+   ?verifiedTeamShots(eventPlayers.filter(r=>r.team===g.opponent&&r.minutes>0),o,g.against):{};
+  const allowedShare=id=>{
+   const values=rivalCoverage[id];
+   return values&&values[1]===g.against&&number(values[0])!==null&&values[0]<=values[1]?values:null;
+  };
   const candidate=teamEvents?.games?.[g.code];
   const extras=teamMetrics(g,p,Date.parse(candidate?.date)===Date.parse(g.date)?candidate:null,scorers.get(g.code+'|'+g.team));
   return {...g,scorers:extras.scorers,offensiveRating:extras.offensiveRating,lineups:lineupSizes(active,minutes),metrics:{
@@ -202,6 +215,7 @@ function teamGames(team,official,events,teamEvents,scorers){
    assisted:pair(field(s,'assistances'),madeShots(s)),turnovers:pair(field(s,'turnovers'),p),
    drawn:pair(field(s,'foulsReceived'),minutes),height:courtHeight(active,minutes),...coverage,
    allowedThree:pair(made(o,3),attempts(o,3)),allowedTwo:pair(made(o,2),attempts(o,2)),
+   allowedFastbreak:allowedShare('fastbreak'),allowedSecondChance:allowedShare('secondChance'),
    allowedRebound:rebound(o,s),forced:pair(field(o,'turnovers'),q),steals:pair(field(s,'steals'),minutes),
    allowedFouls:pair(field(o,'foulsReceived'),minutes)
   }};
@@ -293,6 +307,7 @@ function benchmark(stats,id,player=false,{raw=false}={}){
 
 const matchupDefenseMetrics=[...defense,...teamGroups.find(([title])=>title==='הגנה')[1]];
 const playerDefenseKeys={allowedThree:'threeAccuracy',allowedTwo:'twoAccuracy',allowedRebound:'orbPct',
+ allowedFastbreak:'fastbreak',allowedSecondChance:'secondChance',
  forced:'playerTov100',steals:'steals',allowedFouls:'drawn',allowedRim:'rimAccuracy'};
 const matchupMetrics=matchupDefenseMetrics.map(([id,label,unit,source,help])=>
  [playerDefenseKeys[id],label,unit,source,help,id]);
