@@ -343,11 +343,12 @@ function teamIndicator(side){
  if(side.endsWith('dna-behind'))return '<span class="dna-indicator" aria-label="מאחור במדד" role="img">▼</span>';
  return '';
 }
-function valueCell(stat,rating,unit,side,{league=false,singleGame=false,bar=rating,showRank=true,name}={}){
+function valueCell(stat,rating,unit,side,{league=false,singleGame=false,bar=rating,showRank=true,name,metricLabel}={}){
  const real=stat?.value!=null;
  const sample=league?(stat.count+' קבוצות במדגם'):(stat.count+' / '+stat.total+' משחקים');
  const display=real?fmt(stat.value,unit):'אין מספיק נתונים';
  return `<div class="dna-value ${side}">
+  ${metricLabel?`<b class="dna-defense-metric-label">${esc(metricLabel)}</b>`:''}
   ${name?`<div class="dna-value-name"><bdi>${esc(name)}</bdi></div>`:''}
   <div class="dna-value-top"><strong>${teamIndicator(side)}<bdi>${esc(display)}</bdi></strong>${rating===null?'':`<bdi class="dna-rank">${rating}/100</bdi>`}</div>
   ${bar===null?'':`<div class="dna-track" aria-hidden="true"><i style="--dna-width:${bar}%"></i></div>`}
@@ -412,20 +413,21 @@ function matchupPlayerStats(games,report){
 }
 function defenseComparison(record,games,stats,opponent,{allowed,count},fixture,history=false){
  const columnHeading='<div class="dna-defense-columns"><div class="dna-values dna-pair"><strong>דנ״א שחקן</strong><strong>מה ההגנה מאפשרת</strong></div></div>';
+ const playerLabels={twoAccuracy:'דיוק לשתיים',orbPct:'אחוז ריבאונד התקפה (ORB%)',playerTov100:'איבודים ל־100 פוזשנים',steals:'איבודים',rimAccuracy:'דיוק ליד הטבעת'};
  const rows=C.matchupMetrics.map(([id,label,unit,source,help,defenseId])=>{
   const steals=defenseId==='steals';
   const actual=steals?stats.turnovers:stats[id];
-  const personal={orbPct:'חלק השחקן בריבאונדי ההתקפה הזמינים בדקות ששיחק.',playerTov100:'איבודים אישיים ל־100 פוזשנים קבוצתיים בדקות ששיחק.',drawn:'עבירות שהשחקן סחט ל־40 דקות.',steals:'בצד השחקן נספרים כל איבודיו בהתקפה, כולל איבודים ללא חטיפה.'};
-  const ownName=steals?record.name+' · איבודים':record.name;
-  const teamName=steals?opponent+' · חטיפות':opponent;
+  const personal={twoAccuracy:'קליעות השחקן לשתיים מתוך ניסיונותיו לשתיים.',orbPct:'חלק השחקן בריבאונדי ההתקפה הזמינים בדקות ששיחק.',playerTov100:'איבודים אישיים ל־100 פוזשנים קבוצתיים בדקות ששיחק.',drawn:'עבירות שהשחקן סחט ל־40 דקות.',steals:'בצד השחקן נספרים כל איבודיו בהתקפה ל־40 דקות, כולל איבודים ללא חטיפה.',rimAccuracy:'קליעות השחקן מתוך ניסיונות לשתיים עד שני מטרים מהטבעת.'};
+  const ownLabel=playerLabels[id]||C.playerMetrics.find(([metricId])=>metricId===id)?.[1];
   const defense=allowed[defenseId];
   const valid=value=>Number.isFinite(value)&&value>=0;
   const max=Math.max(0,...[actual?.value,defense?.value].filter(valid));
   const scale=unit==='%'?Math.max(100,max):Math.max(5,Math.ceil(max/5)*5);
   const bar=stat=>valid(stat?.value)?100*stat.value/scale:null;
-  return row([id,steals?'איבודי השחקן וחטיפות ההגנה':label,unit,source,[help,personal[id]].filter(Boolean).join(' ')],
-   valueCell(actual,null,unit,'',{name:ownName,showRank:false,bar:bar(actual)}),
-   valueCell(defense,null,unit,'',{name:teamName,showRank:false,bar:bar(defense)}));
+  const own=valueCell(actual,null,unit,'',{name:record.name,metricLabel:ownLabel,showRank:false,bar:bar(actual)});
+  const other=valueCell(defense,null,unit,'',{name:opponent,metricLabel:label,showRank:false,bar:bar(defense)});
+  const ownHelp=personal[id]||C.playerMetrics.find(([metricId])=>metricId===id)?.[4]||'קליעות השחקן מתוך ניסיונותיו בטווח המוצג.';
+  return `<details class="dna-row dna-defense-row" data-metric="${id}"><summary><div class="dna-values dna-pair">${own}${other}</div></summary><p><b>${esc(ownLabel)}:</b> ${esc(ownHelp)}<br><b>${esc(label)}:</b> ${esc(help)} · ${esc(sources[source])}</p></details>`;
  });
  const header=comparisonHeader(history?'משחק עבר · 2026/27':'היריבה הבאה',
   {name:record.name,image:playerPhotos[C.key(record.name)]?.photo,kind:'player',caption:history?'ביצוע במשחק':games.length+' הופעות בטווח'},

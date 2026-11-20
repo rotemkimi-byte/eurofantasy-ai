@@ -222,7 +222,17 @@ const server=http.createServer((req,res)=>{
     await matchup.locator('.dna-team-metrics').first().screenshot({path:path.join(process.env.DNA_SCREENSHOT_DIR,'defense-comparison.png')});
    }
    assert.doesNotMatch(await matchup.textContent(),/פער/);
-   assert.match(await matchup.locator('[data-metric=steals] .dna-value-name').first().textContent(),/איבודים/);
+   const expectedLabels={threeAccuracy:['דיוק משלוש','דיוק יריבות משלוש'],twoAccuracy:['דיוק לשתיים','דיוק יריבות לשתיים'],orbPct:['אחוז ריבאונד התקפה (ORB%)','ריבאונד התקפה ליריבות'],playerTov100:['איבודים ל־100 פוזשנים','איבודי יריבות'],steals:['איבודים','חטיפות'],drawn:['סחיטת עבירות','עבירות שסחטו היריבות'],rimAccuracy:['דיוק ליד הטבעת','דיוק יריבות ליד הטבעת']};
+   for(const [id,labels] of Object.entries(expectedLabels)){
+    const metric=matchup.locator(`[data-metric=${id}]`);
+    assert.deepEqual(await metric.locator('.dna-defense-metric-label').allTextContents(),labels);
+    assert.deepEqual(await metric.locator('.dna-value-name').allTextContents(),names);
+    assert.ok(await metric.locator('.dna-pair').evaluate(el=>{
+     const cells=[...el.children];
+     const values=cells.map(c=>c.querySelector('.dna-value-top').getBoundingClientRect());
+     return values[0].top===values[1].top&&cells.every(c=>c.querySelector('.dna-defense-metric-label').getBoundingClientRect().bottom<=c.querySelector('.dna-value-top').getBoundingClientRect().top);
+    }));
+   }
    assert.ok(await threes.locator('.dna-pair').evaluate(el=>{
     const [a,b]=[...el.children].map(node=>node.getBoundingClientRect());
     return a.top===b.top&&b.right<=a.left;
