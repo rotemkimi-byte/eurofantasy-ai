@@ -1,9 +1,9 @@
 {
   "schema": "rolling-learning-v1",
   "season": "E2026",
-  "engineId": "9b8929cb234f1ff61e7b",
-  "updated_at": "2026-11-20T17:21:42.426402+00:00",
-  "exactCount": 1970,
+  "engineId": "0d3942abd678371df3d1",
+  "updated_at": "2026-11-20T23:12:06.616724+00:00",
+  "exactCount": 2064,
   "diagnostic": {
     "n": 451,
     "mae": 5.167981383984494,
@@ -16,10 +16,10 @@
   },
   "missingInputs": 347,
   "validation": {
-    "n": 1698,
-    "games": 73,
-    "baselineMae": 5.7074263209498906,
-    "candidateMae": 5.659638849958104,
+    "n": 1790,
+    "games": 77,
+    "baselineMae": 5.740139564273112,
+    "candidateMae": 5.693183693798865,
     "active": false,
     "reason": "collecting-or-no-improvement",
     "folds": [
@@ -679,33 +679,69 @@
         "testN": 22,
         "baselineMae": 4.809342800799265,
         "candidateMae": 4.742323198423518
+      },
+      {
+        "gameCode": 127,
+        "round": 13,
+        "trainingN": 1933,
+        "trainingGames": 83,
+        "testN": 23,
+        "baselineMae": 6.526178416938887,
+        "candidateMae": 6.518280750648385
+      },
+      {
+        "gameCode": 130,
+        "round": 13,
+        "trainingN": 1933,
+        "trainingGames": 83,
+        "testN": 23,
+        "baselineMae": 5.755291541967921,
+        "candidateMae": 5.695506695905592
+      },
+      {
+        "gameCode": 128,
+        "round": 13,
+        "trainingN": 1933,
+        "trainingGames": 83,
+        "testN": 23,
+        "baselineMae": 7.210775327009096,
+        "candidateMae": 7.12032017658868
+      },
+      {
+        "gameCode": 129,
+        "round": 13,
+        "trainingN": 1933,
+        "trainingGames": 83,
+        "testN": 23,
+        "baselineMae": 5.883403717386562,
+        "candidateMae": 5.91511171038373
       }
     ],
-    "intervalCoverage": 0.8021201413427562
+    "intervalCoverage": 0.8
   },
   "coefficients": {
     "G": {
-      "n": 793,
-      "minutes": -0.4419047514293137,
-      "efficiencyPir": -0.21154060355173127
+      "n": 828,
+      "minutes": -0.4098226597849939,
+      "efficiencyPir": -0.1758135041924588
     },
     "F": {
-      "n": 665,
-      "minutes": -0.42225059021582445,
-      "efficiencyPir": -0.22083322624099994
+      "n": 702,
+      "minutes": -0.4131689380575348,
+      "efficiencyPir": -0.2234883345995296
     },
     "C": {
-      "n": 356,
-      "minutes": -0.9440886474756203,
-      "efficiencyPir": 0.3385466103089304
+      "n": 372,
+      "minutes": -0.9142455227162651,
+      "efficiencyPir": 0.3148407265969309
     }
   },
   "interval": {
     "active": true,
     "targetCoverage": 0.8,
-    "coverage": 0.8021201413427562,
-    "n": 1698,
-    "radius": 9.002988632209847
+    "coverage": 0.8,
+    "n": 1790,
+    "radius": 9.027416564089668
   },
   "limitations": [
     "Partial historical reconstructions exclude unrecoverable pregame defensive context and momentum configuration; never activate live corrections.",
@@ -955,14 +991,14 @@
     {
       "round": 13,
       "kind": "exact-frozen-input",
-      "n": 143,
-      "mae": 5.65608066633798,
-      "bias": -1.1231291967644772,
-      "minutesMae": 5.1928674929684355,
-      "hits": 42,
-      "hitRate": 29.37062937062937,
-      "over": 68,
-      "under": 33
+      "n": 237,
+      "mae": 5.96996677105016,
+      "bias": -0.5228627135234153,
+      "minutesMae": 5.45284075398132,
+      "hits": 68,
+      "hitRate": 28.691983122362867,
+      "over": 107,
+      "under": 62
     },
     {
       "round": 13,
@@ -1179,6 +1215,122 @@
       "replayKind": "exact-frozen-input",
       "baseFloor": 12.146150551303869,
       "baseCeiling": 31.57999143339006
+    },
+    {
+      "name": "Dario Brizuela",
+      "key": "brizuela dario",
+      "team": "Barcelona",
+      "pos": "G",
+      "opponent": "Crvena Zvezda",
+      "gameCode": 128,
+      "round": 13,
+      "start": "2026-11-20T19:30:00Z",
+      "basePir": 6.172184094434522,
+      "baseMinutes": 18.394590954567107,
+      "servedPir": 5.248789952130758,
+      "servedMinutes": 18.746121319842917,
+      "status": "active",
+      "modelId": "149d68d8aa8ea28ec6ea",
+      "eligible": true,
+      "snapshotAt": "2026-11-20T17:22:43.504325+00:00",
+      "home": true,
+      "features": {
+        "basePir": 5.858197747143498,
+        "baseMin": 15.273545652173912,
+        "injuryBoost": 0.6725,
+        "injuryUsagePct": 0.7379999999999999,
+        "missingStars": [
+          "Kevin Punter"
+        ],
+        "positionMatchPct": -11.133814673108978,
+        "teamPoints": 85.74995,
+        "margin": 1.5999,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 5.868421052631579,
+          "avgMinutes": 15.541660526315788,
+          "currentSeasonWeight": 0.7333333333333333,
+          "minutesWeight": 0.8461538461538461,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.7333333333333333,
+        "context": {
+          "involvementFactor": 1.0063422844311738,
+          "defenseFactor": 0.9712063828337464,
+          "defenseSample": 12,
+          "rival": "Chris Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.733172243798265,
+              "weight": 0.8035919666966159,
+              "observedGames": 9
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.797087090301,
+              "weight": 0.12196407551884529,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.356989993311036,
+              "weight": 0.0744439577845388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": true
+        }
+      },
+      "actualPir": 31,
+      "actualMinutes": 30.116666666666667,
+      "fouls": 1,
+      "actualStats": {
+        "points": 22,
+        "totalRebounds": 5,
+        "assistances": 4,
+        "turnovers": 0,
+        "foulsCommited": 1,
+        "fieldGoalsMadeTotal": 8,
+        "fieldGoalsAttemptedTotal": 12
+      },
+      "minutesContribution": 3.933265460627951,
+      "efficiencyContribution": 20.89455044493753,
+      "reason": "efficiency",
+      "error": 24.82781590556548,
+      "servedError": 25.751210047869243,
+      "outcome": "miss",
+      "replayKind": "exact-frozen-input",
+      "baseFloor": 3.588153210091945,
+      "baseCeiling": 9.060086855482163
     },
     {
       "name": "Antonio Blakeney",
@@ -1933,71 +2085,6 @@
       "replayKind": "exact-frozen-input",
       "baseFloor": 4.653663286727371,
       "baseCeiling": 14.054063125916661
-    },
-    {
-      "name": "Chris Duarte",
-      "key": "chris duarte",
-      "team": "Baskonia",
-      "pos": "G",
-      "opponent": "Besiktas",
-      "gameCode": 38,
-      "round": 4,
-      "start": "2026-10-09T18:30:00Z",
-      "basePir": 9.405143829600352,
-      "baseMinutes": 21.8125,
-      "servedPir": 9.921701019025736,
-      "servedMinutes": 21.458,
-      "status": "active",
-      "modelId": "c9d03cdbf2c56829b3d4",
-      "eligible": true,
-      "snapshotAt": "2026-10-08T18:57:54.418659+00:00",
-      "home": true,
-      "features": {
-        "basePir": 9.3,
-        "baseMin": 23,
-        "injuryBoost": 0,
-        "injuryUsagePct": 0,
-        "missingStars": [],
-        "positionMatchPct": 0,
-        "teamPoints": 93.05,
-        "margin": 0.23,
-        "lastGameWeight": null,
-        "personalPrior": {
-          "historicalGames": 0,
-          "historyWeight": 0,
-          "sameTeam": false,
-          "avgPir": null,
-          "avgMinutes": null,
-          "currentSeasonWeight": 0.42857142857142855,
-          "minutesWeight": 0.6,
-          "momentumPir": 0,
-          "momentumEnabled": false,
-          "hot": false,
-          "streaks": []
-        },
-        "currentSeasonWeight": 0.42857142857142855
-      },
-      "actualPir": 31,
-      "actualMinutes": 26.25,
-      "fouls": 3,
-      "actualStats": {
-        "points": 23,
-        "totalRebounds": 5,
-        "assistances": 1,
-        "turnovers": 1,
-        "foulsCommited": 3,
-        "fieldGoalsMadeTotal": 3,
-        "fieldGoalsAttemptedTotal": 7
-      },
-      "minutesContribution": 1.9133673693456303,
-      "efficiencyContribution": 19.681488801054016,
-      "reason": "efficiency",
-      "error": 21.594856170399648,
-      "servedError": 21.078298980974264,
-      "outcome": "miss",
-      "replayKind": "partial-reconstruction",
-      "baseFloor": 4.467443319060167,
-      "baseCeiling": 14.577972935880545
     }
   ]
 }
