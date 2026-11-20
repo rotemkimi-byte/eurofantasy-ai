@@ -203,7 +203,24 @@ const server=http.createServer((req,res)=>{
    assert.equal(await matchup.locator('.dna-row').count(),7);
    const threes=matchup.locator('[data-metric=threeAccuracy]');
    assert.deepEqual(await threes.locator('.dna-value-name').allTextContents(),names);
-   assert.equal(await matchup.locator('.dna-track,.dna-rank,.dna-ahead,.dna-behind,.dna-indicator').count(),0);
+   assert.equal(await matchup.locator('.dna-rank,.dna-ahead,.dna-behind,.dna-indicator').count(),0);
+   const columnHeading=matchup.locator('.dna-defense-columns').first();
+   assert.deepEqual(await columnHeading.locator('strong').allTextContents(),['דנ״א שחקן','מה ההגנה מאפשרת']);
+   assert.equal(await threes.locator('.dna-track i').count(),2);
+   assert.ok(await threes.evaluate(el=>[...el.querySelectorAll('.dna-value')].every(cell=>{
+    const bar=cell.querySelector('.dna-track i');
+    const value=parseFloat(cell.querySelector('.dna-value-top strong').textContent);
+    return Math.abs(parseFloat(bar.style.getPropertyValue('--dna-width'))-value)<.11&&
+     getComputedStyle(bar).backgroundColor==='rgb(234, 179, 8)';
+   })));
+   assert.ok(await columnHeading.evaluate(el=>{
+    const labels=[...el.querySelectorAll('strong')].map(node=>node.getBoundingClientRect());
+    const cells=[...el.nextElementSibling.querySelectorAll('.dna-value')].map(node=>node.getBoundingClientRect());
+    return labels[0].left>labels[1].left&&labels.every((label,i)=>Math.abs(label.left-cells[i].left)<2);
+   }));
+   if(process.env.DNA_SCREENSHOT_DIR&&width===390){
+    await matchup.locator('.dna-team-metrics').first().screenshot({path:path.join(process.env.DNA_SCREENSHOT_DIR,'defense-comparison.png')});
+   }
    assert.doesNotMatch(await matchup.textContent(),/פער/);
    assert.match(await matchup.locator('[data-metric=steals] .dna-value-name').first().textContent(),/איבודים/);
    assert.ok(await threes.locator('.dna-pair').evaluate(el=>{
