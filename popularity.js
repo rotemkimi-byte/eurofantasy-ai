@@ -200,8 +200,11 @@
 
     const archivePath = 'data/popularity-snapshots.json';
     // The sync can publish a newer snapshot before GitHub Pages redeploys.
-    const published = location.hostname === 'rotemkimi-byte.github.io'
-      ? fetchData('https://raw.githubusercontent.com/rotemkimi-byte/eurofantasy-ai/main/' + archivePath)
+    const siteRepository = location.pathname.split('/')[1];
+    const isDemo = location.hostname === 'rotemkimi-byte.github.io'
+      && ['eurofantasy-ai', 'eurofantasy-ai-demo-test'].includes(siteRepository);
+    const published = isDemo
+      ? fetchData('https://raw.githubusercontent.com/rotemkimi-byte/' + siteRepository + '/main/' + archivePath)
           .catch(() => fetchData('./' + archivePath))
       : fetchData('./' + archivePath);
     const [archive, meta] = await Promise.allSettled([published, fetchData('./data/meta.json')]);
