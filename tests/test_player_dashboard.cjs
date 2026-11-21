@@ -78,6 +78,13 @@ await marketStats.locator('dt').filter({hasText:'ממוצע נקודות'}).wait
 const back=page.getByRole('button',{name:/חזרה לרשימת השחקנים/});
 assert(await back.isVisible());
 assert(await marketProfile.locator(':scope > .ef-player-watch').isVisible());
+for(const selector of ['.ef-overview-data [data-game-index]','.ef-market-credits [data-credit-point]','.ef-player-free-throws [data-game-index]']){
+ const point=marketProfile.locator(selector).nth(1);
+ await point.press('Enter');
+ assert.equal(await point.getAttribute('aria-pressed'),'true');
+}
+assert.equal(await marketProfile.locator('.ef-chart-detail,.ef-credit-detail,.ef-ft-detail,#efPlayerForecast').count(),0);
+assert(await marketProfile.locator('.ef-usage-preview').isVisible());
 for(const width of [320,390,650]){
  await page.setViewportSize({width,height:844});
  const layout=await marketStats.evaluateAll(cells=>cells.map(el=>({

@@ -70,7 +70,7 @@ function creditRows(rounds,player){
  return rows;
 }
 window.PlayerCredits={load:creditHistory,rows:creditRows};
-function creditChart(rows){
+function creditChart(rows,showDetails){
  if(!rows.length)return '<h3>קרדיטים</h3><span class="muted" aria-label="אין נתוני קרדיטים">—</span>';
  const prices=rows.map(r=>r.price),lo=Math.min(...prices),hi=Math.max(...prices);
  const center=(lo+hi)/2,half=Math.max(Math.ceil((hi-lo)*5)/10,.3);
@@ -95,7 +95,7 @@ function creditChart(rows){
     ${tick?`<text x="${cx}" y="101" text-anchor="middle">${r.current?'עכשיו':r.round}</text>`:''}
    </g>`;
   }).join('')}
- </svg></div><div class="ef-credit-detail" aria-live="polite"></div>`;
+ </svg></div>${showDetails?'<div class="ef-credit-detail" aria-live="polite"></div>':''}`;
 }
 function safeImage(url){try{const u=new URL(url);return u.protocol==='https:'&&['media-cdn.cortextech.io','media-cdn.incrowdsports.com','media-cdn.euroleague.net'].includes(u.hostname)?url:null;}catch{return null;}}
 function photo(host,url,alt){if(!host||!safeImage(url))return;const img=new Image();img.alt=alt;img.decoding='async';img.referrerPolicy='no-referrer';img.onload=()=>{if(host.isConnected){host.replaceChildren(img);host.removeAttribute('aria-hidden');}};img.src=url;}
@@ -232,19 +232,21 @@ window.showPlayer=function(target){
  let creditPoints=[],activeCredit=null;
  function showCredit(point){
   if(!point)return;
-  const row=creditPoints[Number(point.dataset.creditPoint)];
-  const game=row.current?null:seasonGames.find(g=>Number(g.round)===row.round);
   activeCredit?.setAttribute('aria-pressed','false');
   activeCredit=point;
   point.setAttribute('aria-pressed','true');
-  credits.querySelector('.ef-credit-detail').innerHTML=window.ChartGameCard.render({
+  const detail=credits.querySelector('.ef-credit-detail');
+  if(!detail)return;
+  const row=creditPoints[Number(point.dataset.creditPoint)];
+  const game=row.current?null:seasonGames.find(g=>Number(g.round)===row.round);
+  detail.innerHTML=window.ChartGameCard.render({
    game,heading:row.current?'מחיר נוכחי':'מחיר לפני מחזור '+row.round,
    values:[...gameValues(game),['קרדיט',fmt(row.price)]]
   });
  }
  const draw=rounds=>{
   creditPoints=creditRows(rounds,player).filter(r=>r.price>0);
-  credits.innerHTML=creditChart(creditPoints);
+  credits.innerHTML=creditChart(creditPoints,!compactMarket);
   showCredit(credits.querySelector('[aria-pressed="true"]'));
  };
  const select=e=>{
@@ -297,15 +299,18 @@ window.showPlayer=function(target){
   target.innerHTML=chart(selected,metric);
   const points=target.querySelectorAll('[data-game-index]');
   if(!points.length)return;
-  const detail=document.createElement('div');
-  detail.className=metric===freeThrowsTrend?'ef-ft-detail':'ef-chart-detail';
-  detail.setAttribute('aria-live','polite');
-  target.append(detail);
+  const detail=compactMarket?null:document.createElement('div');
+  if(detail){
+   detail.className=metric===freeThrowsTrend?'ef-ft-detail':'ef-chart-detail';
+   detail.setAttribute('aria-live','polite');
+   target.append(detail);
+  }
   const games=selected.slice().reverse();
   const show=point=>{
-   const game=games[Number(point.dataset.gameIndex)];
    target.querySelector('[aria-pressed="true"]')?.setAttribute('aria-pressed','false');
    point.setAttribute('aria-pressed','true');
+   if(!detail)return;
+   const game=games[Number(point.dataset.gameIndex)];
    const values=gameValues(game);
    if(metric===freeThrowsTrend)values.push(['עונשין · קליעות/ניסיונות',freeThrowValue(game)]);
    detail.innerHTML=window.ChartGameCard.render({game,values});

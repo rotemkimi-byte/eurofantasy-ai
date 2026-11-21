@@ -584,11 +584,9 @@ window.showPlayer=function(target,compactMarket=false){
    ['PIR במשחק האחרון',hasCurrent&&recent.lastGame?.pir!=null?n1(recent.lastGame.pir):'—'],
    ['דקות במשחק האחרון',hasCurrent&&recent.lastGame?.minutes!=null?n1(recent.lastGame.minutes):'—'],
    ['ממוצע PIR · '+(hasCurrent?recent.last5?.games||0:0)+' אחרונים',hasCurrent&&recent.last5?.avgPir!=null?n1(recent.last5.avgPir):'—']
-  ])}</div></div><nav class="ef-player-jumps" aria-label="נתוני שחקן"><a href="#efPlayerActual">ביצועים בפועל</a><a href="#efPlayerForecast">צפי למשחק הבא</a></nav>
+  ])}</div></div><nav class="ef-player-jumps" aria-label="נתוני שחקן"><a href="#efPlayerActual">ביצועים בפועל</a>${compactMarket?'':'<a href="#efPlayerForecast">צפי למשחק הבא</a>'}</nav>
   <section id="efPlayerActual" class="playerSection actual-results" aria-label="נתוני עבר"><h3 class="sectionTitle">בפועל · עונת 2026/27</h3><p class="muted sectionNote">תוצאות ממשחקים שכבר שוחקו</p>${actualCards}</section>
-  ${compactMarket?`<section id="efPlayerForecast" class="ef-market-forecast" aria-label="תחזית למשחק הבא">
-  ${[actualMetric('PIR צפוי',x.expected),actualMetric('דקות צפויות',x.minutes)].map(([label,value])=>`<div class="miniCard"><b>${value}</b><small>${label}</small></div>`).join('')}
-  </section>`:`<section id="efPlayerForecast" class="playerSection forecast-results" aria-label="תחזית למשחק הבא"><h3 class="sectionTitle">תחזית · המשחק הבא</h3><p class="muted sectionNote">הערכות המודל, לא תוצאות בפועל</p>
+  ${compactMarket?'':`<section id="efPlayerForecast" class="playerSection forecast-results" aria-label="תחזית למשחק הבא"><h3 class="sectionTitle">תחזית · המשחק הבא</h3><p class="muted sectionNote">הערכות המודל, לא תוצאות בפועל</p>
   <div class="detailGrid">
   <div class="miniCard"><b>${n1(x.expected)}</b><small>PIR צפוי</small></div><div class="miniCard"><b>${n1(x.minutes)}</b><small>דקות צפויות</small></div>
   <div class="miniCard"><b>${n1(x.floor)}–${n1(x.ceiling)}</b><small>${x.rangeSample?"טווח שגיאות עבר*":"טווח נוסחתי*"}</small></div><div class="miniCard"><b>${x.matchPct>=0?"+":""}${x.matchPct.toFixed(1)}%</b><small>סביבת מאצ׳אפ</small></div>
@@ -2562,7 +2560,7 @@ for (const id of ['data', 'learning']) {
 <script src="./usage-core.js?v=2"></script><script src="./usage-ui.js?v=statistics-1"></script>
 <script src="./defense-core.js?v=2"></script><script src="./defense-ui.js?v=statistics-1"></script>
 <script src="./team-metrics-core.js?v=1"></script><script src="./team-metrics-ui.js?v=game-cards-1"></script>
-<link rel="stylesheet" href="./app-design.css?v=market-profile-1">
+<link rel="stylesheet" href="./app-design.css?v=market-profile-2">
 <script src="./surprises.js?v=compact-3"></script>
 <script src="./free-throws.js?v=statistics-1"></script>
 <script src="./pir-compare.js?v=statistics-1"></script>
@@ -2588,7 +2586,7 @@ for (const id of ['data', 'learning']) {
 <script src="./component-forecast.js?v=scouting-1"></script>
 <script src="./app-navigation.js?v=watchlist-1"></script>
 <script src="./watchlist.js?v=scouting-1"></script>
-<script src="./app-player.js?v=market-profile-1"></script>
+<script src="./app-player.js?v=market-profile-2"></script>
 <link rel="stylesheet" href="./home-dashboard.css?v=nav-pinned-2">
 <script src="./home-dashboard.js?v=reference-5"></script>
 <style id="market-reference-design">
