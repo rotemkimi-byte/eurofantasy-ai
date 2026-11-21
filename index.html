@@ -263,6 +263,10 @@ html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method sum
     <button type="button" data-pir-mode="minutes" aria-pressed="false"><svg aria-hidden="true" focusable="false"><use href="#pir-icon-timer"/></svg><span class="pir-control-title">דקות</span><small>זמן משחק</small></button>
     <button type="button" data-pir-mode="credit" aria-pressed="false"><svg aria-hidden="true" focusable="false"><use href="#pir-icon-coins"/></svg><span class="pir-control-title">קרדיט</span><small>שווי שחקן</small></button>
   </div>
+  <div class="pir-control-row">
+    <button type="button" data-pir-mode="compare" aria-pressed="false"><svg aria-hidden="true" focusable="false"><use href="#pir-icon-scale"/></svg><span class="pir-control-title">השוואה</span><small>שחקן מול שחקן</small></button>
+    <button type="button" data-pir-mode="mixed" aria-pressed="false"><svg aria-hidden="true" focusable="false"><use href="#pir-icon-mixed"/></svg><span class="pir-control-title">גרף משולב</span><small>כמה מדדים יחד</small></button>
+  </div>
  </div>
  <div class="pir-control-group" id="pirRange" role="group" aria-labelledby="pirRangeLabel">
   <span class="pir-control-label" id="pirRangeLabel">טווח נתונים</span>
@@ -270,13 +274,6 @@ html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method sum
     <button type="button" data-pir-range="1" aria-pressed="false"><svg aria-hidden="true" focusable="false"><use href="#pir-icon-calendar"/></svg><span class="pir-control-title">משחק אחד</span><small>אחרון</small></button>
     <button type="button" data-pir-range="3" aria-pressed="false"><svg aria-hidden="true" focusable="false"><use href="#pir-icon-layers"/></svg><span class="pir-control-title">3 משחקים</span><small>אחרונים</small></button>
     <button type="button" data-pir-range="0" aria-pressed="true"><svg aria-hidden="true" focusable="false"><use href="#pir-icon-trophy"/></svg><span class="pir-control-title">עונה שלמה</span><small>2026/27</small></button>
-  </div>
- </div>
- <div class="pir-control-group" role="group" aria-labelledby="pirChartTypeLabel">
-  <span class="pir-control-label" id="pirChartTypeLabel">סוג הגרף</span>
-  <div class="pir-control-row">
-    <button type="button" data-pir-mode="compare" aria-pressed="false"><svg aria-hidden="true" focusable="false"><use href="#pir-icon-scale"/></svg><span class="pir-control-title">השוואה</span><small>שחקן מול שחקן</small></button>
-    <button type="button" data-pir-mode="mixed" aria-pressed="false"><svg aria-hidden="true" focusable="false"><use href="#pir-icon-mixed"/></svg><span class="pir-control-title">גרף משולב</span><small>כמה מדדים יחד</small></button>
   </div>
  </div>
  <div class="pir-control-group" role="group" aria-labelledby="pirScopeLabel">
@@ -3202,5 +3199,5 @@ html.ef-redesign[data-theme=light] #playerMatchups .pmModes button[aria-pressed=
 .pmHistoryPosition::after{content:'⌄';display:block;font-size:14px;line-height:1}
 .pmHistoryPair[open] .pmHistoryPosition::after{content:'⌃'}
 .pmHistoryPair .pmCompare th,.pmHistoryPair .pmCompare td{font-size:12px}
-</style><script src="./player-matchup-history.js?v=2"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script><script src="./squad-matchup.js?v=position-defense-2"></script><script src="./squad-optimizer.js?v=matchup-summary-1"></script><link rel="stylesheet" href="./fantasy-compact.css?v=control-design-1"><link rel="stylesheet" href="./control-design.css?v=deep-contrast-1"></body></html>
+</style><script src="./player-matchup-history.js?v=2"></script><script src="./learning-model-version.js"></script><script src="./learning.js"></script><script src="./squad-matchup.js?v=position-defense-2"></script><script src="./squad-optimizer.js?v=matchup-summary-1"></script><link rel="stylesheet" href="./fantasy-compact.css?v=control-design-1"><link rel="stylesheet" href="./control-design.css?v=graph-metrics-2"></body></html>
 

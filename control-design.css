@@ -43,10 +43,14 @@
 
 :is(button, select):where([data-control="view"], [data-al-mode], [data-ac-view],
   [data-pm-mode], [data-us-view], [data-pa-view], [data-player-view], #teamDna [data-view],
-  [data-pir-mode], [data-tm-league], [data-tm-metric], [data-team-view="forecast"],
+  [data-tm-league], [data-tm-metric], [data-team-view="forecast"],
   [data-team-view="review"], select[data-metric], select[data-pa-metric], select[data-report-mode],
   #clubView, #pmView, #dfMetric, [data-squad-panel="matchup"]) {
   --control-on-surface: var(--control-view);
+}
+
+button[data-pir-mode] {
+  --control-on-surface: #A3440D;
 }
 
 :is(button, select):where([data-control="filter"], [data-us-sort], [data-pa-sort],
