@@ -147,11 +147,12 @@ function chart(games,trend){
  const wide=width>372?` style="min-width:${width}px"`:'';
  return `<div class="ef-trend-scroll"><svg class="ef-trend-svg" viewBox="0 0 ${width} 202"${wide} role="group" aria-label="${trend.label} בפועל, מהישן לחדש"><title>${trend.label} בפועל · עונת 2026/27</title>${grid}${lines}${points}</svg></div>`;
 }
+const gameVenue=g=>g.home===true?'בית':g.home===false?'חוץ':'מיקום לא ידוע';
 function marketGameRow(g){
  const opponent=canonicalTeam(g.opponent)||'יריבה לא ידועה';
  const kit=TEAM_KITS[opponent];
  const clubColor=['Baskonia','Besiktas'].includes(opponent)?kit?.[3]:opponent==='Real Madrid'?kit?.[2]:kit?.[1];
- const venue=g.home===true?'בית':g.home===false?'חוץ':'מיקום לא ידוע';
+ const venue=gameVenue(g);
  const played=g.minutes>0,dnp=U.num(g.minutes)===0,s=g.stats||{};
  const pir=played?U.num(s.valuation):null;
  const pirBar=Math.max(0,Math.min(100,(pir??0)*5));
@@ -299,9 +300,10 @@ window.showPlayer=function(target){
   target.innerHTML=chart(selected,metric);
   const points=target.querySelectorAll('[data-game-index]');
   if(!points.length)return;
-  const detail=compactMarket?null:document.createElement('div');
+  const marketPir=compactMarket&&metric===pirTrend;
+  const detail=marketPir?document.createElement('p'):compactMarket?null:document.createElement('div');
   if(detail){
-   detail.className=metric===freeThrowsTrend?'ef-ft-detail':'ef-chart-detail';
+   detail.className=marketPir?'ef-pir-selection':metric===freeThrowsTrend?'ef-ft-detail':'ef-chart-detail';
    detail.setAttribute('aria-live','polite');
    target.append(detail);
   }
@@ -311,6 +313,11 @@ window.showPlayer=function(target){
    point.setAttribute('aria-pressed','true');
    if(!detail)return;
    const game=games[Number(point.dataset.gameIndex)];
+   if(marketPir){
+    const opponent=canonicalTeam(game.opponent)||'יריבה לא ידועה';
+    detail.textContent=`מול ${opponent} · ${gameVenue(game)} · ${date(game.date)}`;
+    return;
+   }
    const values=gameValues(game);
    if(metric===freeThrowsTrend)values.push(['עונשין · קליעות/ניסיונות',freeThrowValue(game)]);
    detail.innerHTML=window.ChartGameCard.render({game,values});
@@ -319,7 +326,9 @@ window.showPlayer=function(target){
    point.onclick=()=>show(point);
    point.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show(point);}};
   }
-  show(points[points.length-1]);
+  const latest=points[points.length-1];
+  if(marketPir)latest.setAttribute('aria-pressed','true');
+  else show(latest);
  }
  dataset().then(d=>{
   if(!body.contains(hero))return;

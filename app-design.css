@@ -243,6 +243,11 @@ html.ef-redesign .ef-market-player.ef-dashboard .ef-player-identity h2{
 }
 .ef-market-player>.ef-player-watch{margin:0 0 10px}
 
+.ef-pir-selection{
+ margin:4px 0 8px;color:var(--text);font-size:13px;font-weight:650;line-height:1.5;
+}
+.ef-pir-selection:empty{margin:0}
+
 .player-picker-modes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:12px 0}
 .player-picker-modes[hidden],.player-picker-controls label[hidden]{display:none!important}
 .tab .player-picker-modes button{min-height:44px;padding:8px 5px;background:var(--card2);color:var(--text);border:1px solid var(--line);white-space:normal}

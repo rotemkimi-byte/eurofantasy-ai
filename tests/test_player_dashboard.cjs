@@ -78,6 +78,20 @@ await marketStats.locator('dt').filter({hasText:'ממוצע נקודות'}).wait
 const back=page.getByRole('button',{name:/חזרה לרשימת השחקנים/});
 assert(await back.isVisible());
 assert(await marketProfile.locator(':scope > .ef-player-watch').isVisible());
+const pirSelection=marketProfile.locator('.ef-pir-selection');
+assert.equal(await pirSelection.textContent(),'');
+const formatGameDate=new Intl.DateTimeFormat('he-IL',{day:'numeric',month:'numeric',timeZone:'Asia/Jerusalem'});
+const marketGames=season.slice().reverse();
+for(const home of [true,false]){
+ const index=marketGames.findIndex(game=>game.minutes>0&&game.home===home&&U.num(game.stats?.valuation)!==null);
+ const game=marketGames[index];
+ const point=marketProfile.locator(`.ef-overview-data [data-game-index="${index}"]`);
+ await point.press('Enter');
+ const selection=await pirSelection.textContent();
+ assert(selection.startsWith('מול '));
+ assert(selection.includes(` · ${home?'בית':'חוץ'} · ${formatGameDate.format(new Date(game.date))}`));
+ assert(selection.includes(await page.evaluate(opponent=>canonicalTeam(opponent),game.opponent)));
+}
 for(const selector of ['.ef-overview-data [data-game-index]','.ef-market-credits [data-credit-point]','.ef-player-free-throws [data-game-index]']){
  const point=marketProfile.locator(selector).nth(1);
  await point.press('Enter');
