@@ -1,0 +1,2090 @@
+{
+  "schema": "rolling-learning-v1",
+  "season": "E2026",
+  "engineId": "ba3c796d22bb75b695e9",
+  "updated_at": "2026-11-21T19:50:45.921145+00:00",
+  "exactCount": 2064,
+  "diagnostic": {
+    "n": 451,
+    "mae": 5.167981383984494,
+    "bias": -0.7822174751240722,
+    "minutesMae": 4.563000636436032,
+    "hits": 252,
+    "hitRate": 55.87583148558758,
+    "over": 121,
+    "under": 78
+  },
+  "missingInputs": 347,
+  "validation": {
+    "n": 1790,
+    "games": 77,
+    "baselineMae": 5.740139564273112,
+    "candidateMae": 5.693183693798865,
+    "active": false,
+    "reason": "collecting-or-no-improvement",
+    "folds": [
+      {
+        "gameCode": 54,
+        "round": 6,
+        "trainingN": 235,
+        "trainingGames": 10,
+        "testN": 23,
+        "baselineMae": 5.6428135525513605,
+        "candidateMae": 5.48634842075941
+      },
+      {
+        "gameCode": 51,
+        "round": 6,
+        "trainingN": 235,
+        "trainingGames": 10,
+        "testN": 24,
+        "baselineMae": 6.512876495570509,
+        "candidateMae": 6.418334294033905
+      },
+      {
+        "gameCode": 52,
+        "round": 6,
+        "trainingN": 235,
+        "trainingGames": 10,
+        "testN": 24,
+        "baselineMae": 5.153944274127703,
+        "candidateMae": 5.1215805520565345
+      },
+      {
+        "gameCode": 53,
+        "round": 6,
+        "trainingN": 235,
+        "trainingGames": 10,
+        "testN": 23,
+        "baselineMae": 6.148578121711288,
+        "candidateMae": 6.148739883732259
+      },
+      {
+        "gameCode": 55,
+        "round": 6,
+        "trainingN": 235,
+        "trainingGames": 10,
+        "testN": 24,
+        "baselineMae": 6.342735589846452,
+        "candidateMae": 6.3233567920473766
+      },
+      {
+        "gameCode": 57,
+        "round": 6,
+        "trainingN": 235,
+        "trainingGames": 10,
+        "testN": 23,
+        "baselineMae": 4.821259743224373,
+        "candidateMae": 4.792256894088474
+      },
+      {
+        "gameCode": 56,
+        "round": 6,
+        "trainingN": 235,
+        "trainingGames": 10,
+        "testN": 24,
+        "baselineMae": 4.930599279048519,
+        "candidateMae": 4.862678198951174
+      },
+      {
+        "gameCode": 60,
+        "round": 6,
+        "trainingN": 235,
+        "trainingGames": 10,
+        "testN": 24,
+        "baselineMae": 5.29439420323698,
+        "candidateMae": 5.2739954652154335
+      },
+      {
+        "gameCode": 58,
+        "round": 6,
+        "trainingN": 235,
+        "trainingGames": 10,
+        "testN": 24,
+        "baselineMae": 7.700967974996974,
+        "candidateMae": 7.661419907824183
+      },
+      {
+        "gameCode": 59,
+        "round": 6,
+        "trainingN": 235,
+        "trainingGames": 10,
+        "testN": 23,
+        "baselineMae": 4.534181087563524,
+        "candidateMae": 4.553918437658395
+      },
+      {
+        "gameCode": 61,
+        "round": 7,
+        "trainingN": 471,
+        "trainingGames": 20,
+        "testN": 23,
+        "baselineMae": 6.617186149252174,
+        "candidateMae": 6.527402178797814
+      },
+      {
+        "gameCode": 64,
+        "round": 7,
+        "trainingN": 494,
+        "trainingGames": 21,
+        "testN": 23,
+        "baselineMae": 4.787918726064819,
+        "candidateMae": 4.664057278500429
+      },
+      {
+        "gameCode": 65,
+        "round": 7,
+        "trainingN": 494,
+        "trainingGames": 21,
+        "testN": 23,
+        "baselineMae": 6.29182239303373,
+        "candidateMae": 6.280389823191607
+      },
+      {
+        "gameCode": 62,
+        "round": 7,
+        "trainingN": 494,
+        "trainingGames": 21,
+        "testN": 24,
+        "baselineMae": 5.427010249960616,
+        "candidateMae": 5.497247404917842
+      },
+      {
+        "gameCode": 67,
+        "round": 7,
+        "trainingN": 494,
+        "trainingGames": 21,
+        "testN": 21,
+        "baselineMae": 5.934824076623503,
+        "candidateMae": 5.7650365903474405
+      },
+      {
+        "gameCode": 63,
+        "round": 7,
+        "trainingN": 494,
+        "trainingGames": 21,
+        "testN": 23,
+        "baselineMae": 5.8889680423900685,
+        "candidateMae": 5.835063999107421
+      },
+      {
+        "gameCode": 66,
+        "round": 7,
+        "trainingN": 494,
+        "trainingGames": 21,
+        "testN": 24,
+        "baselineMae": 5.988180673361936,
+        "candidateMae": 5.931127394834111
+      },
+      {
+        "gameCode": 68,
+        "round": 7,
+        "trainingN": 494,
+        "trainingGames": 21,
+        "testN": 23,
+        "baselineMae": 3.9470873761826204,
+        "candidateMae": 4.017208921414997
+      },
+      {
+        "gameCode": 70,
+        "round": 7,
+        "trainingN": 494,
+        "trainingGames": 21,
+        "testN": 24,
+        "baselineMae": 6.0239716861201735,
+        "candidateMae": 5.865677183928559
+      },
+      {
+        "gameCode": 69,
+        "round": 7,
+        "trainingN": 494,
+        "trainingGames": 21,
+        "testN": 24,
+        "baselineMae": 7.0781902809384984,
+        "candidateMae": 7.123350787741861
+      },
+      {
+        "gameCode": 72,
+        "round": 8,
+        "trainingN": 703,
+        "trainingGames": 30,
+        "testN": 22,
+        "baselineMae": 5.779105502336574,
+        "candidateMae": 5.869502435597224
+      },
+      {
+        "gameCode": 71,
+        "round": 8,
+        "trainingN": 703,
+        "trainingGames": 30,
+        "testN": 23,
+        "baselineMae": 4.966157074379306,
+        "candidateMae": 4.959845047712391
+      },
+      {
+        "gameCode": 74,
+        "round": 8,
+        "trainingN": 703,
+        "trainingGames": 30,
+        "testN": 24,
+        "baselineMae": 6.085622688856005,
+        "candidateMae": 6.059651147789295
+      },
+      {
+        "gameCode": 76,
+        "round": 8,
+        "trainingN": 703,
+        "trainingGames": 30,
+        "testN": 24,
+        "baselineMae": 5.124926628613928,
+        "candidateMae": 5.043484969006505
+      },
+      {
+        "gameCode": 75,
+        "round": 8,
+        "trainingN": 703,
+        "trainingGames": 30,
+        "testN": 24,
+        "baselineMae": 6.450941991112131,
+        "candidateMae": 6.407438745614016
+      },
+      {
+        "gameCode": 73,
+        "round": 8,
+        "trainingN": 703,
+        "trainingGames": 30,
+        "testN": 23,
+        "baselineMae": 5.734624936477857,
+        "candidateMae": 5.740154104894879
+      },
+      {
+        "gameCode": 79,
+        "round": 8,
+        "trainingN": 725,
+        "trainingGames": 31,
+        "testN": 22,
+        "baselineMae": 5.897989281683985,
+        "candidateMae": 5.8273868730331175
+      },
+      {
+        "gameCode": 77,
+        "round": 8,
+        "trainingN": 725,
+        "trainingGames": 31,
+        "testN": 22,
+        "baselineMae": 8.430462881453689,
+        "candidateMae": 8.505608288619063
+      },
+      {
+        "gameCode": 78,
+        "round": 8,
+        "trainingN": 725,
+        "trainingGames": 31,
+        "testN": 23,
+        "baselineMae": 5.095234338804237,
+        "candidateMae": 5.1536405439123305
+      },
+      {
+        "gameCode": 80,
+        "round": 8,
+        "trainingN": 725,
+        "trainingGames": 31,
+        "testN": 23,
+        "baselineMae": 3.8745777056626007,
+        "candidateMae": 3.85360169622155
+      },
+      {
+        "gameCode": 84,
+        "round": 9,
+        "trainingN": 933,
+        "trainingGames": 40,
+        "testN": 24,
+        "baselineMae": 7.2995684953417515,
+        "candidateMae": 7.216905760959252
+      },
+      {
+        "gameCode": 88,
+        "round": 9,
+        "trainingN": 933,
+        "trainingGames": 40,
+        "testN": 24,
+        "baselineMae": 5.6274809800543295,
+        "candidateMae": 5.464373813608305
+      },
+      {
+        "gameCode": 86,
+        "round": 9,
+        "trainingN": 933,
+        "trainingGames": 40,
+        "testN": 24,
+        "baselineMae": 4.640656150295119,
+        "candidateMae": 4.64164968507066
+      },
+      {
+        "gameCode": 85,
+        "round": 9,
+        "trainingN": 933,
+        "trainingGames": 40,
+        "testN": 23,
+        "baselineMae": 5.350325927715494,
+        "candidateMae": 5.303011265529693
+      },
+      {
+        "gameCode": 90,
+        "round": 9,
+        "trainingN": 933,
+        "trainingGames": 40,
+        "testN": 20,
+        "baselineMae": 6.499973251704944,
+        "candidateMae": 6.340465338263815
+      },
+      {
+        "gameCode": 87,
+        "round": 9,
+        "trainingN": 933,
+        "trainingGames": 40,
+        "testN": 23,
+        "baselineMae": 4.349846992397893,
+        "candidateMae": 4.417501574899102
+      },
+      {
+        "gameCode": 89,
+        "round": 9,
+        "trainingN": 933,
+        "trainingGames": 40,
+        "testN": 21,
+        "baselineMae": 5.221900274112416,
+        "candidateMae": 5.169615250171959
+      },
+      {
+        "gameCode": 91,
+        "round": 10,
+        "trainingN": 1092,
+        "trainingGames": 47,
+        "testN": 23,
+        "baselineMae": 7.108395977640181,
+        "candidateMae": 7.1857001538675265
+      },
+      {
+        "gameCode": 95,
+        "round": 10,
+        "trainingN": 1092,
+        "trainingGames": 47,
+        "testN": 24,
+        "baselineMae": 6.491790522337913,
+        "candidateMae": 6.379704117549785
+      },
+      {
+        "gameCode": 92,
+        "round": 10,
+        "trainingN": 1092,
+        "trainingGames": 47,
+        "testN": 21,
+        "baselineMae": 4.460159450966866,
+        "candidateMae": 4.391391957305834
+      },
+      {
+        "gameCode": 93,
+        "round": 10,
+        "trainingN": 1115,
+        "trainingGames": 48,
+        "testN": 24,
+        "baselineMae": 7.583164660420075,
+        "candidateMae": 7.558746568293885
+      },
+      {
+        "gameCode": 94,
+        "round": 10,
+        "trainingN": 1115,
+        "trainingGames": 48,
+        "testN": 24,
+        "baselineMae": 5.794533586612012,
+        "candidateMae": 5.751730313096522
+      },
+      {
+        "gameCode": 96,
+        "round": 10,
+        "trainingN": 1115,
+        "trainingGames": 48,
+        "testN": 24,
+        "baselineMae": 4.451083020226256,
+        "candidateMae": 4.348972703587889
+      },
+      {
+        "gameCode": 97,
+        "round": 10,
+        "trainingN": 1139,
+        "trainingGames": 49,
+        "testN": 24,
+        "baselineMae": 6.385756774966999,
+        "candidateMae": 6.319831043291274
+      },
+      {
+        "gameCode": 100,
+        "round": 10,
+        "trainingN": 1139,
+        "trainingGames": 49,
+        "testN": 22,
+        "baselineMae": 6.439812122529797,
+        "candidateMae": 6.269071570825825
+      },
+      {
+        "gameCode": 98,
+        "round": 10,
+        "trainingN": 1139,
+        "trainingGames": 49,
+        "testN": 23,
+        "baselineMae": 5.483682565523981,
+        "candidateMae": 5.4272542457323825
+      },
+      {
+        "gameCode": 99,
+        "round": 10,
+        "trainingN": 1139,
+        "trainingGames": 49,
+        "testN": 24,
+        "baselineMae": 5.626437459824313,
+        "candidateMae": 5.563431857330066
+      },
+      {
+        "gameCode": 101,
+        "round": 11,
+        "trainingN": 1325,
+        "trainingGames": 57,
+        "testN": 24,
+        "baselineMae": 7.889283586686105,
+        "candidateMae": 7.843539344025245
+      },
+      {
+        "gameCode": 102,
+        "round": 11,
+        "trainingN": 1325,
+        "trainingGames": 57,
+        "testN": 23,
+        "baselineMae": 4.841987240918043,
+        "candidateMae": 4.796277189448693
+      },
+      {
+        "gameCode": 103,
+        "round": 11,
+        "trainingN": 1372,
+        "trainingGames": 59,
+        "testN": 23,
+        "baselineMae": 5.220388407387373,
+        "candidateMae": 5.099157520505651
+      },
+      {
+        "gameCode": 107,
+        "round": 11,
+        "trainingN": 1372,
+        "trainingGames": 59,
+        "testN": 24,
+        "baselineMae": 4.795101300146298,
+        "candidateMae": 4.703134621039119
+      },
+      {
+        "gameCode": 104,
+        "round": 11,
+        "trainingN": 1372,
+        "trainingGames": 59,
+        "testN": 24,
+        "baselineMae": 4.925752864274335,
+        "candidateMae": 4.85964329276636
+      },
+      {
+        "gameCode": 105,
+        "round": 11,
+        "trainingN": 1372,
+        "trainingGames": 59,
+        "testN": 23,
+        "baselineMae": 4.975193203961113,
+        "candidateMae": 4.958625638131623
+      },
+      {
+        "gameCode": 106,
+        "round": 11,
+        "trainingN": 1372,
+        "trainingGames": 59,
+        "testN": 24,
+        "baselineMae": 5.993392855851789,
+        "candidateMae": 5.9979927797540995
+      },
+      {
+        "gameCode": 109,
+        "round": 11,
+        "trainingN": 1372,
+        "trainingGames": 59,
+        "testN": 22,
+        "baselineMae": 6.021482813451654,
+        "candidateMae": 6.038625833250207
+      },
+      {
+        "gameCode": 110,
+        "round": 11,
+        "trainingN": 1466,
+        "trainingGames": 63,
+        "testN": 23,
+        "baselineMae": 5.477689094911535,
+        "candidateMae": 5.4047073501063485
+      },
+      {
+        "gameCode": 108,
+        "round": 11,
+        "trainingN": 1466,
+        "trainingGames": 63,
+        "testN": 22,
+        "baselineMae": 6.0727960611681535,
+        "candidateMae": 6.004416906380206
+      },
+      {
+        "gameCode": 111,
+        "round": 12,
+        "trainingN": 1557,
+        "trainingGames": 67,
+        "testN": 23,
+        "baselineMae": 5.859621138178832,
+        "candidateMae": 5.798785334856177
+      },
+      {
+        "gameCode": 113,
+        "round": 12,
+        "trainingN": 1557,
+        "trainingGames": 67,
+        "testN": 24,
+        "baselineMae": 4.785606616591772,
+        "candidateMae": 4.739744468931026
+      },
+      {
+        "gameCode": 112,
+        "round": 12,
+        "trainingN": 1557,
+        "trainingGames": 67,
+        "testN": 24,
+        "baselineMae": 6.7252654156107345,
+        "candidateMae": 6.768701297718362
+      },
+      {
+        "gameCode": 117,
+        "round": 12,
+        "trainingN": 1557,
+        "trainingGames": 67,
+        "testN": 22,
+        "baselineMae": 7.297782808015521,
+        "candidateMae": 7.261131800721199
+      },
+      {
+        "gameCode": 114,
+        "round": 12,
+        "trainingN": 1557,
+        "trainingGames": 67,
+        "testN": 24,
+        "baselineMae": 4.895024907554967,
+        "candidateMae": 4.825881149521232
+      },
+      {
+        "gameCode": 115,
+        "round": 12,
+        "trainingN": 1557,
+        "trainingGames": 67,
+        "testN": 24,
+        "baselineMae": 4.124605415917894,
+        "candidateMae": 4.024320066336124
+      },
+      {
+        "gameCode": 116,
+        "round": 12,
+        "trainingN": 1557,
+        "trainingGames": 67,
+        "testN": 23,
+        "baselineMae": 5.644242900613249,
+        "candidateMae": 5.6374670052801665
+      },
+      {
+        "gameCode": 118,
+        "round": 12,
+        "trainingN": 1557,
+        "trainingGames": 67,
+        "testN": 24,
+        "baselineMae": 5.183463439507889,
+        "candidateMae": 5.093474019928994
+      },
+      {
+        "gameCode": 119,
+        "round": 12,
+        "trainingN": 1557,
+        "trainingGames": 67,
+        "testN": 23,
+        "baselineMae": 4.398496376846981,
+        "candidateMae": 4.338284251230017
+      },
+      {
+        "gameCode": 120,
+        "round": 12,
+        "trainingN": 1768,
+        "trainingGames": 76,
+        "testN": 24,
+        "baselineMae": 6.325522361905558,
+        "candidateMae": 6.257040214352121
+      },
+      {
+        "gameCode": 122,
+        "round": 13,
+        "trainingN": 1792,
+        "trainingGames": 77,
+        "testN": 24,
+        "baselineMae": 5.809550999895795,
+        "candidateMae": 5.729355833710697
+      },
+      {
+        "gameCode": 121,
+        "round": 13,
+        "trainingN": 1792,
+        "trainingGames": 77,
+        "testN": 24,
+        "baselineMae": 4.975585258247926,
+        "candidateMae": 4.898457929661739
+      },
+      {
+        "gameCode": 124,
+        "round": 13,
+        "trainingN": 1792,
+        "trainingGames": 77,
+        "testN": 23,
+        "baselineMae": 6.458117692354401,
+        "candidateMae": 6.391436573954431
+      },
+      {
+        "gameCode": 123,
+        "round": 13,
+        "trainingN": 1792,
+        "trainingGames": 77,
+        "testN": 24,
+        "baselineMae": 5.676668994410178,
+        "candidateMae": 5.508476814793634
+      },
+      {
+        "gameCode": 126,
+        "round": 13,
+        "trainingN": 1792,
+        "trainingGames": 77,
+        "testN": 24,
+        "baselineMae": 6.124496839163932,
+        "candidateMae": 6.094043464349082
+      },
+      {
+        "gameCode": 125,
+        "round": 13,
+        "trainingN": 1792,
+        "trainingGames": 77,
+        "testN": 22,
+        "baselineMae": 4.809342800799265,
+        "candidateMae": 4.742323198423518
+      },
+      {
+        "gameCode": 127,
+        "round": 13,
+        "trainingN": 1933,
+        "trainingGames": 83,
+        "testN": 23,
+        "baselineMae": 6.526178416938887,
+        "candidateMae": 6.518280750648385
+      },
+      {
+        "gameCode": 130,
+        "round": 13,
+        "trainingN": 1933,
+        "trainingGames": 83,
+        "testN": 23,
+        "baselineMae": 5.755291541967921,
+        "candidateMae": 5.695506695905592
+      },
+      {
+        "gameCode": 128,
+        "round": 13,
+        "trainingN": 1933,
+        "trainingGames": 83,
+        "testN": 23,
+        "baselineMae": 7.210775327009096,
+        "candidateMae": 7.12032017658868
+      },
+      {
+        "gameCode": 129,
+        "round": 13,
+        "trainingN": 1933,
+        "trainingGames": 83,
+        "testN": 23,
+        "baselineMae": 5.883403717386562,
+        "candidateMae": 5.91511171038373
+      }
+    ],
+    "intervalCoverage": 0.8
+  },
+  "coefficients": {
+    "G": {
+      "n": 828,
+      "minutes": -0.4098226597849939,
+      "efficiencyPir": -0.1758135041924588
+    },
+    "F": {
+      "n": 702,
+      "minutes": -0.4131689380575348,
+      "efficiencyPir": -0.2234883345995296
+    },
+    "C": {
+      "n": 372,
+      "minutes": -0.9142455227162651,
+      "efficiencyPir": 0.3148407265969309
+    }
+  },
+  "interval": {
+    "active": true,
+    "targetCoverage": 0.8,
+    "coverage": 0.8,
+    "n": 1790,
+    "radius": 9.027416564089668
+  },
+  "limitations": [
+    "Partial historical reconstructions exclude unrecoverable pregame defensive context and momentum configuration; never activate live corrections.",
+    "Exact replay tests the current shared player projection with frozen pregame matchup inputs; it does not backtest a changed team-matchup generator."
+  ],
+  "rounds": [
+    {
+      "round": 3,
+      "kind": "exact-frozen-input",
+      "n": 0,
+      "mae": null,
+      "bias": null,
+      "minutesMae": null,
+      "hits": 0,
+      "hitRate": null,
+      "over": 0,
+      "under": 0
+    },
+    {
+      "round": 3,
+      "kind": "partial-reconstruction",
+      "n": 141,
+      "mae": 4.739196111695167,
+      "bias": -0.8101103659531956,
+      "minutesMae": 4.694978946337402,
+      "hits": 86,
+      "hitRate": 60.99290780141844,
+      "over": 34,
+      "under": 21
+    },
+    {
+      "round": 4,
+      "kind": "exact-frozen-input",
+      "n": 0,
+      "mae": null,
+      "bias": null,
+      "minutesMae": null,
+      "hits": 0,
+      "hitRate": null,
+      "over": 0,
+      "under": 0
+    },
+    {
+      "round": 4,
+      "kind": "partial-reconstruction",
+      "n": 238,
+      "mae": 5.386189777974454,
+      "bias": -1.005937145533632,
+      "minutesMae": 4.453201148140969,
+      "hits": 139,
+      "hitRate": 58.40336134453782,
+      "over": 63,
+      "under": 36
+    },
+    {
+      "round": 5,
+      "kind": "exact-frozen-input",
+      "n": 238,
+      "mae": 5.517184047961068,
+      "bias": -0.6644610136424479,
+      "minutesMae": 4.977051193260159,
+      "hits": 127,
+      "hitRate": 53.36134453781513,
+      "over": 66,
+      "under": 45
+    },
+    {
+      "round": 5,
+      "kind": "partial-reconstruction",
+      "n": 0,
+      "mae": null,
+      "bias": null,
+      "minutesMae": null,
+      "hits": 0,
+      "hitRate": null,
+      "over": 0,
+      "under": 0
+    },
+    {
+      "round": 6,
+      "kind": "exact-frozen-input",
+      "n": 238,
+      "mae": 5.6821609173194485,
+      "bias": -0.44889100156979983,
+      "minutesMae": 5.166183498918734,
+      "hits": 135,
+      "hitRate": 56.72268907563025,
+      "over": 57,
+      "under": 46
+    },
+    {
+      "round": 6,
+      "kind": "partial-reconstruction",
+      "n": 0,
+      "mae": null,
+      "bias": null,
+      "minutesMae": null,
+      "hits": 0,
+      "hitRate": null,
+      "over": 0,
+      "under": 0
+    },
+    {
+      "round": 7,
+      "kind": "exact-frozen-input",
+      "n": 238,
+      "mae": 5.803763280890533,
+      "bias": -0.5693078063980538,
+      "minutesMae": 5.2115112946106334,
+      "hits": 120,
+      "hitRate": 50.42016806722689,
+      "over": 64,
+      "under": 54
+    },
+    {
+      "round": 7,
+      "kind": "partial-reconstruction",
+      "n": 0,
+      "mae": null,
+      "bias": null,
+      "minutesMae": null,
+      "hits": 0,
+      "hitRate": null,
+      "over": 0,
+      "under": 0
+    },
+    {
+      "round": 8,
+      "kind": "exact-frozen-input",
+      "n": 236,
+      "mae": 5.660608028598282,
+      "bias": -0.41373105322214404,
+      "minutesMae": 4.8378885865237935,
+      "hits": 75,
+      "hitRate": 31.779661016949152,
+      "over": 89,
+      "under": 72
+    },
+    {
+      "round": 8,
+      "kind": "partial-reconstruction",
+      "n": 0,
+      "mae": null,
+      "bias": null,
+      "minutesMae": null,
+      "hits": 0,
+      "hitRate": null,
+      "over": 0,
+      "under": 0
+    },
+    {
+      "round": 9,
+      "kind": "exact-frozen-input",
+      "n": 164,
+      "mae": 5.880147977434642,
+      "bias": -0.359382199720995,
+      "minutesMae": 5.343737200535347,
+      "hits": 52,
+      "hitRate": 31.70731707317073,
+      "over": 66,
+      "under": 46
+    },
+    {
+      "round": 9,
+      "kind": "partial-reconstruction",
+      "n": 72,
+      "mae": 5.28638590652873,
+      "bias": 0.011923902159005585,
+      "minutesMae": 4.667491421410085,
+      "hits": 27,
+      "hitRate": 37.5,
+      "over": 24,
+      "under": 21
+    },
+    {
+      "round": 10,
+      "kind": "exact-frozen-input",
+      "n": 238,
+      "mae": 5.956413728035809,
+      "bias": -0.8811567401650648,
+      "minutesMae": 5.257321578417179,
+      "hits": 67,
+      "hitRate": 28.15126050420168,
+      "over": 111,
+      "under": 60
+    },
+    {
+      "round": 10,
+      "kind": "partial-reconstruction",
+      "n": 0,
+      "mae": null,
+      "bias": null,
+      "minutesMae": null,
+      "hits": 0,
+      "hitRate": null,
+      "over": 0,
+      "under": 0
+    },
+    {
+      "round": 11,
+      "kind": "exact-frozen-input",
+      "n": 239,
+      "mae": 5.61396995751363,
+      "bias": -0.47093039356051686,
+      "minutesMae": 5.314708605498798,
+      "hits": 77,
+      "hitRate": 32.21757322175732,
+      "over": 97,
+      "under": 65
+    },
+    {
+      "round": 11,
+      "kind": "partial-reconstruction",
+      "n": 0,
+      "mae": null,
+      "bias": null,
+      "minutesMae": null,
+      "hits": 0,
+      "hitRate": null,
+      "over": 0,
+      "under": 0
+    },
+    {
+      "round": 12,
+      "kind": "exact-frozen-input",
+      "n": 236,
+      "mae": 5.504304041617176,
+      "bias": -0.3271794325861322,
+      "minutesMae": 5.630619108571891,
+      "hits": 81,
+      "hitRate": 34.32203389830508,
+      "over": 90,
+      "under": 65
+    },
+    {
+      "round": 12,
+      "kind": "partial-reconstruction",
+      "n": 0,
+      "mae": null,
+      "bias": null,
+      "minutesMae": null,
+      "hits": 0,
+      "hitRate": null,
+      "over": 0,
+      "under": 0
+    },
+    {
+      "round": 13,
+      "kind": "exact-frozen-input",
+      "n": 237,
+      "mae": 5.96996677105016,
+      "bias": -0.5228627135234153,
+      "minutesMae": 5.45284075398132,
+      "hits": 68,
+      "hitRate": 28.691983122362867,
+      "over": 107,
+      "under": 62
+    },
+    {
+      "round": 13,
+      "kind": "partial-reconstruction",
+      "n": 0,
+      "mae": null,
+      "bias": null,
+      "minutesMae": null,
+      "hits": 0,
+      "hitRate": null,
+      "over": 0,
+      "under": 0
+    }
+  ],
+  "largestMisses": [
+    {
+      "name": "Lonnie Walker IV",
+      "key": "iv lonnie walker",
+      "team": "Besiktas",
+      "pos": "G",
+      "opponent": "Virtus Bologna",
+      "gameCode": 89,
+      "round": 9,
+      "start": "2026-10-30T19:30:00Z",
+      "basePir": 0,
+      "baseMinutes": 0,
+      "servedPir": 0,
+      "servedMinutes": 0,
+      "status": "out",
+      "modelId": "bbc96cbf4cfc30046947",
+      "eligible": true,
+      "snapshotAt": "2026-10-29T19:54:52.877127+00:00",
+      "home": false,
+      "features": {
+        "basePir": 10.898532529073012,
+        "baseMin": 22.888724305555556,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0.5659999999999998,
+        "teamPoints": 85.89085,
+        "margin": -2.5683,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 28,
+          "historyWeight": 0.4277777777777778,
+          "sameTeam": false,
+          "avgPir": 12.642857142857142,
+          "avgMinutes": 22.739875,
+          "currentSeasonWeight": 0.2,
+          "minutesWeight": 0.3333333333333333,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.2,
+        "context": null
+      },
+      "actualPir": 36,
+      "actualMinutes": 28.383333333333333,
+      "fouls": 2,
+      "actualStats": {
+        "points": 30,
+        "totalRebounds": 4,
+        "assistances": 5,
+        "turnovers": 0,
+        "foulsCommited": 2,
+        "fieldGoalsMadeTotal": 9,
+        "fieldGoalsAttemptedTotal": 15
+      },
+      "minutesContribution": null,
+      "efficiencyContribution": null,
+      "reason": "availability",
+      "error": 36,
+      "servedError": 36,
+      "outcome": "miss",
+      "replayKind": "exact-frozen-input",
+      "baseFloor": 0,
+      "baseCeiling": 0
+    },
+    {
+      "name": "Elijah Bryant",
+      "key": "bryant elijah",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Dubai",
+      "gameCode": 84,
+      "round": 9,
+      "start": "2026-10-30T16:00:00Z",
+      "basePir": 22.131459306487805,
+      "baseMinutes": 28.852799093522467,
+      "servedPir": 22.131459306487805,
+      "servedMinutes": 28.852799093522467,
+      "status": "active",
+      "modelId": "bbc96cbf4cfc30046947",
+      "eligible": true,
+      "snapshotAt": "2026-10-29T19:54:52.877127+00:00",
+      "home": false,
+      "features": {
+        "basePir": 19.069487553701084,
+        "baseMin": 29.047826086956523,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -0.10900000000000354,
+        "teamPoints": 86.93405,
+        "margin": -0.8919,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 19.57894736842105,
+          "avgMinutes": 29.478947368421053,
+          "currentSeasonWeight": 0.6666666666666666,
+          "minutesWeight": 0.8,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 5,
+              "nextGameSamples": 8,
+              "nextGameAvgPir": 23.375,
+              "continuedRate": 0.625
+            },
+            {
+              "threshold": 25,
+              "longestRun": 3,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 23,
+              "continuedRate": 0.3333333333333333
+            },
+            {
+              "threshold": 30,
+              "longestRun": 2,
+              "nextGameSamples": 2,
+              "nextGameAvgPir": 23,
+              "continuedRate": 0
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6666666666666666,
+        "context": {
+          "involvementFactor": 1.0061696165992036,
+          "defenseFactor": 0.9995694559830255,
+          "defenseSample": 8,
+          "rival": "Elie Okobo",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 29.16396338382844,
+              "weight": 0.8065482630263883,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 28.38040223714904,
+              "weight": 0.08349719718859966,
+              "observedGames": 2
+            },
+            {
+              "id": "big-loss",
+              "minutes": 26.929047652173914,
+              "weight": 0.10995453978501214,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": true
+        }
+      },
+      "actualPir": -6,
+      "actualMinutes": 22.383333333333333,
+      "fouls": 4,
+      "actualStats": {
+        "points": 3,
+        "totalRebounds": 2,
+        "assistances": 1,
+        "turnovers": 2,
+        "foulsCommited": 4,
+        "fieldGoalsMadeTotal": 1,
+        "fieldGoalsAttemptedTotal": 8
+      },
+      "minutesContribution": -4.962385720090708,
+      "efficiencyContribution": -23.169073586397097,
+      "reason": "efficiency",
+      "error": -28.131459306487805,
+      "servedError": -28.131459306487805,
+      "outcome": "miss",
+      "replayKind": "exact-frozen-input",
+      "baseFloor": 12.146150551303869,
+      "baseCeiling": 31.57999143339006
+    },
+    {
+      "name": "Dario Brizuela",
+      "key": "brizuela dario",
+      "team": "Barcelona",
+      "pos": "G",
+      "opponent": "Crvena Zvezda",
+      "gameCode": 128,
+      "round": 13,
+      "start": "2026-11-20T19:30:00Z",
+      "basePir": 6.172184094434522,
+      "baseMinutes": 18.394590954567107,
+      "servedPir": 5.248789952130758,
+      "servedMinutes": 18.746121319842917,
+      "status": "active",
+      "modelId": "149d68d8aa8ea28ec6ea",
+      "eligible": true,
+      "snapshotAt": "2026-11-20T17:22:43.504325+00:00",
+      "home": true,
+      "features": {
+        "basePir": 5.858197747143498,
+        "baseMin": 15.273545652173912,
+        "injuryBoost": 0.6725,
+        "injuryUsagePct": 0.7379999999999999,
+        "missingStars": [
+          "Kevin Punter"
+        ],
+        "positionMatchPct": -11.133814673108978,
+        "teamPoints": 85.74995,
+        "margin": 1.5999,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 38,
+          "historyWeight": 0.8260869565217391,
+          "sameTeam": true,
+          "avgPir": 5.868421052631579,
+          "avgMinutes": 15.541660526315788,
+          "currentSeasonWeight": 0.7333333333333333,
+          "minutesWeight": 0.8461538461538461,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.7333333333333333,
+        "context": {
+          "involvementFactor": 1.0063422844311738,
+          "defenseFactor": 0.9712063828337464,
+          "defenseSample": 12,
+          "rival": "Chris Jones",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 18.733172243798265,
+              "weight": 0.8035919666966159,
+              "observedGames": 9
+            },
+            {
+              "id": "big-win",
+              "minutes": 16.797087090301,
+              "weight": 0.12196407551884529,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 17.356989993311036,
+              "weight": 0.0744439577845388,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": true
+        }
+      },
+      "actualPir": 31,
+      "actualMinutes": 30.116666666666667,
+      "fouls": 1,
+      "actualStats": {
+        "points": 22,
+        "totalRebounds": 5,
+        "assistances": 4,
+        "turnovers": 0,
+        "foulsCommited": 1,
+        "fieldGoalsMadeTotal": 8,
+        "fieldGoalsAttemptedTotal": 12
+      },
+      "minutesContribution": 3.933265460627951,
+      "efficiencyContribution": 20.89455044493753,
+      "reason": "efficiency",
+      "error": 24.82781590556548,
+      "servedError": 25.751210047869243,
+      "outcome": "miss",
+      "replayKind": "exact-frozen-input",
+      "baseFloor": 3.588153210091945,
+      "baseCeiling": 9.060086855482163
+    },
+    {
+      "name": "Antonio Blakeney",
+      "key": "antonio blakeney",
+      "team": "Hapoel Tel Aviv",
+      "pos": "G",
+      "opponent": "Anadolu Efes",
+      "gameCode": 77,
+      "round": 8,
+      "start": "2026-10-28T18:00:00Z",
+      "basePir": 10.341274673937582,
+      "baseMinutes": 22.18886394557823,
+      "servedPir": 10.343335340491702,
+      "servedMinutes": 22.18886394557823,
+      "status": "active",
+      "modelId": "bca9e3688fc32a46592e",
+      "eligible": true,
+      "snapshotAt": "2026-10-27T20:13:15.432572+00:00",
+      "home": true,
+      "features": {
+        "basePir": 10.234533888840529,
+        "baseMin": 22.06938775510204,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -6.562000000000001,
+        "teamPoints": 88.67475,
+        "margin": 7.8595,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 41,
+          "historyWeight": 0.8367346938775511,
+          "sameTeam": true,
+          "avgPir": 10.463414634146341,
+          "avgMinutes": 22.66829268292683,
+          "currentSeasonWeight": 0.6363636363636364,
+          "minutesWeight": 0.7777777777777778,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.6363636363636364,
+        "context": {
+          "involvementFactor": 0.9869600293362669,
+          "defenseFactor": 0.9942975910122631,
+          "defenseSample": 7,
+          "rival": "Jordan Loyd",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.99146477257514,
+              "weight": 0.7103346063076279,
+              "observedGames": 5
+            },
+            {
+              "id": "big-win",
+              "minutes": 22.80396876117058,
+              "weight": 0.26585428672812367,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.209959932138965,
+              "weight": 0.02381110696424835,
+              "observedGames": 0
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 35,
+      "actualMinutes": 22.2,
+      "fouls": 2,
+      "actualStats": {
+        "points": 35,
+        "totalRebounds": 3,
+        "assistances": 1,
+        "turnovers": 3,
+        "foulsCommited": 2,
+        "fieldGoalsMadeTotal": 12,
+        "fieldGoalsAttemptedTotal": 14
+      },
+      "minutesContribution": 0.005190035769378744,
+      "efficiencyContribution": 24.65353529029304,
+      "reason": "efficiency",
+      "error": 24.658725326062417,
+      "servedError": 24.656664659508298,
+      "outcome": "miss",
+      "replayKind": "exact-frozen-input",
+      "baseFloor": 5.665302732528796,
+      "baseCeiling": 15.283142255193965
+    },
+    {
+      "name": "Austin Wiley",
+      "key": "austin wiley",
+      "team": "Bayern Munich",
+      "pos": "C",
+      "opponent": "ASVEL",
+      "gameCode": 94,
+      "round": 10,
+      "start": "2026-11-05T19:00:00Z",
+      "basePir": 7.663331559384326,
+      "baseMinutes": 15.12421818135133,
+      "servedPir": 7.663331559384326,
+      "servedMinutes": 15.12421818135133,
+      "status": "active",
+      "modelId": "c03f7a7ef1e565c4f132",
+      "eligible": true,
+      "snapshotAt": "2026-11-04T23:57:26.832631+00:00",
+      "home": false,
+      "features": {
+        "basePir": 8.835,
+        "baseMin": 19,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 12.00000000000001,
+        "teamPoints": 84.07545,
+        "margin": -2.4791,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.6923076923076923,
+          "minutesWeight": 0.8181818181818182,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.6923076923076923,
+        "context": {
+          "involvementFactor": 0.9942349989157708,
+          "defenseFactor": 1.0038328149256206,
+          "defenseSample": 8,
+          "rival": "Joel Bolomboy",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 15.190364844116298,
+              "weight": 0.7976159044930506,
+              "observedGames": 6
+            },
+            {
+              "id": "big-win",
+              "minutes": 13.739972727272725,
+              "weight": 0.06428083018027608,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 15.38649160859646,
+              "weight": 0.13810326532667325,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": true
+        }
+      },
+      "actualPir": 32,
+      "actualMinutes": 23.65,
+      "fouls": 2,
+      "actualStats": {
+        "points": 22,
+        "totalRebounds": 9,
+        "assistances": 2,
+        "turnovers": 3,
+        "foulsCommited": 2,
+        "fieldGoalsMadeTotal": 8,
+        "fieldGoalsAttemptedTotal": 9
+      },
+      "minutesContribution": 4.31995175524754,
+      "efficiencyContribution": 20.01671668536813,
+      "reason": "efficiency",
+      "error": 24.336668440615675,
+      "servedError": 24.336668440615675,
+      "outcome": "miss",
+      "replayKind": "exact-frozen-input",
+      "baseFloor": 4.340358824949953,
+      "baseCeiling": 10.959406032998634
+    },
+    {
+      "name": "Johannes Thiemann",
+      "key": "johannes thiemann",
+      "team": "Bayern Munich",
+      "pos": "C",
+      "opponent": "Zalgiris",
+      "gameCode": 112,
+      "round": 12,
+      "start": "2026-11-17T18:00:00Z",
+      "basePir": 9.775911153687487,
+      "baseMinutes": 20.141375089169177,
+      "servedPir": 11.003016825728814,
+      "servedMinutes": 19.366050347222224,
+      "status": "active",
+      "modelId": "12baacdc03496b0c36ad",
+      "eligible": true,
+      "snapshotAt": "2026-11-17T17:00:11.722147+00:00",
+      "home": false,
+      "features": {
+        "basePir": 9.858,
+        "baseMin": 23,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -12,
+        "teamPoints": 81.24015,
+        "margin": -8.0797,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 0,
+          "historyWeight": 0,
+          "sameTeam": false,
+          "avgPir": null,
+          "avgMinutes": null,
+          "currentSeasonWeight": 0.7333333333333333,
+          "minutesWeight": 0.8461538461538461,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": []
+        },
+        "currentSeasonWeight": 0.7333333333333333,
+        "context": {
+          "involvementFactor": 0.9868041052208599,
+          "defenseFactor": 0.9915018652514307,
+          "defenseSample": 11,
+          "rival": "Jonas Valanciunas",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 20.45733493316621,
+              "weight": 0.7051477211424131,
+              "observedGames": 6
+            },
+            {
+              "id": "big-win",
+              "minutes": 17.880784615384616,
+              "weight": 0.022791224556543272,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 19.24088448967416,
+              "weight": 0.2720610543010436,
+              "observedGames": 4
+            }
+          ],
+          "minutesCorrectionActive": true
+        }
+      },
+      "actualPir": 34,
+      "actualMinutes": 32.81666666666667,
+      "fouls": 2,
+      "actualStats": {
+        "points": 33,
+        "totalRebounds": 3,
+        "assistances": 2,
+        "turnovers": 1,
+        "foulsCommited": 2,
+        "fieldGoalsMadeTotal": 11,
+        "fieldGoalsAttemptedTotal": 16
+      },
+      "minutesContribution": 6.152138260675732,
+      "efficiencyContribution": 18.07195058563678,
+      "reason": "efficiency",
+      "error": 24.22408884631251,
+      "servedError": 22.996983174271186,
+      "outcome": "miss",
+      "replayKind": "exact-frozen-input",
+      "baseFloor": 5.541071676307331,
+      "baseCeiling": 13.991205982676012
+    },
+    {
+      "name": "Moses Wright",
+      "key": "moses wright",
+      "team": "Milano",
+      "pos": "C",
+      "opponent": "Fenerbahce",
+      "gameCode": 123,
+      "round": 13,
+      "start": "2026-11-19T19:30:00Z",
+      "basePir": 11.80026143506116,
+      "baseMinutes": 21.255347637152983,
+      "servedPir": 15.019249163753091,
+      "servedMinutes": 22.620289058761884,
+      "status": "active",
+      "modelId": "a6bc6d365db483e7fd6d",
+      "eligible": true,
+      "snapshotAt": "2026-11-19T19:13:04.281553+00:00",
+      "home": true,
+      "features": {
+        "basePir": 14.494169400635759,
+        "baseMin": 23.2942489,
+        "injuryBoost": 0.03142857142857132,
+        "injuryUsagePct": 0.03428571428571416,
+        "missingStars": [],
+        "positionMatchPct": 0.49767281073320735,
+        "teamPoints": 83.38180000000001,
+        "margin": -0.8464,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 42,
+          "historyWeight": 0.462,
+          "sameTeam": false,
+          "avgPir": 17.142857142857142,
+          "avgMinutes": 23.63690238095238,
+          "currentSeasonWeight": 0.75,
+          "minutesWeight": 0.8571428571428571,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 3,
+              "nextGameSamples": 6,
+              "nextGameAvgPir": 15.5,
+              "continuedRate": 0.16666666666666666
+            },
+            {
+              "threshold": 25,
+              "longestRun": 3,
+              "nextGameSamples": 3,
+              "nextGameAvgPir": 15.666666666666666,
+              "continuedRate": 0.3333333333333333
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.75,
+        "context": {
+          "involvementFactor": 1.0110302919727614,
+          "defenseFactor": 0.9828585462668382,
+          "defenseSample": 12,
+          "rival": "Marcus Bingham",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.12910262914807,
+              "weight": 0.8066810670272027,
+              "observedGames": 7
+            },
+            {
+              "id": "big-win",
+              "minutes": 20.080317715714283,
+              "weight": 0.08410645142966755,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 23.092748014333377,
+              "weight": 0.10921248154312975,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": true
+        }
+      },
+      "actualPir": 36,
+      "actualMinutes": 28.766666666666666,
+      "fouls": 1,
+      "actualStats": {
+        "points": 22,
+        "totalRebounds": 11,
+        "assistances": 2,
+        "turnovers": 1,
+        "foulsCommited": 1,
+        "fieldGoalsMadeTotal": 7,
+        "fieldGoalsAttemptedTotal": 11
+      },
+      "minutesContribution": 4.170034279537358,
+      "efficiencyContribution": 20.029704285401483,
+      "reason": "efficiency",
+      "error": 24.19973856493884,
+      "servedError": 20.98075083624691,
+      "outcome": "miss",
+      "replayKind": "exact-frozen-input",
+      "baseFloor": 6.980464587423511,
+      "baseCeiling": 17.62567308324437
+    },
+    {
+      "name": "Vladimir Lucic",
+      "key": "lucic vladimir",
+      "team": "Bayern Munich",
+      "pos": "F",
+      "opponent": "Besiktas",
+      "gameCode": 55,
+      "round": 6,
+      "start": "2026-10-16T17:00:00Z",
+      "basePir": 5.841314077359275,
+      "baseMinutes": 17.137573519163762,
+      "servedPir": 5.841314077359275,
+      "servedMinutes": 17.137573519163762,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-15T18:12:33.662134+00:00",
+      "home": false,
+      "features": {
+        "basePir": 9.992025650749024,
+        "baseMin": 22.356507317073174,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": 0,
+        "teamPoints": 86.32875,
+        "margin": -3.9825,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 33,
+          "historyWeight": 0.8048780487804879,
+          "sameTeam": true,
+          "avgPir": 10.666666666666666,
+          "avgMinutes": 23.170206060606063,
+          "currentSeasonWeight": 0.5555555555555556,
+          "minutesWeight": 0.7142857142857143,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5555555555555556,
+        "context": {
+          "involvementFactor": 0.9952075122853111,
+          "defenseFactor": 1.0021538725604824,
+          "defenseSample": 5,
+          "rival": "Anthony Brown",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 17.01053317480157,
+              "weight": 0.7816509390258585,
+              "observedGames": 4
+            },
+            {
+              "id": "big-win",
+              "minutes": 15.745933342213588,
+              "weight": 0.049483885755917965,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.13342697312256,
+              "weight": 0.16886517521822353,
+              "observedGames": 1
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 28,
+      "actualMinutes": 21.7,
+      "fouls": 1,
+      "actualStats": {
+        "points": 17,
+        "totalRebounds": 7,
+        "assistances": 1,
+        "turnovers": 0,
+        "foulsCommited": 1,
+        "fieldGoalsMadeTotal": 4,
+        "fieldGoalsAttemptedTotal": 5
+      },
+      "minutesContribution": 1.5550956498960582,
+      "efficiencyContribution": 20.60359027274467,
+      "reason": "efficiency",
+      "error": 22.158685922640725,
+      "servedError": 22.158685922640725,
+      "outcome": "miss",
+      "replayKind": "exact-frozen-input",
+      "baseFloor": 3.0016245807455624,
+      "baseCeiling": 8.726674390850514
+    },
+    {
+      "name": "Duane Washington",
+      "key": "duane washington",
+      "team": "Bayern Munich",
+      "pos": "G",
+      "opponent": "Baskonia",
+      "gameCode": 124,
+      "round": 13,
+      "start": "2026-11-19T19:00:00Z",
+      "basePir": 11.124508472111556,
+      "baseMinutes": 21.240331392924347,
+      "servedPir": 10.189631387919448,
+      "servedMinutes": 20.017918278334207,
+      "status": "active",
+      "modelId": "a6bc6d365db483e7fd6d",
+      "eligible": true,
+      "snapshotAt": "2026-11-19T10:29:49.216828+00:00",
+      "home": true,
+      "features": {
+        "basePir": 10.091091031685792,
+        "baseMin": 22.563544838709674,
+        "injuryBoost": 0.13068749999999996,
+        "injuryUsagePct": 0.22403571428571423,
+        "missingStars": [],
+        "positionMatchPct": 2.038859897466816,
+        "teamPoints": 90.48165,
+        "margin": 5.4533,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 23,
+          "historyWeight": 0.4080645161290323,
+          "sameTeam": false,
+          "avgPir": 11.043478260869565,
+          "avgMinutes": 21.930426086956523,
+          "currentSeasonWeight": 0.7142857142857143,
+          "minutesWeight": 0.8333333333333334,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 2,
+              "nextGameSamples": 1,
+              "nextGameAvgPir": 10,
+              "continuedRate": 0
+            },
+            {
+              "threshold": 25,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 1,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.7142857142857143,
+        "context": {
+          "involvementFactor": 1.0139102803074684,
+          "defenseFactor": 1.0188401058127874,
+          "defenseSample": 12,
+          "rival": "Dj Stewart",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 21.570247580381935,
+              "weight": 0.7593904251328855,
+              "observedGames": 6
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.235650475806448,
+              "weight": 0.20277093579849204,
+              "observedGames": 0
+            },
+            {
+              "id": "big-loss",
+              "minutes": 21.13179734201825,
+              "weight": 0.0378386390686225,
+              "observedGames": 4
+            }
+          ],
+          "minutesCorrectionActive": true
+        }
+      },
+      "actualPir": 33,
+      "actualMinutes": 22.15,
+      "fouls": 0,
+      "actualStats": {
+        "points": 23,
+        "totalRebounds": 7,
+        "assistances": 2,
+        "turnovers": 0,
+        "foulsCommited": 0,
+        "fieldGoalsMadeTotal": 8,
+        "fieldGoalsAttemptedTotal": 13
+      },
+      "minutesContribution": 0.4764340037367821,
+      "efficiencyContribution": 21.39905752415166,
+      "reason": "efficiency",
+      "error": 21.875491527888443,
+      "servedError": 22.810368612080552,
+      "outcome": "miss",
+      "replayKind": "exact-frozen-input",
+      "baseFloor": 6.047730571458951,
+      "baseCeiling": 15.270519692933854
+    },
+    {
+      "name": "Yam Madar",
+      "key": "madar yam",
+      "team": "Maccabi Tel Aviv",
+      "pos": "G",
+      "opponent": "Barcelona",
+      "gameCode": 44,
+      "round": 5,
+      "start": "2026-10-13T18:30:00Z",
+      "basePir": 9.274467409389157,
+      "baseMinutes": 19.450764652777778,
+      "servedPir": 9.274467409389157,
+      "servedMinutes": 19.450764652777778,
+      "status": "active",
+      "modelId": "b3fc6df40846537dcb24",
+      "eligible": true,
+      "snapshotAt": "2026-10-12T18:42:57.942890+00:00",
+      "home": false,
+      "features": {
+        "basePir": 6.3727580859264545,
+        "baseMin": 15.592293958333332,
+        "injuryBoost": 0,
+        "injuryUsagePct": 0,
+        "missingStars": [],
+        "positionMatchPct": -4.507000000000005,
+        "teamPoints": 84.67305,
+        "margin": -5.5939,
+        "lastGameWeight": null,
+        "personalPrior": {
+          "historicalGames": 16,
+          "historyWeight": 0.3666666666666667,
+          "sameTeam": false,
+          "avgPir": 3.1875,
+          "avgMinutes": 9.70625625,
+          "currentSeasonWeight": 0.5,
+          "minutesWeight": 0.6666666666666666,
+          "momentumPir": 0,
+          "momentumEnabled": false,
+          "hot": false,
+          "streaks": [
+            {
+              "threshold": 20,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 25,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            },
+            {
+              "threshold": 30,
+              "longestRun": 0,
+              "nextGameSamples": 0,
+              "nextGameAvgPir": null,
+              "continuedRate": null
+            }
+          ]
+        },
+        "currentSeasonWeight": 0.5,
+        "context": {
+          "involvementFactor": 1,
+          "defenseFactor": 0.9964695378628594,
+          "defenseSample": 4,
+          "rival": "Kevin Punter",
+          "scenarios": [
+            {
+              "id": "close",
+              "minutes": 19.777525032780424,
+              "weight": 0.7569380698960013,
+              "observedGames": 1
+            },
+            {
+              "id": "big-win",
+              "minutes": 19.330206726596877,
+              "weight": 0.03685787058194324,
+              "observedGames": 1
+            },
+            {
+              "id": "big-loss",
+              "minutes": 18.272835064583106,
+              "weight": 0.2062040595220554,
+              "observedGames": 2
+            }
+          ],
+          "minutesCorrectionActive": false
+        }
+      },
+      "actualPir": 31,
+      "actualMinutes": 26.8,
+      "fouls": 1,
+      "actualStats": {
+        "points": 22,
+        "totalRebounds": 3,
+        "assistances": 4,
+        "turnovers": 1,
+        "foulsCommited": 1,
+        "fieldGoalsMadeTotal": 8,
+        "fieldGoalsAttemptedTotal": 11
+      },
+      "minutesContribution": 3.504244945044322,
+      "efficiencyContribution": 18.22128764556652,
+      "reason": "efficiency",
+      "error": 21.725532590610843,
+      "servedError": 21.725532590610843,
+      "outcome": "miss",
+      "replayKind": "exact-frozen-input",
+      "baseFloor": 4.653663286727371,
+      "baseCeiling": 14.054063125916661
+    }
+  ]
+}

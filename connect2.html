@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0d10">
+<title>EuroFantasy AI — חיבור Fantasy V2</title>
+<style>
+:root{--bg:#090b0e;--card:#15191f;--card2:#1c222a;--line:#2b333e;--text:#f7f8fa;--muted:#99a3b0;--accent:#62e6a5;--bad:#ff7878;--warn:#ffc857}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#07090b,#0d1116);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+main{max-width:720px;margin:auto;padding:18px}
+.card{background:linear-gradient(180deg,var(--card),#11151a);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px}
+h1{font-size:28px;margin:0 0 8px}h2{font-size:19px;margin:0 0 10px}
+p{color:var(--muted);line-height:1.55}
+input,select{width:100%;background:#0c1015;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:13px;font:inherit}
+button,a.btn{display:inline-block;border:0;border-radius:12px;padding:12px 16px;background:var(--accent);color:#07110c;font-weight:800;cursor:pointer;text-decoration:none}
+button.secondary,a.secondary{background:var(--card2);color:var(--text);border:1px solid var(--line)}
+.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1 1 180px}
+.notice{padding:12px;border:1px solid var(--line);border-radius:12px;background:#0d1116;color:var(--muted);white-space:pre-wrap;line-height:1.45}
+.ok{color:var(--accent)}.bad{color:var(--bad)}.warn{color:var(--warn)}
+.team{padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--card2);margin-top:10px}
+small{color:var(--muted)}
+label{display:block;color:var(--muted);font-size:13px;margin:8px 0}
+</style>
+</head>
+<body>
+<main>
+  <div class="card">
+    <div style="color:var(--accent);letter-spacing:1.6px;font-size:12px">EUROFANTASY AI • CONNECTOR TEST V2</div>
+    <h1>חיבור לחשבון EuroLeague Fantasy</h1>
+    <p>העמוד הזה בודק שה־token שהעתקת עובד מול ה־Fantasy API, מוריד מחירים ורשימת שחקנים, ומאפשר לייבא את הסגל האישי שלך ל־EuroFantasy AI.</p>
+  </div>
+
+  <div class="card">
+    <h2>1. הדבק את ה־token</h2>
+    <input id="token" type="password" autocomplete="off" placeholder="הדבק כאן את ה-token שהעתקת">
+    <label><input id="remember" type="checkbox" style="width:auto;margin-left:8px"> זכור במכשיר הזה</label>
+    <div class="row" style="margin-top:12px">
+      <button id="connect">חבר ובדוק</button>
+      <button id="forget" class="secondary">מחק token מהמכשיר</button>
+    </div>
+    <div id="status" class="notice" style="margin-top:12px">ממתין לחיבור.</div>
+  </div>
+
+  <div class="card">
+    <h2>2. סנכרון שחקנים ומחירים</h2>
+    <p>אחרי חיבור תקין, הכפתור יטען את רשימת השחקנים והמחירים מה־Fantasy וישמור אותם מקומית תחת אותו אתר.</p>
+    <button id="syncPlayers" disabled>סנכרן שחקנים ומחירים</button>
+    <div id="playerStatus" class="notice" style="margin-top:12px">עדיין לא סונכרן.</div>
+  </div>
+
+  <div class="card">
+    <h2>3. הסגלים שלי</h2>
+    <p>הסוכן יזהה את קבוצות הפנטזי שלך. לחץ על הקבוצה שתרצה לייבא ל״הסגל שלי״.</p>
+    <button id="loadTeams" disabled>טען את הקבוצות שלי</button>
+    <div id="teams"></div>
+  </div>
+
+  <div class="card">
+    <a class="btn" href="./index.html">חזור ל־EuroFantasy AI</a>
+  </div>
+</main>
+
+<script>
+const API='https://fantaking-api.dunkest.com/api/v1';
+let currentToken='';
+let currentMatchday=null;
+
+const $=id=>document.getElementById(id);
+const norm=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
+const cleanToken=raw=>{
+  let t=String(raw||'').trim();
+  if((t.startsWith('"')&&t.endsWith('"'))||(t.startsWith("'")&&t.endsWith("'"))) t=t.slice(1,-1);
+  if(/^bearer\s+/i.test(t)) t=t.replace(/^bearer\s+/i,'').trim();
+  return t;
+};
+const setStatus=(id,msg,cls='')=>{ const el=$(id); el.textContent=msg; el.className='notice '+cls; };
+
+async function api(path, auth=true){
+  const headers={Accept:'application/json'};
+  if(auth){
+    if(!currentToken) throw new Error('אין token');
+    headers.Authorization='Bearer '+currentToken;
+  }
+  const r=await fetch(API+path,{headers,cache:'no-store'});
+  let body=null;
+  try{body=await r.json()}catch(e){}
+  if(!r.ok){
+    const detail=body?.message||body?.error||('HTTP '+r.status);
+    throw new Error(detail);
+  }
+  return body;
+}
+
+async function resolveMatchday(){
+  const cfg=await api('/leagues/10/config',false);
+  const md=cfg?.data?.current_matchday||cfg?.current_matchday||cfg?.data?.matchday||cfg?.matchday;
+  if(!md?.id) throw new Error('לא הצלחתי לזהות את המחזור הנוכחי');
+  currentMatchday={id:Number(md.id),number:Number(md.number||0)};
+  return currentMatchday;
+}
+
+function positionCode(p){
+  const s=String(p?.position?.name||p?.position||'').toLowerCase();
+  if(s.includes('guard')||s==='g') return 'G';
+  if(s.includes('forward')||s==='f') return 'F';
+  if(s.includes('center')||s.includes('centre')||s==='c') return 'C';
+  return s ? s[0].toUpperCase() : '';
+}
+function statusFrom(p){
+  const prob=Number(p?.probability_of_playing);
+  if(p?.is_injured===true && (!Number.isFinite(prob)||prob<=0.05)) return 'out';
+  if(Number.isFinite(prob) && prob<0.75) return prob<=0.05?'out':'questionable';
+  if(p?.is_injured===true) return 'questionable';
+  return 'active';
+}
+function playerName(p){
+  return [p?.first_name,p?.last_name].filter(Boolean).join(' ').trim() || p?.name || p?.label || '';
+}
+
+async function connect(){
+  currentToken=cleanToken($('token').value);
+  if(!currentToken){setStatus('status','לא הודבק token.','bad');return;}
+  setStatus('status','בודק חיבור…');
+  try{
+    const md=await resolveMatchday();
+    const teams=await api('/user/fantasy-teams?league=10&game_mode=1');
+    const arr=Array.isArray(teams?.data)?teams.data:[];
+    if($('remember').checked) localStorage.setItem('efa_fantasy_token',currentToken);
+    else sessionStorage.setItem('efa_fantasy_token',currentToken);
+    $('syncPlayers').disabled=false;
+    $('loadTeams').disabled=false;
+    setStatus('status',`החיבור הצליח ✓\nמחזור נוכחי: ${md.number||'?'}\nנמצאו ${arr.length} קבוצות בחשבון.`,'ok');
+  }catch(e){
+    if(String(e.message).includes('401')) setStatus('status','ה-token נדחה או פג תוקף. צריך להעתיק token חדש.','bad');
+    else setStatus('status','החיבור נכשל: '+e.message+'\nאם מופיעה שגיאת CORS, נעבור לחיבור דרך backend מאובטח.','bad');
+  }
+}
+
+async function syncPlayers(){
+  setStatus('playerStatus','מוריד שחקנים ומחירים…');
+  try{
+    const md=currentMatchday||await resolveMatchday();
+
+    // The first version incorrectly used league id 10 as the players-list id.
+    // In Fantaking these are different IDs, so discover the current list dynamically.
+    const candidateIds=[];
+    const addId=v=>{
+      const n=Number(v);
+      if(Number.isInteger(n)&&n>0&&!candidateIds.includes(n)) candidateIds.push(n);
+    };
+    const walk=(obj,ctx='')=>{
+      if(!obj||typeof obj!=='object') return;
+      if(Array.isArray(obj)){ for(const v of obj) walk(v,ctx); return; }
+      for(const [k,v] of Object.entries(obj)){
+        const next=(ctx+' '+k).toLowerCase();
+        if(typeof v==='number' && /(players.?list|schedule|competition)/.test(next)) addId(v);
+        if(v && typeof v==='object'){
+          if(/(players.?list|schedule|competition)/.test(k.toLowerCase()) && typeof v.id==='number') addId(v.id);
+          walk(v,next);
+        }
+      }
+    };
+
+    try{ walk(await api('/games/7/config'), 'games config'); }catch(e){}
+    try{ walk(await api('/leagues/10/config',false), 'league config'); }catch(e){}
+
+    // Known recent EuroLeague Fantaking list IDs + safe nearby fallbacks.
+    [31,32,30,33,29,34,35,28,36,27,37,10].forEach(addId);
+
+    let rows=[], used='', attempts=[];
+    for(const listId of candidateIds){
+      const path=`/players-lists/${listId}/matchdays/${md.id}/players?per_page=-1&page=1&sort_by=quotation&sort_order=desc`;
+      try{
+        const data=await api(path);
+        const got=Array.isArray(data?.data)?data.data:
+                  Array.isArray(data?.players)?data.players:
+                  Array.isArray(data?.items)?data.items:
+                  Array.isArray(data?.results)?data.results:
+                  Array.isArray(data)?data:[];
+        attempts.push(`${listId}:${got.length}`);
+        if(got.length){ rows=got; used=path; break; }
+      }catch(e){
+        attempts.push(`${listId}:ERR`);
+      }
+    }
+
+    if(!rows.length){
+      throw new Error('לא נמצאה רשימת שחקנים. ניסיונות: '+attempts.join(', '));
+    }
+
+    const old=JSON.parse(localStorage.getItem('efa2_players')||'[]');
+    const oldMap=new Map(old.map(p=>[norm(p.name),p]));
+    const today=new Date().toISOString().slice(0,10);
+    const merged=rows.map(p=>{
+      const name=playerName(p);
+      const prev=oldMap.get(norm(name))||{};
+      const teamName=p?.team?.name||p?.team?.abbreviation||prev.team||'';
+      const opp=p?.opponent?.name||p?.opponent?.abbreviation||prev.opponent||'';
+      const homeFlag=p?.team?.position==='home'?1:p?.team?.position==='away'?0:(prev.home??0);
+      return {
+        ...prev,
+        name,
+        team:teamName,
+        pos:positionCode(p)||prev.pos||'',
+        price:Number(p?.quotation ?? p?.price ?? prev.price ?? 0),
+        opponent:opp,
+        home:homeFlag,
+        status:statusFrom(p),
+        data_updated:today,
+        fantasy_id:p?.id ?? prev.fantasy_id ?? null,
+        probability_of_playing:p?.probability_of_playing ?? null,
+        fantasy_source:'Fantaking API'
+      };
+    }).filter(p=>p.name && Number.isFinite(p.price));
+
+    if(!merged.length) throw new Error('נמצאו שורות, אבל לא הצלחתי לפרש את נתוני השחקנים.');
+
+    localStorage.setItem('efa2_players',JSON.stringify(merged));
+    localStorage.setItem('efa2_fantasy_sync',new Date().toISOString());
+    setStatus('playerStatus',
+      `סנכרון הצליח ✓\nנשמרו ${merged.length} שחקנים.\nPlayers-list: ${used.match(/players-lists\/(\d+)/)?.[1]||'?'}\nעכשיו חזור ל-EuroFantasy AI ורענן את הדף.`,
+      'ok'
+    );
+  }catch(e){
+    setStatus('playerStatus','סנכרון נכשל: '+e.message,'bad');
+  }
+}
+async function loadTeams(){
+  $('teams').innerHTML='<div class="notice">טוען קבוצות…</div>';
+  try{
+    const md=currentMatchday||await resolveMatchday();
+    const data=await api('/user/fantasy-teams?league=10&game_mode=1');
+    const teams=Array.isArray(data?.data)?data.data:[];
+    if(!teams.length){$('teams').innerHTML='<div class="notice bad">לא נמצאו קבוצות בחשבון.</div>';return;}
+    $('teams').innerHTML=teams.map(t=>`
+      <div class="team">
+        <b>${String(t.name||('Team '+t.id)).replace(/[<>&"]/g,'')}</b><br>
+        <small>ID ${t.id}</small><br><br>
+        <button onclick="importRoster('${String(t.id).replace(/'/g,'')}')">ייבא את הסגל הזה</button>
+      </div>`).join('');
+  }catch(e){
+    $('teams').innerHTML='<div class="notice bad">טעינת הקבוצות נכשלה: '+String(e.message).replace(/[<>&"]/g,'')+'</div>';
+  }
+}
+
+window.importRoster=async function(teamId){
+  const box=$('teams');
+  const msg=document.createElement('div'); msg.className='notice'; msg.textContent='טוען סגל…'; box.prepend(msg);
+  try{
+    const md=currentMatchday||await resolveMatchday();
+    let data=null;
+    for(const suffix of ['roster/preview','roster']){
+      try{data=await api(`/fantasy-teams/${teamId}/matchdays/${md.id}/${suffix}`);break}catch(e){}
+    }
+    const roster=Array.isArray(data?.data?.players)?data.data.players:[];
+    if(!roster.length) throw new Error('לא נמצאו שחקנים בסגל');
+    const names=roster.map(playerName).filter(Boolean);
+    localStorage.setItem('efa2_team',JSON.stringify(names));
+    localStorage.setItem('efa2_fantasy_team_id',String(teamId));
+    localStorage.setItem('efa2_fantasy_roster_sync',new Date().toISOString());
+    msg.className='notice ok';
+    msg.textContent=`הסגל יובא בהצלחה ✓\n${names.length} שחקנים נשמרו ב״הסגל שלי״.\nחזור ל-EuroFantasy AI ורענן.`;
+  }catch(e){
+    msg.className='notice bad';
+    msg.textContent='ייבוא הסגל נכשל: '+e.message;
+  }
+}
+
+$('connect').onclick=connect;
+$('syncPlayers').onclick=syncPlayers;
+$('loadTeams').onclick=loadTeams;
+$('forget').onclick=()=>{
+  localStorage.removeItem('efa_fantasy_token');
+  sessionStorage.removeItem('efa_fantasy_token');
+  currentToken='';
+  $('token').value='';
+  $('syncPlayers').disabled=true;$('loadTeams').disabled=true;
+  setStatus('status','ה-token נמחק מהמכשיר.','ok');
+};
+
+const saved=localStorage.getItem('efa_fantasy_token')||sessionStorage.getItem('efa_fantasy_token')||'';
+if(saved){$('token').value=saved;$('remember').checked=!!localStorage.getItem('efa_fantasy_token');}
+</script>
+</body>
+</html>

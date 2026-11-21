@@ -1,0 +1,44 @@
+#componentForecast .cf-shell{max-width:980px;margin-inline:auto;color:#172824}
+#componentForecast h2,#componentForecast h3{color:#132d26;margin-block:0 .5rem}
+#componentForecast h3{margin-block:1rem .55rem}
+#componentForecast header p,#componentForecast .cf-muted{color:#405852;font-size:.88rem}
+#componentForecast .cf-switch{display:flex;gap:.45rem;margin-block:.8rem}
+#componentForecast .cf-switch button{min-height:38px;padding:.35rem 1.15rem;border:1px solid #78958b;border-radius:10px;background:#fff;color:#193e34;font-weight:750}
+#componentForecast .cf-switch button[aria-pressed=true]{background:#075242;color:#fff;border-color:#075242}
+#componentForecast .cf-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(145px,100%),1fr));gap:.65rem;margin-block:.75rem}
+#componentForecast .cf-controls label{display:grid;min-width:0;gap:.25rem;color:#253f38;font-size:.84rem;font-weight:700}
+#componentForecast .cf-controls select{min-width:0;width:100%;max-width:100%;min-height:40px;background:#fff;color:#1b3932;border:1px solid #90aaa0;border-radius:8px}
+#componentForecast .cf-controls select:focus-visible,#componentForecast button:focus-visible,#componentForecast summary:focus-visible{outline:2px solid #224688;outline-offset:2px}
+#componentForecast .cf-player{display:flex;align-items:center;gap:.65rem;background:#f1f7f4;border:1px solid #bed2c9;border-radius:12px;padding:.7rem;margin-block:.75rem}
+#componentForecast .cf-player h3,#componentForecast .cf-player p{margin:0}
+#componentForecast .cf-player img{object-fit:contain;border-radius:9px;background:#e0ece6}
+#componentForecast .cf-player bdi{margin-inline-start:auto;white-space:nowrap;font-weight:750;color:#41266c}
+#componentForecast .cf-forecast-grid,#componentForecast .cf-components{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem;margin-block:.65rem}
+#componentForecast .cf-components{grid-template-columns:repeat(3,minmax(0,1fr))}
+#componentForecast .cf-forecast-grid>div,#componentForecast .cf-components>div{display:grid;gap:.15rem;text-align:center;align-content:center;background:#f3f7f5;color:#203c33;border:1px solid #bdd1c7;border-radius:10px;padding:.5rem .2rem}
+#componentForecast .cf-forecast-grid strong{font-size:clamp(1.7rem,6vw,2.5rem)}
+#componentForecast .cf-forecast-grid>div:last-child{background:#075242;color:#fff;border-color:#075242}
+#componentForecast .cf-components strong{font-size:1.15rem}
+#componentForecast .cf-delta{text-align:center;font-weight:700;margin-block:.5rem}
+#componentForecast details{margin-block:.55rem;border:1px solid #c0d1c9;border-radius:9px;padding:.55rem;background:#fbfdfc}
+#componentForecast summary{cursor:pointer;color:#164d3f;font-weight:700}
+#componentForecast .cf-factor summary strong{float:inline-end;margin-inline-start:.35rem}
+#componentForecast .cf-positive{color:#075842}
+#componentForecast .cf-negative{color:#8a2932}
+#componentForecast .cf-ledger{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.35rem}
+#componentForecast .cf-ledger>div{display:flex;justify-content:space-between;gap:.35rem;background:#edf4ef;padding:.25rem .4rem;border-radius:6px}
+#componentForecast dd{margin:0;font-weight:700}
+#componentForecast .cf-table{width:100%;min-width:0;table-layout:auto;border-collapse:collapse;margin-block:.65rem;color:#19342b;font-size:.86rem}
+#componentForecast .cf-table td,#componentForecast .cf-table th{padding:.43rem .3rem;text-align:start;border-bottom:1px solid #d8e4dd}
+#componentForecast .cf-table th{position:static}
+#componentForecast .cf-table thead{background:#e4efe9}
+#componentForecast .cf-table small{display:block;color:#496157;font-weight:450}
+@media(max-width:650px){
+ #componentForecast .cf-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+ #componentForecast .cf-table tbody,#componentForecast .cf-table{display:block}
+ #componentForecast .cf-table tr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.1rem .35rem;border:1px solid #c2d4cb;border-radius:9px;padding:.4rem;margin-bottom:.4rem}
+ #componentForecast .cf-table tr>th{grid-column:1/-1;background:#eef5f1;color:#174136;border-radius:5px}
+ #componentForecast .cf-table tr>td{border:0;min-width:0}
+ #componentForecast .cf-table tr>td::before{content:attr(data-label);display:block;color:#486257;font-size:.73rem}
+ #componentForecast .cf-ledger{grid-template-columns:minmax(0,1fr)}
+}

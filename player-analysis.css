@@ -1,0 +1,161 @@
+html:has(.tab.active .pa-views){overflow-anchor:none}
+.pa-expanded .pa-detail,.pa-panel[hidden]{display:none!important}
+.pa-views,.pa-sort,.pa-controls,.pa-picks{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
+.pa-views>button,.pa-sort>button{flex:1 1 90px}
+.pa-controls>label{flex:1 1 130px;min-width:0;font-size:13px}
+.pa-controls select{display:block;width:100%;min-width:0;margin-top:4px}
+.tab .pa-views button,.tab .pa-panel button,.tab .pa-sort button{min-height:44px;border:1px solid var(--line);background:var(--card2);color:var(--text);padding:7px;font-size:13px;font-weight:800}
+.tab .pa-views button[aria-pressed=true],.tab .pa-sort button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#07110c}
+html[data-theme=light] .tab .pa-views button[aria-pressed=true],html[data-theme=light] .tab .pa-sort button[aria-pressed=true]{color:white}
+.pa-table-wrap{margin:10px 0}
+.pa-table{width:100%;min-width:0;table-layout:fixed}
+.pa-table th,.pa-table td{position:static;padding:8px 6px;text-align:center;overflow-wrap:anywhere;font-size:13px;font-variant-numeric:tabular-nums}
+.pa-table th:first-child{width:46%;text-align:start}
+.pa-table small{display:block;color:var(--muted);font-weight:400}
+.pa-table tbody td:nth-child(2){font-weight:800}
+.pa-expanded details:has(.pa-detail){display:none!important}
+#usage .us-switch>button:last-child{grid-column:1/-1}
+#usage .pa-sort button[aria-pressed=true]{background:var(--accent);border-color:var(--accent)}
+#playerFreeThrows .pa-views button[aria-pressed=true],#playerFreeThrows .pa-sort button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#07110c}
+html[data-theme=light] #playerFreeThrows .pa-views button[aria-pressed=true],html[data-theme=light] #playerFreeThrows .pa-sort button[aria-pressed=true]{color:white}
+html[data-theme] .tab :is(.pa-views,.pa-sort) button[aria-pressed=false],
+html[data-theme] .tab .pa-panel .pa-picks button,
+html[data-theme] .tab .pa-panel button[data-pa-more]{color:var(--text)}
+.pa-ranking-chart{margin:14px 0;padding:12px;border:1px solid var(--line);border-radius:16px;background:var(--card2)}
+.pa-ranking-chart h4{margin:0 0 12px}
+.pa-ranking-chart ol{display:grid;gap:9px;list-style:none;padding:0;margin:0}
+.pa-ranking-chart li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 10px;font-size:13px}
+.pa-ranking-chart strong{font-variant-numeric:tabular-nums}
+.pa-bar-track{position:relative;grid-column:1/-1;height:8px;background:var(--line);border-radius:8px;direction:ltr}
+.pa-bar-track::after{content:"";position:absolute;left:var(--bar-zero);top:-2px;bottom:-2px;border-left:1px solid var(--muted)}
+.pa-bar-track span{position:absolute;height:100%;border-radius:8px;background:var(--accent)}
+.pa-bar-track span.negative{background:var(--bad)}
+.pa-panel [data-pa-ranking-table]>summary{cursor:pointer;padding:10px 0}
+
+.pa-profile,.pa-compare-card{
+ display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px 10px;
+ padding:9px 10px;background:var(--card);border:1px solid var(--line);border-radius:14px;
+ box-shadow:0 2px 5px #101e3210;min-width:0;
+}
+.pa-profile{margin:9px 0}
+.pa-identity{display:flex;align-items:center;gap:9px;min-width:0}
+.pa-portrait{
+ position:relative;display:grid;place-items:center;flex:none;width:54px;height:58px;overflow:hidden;
+ border-radius:9px;background:linear-gradient(145deg,color-mix(in srgb,var(--pa-club) 36%,var(--card2)),var(--card2));
+ border-block-end:3px solid var(--pa-club);
+}
+.pa-portrait svg{width:36px;height:47px;margin:0}
+.pa-portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
+.pa-person{display:grid;gap:4px;min-width:0}
+.pa-person>b{color:var(--text);font-size:16px;line-height:1.15;overflow-wrap:anywhere}
+.pa-club{display:flex;align-items:center;gap:5px;color:var(--muted);font-size:12px;font-weight:700;line-height:1.2}
+.pa-club img{width:16px;height:16px;object-fit:contain}
+.pa-profile-meta{grid-column:1/-1;border-top:1px solid var(--line);padding-top:6px;color:var(--muted);font-size:11px;line-height:1.5}
+.pa-profile-actions{display:grid;justify-items:end;gap:3px}
+.pa-credit{padding:3px 7px;border-radius:6px;background:var(--card2);color:var(--text);font-size:12px;font-weight:800;white-space:nowrap}
+.pa-compare-list{display:grid;gap:7px;margin:9px 0}
+.pa-compare-card{background:linear-gradient(125deg,var(--card),var(--card2))}
+.pa-compare-track{grid-column:1/-1;background:var(--line);border-radius:8px;overflow:hidden;height:4px;direction:ltr}
+.pa-compare-track i{display:block;height:100%;border-radius:inherit;background:var(--accent)}
+.pa-compare-track i[data-negative=true]{background:var(--bad)}
+@media(max-width:360px){
+ .pa-portrait{width:42px;height:49px}
+ .pa-person>b{font-size:14px}
+}
+
+/* Shared player identity, ranking rows and scouting metrics. */
+.tab .pa-profile-link, .pa-profile-link {
+ appearance:none; display:inline-block; min-width:0; min-height:44px;
+ padding:0; border:0; border-radius:8px; background:none; color:inherit; text-align:inherit;
+}
+.tab .pa-profile-link:focus-visible,.pa-profile-link:focus-visible{outline:2px solid #3886d2;outline-offset:3px}
+.tab .pa-profile-link:hover .pa-person>b,.pa-profile-link:hover .pa-person>b{text-decoration:underline;text-underline-offset:3px}
+.pa-identity-link,.tab .pa-identity-link{display:flex;align-items:center;gap:9px;max-width:100%}
+.pa-identity .pa-portrait img{object-fit:contain;object-position:center bottom}
+.pa-portrait:has(img) svg{visibility:hidden}
+.pa-profile {padding:12px;border:0;box-shadow:none;background:var(--card)}
+.pa-profile .pa-portrait{width:68px;height:72px}
+.pa-profile-meta{border-color:color-mix(in srgb,var(--line) 55%,transparent)}
+.pa-table{border-collapse:collapse}
+.pa-table th:first-child{width:55%}
+.pa-table th:last-child{width:19%}
+.pa-table :is(thead th,tbody th,tbody td){background:none;border:0;border-bottom:1px solid color-mix(in srgb,var(--line) 60%,transparent)}
+.pa-table .pa-portrait{width:43px;height:48px}
+.pa-table .pa-person>b{font-size:14px}
+.pa-table .pa-club{font-size:11px}
+.pa-table .pa-club img{display:none}
+.pa-table .pa-rank-value{font-size:clamp(16px,4.7vw,24px);line-height:1;color:var(--text);font-weight:850}
+.pa-table .pa-credit{font-size:11px;padding:3px 5px}
+.pa-compare-card{background:var(--card);border:0;border-bottom:1px solid var(--line);box-shadow:none}
+.pa-rank-value[data-tone=negative]{color:var(--bad)}
+.pa-report{min-width:0;border-radius:16px;background:var(--card);padding:4px 10px 10px}
+.pa-report .pa-profile{margin:0;padding-inline:2px}
+.pa-profile .pa-profile-actions button{white-space:normal}
+@media(max-width:390px){
+ .pa-table th,.pa-table td{padding-inline:4px}
+ .pa-table .pa-portrait{width:34px;height:40px}
+ .pa-table .pa-identity-link{gap:5px}
+ .pa-profile .pa-portrait{width:56px;height:62px}
+}
+.tab .pa-panel .pa-profile-link,.tab .pa-sort .pa-profile-link{
+ padding:0;border:0;background:none;color:inherit;text-align:start
+}
+.pa-rank-value[data-tone=negative]{color:var(--bad)}
+.ap-shell .ap-box-game{border:0;background:var(--card);padding:8px}
+.pa-comparison-bars{
+ margin:14px 0;padding:clamp(10px,3vw,18px);border:1px solid var(--line);
+ border-radius:16px;background:var(--card);color:var(--text);
+}
+.pa-comparison-bars figcaption{font-size:16px;font-weight:800}
+.pa-comparison-axis{
+ display:flex;justify-content:space-between;direction:ltr;
+ margin-block:8px 0;color:var(--muted);font-size:11px;font-variant-numeric:tabular-nums;
+}
+.pa-comparison-bars ul{list-style:none;padding:0;margin:0}
+.pa-comparison-row{
+ display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;
+ gap:6px 10px;padding:9px 0 12px;
+}
+.pa-comparison-row+.pa-comparison-row{border-top:1px solid var(--line)}
+.pa-comparison-row .pa-portrait{width:42px;height:46px}
+.pa-comparison-row .pa-person>b{font-size:clamp(13px,3.7vw,16px)}
+.pa-comparison-number{font-size:clamp(19px,5.5vw,27px);font-variant-numeric:tabular-nums}
+.pa-comparison-bar{
+ grid-column:1/-1;direction:rtl;height:10px;
+ border-radius:6px;background:var(--line);overflow:hidden;
+}
+.pa-comparison-bar i{display:block;height:100%;border-radius:inherit;background:var(--accent)}
+
+#usage .us-ranking {border-collapse:collapse}
+#usage .us-ranking td {background:none;border:0;border-bottom:1px solid var(--line);border-radius:0}
+#usage .us-ranking .pa-portrait{width:36px;height:44px}
+#usage .us-ranking .pa-person>b {font-size:13px}
+#usage .us-ranking .pa-identity-link{gap:5px}
+#usage .us-ranking .pa-club img{display:none}
+#usage .us-ranking-meta{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-top:4px}
+#usage .us-ranking-meta button{font-size:11px;padding:3px 6px}
+#usage .us-ranking td:nth-child(3) strong{color:var(--text);font-size:clamp(14px,4vw,20px)}
+#usage .us-player-card.pa-report{background:var(--card);border:0}
+#playerRisk .risk-player{display:block}
+.pop-avatar{overflow:hidden}
+.pop-avatar .pop-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom}
+.pop-score>bdi{color:var(--pop-ink);font-size:clamp(16px,4vw,22px)}
+.cf-history.pa-scored-table :is(th,td){box-shadow:none;border-color:var(--line)}
+.cf-history .pa-person>b{font-size:13px}
+.cf-history .pa-portrait{width:35px;height:42px}
+.cf-history .pa-club img{display:none}
+.pm-history-identity,.tab .pm-history-identity{display:grid;justify-items:center;align-content:start;gap:4px;max-width:100%;margin-inline:auto}
+.pm-history-identity .pmHistoryName{overflow-wrap:anywhere}
+.simCourtPlayer:has(.simCourtIdentity){background:#fff;border-radius:12px;border:1px solid #cadaea}
+.simCourtPlayer .simCourtIdentity{display:grid;justify-items:center;gap:4px;width:100%;color:#172741;padding:6px 4px 0}
+.simCourtPlayer:has(.simCourtIdentity) .simPlayerAction{height:auto;border:0}
+.sim-swap-label{font-weight:800;color:#20558f}
+.simCandidateActions{display:grid;gap:4px;justify-items:center}
+.simHistoryLink{font-size:11px;padding:5px;color:#20558f}
+.ap-screen .ap-player-row{grid-template-columns:minmax(0,1fr) auto minmax(34px,60px) minmax(30px,56px) 36px}
+.ap-screen .ap-player-row.ap-no-plus{grid-template-columns:minmax(0,1fr) auto minmax(34px,66px) 36px}
+.ap-screen .ap-player-row .pa-portrait{width:36px;height:44px}
+.ap-screen .ap-player-row .pa-person>b{font-size:13px}
+.ap-screen .ap-player-row .pa-club img{display:none}
+.ap-screen .ap-player-row .ap-row-arrow{min-height:44px;padding:0;font-size:22px}
+.ap-screen .ap-player-row .pa-credit{font-size:10px;padding-inline:4px}

@@ -1,0 +1,156 @@
+/* Register choice controls by purpose. Shared attributes cover controls
+   rendered by tools; data-control can register a new component explicitly. */
+:root {
+  --control-tool: #09654F;
+  --control-range: #59348D;
+  --control-selection: #214B87;
+  --control-view: #1E293B;
+  --control-filter: #70450E;
+  --control-inactive: #E9EDF3;
+  --control-inactive-text: #243247;
+  --control-inactive-line: #6E7F94;
+  --control-active-text: #FFFFFF;
+}
+
+:is(button, select):where([data-control="tool"], nav.tabs [data-tab], [data-ef-tool],
+  [data-player-tab], [data-mode][aria-pressed],
+  #squadOptimizer, #themeToggle, [data-team-view="simulation"], [data-team-view="upgrade"]) {
+  --control-on-surface: var(--control-tool);
+}
+
+:is(button, select):where([data-control="range"], [data-pir-range], [data-performance-range],
+  [data-season-range], [data-season-game], .ef-chart-ranges [data-range], #hdRounds [data-round],
+  .tm-results [data-tm-game], select[data-range], select[data-round], .performance-game-picker select,
+  #usRange, #dfRange, #tmRange, #tmGame, #pmHistoryRound, #pmHistoryGame, #popPeriod, #popRound,
+  #nsRound, #bargainRound, #superRound, #acRound, #acGameRound, #auditRound, #alGame) {
+  --control-on-surface: var(--control-range);
+  --control-touch-height: 44px;
+}
+
+:is(button, select):where([data-control="selection"], [data-control="entity"], .player-picker-modes button,
+  [data-pir-scope], #pirCompare button[data-add], #pirCompare button[data-remove],
+  .ft-pick, .fc-team-pick, .ap-player-row, [data-us-player],
+  [data-market-toggle], [data-squad-panel="alternatives"],
+  #marketTeam, #weakTeam, #absenceTeam, #injuryTeam, #acTeam, #acGameTeam,
+  select[data-team], select[data-player], select[data-entity], select[data-opponent],
+  select[data-player-rival], select[data-compare-player], select[data-compare-club],
+  select[data-report-player], select[data-pa-add], #playerDna select[data-scope], #clubSelect,
+  #pmTeam, #pmOpponent, #pirKind, #pirTeam, #pirPerson, #dfTeam, #dfPlayer, #usTeam, #usPlayer,
+  #tmTeam, #alTeam, #alPlayer, #squadCoachSelect) {
+  --control-on-surface: var(--control-selection);
+  --control-touch-height: 44px;
+}
+
+:is(button, select):where([data-control="view"], [data-al-mode], [data-ac-view],
+  [data-pm-mode], [data-us-view], [data-pa-view], [data-player-view], #teamDna [data-view],
+  [data-tm-league], [data-tm-metric], [data-team-view="forecast"],
+  [data-team-view="review"], select[data-metric], select[data-pa-metric], select[data-report-mode],
+  #clubView, #pmView, #dfMetric, [data-squad-panel="matchup"]) {
+  --control-on-surface: var(--control-view);
+}
+
+button[data-pir-mode] {
+  --control-on-surface: #A3440D;
+}
+
+:is(button, select):where([data-control="filter"], [data-us-sort], [data-pa-sort],
+  [data-player-venue], #playerDna [data-venue], select[data-sort], select[data-shot],
+  select[data-pa-cap], select[data-audit-filter], #pos, #statusFilter, #sort,
+  #clubSort, #coachPriceOrder, #weakPos, #weakSort, #absenceStatus, #excludeQ, #nsSort,
+  #popPosition, #usCreditCap, #usPosition, #bargainPos, #bargainPrice, #bargainRange,
+  #bargainSort, #superBudget, #simSort, #alVenue, #acSource, #acResult, #acGameResult,
+  #auditResult, #auditSource) {
+  --control-on-surface: var(--control-filter);
+  --control-touch-height: 40px;
+}
+
+:where(#marketTeam, #weakTeam, #absenceTeam, #injuryTeam, #acTeam, #acGameTeam) {
+  --control-touch-height: 40px;
+}
+
+/* Legacy styles include important state colors. This layer only takes precedence
+   on registered buttons and selects. Unregistered controls retain their cascade. */
+@layer control-design {
+  :is(button, select):where([data-control], nav.tabs [data-tab], [data-ef-tool],
+    [data-player-tab], [data-mode][aria-pressed], [data-tm-league], [data-tm-metric],
+    [data-pir-mode], #squadOptimizer, #themeToggle, [data-team-view], [data-pir-range], [data-performance-range],
+    [data-season-range], [data-season-game], .ef-chart-ranges [data-range], #hdRounds [data-round],
+    .tm-results [data-tm-game], select[data-range], select[data-round], .performance-game-picker select,
+    #usRange, #dfRange, #tmRange, #tmGame, #pmHistoryRound, #pmHistoryGame, #popPeriod, #popRound,
+    #nsRound, #bargainRound, #superRound, #acRound, #acGameRound, #auditRound, #alGame,
+    .player-picker-modes button, [data-pir-scope], #pirCompare button[data-add],
+    #pirCompare button[data-remove], .ft-pick, .fc-team-pick,
+    .ap-player-row, [data-us-player], [data-squad-panel],
+    [data-market-toggle], select[data-team], select[data-player], select[data-entity], select[data-opponent],
+    select[data-player-rival], select[data-compare-player], select[data-compare-club],
+    select[data-report-player], select[data-pa-add], #playerDna select[data-scope], #clubSelect,
+    #pmTeam, #pmOpponent, #pirKind, #pirTeam, #pirPerson, #dfTeam, #dfPlayer, #usTeam, #usPlayer,
+    #tmTeam, #alTeam, #alPlayer, #squadCoachSelect, [data-al-mode], [data-ac-view], [data-pm-mode],
+    [data-us-view], [data-pa-view], [data-player-view], #teamDna [data-view], select[data-metric],
+    select[data-pa-metric], select[data-report-mode], #clubView, #pmView, #dfMetric,
+    [data-us-sort], [data-pa-sort], [data-player-venue], #playerDna [data-venue], select[data-sort],
+    select[data-shot], select[data-pa-cap], select[data-audit-filter], #marketTeam, #pos,
+    #statusFilter, #sort, #clubSort, #coachPriceOrder, #weakPos, #weakTeam, #weakSort, #absenceTeam,
+    #absenceStatus, #injuryTeam, #excludeQ, #nsSort, #popPosition, #usCreditCap, #usPosition,
+    #bargainPos, #bargainPrice, #bargainRange, #bargainSort, #superBudget, #simSort, #alVenue,
+    #acTeam, #acSource, #acResult, #acGameTeam, #acGameResult, #auditResult, #auditSource) {
+    --control-surface: var(--control-inactive);
+    --control-ink: var(--control-inactive-text);
+    --control-line: var(--control-inactive-line);
+    background: var(--control-surface) !important;
+    color: var(--control-ink) !important;
+    border-color: var(--control-line) !important;
+
+    &:not(:disabled):is([aria-pressed="true"], [aria-selected="true"],
+      [aria-current="page"], [aria-current="true"], [aria-expanded="true"],
+      nav.tabs .active, .is-selected, [data-remove], [data-control-selected="true"],
+      select:has(option:checked:not([value=""], [value="all"], [data-control-neutral]))) {
+      --control-surface: var(--control-on-surface);
+      --control-ink: var(--control-active-text);
+      --control-line: var(--control-on-surface);
+      outline: 1px solid currentColor !important;
+      outline-offset: -3px !important;
+    }
+
+    &:focus-visible {
+      outline: 2px dashed currentColor !important;
+      outline-offset: -3px !important;
+    }
+
+    &:is(select) option {
+      background-color: var(--control-inactive);
+      color: var(--control-inactive-text);
+    }
+
+    @media (max-width: 760px) {
+      &:is(select) {min-height: var(--control-touch-height, 44px) !important}
+    }
+  }
+}
+
+/* Keep picker and range buttons aligned in the performance toolbar. */
+:is(#pirGraph, .performance-tool) .pir-control-row > button {
+  min-height: max(56px, var(--control-touch-height, 0px));
+}
+
+:is(#pirGraph, .performance-tool) .pa-sort.pir-control-row > button {
+  min-height: var(--control-touch-height, 40px);
+}
+
+:is(#pirGraph, .performance-tool) .pir-control-row :is(.pir-control-title, small) {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* Match control captions and arrows to the foreground. Metric and result
+   badges inside a control keep their own semantic colors. */
+@layer control-design {
+  .pir-control-row > button small,
+  .ft-pick > :is(bdi, span),
+  #pirCompare .pc-picker button :is(small, .pc-pick-action),
+  .ap-player-row :is(small, .ap-row-arrow, .ap-row-appearances b, .ap-plus-value b),
+  #teamMetrics .tm-results button small,
+  .season-game .season-game-label {
+    color: inherit !important;
+  }
+}

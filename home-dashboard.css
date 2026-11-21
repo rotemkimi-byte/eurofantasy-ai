@@ -1,0 +1,193 @@
+#efDashboard{display:none}
+html.ef-redesign .ef-on-home #efDashboard{display:block}
+html.ef-redesign .ef-on-home main>.hero{display:none!important}
+#efDashboard .hd-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+#efDashboard h2{font-size:22px;margin:0}
+#efDashboard .hd-eyebrow{font-size:10px;letter-spacing:1px;color:var(--accent);display:block;margin-bottom:4px}
+#efDashboard .hd-heading button{font-size:12px;white-space:nowrap;padding:8px 12px}
+.hd-controls{display:flex;align-items:end;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.hd-controls label{width:130px}.hd-controls select{margin-top:4px}
+.hd-controls>span,.hd-note{color:var(--muted);font-size:11px;margin:8px 0 14px}
+#efDashboard .hd-day h3{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:14px;margin:18px 0 0;padding:10px;background:var(--card2);border-radius:10px 10px 0 0}
+#efDashboard .hd-day h3 small{font-size:10px;font-weight:500;white-space:nowrap}
+#efDashboard table{width:100%;min-width:0;table-layout:fixed;border-collapse:collapse}
+#efDashboard th,#efDashboard td{position:static;padding:12px 6px;font-size:13px;border-bottom:1px solid var(--line);overflow-wrap:anywhere}
+#efDashboard th{background:transparent;color:var(--muted);font-size:11px}
+#efDashboard .hd-games-table th:first-child{width:17%}
+#efDashboard .hd-games-table th:last-child{width:16%}
+#efDashboard .hd-games-table td:first-child{font-weight:750;font-variant-numeric:tabular-nums;white-space:nowrap;font-size:12px}
+#efDashboard .hd-games-table td:nth-child(2){font-weight:650}
+#efDashboard .hd-games-table td:last-child,#efDashboard .hd-games-table th:last-child{text-align:center}
+#efDashboard .hd-standings-table th:first-child{width:13%}
+#efDashboard .hd-standings-table th:nth-child(2){width:48%}
+#efDashboard .hd-standings-table td:nth-child(n+3),#efDashboard .hd-standings-table th:nth-child(n+3){text-align:center}
+#efDashboard .hd-standings-table td:nth-child(2){font-weight:650}
+.hd-rank{display:inline-grid;place-items:center;width:27px;height:27px;border-radius:8px;background:var(--card2);font-weight:750;color:var(--accent)}
+@media(min-width:800px){#efDashboard .hd-games-table td,#efDashboard .hd-standings-table td{font-size:14px}#efDashboard .card{padding:22px}}
+@media(max-width:360px){#efDashboard .card{padding:12px}#efDashboard td,#efDashboard th{padding:10px 3px;font-size:12px}#efDashboard .hd-day h3{align-items:start;flex-direction:column}}
+/* Compact home strip: expanded details never block tools by default. */
+html.ef-redesign #efDashboard .card{padding:12px 14px;margin-bottom:10px;border-radius:16px;background:var(--card);box-shadow:0 3px 12px #101b2b06}
+#efDashboard .hd-heading{gap:8px;margin:0 0 4px}
+#efDashboard h2{font-size:15px;display:flex;align-items:center;gap:7px;flex:1}
+.hd-live-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px #008b6012}
+html.ef-redesign #efDashboard select{min-height:30px;width:98px;padding:4px 7px;font-size:12px;border-radius:8px}
+html.ef-redesign #efDashboard .hd-heading button{min-height:30px;height:30px;width:30px;padding:0;font-size:19px;border-radius:8px}
+#efDashboard .hd-note{margin:3px 0 9px;font-size:10px;line-height:1.5}
+#hdPreview{display:flex;gap:7px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x proximity;padding:2px 0 7px;scrollbar-width:thin}
+.hd-match{position:relative;flex:0 0 174px;scroll-snap-align:start;background:var(--card2);border:1px solid var(--line);border-top:2px solid var(--accent);border-radius:10px;padding:8px 10px}
+.hd-match-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;font-size:11px;color:var(--accent);font-weight:750}
+.hd-match-top>span{font-size:9px;color:var(--muted);font-weight:400}
+.hd-side{display:flex;align-items:center;justify-content:space-between;gap:6px;min-height:21px}
+.hd-side b{font-size:11px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hd-side small{font-size:8px;border-radius:4px;background:var(--card);border:1px solid var(--line);padding:0 4px;color:var(--muted);flex-shrink:0}
+.hd-score{font-size:10px;color:var(--accent)}
+html.ef-redesign #efDashboard summary{display:flex;align-items:center;gap:8px;min-height:30px;padding:5px 0;font-size:11px;list-style:none;font-weight:650}
+#efDashboard summary::-webkit-details-marker{display:none}
+#efDashboard summary>span:last-child{margin-inline-start:auto;color:var(--muted)}
+#efDashboard details[open]>summary>span:last-child{transform:rotate(180deg)}
+.hd-league{border-top:1px solid var(--line)}
+#hdLeaders{font-weight:400;color:var(--muted);font-size:9px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;flex:1;min-width:0}
+#efDashboard th,#efDashboard td{padding:7px 4px;font-size:11px}
+#efDashboard .hd-day h3{font-size:12px;padding:7px;margin-top:8px}
+#efDashboard .hd-day h3 small{font-size:9px}
+.hd-rank{width:22px;height:22px;font-size:11px}
+html.ef-redesign .ef-on-home #efHome .ef-intro{margin:4px 0 8px;padding:0}
+html.ef-redesign .ef-on-home #efHome .ef-kicker,html.ef-redesign .ef-on-home #efPageDescription{display:none}
+html.ef-redesign .ef-on-home #efPageTitle{font-size:18px;margin:0 0 8px}
+html.ef-redesign .ef-on-home #efToolbar{margin-bottom:6px}
+html.ef-redesign .ef-on-home .ef-search{margin-bottom:12px}
+@media(max-width:600px){html.ef-redesign #efDashboard .card{padding:10px}#efDashboard h2{font-size:14px}.hd-match{flex-basis:158px;padding:7px 8px}#hdLeaders{max-width:160px}}
+
+
+/* An always-open miniature table in the tools area; only its rows scroll. */
+#efCompactLeague{display:none}
+html.ef-redesign .ef-on-home #efCompactLeague{display:block;padding:10px 12px;margin:0 0 12px;border-radius:14px;background:var(--card);border:1px solid var(--line);box-shadow:0 3px 12px #101b2b06}
+#efCompactLeague .hd-league-heading{display:flex;align-items:center;justify-content:space-between;gap:8px}
+#efCompactLeague h3{font-size:13px;line-height:1.4;margin:0}
+html.ef-redesign #efCompactLeague #hdTeams{font-size:10px;padding:4px 7px;min-height:28px;border-radius:7px}
+#efCompactLeague .hd-note{font-size:9px;line-height:1.4;margin:4px 0 7px}
+#efCompactLeague #hdStandings{max-height:185px;overflow:auto;overscroll-behavior-y:contain;scrollbar-width:thin;border:1px solid var(--line);border-radius:9px}
+#efCompactLeague #hdStandings:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#efCompactLeague table{width:100%;min-width:0;table-layout:fixed;border-collapse:separate;border-spacing:0;font-variant-numeric:tabular-nums}
+#efCompactLeague th,#efCompactLeague td{font-size:10px;line-height:1.25;height:25px;padding:3px 5px;border:0;border-bottom:1px solid var(--line);text-align:center;position:static;background:transparent;color:var(--text)}
+#efCompactLeague thead th{position:sticky;top:0;z-index:1;background:var(--card2);font-size:9px;color:var(--muted);height:24px}
+#efCompactLeague thead th:first-child{width:28px}
+#efCompactLeague thead th:nth-child(n+3){width:34px}
+#efCompactLeague th:nth-child(2){text-align:start}
+#efCompactLeague tbody th{font-weight:650}
+#efCompactLeague tbody tr:nth-child(even){background:var(--card2)}
+#efCompactLeague tbody tr:last-child>*{border-bottom:0}
+#efCompactLeague .hd-team-name{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:10px}
+#efCompactLeague .hd-rank{height:18px;width:18px;border-radius:5px;font-size:10px;background:var(--card2);color:var(--muted)}
+#efCompactLeague .hd-zone-playoff .hd-rank{background:#13b98120;color:#059669}
+#efCompactLeague .hd-zone-playin .hd-rank{background:#4778ff20;color:#668dff}
+#efCompactLeague .hd-wins{font-weight:750;color:var(--accent)}
+#efCompactLeague .hd-win-track{display:block;height:2px;margin-top:3px;border-radius:3px;overflow:hidden;background:var(--line);width:100%}
+#efCompactLeague .hd-win-track i{display:block;height:100%;background:var(--accent);border-radius:3px;opacity:.7}
+
+/* Rounds and every game remain available by horizontal swiping, with no accordion. */
+#hdRounds{display:flex;gap:5px;overflow-x:auto;scrollbar-width:thin;padding:4px 0 7px;overscroll-behavior-inline:contain}
+html.ef-redesign #efDashboard #hdRounds button{flex:0 0 auto;min-height:30px;padding:4px 9px;font-size:11px;border-radius:8px;white-space:nowrap}
+html.ef-redesign #efDashboard #hdRounds button[aria-current="true"]{background:var(--accent);color:var(--card);border-color:var(--accent)}
+html.ef-redesign #efDashboard #hdToday{width:auto;height:30px;min-height:30px;font-size:10px;padding:3px 7px}
+#hdPreview .hd-match{flex-basis:178px;padding:7px 8px}
+#hdPreview .hd-turn{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:9px;border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:5px;color:var(--muted)}
+#hdPreview .hd-turn b{color:var(--accent);background:var(--card);border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:10px}
+#hdPreview .hd-side{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:5px;min-height:24px}
+#hdPreview .hd-side strong{font-size:14px;min-width:24px;text-align:center;font-variant-numeric:tabular-nums}
+#hdPreview .hd-winner{color:var(--accent)}
+#hdPreview .hd-finished .hd-match-top>span{color:var(--accent)}
+#hdPreview:focus-visible,#hdRounds:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* Home opens directly on the compact standings; category navigation stays available elsewhere. */
+html.ef-redesign .ef-on-home #efToolbar,
+html.ef-redesign .ef-on-home #efHome>.ef-intro{display:none}
+html.ef-redesign .ef-on-home #efCompactLeague{margin:0 0 10px;padding:8px 9px;border-radius:14px;border-top:3px solid var(--accent);box-shadow:0 3px 12px #101b2b08}
+#efCompactLeague .hd-league-heading{gap:6px}
+html.ef-redesign #efCompactLeague h3{font-size:12px;margin:0;display:flex;align-items:center;gap:6px}
+#efCompactLeague h3::before{content:'▥';display:grid;place-items:center;width:22px;height:22px;border-radius:7px;color:var(--accent);background:var(--card2);font-size:16px}
+html.ef-redesign #efCompactLeague #hdTeams{min-height:24px;padding:2px 6px;font-size:9px;border-radius:6px}
+#efCompactLeague .hd-note{font-size:8px;margin:2px 0 5px;color:var(--muted)}
+#efCompactLeague #hdStandings{max-height:146px;border-radius:8px;border-color:var(--line)}
+#efCompactLeague th,#efCompactLeague td{height:22px;padding:2px 4px;font-size:10px;border-bottom:1px solid var(--line)}
+#efCompactLeague thead th{height:20px;font-size:8px}
+#efCompactLeague thead th:first-child{width:26px}
+#efCompactLeague thead th:nth-child(n+3){width:29px}
+#efCompactLeague .hd-team-name{font-size:10px;line-height:13px}
+#efCompactLeague .hd-rank{width:17px;height:17px;border-radius:5px;font-size:9px}
+#efCompactLeague .hd-win-track{height:2px;margin-top:1px;max-width:110px;background:var(--line)}
+#efCompactLeague .hd-win-track i{background:linear-gradient(90deg,#40cda2,var(--accent));opacity:1}
+#efCompactLeague tbody tr:first-child .hd-rank{background:#e8b84b26;color:#a77309;box-shadow:inset 0 0 0 1px #d5a32940}
+#efCompactLeague tbody tr:hover{background:var(--line)}
+
+
+/* Reference-inspired opening screen: pastel tool groups and an orange match banner. */
+html.ef-redesign .ef-on-home{background:radial-gradient(ellipse at 0 0,#ffddc45c,transparent 35%),linear-gradient(135deg,var(--bg),var(--card2));}
+html.ef-redesign .ef-on-home #efPageScroll>header{background:transparent;padding-bottom:10px}
+html.ef-redesign .ef-on-home .head{justify-content:space-between;max-width:800px;margin:auto}
+html.ef-redesign .ef-on-home .head>div:first-child{flex:0 0 100%;text-align:center;margin:8px 0 10px}
+html.ef-redesign .ef-on-home .head h1{font-size:clamp(26px,6vw,40px);font-style:italic;font-weight:900;letter-spacing:-1.5px}
+html.ef-redesign .ef-on-home .head h1::after{content:'';display:block;width:95px;height:4px;margin:3px auto 0;border-radius:100%;background:#f88326;transform:rotate(-4deg)}
+html.ef-redesign .ef-on-home .head h1::before{content:'◒';display:inline-block;vertical-align:middle;color:#fa8024;font-size:1.2em;margin-right:8px;transform:rotate(-35deg)}
+html.ef-redesign .ef-on-home .head button,html.ef-redesign .ef-on-home .head .badge{border-radius:13px;background:var(--card);color:var(--text);border:1px solid var(--line);box-shadow:0 3px 7px #23334c10}
+html.ef-redesign .ef-on-home main{max-width:840px;padding-top:3px}
+html.ef-redesign #efDashboard .hd-fixtures{background:transparent;border:0;padding:0;box-shadow:none}
+#efDashboard .hd-heading{margin-bottom:5px}
+html.ef-redesign #efDashboard .hd-heading button{min-height:36px;height:36px;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:12px}
+#efDashboard h2{font-size:13px;color:var(--muted)}
+#efDashboard .hd-live-dot{background:#f78428;box-shadow:none}
+#hdRounds{padding:4px 0 7px;gap:7px;scrollbar-width:none}
+html.ef-redesign #efDashboard #hdRounds button{border-radius:20px;background:var(--card);min-height:36px;font-size:13px;padding:5px 14px;color:var(--text)}
+html.ef-redesign #efDashboard #hdRounds button[aria-current=true]{background:linear-gradient(110deg,#ffd9be,#ffae78);color:#182235;border-color:#ffb985;font-weight:850}
+#efDashboard #hdGamesStatus{text-align:center;font-size:11px;margin:3px 0 7px}
+#hdPreview{gap:12px;scroll-snap-type:x mandatory;padding-bottom:8px}
+#hdPreview .hd-match{flex:0 0 100%;display:grid;grid-template-columns:minmax(0,1fr) 36px minmax(0,1fr);grid-template-rows:auto auto 1fr;gap:3px 8px;min-height:148px;padding:10px 16px 14px;border:2px solid #ffffffda;border-radius:20px;background:linear-gradient(138deg,#ff8b2c 0 5%,#bd602a 5% 7%,transparent 7% 90%,#f77d28 90% 94%,#ffb15d 94%),radial-gradient(ellipse at 50% 140%,#58657a,#1d293d 65%);color:#fff;box-shadow:0 5px 10px #26324a24}
+#hdPreview .hd-turn{grid-column:1/-1;justify-content:center;border:0;padding:0;margin:0;color:#e3e7ef;gap:8px;font-size:10px}
+#hdPreview .hd-turn b{background:#ffffff19;border-color:#ffffff30;color:white;font-size:10px}
+#hdPreview .hd-match-top{grid-column:1/-1;justify-content:center;margin:0;gap:10px;color:#fff;font-size:13px}
+#hdPreview .hd-match-top>span{color:#e2e9f2}
+#hdPreview .hd-side{display:flex;flex-direction:column;justify-content:center;gap:3px;min-width:0;text-align:center}
+#hdPreview .hd-side b{font-size:clamp(12px,3.2vw,18px);white-space:normal;line-height:1.2;overflow:visible}
+#hdPreview .hd-side small{background:transparent;border:0;color:#cbd5e4;font-size:9px}
+#hdPreview .hd-side strong{color:#fff;font-size:20px}
+.hd-crest{display:block;object-fit:contain;width:42px;height:42px;margin:0 auto 5px}.hd-club-mark{display:grid;place-items:center;width:38px;height:38px;border:2px solid #ffbc75;border-radius:50%;margin:0 auto 5px;font-size:10px;letter-spacing:1px;background:#ffffff0d}
+.hd-vs{align-self:center;background:linear-gradient(120deg,#ffa34d,#ff6d13);border-radius:16px;padding:3px;color:#fff;font-size:15px;font-weight:900;font-style:italic;text-align:center}
+.hd-summary{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;margin:3px 0 12px}
+html.ef-redesign .ef-on-home #efCompactLeague,.hd-today-card{margin:0;padding:10px;border:1px solid var(--line);border-radius:17px;background:var(--card);box-shadow:0 4px 9px #24365012;min-width:0}
+html.ef-redesign .hd-today-card h3,html.ef-redesign #efCompactLeague h3{font-size:13px;margin:0 0 6px;font-weight:850}
+#efCompactLeague h3::before{color:#f17c29;background:transparent}
+html.ef-redesign #efCompactLeague #hdTeams{font-size:0;min-width:26px;padding:0;background:transparent;border:0}
+#hdTeams::after{content:'‹';font-size:22px;color:var(--text)}
+#efCompactLeague .hd-note{font-size:8px;margin:0 0 4px}
+#efCompactLeague #hdStandings{max-height:112px;border:0}
+#efCompactLeague thead th:nth-child(n+3),#efCompactLeague tbody td:nth-child(n+3){display:none}
+#efCompactLeague th,#efCompactLeague td{height:28px}
+#hdTodayList{max-height:132px;overflow:auto}
+.hd-today-row{display:flex;align-items:center;justify-content:space-between;gap:4px;padding:5px 0;border-top:1px solid var(--line);font-size:10px;font-weight:750}
+.hd-today-row>span{min-width:0;overflow-wrap:anywhere}.hd-today-row small{display:block;font-size:8px;color:var(--muted);font-weight:400}
+.hd-today-row time{background:#16b38413;color:#15805e;border-radius:7px;padding:2px 4px;font-size:11px;white-space:nowrap;direction:ltr}
+#efToolGroups{grid-template-columns:1fr;gap:12px}
+.ef-tool-card{--group-color:#55749e;--group-tint:#e8edf7;padding:12px;border:1px solid #ffffffc9;border-radius:18px;background:linear-gradient(120deg,var(--card),var(--group-tint));box-shadow:0 5px 10px #28354e16,inset 0 0 0 1px #ffffff80}
+.ef-tool-card[data-category=players]{--group-color:#8454a4;--group-tint:#ebe2fb}
+.ef-tool-card[data-category=clubs]{--group-color:#e77a26;--group-tint:#ffeadf}
+.ef-tool-card[data-category=model]{--group-color:#19848d;--group-tint:#d9f2f3}
+.ef-tool-card[data-category=fantasy]{--group-color:#a47a20;--group-tint:#f8edcd}
+html.ef-redesign .ef-tool-card h3{font-size:19px;margin:0 0 9px;font-weight:850;gap:9px}
+.ef-tool-card svg{width:23px;height:23px;flex-shrink:0;color:var(--group-color)}
+.ef-tool-grid{gap:7px 9px}
+html.ef-redesign #efToolGroups .ef-tool-grid button{min-height:44px;border-radius:11px;padding:7px 9px;background:linear-gradient(180deg,var(--card),var(--card2));box-shadow:0 3px 5px #2c324714;border:1px solid var(--line);font-size:13px;font-weight:750;gap:6px;line-height:1.25}
+.ef-tool-grid button>span:nth-last-child(2){flex:1}
+.ef-tool-grid button>span:last-child{font-size:23px;color:var(--text)}
+.ef-tool-card[data-category=home]{padding:0;background:none;border:0;box-shadow:none}
+.ef-tool-card[data-category=home]>h3{display:none}
+html.ef-redesign #efToolGroups .ef-tool-card[data-category=home] button{min-height:57px;font-size:17px;background:linear-gradient(130deg,var(--card),var(--group-tint));border:2px solid var(--card);box-shadow:0 4px 8px #26354b26}
+#efNavigation{background:linear-gradient(120deg,#1f2c40,#101b2b);border-radius:20px 20px 0 0;border-top:1px solid #ffffff55}
+#efNavigation button{color:#d5d9e2}
+#efNavigation button[aria-current=page]{color:#ff943d;background:linear-gradient(120deg,#a961322e,#e686483d);box-shadow:inset 0 0 10px #fb984a13}
+html[data-theme=dark] .ef-tool-card{--group-tint:#282739;border-color:#465065}
+html[data-theme=dark] .ef-tool-card[data-category=clubs]{--group-tint:#382d27}
+html[data-theme=dark] .ef-tool-card[data-category=model]{--group-tint:#18383d}
+html[data-theme=dark] .ef-tool-card[data-category=fantasy]{--group-tint:#363122}
+html[data-theme=dark] .hd-today-row time{color:#6bd5ad}
+@media(min-width:700px){#efToolGroups{grid-template-columns:1fr 1fr}.ef-tool-card[data-category=home]{grid-column:1/-1}#hdPreview .hd-match{min-height:190px}.hd-crest{width:58px;height:58px}.hd-summary{gap:14px}.hd-today-row{font-size:13px}}
+@media(max-width:360px){html.ef-redesign #efToolGroups .ef-tool-grid button{font-size:11px;padding:7px 5px}.ef-tool-grid button svg{width:19px;height:19px}.hd-summary{gap:7px}.hd-today-card,html.ef-redesign .ef-on-home #efCompactLeague{padding:8px}}

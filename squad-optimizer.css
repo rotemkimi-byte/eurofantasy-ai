@@ -1,0 +1,215 @@
+#teamCards {
+  --opt-navy:#101a32;
+  --opt-muted:#44536b;
+  --opt-line:#d8e0ec;
+  --opt-soft:#edf2f9;
+  --opt-mint:#d7f7e8;
+  --opt-green:#075c40;
+}
+#teamCards .squadCourtRow,
+#teamCards .squadBenchGrid {gap:12px 8px}
+#teamCards .squadCourtRow {margin-top:16px}
+#teamCards .squadCenter>.squadPlayer,
+#teamCards .squadSixth>.squadPlayer {width:calc(50% - 4px);max-width:none}
+#teamCards .squadOwnCard {border-color:#a5ebcb;background:#f9fbff;color:var(--opt-navy)}
+#teamCards .squadIdentity {
+  min-height:76px;flex-direction:row;gap:4px;padding:7px 4px;
+  text-align:start;background:var(--opt-navy);border-bottom:2px solid #55dca7;
+}
+#teamCards .squadIdentity>.squadJersey {flex:0 0 30px;width:30px;height:41px}
+#teamCards .squadIdentityText {padding-inline-end:3px}
+#teamCards .squadName {font-size:12px;line-height:1.2;color:#fff}
+#teamCards .squadName small {font-size:10px}
+#teamCards .squadClub {font-size:10px;line-height:1.15;margin-top:2px}
+#teamCards .squadCaptain {inset:3px 3px auto auto;width:15px;height:15px;font-size:9px;pointer-events:none}
+#teamCards .squadFixture {
+  min-height:31px;display:flex;gap:4px;align-items:center;justify-content:center;
+  background:var(--opt-mint);color:var(--opt-green);font-size:10px;font-weight:750;
+  line-height:1.12;padding:2px 4px;overflow-wrap:anywhere;
+}
+#teamCards .squadFixture b {white-space:nowrap;border-inline-start:1px solid #8cc8ac;padding-inline-start:4px}
+#teamCards .squadInfo {gap:3px;padding:4px}
+#teamCards .squadTop {padding:0;gap:4px;background:none}
+#teamCards .squadTop b {background:var(--opt-soft);border-radius:6px;padding:3px 0;font-size:17px}
+#teamCards .squadTop small {margin:0;color:var(--opt-muted)}
+#teamCards .squadStatus {line-height:1.25}
+#teamCards .squadActions summary {cursor:pointer;padding:3px;color:var(--opt-muted)}
+.squadPanelControls {display:grid;grid-template-columns:1fr;gap:3px}
+#teamCards .squadPanelControls button {
+  display:flex;align-items:center;justify-content:center;gap:3px;min-width:0;min-height:44px;
+  padding:2px;background:var(--opt-soft);color:var(--opt-navy);border:1px solid #c7d4e6;
+  border-radius:7px;font-size:11px;font-weight:800;line-height:1.15;
+}
+.squadPanelControls svg {width:12px;height:12px;flex:none}
+#teamCards .squadPanelControls [aria-expanded="true"] {background:var(--opt-green);color:white;border-color:var(--opt-green)}
+#teamCards :is(.squadExpansion,.squadCoachAlternatives) {
+  grid-column:1/-1;min-width:0;direction:rtl;background:#f9fbff;
+  color:var(--opt-navy);border:1px solid #a5ebcb;border-radius:12px;overflow:hidden;
+  box-shadow:0 3px 9px #101a322e;text-align:start;cursor:default;
+}
+#teamCards .squadCourt>.squadExpansion {margin-top:8px}
+#teamCards .squadExpansion[hidden] {display:none}
+#teamCards .squadCoachAlternatives .squadAltRow {margin:0 6px}
+.squadPanelHead {
+  display:flex;align-items:center;justify-content:space-between;gap:4px;
+  padding-inline:10px 4px;background:var(--opt-navy);color:#fff;
+}
+#teamCards .squadPanelHead h4 {margin:0;color:inherit;font-size:13px;text-align:start;overflow-wrap:anywhere}
+#teamCards .squadPanelHead button {background:transparent;color:white;padding:0;width:44px;height:44px;flex:none;font-size:21px}
+.squadPanelBody {padding:8px}
+.squadPanelBody h5 {font-size:13px;margin:8px 0 4px;color:var(--opt-navy)}
+.squadPanelNote,.squadForecastImpact p {font-size:11px;line-height:1.45;margin:4px 0;color:var(--opt-muted)}
+.squadAltRow {
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(44px,auto) minmax(46px,auto) auto;
+  align-items:center;gap:4px;padding:5px 0;border-bottom:1px solid var(--opt-line);font-size:11px;
+}
+.squadAltRow:last-child {border-bottom:0}
+#teamCards .squadAltIdentity {
+  display:flex;align-items:center;min-width:0;min-height:44px;gap:5px;
+  text-align:start;background:transparent;color:var(--opt-navy);padding:2px 0;
+}
+.squadAltIdentity strong,.squadAltRow small,.squadAltIdentity small {display:block;overflow-wrap:anywhere}
+.squadAltIdentity strong {font-size:12px;line-height:1.2}
+.squadAltIdentity small,.squadAltRow small {font-size:10px;color:var(--opt-muted)}
+#teamCards .squadAltIdentity .squadJersey {width:28px;height:36px;margin:0;flex:none}
+#teamCards .squadSwap {
+  min-width:44px;min-height:44px;padding:3px;background:var(--opt-green);color:white;
+  font-size:11px;font-weight:800;border-radius:8px;
+}
+.squadPanelMetric {background:var(--opt-soft);border-radius:7px;padding:4px 2px;text-align:center;min-width:0}
+.squadPanelMetric bdi {font-size:15px;font-weight:850;font-variant-numeric:tabular-nums}
+.squadPanelMetric small {display:block;font-size:9px;line-height:1.2;color:var(--opt-muted)}
+.squadMatchHero {
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  gap:4px;background:var(--opt-mint);color:var(--opt-green);padding:7px 8px;border-radius:7px;
+}
+.squadMatchHero small {font-size:11px}
+.squadRivalProfile {padding:4px 0;border-bottom:1px solid var(--opt-line)}
+.squadRivalMetrics,.squadImpactMetrics {display:grid;gap:4px}
+.squadRivalMetrics {grid-template-columns:repeat(5,minmax(0,1fr))}
+.squadImpactMetrics {grid-template-columns:repeat(3,minmax(0,1fr))}
+.squadDefenseTable {width:100%;table-layout:fixed;border-collapse:collapse;margin:5px 0}
+#teamCards .squadDefenseTable :is(th,td) {
+  position:static;text-align:center;background:#f9fbff;color:var(--opt-navy);
+  padding:5px 2px;line-height:1.2;border:1px solid var(--opt-line);
+  font-size:11px;white-space:normal;overflow-wrap:anywhere;font-variant-numeric:tabular-nums;
+}
+#teamCards .squadDefenseTable thead th {background:var(--opt-soft);font-weight:800}
+.squadDefenseTable td small {display:block;font-size:9px}
+.squadForecastImpact {padding:7px;margin-top:9px;background:#e7f6ee;border-radius:8px}
+.squadForecastImpact h5 {margin:0 0 5px}
+#teamCards .squadExpansion .up {background:#d7f7e8;color:#085b3b}
+#teamCards .squadExpansion .down {background:#ffe2e5;color:#a01528}
+#teamCards .squadDefenseTable {min-width:0}
+#teamCards .squadFixture {height:32px}
+#teamCards .squadName bdi {
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;
+}
+#teamCards .squadClub bdi {display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#teamCards .squadCourtRow,
+#teamCards .squadBenchGrid {align-items:stretch}
+#teamCards .squadPlayer {justify-content:start}
+#teamCards .squadOwnCard {flex:1}
+
+#teamCards .squadPhysical {
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;
+  margin:0;padding:0;border:0;color:var(--opt-navy);
+}
+#teamCards .squadPhysical>span {
+  display:flex;justify-content:center;align-items:baseline;flex-wrap:wrap;gap:0 3px;
+  padding:3px 1px;background:var(--opt-soft);border-radius:6px;font-weight:750;
+}
+#teamCards .squadPhysical small {font-size:9px;color:var(--opt-muted)}
+#teamCards .squadPhysical bdi {white-space:nowrap;font-size:10px}
+#teamCards .squadRivalProfile .squadPhysical {margin-top:4px}
+
+#teamCards.squadOptimizing [data-squad-panel="alternatives"] {
+  min-height:46px;background:#087854;color:white;border-color:#076346;font-size:13px;
+}
+#teamCards.squadOptimizing [data-squad-panel="alternatives"][aria-expanded="true"] {
+  background:#055139;box-shadow:inset 0 0 0 2px #8fe1c0;
+}
+#teamCards.squadOptimizing [data-squad-panel="matchup"] {
+  min-height:44px;min-width:92px;justify-self:center;padding-inline:7px;
+  border-color:transparent;font-size:10px;
+}
+#teamCards .squadRivalPreview {border-top:1px solid var(--opt-line);padding-top:3px}
+#teamCards .squadRivalPreview .squadAltIdentity {width:100%;min-height:36px;justify-content:center}
+#teamCards .squadRivalPreview .squadJersey {width:24px;height:30px}
+#teamCards .squadRivalPreview .squadAltIdentity strong {font-size:11px}
+#teamCards .squadRivalUnavailable {
+  min-height:60px;display:grid;place-items:center;color:var(--opt-muted);font-size:10px;
+}
+
+#teamCards .squadCourtLines::before {top:-115px;height:360px}
+#teamCards .squadCourtLines::after {top:-72px;height:220px}
+#teamCards .squadLower {background:none;padding-inline:0}
+#teamCards .squadReserve {background:#fff6;border:1px solid #fff8}
+#teamCards .squadLower h4:not(.squadPanelHead h4),
+#teamCards .squadCoachEmpty,
+#teamCards .squadLower h4 small {color:#282037}
+#teamCards .squadFootnote {background:none;color:#302337;padding:8px 0 0}
+#teamCards .squadRosterTools {
+  direction:rtl;background:#fff9;border-radius:8px;padding:8px;color:var(--opt-navy);
+}
+#teamCards .squadRosterTools summary {cursor:pointer;font-weight:750}
+#teamCards .squadRosterTools .squadActions {padding:4px}
+
+#teamCards .squadCoach,
+#teamCards .squadCoachAlternatives {grid-column:1/-1;width:100%;max-width:300px;justify-self:center}
+#teamCards .squadCoachControl {
+  position:relative;display:flex;align-items:center;justify-content:space-between;
+  gap:8px;padding:6px 9px;background:#087854;color:white;
+  min-height:49px;text-align:start;cursor:pointer;
+}
+#teamCards .squadCoachControl:focus-within {outline:2px solid #68dbad;outline-offset:-3px}
+#teamCards .squadCoachControl .squadJersey {width:28px;height:37px;margin:0;flex:none}
+#teamCards .squadCoachControl small {display:block;color:#a5ebcb;font-size:10px}
+#teamCards .squadCoachControl bdi {color:white;font-size:13px;font-weight:800;overflow-wrap:anywhere}
+#teamCards #squadCoachSelect {position:absolute;inset:0;margin:0;width:100%;height:100%;opacity:0;cursor:pointer}
+
+#teamCards .squadCoachAlternatives summary {
+  min-height:44px;padding:11px 10px;cursor:pointer;background:#087854;color:#fff;
+  font-size:13px;font-weight:800;
+}
+#teamCards .squadCoachAlternatives[open] summary {background:#055139}
+#teamCards .squadCoachAlternatives>p {margin:8px;color:var(--opt-muted)}
+
+#squadUpgrade {padding:4px 0 8px}
+.squadUpgradeBudget {
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:7px 10px;margin-bottom:10px;background:var(--card2);
+  border:1px solid var(--line);border-radius:12px;font-size:14px;font-weight:800;color:var(--text);
+}
+#squadUpgrade #extraCredit {width:108px;min-height:44px;margin:0;direction:ltr;text-align:center}
+#upgradeList {display:grid;gap:8px}
+.squadUpgradeIdea {
+  border:1px solid var(--line);background:var(--card2);border-radius:12px;
+  padding:7px;color:var(--text);
+}
+.squadUpgradePair {display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:5px}
+#squadUpgrade .squadUpgradePlayer {
+  display:flex;align-items:center;gap:5px;min-width:0;min-height:62px;padding:4px;
+  text-align:start;color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:8px;
+}
+.squadUpgradePlayer>span {min-width:0}
+.squadUpgradePlayer strong {display:block;font-size:12px;line-height:1.2;overflow-wrap:anywhere}
+.squadUpgradePlayer small {display:block;font-size:10px;line-height:1.3;overflow-wrap:anywhere}
+.squadUpgradePlayer .squadJersey {margin:0;width:25px;height:34px;flex:none}
+.squadUpgradeMetrics {display:flex;flex-wrap:wrap;align-items:center;gap:5px 9px;margin-top:6px;font-size:11px}
+.squadUpgradeMetrics strong {color:#075c40;background:#d7f7e8;border-radius:6px;padding:3px 6px}
+
+@media (max-width: 540px) {
+  #team #teamView {flex-wrap:wrap;overflow:visible;padding-inline:4px}
+  #team #teamView [data-team-view="review"] {margin-inline-start:0}
+}
+
+/* Disclosure only: preserve the optimizer's existing card layout. */
+#teamCards .squadInfluence summary {
+  display:inline-block;min-height:36px;padding:8px 10px;cursor:pointer;
+  border:1px solid var(--opt-line);border-radius:8px;color:var(--opt-navy);
+  background:#fff;font-size:12px;font-weight:750;
+}
+#teamCards .squadInfluence[open] summary {margin-bottom:8px}
+#teamCards .squadInfluence .squadDefenseTable {table-layout:fixed;width:100%}
+#teamCards .squadInfluence td,#teamCards .squadInfluence th {overflow-wrap:anywhere;font-size:11px}
