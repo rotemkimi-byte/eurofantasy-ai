@@ -59,7 +59,7 @@ function insight(t,g){
  const difference=g.points-g.against;
  $('tmGameInsight').innerHTML=`<div class="tm-result-heading"><span class="${difference>0?'tm-w':'tm-l'}">${difference>0?'ניצחון':'הפסד'}</span><b>${esc(t.team)} מול ${esc(g.opponent)}</b><small>${date(g.date)} · ${g.round?'מחזור '+esc(g.round)+' · ':''}${g.home?'בית':'חוץ'}</small></div><div class="tm-scoreline"><div><small>${esc(t.team)}</small><strong>${integer(g.points)}</strong></div><bdi>:</bdi><div><small>${esc(g.opponent)}</small><strong>${integer(g.against)}</strong></div></div><div class="tm-result-meta"><span>הפרש נקודות <b dir="ltr" class="${difference>0?'tm-positive':'tm-negative'}">${signed(difference)}</b></span><span>PIR קבוצה <b>${fmt(g.pir)}</b></span><span>PIR יריבה <b>${fmt(g.opponentPir)}</b></span></div>`;
 }
-function chart(){
+function chart(centerGame=false){
  const t=selected();if(!t)return;
  const results=metric==='recent'||metric==='streak';
  $('tmRangeLabel').hidden=results;
@@ -97,8 +97,14 @@ function chart(){
  }
  return `<g role="button" tabindex="0" aria-pressed="${active}" aria-label="${esc(label)}" data-tm-game="${g.code}"><title>${esc(label)}</title><rect x="${x(i)-30}" y="${top-15}" width="60" height="${plotHeight+66}" rx="8" class="tm-hit${active?' tm-selected':''}"/>${shape}<text x="${x(i)}" y="${height-40}" text-anchor="middle" class="tm-axis">${g.round?'מח׳ '+esc(g.round):date(g.date)}</text><text x="${x(i)}" y="${height-22}" text-anchor="middle" class="tm-result-label ${delta>0?'tm-text-win':'tm-text-loss'}">${delta>0?'ניצחון':'הפסד'} · ${g.home?'בית':'חוץ'}</text><text x="${x(i)}" y="${height-6}" text-anchor="middle" class="tm-axis">${date(g.date)}</text></g>`;
  }).join('');
- $('tmChart').innerHTML=`<div class="tm-legend">${difference?'<span><i class="tm-key-positive"></i>הפרש חיובי</span><span><i class="tm-key-negative"></i>הפרש שלילי</span>':`<span><i class="tm-key-own"></i>${pir?'PIR קבוצה':against?'נקודות חובה':'נקודות זכות'}</span>${single?'':`<span><i class="tm-key-opponent"></i>${pir?'PIR יריבה':'נקודות חובה'}</span>`}`}<small>${list.length} משחקים</small></div><div class="tm-chart-scroll" dir="ltr"><svg viewBox="0 0 ${width} ${height}" style="min-width:${width}px" role="group" aria-label="${difference?'הפרש נקודות':pir?'PIR קבוצה ויריבה':single?leagueMetrics[metric]:'נקודות זכות וחובה'} של ${esc(t.team)} לפי משחקים">${grid}${marks}</svg></div>`;
- requestAnimationFrame(()=>{const point=$('tmChart').querySelector('.tm-selected'),scroll=$('tmChart').querySelector('.tm-chart-scroll');if(point&&scroll){const box=point.getBoundingClientRect(),outer=scroll.getBoundingClientRect();scroll.scrollLeft+=box.x-outer.x-outer.width/2+box.width/2;}});
+ $('tmChart').innerHTML=`<div class="tm-legend">${difference?'<span><i class="tm-key-positive"></i>הפרש חיובי</span><span><i class="tm-key-negative"></i>הפרש שלילי</span>':`<span><i class="tm-key-own"></i>${pir?'PIR קבוצה':against?'נקודות חובה':'נקודות זכות'}</span>${single?'':`<span><i class="tm-key-opponent"></i>${pir?'PIR יריבה':'נקודות חובה'}</span>`}`}<small>${list.length} משחקים</small></div><div class="tm-chart-scroll" dir="rtl"><svg dir="ltr" viewBox="0 0 ${width} ${height}" style="min-width:${width}px" role="group" aria-label="${difference?'הפרש נקודות':pir?'PIR קבוצה ויריבה':single?leagueMetrics[metric]:'נקודות זכות וחובה'} של ${esc(t.team)} לפי משחקים">${grid}${marks}</svg></div>`;
+ if(centerGame){
+  const scroll=$('tmChart').querySelector('.tm-chart-scroll'),point=scroll.querySelector('.tm-selected');
+  if(point){
+   const box=point.getBoundingClientRect(),outer=scroll.getBoundingClientRect();
+   scroll.scrollLeft+=box.left+box.width/2-(outer.left+outer.width/2);
+  }
+ }
 }
 
 async function load(force=false){
@@ -106,7 +112,7 @@ async function load(force=false){
  loading=(async()=>{try{const next=await (window.loadGameData?window.loadGameData('official-offense.json',force):(async()=>{const r=await fetch('./data/official-offense.json?t='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(20000)});if(!r.ok)throw Error('No team data');const next=await r.json();return next;})());if(next.season!=='E2026'||next.teamMetricsVersion!==1||!Array.isArray(next.teamResults))throw Error('Awaiting team data');const built=C.build(next);if(!built.teams.length)throw Error('No completed games');data=next;report=built;loadedAt=Date.now();teams();$('tmStatus').textContent=`עונת 2026/27 · ${report.teams.length} קבוצות · ${report.games} משחקים שהסתיימו · עודכן ${new Date(data.updated_at).toLocaleString('he-IL',{day:'numeric',month:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Jerusalem'})}`;}catch(error){$('tmStatus').textContent=data?'הרענון נכשל; מוצגים הנתונים הקודמים.':'נתוני הקבוצות עדיין לא זמינים. נסה לרענן לאחר הסנכרון.';}finally{$('tmReload').disabled=false;loading=null;}})();return loading;
 }
 button.onclick=()=>{document.querySelectorAll('.tabs button,.tab').forEach(el=>el.classList.remove('active'));button.classList.add('active');section.classList.add('active');if(!data||Date.now()-loadedAt>60000)void load();};
-$('tmTeam').onchange=()=>games();$('tmGame').onchange=()=>{chart();compare();};$('tmRange').onchange=()=>{chart();compare();};$('tmBack').onclick=()=>{$('tmDetail').hidden=true;$('tmLeagueView').hidden=false;[...$('tmStandings').querySelectorAll('button')].find(b=>b.dataset.tmTeam===$('tmTeam').value)?.focus();};$('tmReload').onclick=()=>void load(true);
+$('tmTeam').onchange=()=>games();$('tmGame').onchange=()=>{chart(true);compare();};$('tmRange').onchange=()=>{chart();compare();};$('tmBack').onclick=()=>{$('tmDetail').hidden=true;$('tmLeagueView').hidden=false;[...$('tmStandings').querySelectorAll('button')].find(b=>b.dataset.tmTeam===$('tmTeam').value)?.focus();};$('tmReload').onclick=()=>void load(true);
 section.onclick=e=>{
  const tab=e.target.closest('[data-tm-league]');
  if(tab){
@@ -115,7 +121,7 @@ section.onclick=e=>{
   league();
   return;
  }
- const t=e.target.closest('[data-tm-team]'),g=e.target.closest('[data-tm-game]'),m=e.target.closest('[data-tm-metric]');if(t){$('tmTeam').value=t.dataset.tmTeam;$('tmLeagueView').hidden=true;$('tmDetail').hidden=false;games();$('tmBack').focus();}if(g){$('tmGame').value=g.dataset.tmGame;chart();compare();if(g.matches('button')&&g.closest('.tm-results'))$('tmChart').querySelector(`button[data-tm-game="${g.dataset.tmGame}"]`)?.focus({preventScroll:true});}if(m){metric=m.dataset.tmMetric;section.querySelectorAll('[data-tm-metric]').forEach(b=>b.setAttribute('aria-pressed',String(b===m)));chart();compare();}};
-section.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('g[data-tm-game]')){e.preventDefault();$('tmGame').value=e.target.dataset.tmGame;chart();compare();section.querySelector(`g[data-tm-game="${$('tmGame').value}"]`)?.focus();}});
+ const t=e.target.closest('[data-tm-team]'),g=e.target.closest('[data-tm-game]'),m=e.target.closest('[data-tm-metric]');if(t){$('tmTeam').value=t.dataset.tmTeam;$('tmLeagueView').hidden=true;$('tmDetail').hidden=false;games();$('tmBack').focus();}if(g){$('tmGame').value=g.dataset.tmGame;chart(true);compare();if(g.matches('button')&&g.closest('.tm-results'))$('tmChart').querySelector(`button[data-tm-game="${g.dataset.tmGame}"]`)?.focus({preventScroll:true});}if(m){metric=m.dataset.tmMetric;section.querySelectorAll('[data-tm-metric]').forEach(b=>b.setAttribute('aria-pressed',String(b===m)));chart();compare();}};
+section.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('g[data-tm-game]')){e.preventDefault();$('tmGame').value=e.target.dataset.tmGame;chart(true);compare();section.querySelector(`g[data-tm-game="${$('tmGame').value}"]`)?.focus({preventScroll:true});}});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&section.classList.contains('active')&&Date.now()-loadedAt>60000)void load();});window.TeamMetricsUI={load};
 })();

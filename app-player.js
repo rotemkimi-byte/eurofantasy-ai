@@ -233,11 +233,7 @@ window.showPlayer=function(name){
  freeThrows.innerHTML='<h3 class="sectionTitle">עונשין</h3><p class="muted">קליעות מתוך ניסיונות בכל משחק</p><div class="ef-history-plot"></div>';
  overview.after(credits,freeThrows);
  const freeThrowsPlot=freeThrows.querySelector('.ef-history-plot');
- const draw=rounds=>{
-  credits.innerHTML=creditChart(rounds,player);
-  const scroll=credits.querySelector('.ef-trend-scroll');
-  if(scroll)scroll.scrollLeft=scroll.scrollWidth;
- };
+ const draw=rounds=>{credits.innerHTML=creditChart(rounds,player);};
  const select=e=>{
   const point=e.target.closest('[data-credit-point]');if(!point)return;
   if(e.type==='keydown'&&e.key!=='Enter'&&e.key!==' ')return;
@@ -298,8 +294,6 @@ window.showPlayer=function(name){
  function renderTrend(target,metric){
   const hasPoints=selected.some(g=>trendValue(g,metric)!==null);
   target.innerHTML=`${chart(selected,metric)}<p class="${metric===freeThrowsTrend?'ef-ft-detail':'ef-chart-detail'} muted" aria-live="polite">${hasPoints?'לחץ על נקודה להצגת המשחק':''}</p>`;
-  const scroll=target.querySelector('.ef-trend-scroll');
-  if(scroll)scroll.scrollLeft=scroll.scrollWidth;
   const games=selected.slice().reverse(), detail=target.lastElementChild;
   target.querySelectorAll('[data-game-index]').forEach(point=>{
    const show=()=>{

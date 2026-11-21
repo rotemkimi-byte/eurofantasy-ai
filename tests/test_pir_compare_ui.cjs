@@ -21,6 +21,17 @@ const rangeButton=range=>page.locator(`[data-pir-range="${range}"]`);
 const rows=page.locator('#pirGames tr[data-pir-index]');
 assert.equal(await rangeButton('0').getAttribute('aria-pressed'),'true');
 assert(await rows.count()>3);
+for(const mode of ['pir','minutes','credit','mixed']){
+ if(mode!=='pir')await page.locator(`[data-pir-mode=${mode}]`).click();
+ const scroll=page.locator(mode==='mixed'?'.pirMixedPlot':'#pirChart');
+ await page.waitForFunction(selector=>document.querySelector(selector)?.scrollWidth>document.querySelector(selector)?.clientWidth,mode==='mixed'?'.pirMixedPlot':'#pirChart');
+ assert(await scroll.evaluate(el=>{
+  const last=[...el.querySelectorAll('.pirPoint')].at(-1).getBoundingClientRect(),box=el.getBoundingClientRect();
+  return el.scrollLeft===0&&last.left>=box.left&&last.right<=box.right;
+ }),mode+' starts with its newest point visible');
+ assert(await scroll.evaluate(el=>{el.scrollLeft=-el.scrollWidth;return el.scrollLeft<0;}));
+}
+await page.locator('[data-pir-mode=pir]').click();
 assert.equal(await page.locator('#pirGraph select[id=pirRange],#pirCompare [data-range]').count(),0);
 const firstPoint=page.locator('#pirChart .pirPoint').first();
 await firstPoint.evaluate(el=>el.dispatchEvent(new MouseEvent('click',{bubbles:true})));

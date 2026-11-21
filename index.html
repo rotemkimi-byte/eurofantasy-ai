@@ -286,7 +286,7 @@ html[data-theme="light"] .ac-row summary,html[data-theme="light"] .ac-method sum
 </div>
 <div id="pirSingle"><div class="filters pirControls player-picker-controls"><label id="pirTeamLabel" hidden>קבוצה<select id="pirTeam"></select></label><label>שחקנים או מאמנים<select id="pirKind"><option value="player">שחקנים</option><option value="coach">מאמנים</option></select></label></div>
 <label class="player-result-picker player-picker-controls"><span>שחקן או מאמן · מהמחיר הגבוה לנמוך</span><select id="pirPerson"></select></label>
-<p id="pirLegend" class="pirLegend" hidden><span>PIR · ציר שמאל</span><span>דקות · ציר ימין</span></p><div id="pirChart" class="pirChart player-result-summary" dir="ltr"></div>
+<p id="pirLegend" class="pirLegend" hidden><span>PIR · ציר שמאל</span><span>דקות · ציר ימין</span></p><div id="pirChart" class="pirChart player-result-summary" dir="rtl"></div>
 <section id="pirSummary" class="pirOverview" aria-label="סיכום ביצועים">
  <div class="pirOverviewHead" id="pirIdentity" hidden><div><bdi id="pirSelectedName"></bdi><bdi id="pirSelectedTeam"></bdi></div><span id="pirSummaryMetric"></span></div>
  <dl id="pirStats" class="pirOverviewStats" hidden></dl>
@@ -2125,7 +2125,7 @@ function svgChart(rows,caption,minutes=false,{credit=false,mixed=false}={}){
  const x=i=>rows.length===1?(w+left-right)/2:left+i*(w-left-right)/(rows.length-1);
  const y=v=>top+(hi-v)*(h-top-bottom)/(hi-lo);
  const ym=v=>top+(maxMinutes-v)*(h-top-bottom)/maxMinutes;
- let svg=`<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="${mixed?'none':'xMidYMid meet'}" style="width:${w}px;min-width:100%" role="group" aria-label="${esc(caption)}"><title>${esc(caption)}</title>`;
+ let svg=`<svg dir="ltr" viewBox="0 0 ${w} ${h}" preserveAspectRatio="${mixed?'none':'xMidYMid meet'}" style="width:${w}px;min-width:100%" role="group" aria-label="${esc(caption)}"><title>${esc(caption)}</title>`;
  let pirTicks='',minutesTicks='';
  for(let i=0;i<=4;i++){
   const v=lo+(hi-lo)*i/4,yy=y(v);
@@ -2161,7 +2161,7 @@ function svgChart(rows,caption,minutes=false,{credit=false,mixed=false}={}){
  if(!mixed)return svg;
  const axis=(label,ticks,side)=>`<svg class="pirFixedAxis ${side}" width="38" viewBox="0 0 38 ${h}" role="img" aria-label="${label}">
   <text x="19" y="15" text-anchor="middle" font-weight="800">${label}</text>${ticks}</svg>`;
- return `<div class="pirMixedAxes">${axis('PIR',pirTicks,'pirValue')}<div class="pirMixedPlot" tabindex="0" aria-label="משחקים לפי מחזור, בגלילה אופקית">${svg}</div>${axis('דקות',minutesTicks,'minutesValue')}</div>
+ return `<div class="pirMixedAxes">${axis('PIR',pirTicks,'pirValue')}<div class="pirMixedPlot" dir="rtl" tabindex="0" aria-label="משחקים לפי מחזור, בגלילה אופקית">${svg}</div>${axis('דקות',minutesTicks,'minutesValue')}</div>
  <div class="pirRoundAxis">מחזור יורוליג</div>`;
 }
 window.PIRHistoryCore={coachPoints,buildHistory,svgChart};
@@ -2234,9 +2234,8 @@ function setupGraph(section){
  function drawChart(rows,label,minutes,options){
   const chart=$('Chart');
   chart.innerHTML=svgChart(rows,label,minutes,options);
-  const scroller=chart.querySelector('.pirMixedPlot')||chart;
-  // Open at the newest round on the right.
-  requestAnimationFrame(()=>{scroller.scrollLeft=scroller.scrollWidth;});
+  // In RTL the right edge is the horizontal scroll origin.
+  chart.scrollLeft=0;
  }
  function renderCredit(player){
   const credits=creditData||[],all=player?window.PlayerCredits.rows(credits,player):[];
@@ -2531,8 +2530,8 @@ for (const id of ['data', 'learning']) {
 <script src="./performance-controls.js?v=1"></script>
 <script src="./usage-core.js?v=2"></script><script src="./usage-ui.js?v=performance-tools-2"></script>
 <script src="./defense-core.js?v=2"></script><script src="./defense-ui.js?v=performance-tools-2"></script>
-<script src="./team-metrics-core.js?v=1"></script><script src="./team-metrics-ui.js?v=qa-1"></script>
-<link rel="stylesheet" href="./app-design.css?v=player-charts-2">
+<script src="./team-metrics-core.js?v=1"></script><script src="./team-metrics-ui.js?v=chart-start-right-1"></script>
+<link rel="stylesheet" href="./app-design.css?v=chart-start-right-1">
 <script src="./surprises.js?v=compact-3"></script>
 <script src="./free-throws.js?v=deep-contrast-1"></script>
 <script src="./pir-compare.js?v=performance-controls-1"></script>
@@ -2558,7 +2557,7 @@ for (const id of ['data', 'learning']) {
 <script src="./component-forecast.js?v=1"></script>
 <script src="./app-navigation.js?v=watchlist-1"></script>
 <script src="./watchlist.js?v=1"></script>
-<script src="./app-player.js?v=player-charts-2"></script>
+<script src="./app-player.js?v=chart-start-right-1"></script>
 <link rel="stylesheet" href="./home-dashboard.css?v=nav-pinned-2">
 <script src="./home-dashboard.js?v=reference-5"></script>
 <style id="market-reference-design">

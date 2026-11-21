@@ -29,6 +29,12 @@ const server=http.createServer((req,res)=>{const file=path.join(root,decodeURICo
  const team=report.teams[2];await page.locator('#tmStandings .tm-league-table tbody tr').nth(2).locator('button').click();
  assert(await page.locator('#tmDetail').isVisible());assert(!(await page.locator('#tmLeagueView').isVisible()));assert.equal(await page.locator('#tmTeamTitle').textContent(),team.team);
  assert.equal(await page.locator('#tmChart g[role=button]').count(),team.games.length);
+ const chartScroll=page.locator('.tm-chart-scroll');
+ const atNewest=()=>chartScroll.evaluate(el=>{
+  const last=[...el.querySelectorAll('g[data-tm-game]')].at(-1).getBoundingClientRect(),box=el.getBoundingClientRect();
+  return el.scrollWidth>el.clientWidth&&el.scrollLeft===0&&last.left>=box.left&&last.right<=box.right;
+ });
+ assert(await atNewest());
  const latest=team.games[0];assert((await page.locator('#tmGameInsight').textContent()).includes(String(latest.points)));
  assert.deepEqual(await page.locator('#tmChart .tm-dot-own').evaluateAll(nodes=>nodes.map(n=>Number(n.nextElementSibling.textContent))),[...team.games].reverse().map(g=>g.points));
  assert((await page.locator('#tmBack').boundingBox()).height>=48);
@@ -49,6 +55,7 @@ const server=http.createServer((req,res)=>{const file=path.join(root,decodeURICo
  await page.locator('#tmChart g[role=button]').first().click();const firstHome=[...team.games].reverse().find(g=>g.home);assert.equal(await page.locator('#tmGame').inputValue(),String(firstHome.code));assert((await page.locator('#tmGameInsight').textContent()).includes(firstHome.opponent));
  await page.selectOption('#tmRange','all');await page.locator('#tmChart g[role=button]').first().focus();await page.keyboard.press('Enter');assert.equal(await page.locator('#tmGame').inputValue(),String(team.games.at(-1).code));
  await page.locator('[data-tm-metric=pir]').click();assert.equal(await page.locator('#tmChart .tm-dot-own').count(),team.games.filter(g=>g.pir!==null).length);
+ assert(await atNewest(),'switching metrics opens with the most recent games');
  await page.selectOption('#tmTeam',report.teams[4].team);assert.equal(await page.locator('#tmTeamTitle').textContent(),report.teams[4].team);
  for(const width of [320,390,1280]){await page.setViewportSize({width,height:900});assert(!(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2)),'page overflow at '+width);}
  await page.setViewportSize({width:390,height:844});if(process.env.SCREENSHOT_DIR)await page.screenshot({path:path.join(process.env.SCREENSHOT_DIR,'team-metrics-chart.png'),fullPage:true});

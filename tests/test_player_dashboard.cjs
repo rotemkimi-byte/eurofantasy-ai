@@ -9,6 +9,22 @@ if(process.env.MEDIA_FIXTURE){const m=JSON.parse(fs.readFileSync(path.join(root,
 await page.goto(`http://127.0.0.1:${server.address().port}`,{waitUntil:'networkidle'});
 async function open(name){await page.evaluate(n=>window.showPlayer(n),name);await page.locator('.ef-overview-data .ef-game-card').first().waitFor();}
 await open('Elijah Bryant');assert.equal(await page.locator('[role=tab][data-player-tab]').count(),4);
+await page.locator('.ef-credit-chart [data-credit-point]').nth(1).waitFor();
+for(const [container,point] of [
+ ['.ef-overview-data .ef-trend-scroll','.pirPoint'],
+ ['.ef-market-credits .ef-trend-scroll','[data-credit-point]'],
+ ['.ef-player-free-throws .ef-trend-scroll','.ef-ft-point'],
+]){
+ const scroll=page.locator(container);
+ assert(await scroll.evaluate((el,selector)=>{
+  const last=[...el.querySelectorAll(selector)].at(-1).getBoundingClientRect(),box=el.getBoundingClientRect();
+  return el.scrollWidth>el.clientWidth&&el.scrollLeft===0&&last.left>=box.left&&last.right<=box.right;
+ },point),container+' starts with its newest point visible');
+ assert(await scroll.evaluate(el=>{el.scrollLeft=-el.scrollWidth;return el.scrollLeft<0;}));
+}
+await page.locator('[data-player-trend=fouls]').click();
+assert.equal(await page.locator('.ef-overview-data .ef-trend-scroll').evaluate(el=>el.scrollLeft),0);
+await page.locator('[data-player-trend=pir]').click();
 const source=JSON.parse(fs.readFileSync(path.join(root,'data/official-offense.json'))),U=require('../usage-core.js');const season=U.selectGames(source.players['bryant elijah'],'0'),stats=U.summarize(season);
 assert.equal(await page.locator('[data-range="0"]').getAttribute('aria-pressed'),'true');
 assert.equal(await page.locator('[data-player-venue="all"]').getAttribute('aria-pressed'),'true');
