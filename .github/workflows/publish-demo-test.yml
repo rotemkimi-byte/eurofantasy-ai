@@ -43,7 +43,7 @@ jobs:
           allowed = {record['path'] for record in manifest['files']} | {'.nojekyll'}
           assert len(allowed) == 256
           tracked = set(subprocess.check_output(['git', '-C', str(root), 'ls-files', '-z']).decode().split('\0')) - {''}
-          metadata = {'README.md', '.github/demo-manifest.json', '.github/workflows/seed-demo-test.yml', '.github/workflows/publish-demo-test.yml'}
+          metadata = {'README.md', '.github/demo-manifest.json', '.github/workflows/seed-demo-test.yml', '.github/workflows/publish-demo-test.yml', '.github/workflows/seed-private-dev.yml', '.github/workflows/verify-private-refresh.yml'}
           assert tracked == allowed | metadata
           dist.mkdir()
           for record in manifest['files']:
