@@ -2364,7 +2364,14 @@ function activateMode(next,restore=false){
  if(comparing)window.PIRCompareUI.load();
  else graph.setMode(next,restore);
 }
-for(const button of modes)button.addEventListener('click',()=>activateMode(button.dataset.pirMode));
+for(const button of modes)button.addEventListener('click',()=>{
+ const mode=button.dataset.pirMode;
+ activateMode(mode);
+ const target=mode==='compare'
+  ? pirSection.querySelector('#pirCompare [data-chart]') || document.getElementById('pirCompare')
+  : document.getElementById('pirChart');
+ target.scrollIntoView({block:target.id==='pirCompare'?'start':'center',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+});
 document.querySelector('[data-tab="pirGraph"]').addEventListener('click',()=>activateMode(pirSection.querySelector('[data-pir-mode][aria-pressed="true"]').dataset.pirMode,true));
 for(const button of scopeButtons)button.addEventListener('click',()=>{
  for(const item of scopeButtons)item.setAttribute('aria-pressed',String(item===button));
