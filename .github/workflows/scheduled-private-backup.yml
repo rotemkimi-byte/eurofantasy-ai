@@ -1,0 +1,49 @@
+name: Daily private source backup
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 1 * * *'
+  push:
+    branches: [main]
+    paths: ['.github/workflows/scheduled-private-backup.yml']
+
+permissions: {}
+
+jobs:
+  backup:
+    if: github.repository_id == '1466932960' && github.ref == 'refs/heads/main' && (github.repository == 'rotemkimi-byte/eurofantasy-ai' || (github.repository == 'rotemkimi-byte/eurofantasy-ai-demo-test' && github.event_name == 'push'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: rotemkimi-byte/eurofantasy-ai-dev-test
+          ref: main
+          path: private
+          token: ${{ secrets.DEV_REPOSITORY_TOKEN }}
+          fetch-depth: 0
+      - name: Verify private archive and preserve a dated recovery tag
+        working-directory: private
+        shell: bash
+        run: |
+          set -euo pipefail
+          case "$(git remote get-url origin)" in
+            https://github.com/rotemkimi-byte/eurofantasy-ai-dev-test|https://github.com/rotemkimi-byte/eurofantasy-ai-dev-test.git) ;;
+            *) exit 1 ;;
+          esac
+          day=$(TZ=Asia/Jerusalem date +%Y-%m-%d)
+          tag="private-backup/$day"
+          if git show-ref --verify --quiet "refs/tags/$tag"; then
+            echo 'Private recovery point already exists; not overwritten.'
+            exit 0
+          fi
+          git archive --format=zip --output="$RUNNER_TEMP/private-recovery.zip" HEAD
+          test -s "$RUNNER_TEMP/private-recovery.zip"
+          git tag "$tag" HEAD
+          if git push --quiet origin "refs/tags/$tag" > "$RUNNER_TEMP/private-backup.log" 2>&1; then
+            echo 'Private dated recovery point created. No public backup artifact uploaded.'
+          else
+            echo 'Private backup failed safely.'
+            exit 1
+          fi
