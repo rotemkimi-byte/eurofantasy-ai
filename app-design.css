@@ -239,8 +239,6 @@ html[data-theme="light"] .tab .player-picker-modes button[aria-pressed="true"]{b
 
 .ef-market-credits{margin:8px 0;padding:7px 12px 4px;background:var(--card);border:1px solid var(--line);border-radius:12px}
 .ef-market-credits h3{font-size:13px;margin:0}
-.ef-credit-heading{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.ef-credit-heading output{font-size:13px;color:var(--text);font-weight:750;unicode-bidi:isolate}
 .ef-credit-chart{display:block;width:100%;height:106px;color:var(--accent);direction:ltr}
 .ef-credit-chart text{fill:var(--muted);font-family:inherit;font-size:11px}
 .ef-credit-chart [data-credit-point]{cursor:pointer}
@@ -492,10 +490,83 @@ html[data-theme="light"] #efToolGroups .ef-performance-tools button {
 .squadMatchSummary li.up{color:#12654d}
 .squadMatchSummary li.down{color:#9d2435}
 
-.ef-trend-filters{width:max-content;max-width:100%;margin-top:8px}
-html.ef-redesign .ef-trend-filters button{min-height:40px;padding-inline:10px}
-html.ef-redesign .ef-trend-filters button[aria-pressed="true"]{background:#224a7e;color:white}
 .ef-credit-chart .ef-credit-value{fill:var(--text);stroke:var(--card);stroke-width:2px;paint-order:stroke;font-size:11px;font-weight:800;pointer-events:none}
 html.ef-redesign .ef-dashboard .ef-player-free-throws{border:1px solid var(--line);border-radius:14px}
-.ef-player-free-throws .ef-ft-detail{min-height:1em;margin:.3rem 0;font-size:11px}
 .ef-ft-point{cursor:pointer}
+
+.ef-chart-game-card,.pmHistoryScore,.pmHistoryPair {
+ --ef-game-panel:#f8fafc;
+ --ef-game-tile:#e7eef6;
+ --ef-game-border:#9bacc0;
+ --ef-game-ink:#14263a;
+ --ef-game-muted:#43556d;
+ --ef-game-positive:#096343;
+ --ef-game-negative:#a22239;
+ color:var(--ef-game-ink);
+ background:var(--ef-game-panel);
+ border:1px solid var(--ef-game-border);
+ border-radius:14px;
+ min-width:0;
+}
+html[data-theme="dark"] :is(.ef-chart-game-card,.pmHistoryScore,.pmHistoryPair) {
+ --ef-game-panel:#17283e;
+ --ef-game-tile:#263c57;
+ --ef-game-border:#60778f;
+ --ef-game-ink:#f1f6ff;
+ --ef-game-muted:#c4d4e8;
+ --ef-game-positive:#7ef2ba;
+ --ef-game-negative:#ff9aab;
+}
+.ef-chart-game-card{padding:10px;display:grid;gap:8px;width:100%;overflow-wrap:anywhere}
+.ef-chart-game-heading{font-weight:800}
+.ef-chart-game-identity{display:flex;align-items:center;gap:8px;min-width:0}
+.ef-game-crest,.pmHistoryPhoto{position:relative;display:grid;place-items:center;overflow:hidden;background:var(--ef-game-tile);border-radius:9px;flex:none}
+.ef-game-crest{width:38px;height:38px;font-size:10px}
+.ef-game-crest img,.pmHistoryPhoto img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.ef-game-crest img{padding:3px;background:#f2f5fa;box-sizing:border-box}
+.ef-game-crest img+b,.pmHistoryPhoto img+b{visibility:hidden}
+.ef-chart-game-identity strong{font-size:14px}
+.ef-chart-game-identity small{display:flex;align-items:center;gap:3px 8px;flex-wrap:wrap;color:var(--ef-game-muted);font-size:11px}
+.ef-chart-game-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,72px),1fr));gap:6px;margin:0}
+.ef-chart-game-stats>div,.pmHistoryNumbers>span{background:var(--ef-game-tile);border-radius:8px;text-align:center;padding:5px;min-width:0}
+.ef-chart-game-stats dt,.pmHistoryNumbers small{display:block;color:var(--ef-game-muted);font-size:10px;line-height:1.25}
+.ef-chart-game-stats dd,.pmHistoryNumbers bdi{margin:1px 0 0;font-size:16px;font-weight:800;font-variant-numeric:tabular-nums}
+.ef-credit-detail,.ef-ft-detail,.pc-round-games{margin-top:8px}
+.pc-round-games{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:8px}
+.ef-trend-point{cursor:pointer;outline:none}
+.ef-trend-point:is(:focus,[aria-pressed="true"]) circle:last-of-type,
+.ef-credit-chart g:is(:focus,[aria-pressed="true"]) circle,
+#pirChart .pirPoint[aria-pressed="true"] circle:not([fill="transparent"]){stroke:var(--text);stroke-width:2}
+
+.pmHistoryScore,.pmHistoryPair>summary{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:6px;text-align:center}
+.pmHistoryScore{padding:10px 7px}
+.pmHistoryTeam{display:grid;justify-items:center;gap:4px;font-size:13px;font-weight:800;overflow-wrap:anywhere}
+.pmHistoryTeam small,.pmHistoryScore small{display:block;color:var(--ef-game-muted);font-size:10px}
+.pmHistoryScore strong{font-size:clamp(18px,5.6vw,28px);font-variant-numeric:tabular-nums;white-space:nowrap}
+.pmHistoryScore strong bdi{padding-inline:3px}
+.pmHistoryScore .is-winner,.pmHistoryTeam.is-winner small{color:var(--ef-game-positive)}
+.pmHistoryLineup{margin-top:16px}
+.pmHistoryPair{margin:6px 0}
+.pmHistoryPair>summary{min-height:44px;padding:7px;cursor:pointer;list-style:none;border-radius:inherit}
+.pmHistoryPair>summary::-webkit-details-marker{display:none}
+.pmHistoryPair[open]>summary{border-bottom:1px solid var(--ef-game-border)}
+.pmHistoryPlayer{display:grid;justify-items:center;align-self:stretch;grid-template-rows:auto 1fr auto 5px;gap:5px;min-width:0}
+.pmHistoryPhoto{width:44px;height:42px;font-size:13px}
+.pmHistoryPhoto img{object-position:center top}
+.pmHistoryName{font-size:13px;font-weight:800;line-height:1.2;overflow-wrap:anywhere;align-self:center}
+.pmHistoryNumbers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;width:100%;max-width:190px}
+.pmHistoryNumbers bdi{font-size:14px}
+.pmHistoryPlayer[data-pir-tone="leading"] .pmHistoryNumbers>span:first-child bdi{color:var(--ef-game-positive)}
+.pmHistoryPlayer[data-pir-tone="trailing"] .pmHistoryNumbers>span:first-child bdi{color:var(--ef-game-negative)}
+.pmHistoryPerformance{width:100%;max-width:190px;height:5px;overflow:hidden;border-radius:4px;background:var(--ef-game-tile)}
+.pmHistoryPerformance i{display:block;height:100%;min-width:2px;background:var(--ef-game-muted);border-radius:inherit}
+.pmHistoryPlayer[data-pir-tone="leading"] i{background:var(--ef-game-positive)}
+.pmHistoryPlayer[data-pir-tone="trailing"] i{background:var(--ef-game-negative)}
+.pmHistoryPosition{color:var(--ef-game-muted);font-size:12px;text-align:center}
+.pmHistoryPosition::after{content:'⌄';display:block;font-size:15px;line-height:1}
+.pmHistoryPair[open] .pmHistoryPosition::after{content:'⌃'}
+.pmHistoryEmpty{font-size:11px;color:var(--ef-game-muted)}
+.pmHistoryPair .pmCompare{overflow-x:auto}
+.pmHistoryPair .pmCompare table{table-layout:fixed;width:100%;min-width:0}
+.pmHistoryPair .pmCompare :is(th,td){font-size:12px;overflow-wrap:anywhere}
+#teamCards .squadRemoveAction{min-height:44px;margin-inline-start:6px}

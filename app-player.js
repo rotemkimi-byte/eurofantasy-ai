@@ -70,8 +70,7 @@ function creditRows(rounds,player){
  return rows;
 }
 window.PlayerCredits={load:creditHistory,rows:creditRows};
-function creditChart(rounds,player){
- const rows=creditRows(rounds,player).filter(r=>r.price>0);
+function creditChart(rows){
  if(!rows.length)return '<h3>קרדיטים</h3><span class="muted" aria-label="אין נתוני קרדיטים">—</span>';
  const prices=rows.map(r=>r.price),lo=Math.min(...prices),hi=Math.max(...prices);
  const center=(lo+hi)/2,half=Math.max(Math.ceil((hi-lo)*5)/10,.3);
@@ -82,39 +81,35 @@ function creditChart(rounds,player){
  const label=r=>r.current?'עכשיו':'מחזור '+r.round;
  const value=r=>label(r)+' · '+fmt(r.price)+' CR';
  const chosen=rows.at(-1);
- return `<div class="ef-credit-heading"><h3>קרדיטים</h3><output aria-live="polite">${value(chosen)}</output></div>
+ return `<h3>קרדיטים</h3>
  <div class="ef-trend-scroll"><svg class="ef-credit-chart" viewBox="0 0 ${width} 106"${width>348?` style="min-width:${width}px"`: ''} role="group" aria-label="קרדיטים לפי מחזור, מהישן לחדש">
   ${[center+half,center,center-half].map(t=>`<line class="ef-gridline" x1="43" x2="${rightEdge}" y1="${y(t)}" y2="${y(t)}"/><text x="34" y="${y(t)+4}" text-anchor="end">${fmt(t)}</text>`).join('')}
   <polyline points="${rows.map(r=>x(r)+','+y(r.price)).join(' ')}" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
   ${rows.map((r,i)=>{
    const cx=x(r),left=i?(x(rows[i-1])+cx)/2:35,right=i<rows.length-1?(cx+x(rows[i+1]))/2:width-7;
    const tick=r.current||i===0||i===rows.length-1||(r.round-first)%Math.ceil((end-first)/4)===0&&end-r.round>1;
-   return `<g role="button" tabindex="0" data-credit-point="${value(r)}" aria-label="${value(r)}" aria-pressed="${r===chosen}">
+   return `<g role="button" tabindex="0" data-credit-point="${i}" aria-label="${value(r)}" aria-pressed="${r===chosen}">
     <rect x="${left}" y="0" width="${right-left}" height="106" fill="transparent"/>
     <circle cx="${cx}" cy="${y(r.price)}" r="3.5" fill="currentColor"/>
     <text class="ef-credit-value" x="${cx}" y="${y(r.price)-9}" text-anchor="middle" aria-hidden="true">${fmt(r.price)}</text>
     ${tick?`<text x="${cx}" y="101" text-anchor="middle">${r.current?'עכשיו':r.round}</text>`:''}
    </g>`;
   }).join('')}
- </svg></div>`;
+ </svg></div><div class="ef-credit-detail" aria-live="polite"></div>`;
 }
 function safeImage(url){try{const u=new URL(url);return u.protocol==='https:'&&['media-cdn.cortextech.io','media-cdn.incrowdsports.com','media-cdn.euroleague.net'].includes(u.hostname)?url:null;}catch{return null;}}
 function photo(host,url,alt){if(!host||!safeImage(url))return;const img=new Image();img.alt=alt;img.decoding='async';img.referrerPolicy='no-referrer';img.onload=()=>{if(host.isConnected){host.replaceChildren(img);host.removeAttribute('aria-hidden');}};img.src=url;}
 const metric=(label,value,note='')=>`<div class="ef-metric"><small>${esc(label)}</small><strong>${esc(value)}</strong>${note?`<span>${esc(note)}</span>`:''}</div>`;
 const rate=(label,r)=>metric(label,r.value===null?'—':fmt(r.value)+'%',`${r.covered} הופעות בחישוב${r.missing?' · '+r.missing+' חסרות':''}`);
-const trendMetrics={
- pir:{label:'PIR',field:'valuation',scale:10},
- fouls:{label:'סחיטת עבירות',field:'foulsReceived',scale:2}
-};
+const pirTrend={label:'PIR',field:'valuation',scale:10};
 const freeThrowsTrend={label:'עונשין',field:'freeThrowsMade',scale:2};
 const trendValue=(game,trend)=>game.minutes>0?U.num(game.stats?.[trend.field]):null;
-function trendDetail(game,trend){
- const value=trendValue(game,trend);
- if(trend===freeThrowsTrend){
-  const attempts=U.num(game.stats?.freeThrowsAttempted);
-  return `עונשין · ${value} קליעות${attempts===null?'':' מתוך '+attempts+' ניסיונות'}`;
- }
- return trend===trendMetrics.fouls?`עבירות שסחט · ${value}`:`PIR ${fmt(value)}`;
+const freeThrowValue=game=>`${trendValue(game,freeThrowsTrend)??'—'}/${U.num(game.stats?.freeThrowsAttempted)??'—'}`;
+const trendDetail=(game,trend)=>trend===freeThrowsTrend?'עונשין · '+freeThrowValue(game):'PIR '+fmt(trendValue(game,pirTrend));
+function gameValues(game){
+ return game?[
+  ['PIR בפועל',fmt(trendValue(game,pirTrend))],['דקות בפועל',fmt(game.minutes)]
+ ]:[];
 }
 function chart(games,trend){
  const rows=games.slice().reverse(),values=rows.map(g=>trendValue(g,trend));
@@ -134,14 +129,17 @@ function chart(games,trend){
  if(current.length)paths.push(current);
  const grid=[0,.5,1].map(t=>{
   const value=lo+span*t;
-  return `<line x1="${left}" x2="${right}" y1="${y(value)}" y2="${y(value)}" class="ef-gridline"/><text x="32" y="${y(value)+4}" text-anchor="end">${trend===trendMetrics.pir?Math.round(value):value}</text>`;
+  return `<line x1="${left}" x2="${right}" y1="${y(value)}" y2="${y(value)}" class="ef-gridline"/><text x="32" y="${y(value)+4}" text-anchor="end">${trend===pirTrend?Math.round(value):value}</text>`;
  }).join('');
  const lines=paths.map(path=>`<polygon points="${path[0].split(',')[0]},160 ${path.join(' ')} ${path.at(-1).split(',')[0]},160" fill="currentColor" opacity=".08"/><polyline points="${path.join(' ')}" fill="none" stroke="currentColor" stroke-width="2.5"/>`).join('');
  const points=rows.map((game,i)=>{
   const value=values[i],cx=x(i);
-  const label=freeThrows?`${value}/${U.num(game.stats?.freeThrowsAttempted)??'—'}`:value;
-  const point=value!==null?`<circle class="${freeThrows?'ef-ft-point':'pirPoint'}" data-game-index="${i}" tabindex="0" role="button" aria-label="${esc(date(game.date)+' '+game.opponent+' · '+trendDetail(game,trend))}" cx="${cx}" cy="${y(value)}" r="4.5" fill="currentColor"><title>${esc(game.opponent)} · ${esc(trendDetail(game,trend))}</title></circle>
-   <text class="${freeThrows?'ef-ft-value':'ef-pir-value'}" x="${cx}" y="${y(value)-10}" text-anchor="middle" aria-hidden="true">${label}</text>`:'';
+  const label=freeThrows?freeThrowValue(game):value;
+  const point=value!==null?`<g class="ef-trend-point" data-game-index="${i}" tabindex="0" role="button" aria-pressed="false" aria-label="${esc(date(game.date)+' '+game.opponent+' · '+trendDetail(game,trend))}">
+   <title>${esc(game.opponent)} · ${esc(trendDetail(game,trend))}</title>
+   <circle cx="${cx}" cy="${y(value)}" r="16" fill="transparent"/>
+   <circle class="${freeThrows?'ef-ft-point':'pirPoint'}" cx="${cx}" cy="${y(value)}" r="4.5" fill="currentColor"/>
+   <text class="${freeThrows?'ef-ft-value':'ef-pir-value'}" x="${cx}" y="${y(value)-10}" text-anchor="middle" aria-hidden="true">${label}</text></g>`:'';
   const tick=rows.length<=5||i===0||i===rows.length-1?`<text x="${cx}" y="185" text-anchor="middle">${date(game.date)}</text>`:'';
   return point+tick;
  }).join('');
@@ -217,15 +215,10 @@ window.showPlayer=function(name){
     <button type="button" data-player-venue="away" aria-pressed="false">חוץ</button>
    </div>
   </div>
-  <div class="ef-venue-filters ef-trend-filters" role="group" aria-label="מדד בגרף">
-   ${Object.entries(trendMetrics).map(([id,trend])=>`<button type="button" data-player-trend="${id}" aria-pressed="${id==='pir'}">${trend.label}</button>`).join('')}
-  </div>
   <div class="ef-history-plot"></div>
  </section><div class="ef-overview-summary"></div>`;
  const plot=overview.querySelector('.ef-history-plot'),summary=overview.querySelector('.ef-overview-summary');
  const venueControls=overview.querySelector('[aria-label="בית וחוץ"]');
- const trendControls=overview.querySelector('.ef-trend-filters');
- const trendTitle=overview.querySelector('.ef-history-toolbar h3');
 
  const credits=document.createElement('section');credits.className='ef-market-credits';
  const freeThrows=document.createElement('section');
@@ -233,21 +226,36 @@ window.showPlayer=function(name){
  freeThrows.innerHTML='<h3 class="sectionTitle">עונשין</h3><p class="muted">קליעות מתוך ניסיונות בכל משחק</p><div class="ef-history-plot"></div>';
  overview.after(credits,freeThrows);
  const freeThrowsPlot=freeThrows.querySelector('.ef-history-plot');
- const draw=rounds=>{credits.innerHTML=creditChart(rounds,player);};
+ let creditPoints=[],activeCredit=null;
+ function showCredit(point){
+  if(!point)return;
+  const row=creditPoints[Number(point.dataset.creditPoint)];
+  const game=row.current?null:seasonGames.find(g=>Number(g.round)===row.round);
+  activeCredit?.setAttribute('aria-pressed','false');
+  activeCredit=point;
+  point.setAttribute('aria-pressed','true');
+  credits.querySelector('.ef-credit-detail').innerHTML=window.ChartGameCard.render({
+   game,heading:row.current?'מחיר נוכחי':'מחיר לפני מחזור '+row.round,
+   values:[...gameValues(game),['קרדיט',fmt(row.price)]]
+  });
+ }
+ const draw=rounds=>{
+  creditPoints=creditRows(rounds,player).filter(r=>r.price>0);
+  credits.innerHTML=creditChart(creditPoints);
+  showCredit(credits.querySelector('[aria-pressed="true"]'));
+ };
  const select=e=>{
   const point=e.target.closest('[data-credit-point]');if(!point)return;
   if(e.type==='keydown'&&e.key!=='Enter'&&e.key!==' ')return;
   if(e.type==='keydown')e.preventDefault();
-  credits.querySelector('[aria-pressed="true"]')?.setAttribute('aria-pressed','false');
-  point.setAttribute('aria-pressed','true');
-  credits.querySelector('output').textContent=point.dataset.creditPoint;
+  showCredit(point);
  };
  credits.onclick=select;
  credits.onkeydown=select;
+ const gamesList=document.createElement('div');panes.games.prepend(gamesList);
+ let range='0',venue='all',data=null,seasonGames=[],selected=[],currentTab='overview';
  draw([]);
  creditHistory().then(rounds=>{if(body.contains(credits))draw(rounds);},()=>{});
- const gamesList=document.createElement('div');panes.games.prepend(gamesList);
- let range='0',venue='all',data=null,profile=null,selected=[],currentTab='overview',trend=trendMetrics.pir;
  function activate(id,focus=false){currentTab=id;for(const [key,pane] of Object.entries(panes))pane.hidden=key!==id;for(const b of tabs.children){const on=b.dataset.playerTab===id;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1;if(on&&focus)b.focus();}}
  tabs.onclick=e=>{const b=e.target.closest('[data-player-tab]');if(b)activate(b.dataset.playerTab);};
  tabs.onkeydown=e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const ids=Object.keys(labels),i=ids.indexOf(currentTab);activate(e.key==='Home'?ids[0]:e.key==='End'?ids.at(-1):ids[(i+(e.key==='ArrowLeft'?1:3))%4],true);};
@@ -259,17 +267,9 @@ window.showPlayer=function(name){
   for(const el of venueControls.children)el.setAttribute('aria-pressed',String(el===button));
   render();
  };
- trendControls.onclick=e=>{
-  const button=e.target.closest('[data-player-trend]');
-  if(!button)return;
-  trend=trendMetrics[button.dataset.playerTrend];
-  for(const el of trendControls.children)el.setAttribute('aria-pressed',String(el===button));
-  render();
- };
  function gameCard(g){const s=g.stats||{};return `<article class="ef-game-card"><header><div><b>${esc(g.opponent)}</b><small>${date(g.date)} · ${g.home===true?'בית':g.home===false?'חוץ':'מיקום לא ידוע'}${g.round?' · מחזור '+esc(g.round):''}</small></div>${safeLink(g.source)}</header>${g.minutes===0?'<p class="muted">לא שיחק</p>':`<div class="ef-game-numbers">${metric('PIR',g.minutes>0?fmt(s.valuation):'—')}${metric('נקודות',fmt(s.points))}${metric('דקות',fmt(g.minutes))}${metric('עבירות שסחט',fmt(s.foulsReceived))}</div>`}</article>`;}
  function render(){
   if(!data)return;
-  const seasonGames=U.selectGames(profile,'0');
   const venueGames=venue==='all'?seasonGames:seasonGames.filter(game=>game.home===(venue==='home'));
   selected=range==='0'?venueGames:venueGames.slice(0,Number(range));
   const usage=U.summarize(selected),df=D.summarize(selected,data,null),played=selected.filter(g=>g.minutes>0),latest=selected[0];
@@ -279,8 +279,7 @@ window.showPlayer=function(name){
   status.textContent=`עונת 2026/27 · ${tag}${location} · ${selected.length} משחקים ברישום, ${played.length} עם דקות`;
   const stats=hero.querySelector('.ef-player-stats'),price=player.price;
   stats.innerHTML=[['מחיר נוכחי · קרדיט',price],['ממוצע PIR · הטווח שנבחר',avg('valuation')],['ממוצע דקות · הטווח שנבחר',played.length?usage.minutes===null?null:usage.minutes/played.length:null],['ממוצע נקודות · הטווח שנבחר',avg('points')]].map(([l,v])=>`<div><small>${l}</small><b>${fmt(v)}</b></div>`).join('');
-  trendTitle.textContent='מגמת ביצועים · '+trend.label;
-  renderTrend(plot,trend);
+  renderTrend(plot,pirTrend);
   renderTrend(freeThrowsPlot,freeThrowsTrend);
   summary.innerHTML=`<div class="ef-metric-grid ef-usage-preview">${rate('Usage רגיל',usage.regular)}${rate('Usage כולל · עם אסיסטים',usage.combined)}${metric('עבירות שסחט למשחק',fmt(avg('foulsReceived')))}</div>${compactMarket?'':`<p class="ef-method muted">אומדנים מבוקס סקור ודקות; Usage כולל הוא מדד מותאם, לא אחוז פוזשנים ייחודיים.</p><h3 class="ef-last-title">המשחק האחרון</h3>${latest?gameCard(latest):'<p class="muted">אין משחקים זמינים בסינון שנבחר.</p>'}`}`;
   panes.usage.innerHTML=`<h3>מעורבות בהתקפה</h3><div class="ef-metric-grid">${rate('Usage רגיל',usage.regular)}${rate('Usage כולל · עם אסיסטים',usage.combined)}${metric('זריקות מהשדה · סה״כ',fmt(usage.fga))}${metric('ניסיונות עונשין · סה״כ',fmt(usage.fta))}${metric('אסיסטים · סה״כ',fmt(usage.assists))}${metric('איבודים · סה״כ',fmt(usage.turnovers))}</div><p class="ef-method">Usage רגיל: זריקות מהשדה + 0.44 מניסיונות העונשין + איבודים, ביחס לאומדן אירועי הקבוצה בזמן דקות השחקן. Usage כולל מוסיף אסיסטים; הוא מדד מעורבות מותאם לאפליקציה. אין כאן מדידה של זמן החזקת כדור. כמה משחקים משוקללים לפי החשיפה, ולא בממוצע פשוט.</p>`;
@@ -292,19 +291,33 @@ window.showPlayer=function(name){
    :'<p class="muted">אין משחקים זמינים בטווח שנבחר.</p>');
  }
  function renderTrend(target,metric){
-  const hasPoints=selected.some(g=>trendValue(g,metric)!==null);
-  target.innerHTML=`${chart(selected,metric)}<p class="${metric===freeThrowsTrend?'ef-ft-detail':'ef-chart-detail'} muted" aria-live="polite">${hasPoints?'לחץ על נקודה להצגת המשחק':''}</p>`;
-  const games=selected.slice().reverse(), detail=target.lastElementChild;
-  target.querySelectorAll('[data-game-index]').forEach(point=>{
-   const show=()=>{
-    const g=games[Number(point.dataset.gameIndex)];
-    detail.textContent=`${date(g.date)} · ${g.opponent} · ${trendDetail(g,metric)} · ${fmt(g.minutes)} דקות`;
-   };
-   point.onclick=show;
-   point.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show();}};
-  });
+  target.innerHTML=chart(selected,metric);
+  const points=target.querySelectorAll('[data-game-index]');
+  if(!points.length)return;
+  const detail=document.createElement('div');
+  detail.className=metric===freeThrowsTrend?'ef-ft-detail':'ef-chart-detail';
+  detail.setAttribute('aria-live','polite');
+  target.append(detail);
+  const games=selected.slice().reverse();
+  const show=point=>{
+   const game=games[Number(point.dataset.gameIndex)];
+   target.querySelector('[aria-pressed="true"]')?.setAttribute('aria-pressed','false');
+   point.setAttribute('aria-pressed','true');
+   const values=gameValues(game);
+   if(metric===freeThrowsTrend)values.push(['עונשין · קליעות/ניסיונות',freeThrowValue(game)]);
+   detail.innerHTML=window.ChartGameCard.render({game,values});
+  };
+  for(const point of points){
+   point.onclick=()=>show(point);
+   point.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show(point);}};
+  }
+  show(points[points.length-1]);
  }
- dataset().then(d=>{if(!body.contains(hero))return;data=d;profile=d.players[U.key(name)];render();}).catch(()=>{if(body.contains(hero)){status.textContent='לא ניתן לטעון את הנתונים כרגע. סגור ופתח את השחקן כדי לנסות שוב.';}});
+ dataset().then(d=>{
+  if(!body.contains(hero))return;
+  data=d;seasonGames=U.selectGames(d.players[U.key(name)],'0');
+  render();showCredit(activeCredit);
+ }).catch(()=>{if(body.contains(hero)){status.textContent='לא ניתן לטעון את הנתונים כרגע. סגור ופתח את השחקן כדי לנסות שוב.';}});
  media().then(d=>{if(!body.contains(hero)||d?.season!=='E2026')return;const m=d.players?.[U.key(name)];if(!m)return;photo(hero.querySelector('.ef-player-avatar'),m.photo,'תמונה של '+name);
  if(m.crest&&canonicalTeam(m.club)===canonicalTeam(player.team)){const crest=document.createElement('span');crest.className='ef-club-crest';hero.querySelector('.ef-player-identity p').prepend(crest);photo(crest,m.crest,m.club);}
  });

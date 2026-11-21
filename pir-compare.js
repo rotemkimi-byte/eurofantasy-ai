@@ -77,7 +77,7 @@ function catalog(){
  const coach=metric==='coach',pool=coach?COACHES:players.filter(p=>['G','F','C'].includes(p.pos));
  const market=new Map(pool.map(p=>[lastThreeName(p.name),p]));
  const historical=[...data[coach?'coaches':'players']].map(([id,p])=>{
-  const m=market.get(id),games=metric==='minutes'?p.games.map(g=>({...g,value:g.dnp?null:g.minutes})):p.games;
+  const m=market.get(id),games=metric==='minutes'?p.games.map(g=>({...g,pir:g.value,value:g.dnp?null:g.minutes})):p.games;
   return {id,p:{...p,games},name:m?.name||name(p),team:m?.team||p.team,price:numeric(m?.price)?Number(m.price):null,pos:m?.pos||p.games?.at(-1)?.pos||''};
  });
  const seen=new Set(historical.map(r=>r.id));
@@ -100,24 +100,23 @@ function options(){if(!data)return;
 function roundSeries(picks,range){
  let earliest=Infinity,latest=0;
  const series=picks.map(({p})=>{
-  const values=new Map();
+  const values=new Map(),games=new Map();
   for(const g of summarize(p.games,range).rows){
    const round=Number(g.round);
    if(!Number.isInteger(round)||round<1)continue;
    latest=Math.max(latest,round);
    earliest=Math.min(earliest,round);
-   if(!g.dnp&&numeric(g.value)&&!values.has(round)){
-    values.set(round,Number(g.value));
-   }
+   if(!games.has(round)||!values.has(round)&&!g.dnp&&numeric(g.value))games.set(round,g);
+   if(!g.dnp&&numeric(g.value)&&!values.has(round))values.set(round,Number(g.value));
   }
-  return {player:p,values};
+  return {player:p,values,games};
  });
  if(!series.some(({values})=>values.size))return {series,rounds:[]};
  const first=Number(range)>0?earliest:1;
  return {series,rounds:Array.from({length:latest-first+1},(_,i)=>first+i)};
 }
 
-function drawComparisonChart(container,picks,range,{label='PIR',format=String}={}){
+function drawComparisonChart(container,picks,range,{label='PIR',format=String,mode='pir'}={}){
  const {series,rounds}=roundSeries(picks,range);
  const values=series.flatMap(s=>rounds.filter(round=>s.values.has(round)).map(round=>s.values.get(round)));
  if(!values.length){
@@ -161,9 +160,9 @@ function drawComparisonChart(container,picks,range,{label='PIR',format=String}={
    <text x="${left+plotWidth/2}" y="${h-5}" text-anchor="middle">מחזור</text>
    ${lines}<g data-round-cursor></g>
    <rect data-chart-hit x="${left-7}" y="0" width="${plotWidth+14}" height="${h-17}" fill="transparent"/>
-  </svg>`;
+  </svg><div class="pc-round-games" data-round-games aria-live="polite"></div>`;
  const svg=container.querySelector('svg'),cursor=container.querySelector('[data-round-cursor]');
- const legend=container.querySelector('[data-round-values]');
+ const legend=container.querySelector('[data-round-values]'),cards=container.querySelector('[data-round-games]');
  let active=last;
  function selectRound(i){
   active=Math.max(0,Math.min(last,i));
@@ -171,6 +170,14 @@ function drawComparisonChart(container,picks,range,{label='PIR',format=String}={
   svg.setAttribute('aria-valuenow',round);
   svg.setAttribute('aria-valuetext',`מחזור ${round}`);
   legend.innerHTML=series.map(({player,values},n)=>`<div style="--pc-series:${colors[n]}"><bdi>${esc(name(player))}</bdi><strong><bdi>${values.has(round)?esc(format(values.get(round))):'—'}</bdi></strong></div>`).join('');
+  if(root.ChartGameCard)cards.innerHTML=series.map(({player,games,values})=>{
+   const game=games.get(round),value=game?.dnp?'לא שיחק':values.has(round)?format(values.get(round)):'—';
+   const stats=mode==='coach'?[[label,value]]:[
+    ['PIR בפועל',mode==='minutes'?fmt(game?.pir):value],
+    ['דקות בפועל',mode==='minutes'?value:fmt(game?.minutes)]
+   ];
+   return root.ChartGameCard.render({game,heading:name(player),values:stats});
+  }).join('');
   cursor.innerHTML=`<line x1="${xx}" y1="${top}" x2="${xx}" y2="${h-bottom}" stroke="var(--pc-chart-guide)"/><text class="pc-chart-round" x="${xx}" y="15" text-anchor="middle">${round}</text>`
    +series.map(({values},n)=>{
     const v=values.get(round);
@@ -198,7 +205,7 @@ function render(){if(!data)return;const range=root.PIRHistoryUI.getRange(),label
  $('[data-count]').textContent=`נבחרו ${picks.length} מתוך 6`;$('[data-compare]').disabled=picks.length<2;$('[data-clear]').disabled=!picks.length;
  $('[data-selected]').innerHTML=picks.map(({id,p})=>`<button data-remove="${esc(id)}" aria-label="הסר את ${esc(name(p))}">${esc(name(p))} ×</button>`).join('');
  $('[data-results]').innerHTML=!picks.length?`<p>אפשר לבחור עד שישה ${coach?'מאמנים':'שחקנים'} להשוואה.</p>`:`<div class="pc-chart" data-chart></div><details class="pc-summary"><summary>פירוט משחקים וממוצעים</summary><div class="pc-cards">${picks.map(({p})=>{const s=summarize(p.games,range);return `<article class="pc-card"><h4><bdi>${esc(name(p))}</bdi></h4><small>${esc(p.team)}</small><span class="pc-value ${s.average<0?'negative':''}">${format(s.average)}</span><span>${range==='1'?label+' במשחק האחרון':'ממוצע '+label+' למשחק'}</span><div class="pc-meta"><span>${s.count}/${s.rows.length} משחקים עם נתון</span><span>סה״כ ${label}: ${format(s.total)}</span></div><details ${range==='0'?'':'open'}><summary>המשחקים שבבסיס ההשוואה</summary>${s.rows.map(g=>`<div class="pc-game"><span>${esc(g.opponent)}<small>${date(g.date)} · מחזור ${esc(g.round??'—')} · ${g.home?'בית':'חוץ'}</small></span><strong>${g.dnp?'לא שיחק':format(g.value)}</strong></div>`).join('')||'<p>אין משחקים זמינים.</p>'}</details></article>`;}).join('')}</div><div class="pc-table-wrap"><table class="pc-table"><thead><tr><th>שחקן</th><th>משחק אחרון</th><th>ממוצע 3 אחרונים</th><th>ממוצע עונה</th></tr></thead><tbody>${picks.map(({p})=>`<tr><th scope="row"><bdi>${esc(name(p))}</bdi></th>${[1,3,0].map(n=>{const s=summarize(p.games,n);return `<td class="${String(n)===range?'pc-current':''}">${format(s.average)}<br><small>${s.count}/${s.rows.length} משחקים</small></td>`;}).join('')}</tr>`).join('')}</tbody></table></div></details>`;
- if(picks.length)drawComparisonChart($('[data-chart]'),picks,range,{label,format});
+ if(picks.length)drawComparisonChart($('[data-chart]'),picks,range,{label,format,mode:metric});
  options();
 }
 async function load(force=false){if(busy)return;if(data&&!force){data=root.PIRHistoryUI.getData()||data;render();return;}busy=true;$('[data-refresh]').disabled=true;$('[data-status]').textContent='טוען דוחות משחק להשוואה…';try{if(force||!root.PIRHistoryUI.getData())await root.PIRHistoryUI.load(force);data=root.PIRHistoryUI.getData();if(!data)throw Error();const ids=new Set(catalog().map(r=>r.id));selected=selected.filter(id=>ids.has(id));render();$('[data-status]').textContent=`עונת 2026/27 · בחר עד 6 שחקנים${data.missing?' · חסרים '+data.missing+' דוחות משחק; ההשוואה חלקית':''}`;}catch{$('[data-status]').textContent='לא ניתן לטעון את הנתונים. לחץ על רענן לניסיון נוסף.';}finally{busy=false;$('[data-refresh]').disabled=false;}}

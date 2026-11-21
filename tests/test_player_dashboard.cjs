@@ -1,12 +1,12 @@
 // Run with NODE_PATH pointing to Playwright and optional CHROMIUM_PATH.
-const {chromium}=require('playwright'),fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
+const {chromium,webkit,devices}=require('playwright'),fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..');
 const server=http.createServer((req,res)=>{const rel=decodeURIComponent(req.url.split('?')[0]);const p=path.join(root,rel==='/'?'index.html':rel);try{res.setHeader('Content-Type',p.endsWith('.js')?'application/javascript':p.endsWith('.css')?'text/css':p.endsWith('.json')?'application/json':'text/html');res.end(fs.readFileSync(p));}catch{res.writeHead(404);res.end('{}');}});
-(async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||undefined,headless:true});try{
-const page=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true}),errors=[];page.on('pageerror',e=>errors.push(e.message));
+(async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const browser=process.env.TEST_WEBKIT==='1'?await webkit.launch():await chromium.launch({executablePath:process.env.CHROMIUM_PATH||undefined,headless:true});try{
+const page=await browser.newPage({...devices['iPhone 15'],viewport:{width:390,height:844}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
 // Load downloaded official images in isolated test environments; otherwise exercise real URLs.
 if(process.env.MEDIA_FIXTURE){const m=JSON.parse(fs.readFileSync(path.join(root,'data/player-media.json'))).players;for(const [key,prefix] of [['bryant elijah','bryant'],['sasha vezenkov','sasha']])for(const field of ['photo','crest']){const file=`${process.env.MEDIA_FIXTURE}/ef-${prefix}-${field}.png`;if(m[key]?.[field]&&fs.existsSync(file))await page.route(m[key][field],r=>r.fulfill({path:file,contentType:'image/png'}));}}
-await page.goto(`http://127.0.0.1:${server.address().port}`,{waitUntil:'networkidle'});
+await page.goto(process.env.EF_TEST_URL||`http://127.0.0.1:${server.address().port}`,{waitUntil:'domcontentloaded'});
 async function open(name){await page.evaluate(n=>window.showPlayer(n),name);await page.locator('.ef-overview-data .ef-game-card').first().waitFor();}
 await open('Elijah Bryant');assert.equal(await page.locator('[role=tab][data-player-tab]').count(),4);
 await page.locator('.ef-credit-chart [data-credit-point]').nth(1).waitFor();
@@ -22,9 +22,13 @@ for(const [container,point] of [
  },point),container+' starts with its newest point visible');
  assert(await scroll.evaluate(el=>{el.scrollLeft=-el.scrollWidth;return el.scrollLeft<0;}));
 }
-await page.locator('[data-player-trend=fouls]').click();
-assert.equal(await page.locator('.ef-overview-data .ef-trend-scroll').evaluate(el=>el.scrollLeft),0);
-await page.locator('[data-player-trend=pir]').click();
+assert.equal(await page.locator('[data-player-trend]').count(),0);
+const gameDetail=page.locator('.ef-chart-detail');
+assert.equal(await gameDetail.locator('dl>div').count(),2);
+assert.equal(await gameDetail.locator('time').count(),1);
+assert.equal(await gameDetail.locator('.pirGameVenue').count(),1);
+assert.equal(await page.locator('.ef-ft-detail dl>div').count(),3);
+assert.match(await page.locator('.ef-credit-detail dd').first().textContent(),/^[0-9]/);
 const source=JSON.parse(fs.readFileSync(path.join(root,'data/official-offense.json'))),U=require('../usage-core.js');const season=U.selectGames(source.players['bryant elijah'],'0'),stats=U.summarize(season);
 assert.equal(await page.locator('[data-range="0"]').getAttribute('aria-pressed'),'true');
 assert.equal(await page.locator('[data-player-venue="all"]').getAttribute('aria-pressed'),'true');
@@ -49,13 +53,17 @@ assert.equal(await page.locator('.ef-player-history .pirPoint').count(),season.f
 await page.locator('[data-player-venue="all"]').click();
 for(const id of ['usage','defense','games','overview']){await page.locator(`[data-player-tab=${id}]`).click();assert.equal(await page.locator('.ef-player-pane:visible').count(),1);assert(await page.locator('#efPane-'+id).isVisible());}
 for(const range of ['1','3','0']){await page.locator(`[data-range="${range}"]`).click();const expected=U.selectGames(source.players['bryant elijah'],range).filter(g=>g.minutes>0&&g.stats.valuation!==null).length;assert.equal(await page.locator('.ef-player-history .pirPoint').count(),expected);}
-await page.locator('[data-range="3"]').click();await page.locator('.pirPoint').first().click();assert((await page.locator('.ef-chart-detail').textContent()).includes('PIR'));
+await page.locator('[data-range="3"]').click();
+const latest=await gameDetail.locator('time').getAttribute('datetime');
+await page.locator('.ef-overview-data [data-game-index]').first().press('Enter');
+assert.notEqual(await gameDetail.locator('time').getAttribute('datetime'),latest);
+assert.match(await gameDetail.textContent(),/PIR/);
 assert(!(await page.evaluate(()=>document.getElementById('playerModal').scrollWidth>document.getElementById('playerModal').clientWidth+2)));
 // Mobile player view fills the viewport, keeps four metrics in one row, and closes accessibly.
 for(const width of [320,390,650]){
  await page.setViewportSize({width,height:844});
  const layout=await page.evaluate(()=>{const modal=document.getElementById('playerModal'),r=modal.getBoundingClientRect(),stats=[...document.querySelectorAll('.ef-player-stats>div')].map(el=>el.getBoundingClientRect());return {x:r.x,y:r.y,width:r.width,height:r.height,overflow:modal.scrollWidth>modal.clientWidth+2,rows:stats.map(r=>r.y)};});
- assert.equal(layout.x,0);assert.equal(layout.y,0);assert.equal(layout.width,width);assert.equal(layout.height,844);assert.equal(layout.overflow,false);assert(layout.rows.every(y=>y===layout.rows[0]));
+ assert.equal(layout.x,0);assert.equal(layout.y,0);assert.equal(layout.width,width);assert(Math.abs(layout.height-844)<1);assert.equal(layout.overflow,false);assert(layout.rows.every(y=>y===layout.rows[0]));
 }
 await page.setViewportSize({width:390,height:844});
 assert.match(await page.locator('#playerModal .close').textContent(),/חזרה לרשימת השחקנים/);

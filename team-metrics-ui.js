@@ -57,7 +57,13 @@ function compare(){
 }
 function insight(t,g){
  const difference=g.points-g.against;
- $('tmGameInsight').innerHTML=`<div class="tm-result-heading"><span class="${difference>0?'tm-w':'tm-l'}">${difference>0?'ניצחון':'הפסד'}</span><b>${esc(t.team)} מול ${esc(g.opponent)}</b><small>${date(g.date)} · ${g.round?'מחזור '+esc(g.round)+' · ':''}${g.home?'בית':'חוץ'}</small></div><div class="tm-scoreline"><div><small>${esc(t.team)}</small><strong>${integer(g.points)}</strong></div><bdi>:</bdi><div><small>${esc(g.opponent)}</small><strong>${integer(g.against)}</strong></div></div><div class="tm-result-meta"><span>הפרש נקודות <b dir="ltr" class="${difference>0?'tm-positive':'tm-negative'}">${signed(difference)}</b></span><span>PIR קבוצה <b>${fmt(g.pir)}</b></span><span>PIR יריבה <b>${fmt(g.opponentPir)}</b></span></div>`;
+ const extra=metric==='difference'?['הפרש נקודות',signed(difference)]:
+  metric==='against'?['נקודות חובה',integer(g.against)]:['נקודות זכות',integer(g.points)];
+ const values=[['תוצאה',g.points+'–'+g.against],['PIR קבוצה',fmt(g.pir)],['PIR יריבה',fmt(g.opponentPir)]];
+ if(metric!=='pir')values.push(extra);
+ $('tmGameInsight').innerHTML=window.ChartGameCard.render({
+  game:g,heading:t.team+' · '+(difference>0?'ניצחון':'הפסד'),values
+ });
 }
 function chart(centerGame=false){
  const t=selected();if(!t)return;
@@ -73,7 +79,7 @@ function chart(centerGame=false){
  if(range==='5')list=list.slice(-5);else if(range==='home'||range==='away')list=list.filter(g=>g.home===(range==='home'));
  if(!list.length){$('tmGameInsight').innerHTML='';$('tmChart').innerHTML='<p class="notice">אין משחקים שהסתיימו בטווח הזה.</p>';return;}
  // Keep the game inspector in the same range as the chart.
- if(!list.some(g=>String(g.code)===$('tmGame').value))$('tmGame').value=String(list.at(-1).code);
+ if(!centerGame||!list.some(g=>String(g.code)===$('tmGame').value))$('tmGame').value=String(list.at(-1).code);
  const difference=metric==='difference',pir=metric==='pir';
  const single=metric==='for'||metric==='against',against=metric==='against';
  const own=g=>difference?g.points-g.against:pir?g.pir:against?g.against:g.points;

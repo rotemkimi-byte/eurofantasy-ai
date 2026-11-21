@@ -20,7 +20,8 @@ function completedGames(schedule){
  }).map(g=>({
   code:g.gameCode,round:g.round,date:new Date(g.utcDate),
   home:canonicalTeam(g.local.club.name),away:canonicalTeam(g.road.club.name),
-  homeScore:g.local.score,awayScore:g.road.score
+  homeScore:Number(g.local.score),awayScore:Number(g.road.score),
+  homeCrest:g.local.club.images?.crest,awayCrest:g.road.club.images?.crest
  })).sort((a,b)=>b.round-a.round||b.date-a.date||b.code-a.code);
 }
 function roster(side){
@@ -28,15 +29,29 @@ function roster(side){
   const name=player?.person?.name,seconds=pmNumber(stats?.timePlayed);
   if(!name||!(seconds>0))return [];
   return [{name:reorderCommaName(name),pos:positions[player.position]||'—',
+   photo:playerCardImageUrl(player.images?.headshot)||playerCardImageUrl(player.images?.action)||playerCardImageUrl(playerCardProfile({name})?.photo),
    starter:stats.startFive===true,values:pmBoxValues(stats,seconds)}];
  }).sort((a,b)=>b.values.minutes-a.values.minutes||a.name.localeCompare(b.name));
 }
 const number=(p,key)=>clubNumber(p?.values[key]);
 function matchup({a,b,pos}){
- const side=p=>p?`<span><bdi>${esc(p.name)}</bdi><small>${number(p,'minutes')} דק׳ · PIR ${number(p,'pir')}</small></span>`:
-  '<span class="muted">—</span>';
- const position=pos==='—'?'עמדה לא ידועה':pos;
- return `<details class="pmHistoryPair"><summary>${side(a)}<span class="pmHistoryPosition">${position}</span>${side(b)}</summary>
+ const first=pmNumber(a?.values.pir),second=pmNumber(b?.values.pir);
+ const compared=first!==null&&second!==null;
+ const lower=Math.min(0,first??0,second??0),upper=Math.max(0,first??0,second??0);
+ const side=(p,pir,other)=>{
+  if(!p)return '<span class="pmHistoryEmpty">אין שחקן בעמדה</span>';
+  const tone=compared&&pir!==other?(pir>other?'leading':'trailing'):'neutral';
+  const share=compared?(upper===lower?50:100*(pir-lower)/(upper-lower)):0;
+  const comparison=tone==='leading'?'PIR גבוה יותר':tone==='trailing'?'PIR נמוך יותר':compared?'PIR שווה':'';
+  return `<span class="pmHistoryPlayer" data-pir-tone="${tone}">
+   <span class="pmHistoryPhoto" aria-hidden="true">${window.ChartGameCard.image(p.photo)}<b>${esc(p.name.split(/\s+/).map(n=>n[0]).slice(0,2).join(''))}</b></span>
+   <bdi class="pmHistoryName">${esc(p.name)}</bdi>
+   <span class="pmHistoryNumbers"><span><small>PIR</small><bdi>${number(p,'pir')}</bdi></span><span><small>דקות</small><bdi>${number(p,'minutes')}</bdi></span></span>
+   ${compared?`<span class="pmHistoryPerformance" role="img" aria-label="${comparison}"><i style="width:${share}%"></i></span>`:''}
+  </span>`;
+ };
+ const position=pos==='—'?'עמדה לא ידועה':({C:'סנטר',F:'פורוורד',G:'גארד'})[pos];
+ return `<details class="pmHistoryPair"><summary>${side(a,first,second)}<span class="pmHistoryPosition" aria-label="${position}" title="${position}">${pos}</span>${side(b,second,first)}</summary>
   <div class="pmCompare"><table aria-label="השוואת שחקנים במשחק"><thead><tr>
   <th scope="col"><bdi>${esc(a?.name||'—')}</bdi></th><th scope="col">בפועל</th><th scope="col"><bdi>${esc(b?.name||'—')}</bdi></th>
   </tr></thead><tbody>${PM_METRICS.map(([key,label])=>pmComparisonRow(key,label,a?.values[key],b?.values[key])).join('')}</tbody></table></div>
@@ -49,7 +64,7 @@ function lineups(box){
   const pairs=pmListPairs(home.filter(p=>p.starter===starter),away.filter(p=>p.starter===starter),['C','F','G','—']);
   if(!pairs.length)return '';
   const title=starter?'חמישיות פותחות בפועל':'שחקני ספסל ששיחקו';
-  return `<h4 class="pmLineupTitle">${title}</h4>${pairs.map(matchup).join('')}`;
+  return `<section class="pmHistoryLineup"><h4 class="pmLineupTitle">${title}</h4>${pairs.map(matchup).join('')}</section>`;
  }).join('');
 }
 async function renderGame(){
@@ -58,10 +73,14 @@ async function renderGame(){
  const id=++request;
  retry.hidden=true;
  status.textContent='טוען בוקס סקור…';
+ const homeWon=selected.homeScore>selected.awayScore;
+ const team=(name,crest,venue,won)=>`<span class="pmHistoryTeam${won?' is-winner':''}">
+  ${window.ChartGameCard.crest(name,crest)}<bdi>${esc(name)}</bdi>
+  <small>${venue}${won?' · ניצחון':''}</small></span>`;
  result.innerHTML=`<div class="pmHistoryScore">
-  <span><small>בית</small><bdi>${esc(selected.home)}</bdi></span>
-  <strong><bdi>${selected.homeScore}</bdi><span>–</span><bdi>${selected.awayScore}</bdi></strong>
-  <span><small>חוץ</small><bdi>${esc(selected.away)}</bdi></span>
+  ${team(selected.home,selected.homeCrest,'בית',homeWon)}
+  <strong dir="rtl"><bdi class="${homeWon?'is-winner':''}">${selected.homeScore}</bdi>–<bdi class="${homeWon?'':'is-winner'}">${selected.awayScore}</bdi><small dir="rtl">תוצאה סופית</small></strong>
+  ${team(selected.away,selected.awayCrest,'חוץ',!homeWon)}
  </div><div data-pm-history-lineups></div>`;
  try{
   const box=await lastThreeFetch(`./data/backtest/cache/E2026-${selected.code}-stats.json`);
