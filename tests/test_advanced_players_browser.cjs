@@ -59,6 +59,18 @@ const server=http.createServer((req,res)=>{
      const output=box.locator('.ap-box-average');
      assert.match(await output.locator(':scope > small').textContent(),new RegExp('^'+games.length+' '));
      assert.equal(await output.locator('.ap-metric').filter({has:page.getByText('נקודות',{exact:true})}).locator('strong').textContent(),average);
+     const metrics=output.locator('.pa-metrics');
+     assert(await metrics.evaluate(grid=>{
+      const bounds=grid.getBoundingClientRect(),rows=new Map();
+      for(const cell of grid.children){
+       const {top,left,right}=cell.getBoundingClientRect();
+       const row=rows.get(top)||{left,right,count:0};
+       rows.set(top,{left:Math.min(left,row.left),right:Math.max(right,row.right),count:row.count+1});
+      }
+      return [...rows.values()].every(row=>row.count>=2&&row.count<=3&&
+       Math.abs(bounds.left-row.left)<1&&Math.abs(bounds.right-row.right)<1);
+     }),`Box score rows fill the panel at ${width}px in ${theme}`);
+
     }
     await box.locator('[data-performance-range="1"]').click();
     const game=box.locator('.performance-game-picker select');
