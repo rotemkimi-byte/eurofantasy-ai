@@ -1,0 +1,75 @@
+name: Seed verified demo test (one time)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/seed-demo-test.yml']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: seed-demo-test
+  cancel-in-progress: false
+
+jobs:
+  seed:
+    if: github.repository == 'rotemkimi-byte/eurofantasy-ai-demo-test' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          path: demo
+      - uses: actions/checkout@v4
+        with:
+          repository: rotemkimi-byte/eurofantasy-ai
+          ref: 35abb78a7ddaa1ce90cf6133b24b8463b812c50b
+          path: source
+          persist-credentials: false
+      - name: Build and verify the previously tested snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf '%s  %s\n' '5696d6d861d3aa3a4a9fd6e9e7dc1c9aba0f11d0ab5cc56c4d665d6bd0b000ab' "$GITHUB_WORKSPACE/source/scripts/build_public_dist.py" | sha256sum -c -
+          python3 "$GITHUB_WORKSPACE/source/scripts/build_public_dist.py" "$GITHUB_WORKSPACE/source" "$RUNNER_TEMP/eurofantasy-demo" "$RUNNER_TEMP/manifest.json"
+          printf '%s  %s\n' '8b5d6b4a13fd1c57d70f540d6d934e5d5820e18db3230dc3ec839cc93908bd97' "$RUNNER_TEMP/manifest.json" | sha256sum -c -
+          export RELEASE_DIR="$RUNNER_TEMP/eurofantasy-demo" MANIFEST="$RUNNER_TEMP/manifest.json" DEMO_DIR="$GITHUB_WORKSPACE/demo"
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, shutil, subprocess
+          release = pathlib.Path(os.environ['RELEASE_DIR'])
+          demo = pathlib.Path(os.environ['DEMO_DIR'])
+          manifest = json.loads(pathlib.Path(os.environ['MANIFEST']).read_text())
+          expected = {entry['path'] for entry in manifest['files']} | {'.nojekyll'}
+          metadata = {'README.md', '.github/workflows/seed-demo-test.yml'}
+          assert len(expected) == 256
+          assert {p.relative_to(release).as_posix() for p in release.rglob('*') if p.is_file()} == expected
+          assert not any(p.is_symlink() for p in release.rglob('*'))
+          for entry in manifest['files']:
+              assert hashlib.sha256((release / entry['path']).read_bytes()).hexdigest() == entry['sha256']
+          tracked = set(subprocess.check_output(['git', '-C', str(demo), 'ls-files', '-z']).decode().split('\0')) - {''}
+          assert tracked <= expected | metadata, 'Unexpected existing demo file; refusing to publish'
+          for name in sorted(expected):
+              dst = demo / name
+              dst.parent.mkdir(parents=True, exist_ok=True)
+              assert not dst.is_symlink()
+              shutil.copyfile(release / name, dst)
+          subprocess.run(['git', '-C', str(demo), 'add', '--', *sorted(expected)], check=True)
+          staged = set(subprocess.check_output(['git', '-C', str(demo), 'ls-files', '-z']).decode().split('\0')) - {''}
+          assert staged == expected | metadata, 'Unexpected staged file; refusing to publish'
+          print('Verified 255 runtime files and .nojekyll, without development files.')
+          PY
+      - name: Commit only verified public files in test repository
+        working-directory: demo
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Seed tested public demo without development history'
+          git push origin HEAD:main
