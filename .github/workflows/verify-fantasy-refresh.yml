@@ -1,0 +1,84 @@
+name: Verify private Fantasy data refresh
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/verify-fantasy-refresh.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    if: github.repository_id == '1466932960' && github.repository == 'rotemkimi-byte/eurofantasy-ai-demo-test' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: rotemkimi-byte/eurofantasy-ai-dev-test
+          ref: main
+          path: private
+          token: ${{ secrets.DEV_REPOSITORY_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Read live Fantasy player and roster data without publishing
+        working-directory: private
+        env:
+          FANTASY_TOKEN: ${{ secrets.FANTASY_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$FANTASY_TOKEN"
+          if (python sync.py && python roster_sync.py) > "$RUNNER_TEMP/private-fantasy.log" 2>&1; then
+            echo 'Live player and roster fetch succeeded.'
+          else
+            echo 'Live Fantasy data fetch failed; no data published.'
+            exit 1
+          fi
+      - name: Validate fresh player metadata and roster integrity
+        working-directory: private
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          def read(name):
+              return json.loads(Path('data', name + '.json').read_text())
+          meta, players = read('meta'), read('players')
+          roster, rosters = read('roster'), read('rosters')
+          ts = datetime.fromisoformat(meta['updated_at'])
+          assert 0 <= (datetime.now(timezone.utc) - ts).total_seconds() < 600
+          assert meta['player_count'] == len(players) and len(players) > 300
+          assert rosters['team_count'] == len(rosters['teams']) > 0
+          assert roster['players'] and roster['player_count'] == len(roster['players'])
+          assert roster['matchday_id'] == rosters['matchday_id'] == meta['matchday_id']
+          assert all(t['players'] and len(t['players']) == t['player_count'] for t in rosters['teams'])
+          print('Fresh player data and roster structure verified (no personal data printed).')
+          PY
+      - name: Verify identities and allowlisted publication output
+        working-directory: private
+        shell: bash
+        run: |
+          set -euo pipefail
+          if (python scripts/build_player_identities.py && node scripts/audit_player_identities.cjs && python scripts/build_public_dist.py "$GITHUB_WORKSPACE/private" "$RUNNER_TEMP/fantasy-test-dist" "$RUNNER_TEMP/fantasy-test-manifest.json") > "$RUNNER_TEMP/private-fantasy-verification.log" 2>&1; then
+            echo 'Identity and publication checks passed.'
+          else
+            echo 'Identity or publication checks failed; no data published.'
+            exit 1
+          fi
+          for path in data/meta.json data/players.json data/roster.json data/rosters.json data/popularity-snapshots.json; do
+            cmp "$path" "$RUNNER_TEMP/fantasy-test-dist/$path"
+          done
+          for path in sync.py roster_sync.py scripts/rolling_learning.py scripts/weighted_rounds.py .git/config index.html.map index.html.bak; do
+            test ! -e "$RUNNER_TEMP/fantasy-test-dist/$path"
+          done
+          echo 'Fresh runtime data verified; private files excluded; no output uploaded.'
