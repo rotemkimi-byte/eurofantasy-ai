@@ -1,0 +1,76 @@
+name: Verify live demo in mobile browser
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/verify-live-demo-browser.yml']
+
+permissions: {}
+
+jobs:
+  browser:
+    if: github.repository_id == '1466932960' && github.repository == 'rotemkimi-byte/eurofantasy-ai-demo-test' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare browser
+        run: |
+          python -m pip install playwright==1.52.0
+          python -m playwright install --with-deps chromium
+      - name: Verify real demo, predictions, optimizer, saved roster and data fallback
+        shell: bash
+        run: |
+          python - <<'PY'
+          from playwright.sync_api import sync_playwright
+          from urllib.request import urlopen
+          from urllib.error import HTTPError
+          from datetime import datetime, timezone
+          import json
+          BASE='https://rotemkimi-byte.github.io/eurofantasy-ai-demo-test/'
+          RAW='https://raw.githubusercontent.com/rotemkimi-byte/eurofantasy-ai-demo-test/main/'
+          for path in ('sync.py','roster_sync.py','scripts/rolling_learning.py','scripts/weighted_rounds.py','index.html.map','index.html.bak','.git/config','automation/run_legacy_task.py'):
+              try:
+                  with urlopen(BASE+path,timeout=20) as response: status=response.status
+              except HTTPError as e: status=e.code
+              assert status==404, (path,status)
+          with urlopen(BASE+'data/meta.json',timeout=20) as response: meta=json.load(response)
+          assert meta['player_count']>300
+          print('Private development paths return 404; public data available.')
+          with sync_playwright() as p:
+              browser=p.chromium.launch()
+              context=browser.new_context(**p.devices['iPhone 13'])
+              accessed=[]
+              def route(r):
+                  url=r.request.url
+                  if url.startswith(BASE): r.continue_()
+                  elif url.startswith(RAW):
+                      accessed.append('candidate');r.fulfill(status=403,body='')
+                  else:
+                      if url.startswith('https://raw.githubusercontent.com/rotemkimi-byte/eurofantasy-ai/'): accessed.append('original')
+                      r.abort()
+              context.route('**/*',route)
+              page=context.new_page()
+              page.goto(BASE,wait_until='domcontentloaded',timeout=60000)
+              page.wait_for_function("typeof players!=='undefined' && players.length>300 && !!window.__weightedForecastReady",timeout=60000)
+              counts=page.evaluate("""() => ({count:players.length, finite:players.filter(p=>{const f=model(p);return Number.isFinite(f.expected)&&Number.isFinite(f.minutes)}).length})""")
+              assert counts['count']==counts['finite']
+              print('All displayed player forecasts are finite.')
+              page.evaluate("""()=>{document.getElementById('budget').value='91';document.getElementById('optConf').value='0';document.getElementById('optBtn').click()}""")
+              page.wait_for_function("!document.getElementById('optBtn').disabled && document.getElementById('optResult').textContent.includes('PIR')",timeout=60000)
+              assert page.locator('#optResult article').count()==10
+              print('Optimizer returned the full ten-player lineup.')
+              page.wait_for_function("!!localStorage.getItem('efa2_roster_snapshot') && JSON.parse(localStorage.getItem('efa2_team')||'[]').length>0",timeout=60000)
+              saved=page.evaluate("localStorage.getItem('efa2_team')")
+              page.reload(wait_until='domcontentloaded')
+              assert page.evaluate("localStorage.getItem('efa2_team')")==saved
+              print('Saved roster survived page reload.')
+              page.evaluate("document.querySelector('[data-tab=popularity]').click()")
+              page.wait_for_function("document.querySelector('#popRows')?.innerHTML.includes('pop-score')",timeout=60000)
+              assert 'candidate' in accessed and 'original' not in accessed
+              print('Popularity worked after forced raw-GitHub failure; no reliance on original repository.')
+              browser.close()
+          PY
