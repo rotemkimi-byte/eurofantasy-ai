@@ -85,10 +85,12 @@ jobs:
           fi
       - name: Configure Pages
         uses: actions/configure-pages@v5
+      - name: Build allowlisted Pages artifact
+        run: python3 scripts/build_public_dist.py "$GITHUB_WORKSPACE" "$RUNNER_TEMP/eurofantasy-public-dist" "$RUNNER_TEMP/eurofantasy-public-manifest.json"
       - name: Upload the verified site
         uses: actions/upload-pages-artifact@v4
         with:
-          path: '.'
+          path: ${{ runner.temp }}/eurofantasy-public-dist
   deploy:
     needs: install
     runs-on: ubuntu-latest

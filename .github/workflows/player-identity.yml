@@ -62,10 +62,13 @@ jobs:
           node tests/test_advanced_players_browser.cjs
       - uses: actions/configure-pages@v5
         if: github.event_name != 'pull_request'
+      - name: Build allowlisted Pages artifact
+        if: github.event_name != 'pull_request'
+        run: python3 scripts/build_public_dist.py "$GITHUB_WORKSPACE" "$RUNNER_TEMP/eurofantasy-public-dist" "$RUNNER_TEMP/eurofantasy-public-manifest.json"
       - uses: actions/upload-pages-artifact@v4
         if: github.event_name != 'pull_request'
         with:
-          path: '.'
+          path: ${{ runner.temp }}/eurofantasy-public-dist
   deploy:
     if: github.event_name != 'pull_request'
     needs: verify

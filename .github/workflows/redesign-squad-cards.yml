@@ -61,9 +61,11 @@ jobs:
             if [ "${pushed:-no}" != yes ]; then exit 1; fi
           fi
       - uses: actions/configure-pages@v5
+      - name: Build allowlisted Pages artifact
+        run: python3 scripts/build_public_dist.py "$GITHUB_WORKSPACE" "$RUNNER_TEMP/eurofantasy-public-dist" "$RUNNER_TEMP/eurofantasy-public-manifest.json"
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: '.'
+          path: ${{ runner.temp }}/eurofantasy-public-dist
   deploy:
     needs: update
     runs-on: ubuntu-latest
