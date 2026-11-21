@@ -10,7 +10,7 @@ permissions: {}
 
 jobs:
   browser:
-    if: github.repository_id == '1466932960' && github.repository == 'rotemkimi-byte/eurofantasy-ai-demo-test' && github.ref == 'refs/heads/main'
+    if: github.repository_id == '1466932960' && github.repository == 'rotemkimi-byte/eurofantasy-ai' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -30,14 +30,14 @@ jobs:
           from urllib.error import HTTPError
           from datetime import datetime, timezone
           import json
-          BASE='https://rotemkimi-byte.github.io/eurofantasy-ai-demo-test/'
-          RAW='https://raw.githubusercontent.com/rotemkimi-byte/eurofantasy-ai-demo-test/main/'
+          BASE='https://rotemkimi-byte.github.io/eurofantasy-ai/'
+          RAW='https://raw.githubusercontent.com/rotemkimi-byte/eurofantasy-ai/main/'
           for path in ('sync.py','roster_sync.py','scripts/rolling_learning.py','scripts/weighted_rounds.py','index.html.map','index.html.bak','.git/config','automation/run_legacy_task.py'):
               try:
                   with urlopen(BASE+path,timeout=20) as response: status=response.status
               except HTTPError as e: status=e.code
               if status in (403,503):
-                  with urlopen('https://api.github.com/repos/rotemkimi-byte/eurofantasy-ai-demo-test/git/trees/main?recursive=1',timeout=20) as response: tree=json.load(response)
+                  with urlopen('https://api.github.com/repos/rotemkimi-byte/eurofantasy-ai/git/trees/main?recursive=1',timeout=20) as response: tree=json.load(response)
                   assert not tree.get('truncated') and not any(x['path']==path for x in tree['tree'])
                   print('Path is absent from the verified tree; Pages also refused the request.')
               else:
@@ -55,7 +55,7 @@ jobs:
                   elif url.startswith(RAW):
                       accessed.append('candidate');r.fulfill(status=403,body='')
                   else:
-                      if url.startswith('https://raw.githubusercontent.com/rotemkimi-byte/eurofantasy-ai/'): accessed.append('original')
+                      if url.startswith('https://raw.githubusercontent.com/rotemkimi-byte/eurofantasy-ai-archive/'): accessed.append('original')
                       r.abort()
               context.route('**/*',route)
               page=context.new_page()
