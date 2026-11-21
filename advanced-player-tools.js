@@ -111,7 +111,26 @@ function shots(games,filter){
 function lineups(games){
  const covered=games.filter(g=>g.lineupCoverage),rows=C.lineups(games);
  if(!covered.length)return empty('אין בטווח הזה הרכבים שניתן לאמת מול רצף החילופים והניקוד. נסה משחק אחר או את כל העונה.');
- return '<p class="ap-status">'+note(covered.length,games.length)+' · מיון לפי הנקודות של השחקן עם ארבעת חבריו להרכב</p><div class="ap-grid">'+rows.map((r,i)=>'<article class="ap-record"><h4>הרכב '+(i+1)+' · '+r.points+' נקודות</h4><ol>'+r.teammates.map(p=>'<li><bdi>'+esc(name(p.name))+'</bdi></li>').join('')+'</ol><small>'+r.games+' משחקים · דקות משותפות: '+fmt(r.minutes)+'</small></article>').join('')+'</div>';
+ if(!rows.length)return empty('אין הרכבי קליעה בטווח שנבחר.');
+ const maximum=Math.max(1,rows[0].points);
+ return `<p class="ap-status">${note(covered.length,games.length)} · לפי סך הנקודות של השחקן בכל חמישייה</p>
+  <div class="ap-lineups">${rows.map((row,index)=>`
+   <article class="ap-lineup-card">
+    <div class="ap-lineup-heading">
+     <h4>הרכב ${index+1}</h4>
+     <span class="ap-lineup-score"><strong><bdi>${fmt(row.points)}</bdi></strong> נק׳</span>
+    </div>
+    <div class="ap-lineup-bar" aria-hidden="true"><span style="inline-size:${100*row.points/maximum}%"></span></div>
+    <ul class="ap-lineup-players" aria-label="ארבעת חברי ההרכב">${row.teammates.map(teammate=>{
+     const identity=window.PlayerAnalysis;
+     const player=identity.resolve(teammate)??{...teammate,name:name(teammate.name)};
+     return `<li>${identity.identity(player)}</li>`;
+    }).join('')}</ul>
+    <div class="ap-lineup-meta">
+     <span><bdi>${row.games}</bdi> משחקים</span>
+     <span>דקות משותפות · <bdi>${fmt(row.minutes)}</bdi></span>
+    </div>
+   </article>`).join('')}</div>`;
 }
 const help={
 boxScore:'נתוני הבוקס סקור הרשמיים. בשלוש הופעות אחרונות ובעונה מוצג ממוצע למשחק שבו השחקן שיחק. קליעות מוצגות כקליעות מתוך ניסיונות, ובממוצע נכללות רק הופעות עם שני הנתונים. מקף מציין נתון חסר.',

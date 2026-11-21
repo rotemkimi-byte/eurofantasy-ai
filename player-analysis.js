@@ -94,7 +94,7 @@ document.getElementById('playerModal')?.addEventListener('close',()=>{
 document.addEventListener('error',event=>{
  if(event.target.matches?.('.pa-identity img'))event.target.remove();
 },true);
-function create(host,{metrics,rows,team=()=>'',initial=Object.keys(metrics)[0],format=value,renderComparison,renderRanking}){
+function create(host,{metrics,rows,team=()=>'',initial=Object.keys(metrics)[0],format=value,comparisonScale,renderComparison,renderRanking}){
  let metric=initial,mode='detail',sort='metric',cap='',limit=40,picks=[];
  const measure=()=>Object.keys(metrics).length>1?`<label>מדד<select data-pa-metric>${Object.entries(metrics).map(([key,label])=>`<option value="${esc(key)}" ${key===metric?'selected':''}>${esc(label)}</option>`).join('')}</select></label>`:'';
  function render(){
@@ -117,7 +117,23 @@ function create(host,{metrics,rows,team=()=>'',initial=Object.keys(metrics)[0],f
    ${ranked.length?rankingTable(ranked):''}`;
   if(host.closest('.performance-tool'))window.PerformanceControls.styleButtons(host.querySelector('.pa-sort'),'data-pa-sort');
  }
+ function comparisonBars(selected){
+  const maximum=comparisonScale[metric]??Math.ceil(Math.max(1,...selected.map(r=>r.values[metric]??0)));
+  return `<figure class="pa-comparison-bars">
+   <figcaption>${esc(metrics[metric])}</figcaption>
+   <div class="pa-comparison-axis" aria-hidden="true"><span>${esc(format(maximum,metric))}</span><span>${esc(format(0,metric))}</span></div>
+   <ul>${selected.map(r=>{
+    const n=r.values[metric];
+    const width=Number.isFinite(n)?Math.max(0,Math.min(100,100*n/maximum)):0;
+    return `<li class="pa-comparison-row">${identity(r)}
+     <strong class="pa-comparison-number"><bdi>${esc(format(n,metric))}</bdi></strong>
+     <div class="pa-comparison-bar" aria-hidden="true"><i style="inline-size:${width}%"></i></div>
+    </li>`;
+   }).join('')}</ul>
+  </figure>`;
+ }
  function comparisonCards(selected){
+  if(comparisonScale)return comparisonBars(selected);
   const maximum=Math.max(1,...selected.map(r=>Math.abs(r.values[metric]??0)));
   return `<div class="pa-compare-list" aria-label="${esc(metrics[metric])}">${selected.map(r=>{
    const n=r.values[metric];

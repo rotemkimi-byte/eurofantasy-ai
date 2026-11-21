@@ -59,6 +59,7 @@ for(const isTeam of [false,true]){
  let records=[],chosen='',scope='all';
  const analytics=isTeam?null:root.PlayerAnalysis.mount(section,$('.ft-controls'),$('.ft-status'),[$('[data-detail]')],{
   metrics:{fta:'ניסיונות למשחק',ftm:'קליעות למשחק',pct:'דיוק מהקו',fouls:'עבירות שסחט למשחק',foulsCommitted:'עבירות שביצע למשחק'},
+  comparisonScale:{pct:100},
   team:()=>scope==='team'?$('[data-team]').value:'',
   rows:()=>records.map(r=>({...r,values:summarize(select(r.games,$('[data-range]').value))})),
   format:(n,metric)=>metric==='pct'?pct(n):fmt(n)

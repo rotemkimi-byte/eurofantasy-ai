@@ -102,8 +102,29 @@ html[data-theme] .tab .pa-panel button[data-pa-more]{color:var(--text)}
 }
 .pa-rank-value[data-tone=negative]{color:var(--bad)}
 .ap-shell .ap-box-game{border:0;background:var(--card);padding:8px}
-.ft-player-record .pa-profile{grid-template-columns:minmax(0,1fr) auto}
-.ft-player-record .ft-select-player{padding-inline:10px}
+.pa-comparison-bars{
+ margin:14px 0;padding:clamp(10px,3vw,18px);border:1px solid var(--line);
+ border-radius:16px;background:var(--card);color:var(--text);
+}
+.pa-comparison-bars figcaption{font-size:16px;font-weight:800}
+.pa-comparison-axis{
+ display:flex;justify-content:space-between;direction:ltr;
+ margin-block:8px 0;color:var(--muted);font-size:11px;font-variant-numeric:tabular-nums;
+}
+.pa-comparison-bars ul{list-style:none;padding:0;margin:0}
+.pa-comparison-row{
+ display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;
+ gap:6px 10px;padding:9px 0 12px;
+}
+.pa-comparison-row+.pa-comparison-row{border-top:1px solid var(--line)}
+.pa-comparison-row .pa-portrait{width:42px;height:46px}
+.pa-comparison-row .pa-person>b{font-size:clamp(13px,3.7vw,16px)}
+.pa-comparison-number{font-size:clamp(19px,5.5vw,27px);font-variant-numeric:tabular-nums}
+.pa-comparison-bar{
+ grid-column:1/-1;direction:rtl;height:10px;
+ border-radius:6px;background:var(--line);overflow:hidden;
+}
+.pa-comparison-bar i{display:block;height:100%;border-radius:inherit;background:var(--accent)}
 
 #usage .us-ranking {border-collapse:collapse}
 #usage .us-ranking td {background:none;border:0;border-bottom:1px solid var(--line);border-radius:0}

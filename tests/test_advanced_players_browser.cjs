@@ -105,7 +105,13 @@ const server=http.createServer((req,res)=>{
      }else await section.locator('[data-range]').selectOption('0');
      await section.locator('.ap-profile').waitFor({state:'visible'});
      if(id==='playerShots')assert(await section.locator('svg.ap-court').count());
-     if(id==='playerLineups')assert(await section.locator('.ap-record').count());
+     if(id==='playerLineups'){
+      const first=section.locator('.ap-lineup-card').first();
+      assert.equal(await first.locator('.ap-lineup-players li').count(),4);
+      assert.equal(await first.locator('.ap-lineup-bar span').evaluate(el=>el.style.inlineSize),'100%');
+      assert(Number(await first.locator('.ap-lineup-score bdi').textContent())>0);
+      assert.match(await first.locator('.ap-lineup-meta').textContent(),/דקות משותפות/);
+     }
      assert(await section.evaluate(e=>e.scrollWidth<=e.clientWidth+2),'No tool horizontal overflow '+id+' '+width);
      const palette=await section.evaluate(e=>{const s=getComputedStyle(e.querySelector('.ap-shell'));return [s.color,s.backgroundColor]});
      assert.notEqual(...palette,'Text contrasts with card');
@@ -124,6 +130,19 @@ const server=http.createServer((req,res)=>{
    await freeThrows.locator('[data-pa-view=ranking]').click();
    assert(await freeThrows.locator('.pa-table').isVisible());
    assert(!(await freeThrows.locator('.ft-player-report').isVisible()));
+   await freeThrows.locator('[data-pa-view=compare]').click();
+   const add=freeThrows.locator('[data-pa-add]');
+   await add.selectOption({index:1});
+   await add.selectOption({index:1});
+   await freeThrows.locator('[data-pa-metric]').selectOption('pct');
+   const comparison=freeThrows.locator('.pa-comparison-bars');
+   assert.match(await comparison.locator('.pa-comparison-axis').textContent(),/100\.0%/);
+   const bars=await comparison.locator('.pa-comparison-row').evaluateAll(rows=>rows.map(row=>({
+    shown:parseFloat(row.querySelector('strong.pa-comparison-number').textContent),
+    width:parseFloat(row.querySelector('.pa-comparison-bar i').style.inlineSize)
+   })));
+   assert.equal(bars.length,2);
+   for(const bar of bars)assert(Math.abs(bar.shown-bar.width)<=.051);
    await freeThrows.locator('[data-pa-view=detail]').click();
    assert(await freeThrows.locator('.ft-player-report').isVisible());
    // Open a ranked player by ID and return to the same controls and scroll position.
