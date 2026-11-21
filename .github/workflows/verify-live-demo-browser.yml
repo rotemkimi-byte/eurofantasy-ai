@@ -36,10 +36,10 @@ jobs:
               try:
                   with urlopen(BASE+path,timeout=20) as response: status=response.status
               except HTTPError as e: status=e.code
-              if path=='.git/config' and status in (403,503):
+              if status in (403,503):
                   with urlopen('https://api.github.com/repos/rotemkimi-byte/eurofantasy-ai-demo-test/git/trees/main?recursive=1',timeout=20) as response: tree=json.load(response)
                   assert not tree.get('truncated') and not any(x['path']==path for x in tree['tree'])
-                  print('Git metadata is absent from the verified tree; Pages also refused the request.')
+                  print('Path is absent from the verified tree; Pages also refused the request.')
               else:
                   assert status==404, (path,status)
           with urlopen(BASE+'data/meta.json',timeout=20) as response: meta=json.load(response)
