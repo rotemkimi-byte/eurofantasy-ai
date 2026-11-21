@@ -28,7 +28,7 @@ function restorePlayer(){
 function options(){
  const selected=$('dfPlayer').value,old=$('dfTeam').value,byKey=new Map(),pool=market||(typeof players!=='undefined'?players:[]);
  for(const p of pool)if(['G','F','C'].includes(p.pos)&&U.key(p.name))byKey.set(U.key(p.name),{...p,id:U.key(p.name),team:team(p.team),price:U.num(p.price)});
- for(const [id,p] of Object.entries(data?.players||{}))if(!byKey.has(id))byKey.set(id,{id,name:p.name,team:team(U.selectGames(p,'1')[0]?.team)||'',price:null});
+ for(const [id,p] of Object.entries(data?.players||{}))if(!byKey.has(id))byKey.set(id,{id,playerCode:p.playerCode,name:p.name,team:team(U.selectGames(p,'1')[0]?.team)||'',price:null});
  records=[...byKey.values()].sort((a,b)=>(b.price??-Infinity)-(a.price??-Infinity)||a.name.localeCompare(b.name));
  const teams=[...new Set(records.map(p=>p.team).filter(Boolean))].sort();$('dfTeam').innerHTML=teams.map(t=>`<option value="${esc(t)}">${esc(t)}</option>`).join('');if(teams.includes(old))$('dfTeam').value=old;
  $('dfTeamLabel').hidden=scope!=='team';const list=records.filter(p=>scope!=='team'||p.team===$('dfTeam').value);
@@ -37,7 +37,7 @@ function options(){
 function table(headers,rows){return `<div class="us-table-wrap"><table class="us-table"><thead><tr>${headers.map(h=>`<th scope="col">${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>`<tr>${row.map(v=>`<td>${v}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;}
 const value=(metric,n)=>fmt(n)+(n!==null&&['stl','blk','reb','orb','drb'].includes(metric)?'%':'');
 const analytics=window.PlayerAnalysis.mount(section,section.querySelector('.us-controls'),$('dfStatus'),[$('dfResult'),$('dfGames')],{
- marketStyle:true,metrics:{...labels,stocks:'חטיפות + חסימות למשחק'},team:()=>scope==='team'?$('dfTeam').value:'',
+ metrics:{...labels,stocks:'חטיפות + חסימות למשחק'},team:()=>scope==='team'?$('dfTeam').value:'',
  rows:()=>data?records.map(p=>{
   const stats=D.summarize(D.selectGames(data.players[p.id],data,$('dfRange').value),data,env);
   const values={stocks:stats.played&&stats.stocks!==null?stats.stocks/stats.played:null};
@@ -59,11 +59,14 @@ function render(){
   stat:p.price===null?'':`<bdi class="pa-credit">${fmt(p.price)} CR</bdi>`,
   meta:`<bdi>${esc(gameLabel)}</bdi> · ${s.played} הופעות עם דקות`
  });
- $('dfResult').innerHTML=summary+`<dl class="pa-stat-list">${Object.entries(labels).map(([k,label])=>{
+ const items=Object.entries(labels).map(([k,label])=>{
   const detail=k==='stocks'?'ממוצע להופעה':k==='per'?'ממוצע המדגם 15':s[k].missing?'נתונים חלקיים':'';
-  const total=counts[k]==null?'':`<small>סה״כ <bdi>${fmt(counts[k])}</bdi></small>`;
-  return `<div data-primary="${k===metric}"><dt><bdi>${esc(label)}</bdi>${detail?`<small>${detail}</small>`:''}</dt><dd><bdi>${value(k,k==='stocks'?stocks:s[k].value)}</bdi>${total}</dd></div>`;
- }).join('')}</dl>`;
+  const total=counts[k]==null?'':'סה״כ '+fmt(counts[k]);
+  return [label,value(k,k==='stocks'?stocks:s[k].value),[detail,total].filter(Boolean).join(' · ')];
+ });
+ const chosen=Object.keys(labels).indexOf(metric);
+ if(chosen>0)items.unshift(...items.splice(chosen,1));
+ $('dfResult').innerHTML=`<article class="pa-report">${summary}${window.PlayerAnalysis.metrics(items,2)}</article>`;
 
  $('dfGames').innerHTML='<details class="pa-breakdown"><summary>פירוט לפי משחק</summary>'+table(['משחק','דקות',labels[metric].split(' · ')[0]],games.map(g=>{const m=D.gameMetrics(g,data,env),v=U.num(g.minutes)>0?(metric==='stocks'?m.stocks:metric==='per'?m.per:m[metric].value):null;return [`<b>${esc(g.opponent)}</b><small>${new Date(g.date).toLocaleDateString('he-IL',{day:'numeric',month:'numeric',timeZone:'Asia/Jerusalem'})}${g.round?' · מ׳ '+esc(g.round):''}</small>`,U.num(g.minutes)===0?'לא שיחק':fmt(g.minutes),value(metric,v)];}))+'</details>';
 }

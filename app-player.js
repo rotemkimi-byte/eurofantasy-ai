@@ -176,9 +176,10 @@ function marketGameRow(g){
  </div>
  </details>`;
 }
-window.showPlayer=function(name){
+window.showPlayer=function(target){
+ const player=window.PlayerAnalysis.resolve(target);if(!player)return;
  original.apply(this,arguments);
- const player=players.find(p=>p.name===name);
+ const name=player.name;
  const body=document.getElementById('modalBody'),hero=body?.querySelector('.ef-player-hero');if(!player||!hero)return;
  const compactMarket=body.classList.contains('ef-market-player');
  body.classList.add('ef-dashboard');body.querySelector('.ef-player-jumps')?.remove();
@@ -190,7 +191,7 @@ window.showPlayer=function(name){
   watch.setAttribute('aria-pressed',String(saved));
   watch.textContent=saved?'★ שמור · הסר':'☆ שמור למעקב';
  };
- if(window.FantasyWatchlist){
+ if(window.FantasyWatchlist&&!player.officialOnly){
   paintWatch();
   watch.onclick=()=>{if(!window.FantasyWatchlist.toggle(player))watch.textContent='השמירה נכשלה · נסה שוב';};
   hero.querySelector('.ef-player-identity > div:last-child').append(watch);
@@ -315,10 +316,10 @@ window.showPlayer=function(name){
  }
  dataset().then(d=>{
   if(!body.contains(hero))return;
-  data=d;seasonGames=U.selectGames(d.players[U.key(name)],'0');
+  data=d;seasonGames=U.selectGames(window.PlayerIdentity.lookup(d.players,player),'0');
   render();showCredit(activeCredit);
  }).catch(()=>{if(body.contains(hero)){status.textContent='לא ניתן לטעון את הנתונים כרגע. סגור ופתח את השחקן כדי לנסות שוב.';}});
- media().then(d=>{if(!body.contains(hero)||d?.season!=='E2026')return;const m=d.players?.[U.key(name)];if(!m)return;photo(hero.querySelector('.ef-player-avatar'),m.photo,'תמונה של '+name);
+ media().then(d=>{if(!body.contains(hero)||d?.season!=='E2026')return;const m=window.PlayerIdentity.lookup(d.players,player);if(!m||canonicalTeam(m.club)!==canonicalTeam(player.team))return;photo(hero.querySelector('.ef-player-avatar'),m.photo,'תמונה של '+name);
  if(m.crest&&canonicalTeam(m.club)===canonicalTeam(player.team)){const crest=document.createElement('span');crest.className='ef-club-crest';hero.querySelector('.ef-player-identity p').prepend(crest);photo(crest,m.crest,m.club);}
  });
 };

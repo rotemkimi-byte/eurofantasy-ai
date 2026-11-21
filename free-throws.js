@@ -23,7 +23,7 @@ html[data-theme="dark"] .ft-screen{--ft-bg:#162237;--ft-soft:#203149;--ft-ink:#f
 .ft-screen .ft-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:12px 0}
 .ft-screen input,.ft-screen select{width:100%;min-width:0;min-height:44px;font-size:16px;background:var(--ft-bg);color:var(--ft-ink);border-color:var(--ft-line);margin-top:5px}
 .ft-screen input::placeholder{color:var(--ft-muted);opacity:1}.ft-screen label,.ft-screen small{color:var(--ft-muted)}
-#playerFreeThrows button:not(.player-picker-modes button),#teamFreeThrows button:not(.player-picker-modes button){background:var(--ft-soft);color:var(--ft-ink);border:1px solid var(--ft-line);min-height:44px}
+#playerFreeThrows button:not(.player-picker-modes button,.pa-profile-link),#teamFreeThrows button:not(.player-picker-modes button){background:var(--ft-soft);color:var(--ft-ink);border:1px solid var(--ft-line);min-height:44px}
 #playerFreeThrows button bdi,#teamFreeThrows button bdi{color:inherit}
 .ft-screen [hidden]{display:none!important}.ft-screen :focus-visible{outline:3px solid var(--ft-accent);outline-offset:3px}
 .ft-screen .ft-detail{scroll-margin-top:100px}.ft-screen .ft-profile{border:2px solid var(--ft-accent);background:var(--ft-bg);border-radius:16px;padding:14px;margin:16px 0}
@@ -48,7 +48,7 @@ const key = value => globalThis.PlayerIdentity.key(value);
 function metrics(s,isTeam){const items=[['ניסיונות למשחק',fmt(s.fta),`${s.coverage[0]}/${s.games} הופעות עם נתון`],['קליעות למשחק',fmt(s.ftm),`${s.coverage[1]}/${s.games} הופעות עם נתון`],['דיוק מהקו',pct(s.pct),s.coverage[1]?`${s.made} קליעות מתוך ${s.attempts} זריקות`:'אין נתון זמין'],['עבירות שסחט למשחק',fmt(s.fouls),`${s.coverage[2]}/${s.games} הופעות עם נתון`]];
  if(isTeam)items.push(['עבירות שיריבות סחטו למשחק',fmt(s.opponentFouls),`${s.opponentFoulsGames}/${s.games} משחקים עם נתון`]);
  else items.push(['עבירות שביצע למשחק',fmt(s.foulsCommitted),`${s.foulsCommittedGames}/${s.games} הופעות עם נתון`]);
- if(!isTeam)return `<dl class="pa-stat-list">${items.map(([label,value,note])=>`<div><dt>${label}<small>${note}</small></dt><dd><bdi>${value}</bdi></dd></div>`).join('')}</dl>`;
+ if(!isTeam)return root.PlayerAnalysis.metrics([items[0],items[2],items[3],items[1],[...items[4],s.foulsCommitted>0?'negative':'']]);
  return `<div class="ft-metrics">${items.map(([l,v,n])=>`<div class="ft-metric"><strong>${v}</strong><span>${l}</span><small>${n}</small></div>`).join('')}</div>`;}
 for(const isTeam of [false,true]){
  const id=isTeam?'teamFreeThrows':'playerFreeThrows',button=document.createElement('button');button.dataset.tab=id;button.textContent='עונשין';document.querySelector('.tabs').append(button);
@@ -60,7 +60,7 @@ for(const isTeam of [false,true]){
  const summarize=games=>summary(games,isTeam),showMetrics=s=>metrics(s,isTeam);
  let records=[],chosen='',scope='all',limit=20;
  const analytics=isTeam?null:root.PlayerAnalysis.mount(section,$('.ft-controls'),$('.ft-status'),[$('[data-detail]'),$('[data-league]')],{
-  marketStyle:true,metrics:{fta:'ניסיונות למשחק',ftm:'קליעות למשחק',pct:'דיוק מהקו',fouls:'עבירות שסחט למשחק',foulsCommitted:'עבירות שביצע למשחק'},
+  metrics:{fta:'ניסיונות למשחק',ftm:'קליעות למשחק',pct:'דיוק מהקו',fouls:'עבירות שסחט למשחק',foulsCommitted:'עבירות שביצע למשחק'},
   team:()=>scope==='team'?$('[data-team]').value:'',
   rows:()=>records.map(r=>({...r,values:summarize(select(r.games,$('[data-range]').value))})),
   format:(n,metric)=>metric==='pct'?pct(n):fmt(n)
@@ -68,7 +68,12 @@ for(const isTeam of [false,true]){
  const syncRange=isTeam?null:window.PerformanceControls.mount(section,$('[data-range]'));
  function filtered(){const q=$('[data-search]')?.value.trim().toLowerCase();return records.filter(r=>(scope==='all'||r.team===$('[data-team]').value)&&(!q||(r.name+' '+r.team).toLowerCase().includes(q)));}
  function controls(){const old=$('[data-team]').value,teams=[...new Set(records.map(r=>r.team).filter(Boolean))].sort();$('[data-team]').innerHTML='<option value="">בחר קבוצה</option>'+teams.map(t=>`<option value="${esc(t)}">${esc(t)}</option>`).join('');if(teams.includes(old))$('[data-team]').value=old;$('[data-team-label]').hidden=isTeam||scope!=='team';const rows=filtered().sort((a,b)=>(b.price??-Infinity)-(a.price??-Infinity)||a.name.localeCompare(b.name));$('[data-entity]').innerHTML=`<option value="">${isTeam?'בחר קבוצה':'בחר שחקן'}</option>`+rows.map(r=>`<option value="${esc(r.id)}">${esc(r.name)}${!isTeam?' · '+esc(r.team)+(r.price!==null?' · '+fmt(r.price)+' CR':''):''}</option>`).join('');if(rows.some(r=>r.id===chosen))$('[data-entity]').value=chosen;section.querySelectorAll('[data-scope]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.scope===scope)));}
- function card(r){return `<article class="ft-record"><button class="ft-pick" data-pick="${esc(r.id)}" aria-pressed="${chosen===r.id}"><bdi>${esc(r.name)}</bdi><span>${chosen===r.id?'✓ נבחר':'בחר ←'}</span></button>${r.team?`<small>${esc(r.team)}</small>`:''}${showMetrics(r.s)}</article>`;}
+ function card(r){
+  if(!isTeam)return `<article class="pa-report ft-player-record">${root.PlayerAnalysis.profile(r,{
+   meta:r.s.games+' הופעות'+(r.price===null?'':` · <bdi>${fmt(r.price)} CR</bdi>`),
+   action:`<button type="button" class="ft-select-player" data-pick="${esc(r.id)}" aria-pressed="${chosen===r.id}" aria-label="בחר ${esc(r.name)}">${chosen===r.id?'✓ נבחר':'בחר'}</button>`
+  })}${showMetrics(r.s)}</article>`;
+  return `<article class="ft-record"><button class="ft-pick" data-pick="${esc(r.id)}" aria-pressed="${chosen===r.id}"><bdi>${esc(r.name)}</bdi><span>${chosen===r.id?'✓ נבחר':'בחר ←'}</span></button>${r.team?`<small>${esc(r.team)}</small>`:''}${showMetrics(r.s)}</article>`;}
  function rankingTable(rows,sort){
   const labels={opponentFouls:'עבירות שיריבות סחטו',fouls:'עבירות שסחטה',fta:'ניסיונות עונשין',ftm:'קליעות עונשין',pct:'דיוק מהקו'};
   // Five compact columns keep the ranking readable at 375px. Full metrics stay in team details.
@@ -92,10 +97,10 @@ for(const isTeam of [false,true]){
     stat:r.price!==null?`<bdi class="pa-credit">${fmt(r.price)} CR</bdi>`:'',
     meta:sample+(lastGame?'<br>'+lastGame:'')
    });
-  host.innerHTML=`<article class="${isTeam?'ft-profile':'ft-player-report'}">${header}${showMetrics(s)}</article><details><summary>השוואת הטווחים · אחרון / 3 / עונה</summary><div class="ft-records">${['1','3','0'].map(n=>`<article class="ft-record"><h4>${ranges[n]}</h4>${showMetrics(summarize(select(all,n)))}</article>`).join('')}</div></details><details><summary>פירוט לפי יריבה</summary><div class="ft-records">${opponents.map(o=>`<article class="ft-record"><h4>${esc(o)}</h4><small>${ranges[range]} מול היריבה</small>${showMetrics(summarize(select(all.filter(g=>g.opponent===o),range)))}</article>`).join('')}</div></details><details><summary>פירוט המשחקים בטווח</summary><div class="ft-records">${rows.map(g=>`<article class="ft-record"><h4>${esc(g.opponent)}</h4><small>${date(g.date)} · מחזור ${esc(g.round??'—')} · ${g.home?'בית':'חוץ'}${g.minutes===0?' · לא שיחק':''}</small>${showMetrics(summarize([g]))}</article>`).join('')}</div></details>`;
+  host.innerHTML=`<article class="${isTeam?'ft-profile':'ft-player-report pa-report'}">${header}${showMetrics(s)}</article><details><summary>השוואת הטווחים · אחרון / 3 / עונה</summary><div class="ft-records">${['1','3','0'].map(n=>`<article class="ft-record"><h4>${ranges[n]}</h4>${showMetrics(summarize(select(all,n)))}</article>`).join('')}</div></details><details><summary>פירוט לפי יריבה</summary><div class="ft-records">${opponents.map(o=>`<article class="ft-record"><h4>${esc(o)}</h4><small>${ranges[range]} מול היריבה</small>${showMetrics(summarize(select(all.filter(g=>g.opponent===o),range)))}</article>`).join('')}</div></details><details><summary>פירוט המשחקים בטווח</summary><div class="ft-records">${rows.map(g=>`<article class="ft-record"><h4>${esc(g.opponent)}</h4><small>${date(g.date)} · מחזור ${esc(g.round??'—')} · ${g.home?'בית':'חוץ'}${g.minutes===0?' · לא שיחק':''}</small>${showMetrics(summarize([g]))}</article>`).join('')}</div></details>`;
  }
  function choose(id){chosen=id;if(!isTeam)root.playerToolSelection?.set(records.find(r=>r.id===id)?.name,$('[data-range]').value);render();$('[data-league]').open=isTeam||!chosen;if(chosen&&!section.classList.contains('pa-expanded')){$('[data-search]')?.blur();$('[data-detail]').scrollIntoView({block:'start',behavior:'smooth'});}}
- async function open(force=false){$('.ft-status').textContent='טוען נתוני עונשין…';$('[data-reload]').disabled=true;try{await Promise.all([load(force),root.refreshFantasyLive?.()]);const pool=typeof players!=='undefined'?players:[],market=new Map(pool.map(p=>[key(p),p]));records=isTeam?root.TeamMetricsCore.build(data).teams.map(t=>({id:t.team,name:t.team,team:'',price:null,games:t.games})):Object.entries(data.players).map(([id,p])=>{const m=market.get(key(p));return {id,name:m?.name||(typeof reorderCommaName==='function'?reorderCommaName(p.name):p.name),team:m?.team||select(p.games,1)[0]?.team||'',price:num(m?.price),games:p.games};});if(!isTeam){const seen=new Set(records.map(p=>key(p)));for(const [id,p] of market)if(id&&['G','F','C'].includes(p.pos)&&!seen.has(id))records.push({id:'market:'+id,name:p.name,team:p.team,price:num(p.price),games:[]});
+ async function open(force=false){$('.ft-status').textContent='טוען נתוני עונשין…';$('[data-reload]').disabled=true;try{await Promise.all([load(force),root.refreshFantasyLive?.()]);const pool=typeof players!=='undefined'?players:[],market=new Map(pool.map(p=>[key(p),p]));records=isTeam?root.TeamMetricsCore.build(data).teams.map(t=>({id:t.team,name:t.team,team:'',price:null,games:t.games})):Object.entries(data.players).map(([id,p])=>{const m=market.get(key(p));return {id,name:m?.name||(typeof reorderCommaName==='function'?reorderCommaName(p.name):p.name),team:m?.team||select(p.games,1)[0]?.team||'',price:num(m?.price),playerCode:p.playerCode,fantasy_id:m?.fantasy_id,games:p.games};});if(!isTeam){const seen=new Set(records.map(p=>key(p)));for(const [id,p] of market)if(id&&['G','F','C'].includes(p.pos)&&!seen.has(id))records.push({id:'market:'+id,name:p.name,team:p.team,price:num(p.price),fantasy_id:p.fantasy_id,games:[]});
  const shared=section.classList.contains('active')?root.playerToolSelection?.find(records):null;
  if(shared){chosen=shared.row.id;if(shared.range)$('[data-range]').value=shared.range;}
  }render();}catch{$('.ft-status').textContent='הטעינה נכשלה. לחץ על רענן כדי לנסות שוב.';}finally{$('[data-reload]').disabled=false;}}

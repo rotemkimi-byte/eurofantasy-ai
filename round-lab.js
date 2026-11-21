@@ -5,7 +5,6 @@ const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const num=v=>v===null||v===undefined||v===''||!Number.isFinite(Number(v))?null:Number(v);
 const fmt=v=>num(v)===null?'—':Number(v).toFixed(1);
-const key = value => globalThis.PlayerIdentity.key(value);
 function bargainRows(report,{min=0,max=9.9,minPir=15,pos='',sort='points',current=false}={}){
  return (report?.players||[]).filter(p=>['G','F','C'].includes(p.pos)&&p.played&&num(p.pir)!==null&&p.pir>=minPir&&(!pos||p.pos===pos)&&num(current?p.currentPrice:p.price)!==null&&(current?p.currentPrice:p.price)>=min&&(current?p.currentPrice:p.price)<=max).slice().sort((a,b)=>sort==='price'?(current?a.currentPrice-b.currentPrice:a.price-b.price)||b.points-a.points:sort==='ratio'?b.points/(current?b.currentPrice:b.price)-a.points/(current?a.currentPrice:a.price):b[sort]-a[sort]||a.price-b.price||a.name.localeCompare(b.name));
 }
@@ -27,7 +26,9 @@ function creditChange(p){
  const delta=Math.round((now-before)*10)/10;
  return `<span class="rlCreditChange ${delta>0?'rlCreditUp':delta<0?'rlCreditDown':'rlCreditFlat'}"><b dir="ltr">${delta>0?'+':''}${fmt(delta)} cr</b><small>שינוי מהמחיר המקורי למחיר הנוכחי</small></span>`;
 }
-function playerButton(p){return `<button class="rlName" data-rl-player="${esc(p.id)}"><bdi>${esc(p.name)}</bdi></button>`}
+function playerButton(p){
+ return p.pos==='H'?`<bdi class="rlName">${esc(p.name)}</bdi>`:window.PlayerAnalysis.identity(p);
+}
 function opponent(p){return (p.opponents||[]).map(g=>`${g.home?'בית':'חוץ'} מול ${esc(g.name)}`).join(' · ')}
 function caveat(r){return `${r.complete?'מחזור סופי':'מחזור חלקי · המוביל כרגע עשוי להשתנות'} · ${r.playedGames}/${r.totalGames} משחקים${r.missingBoxes.length?' · חסרים '+r.missingBoxes.length+' דוחות משחק':''}${r.unknownPrices?' · '+r.unknownPrices+' משתתפים ללא מחיר מתועד לא נכללו':''}`}
 function renderBargains(){
@@ -46,7 +47,7 @@ function renderSuper(){
  const byId=new Map(r.players.map(p=>[p.id,p]));
  const tile=row=>{
   const p=byId.get(row.id);if(!p)return '';
-  return `<article class="rlPlayer ${row.role==='captain'?'rlCaptain':''}"><div class="rlRole">${({captain:'קפטן · ×2',starter:'חמישייה · ×1',sixth:'שחקן שישי · ×1',bench:'ספסל · ×0.5',coach:'מאמן · ×1'})[row.role]}</div><div class="rlHead">${typeof squadJersey==='function'?squadJersey(p,p.pos==='H'):''}<div>${playerButton(p)}<small>${esc(p.team)} · ${p.pos==='H'?'מאמן':esc(p.pos)}</small></div></div><p class="rlOpponent">${opponent(p)}</p><div class="rlMetrics"><div><b>${fmt(p.points)}</b><small>נק׳ בסיס</small></div><div><b>${fmt(row.contribution)}</b><small>תרומה לסגל</small></div><div><b>${fmt(p.price)}</b><small>קרדיט במחזור</small></div></div></article>`;
+  return `<article class="rlPlayer ${row.role==='captain'?'rlCaptain':''}"><div class="rlRole">${({captain:'קפטן · ×2',starter:'חמישייה · ×1',sixth:'שחקן שישי · ×1',bench:'ספסל · ×0.5',coach:'מאמן · ×1'})[row.role]}</div><div class="rlHead"> ${p.pos==='H'&&typeof squadJersey==='function'?squadJersey(p,true):''}<div>${playerButton(p)}<small>${esc(p.team)} · ${p.pos==='H'?'מאמן':esc(p.pos)}</small></div></div><p class="rlOpponent">${opponent(p)}</p><div class="rlMetrics"><div><b>${fmt(p.points)}</b><small>נק׳ בסיס</small></div><div><b>${fmt(row.contribution)}</b><small>תרומה לסגל</small></div><div><b>${fmt(p.price)}</b><small>קרדיט במחזור</small></div></div></article>`;
  };
  const group=(title,roles)=>`<h4 class="rlGroupTitle">${title}</h4><div class="rlGrid">${solution.roster.filter(r=>roles.includes(r.role)).sort((a,b)=>b.contribution-a.contribution).map(tile).join('')}</div>`;
  $('superResult').innerHTML=`<div class="rlSummary"><div><b>${fmt(solution.score)}</b><small>נקודות פנטזי לסגל</small></div><div><b>${fmt(solution.cost)}</b><small>עלות כולל מאמן</small></div><div><b>${solution.formation.join('–')}</b><small>מערך G–F–C</small></div></div><p class="rlHelp ${solution.status==='optimal'?'good':'warn'}">${solution.status==='optimal'?'נמצא מקסימום מתמטי לפי הנתונים הזמינים והתקציב שנבחר.':'זה הסגל הטוב ביותר שנמצא בזמן החישוב; טרם הוכח שהוא המקסימום.'}${r.complete?'':' המחזור עדיין חלקי.'}</p>${group('החמישייה · כולל קפטן',['starter','captain'])}${group('השחקן השישי והמאמן',['sixth','coach'])}${group('ארבעת שחקני הספסל',['bench'])}<p class="muted rlHelp">נק׳ בסיס לשחקנים הן PIR ובונוס ניצחון 10%; תרומה לסגל כוללת את מכפיל התפקיד. התוצאה מחושבת מתוך המשתתפים עם מחיר וניקוד זמינים ואינה תחזית למחזור הבא.</p>`;
@@ -77,11 +78,7 @@ $('bargainRange').onchange=()=>{const custom=$('bargainRange').value==='custom';
 for(const id of ['bargainRound','bargainMin','bargainMax','bargainPir','bargainPos','bargainPrice','bargainSort'])$(id).addEventListener('change',renderBargains);
 for(const id of ['superRound','superBudget'])$(id).addEventListener('change',renderSuper);
 for(const button of document.querySelectorAll('[data-rl-reload]'))button.onclick=()=>void load();
-for(const id of ['bargains','superSquad'])$(id).addEventListener('click',event=>{
- const button=event.target.closest('[data-rl-player]');if(!button)return;
- const player=typeof players==='undefined'?null:players.find(p=>key(p.name)===button.dataset.rlPlayer);
- if(player&&typeof showPlayer==='function')showPlayer(player.name);
-});
+document.addEventListener('fantasy-player-media-ready',()=>{if(data)render();});
 const active=()=>['bargains','superSquad'].some(id=>$(id).classList.contains('active'));
 setInterval(()=>{if(!document.hidden&&active())void load()},60000);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&active()&&Date.now()-lastLoaded>60000)void load()});

@@ -37,7 +37,7 @@ function rivalPreview(p) {
   const rival = rivalFor(p, next);
   if (!rival) return `<div class="squadRivalPreview squadRivalUnavailable">${next && games ? 'אין שחקן יריב מזוהה בעמדה' : ''}</div>`;
   return `<div class="squadRivalPreview">
-    <button type="button" class="squadAltIdentity" data-details="${esc(rival.player.name)}" aria-label="פרטי ${esc(rival.player.name)}">
+    <button type="button" class="squadAltIdentity" data-details="${esc(rival.player.name)}" ${window.PlayerAnalysis.attrs(rival.player)} aria-label="פרטי ${esc(rival.player.name)}">
      ${squadJersey(rival.player)}<span><small>יריב בעמדה ${esc(p.pos)}</small><strong>${name(rival.player.name)}</strong></span></button>
     ${physicalLine(rival.player,true)}
   </div>`;
@@ -72,7 +72,7 @@ function alternatives(p) {
   const options = playerAlternatives(p);
   return `<p class="squadPanelNote">עמדה ${esc(p.pos)} · עד ${fmt(p.price)} קרדיט · לפי PIR צפוי</p>
    ${options.map(({p:q,price,score}) => `<article class="squadAltRow">
-    <button type="button" class="squadAltIdentity" data-details="${esc(q.name)}" aria-label="פרטי ${esc(q.name)}">
+    <button type="button" class="squadAltIdentity" data-details="${esc(q.name)}" ${window.PlayerAnalysis.attrs(q)} aria-label="פרטי ${esc(q.name)}">
      ${squadJersey(q)}<span><strong>${name(q.name)}</strong><small>${name(canonicalTeam(q.team))} · ${esc(q.pos)} · ${esc(statusText(q.status))}</small></span></button>
     ${metric('קרדיט',price)}${metric('PIR צפוי',score)}
     <button type="button" class="squadSwap" data-squad-swap="${esc(q.name)}" aria-label="החלף ל־${esc(q.name)}">החלף</button>
@@ -170,7 +170,7 @@ function matchup(p) {
   if (!games?.length) return fixture+ (!games ?'<p class="squadPanelNote" role="status">טוען נתוני עונת 2026/27…</p>' : '<p class="squadPanelNote">אין דוחות משחק זמינים בעונה הנוכחית.</p>') + (games ? matchupForecast(p,next) : '');
   const rival = rivalFor(p, next);
   const identity = rival ? `<details class="squadInfluence"><summary>שחקן בולט ברוטציה של היריבה</summary><div class="squadRivalProfile">
-    <button type="button" class="squadAltIdentity" data-details="${esc(rival.player.name)}">${squadJersey(rival.player)}
+    <button type="button" class="squadAltIdentity" data-details="${esc(rival.player.name)}" ${window.PlayerAnalysis.attrs(rival.player)}>${squadJersey(rival.player)}
      <span><small>שחקן רוטציה בעמדה ${esc(p.pos)}</small><strong>${name(rival.player.name)}</strong>
      <small>${name(next.team)} · ${rival.games} משחקים</small></span></button>
     ${physicalLine(rival.player,true)}

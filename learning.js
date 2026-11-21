@@ -77,8 +77,8 @@
   const originalShow=window.showPlayer;
   window.showPlayer=function(name){
     originalShow.apply(this,arguments);const body=document.getElementById('modalBody');if(!body||body.classList?.contains('ef-market-player'))return;
-    const p=players.find(p=>p.name===name);if(!p)return;
-    const x=model(p),audit=data?.players?.[key(name)];
+    const p=window.PlayerAnalysis.resolve(name);if(!p||p.officialOnly)return;
+    const x=model(p),audit=data?.players?.[key(p.name)];
     const section=document.createElement('section');section.className='playerSection learning-player';
     let content='<h3 class="sectionTitle">בדיקת תחזיות קודמות</h3>';
     if(audit?.games?.length){content+=`<p class="muted">${audit.n} בדיקות · טעות PIR ממוצעת ${num(audit.metrics?.mae)}</p>`;

@@ -28,8 +28,8 @@ function roster(side){
  return side.players.flatMap(({player,stats})=>{
   const name=player?.person?.name,seconds=pmNumber(stats?.timePlayed);
   if(!name||!(seconds>0))return [];
-  return [{name:reorderCommaName(name),pos:positions[player.position]||'—',
-   photo:playerCardImageUrl(player.images?.headshot)||playerCardImageUrl(player.images?.action)||playerCardImageUrl(playerCardProfile({name})?.photo),
+  return [{name:reorderCommaName(name),playerCode:player.person.code,team:player.club?.name,pos:positions[player.position]||'—',
+   photo:playerCardImageUrl(player.images?.headshot)||playerCardImageUrl(player.images?.action)||playerCardImageUrl(playerCardProfile({name,playerCode:player.person.code,team:player.club?.name})?.photo),
    starter:stats.startFive===true,values:pmBoxValues(stats,seconds)}];
  }).sort((a,b)=>b.values.minutes-a.values.minutes||a.name.localeCompare(b.name));
 }
@@ -44,8 +44,7 @@ function matchup({a,b,pos}){
   const share=compared?(upper===lower?50:100*(pir-lower)/(upper-lower)):0;
   const comparison=tone==='leading'?'PIR גבוה יותר':tone==='trailing'?'PIR נמוך יותר':compared?'PIR שווה':'';
   return `<span class="pmHistoryPlayer" data-pir-tone="${tone}">
-   <span class="pmHistoryPhoto" aria-hidden="true">${window.ChartGameCard.image(p.photo)}<b>${esc(p.name.split(/\s+/).map(n=>n[0]).slice(0,2).join(''))}</b></span>
-   <bdi class="pmHistoryName">${esc(p.name)}</bdi>
+   ${window.PlayerAnalysis.control(p,`<span class="pmHistoryPhoto" aria-hidden="true">${window.ChartGameCard.image(p.photo)}<b>${esc(p.name.split(/\s+/).map(n=>n[0]).slice(0,2).join(''))}</b></span><bdi class="pmHistoryName">${esc(p.name)}</bdi>`,'pm-history-identity')}
    <span class="pmHistoryNumbers"><span><small>PIR</small><bdi>${number(p,'pir')}</bdi></span><span><small>דקות</small><bdi>${number(p,'minutes')}</bdi></span></span>
    ${compared?`<span class="pmHistoryPerformance" role="img" aria-label="${comparison}"><i style="width:${share}%"></i></span>`:''}
   </span>`;

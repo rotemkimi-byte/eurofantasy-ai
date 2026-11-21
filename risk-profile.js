@@ -121,7 +121,6 @@ function render() {
    factors:R.matchupFactors(data.prepared,profile,p,f)};
  }
  const {profile,analysis,factors}=shownProfile, {risks}=analysis;
- const photo=playerCardImageUrl(playerCardProfile(p)?.photo);
  const opponentCrest=f && (playerCardCrests.get(f.opponent)||playerCardImageUrl(f.crest));
  const projection=window.getPlayerDnaForecast?.(p.name);
  const projected=f && projection?.opponent===f.opponent ?
@@ -136,9 +135,7 @@ function render() {
  const range=Number.isFinite(forecast.floor)&&Number.isFinite(forecast.ceiling)?
   fmt(forecast.floor)+'–'+fmt(forecast.ceiling):'—';
  out.innerHTML=`<article class="risk-hero" aria-label="פרופיל סיכון של השחקן">
-  <div class="risk-player"><div class="risk-portrait">${image(photo,'risk-photo')}${squadJersey(p)}</div>
-   <div><h3>${text(typeof reorderCommaName==='function'?reorderCommaName(p.name):p.name)}</h3>
-   <p>${text(p.team)}</p></div></div>
+  <div class="risk-player">${window.PlayerAnalysis.identity(p)}</div>
   <div class="risk-opponent">${image(opponentCrest)}
    <b>${f?'מול '+text(f.opponent):'היריבה טרם נקבעה'}</b>
    ${f?'<small>מחזור '+esc(f.round)+' · '+date.format(f.start)+' · '+(f.neutral?'ניטרלי':f.home?'בית':'חוץ')+'</small>':''}

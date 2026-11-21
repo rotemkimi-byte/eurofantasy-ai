@@ -99,16 +99,10 @@ function drawForecast(){
  const match=live.predictions.find(r=>String(r.fantasyId)===String(p.fantasy_id)&&r.team===team&&r.opponent===opponent);
  const line=match&&Date.parse(match.kickoff)>Date.now()?match:null;
  const baseline=window.__weightedForecastReady&&typeof model==='function'?model(p).expected:null;
- const photo=typeof playerCardImageUrl==='function'&&typeof playerCardProfile==='function'?playerCardImageUrl(playerCardProfile(p)?.photo):null;
  const minutes=line?.components?.minutes;
- const card=(label,value)=>`<div><span>${label}</span><strong dir="ltr">${n(value)}</strong></div>`;
- box.innerHTML=`<div class="cf-player">
-  ${photo?`<img src="${esc(photo)}" height="56" width="56" alt="">`:''}
-  <div><h3>${esc(p.name)}</h3><p>${esc(team)} · מול ${esc(opponent||'טרם נקבעה יריבה')}</p></div>
-  <bdi>${n(p.price)} CR</bdi>
- </div><div class="cf-forecast-grid">
-  ${card('PIR · אלגוריתם קיים',baseline)}${card('PIR · מודל חדש',line?.D)}
- </div>
+ box.innerHTML=`<article class="pa-report">${window.PlayerAnalysis.profile(p,{
+  stat:`<bdi class="pa-credit">${n(p.price)} CR</bdi>`,meta:`מול <bdi>${esc(opponent||'טרם נקבעה יריבה')}</bdi>`
+ })}${window.PlayerAnalysis.metrics([['PIR · אלגוריתם קיים',n(baseline)],['PIR · מודל חדש',n(line?.D)]])}</article>
  ${line?.components?`<p class="cf-delta">הפרש <bdi>${sign(Number.isFinite(baseline)?line.D-baseline:null)} PIR</bdi>${line.interval?` · טווח היסטורי <bdi>${n(line.interval.low)}–${n(line.interval.high)}</bdi>`:''}</p>
  <p class="cf-muted">${line.samples} הופעות קודמות בקבוצה · עודכן ${date(live.generatedAt)}</p>
  <div class="cf-components">
@@ -156,8 +150,8 @@ function drawHistory(){
   order==='round'?a.round-b.round||a.gameCode-b.gameCode||a.name.localeCompare(b.name):missing(a,b)||(order==='hit'?1:-1)*(err(a)-err(b)));
  $('[data-more]').hidden=rows.length<=limit;
  const labels=['שחקן','מחזור','יריבה','PIR בפועל','קיים','חדש','טעות'];
- $('[data-history]').innerHTML=rows.length?`<table class="cf-table cf-history"><thead><tr>${labels.map(label=>`<th scope="col">${label}</th>`).join('')}</tr></thead><tbody>
-  ${rows.slice(0,limit).map(r=>`<tr><th scope="row">${esc(r.name)}<small>${esc(r.team)}</small></th>
+ $('[data-history]').innerHTML=rows.length?`<table class="cf-table cf-history pa-scored-table"><thead><tr>${labels.map(label=>`<th scope="col">${label}</th>`).join('')}</tr></thead><tbody>
+  ${rows.slice(0,limit).map(r=>`<tr><th scope="row">${window.PlayerAnalysis.identity(r)}</th>
    ${[r.round,esc(r.opponent),n(r.actual),n(r.A),n(r.D),Number.isFinite(r.D)?sign(r.D-r.actual):'—'].map((v,i)=>cell(v,labels[i+1])).join('')}</tr>`).join('')}
  </tbody></table>${player?rows.filter(r=>r.line&&r.actualLine).slice(0,limit).map(r=>`<details><summary>מחזור ${r.round} · ${esc(r.opponent)} · רכיבי התחזית</summary>
  <table class="cf-table"><thead><tr><th>רכיב</th><th>בסיס אישי</th><th>מודל חדש</th><th>בפועל</th></tr></thead><tbody>${Object.entries(names).map(([key,label])=>`<tr><th scope="row">${label}</th>${cell(valueFor(key,r.baseLine?.[key]),'בסיס אישי')}${cell(valueFor(key,r.line[key]),'מודל חדש')}${cell(valueFor(key,r.actualLine[key]),'בפועל')}</tr>`).join('')}</tbody></table>

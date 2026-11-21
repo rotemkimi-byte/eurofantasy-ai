@@ -30,7 +30,7 @@ function marketPrices(){
 function profiles(){
  const map=new Map();
  for(const g of Object.values(data.games))for(const p of Object.values(g.players)){
-  let r=map.get(p.id);if(!r){r={id:p.id,name:name(p.name),games:[]};map.set(p.id,r);}
+  let r=map.get(p.id);if(!r){r={id:p.id,playerCode:p.id,name:name(p.name),games:[]};map.set(p.id,r);}
   r.games.push({...p,gameCode:g.gameCode,date:g.date,round:g.round});
  }
  const market=new Map((typeof players!=='undefined'?players:[]).filter(p=>['G','F','C'].includes(p.pos)).map(p=>[marketKey(p.name),p]));
@@ -40,7 +40,7 @@ function profiles(){
   p.team=current?.team||p.games[0]?.team||'';
   market.delete(key);
  }
- for(const [key,p] of market)if(key)map.set('market:'+key,{id:'market:'+key,name:p.name,team:p.team,games:[]});
+ for(const [key,p] of market)if(key)map.set('market:'+key,{id:'market:'+key,name:p.name,team:p.team,fantasy_id:p.fantasy_id,games:[]});
  return [...map.values()].sort((a,b)=>a.name.localeCompare(b.name));
 }
 const boxFields=[['PIR','valuation'],['דקות','timePlayed'],['נקודות','points'],['קליעות ל־3',3],['קליעות ל־2',2],
@@ -52,7 +52,11 @@ function boxMinutes(seconds){
  return Math.floor(rounded/60)+':'+String(rounded%60).padStart(2,'0');
 }
 const boxShooting=(made,attempted)=>made===null?'—':attempted===null?fmt(made):fmt(made)+'/'+fmt(attempted);
-const boxTiles=render=>'<div class="ap-metrics ap-box-metrics">'+boxFields.map(([label,key])=>render(label,key)).join('')+'</div>';
+function scouting(items,primary=3,cls=''){
+ const group=(rows,tone)=>`<div class="pa-scouting ${tone}">${rows.join('')}</div>`;
+ return `<div class="ap-metrics ap-scouting ${cls}">${group(items.slice(0,primary),'pa-metrics-primary')}${items.length>primary?group(items.slice(primary),'pa-metrics-secondary'):''}</div>`;
+}
+const boxTiles=render=>scouting(boxFields.map(([label,key])=>render(label,key)),3,'ap-box-metrics');
 function boxAverageCards(games,range){
  const a=C.boxAverages(games,boxFields.map(([,key])=>key).filter(key=>typeof key==='string'));
  const title=range==='3'?'ממוצע למשחק · 3 הופעות אחרונות':'ממוצע למשחק · כל העונה';
@@ -82,17 +86,18 @@ function boxScore(p,games){
 const negativeLabels={turnovers:'איבודים',miss2:'החטאות ל־2',miss3:'החטאות ל־3',missFT:'החטאות עונשין',fouls:'עבירות שביצע',blocked:'זריקות שנחסמו'};
 function negative(games){
  const s=C.negative(games);
- return '<div class="ap-metrics ap-negative-metrics">'+Object.entries(negativeLabels).map(([k,l])=>{
+ return scouting(Object.entries(negativeLabels).map(([k,l])=>{
   const row=s[k],coverage=row.covered<games.length?' · '+note(row.covered,games.length):'';
-  return metric(l,fmt(row.mean),'סה״כ '+fmt(row.total)+coverage);
- }).join('')+'</div>';
+  return metric(l,fmt(row.mean),'סה״כ '+fmt(row.total)+coverage,row.mean>0?'negative':'');
+ }),3,'ap-negative-metrics');
 }
 function plus(games){
  const s=C.plus(games);
- const score=(label,n)=>metric(label,signed(n),'',n<0?'negative':'');
- return '<p class="ap-status">'+note(s.covered,games.length)+'</p><div class="ap-metrics">'+
-  score('פלוס־מינוס מצטבר',s.total)+score('ממוצע למשחק',s.mean)+score('ל־40 דקות',s.per40)+
-  metric('דקות במדגם',fmt(s.minutes))+'</div>';
+ const score=(label,n)=>metric(label,signed(n),'',n<0?'negative':n>0?'positive':'');
+ return scouting([
+  score('פלוס־מינוס מצטבר',s.total),score('ממוצע למשחק',s.mean),score('ל־40 דקות',s.per40),
+  metric('דקות במדגם',fmt(s.minutes),note(s.covered,games.length))
+ ]);
 }
 function shots(games,filter){
  const covered=games.filter(g=>g.shotCoverage),all=covered.flatMap(g=>g.shots).filter(s=>!s.type.startsWith('FT'));
@@ -121,12 +126,12 @@ for(const [id,title,kind] of tools){
  const section=document.createElement('section');section.id=id;section.className='tab ap-screen';
  section.innerHTML='<div class="ap-shell"><div class="ap-top"><h3>'+title+'</h3><button type="button" data-refresh>רענן</button></div><div class="player-picker-modes" role="group" aria-label="בחירת רשימת שחקנים"><button type="button" data-scope="all" aria-pressed="true">כל השחקנים · לפי מחיר</button><button type="button" data-scope="team" aria-pressed="false">לפי קבוצה</button></div><div class="ap-controls player-picker-controls"><label data-team-label hidden>קבוצה<select data-team><option value="">כל הקבוצות</option></select></label><label data-player-label>שחקן · מהמחיר הגבוה לנמוך<select data-player></select></label><label>טווח נתונים<select data-range><option value="1">משחק אחרון</option><option value="3">3 משחקים אחרונים</option><option value="0">כל העונה · 2026/27</option></select></label><label>מיון שחקנים<select data-sort><option value="price" selected>מחיר · מהגבוה לנמוך</option><option value="name">שם · א–ת</option><option value="team">לפי קבוצה</option><option value="minutes">דקות · מהגבוה</option><option value="pir">PIR · המשחק האחרון</option>'+(kind==='plus'?'<option value="plus">פלוס־מינוס · מהגבוה</option>':'')+'</select></label>'+(kind==='shots'?'<label>הצג במפה<select data-shot><option value="all">הכול</option><option value="made">קליעות</option><option value="missed">החטאות</option></select></label>':'')+'</div><p class="ap-status" role="status"></p><div class="ap-profile" data-picked hidden></div><div data-browser aria-label="רשימת שחקנים"></div><div data-output hidden></div><details class="ap-help"><summary>הסבר הנתונים</summary><p>'+help[kind]+'</p><a class="ap-link" href="https://mediagamecenter.euroleague.net/" target="_blank" rel="noopener">מקור: EuroLeague Game Center</a></details></div>';
  document.querySelector('main').append(section);
- document.addEventListener('fantasy-player-media-ready',()=>{if(!browseOpen)render();});
+ document.addEventListener('fantasy-player-media-ready',()=>{if(browseOpen)renderBrowser();render();});
  const $=s=>section.querySelector(s);let records=[],selected='',browseOpen=true,shown=36,scope='all';
  const analysisMetrics=kind==='negative'?Object.fromEntries(Object.entries(negativeLabels).map(([k,l])=>[k,l+' למשחק'])):
   kind==='plus'?{total:'פלוס־מינוס מצטבר',mean:'ממוצע למשחק',per40:'ל־40 דקות'}:null;
  const analytics=analysisMetrics?window.PlayerAnalysis.mount(section,$('.ap-controls'),$('[role=status]'),[$('[data-picked]'),$('[data-browser]'),$('[data-output]')],{
-  metrics:analysisMetrics,marketStyle:true,team:()=>scope==='team'?$('[data-team]').value:'',
+  metrics:analysisMetrics,team:()=>scope==='team'?$('[data-team]').value:'',
   rows:()=>{
    const prices=marketPrices(),range=$('[data-range]').value;
    return records.map(p=>{
@@ -164,7 +169,13 @@ for(const [id,title,kind] of tools){
   }
   rows.sort((a,b)=>sort==='price'?(b.price??-Infinity)-(a.price??-Infinity)||cmpName(a,b):sort==='minutes'?b.minutes-a.minutes||cmpName(a,b):sort==='pir'?(b.pir??-Infinity)-(a.pir??-Infinity)||cmpName(a,b):sort==='plus'&&kind==='plus'?(b.pm??-Infinity)-(a.pm??-Infinity)||cmpName(a,b):sort==='team'?a.p.team.localeCompare(b.p.team,'he')||cmpName(a,b):cmpName(a,b));
   const visible=rows.slice(0,shown);
-  const pickRows=visible.map(({p,price,games,minutes,pm})=>'<button type="button" class="ap-player-row'+(kind==='plus'?'':' ap-no-plus')+(p.id===selected?' is-selected':'')+'" data-pick="'+esc(p.id)+'" aria-pressed="'+(p.id===selected)+'" aria-label="בחר '+esc(p.name)+'"><span class="ap-row-name"><strong><bdi>'+esc(p.name)+'</bdi></strong><small>'+esc(p.team)+' · '+games+' הופעות</small></span><span class="ap-row-appearances"><b>'+fmt(price)+'</b><small>CR</small></span><span class="ap-row-stat"><b>'+fmt(minutes)+'</b><small>דקות</small></span>'+(kind==='plus'?'<span class="ap-row-stat ap-plus-value"><b>'+(pm>0?'+':'')+fmt(pm)+'</b><small>+/−</small></span>':'')+'<span class="ap-row-arrow" aria-hidden="true">‹</span></button>').join('');
+  const pickRows=visible.map(({p,price,games,minutes,pir,pm})=>`<div class="ap-player-row${kind==='plus'?'':' ap-no-plus'}${p.id===selected?' is-selected':''}">
+   <span class="ap-row-name">${window.PlayerAnalysis.identity(p)}<small>${games} הופעות</small></span>
+   <bdi class="pa-credit">${fmt(price)} CR</bdi>
+   <span class="ap-row-stat"><b>${fmt(sort==='pir'?pir:minutes)}</b><small>${sort==='pir'?'PIR':'דקות'}</small></span>
+   ${kind==='plus'?`<span class="ap-row-stat ap-plus-value"><b>${signed(pm)}</b><small>+/−</small></span>`:''}
+   <button type="button" class="ap-row-arrow" data-pick="${esc(p.id)}" aria-pressed="${p.id===selected}" aria-label="בחר ${esc(p.name)}">‹</button>
+  </div>`).join('');
   host.innerHTML='<div class="ap-browser-head"><div><h4>בחר שחקן</h4><p>'+rows.length+' שחקנים'+(team?' · '+esc(team):' מכל הקבוצות')+' · '+esc($('[data-sort]').selectedOptions[0].textContent)+'</p></div></div><div class="ap-player-list">'+(rows.length?pickRows:empty('לא נמצאו שחקנים. אפשר לשנות קבוצה או חיפוש.'))+'</div>'+(rows.length>shown?'<button type="button" class="ap-show-more" data-more>הצג עוד '+Math.min(36,rows.length-shown)+' שחקנים · '+visible.length+'/'+rows.length+'</button>':'');
  }
  function controls(){renderBrowser();}
@@ -184,7 +195,7 @@ for(const [id,title,kind] of tools){
   const price=marketPrices().get(marketKey(p.name));
   const meta=latest?'<bdi>'+esc(latest.opponent||'')+'</bdi> · '+date(latest.date)+' · מחזור '+esc(latest.round??'—'):'';
   picked.innerHTML=window.PlayerAnalysis.profile(p,{
-   meta,
+   meta:games.length+' הופעות בטווח'+(meta?' · '+meta:''),
    action:'<div class="pa-profile-actions">'+(price!=null?'<bdi class="pa-credit">'+fmt(price)+' CR</bdi>':'')+
     (alwaysPickPlayer?'':'<button type="button" data-back>חזרה לרשימה <span aria-hidden="true">←</span></button>')+'</div>'
   });

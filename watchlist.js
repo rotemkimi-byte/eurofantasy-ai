@@ -51,7 +51,7 @@
     const saved = records();
     if (button.dataset.watchProfile !== undefined) {
       const player = find(saved[Number(button.dataset.watchProfile)], players);
-      if (player) showPlayer(player.name);
+      if (player) window.PlayerAnalysis.open(player);
     } else if (button.dataset.watchRemove !== undefined) {
       const index = Number(button.dataset.watchRemove);
       if (save(saved.filter((_, i) => i !== index))) {

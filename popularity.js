@@ -101,7 +101,7 @@
 
   function decorate(player) {
     const team = canonicalTeam(player.team);
-    const profile = playerCardProfile(player);
+    const profile = playerCardProfile({...player,fantasyId:player.id});
     const photo = image(profile?.photo, 'pop-photo');
     const crest = image(playerCardCrests.get(team) || (canonicalTeam(profile?.club) === team ? profile?.crest : null), 'pop-crest', true);
     const initials = player.name.trim().split(/\s+/).slice(0, 2).map(word => word[0]).join('');
@@ -111,7 +111,7 @@
 
   function leader(player, index) {
     const { photo, crest, initials, color } = decorate(player);
-    return `<button type="button" class="pop-leader pop-leader-${index + 1}" data-pop-player="${escape(player.id)}"
+    return `<button type="button" class="pop-leader pop-leader-${index + 1}" data-pop-player="${escape(player.id)}" ${window.PlayerAnalysis.attrs({...player,fantasyId:player.id},true)}
       aria-label="פרטי ${escape(player.name)}, מקום ${player.rank}, ${format(player.average)}" style="--pop-club:${color}">
       <span class="pop-leader-rank">${player.rank}</span>
       <span class="pop-leader-art" aria-hidden="true"><span>${escape(initials)}</span>${photo}${crest}</span>
@@ -121,12 +121,13 @@
   }
 
   function tableRow(player, season) {
-    const { crest, initials } = decorate(player);
+    const { photo, crest, initials } = decorate(player);
+    const current = window.PlayerAnalysis.resolve({fantasyId:player.id});
     return `<tr data-pop-player="${escape(player.id)}">
       <td><span class="pop-rank">${player.rank}</span></td>
-      <th scope="row"><button class="pop-player" type="button" aria-label="פרטי ${escape(player.name)}">
-        <span class="pop-avatar" aria-hidden="true"><span>${escape(initials)}</span>${crest}</span>
-        <span class="pop-identity"><bdi>${escape(player.name)}</bdi><small>${positions[player.pos]} · <bdi>${escape(player.team)}</bdi></small></span>
+      <th scope="row"><button class="pop-player" type="button" ${window.PlayerAnalysis.attrs({...player,fantasyId:player.id},true)} aria-label="פרטי ${escape(player.name)}">
+        <span class="pop-avatar" aria-hidden="true"><span>${escape(initials)}</span>${photo||crest}</span>
+        <span class="pop-identity"><bdi>${escape(player.name)}</bdi><small>${positions[player.pos]} · <bdi>${escape(player.team)}</bdi></small>${Number.isFinite(current?.price)?`<bdi class="pa-credit">${Number(current.price).toFixed(1)} CR</bdi>`:''}</span>
         <span class="pop-chevron" aria-hidden="true">‹</span>
       </button></th>
       <td><span class="pop-score"><bdi>${format(player.average)}</bdi><span class="pop-track" aria-hidden="true"><span style="width:${player.average}%"></span></span></span></td>
@@ -135,11 +136,10 @@
   }
 
   function openPlayer(player) {
-    const match = players.find(row => row.fantasy_id != null && String(row.fantasy_id) === String(player.id))
-      || players.find(row => window.UsageCore.key(row.name) === window.UsageCore.key(player.name));
+    const match = window.PlayerAnalysis.resolve({fantasyId:player.id});
     if (match) {
       window.playerToolSelection?.set(match.name);
-      window.showPlayer(match.name, true);
+      window.PlayerAnalysis.open(match, true);
       return;
     }
     $('popHistoryName').textContent = player.name;

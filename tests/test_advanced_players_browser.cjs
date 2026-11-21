@@ -99,6 +99,39 @@ const server=http.createServer((req,res)=>{
      assert.notEqual(...palette,'Text contrasts with card');
     }
    }
+   // Open a ranked player by ID and return to the same controls and scroll position.
+   await page.evaluate(()=>document.querySelector('nav.tabs [data-tab="playerPlusMinus"]').click());
+   const plus=page.locator('#playerPlusMinus');
+   await plus.locator('[data-pa-view=ranking]').click();
+   await plus.locator('[data-pa-sort=price]').click();
+   await plus.locator('[data-pa-cap]').selectOption('15');
+   const ranking=plus.locator('[data-pa-ranking-table]');
+   if(await ranking.count())await ranking.locator('summary').click();
+   const ranked=plus.locator('.pa-table [data-player-profile^="fantasy:"]').nth(4);
+   await ranked.scrollIntoViewIfNeeded();
+   const initialScroll=await page.evaluate(()=>window.scrollY);
+   const expected=await ranked.locator('.pa-person>b').innerText();
+   const id=(await ranked.getAttribute('data-player-profile')).split(':')[1];
+   const selection=await plus.locator('[data-player]').inputValue();
+   for(const part of ['.pa-portrait','.pa-person>b']){
+    await ranked.locator(part).click();
+    const modal=page.locator('#playerModal');
+    await modal.locator('.ef-player-tabs').waitFor();
+    assert.equal((await modal.locator('h2').innerText()).toLowerCase(),expected.toLowerCase());
+    const media=await page.evaluate(id=>{
+     const p=PlayerAnalysis.resolve({fantasyId:id});
+     const photo=playerCardProfile(p);
+     return photo?{photo:PlayerIdentity.code(photo.playerCode),player:PlayerIdentity.code(PlayerIdentity.resolve(p).euroleagueId),sameClub:canonicalTeam(photo.club)===canonicalTeam(p.team)}:null;
+    },id);
+    if(media){assert.equal(media.photo,media.player);assert(media.sameClub);}
+    await modal.locator('.close').click();
+    await page.waitForFunction(y=>Math.abs(window.scrollY-y)<=2,initialScroll);
+    assert.equal(await plus.locator('[data-pa-cap]').inputValue(),'15');
+    assert.equal(await plus.locator('[data-player]').inputValue(),selection);
+    assert.equal(await plus.locator('[data-pa-sort=price]').getAttribute('aria-pressed'),'true');
+    assert(await ranked.evaluate(e=>e===document.activeElement));
+   }
+   assert(await plus.evaluate(e=>e.scrollWidth<=e.clientWidth+2),'No horizontal overflow in the player ranking');
    // Navigation discovers the tools in the player category, and filter clears hidden selections.
    await page.locator('#efCategory').click();
    assert.equal(await page.locator('#efToolGroups [data-ef-tool="playerShots"]').count(),1);

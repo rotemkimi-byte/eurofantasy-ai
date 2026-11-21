@@ -3,25 +3,96 @@
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const value=n=>Number.isFinite(n)?n.toFixed(1):'—';
 const ordered=(rows,get)=>[...rows].sort((a,b)=>(get(b)??-Infinity)-(get(a)??-Infinity)||a.name.localeCompare(b.name));
+function source(p){
+ if(!p||typeof p!=='object')return p;
+ if(p.fantasyId!=null||p.fantasy_id!=null||p.playerCode!=null||p.euroleagueId!=null||p.official_id!=null)return p;
+ const id=String(p.id??'');
+ return /^P\d+$/i.test(id)||/^0\d{5}$/.test(id)?{...p,playerCode:id}:p;
+}
+function resolve(target){
+ const pool=typeof players==='undefined'?[]:players;
+ const api=window.PlayerIdentity;
+ const input=source(target);
+ if(input?.officialOnly)return input;
+ const record=api.resolve(input);
+ const fantasyId=input?.fantasy_id??input?.fantasyId??record?.fantasyId;
+ if((input?.playerCode||input?.euroleagueId||input?.official_id)&&!record)return null;
+ if(fantasyId!=null){
+  const matches=pool.filter(p=>String(p.fantasy_id)===String(fantasyId));
+  if(matches.length===1&&(!input?.playerCode||record))return matches[0];
+ }
+ if(record?.fantasyId!=null){
+  const cached=pool.filter(p=>p.fantasy_id==null&&p.name===record.displayName);
+  if(cached.length===1)return {...cached[0],fantasyId:record.fantasyId};
+ }
+ if(!record?.euroleagueId)return null;
+ return {name:record.displayName||record.officialName,team:record.currentTeam||record.teamHistory.at(-1)?.team||'',playerCode:record.euroleagueId,officialOnly:true};
+}
+function profileKey(player){
+ const p=resolve(player);
+ if((p?.fantasy_id??p?.fantasyId)!=null)return 'fantasy:'+(p.fantasy_id??p.fantasyId);
+ if(p?.playerCode)return 'official:'+p.playerCode;
+ return '';
+}
+function open(player,compact=false){
+ const key=profileKey(player);
+ if(!key)return false;
+ const [kind,id]=key.split(':');
+ window.showPlayer(kind==='fantasy'?{fantasyId:id}:{playerCode:id},compact);
+ return true;
+}
+function attrs(player,compact=false){
+ const key=profileKey(player);
+ return key?`data-player-profile="${esc(key)}" data-profile-compact="${compact}"`:'';
+}
+function control(player,body,cls='',compact=false){
+ const target=attrs(player,compact);
+ return target?`<button type="button" class="pa-profile-link ${cls}" ${target} aria-label="פרופיל ${esc(player.name)}">${body}</button>`:`<span class="${cls}">${body}</span>`;
+}
+const image=url=>url?'<img src="'+esc(url)+'" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">':'';
 function identity(player){
  const club=typeof canonicalTeam==='function'?canonicalTeam(player.team):player.team;
  const color=(typeof TEAM_KITS!=='undefined'&&TEAM_KITS[club]?.[1])||'#536783';
  const profile=typeof playerCardProfile==='function'?playerCardProfile(player):null;
  const photo=typeof playerCardImageUrl==='function'?playerCardImageUrl(profile?.photo):null;
  const crest=typeof playerCardCrests==='undefined'?null:playerCardCrests.get(club);
- const image=url=>url?'<img src="'+esc(url)+'" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">':'';
  return `<span class="pa-identity" style="--pa-club:${color}">
-  <span class="pa-portrait" aria-hidden="true">${typeof squadJersey==='function'?squadJersey(player):''}${image(photo)}</span>
-  <span class="pa-person"><b><bdi>${esc(player.name)}</bdi></b><span class="pa-club">${image(crest)}<bdi>${esc(club||'קבוצה לא זמינה')}</bdi></span></span>
+  ${control(player,`<span class="pa-portrait" aria-hidden="true">${typeof squadJersey==='function'?squadJersey(player):''}${image(photo)}</span>
+  <span class="pa-person"><b><bdi>${esc(player.name)}</bdi></b><span class="pa-club">${image(crest)}<bdi>${esc(club||'קבוצה לא זמינה')}</bdi></span></span>`,'pa-identity-link')}
  </span>`;
 }
 function profile(player,{meta='',action='',stat=''}={}){
  return `<div class="pa-profile">${identity(player)}${action||stat}${meta?'<div class="pa-profile-meta">'+meta+'</div>':''}</div>`;
 }
+function metrics(items,primary=3){
+ const group=(rows,cls)=>rows.length?`<dl class="pa-metrics ${cls}" style="--pa-cols:${Math.min(3,rows.length)}">${rows.map(([label,stat,note,tone])=>`
+  <div data-tone="${esc(tone)}"><dt>${esc(label)}${note?`<small>${esc(note)}</small>`:''}</dt><dd><bdi>${esc(stat)}</bdi></dd></div>`).join('')}</dl>`:'';
+ return group(items.slice(0,primary),'pa-metrics-primary')+group(items.slice(primary),'pa-metrics-secondary');
+}
+let origin;
+document.addEventListener('click',event=>{
+ const trigger=event.target.closest('[data-player-profile]');if(!trigger)return;
+ const [kind,id]=trigger.dataset.playerProfile.split(':');
+ const target=kind==='fantasy'?{fantasyId:id}:{playerCode:id};
+ const player=resolve(target);if(!player)return;
+ event.preventDefault();
+ event.stopPropagation();
+ const modal=document.getElementById('playerModal');
+ if(trigger.matches('[data-market-player],[data-pop-player],.pop-player,.fc-media,.fc-name'))window.playerToolSelection?.set(player.name);
+ if(!modal.open)origin={trigger,top:window.scrollY,left:window.scrollX,tab:trigger.closest('.tab')};
+ window.showPlayer(target,trigger.dataset.profileCompact==='true');
+},true);
+document.getElementById('playerModal')?.addEventListener('close',()=>{
+ if(!origin)return;
+ const {trigger,tab,top,left}=origin;origin=null;
+ const replacement=trigger.isConnected?trigger:[...tab?.querySelectorAll('[data-player-profile]')||[]].find(b=>b.dataset.playerProfile===trigger.dataset.playerProfile&&b.getClientRects().length);
+ replacement?.focus({preventScroll:true});
+ window.scrollTo({top,left,behavior:'instant'});
+});
 document.addEventListener('error',event=>{
  if(event.target.matches?.('.pa-identity img'))event.target.remove();
 },true);
-function create(host,{metrics,rows,team=()=>'',initial=Object.keys(metrics)[0],format=value,renderComparison,renderRanking,marketStyle=false}){
+function create(host,{metrics,rows,team=()=>'',initial=Object.keys(metrics)[0],format=value,renderComparison,renderRanking}){
  let metric=initial,mode='detail',sort='metric',cap='',limit=40,picks=[];
  const measure=()=>Object.keys(metrics).length>1?`<label>מדד<select data-pa-metric>${Object.entries(metrics).map(([key,label])=>`<option value="${esc(key)}" ${key===metric?'selected':''}>${esc(label)}</option>`).join('')}</select></label>`:'';
  function render(){
@@ -32,7 +103,7 @@ function create(host,{metrics,rows,team=()=>'',initial=Object.keys(metrics)[0],f
    picks=selected.map(p=>String(p.id));
    host.innerHTML=`<div class="pa-controls">${measure()}<label>הוסף להשוואה<select data-pa-add ${picks.length>=4?'disabled':''}><option value="">בחר שחקן מהרשימה</option>${byPrice.filter(r=>!picks.includes(String(r.id))).map(r=>`<option value="${esc(r.id)}">${esc(r.name)} · ${esc(r.team)} · ${value(r.price)} CR</option>`).join('')}</select></label></div>
     <div class="pa-picks">${selected.map(r=>`<button type="button" data-pa-remove="${esc(r.id)}" aria-label="הסר ${esc(r.name)}"><bdi>${esc(r.name)}</bdi> ×</button>`).join('')}</div>
-    ${selected.length?(renderComparison?'<div class="pc-chart" data-pa-comparison></div>':marketStyle?comparisonCards(selected):table(selected)):'<p class="muted">בחר עד ארבעה שחקנים. אפשר לבחור שחקנים מקבוצות שונות.</p>'}`;
+    ${selected.length?(comparisonCards(selected)+(renderComparison?'<div class="pc-chart" data-pa-comparison></div>':'')):'<p class="muted">בחר עד ארבעה שחקנים. אפשר לבחור שחקנים מקבוצות שונות.</p>'}`;
    if(selected.length&&renderComparison)renderComparison(host.querySelector('[data-pa-comparison]'),selected);
    return;
   }
@@ -49,7 +120,7 @@ function create(host,{metrics,rows,team=()=>'',initial=Object.keys(metrics)[0],f
   return `<div class="pa-compare-list" aria-label="${esc(metrics[metric])}">${selected.map(r=>{
    const n=r.values[metric];
    const bar=Number.isFinite(n)?`<span class="pa-compare-track" aria-hidden="true"><i style="width:${Math.abs(n)/maximum*100}%" data-negative="${n<0}"></i></span>`:'';
-   return `<article class="pa-compare-card">${identity(r)}<span class="pa-compare-value"><small>${esc(metrics[metric])}</small><strong><bdi>${esc(format(n,metric))}</bdi></strong><small><bdi>${value(r.price)} CR</bdi></small></span>${bar}</article>`;
+   return `<article class="pa-compare-card">${identity(r)}<span class="pa-compare-value"><small>${esc(metrics[metric])}</small><strong data-tone="${n<0?'negative':''}"><bdi>${esc(format(n,metric))}</bdi></strong><small><bdi>${value(r.price)} CR</bdi></small></span>${bar}</article>`;
   }).join('')}</div>`;
  }
  function rankingTable(ranked){
@@ -58,7 +129,7 @@ function create(host,{metrics,rows,team=()=>'',initial=Object.keys(metrics)[0],f
   return renderRanking?`<details data-pa-ranking-table><summary>טבלת דירוג מלאה</summary>${content}</details>`:content;
  }
  function table(list){
-  return `<div class="pa-table-wrap"><table class="pa-table"><thead><tr><th scope="col">שחקן</th><th scope="col">${esc(metrics[metric])}</th><th scope="col">קרדיט</th></tr></thead><tbody>${list.map(r=>`<tr><th scope="row"><bdi>${esc(r.name)}</bdi><small>${esc(r.team)}</small></th><td dir="ltr">${esc(format(r.values[metric],metric))}</td><td dir="ltr">${value(r.price)}</td></tr>`).join('')}</tbody></table></div>`;
+  return `<div class="pa-table-wrap"><table class="pa-table"><thead><tr><th scope="col">שחקן</th><th scope="col">${esc(metrics[metric])}</th><th scope="col">קרדיט</th></tr></thead><tbody>${list.map(r=>`<tr><th scope="row">${identity(r)}</th><td dir="ltr" class="pa-rank-value" data-tone="${r.values[metric]<0?'negative':''}">${esc(format(r.values[metric],metric))}</td><td dir="ltr"><bdi class="pa-credit">${Number.isFinite(r.price)?value(r.price)+' CR':'—'}</bdi></td></tr>`).join('')}</tbody></table></div>`;
  }
  host.addEventListener('click',e=>{
   const button=e.target.closest('button');if(!button)return;
@@ -102,5 +173,5 @@ function mount(section,anchor,output,details,config){
  });
  return ui;
 }
-window.PlayerAnalysis={create,mount,identity,profile};
+window.PlayerAnalysis={create,mount,identity,profile,metrics,source,resolve,open,control,attrs};
 })();

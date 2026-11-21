@@ -23,7 +23,7 @@ const option=(value,name)=>new Option(name,value);
 const empty=message=>'<p class="dna-empty">'+esc(message)+'</p>';
 let model=null,fixtures=[],pending=null,lastLoad=0;
 let teamGames=[],teamGame='',playerGame='',playerView='profile',manualPlayer=false;
-let playerPhotos={},clubCrests=new Map(),playerVenue='all';
+let clubCrests=new Map(),playerVenue='all';
 let playerAnalysisCache;
 
 async function json(path,force=false){
@@ -43,10 +43,10 @@ function roster(history,market){
   const current=match&&(marketTeam===p.team||!p.games.some(g=>g.team===marketTeam))?match:null;
   const team=current?marketTeam:p.team;
   if(match)seen.add(match);
-  return {...p,name:current?.name||labelName(p.name),team,position:current?.pos||toPosition[p.position]||p.position,
+  return {...p,fantasy_id:current?.fantasy_id,name:current?.name||labelName(p.name),team,position:current?.pos||toPosition[p.position]||p.position,
    price:match?.price,seasonGames:p.games,games:p.games.filter(g=>g.team===team)};
  });
- for(const p of listed)if(!seen.has(p))records.push({id:'market-'+p.fantasy_id,name:p.name,team:canonicalTeam(p.team),
+ for(const p of listed)if(!seen.has(p))records.push({id:'market-'+p.fantasy_id,fantasy_id:p.fantasy_id,name:p.name,team:canonicalTeam(p.team),
   position:p.pos,price:p.price,seasonGames:[],games:[]});
  return records.sort((a,b)=>(b.price||0)-(a.price||0)||a.name.localeCompare(b.name));
 }
@@ -192,10 +192,10 @@ async function load(force=false){
  }
  pending=(async()=>{
   try{
-   const [official,events,schedule,market,media,teamEvents,dnaEvents]=await Promise.all([
+   const [official,events,schedule,market,teamEvents,dnaEvents]=await Promise.all([
     json('official-offense.json',force),json('advanced-players.json',force).catch(()=>null),
     json('context/E2026-schedule.json').catch(()=>null),json('players.json',force).catch(()=>null),
-    json('player-media.json').catch(()=>null),json('team-dna-events.json',force).catch(()=>null),
+    json('team-dna-events.json',force).catch(()=>null),
     json('player-dna-events.json',force).catch(()=>null)
    ]);
    if(official.season!==C.season||!official.players||!official.teamResults?.length)throw Error('No season data');
@@ -208,7 +208,6 @@ async function load(force=false){
    const dna=M.seasonContext({...official,teamResults:official.teamResults.map(g=>({...g,neutral:neutral.has(String(g.gameCode))}))},events,Date.now(),{dnaEvents});
    model={...built,players:roster(built.players,market),dna};
    playerAnalysisCache=null;
-   if(media?.season===C.season)playerPhotos=media.players||{};
    for(const g of schedule?.data||[]){
     for(const club of [g.local?.club,g.road?.club]){
      if(club?.name&&club.images?.crest)clubCrests.set(canonicalTeam(club.name),club.images.crest);
@@ -265,10 +264,10 @@ function playerProfile(record,games,tags=[]){
  const crest=clubCrests.get(record.team);
  return `<section class="dna-profile dna-player-profile">
   <div class="dna-player-hero">
-   <div class="dna-player-photo">${portrait(record.name,playerPhotos[C.key(record.name)]?.photo,'player')}</div>
+   <div class="dna-player-photo">${window.PlayerAnalysis.control(record,portrait(record.name,playerCardProfile(record)?.photo,'player'))}</div>
    <div class="dna-player-card">
     <div class="dna-player-club">${crest?portrait(record.team,crest,'club'):''}<span><bdi>${esc(record.team)}</bdi>${position?' · '+position:''}</span></div>
-    <h3><bdi>${esc(record.name)}</bdi></h3>
+    <h3>${window.PlayerAnalysis.control(record,`<bdi>${esc(record.name)}</bdi>`)}</h3>
     <dl class="dna-headline-stats">${stats.map(([label,value,kind])=>`<div${kind?' class="dna-stat-price"':''}>
      <dt>${label}</dt><dd><bdi>${esc(value)}</bdi></dd></div>`).join('')}</dl>
    </div>
@@ -326,8 +325,11 @@ function teamMetricTable(title,description,rows,id='dnaTeamMetricsTitle',columnH
  </section>`;
 }
 function comparisonHeader(kicker,own,other,fixture){
- const identity=({name,image,kind,caption})=>`<div class="dna-identity">
-  ${kind?portrait(name,image,kind):''}<div><h3><bdi>${esc(name)}</bdi></h3>${caption?`<p>${esc(caption)}</p>`:''}</div></div>`;
+ const identity=({name,image,kind,caption,record})=>{
+  const visual=kind?portrait(name,image,kind):'';
+  const label=`<bdi>${esc(name)}</bdi>`;
+  return `<div class="dna-identity">${record?window.PlayerAnalysis.control(record,visual):visual}<div><h3>${record?window.PlayerAnalysis.control(record,label):label}</h3>${caption?`<p>${esc(caption)}</p>`:''}</div></div>`;
+ };
  return `<section class="dna-profile">
   <span class="dna-kicker">${kicker}</span>
   <div class="dna-team-pair">${identity(own)}<span class="dna-versus">מול</span>${identity(other)}</div>
@@ -439,7 +441,7 @@ function defenseComparison(record,games,stats,opponent,{allowed,count,benchmarks
   return `<details class="dna-row dna-defense-row" data-metric="${id}"><summary><div class="dna-values dna-pair">${own}${other}</div></summary><p><b>${esc(ownLabel)}:</b> ${esc(ownHelp)}<br><b>${esc(label)}:</b> ${esc(help)} · ${esc(sources[source])}</p></details>`;
  });
  const header=comparisonHeader(history?'משחק עבר · 2026/27':'היריבה הבאה',
-  {name:record.name,image:playerPhotos[C.key(record.name)]?.photo,kind:'player',caption:history?'ביצוע במשחק':games.length+' הופעות בטווח'},
+  {name:record.name,record,image:playerCardProfile(record)?.photo,kind:'player',caption:history?'ביצוע במשחק':games.length+' הופעות בטווח'},
   {name:opponent,image:clubCrests.get(opponent),kind:'club',caption:count+(history?' משחקים לפני המפגש':' משחקים בטווח')},fixture);
  const title=history?'ביצוע בפועל מול דנ״א ההגנה':'מה ההגנה מאפשרת מול נתוני השחקן';
  const description=history

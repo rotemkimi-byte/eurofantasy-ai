@@ -34,7 +34,6 @@ const syncRange=window.PerformanceControls.mount(section,$('usRange'));
 window.PerformanceControls.styleButtons(section.querySelector('.us-switch'),'data-us-view');
 window.PerformanceControls.styleButtons(section.querySelector('#usRankingPanel .pa-sort'),'data-us-sort');
 const comparison=window.PlayerAnalysis.create($('usComparePanel'),{
- marketStyle:true,
  metrics:{regular:'Usage רגיל',combined:'Usage כולל · אמיתי'},
  rows:()=>data?records.map(p=>{
   const s=U.summarize(U.selectGames(data.players[p.id],$('usRange').value));
@@ -58,7 +57,7 @@ function options(){
  const selected=$('usPlayer').value,oldTeam=$('usTeam').value,byKey=new Map();
  for(const p of marketRows())if(['G','F','C'].includes(p.pos)&&U.key(p))byKey.set(U.key(p),{...p,team:team(p.team),id:U.key(p),price:U.num(p.price)});
  for(const [id,p] of Object.entries(data?.players||{}))if(!byKey.has(id)){
-  const latest=U.selectGames(p,'1')[0];byKey.set(id,{id,name:p.name,team:team(latest?.team)||'',price:null,pos:({1:'G',2:'F',3:'C'})[latest?.position]||''});
+  const latest=U.selectGames(p,'1')[0];byKey.set(id,{id,playerCode:p.playerCode,name:p.name,team:team(latest?.team)||'',price:null,pos:({1:'G',2:'F',3:'C'})[latest?.position]||''});
  }
  records=[...byKey.values()].sort((a,b)=>(b.price??-Infinity)-(a.price??-Infinity)||a.name.localeCompare(b.name));
  const teams=[...new Set(records.map(p=>p.team).filter(Boolean))].sort();
@@ -71,11 +70,6 @@ function options(){
 function clubKit(t){return (typeof TEAM_KITS==='undefined'?null:TEAM_KITS[t])||['—','#536783','#fff'];}
 function clubCrest(t){return typeof playerCardCrests==='undefined'?null:playerCardCrests.get(t);}
 function image(url){return url?`<img src="${esc(url)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">`:'';}
-function portrait(p){
- const media=typeof playerCardProfile==='function'?playerCardProfile(p):null;
- const photo=typeof playerCardImageUrl==='function'?playerCardImageUrl(media?.photo):null;
- return `<span class="us-portrait" aria-hidden="true" style="--us-club:${clubKit(p.team)[1]}">${typeof squadJersey==='function'?squadJersey(p):''}${image(photo)}</span>`;
-}
 function meter(value,max=100){
  return value===null?'':`<span class="us-meter" aria-hidden="true"><i style="--us-fill:${Math.max(0,Math.min(100,value/max*100))}%"></i></span>`;
 }
@@ -117,9 +111,10 @@ function renderRanking(){
   const coverage=smallSample?'מדגם קטן':p.value===null?(p.stats.dnp&&!p.stats.played?'לא שיחק':'אין מדד זמין'):'';
   return `<tr data-us-row="${esc(p.id)}" class="${selected?'us-selected':''}">
    <td><span class="us-rank">${p.value===null?'—':i+1}</span></td>
-   <td><button type="button" class="us-player-link" data-us-player="${esc(p.id)}" aria-pressed="${selected}">
-    ${portrait(p)}<span class="us-ranking-identity"><bdi>${esc(name(p.name))}</bdi><small>${esc(p.team)} · ${esc(p.pos||'עמדה לא ידועה')}${p.price===null?'':' · '+fmt(p.price)+' CR'}</small></span>
-   </button></td>
+   <td><div class="us-ranking-player">${window.PlayerAnalysis.identity({...p,name:name(p.name)})}
+   <span class="us-ranking-meta">${p.price===null?'':`<bdi class="pa-credit">${fmt(p.price)} CR</bdi>`}<small>${esc(p.pos||'עמדה לא ידועה')}</small>
+    <button type="button" data-us-player="${esc(p.id)}" aria-pressed="${selected}" aria-label="בחר ${esc(name(p.name))}">בחר</button></span>
+   </div></td>
    <td><strong dir="ltr">${pct(p.value)}</strong>${meter(p.value,max)}${current.missing?'<small>חלקי</small>':''}</td>
    <td><bdi>${fmt(minutes)}</bdi></td>
    <td>${current.covered}${coverage?`<small>${esc(coverage)}</small>`:''}</td>
@@ -129,7 +124,7 @@ function renderRanking(){
 function highlightSelection(){
  for(const row of $('usRanking').querySelectorAll('[data-us-row]')){
   const active=row.dataset.usRow===$('usPlayer').value;
-  row.classList.toggle('us-selected',active);row.querySelector('button').setAttribute('aria-pressed',String(active));
+  row.classList.toggle('us-selected',active);row.querySelector('[data-us-player]').setAttribute('aria-pressed',String(active));
  }
 }
 const metricTitle=()=>metric==='regular'?'Usage רגיל':'Usage כולל · אמיתי';
@@ -165,18 +160,12 @@ function render(updateRanking=true){
   ['איבודים · סה״כ',stats.turnovers],
   ...(metric==='combined'?[['אסיסטים · סה״כ',stats.assists]]:[])
  ];
- const [,color,ink]=clubKit(p.team);
- $('usResult').innerHTML=`<article class="us-player-card" style="--us-club:${color};--us-ink:${ink}">
-  <div class="us-score">
-   ${portrait(p)}
-   <div class="us-identity"><b><bdi>${esc(name(p.name))}</bdi></b>
-    <span class="us-club">${image(clubCrest(p.team))}<bdi>${esc(p.team||'קבוצה לא זמינה')}</bdi></span>
-    <span class="us-player-meta">${p.pos?`<bdi>${esc(p.pos)}</bdi>`:''}${p.price===null?'':`<bdi>${fmt(p.price)} CR</bdi>`}</span>
-   </div>
-   <div class="us-value"><span>${metricTitle()}</span><strong><bdi>${pct(current.value)}</bdi></strong>${meter(current.value)}</div>
-  </div>
-  <dl class="us-metrics">${metrics.map(([label,n])=>`<div><dt>${label}</dt><dd><bdi>${fmt(n)}</bdi></dd></div>`).join('')}</dl>
-  <div class="us-sample">${esc(reason)}</div>
+ $('usResult').innerHTML=`<article class="us-player-card pa-report">
+  ${window.PlayerAnalysis.profile({...p,name:name(p.name)},{
+   stat:p.price===null?'':`<bdi class="pa-credit">${fmt(p.price)} CR</bdi>`,
+   meta:[p.pos,stats.played+' הופעות',reason].filter(Boolean).map(esc).join(' · ')
+  })}
+  ${window.PlayerAnalysis.metrics([[metricTitle(),pct(current.value)],...metrics.map(([label,n])=>[label,fmt(n)])],2)}
  </article>`;
  $('usGames').innerHTML=games.map(gameCard).join('');
 }
