@@ -48,15 +48,16 @@ function metrics(s,isTeam){const items=[['ניסיונות למשחק',fmt(s.fta
  return root.PlayerAnalysis.metrics(items);}
 for(const isTeam of [false,true]){
  const id=isTeam?'teamFreeThrows':'playerFreeThrows',button=document.createElement('button');button.dataset.tab=id;button.textContent='עונשין';document.querySelector('.tabs').append(button);
- const ranking=`<label>${isTeam?'דירוג מהגבוה לנמוך לפי':'מיון הכרטיסים'}<select data-sort><option value="fta">ניסיונות עונשין למשחק</option><option value="ftm">קליעות עונשין למשחק</option><option value="pct">אחוזי דיוק</option><option value="fouls">עבירות שסחט</option>${isTeam?'<option value="opponentFouls">עבירות שיריבות סחטו</option>':'<option value="foulsCommitted">עבירות שביצע</option>'}</select></label><div class="ft-records" data-ranking></div><button data-more hidden>הצג עוד</button>`;
- const section=document.createElement('section');section.id=id;section.className='tab ft-screen';section.innerHTML=`<div class="card"><div class="sectionHead"><h3>עונשין · ${isTeam?'קבוצות':'שחקנים'}</h3><button data-reload>רענן</button></div>${isTeam?'':'<div class="player-picker-modes" role="group" aria-label="אופן בחירת שחקן"><button data-scope="all" aria-pressed="true">כל השחקנים · לפי מחיר</button><button data-scope="team" aria-pressed="false">לפי קבוצה</button></div>'}<div class="ft-controls player-picker-controls"><label data-team-label hidden>קבוצה<select data-team></select></label>${isTeam?'<label>חיפוש קבוצה<input type="search" data-search placeholder="שם קבוצה"></label>':''}<label>${isTeam?'בחר קבוצה':'בחר שחקן · לפי מחיר'}<select data-entity><option value="">בחר מהרשימה</option></select></label><label>טווח הנתונים<select data-range>${Object.entries(ranges).map(([v,l])=>`<option value="${v}" ${v==='1'?'selected':''}>${l}</option>`).join('')}</select></label></div><p class="ft-status" role="status"></p><div class="ft-detail" data-detail></div>${isTeam?`<details data-league open><summary>כל הקבוצות · לחץ לבחירה</summary>${ranking}</details>`:`<div data-league>${ranking}</div>`}<details class="pa-disclosure" data-disclosure="help"><summary>הסבר המדדים</summary><p>ניסיונות וקליעות הם ממוצעים למשחק עם נתון זמין. דיוק מחושב מסך הקליעות חלקי סך הניסיונות. עבירות שסחט כוללות גם עבירות שלא הובילו לזריקות. אי־השתתפות אינה אפס ואינה נכנסת לממוצע. הטווח מבוסס על הרישומים האחרונים; בפירוט לפי יריבה נבחרים המשחקים האחרונים מולה.</p></details></div>`;document.querySelector('main').append(section);
+ const section=document.createElement('section');section.id=id;section.className='tab ft-screen';section.innerHTML=`<div class="card"><div class="sectionHead"><h3>עונשין · ${isTeam?'קבוצות':'שחקנים'}</h3><button data-reload>רענן</button></div>${isTeam?'':'<div class="player-picker-modes" role="group" aria-label="אופן בחירת שחקן"><button data-scope="all" aria-pressed="true">כל השחקנים · לפי מחיר</button><button data-scope="team" aria-pressed="false">לפי קבוצה</button></div>'}<div class="ft-controls player-picker-controls"><label data-team-label hidden>קבוצה<select data-team></select></label>${isTeam?'<label>חיפוש קבוצה<input type="search" data-search placeholder="שם קבוצה"></label>':''}<label>${isTeam?'בחר קבוצה':'בחר שחקן · לפי מחיר'}<select data-entity><option value="">בחר מהרשימה</option></select></label><label>טווח הנתונים<select data-range>${Object.entries(ranges).map(([v,l])=>`<option value="${v}" ${v==='1'?'selected':''}>${l}</option>`).join('')}</select></label></div><p class="ft-status" role="status"></p><div class="ft-detail" data-detail></div>${isTeam?`<details data-league open><summary>כל הקבוצות · לחץ לבחירה</summary>
+ <label>דירוג מהגבוה לנמוך לפי<select data-sort><option value="fta">ניסיונות עונשין למשחק</option><option value="ftm">קליעות עונשין למשחק</option><option value="pct">אחוזי דיוק</option><option value="fouls">עבירות שסחט</option><option value="opponentFouls">עבירות שיריבות סחטו</option></select></label>
+ <div class="ft-records" data-ranking></div></details>`:''}<details class="pa-disclosure" data-disclosure="help"><summary>הסבר המדדים</summary><p>ניסיונות וקליעות הם ממוצעים למשחק עם נתון זמין. דיוק מחושב מסך הקליעות חלקי סך הניסיונות. עבירות שסחט כוללות גם עבירות שלא הובילו לזריקות. אי־השתתפות אינה אפס ואינה נכנסת לממוצע. הטווח מבוסס על הרישומים האחרונים; בפירוט לפי יריבה נבחרים המשחקים האחרונים מולה.</p></details></div>`;document.querySelector('main').append(section);
  const $=s=>section.querySelector(s);
  if(isTeam)$('[data-sort]').value='opponentFouls';
  if(!isTeam)document.addEventListener('fantasy-player-media-ready',()=>{if(chosen)detail();analytics.render();});
  if(isTeam)document.addEventListener('fantasy-player-media-ready',()=>{if(data)render();});
  const summarize=games=>summary(games,isTeam),showMetrics=s=>metrics(s,isTeam);
- let records=[],chosen='',scope='all',limit=20;
- const analytics=isTeam?null:root.PlayerAnalysis.mount(section,$('.ft-controls'),$('.ft-status'),[$('[data-detail]'),$('[data-league]')],{
+ let records=[],chosen='',scope='all';
+ const analytics=isTeam?null:root.PlayerAnalysis.mount(section,$('.ft-controls'),$('.ft-status'),[$('[data-detail]')],{
   metrics:{fta:'ניסיונות למשחק',ftm:'קליעות למשחק',pct:'דיוק מהקו',fouls:'עבירות שסחט למשחק',foulsCommitted:'עבירות שביצע למשחק'},
   team:()=>scope==='team'?$('[data-team]').value:'',
   rows:()=>records.map(r=>({...r,values:summarize(select(r.games,$('[data-range]').value))})),
@@ -65,23 +66,30 @@ for(const isTeam of [false,true]){
  const syncRange=isTeam?null:window.PerformanceControls.mount(section,$('[data-range]'));
  function filtered(){const q=$('[data-search]')?.value.trim().toLowerCase();return records.filter(r=>(scope==='all'||r.team===$('[data-team]').value)&&(!q||(r.name+' '+r.team).toLowerCase().includes(q)));}
  function controls(){const old=$('[data-team]').value,teams=[...new Set(records.map(r=>r.team).filter(Boolean))].sort();$('[data-team]').innerHTML='<option value="">בחר קבוצה</option>'+teams.map(t=>`<option value="${esc(t)}">${esc(t)}</option>`).join('');if(teams.includes(old))$('[data-team]').value=old;$('[data-team-label]').hidden=isTeam||scope!=='team';const rows=filtered().sort((a,b)=>(b.price??-Infinity)-(a.price??-Infinity)||a.name.localeCompare(b.name));$('[data-entity]').innerHTML=`<option value="">${isTeam?'בחר קבוצה':'בחר שחקן'}</option>`+rows.map(r=>`<option value="${esc(r.id)}">${esc(r.name)}${!isTeam?' · '+esc(r.team)+(r.price!==null?' · '+fmt(r.price)+' CR':''):''}</option>`).join('');if(rows.some(r=>r.id===chosen))$('[data-entity]').value=chosen;section.querySelectorAll('[data-scope]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.scope===scope)));}
- function card(r){
-  if(!isTeam)return `<article class="pa-report ft-player-record">${root.PlayerAnalysis.profile(r,{
-   meta:r.s.games+' הופעות'+(r.price===null?'':` · <bdi>${fmt(r.price)} CR</bdi>`),
-   action:`<button type="button" class="ft-select-player" data-pick="${esc(r.id)}" aria-pressed="${chosen===r.id}" aria-label="בחר ${esc(r.name)}">${chosen===r.id?'✓ נבחר':'בחר'}</button>`
-  })}${showMetrics(r.s)}</article>`;
-  return `<article class="ft-record"><button class="ft-pick" data-pick="${esc(r.id)}" aria-pressed="${chosen===r.id}"><bdi>${esc(r.name)}</bdi><span>${chosen===r.id?'✓ נבחר':'בחר ←'}</span></button>${r.team?`<small>${esc(r.team)}</small>`:''}${showMetrics(r.s)}</article>`;}
  function rankingTable(rows,sort){
   const labels={opponentFouls:'עבירות שיריבות סחטו',fouls:'עבירות שסחטה',fta:'ניסיונות עונשין',ftm:'קליעות עונשין',pct:'דיוק מהקו'};
   // Five compact columns keep the ranking readable at 375px. Full metrics stay in team details.
   const extras=sort==='fta'?['ftm','pct']:sort==='pct'?['ftm','fta']:['fta','pct'],format=(v,k)=>k==='pct'?pct(v):fmt(v);
   return `<table class="fc-table"><caption>${labels[sort]} · ${sort==='pct'?'אחוזים':'ממוצע למשחק'} · מהגבוה לנמוך</caption><thead><tr><th scope="col">#</th><th scope="col">קבוצה</th><th scope="col" aria-sort="descending">${labels[sort]}${sort==='pct'?' %':' למשחק'}</th>${extras.map(extra=>`<th scope="col">${labels[extra]}${extra==='pct'?' %':' למשחק'}</th>`).join('')}</tr></thead><tbody>${rows.map((r,i)=>`<tr data-pick="${esc(r.id)}" aria-selected="${chosen===r.id}"><td>${i+1}</td><td><button type="button" class="fc-team-pick" data-pick="${esc(r.id)}" aria-pressed="${chosen===r.id}" aria-label="פרטי ${esc(r.name)}">${root.FantasyCompactUI.teamLogo(r.name)}<bdi>${esc(r.name)}</bdi></button></td><td class="fc-active"><bdi>${format(r.s[sort],sort)}</bdi></td>${extras.map(extra=>`<td><bdi>${format(r.s[extra],extra)}</bdi></td>`).join('')}</tr>`).join('')}</tbody></table>`;
  }
- function render(){syncRange?.();if(!data)return;controls();analytics?.render();const range=$('[data-range]').value,sort=$('[data-sort]').value;const rows=rank(filtered().map(r=>({...r,s:summarize(select(r.games,range))})),sort);$('[data-ranking]').innerHTML=(isTeam&&rows.length?rankingTable(rows,sort):rows.slice(0,limit).map(card).join(''))||`<p class="ft-empty">${scope==='team'&&!$('[data-team]').value?'בחר קבוצה למעלה כדי לראות את שחקניה.':'לא נמצאו תוצאות.'}</p>`;$('[data-more]').hidden=isTeam||rows.length<=limit;detail();$('.ft-status').textContent=`עונת 2026/27 · ${rows.length} ${isTeam?'קבוצות':'שחקנים'} · עודכן ${date(data.updated_at)}`;}
+ function render(){
+  syncRange?.();
+  if(!data)return;
+  controls();
+  analytics?.render();
+  const rows=filtered();
+  if(isTeam){
+   const range=$('[data-range]').value,sort=$('[data-sort]').value;
+   const ranked=rank(rows.map(r=>({...r,s:summarize(select(r.games,range))})),sort);
+   $('[data-ranking]').innerHTML=ranked.length?rankingTable(ranked,sort):'<p class="ft-empty">לא נמצאו תוצאות.</p>';
+  }
+  detail();
+  $('.ft-status').textContent=`עונת 2026/27 · ${rows.length} ${isTeam?'קבוצות':'שחקנים'} · עודכן ${date(data.updated_at)}`;
+ }
  function detail(){
   const host=$('[data-detail]'),r=records.find(r=>r.id===chosen);
   if(!r){
-   host.innerHTML=isTeam?'':`<p class="ft-empty">בחר שחקן מהרשימה למעלה או לחץ על כרטיס למטה.</p>`;
+   host.innerHTML=isTeam?'':`<p class="ft-empty">בחר שחקן מהרשימה למעלה.</p>`;
    return;
   }
   const range=$('[data-range]').value,all=select(r.games,0),rows=select(all,range),s=summarize(rows),latest=rows[0];
@@ -103,7 +111,7 @@ for(const isTeam of [false,true]){
  const shared=section.classList.contains('active')?root.playerToolSelection?.find(records):null;
  if(shared){chosen=shared.row.id;if(shared.range)$('[data-range]').value=shared.range;}
  }render();}catch{$('.ft-status').textContent='הטעינה נכשלה. לחץ על רענן כדי לנסות שוב.';}finally{$('[data-reload]').disabled=false;}}
- button.onclick=()=>{document.querySelectorAll('.tabs button,.tab').forEach(e=>e.classList.remove('active'));button.classList.add('active');section.classList.add('active');void open();};$('[data-reload]').onclick=()=>void open(true);$('[data-search]')?.addEventListener('input',()=>{limit=20;render();});$('[data-entity]').onchange=()=>choose($('[data-entity]').value);$('[data-range]').onchange=()=>{if(!isTeam)root.playerToolSelection?.set(records.find(r=>r.id===chosen)?.name,$('[data-range]').value);render();};$('[data-sort]').onchange=render;$('[data-team]').onchange=()=>{chosen='';limit=20;if(isTeam)$('[data-league]').open=true;render();};$('[data-more]').onclick=()=>{limit+=20;render();};for(const b of section.querySelectorAll('[data-scope]'))b.onclick=()=>{scope=b.dataset.scope;limit=20;render();};section.addEventListener('click',e=>{const b=e.target.closest('[data-pick]');if(b)choose(b.dataset.pick);});
+ button.onclick=()=>{document.querySelectorAll('.tabs button,.tab').forEach(e=>e.classList.remove('active'));button.classList.add('active');section.classList.add('active');void open();};$('[data-reload]').onclick=()=>void open(true);$('[data-search]')?.addEventListener('input',render);$('[data-entity]').onchange=()=>choose($('[data-entity]').value);$('[data-range]').onchange=()=>{if(!isTeam)root.playerToolSelection?.set(records.find(r=>r.id===chosen)?.name,$('[data-range]').value);render();};if(isTeam)$('[data-sort]').onchange=render;$('[data-team]').onchange=()=>{chosen='';if(isTeam)$('[data-league]').open=true;render();};for(const b of section.querySelectorAll('[data-scope]'))b.onclick=()=>{scope=b.dataset.scope;render();};section.addEventListener('click',e=>{const b=e.target.closest('[data-pick]');if(b)choose(b.dataset.pick);});
 }
 })(typeof window!=='undefined'?window:globalThis);
 

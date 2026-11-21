@@ -113,18 +113,19 @@ const server=http.createServer((req,res)=>{
    }
    await page.evaluate(()=>document.querySelector('nav.tabs [data-tab="playerFreeThrows"]').click());
    const freeThrows=page.locator('#playerFreeThrows');
-   const sort=freeThrows.locator('[data-sort]');
-   const pick=freeThrows.locator('[data-ranking] button[data-pick]').first();
-   await pick.waitFor();
-   await sort.selectOption('ftm');
-   await pick.click();
+   const picker=freeThrows.locator('[data-entity]');
+   await picker.locator('option[value]:not([value=""])').first().waitFor({state:'attached'});
+   await picker.selectOption({index:1});
    await freeThrows.locator('.ft-player-report').waitFor();
-   assert.equal(await freeThrows.locator('details[data-league], [data-disclosure=compare], [data-disclosure=games]').count(),0);
-   assert(await sort.isVisible());
-   assert(await pick.isVisible());
+   assert.equal(await freeThrows.locator('[data-sort], [data-ranking], details[data-league], [data-disclosure=compare], [data-disclosure=games]').count(),0);
    const opponent=freeThrows.locator('[data-disclosure=opponent]');
    await opponent.locator('summary').click();
    assert(await opponent.locator('.ft-record').first().isVisible());
+   await freeThrows.locator('[data-pa-view=ranking]').click();
+   assert(await freeThrows.locator('.pa-table').isVisible());
+   assert(!(await freeThrows.locator('.ft-player-report').isVisible()));
+   await freeThrows.locator('[data-pa-view=detail]').click();
+   assert(await freeThrows.locator('.ft-player-report').isVisible());
    // Open a ranked player by ID and return to the same controls and scroll position.
    await page.evaluate(()=>document.querySelector('nav.tabs [data-tab="playerPlusMinus"]').click());
    const plus=page.locator('#playerPlusMinus');
