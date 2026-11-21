@@ -1,0 +1,36 @@
+name: Refresh private demo data (test)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/refresh-private-demo.yml']
+
+permissions: {}
+
+jobs:
+  refresh:
+    if: github.repository_id == '1466932960' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare workflow reader
+        run: python -m pip install --disable-pip-version-check PyYAML==6.0.2
+      - uses: actions/checkout@v4
+        with:
+          repository: rotemkimi-byte/eurofantasy-ai-dev-test
+          ref: main
+          path: private
+          token: ${{ secrets.DEV_REPOSITORY_TOKEN }}
+          fetch-depth: 0
+      - name: Run actual five-minute calculation in private workspace
+        working-directory: private
+        env:
+          FANTASY_TOKEN: ${{ secrets.FANTASY_TOKEN }}
+        run: python automation/run_legacy_task.py fast-live-sync
