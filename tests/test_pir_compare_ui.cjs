@@ -91,8 +91,8 @@ for(const width of [320,375,390,430,660,1280]){
 for(const theme of ['light','dark']){
  await page.locator('html').evaluate((el,value)=>el.dataset.theme=value,theme);
  for(const [selector,color] of [
-  ['[data-pir-range][aria-pressed=true]','rgb(33, 75, 135)'],
-  ['[data-pir-scope][aria-pressed=true]','rgb(89, 52, 141)'],
+  ['[data-pir-range][aria-pressed=true]','rgb(89, 52, 141)'],
+  ['[data-pir-scope][aria-pressed=true]','rgb(33, 75, 135)'],
   ['[data-pir-mode=compare]','rgb(163, 68, 13)']
  ]){
   const button=page.locator(selector);
