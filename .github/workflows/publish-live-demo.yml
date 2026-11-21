@@ -2,6 +2,9 @@ name: Publish fresh public demo from private source
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/publish-live-demo.yml']
   workflow_run:
     workflows: ["Refresh private demo data (test)","Verify remaining private data jobs (test)","EuroFantasy scheduled backtest","EuroFantasy scheduled fantasy.sync","EuroFantasy scheduled fast-live-sync","EuroFantasy scheduled install-fantasy-learning","EuroFantasy scheduled install-matchup-context","EuroFantasy scheduled install-rolling-learning","EuroFantasy scheduled install-round-lab","EuroFantasy scheduled matchups-live","EuroFantasy scheduled official-offense","EuroFantasy scheduled position-matchups-live","EuroFantasy scheduled recent-form-2026-27-only","EuroFantasy scheduled roster-sync"]
     types: [completed]
@@ -15,7 +18,7 @@ concurrency:
 
 jobs:
   build:
-    if: github.repository_id == '1466932960' && (github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.id == 1466932960 && github.event.workflow_run.head_branch == 'main' && (github.repository == 'rotemkimi-byte/eurofantasy-ai' || github.event.workflow_run.name == 'Refresh private demo data (test)' || github.event.workflow_run.name == 'Verify remaining private data jobs (test)'))) && github.ref == 'refs/heads/main'
+    if: github.repository_id == '1466932960' && (github.event_name == 'workflow_dispatch' || github.event_name == 'push' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.id == 1466932960 && github.event.workflow_run.head_branch == 'main' && (github.repository == 'rotemkimi-byte/eurofantasy-ai' || github.event.workflow_run.name == 'Refresh private demo data (test)' || github.event.workflow_run.name == 'Verify remaining private data jobs (test)'))) && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
