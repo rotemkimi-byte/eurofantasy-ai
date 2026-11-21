@@ -195,7 +195,7 @@ window.showPlayer=function(target){
  if(window.FantasyWatchlist&&!player.officialOnly){
   paintWatch();
   watch.onclick=()=>{if(!window.FantasyWatchlist.toggle(player))watch.textContent='השמירה נכשלה · נסה שוב';};
-  hero.querySelector('.ef-player-identity > div:last-child').append(watch);
+  if(!compactMarket)hero.querySelector('.ef-player-identity > div:last-child').append(watch);
   watch.setAttribute('data-watch-toggle','');
   watch.addEventListener('watchlist-change',paintWatch);
  }
@@ -204,6 +204,7 @@ window.showPlayer=function(target){
  for(const [id,label] of Object.entries(labels)){const pane=document.createElement('section');pane.id='efPane-'+id;pane.className='ef-player-pane';pane.setAttribute('role','tabpanel');pane.setAttribute('aria-labelledby','efTab-'+id);pane.hidden=id!=='overview';panes[id]=pane;tabs.insertAdjacentHTML('beforeend',`<button type="button" role="tab" id="efTab-${id}" aria-controls="efPane-${id}" aria-selected="${id==='overview'}" tabindex="${id==='overview'?0:-1}" data-player-tab="${id}">${label}</button>`);}
  for(const child of [...body.children])if(child!==hero)panes.overview.append(child);
  const actual=panes.overview.querySelector('.actual-results');if(actual){const details=document.createElement('details');details.className='ef-extra-stats pa-disclosure';details.dataset.disclosure='games';details.innerHTML='<summary>נתונים נוספים ושינויי קרדיט</summary>';details.append(actual);panes.games.append(details);}
+ if(compactMarket&&watch.hasAttribute('data-watch-toggle'))body.append(watch);
  body.append(tabs);
  const controls=document.createElement('div');controls.className='ef-chart-ranges';controls.setAttribute('role','group');controls.setAttribute('aria-label','טווח נתוני השחקן');controls.innerHTML=[['1','אחרון'],['3','3 משחקים'],['0','עונה']].map(([n,l])=>`<button type="button" data-range="${n}" aria-pressed="${n==='0'}">${l}</button>`).join('');body.append(controls);
  const status=document.createElement('p');status.className='ef-data-status muted';status.setAttribute('role','status');status.textContent='טוען נתוני משחק מאומתים…';body.append(status,...Object.values(panes));

@@ -552,6 +552,8 @@ async function fillLastThreeGames(name,card){
 window.showPlayer=function(target,compactMarket=false){
   const p=window.PlayerAnalysis.resolve(target);if(!p)return;
   const name=p.name;
+  playerModal.querySelector('.close').textContent=compactMarket&&!p.officialOnly
+   ?'‹ חזרה לרשימת השחקנים':'‹ חזרה';
   if(p.officialOnly){
    const body=document.getElementById('modalBody');
    body.classList.remove('ef-market-player');
@@ -577,7 +579,7 @@ window.showPlayer=function(target,compactMarket=false){
   :'<p class="muted">אין עדיין נתוני משחק מאומתים לעונת 2026/27.</p>';
   const body=document.getElementById("modalBody");
   body.classList.toggle("ef-market-player",compactMarket);
-  body.innerHTML=`<div class="ef-player-hero"><div class="ef-player-identity"><div class="ef-player-avatar" aria-hidden="true">${esc(p.name.split(/\s+/).filter(Boolean).slice(0,2).map(s=>s[0]).join(''))}</div><div><h2 dir="auto">${esc(p.name)}</h2><p>${esc(p.team)} • ${esc(p.pos)} • ${esc(statusText(p.status))}</p></div></div><div class="ef-player-stats">${window.PlayerAnalysis.metrics([
+  body.innerHTML=`<div class="ef-player-hero"><div class="ef-player-identity"><div class="ef-player-avatar" aria-hidden="true">${esc(p.name.split(/\s+/).filter(Boolean).slice(0,2).map(s=>s[0]).join(''))}</div><div><h2 dir="auto">${esc(p.name)}</h2><p><bdi>${esc(compactMarket?p.pos:p.team)}</bdi> • <bdi>${esc(compactMarket?p.team:p.pos)}</bdi> • ${esc(statusText(p.status))}</p></div></div><div class="ef-player-stats">${window.PlayerAnalysis.metrics([
    ['מחיר נוכחי · קרדיט',n1(p.price)],
    ['PIR במשחק האחרון',hasCurrent&&recent.lastGame?.pir!=null?n1(recent.lastGame.pir):'—'],
    ['דקות במשחק האחרון',hasCurrent&&recent.lastGame?.minutes!=null?n1(recent.lastGame.minutes):'—'],
@@ -2560,7 +2562,7 @@ for (const id of ['data', 'learning']) {
 <script src="./usage-core.js?v=2"></script><script src="./usage-ui.js?v=statistics-1"></script>
 <script src="./defense-core.js?v=2"></script><script src="./defense-ui.js?v=statistics-1"></script>
 <script src="./team-metrics-core.js?v=1"></script><script src="./team-metrics-ui.js?v=game-cards-1"></script>
-<link rel="stylesheet" href="./app-design.css?v=statistics-1">
+<link rel="stylesheet" href="./app-design.css?v=market-profile-1">
 <script src="./surprises.js?v=compact-3"></script>
 <script src="./free-throws.js?v=statistics-1"></script>
 <script src="./pir-compare.js?v=statistics-1"></script>
@@ -2586,7 +2588,7 @@ for (const id of ['data', 'learning']) {
 <script src="./component-forecast.js?v=scouting-1"></script>
 <script src="./app-navigation.js?v=watchlist-1"></script>
 <script src="./watchlist.js?v=scouting-1"></script>
-<script src="./app-player.js?v=statistics-1"></script>
+<script src="./app-player.js?v=market-profile-1"></script>
 <link rel="stylesheet" href="./home-dashboard.css?v=nav-pinned-2">
 <script src="./home-dashboard.js?v=reference-5"></script>
 <style id="market-reference-design">

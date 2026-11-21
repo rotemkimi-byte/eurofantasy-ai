@@ -70,7 +70,27 @@ assert.match(await page.locator('#playerModal .close').textContent(),/חזרה/)
 
 if(process.env.MEDIA_FIXTURE)await page.locator('.ef-player-avatar img').waitFor();
 if(process.env.SCREENSHOT_DIR)await page.screenshot({path:path.join(process.env.SCREENSHOT_DIR,'player-dashboard-mobile.png')});
-await page.locator('#playerModal .close').click();await page.locator('#themeToggle').click();await open('Sasha Vezenkov');await page.locator('[data-player-tab=defense]').click();if(process.env.SCREENSHOT_DIR)await page.screenshot({path:path.join(process.env.SCREENSHOT_DIR,'player-defense-dark.png')});
+await page.locator('#playerModal .close').click();
+await page.evaluate(()=>window.showPlayer('Elijah Bryant',true));
+const marketProfile=page.locator('#modalBody.ef-market-player');
+const marketStats=marketProfile.locator('.ef-player-stats .pa-metrics > div');
+await marketStats.locator('dt').filter({hasText:'ממוצע נקודות'}).waitFor();
+const back=page.getByRole('button',{name:/חזרה לרשימת השחקנים/});
+assert(await back.isVisible());
+assert(await marketProfile.locator(':scope > .ef-player-watch').isVisible());
+for(const width of [320,390,650]){
+ await page.setViewportSize({width,height:844});
+ const layout=await marketStats.evaluateAll(cells=>cells.map(el=>({
+  top:el.getBoundingClientRect().top,right:el.getBoundingClientRect().right,
+  surface:getComputedStyle(el).backgroundColor, labelBeforeValue:el.querySelector('dt').getBoundingClientRect().bottom<=el.querySelector('dd').getBoundingClientRect().top,
+  fits:el.scrollWidth<=el.clientWidth+1
+ })));
+ assert.equal(layout.length,4);
+ assert(layout.every((cell,i)=>cell.top===layout[0].top&&cell.surface==='rgba(0, 0, 0, 0)'&&cell.labelBeforeValue&&cell.fits&&(!i||cell.right<layout[i-1].right)),JSON.stringify(layout));
+}
+await page.setViewportSize({width:390,height:844});
+await back.click();
+await page.locator('#themeToggle').click();await open('Sasha Vezenkov');await page.locator('[data-player-tab=defense]').click();if(process.env.SCREENSHOT_DIR)await page.screenshot({path:path.join(process.env.SCREENSHOT_DIR,'player-defense-dark.png')});
 // Rapid player switching cannot paint an earlier player's identity into the next card.
 await page.evaluate(()=>{showPlayer('Elijah Bryant');showPlayer('Sasha Vezenkov');});await page.locator('.ef-overview-data .ef-game-card').first().waitFor();assert((await page.locator('.ef-player-identity h2').textContent()).includes('Vezenkov'));
 await page.setViewportSize({width:1280,height:900});if(process.env.SCREENSHOT_DIR)await page.screenshot({path:path.join(process.env.SCREENSHOT_DIR,'player-dashboard-desktop.png')});assert.deepEqual(errors,[]);

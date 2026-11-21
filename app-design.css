@@ -195,6 +195,54 @@ html.ef-redesign #playerModal .ef-player-modal-toolbar .close{
  }
 }
 
+/* The market profile presents its four headline numbers inside the identity card. */
+html.ef-redesign #playerModal:has(.ef-market-player) .ef-player-modal-toolbar .close:focus-visible{
+ outline:2px solid #087e60;outline-offset:3px;
+}
+.ef-market-player.ef-dashboard .ef-player-hero{
+ background:linear-gradient(125deg,#076a53,#112231 78%);
+ padding:clamp(12px,3.5vw,18px);
+}
+.ef-market-player.ef-dashboard .ef-player-identity{
+ gap:clamp(8px,2.6vw,14px);margin-bottom:12px;
+}
+.ef-market-player.ef-dashboard .ef-player-avatar{
+ flex-basis:clamp(48px,16vw,76px);height:clamp(48px,16vw,76px);
+ border:2px solid #35d6a4;
+}
+html.ef-redesign .ef-market-player.ef-dashboard .ef-player-identity h2{
+ padding:0;font-size:clamp(18px,5.5vw,28px);text-align:center;
+}
+.ef-market-player.ef-dashboard .ef-player-identity p{
+ padding:0;font-size:clamp(11px,2.9vw,14px);
+}
+.ef-market-player.ef-dashboard .ef-player-fixtures{font-size:clamp(10px,2.7vw,13px)}
+.ef-market-player.ef-dashboard .ef-player-fixtures li{white-space:normal}
+.ef-market-player .ef-player-stats .pa-stat-panel{
+ margin:0;padding-top:11px;border-top:1px solid #ffffff29;
+ border-radius:0;background:transparent;
+}
+.ef-market-player .ef-player-stats .pa-metrics{
+ grid-template-columns:repeat(4,minmax(0,1fr));
+ gap:0;border-radius:0;background:transparent;overflow:visible;
+}
+#modalBody.ef-market-player .ef-player-stats .pa-metrics>div{
+ grid-column:auto;flex-direction:column;justify-content:space-between;
+ align-items:stretch;gap:4px;padding:0 clamp(3px,1.4vw,10px);
+ background:transparent;border-inline-start:1px solid #ffffff29;
+}
+#modalBody.ef-market-player .ef-player-stats .pa-metrics>div:first-child{
+ border-inline-start:0;padding-inline-start:0;
+}
+#modalBody.ef-market-player .ef-player-stats .pa-metrics>div:last-child{padding-inline-end:0}
+.ef-market-player .ef-player-stats .pa-metrics dt{
+ color:#c9e3dc;font-size:clamp(10px,2.7vw,13px);font-weight:500;
+}
+.ef-market-player .ef-player-stats .pa-metrics dd{
+ font-size:clamp(19px,5.5vw,28px);line-height:1.15;
+}
+.ef-market-player>.ef-player-watch{margin:0 0 10px}
+
 .player-picker-modes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:12px 0}
 .player-picker-modes[hidden],.player-picker-controls label[hidden]{display:none!important}
 .tab .player-picker-modes button{min-height:44px;padding:8px 5px;background:var(--card2);color:var(--text);border:1px solid var(--line);white-space:normal}
