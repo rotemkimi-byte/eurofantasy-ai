@@ -1,0 +1,97 @@
+name: Seed private development snapshot (one time)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/seed-private-dev.yml']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: private-dev-seed
+  cancel-in-progress: false
+
+jobs:
+  seed:
+    if: github.repository == 'rotemkimi-byte/eurofantasy-ai-demo-test' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Read the pinned existing public source
+        uses: actions/checkout@v4
+        with:
+          repository: rotemkimi-byte/eurofantasy-ai
+          ref: 35abb78a7ddaa1ce90cf6133b24b8463b812c50b
+          path: source
+          persist-credentials: false
+      - name: Read the isolated private development repository
+        uses: actions/checkout@v4
+        with:
+          repository: rotemkimi-byte/eurofantasy-ai-dev-test
+          ref: main
+          path: private
+          token: ${{ secrets.DEV_REPOSITORY_TOKEN }}
+      - name: Preserve the full source snapshot without active Actions
+        shell: bash
+        run: |
+          set -euo pipefail
+          if python3 - > "$RUNNER_TEMP/private-seed.log" 2>&1 <<'PY'
+          import os, pathlib, shutil, subprocess
+          root = pathlib.Path(os.environ['GITHUB_WORKSPACE']).resolve()
+          source, destination = root/'source', root/'private'
+          assert subprocess.check_output(['git','-C',str(source),'rev-parse','HEAD']).decode().strip() == '35abb78a7ddaa1ce90cf6133b24b8463b812c50b'
+          def index(repo):
+              output = subprocess.check_output(['git','-C',str(repo),'ls-files','-s','-z']).decode()
+              result = {}
+              for item in output.split('\0'):
+                  if not item: continue
+                  metadata, path = item.split('\t', 1)
+                  mode, sha, stage = metadata.split()
+                  assert stage == '0' and mode in ('100644','100755')
+                  result[path] = (mode,sha)
+              return result
+          original, existing = index(source), index(destination)
+          expected = {}
+          for path,value in original.items():
+              target = 'automation/original-workflows/' + path.removeprefix('.github/workflows/') if path.startswith('.github/workflows/') else path
+              assert not target.startswith('.github/workflows/') and target not in expected
+              expected[target] = value
+          assert len(original) == 1029
+          assert set(existing) <= set(expected) | {'README.md'}, 'Unexpected private repository files'
+          for name, value in existing.items():
+              if name in expected: assert expected[name] == value, 'Existing source differs; refusing to overwrite'
+          for path,value in original.items():
+              target = 'automation/original-workflows/' + path.removeprefix('.github/workflows/') if path.startswith('.github/workflows/') else path
+              src = source/path; dst = destination/target
+              assert src.is_file() and src.resolve() == src and source in src.parents
+              assert dst.resolve() == dst and destination in dst.parents
+              dst.parent.mkdir(parents=True, exist_ok=True)
+              shutil.copy2(src,dst)
+          subprocess.run(['git','-C',str(destination),'add','--force','--',*sorted(expected)],check=True)
+          actual = index(destination)
+          assert all(actual.get(k)==v for k,v in expected.items())
+          assert set(actual) == set(expected) | {'README.md'}
+          assert not any(k.startswith('.github/workflows/') for k in actual)
+          PY
+          then
+            echo 'Source snapshot verified; no active private workflows.'
+          else
+            echo 'Private snapshot verification failed; no source published.'
+            exit 1
+          fi
+      - name: Commit only to the private test repository
+        working-directory: private
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if git commit --quiet -m 'Preserve verified source; legacy workflows remain inert' > "$RUNNER_TEMP/private-commit.log" 2>&1 && git push --quiet origin HEAD:main > "$RUNNER_TEMP/private-push.log" 2>&1; then
+            echo 'Private snapshot saved.'
+          else
+            echo 'Private repository write failed; production was not touched.'
+            exit 1
+          fi
