@@ -111,6 +111,20 @@ const server=http.createServer((req,res)=>{
      assert.notEqual(...palette,'Text contrasts with card');
     }
    }
+   await page.evaluate(()=>document.querySelector('nav.tabs [data-tab="playerFreeThrows"]').click());
+   const freeThrows=page.locator('#playerFreeThrows');
+   const sort=freeThrows.locator('[data-sort]');
+   const pick=freeThrows.locator('[data-ranking] button[data-pick]').first();
+   await pick.waitFor();
+   await sort.selectOption('ftm');
+   await pick.click();
+   await freeThrows.locator('.ft-player-report').waitFor();
+   assert.equal(await freeThrows.locator('details[data-league], [data-disclosure=compare], [data-disclosure=games]').count(),0);
+   assert(await sort.isVisible());
+   assert(await pick.isVisible());
+   const opponent=freeThrows.locator('[data-disclosure=opponent]');
+   await opponent.locator('summary').click();
+   assert(await opponent.locator('.ft-record').first().isVisible());
    // Open a ranked player by ID and return to the same controls and scroll position.
    await page.evaluate(()=>document.querySelector('nav.tabs [data-tab="playerPlusMinus"]').click());
    const plus=page.locator('#playerPlusMinus');
