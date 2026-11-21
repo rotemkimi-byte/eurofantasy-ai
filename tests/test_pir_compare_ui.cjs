@@ -81,7 +81,7 @@ assert.equal(await page.locator('[data-round-games] .ef-chart-game-card').count(
 const comparison=page.locator('#pirCompare [data-chart] svg');
 await comparison.press('Home');
 assert.equal(await comparison.getAttribute('aria-valuenow'),await comparison.getAttribute('aria-valuemin'));
-for(const range of ['1','3','0']){await rangeButton(range).click();const actual=await page.locator('.pc-value').allTextContents();const expected=await page.evaluate(range=>[...document.querySelectorAll('#pirCompare [data-remove]')].map(b=>{const games=window.PIRHistoryUI.getData().players.get(b.dataset.remove).games;const rows=range==='0'?games:games.slice(-Number(range));const v=rows.filter(g=>!g.dnp&&g.value!==null).map(g=>g.value);return v.length?(v.reduce((a,b)=>a+b,0)/v.length).toFixed(1):'—';}),range);assert.deepEqual(actual,expected);}
+for(const range of ['1','3','0']){await rangeButton(range).click();const actual=await page.locator('.pc-card .pa-metrics > div:first-child dd').allTextContents();const expected=await page.evaluate(range=>[...document.querySelectorAll('#pirCompare [data-remove]')].map(b=>{const games=window.PIRHistoryUI.getData().players.get(b.dataset.remove).games;const rows=range==='0'?games:games.slice(-Number(range));const v=rows.filter(g=>!g.dnp&&g.value!==null).map(g=>g.value);return v.length?(v.reduce((a,b)=>a+b,0)/v.length).toFixed(1):'—';}),range);assert.deepEqual(actual,expected);}
 for(const width of [320,375,390,430,660,1280]){
  await page.setViewportSize({width,height:844});
  assert(!(await page.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth+2)),'page overflow '+width);

@@ -7,7 +7,7 @@ const fmt=n=>n===null||n===undefined?'—':Number(n).toLocaleString('he-IL',{max
 const date=s=>new Date(s).toLocaleDateString('he-IL',{timeZone:'Asia/Jerusalem'});
 const name=s=>String(s||'').includes(',')?s.split(',').reverse().map(x=>x.trim()).join(' '):s;
 const empty=s=>'<p class="ap-empty">'+esc(s)+'</p>';
-const metric=(label,value,note='',tone='')=>'<div class="ap-metric"'+(tone?' data-tone="'+tone+'"':'')+'><strong>'+esc(value)+'</strong><span>'+esc(label)+'</span>'+(note?'<small>'+esc(note)+'</small>':'')+'</div>';
+const metric=(label,value,note,tone)=>[label,value,note,tone];
 const signed=n=>n>0?'+'+fmt(n):fmt(n);
 const note=(count,total)=>count+' מתוך '+total+' הופעות עם נתון מאומת';
 let data=null,pending=null;
@@ -52,11 +52,10 @@ function boxMinutes(seconds){
  return Math.floor(rounded/60)+':'+String(rounded%60).padStart(2,'0');
 }
 const boxShooting=(made,attempted)=>made===null?'—':attempted===null?fmt(made):fmt(made)+'/'+fmt(attempted);
-function scouting(items,primary=3,cls=''){
- const group=(rows,tone)=>`<div class="pa-scouting ${tone}">${rows.join('')}</div>`;
- return `<div class="ap-metrics ap-scouting ${cls}">${group(items.slice(0,primary),'pa-metrics-primary')}${items.length>primary?group(items.slice(primary),'pa-metrics-secondary'):''}</div>`;
+function scouting(items,cls=''){
+ return window.PlayerAnalysis.metrics(items,{panel:`ap-metrics ${cls}`,cell:'ap-metric'});
 }
-const boxTiles=render=>scouting(boxFields.map(([label,key])=>render(label,key)),3,'ap-box-metrics');
+const boxTiles=render=>scouting(boxFields.map(([label,key])=>render(label,key)),'ap-box-metrics');
 function boxAverageCards(games,range){
  const a=C.boxAverages(games,boxFields.map(([,key])=>key).filter(key=>typeof key==='string'));
  const title=range==='3'?'ממוצע למשחק · 3 הופעות אחרונות':'ממוצע למשחק · כל העונה';
@@ -89,7 +88,7 @@ function negative(games){
  return scouting(Object.entries(negativeLabels).map(([k,l])=>{
   const row=s[k],coverage=row.covered<games.length?' · '+note(row.covered,games.length):'';
   return metric(l,fmt(row.mean),'סה״כ '+fmt(row.total)+coverage,row.mean>0?'negative':'');
- }),3,'ap-negative-metrics');
+ }),'ap-negative-metrics');
 }
 function plus(games){
  const s=C.plus(games);
@@ -124,7 +123,7 @@ lineups:'הנקודות האישיות של השחקן עם כל ארבעה שח
 for(const [id,title,kind] of tools){
  const b=document.createElement('button');b.dataset.tab=id;b.textContent=title;document.querySelector('nav.tabs').append(b);
  const section=document.createElement('section');section.id=id;section.className='tab ap-screen';
- section.innerHTML='<div class="ap-shell"><div class="ap-top"><h3>'+title+'</h3><button type="button" data-refresh>רענן</button></div><div class="player-picker-modes" role="group" aria-label="בחירת רשימת שחקנים"><button type="button" data-scope="all" aria-pressed="true">כל השחקנים · לפי מחיר</button><button type="button" data-scope="team" aria-pressed="false">לפי קבוצה</button></div><div class="ap-controls player-picker-controls"><label data-team-label hidden>קבוצה<select data-team><option value="">כל הקבוצות</option></select></label><label data-player-label>שחקן · מהמחיר הגבוה לנמוך<select data-player></select></label><label>טווח נתונים<select data-range><option value="1">משחק אחרון</option><option value="3">3 משחקים אחרונים</option><option value="0">כל העונה · 2026/27</option></select></label><label>מיון שחקנים<select data-sort><option value="price" selected>מחיר · מהגבוה לנמוך</option><option value="name">שם · א–ת</option><option value="team">לפי קבוצה</option><option value="minutes">דקות · מהגבוה</option><option value="pir">PIR · המשחק האחרון</option>'+(kind==='plus'?'<option value="plus">פלוס־מינוס · מהגבוה</option>':'')+'</select></label>'+(kind==='shots'?'<label>הצג במפה<select data-shot><option value="all">הכול</option><option value="made">קליעות</option><option value="missed">החטאות</option></select></label>':'')+'</div><p class="ap-status" role="status"></p><div class="ap-profile" data-picked hidden></div><div data-browser aria-label="רשימת שחקנים"></div><div data-output hidden></div><details class="ap-help"><summary>הסבר הנתונים</summary><p>'+help[kind]+'</p><a class="ap-link" href="https://mediagamecenter.euroleague.net/" target="_blank" rel="noopener">מקור: EuroLeague Game Center</a></details></div>';
+ section.innerHTML='<div class="ap-shell"><div class="ap-top"><h3>'+title+'</h3><button type="button" data-refresh>רענן</button></div><div class="player-picker-modes" role="group" aria-label="בחירת רשימת שחקנים"><button type="button" data-scope="all" aria-pressed="true">כל השחקנים · לפי מחיר</button><button type="button" data-scope="team" aria-pressed="false">לפי קבוצה</button></div><div class="ap-controls player-picker-controls"><label data-team-label hidden>קבוצה<select data-team><option value="">כל הקבוצות</option></select></label><label data-player-label>שחקן · מהמחיר הגבוה לנמוך<select data-player></select></label><label>טווח נתונים<select data-range><option value="1">משחק אחרון</option><option value="3">3 משחקים אחרונים</option><option value="0">כל העונה · 2026/27</option></select></label><label>מיון שחקנים<select data-sort><option value="price" selected>מחיר · מהגבוה לנמוך</option><option value="name">שם · א–ת</option><option value="team">לפי קבוצה</option><option value="minutes">דקות · מהגבוה</option><option value="pir">PIR · המשחק האחרון</option>'+(kind==='plus'?'<option value="plus">פלוס־מינוס · מהגבוה</option>':'')+'</select></label>'+(kind==='shots'?'<label>הצג במפה<select data-shot><option value="all">הכול</option><option value="made">קליעות</option><option value="missed">החטאות</option></select></label>':'')+'</div><p class="ap-status" role="status"></p><div class="ap-profile" data-picked hidden></div><div data-browser aria-label="רשימת שחקנים"></div><div data-output hidden></div><details class="ap-help pa-disclosure" data-disclosure="help"><summary>הסבר הנתונים</summary><p>'+help[kind]+'</p><a class="ap-link" href="https://mediagamecenter.euroleague.net/" target="_blank" rel="noopener">מקור: EuroLeague Game Center</a></details></div>';
  document.querySelector('main').append(section);
  document.addEventListener('fantasy-player-media-ready',()=>{if(browseOpen)renderBrowser();render();});
  const $=s=>section.querySelector(s);let records=[],selected='',browseOpen=true,shown=36,scope='all';
@@ -203,12 +202,12 @@ for(const [id,title,kind] of tools){
    const range=$('[data-range]').value;
    const multi=range==='3'||range==='0';
    const rows=range==='3'?C.select(p.games.filter(g=>g.minutes>0),range):selectedGames;
-   output.innerHTML=multi?boxAverageCards(rows,range)+(rows.length?'<details><summary>פירוט המשחקים בטווח</summary>'+boxScore(p,rows)+'</details>':''):boxScore(p,rows);
+   output.innerHTML=multi?boxAverageCards(rows,range)+(rows.length?'<details class="pa-disclosure" data-disclosure="games"><summary>פירוט המשחקים בטווח</summary>'+boxScore(p,rows)+'</details>':''):boxScore(p,rows);
    return;
   }
   const show=gs=>kind==='negative'?negative(gs):kind==='plus'?plus(gs):kind==='shots'?shots(gs,$('[data-shot]').value):lineups(gs);
   $('[data-output]').innerHTML=(games.length?(kind==='negative'?'<h4 class="pa-stats-heading">ממוצע למשחק <small>'+games.length+' הופעות</small></h4>':'')+show(games):empty(p.games.length?'אין הופעה עם דקות משחק בטווח שנבחר.':'אין עדיין נתוני משחק לשחקן בעונה הנוכחית.'))+
-   (games.length&&['negative','plus'].includes(kind)?'<details><summary>פירוט לפי משחק</summary><div class="ap-grid">'+games.map(g=>'<article class="ap-record"><h4>'+esc(g.opponent||'משחק '+g.gameCode)+'</h4><small>'+date(g.date)+' · '+(g.home?'בית':'חוץ')+' · '+fmt(g.minutes)+' דקות</small>'+show([g])+'</article>').join('')+'</div></details>':'');
+   (games.length&&['negative','plus'].includes(kind)?'<details class="pa-disclosure" data-disclosure="games"><summary>פירוט לפי משחק</summary><div class="ap-grid">'+games.map(g=>'<article class="ap-record"><h4>'+esc(g.opponent||'משחק '+g.gameCode)+'</h4><small>'+date(g.date)+' · '+(g.home?'בית':'חוץ')+' · '+fmt(g.minutes)+' דקות</small>'+show([g])+'</article>').join('')+'</div></details>':'');
  }
  async function open(force=false){
   $('[role=status]').textContent='טוען נתונים רשמיים…';$('[data-refresh]').disabled=true;

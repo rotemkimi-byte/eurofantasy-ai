@@ -64,10 +64,12 @@ function identity(player){
 function profile(player,{meta='',action='',stat=''}={}){
  return `<div class="pa-profile">${identity(player)}${action||stat}${meta?'<div class="pa-profile-meta">'+meta+'</div>':''}</div>`;
 }
-function metrics(items,primary=3){
- const group=(rows,cls)=>rows.length?`<dl class="pa-metrics ${cls}" style="--pa-cols:${Math.min(3,rows.length)}">${rows.map(([label,stat,note,tone])=>`
-  <div data-tone="${esc(tone)}"><dt>${esc(label)}${note?`<small>${esc(note)}</small>`:''}</dt><dd><bdi>${esc(stat)}</bdi></dd></div>`).join('')}</dl>`:'';
- return group(items.slice(0,primary),'pa-metrics-primary')+group(items.slice(primary),'pa-metrics-secondary');
+function metrics(items,{panel='',cell='',player=''}={}){
+ if(!items.length)return '';
+ return `<div class="pa-stat-panel ${panel}"${player?` data-recent-player="${esc(player)}"`:''}><dl class="pa-metrics">${items.map(([label,stat,note,tone,valueClass])=>{
+  const negative=tone==='negative'||/^[\s\u200e\u200f]*[-−]\d/.test(String(stat));
+  return `<div class="${cell}"${negative?' data-tone="negative"':''}><dt>${esc(label)}${note?`<small>${esc(note)}</small>`:''}</dt><dd><strong><bdi${valueClass?` class="${esc(valueClass)}"`:''}>${esc(stat)}</bdi></strong></dd></div>`;
+ }).join('')}</dl></div>`;
 }
 let origin;
 document.addEventListener('click',event=>{
@@ -120,7 +122,7 @@ function create(host,{metrics,rows,team=()=>'',initial=Object.keys(metrics)[0],f
   return `<div class="pa-compare-list" aria-label="${esc(metrics[metric])}">${selected.map(r=>{
    const n=r.values[metric];
    const bar=Number.isFinite(n)?`<span class="pa-compare-track" aria-hidden="true"><i style="width:${Math.abs(n)/maximum*100}%" data-negative="${n<0}"></i></span>`:'';
-   return `<article class="pa-compare-card">${identity(r)}<span class="pa-compare-value"><small>${esc(metrics[metric])}</small><strong data-tone="${n<0?'negative':''}"><bdi>${esc(format(n,metric))}</bdi></strong><small><bdi>${value(r.price)} CR</bdi></small></span>${bar}</article>`;
+   return `<article class="pa-compare-card">${identity(r)}${window.PlayerAnalysis.metrics([[metrics[metric],format(n,metric),value(r.price)+' CR']],{panel:'pa-compare-value'})}${bar}</article>`;
   }).join('')}</div>`;
  }
  function rankingTable(ranked){

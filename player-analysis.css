@@ -53,26 +53,14 @@ html[data-theme] .tab .pa-panel button[data-pa-more]{color:var(--text)}
 .pa-profile-meta{grid-column:1/-1;border-top:1px solid var(--line);padding-top:6px;color:var(--muted);font-size:11px;line-height:1.5}
 .pa-profile-actions{display:grid;justify-items:end;gap:3px}
 .pa-credit{padding:3px 7px;border-radius:6px;background:var(--card2);color:var(--text);font-size:12px;font-weight:800;white-space:nowrap}
-.pa-stat-list{margin:8px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card)}
-.pa-stat-list>div{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:7px 11px;min-height:39px}
-.pa-stat-list>div+div{border-top:1px solid var(--line)}
-.pa-stat-list>div[data-primary=true]{background:color-mix(in srgb,var(--accent) 9%,var(--card))}
-.pa-stat-list dt{font-size:13px;font-weight:700;color:var(--text);line-height:1.3}
-.pa-stat-list dd{margin:0;text-align:end;font-size:19px;font-weight:850;color:var(--accent);font-variant-numeric:tabular-nums;white-space:nowrap}
-.pa-stat-list :is(dt,dd) small{display:block;margin-top:2px;color:var(--muted);font-size:11px;font-weight:500}
 .pa-compare-list{display:grid;gap:7px;margin:9px 0}
 .pa-compare-card{background:linear-gradient(125deg,var(--card),var(--card2))}
-.pa-compare-value{display:grid;text-align:end;gap:2px;justify-items:end}
-.pa-compare-value strong{font-size:22px;line-height:1.05;color:var(--accent);font-variant-numeric:tabular-nums}
-.pa-compare-value small{font-size:11px;color:var(--muted);font-weight:650}
 .pa-compare-track{grid-column:1/-1;background:var(--line);border-radius:8px;overflow:hidden;height:4px;direction:ltr}
 .pa-compare-track i{display:block;height:100%;border-radius:inherit;background:var(--accent)}
 .pa-compare-track i[data-negative=true]{background:var(--bad)}
-.pa-breakdown>summary{min-height:44px;padding:11px 0}
 @media(max-width:360px){
  .pa-portrait{width:42px;height:49px}
  .pa-person>b{font-size:14px}
- .pa-compare-value small{max-width:82px}
 }
 
 /* Shared player identity, ranking rows and scouting metrics. */
@@ -99,28 +87,11 @@ html[data-theme] .tab .pa-panel button[data-pa-more]{color:var(--text)}
 .pa-table .pa-rank-value{font-size:clamp(16px,4.7vw,24px);line-height:1;color:var(--text);font-weight:850}
 .pa-table .pa-credit{font-size:11px;padding:3px 5px}
 .pa-compare-card{background:var(--card);border:0;border-bottom:1px solid var(--line);box-shadow:none}
-.pa-compare-value strong{color:var(--text)}
-.pa-rank-value[data-tone=negative],.pa-compare-value [data-tone=negative]{color:var(--bad)}
-.pa-metrics{margin:0;display:grid;grid-template-columns:repeat(var(--pa-cols,3),minmax(0,1fr));gap:0;padding:0}
-.pa-metrics>div{display:flex;flex-direction:column-reverse;justify-content:end;align-items:start;gap:5px;min-width:0;padding:12px 10px}
-.pa-metrics dd{margin:0;font-weight:850;line-height:1.1;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
-.pa-metrics dt{font-size:12px;font-weight:700;line-height:1.3;overflow-wrap:anywhere}
-.pa-metrics dt small{display:block;margin-top:3px;font-size:10px;font-weight:500;color:inherit;opacity:.85;overflow-wrap:anywhere}
-.pa-metrics-primary{color:#fff;background:#122540;border-radius:12px;margin-block:4px 8px}
-.pa-metrics-primary>div+div{border-inline-start:1px solid #ffffff25}
-.pa-metrics-primary dd{font-size:clamp(20px,5vw,32px)}
-.pa-metrics-primary dd::after{content:"";display:block;margin-block-start:5px;background:#4bd6a3;height:3px;width:22px;max-width:100%;border-radius:3px}
-.pa-metrics-primary [data-tone=negative] dd::after{background:#ffa1a6}
-.pa-metrics-secondary{color:var(--text);background:var(--card);border-radius:12px}
-.pa-metrics-secondary>div{border-bottom:1px solid color-mix(in srgb,var(--line) 55%,transparent)}
-.pa-metrics-secondary dd{font-size:clamp(17px,4.5vw,24px)}
-.pa-metrics-secondary [data-tone=negative] dd{color:var(--bad)}
-.pa-metrics-secondary [data-tone=positive] dd{color:var(--accent)}
+.pa-rank-value[data-tone=negative]{color:var(--bad)}
 .pa-report{min-width:0;border-radius:16px;background:var(--card);padding:4px 10px 10px}
 .pa-report .pa-profile{margin:0;padding-inline:2px}
 .pa-profile .pa-profile-actions button{white-space:normal}
 @media(max-width:390px){
- .pa-metrics>div{padding-inline:7px}
  .pa-table th,.pa-table td{padding-inline:4px}
  .pa-table .pa-portrait{width:34px;height:40px}
  .pa-table .pa-identity-link{gap:5px}
@@ -130,17 +101,6 @@ html[data-theme] .tab .pa-panel button[data-pa-more]{color:var(--text)}
  padding:0;border:0;background:none;color:inherit;text-align:start
 }
 .pa-rank-value[data-tone=negative]{color:var(--bad)}
-.pa-scouting{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
-.ap-shell .ap-scouting{display:block}
-.ap-shell .pa-scouting .ap-metric{min-width:0;padding:11px 8px;border:0;border-radius:0;box-shadow:none;background:none;text-align:start}
-.ap-shell .pa-scouting .ap-metric+ .ap-metric{border-inline-start:1px solid #ffffff25}
-.ap-shell .pa-scouting .ap-metric strong{font-size:clamp(20px,5vw,29px);line-height:1.12;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
-.ap-shell .pa-metrics-primary .ap-metric :is(strong,span,small){color:#fff}
-.ap-shell .pa-metrics-primary strong::after{content:"";display:block;width:22px;height:3px;background:#4bd6a3;margin:5px 0;border-radius:3px}
-.ap-shell .pa-metrics-primary [data-tone=negative] strong::after{background:#ffa1a6}
-.ap-shell .pa-metrics-secondary .ap-metric strong{color:var(--text);font-size:clamp(17px,4.5vw,23px)}
-.ap-shell .pa-metrics-secondary .ap-metric[data-tone=negative] strong{color:var(--bad)}
-.ap-shell .pa-scouting .ap-metric :is(span,small){overflow-wrap:anywhere}
 .ap-shell .ap-box-game{border:0;background:var(--card);padding:8px}
 .ft-player-record .pa-profile{grid-template-columns:minmax(0,1fr) auto}
 .ft-player-record .ft-select-player{padding-inline:10px}

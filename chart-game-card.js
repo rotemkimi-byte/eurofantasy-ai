@@ -23,7 +23,7 @@ function card({game,heading,values=[]}){
     ${game.round?`<span>מחזור ${esc(game.round)}</span>`:''}
     ${venue?`<span class="pirGameVenue" data-home="${game.home}">${venue}</span>`:''}</small></div>
   </div>`:''}
-  <dl class="ef-chart-game-stats">${values.map(([label,value])=>`<div><dt>${esc(label)}</dt><dd><bdi>${esc(value??'—')}</bdi></dd></div>`).join('')}</dl>
+  ${window.PlayerAnalysis.metrics(values.map(([label,value])=>[label,value??'—']))}
  </div>`;
 }
 document.addEventListener('fantasy-player-media-ready',()=>{

@@ -20,7 +20,9 @@ function header(p,rank){
  const jersey=typeof squadJersey==='function'?squadJersey(p):'';
  return `<div class="fc-head">${button(`<span class="fc-photo">${photo?`<img src="${esc(photo)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:jersey}</span>${photo?`<span class="fc-kit">${jersey}</span>`:''}`,'fc-media','פרופיל '+p.name)}<div class="fc-identity">${button(`<bdi>${esc(p.name)}</bdi>`,'fc-name','פרופיל '+p.name)}<span class="fc-meta">${teamLogo(p.team)}<bdi>${esc(p.team)}</bdi><b class="fc-position">${esc(p.pos)}</b></span></div><span class="fc-rank" aria-label="דירוג ${rank}">${rank}</span></div>`;
 }
-function metrics(rows){return `<div class="fc-metrics">${rows.map(([label,value,tone])=>`<div class="${tone||''}"><strong><bdi>${esc(value)}</bdi></strong><small>${esc(label)}</small></div>`).join('')}</div>`;}
+function metrics(rows){
+ return window.PlayerAnalysis.metrics(rows.map(([label,value,tone])=>[label,value,'',tone==='fc-negative'?'negative':'']));
+}
 root.FantasyCompactUI={header,metrics,teamLogo,marketPlayer};
 if(typeof document==='undefined')return;
 document.addEventListener('error',e=>{if(e.target.matches?.('.fc-photo img,.fc-crest'))e.target.remove();},true);

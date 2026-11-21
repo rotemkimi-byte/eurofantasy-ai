@@ -9,11 +9,6 @@ html[data-theme="dark"] .ap-screen{--ap-bg:#152237;--ap-soft:#20324a;--ap-ink:#f
 .ap-screen input,.ap-screen select{display:block;width:100%;margin-top:5px;min-width:0}
 .ap-screen input::placeholder{color:var(--ap-muted)}
 .ap-screen [hidden]{display:none!important}.ap-screen :focus-visible{outline:3px solid var(--ap-accent);outline-offset:3px}
-.ap-screen .ap-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0}
-.ap-screen .ap-metric{background:var(--ap-soft);border-radius:12px;padding:12px 8px;text-align:center;min-width:0}
-.ap-screen .ap-metric strong{display:block;color:var(--ap-accent);font-size:27px;direction:ltr}
-.ap-screen .ap-metric span,.ap-screen small{display:block;font-size:13px;overflow-wrap:anywhere}
-.ap-screen .ap-metric small,.ap-screen .ap-status{color:var(--ap-muted);font-size:12px;line-height:1.5}
 .ap-screen .ap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
 .ap-screen .ap-record{padding:14px;background:var(--ap-soft);border:1px solid var(--ap-border);border-radius:12px;min-width:0;overflow-wrap:anywhere}
 .ap-screen .ap-record h4{margin:0 0 8px;font-size:17px}.ap-screen .ap-record ol{padding-inline-start:22px;margin:10px 0}
@@ -46,7 +41,6 @@ html[data-theme="dark"] .ap-screen{--ap-bg:#152237;--ap-soft:#20324a;--ap-ink:#f
 .ap-screen .ap-plus-value b{color:var(--ap-accent)}
 .ap-screen .ap-row-arrow{font-size:23px;color:var(--ap-accent);text-align:center}
 .ap-screen .ap-show-more{display:block;width:100%;margin:12px 0;border-radius:12px;min-height:48px;font-size:14px;font-weight:700;background:var(--ap-soft);color:var(--ap-ink)}
-.ap-screen .ap-help{margin-top:18px;border-top:1px solid var(--ap-border)}
 @media(min-width:720px){
  .ap-screen .ap-controls{grid-template-columns:minmax(180px,1.5fr) repeat(3,minmax(140px,1fr))}
 }
@@ -71,24 +65,11 @@ html.ef-redesign .ap-screen button{color:var(--ap-ink)}
 html.ef-redesign .ap-screen .ap-player-row{background:var(--ap-bg);color:var(--ap-ink)}
 html.ef-redesign .ap-screen .ap-player-row:hover{background:var(--ap-soft)}
 
-.ap-screen .ap-box-metrics{grid-template-columns:repeat(3,minmax(0,1fr))}
 
 .ap-screen .pa-profile [data-back]{padding:4px 7px;font-size:11px;font-weight:750}
 .ap-screen .pa-stats-heading{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:12px 0 5px;font-size:15px}
 .ap-screen .pa-stats-heading small{font-size:11px;color:var(--ap-muted);font-weight:500}
-.ap-screen .ap-metrics{gap:5px;margin:7px 0 10px}
-.ap-screen .ap-metric{
- display:grid;align-content:center;justify-items:start;gap:3px;min-height:57px;
- padding:6px 8px;text-align:start;border:1px solid var(--line);border-radius:9px;background:var(--card);
-}
-.ap-screen .ap-metric strong{font-size:22px;line-height:1.05;font-variant-numeric:tabular-nums}
-.ap-screen .ap-metric span{font-size:12px;font-weight:650;line-height:1.2}
-.ap-screen .ap-metric small{font-size:10px;line-height:1.25}
-.ap-screen .ap-negative-metrics strong{color:var(--text)}
-.ap-screen .ap-metric[data-tone=negative] strong{color:var(--bad)}
 .ap-screen .ap-box-game{padding:9px;margin:8px 0;background:var(--card2);border-color:var(--line)}
 .ap-screen .ap-box-game h4{font-size:14px;margin:0 0 2px}
 .ap-screen .ap-box-game>small{color:var(--ap-muted);font-size:11px}
-.ap-screen .ap-box-metrics strong{font-size:clamp(16px,5vw,21px);unicode-bidi:isolate}
-.ap-screen .ap-box-metrics .ap-metric:nth-child(-n+3){background:color-mix(in srgb,var(--accent) 7%,var(--card))}
 .ap-screen .ap-row-appearances b{color:var(--ap-accent);direction:ltr;unicode-bidi:isolate}

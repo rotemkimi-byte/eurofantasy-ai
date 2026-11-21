@@ -45,7 +45,7 @@ function matchup({a,b,pos}){
   const comparison=tone==='leading'?'PIR גבוה יותר':tone==='trailing'?'PIR נמוך יותר':compared?'PIR שווה':'';
   return `<span class="pmHistoryPlayer" data-pir-tone="${tone}">
    ${window.PlayerAnalysis.control(p,`<span class="pmHistoryPhoto" aria-hidden="true">${window.ChartGameCard.image(p.photo)}<b>${esc(p.name.split(/\s+/).map(n=>n[0]).slice(0,2).join(''))}</b></span><bdi class="pmHistoryName">${esc(p.name)}</bdi>`,'pm-history-identity')}
-   <span class="pmHistoryNumbers"><span><small>PIR</small><bdi>${number(p,'pir')}</bdi></span><span><small>דקות</small><bdi>${number(p,'minutes')}</bdi></span></span>
+   <span class="pmHistoryNumbers pa-dark-metrics"><span><small>PIR</small><bdi${pir<0?' data-tone="negative"':''}>${number(p,'pir')}</bdi></span><span><small>דקות</small><bdi>${number(p,'minutes')}</bdi></span></span>
    ${compared?`<span class="pmHistoryPerformance" role="img" aria-label="${comparison}"><i style="width:${share}%"></i></span>`:''}
   </span>`;
  };

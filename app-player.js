@@ -99,7 +99,8 @@ function creditChart(rows){
 }
 function safeImage(url){try{const u=new URL(url);return u.protocol==='https:'&&['media-cdn.cortextech.io','media-cdn.incrowdsports.com','media-cdn.euroleague.net'].includes(u.hostname)?url:null;}catch{return null;}}
 function photo(host,url,alt){if(!host||!safeImage(url))return;const img=new Image();img.alt=alt;img.decoding='async';img.referrerPolicy='no-referrer';img.onload=()=>{if(host.isConnected){host.replaceChildren(img);host.removeAttribute('aria-hidden');}};img.src=url;}
-const metric=(label,value,note='')=>`<div class="ef-metric"><small>${esc(label)}</small><strong>${esc(value)}</strong>${note?`<span>${esc(note)}</span>`:''}</div>`;
+const metrics=(items,options)=>window.PlayerAnalysis.metrics(items,options);
+const metric=(label,value,note)=>[label,value,note];
 const rate=(label,r)=>metric(label,r.value===null?'—':fmt(r.value)+'%',`${r.covered} הופעות בחישוב${r.missing?' · '+r.missing+' חסרות':''}`);
 const pirTrend={label:'PIR',field:'valuation',scale:10};
 const freeThrowsTrend={label:'עונשין',field:'freeThrowsMade',scale:2};
@@ -171,8 +172,8 @@ function marketGameRow(g){
  </summary>
  <div class="ef-history-detail">
   <div class="ef-history-detail-head">${g.round?`<span>מחזור ${esc(g.round)}</span>`:''}${safeLink(g.source)}</div>
-  ${played?`<dl>${[['ריבאונדים',s.totalRebounds],['אסיסטים',s.assistances],['חטיפות',s.steals],['חסימות',s.blocksFavour],['איבודים',s.turnovers],['עבירות שסחט',s.foulsReceived]].map(([label,value])=>
-   `<div><dt>${label}</dt><dd><bdi>${U.num(value)??'—'}</bdi></dd></div>`).join('')}</dl>`:''}
+  ${played?metrics([['ריבאונדים',s.totalRebounds],['אסיסטים',s.assistances],['חטיפות',s.steals],['חסימות',s.blocksFavour],['איבודים',s.turnovers],['עבירות שסחט',s.foulsReceived]].map(([label,value])=>
+   [label,U.num(value)??'—','',label==='איבודים'&&U.num(value)>0?'negative':''])):''}
  </div>
  </details>`;
 }
@@ -202,7 +203,7 @@ window.showPlayer=function(target){
  const labels={overview:'סקירה',usage:'Usage',defense:'הגנה',games:'משחקים'},panes={};
  for(const [id,label] of Object.entries(labels)){const pane=document.createElement('section');pane.id='efPane-'+id;pane.className='ef-player-pane';pane.setAttribute('role','tabpanel');pane.setAttribute('aria-labelledby','efTab-'+id);pane.hidden=id!=='overview';panes[id]=pane;tabs.insertAdjacentHTML('beforeend',`<button type="button" role="tab" id="efTab-${id}" aria-controls="efPane-${id}" aria-selected="${id==='overview'}" tabindex="${id==='overview'?0:-1}" data-player-tab="${id}">${label}</button>`);}
  for(const child of [...body.children])if(child!==hero)panes.overview.append(child);
- const actual=panes.overview.querySelector('.actual-results');if(actual){const details=document.createElement('details');details.className='ef-extra-stats';details.innerHTML='<summary>נתונים נוספים ושינויי קרדיט</summary>';details.append(actual);panes.games.append(details);}
+ const actual=panes.overview.querySelector('.actual-results');if(actual){const details=document.createElement('details');details.className='ef-extra-stats pa-disclosure';details.dataset.disclosure='games';details.innerHTML='<summary>נתונים נוספים ושינויי קרדיט</summary>';details.append(actual);panes.games.append(details);}
  body.append(tabs);
  const controls=document.createElement('div');controls.className='ef-chart-ranges';controls.setAttribute('role','group');controls.setAttribute('aria-label','טווח נתוני השחקן');controls.innerHTML=[['1','אחרון'],['3','3 משחקים'],['0','עונה']].map(([n,l])=>`<button type="button" data-range="${n}" aria-pressed="${n==='0'}">${l}</button>`).join('');body.append(controls);
  const status=document.createElement('p');status.className='ef-data-status muted';status.setAttribute('role','status');status.textContent='טוען נתוני משחק מאומתים…';body.append(status,...Object.values(panes));
@@ -268,7 +269,7 @@ window.showPlayer=function(target){
   for(const el of venueControls.children)el.setAttribute('aria-pressed',String(el===button));
   render();
  };
- function gameCard(g){const s=g.stats||{};return `<article class="ef-game-card"><header><div><b>${esc(g.opponent)}</b><small>${date(g.date)} · ${g.home===true?'בית':g.home===false?'חוץ':'מיקום לא ידוע'}${g.round?' · מחזור '+esc(g.round):''}</small></div>${safeLink(g.source)}</header>${g.minutes===0?'<p class="muted">לא שיחק</p>':`<div class="ef-game-numbers">${metric('PIR',g.minutes>0?fmt(s.valuation):'—')}${metric('נקודות',fmt(s.points))}${metric('דקות',fmt(g.minutes))}${metric('עבירות שסחט',fmt(s.foulsReceived))}</div>`}</article>`;}
+ function gameCard(g){const s=g.stats||{};return `<article class="ef-game-card"><header><div><b>${esc(g.opponent)}</b><small>${date(g.date)} · ${g.home===true?'בית':g.home===false?'חוץ':'מיקום לא ידוע'}${g.round?' · מחזור '+esc(g.round):''}</small></div>${safeLink(g.source)}</header>${g.minutes===0?'<p class="muted">לא שיחק</p>':metrics([['PIR',g.minutes>0?fmt(s.valuation):'—'],['נקודות',fmt(s.points)],['דקות',fmt(g.minutes)],['עבירות שסחט',fmt(s.foulsReceived)]])}</article>`;}
  function render(){
   if(!data)return;
   const venueGames=venue==='all'?seasonGames:seasonGames.filter(game=>game.home===(venue==='home'));
@@ -279,12 +280,12 @@ window.showPlayer=function(target){
   const location=venue==='home'?' · בית':venue==='away'?' · חוץ':'';
   status.textContent=`עונת 2026/27 · ${tag}${location} · ${selected.length} משחקים ברישום, ${played.length} עם דקות`;
   const stats=hero.querySelector('.ef-player-stats'),price=player.price;
-  stats.innerHTML=[['מחיר נוכחי · קרדיט',price],['ממוצע PIR · הטווח שנבחר',avg('valuation')],['ממוצע דקות · הטווח שנבחר',played.length?usage.minutes===null?null:usage.minutes/played.length:null],['ממוצע נקודות · הטווח שנבחר',avg('points')]].map(([l,v])=>`<div><small>${l}</small><b>${fmt(v)}</b></div>`).join('');
+  stats.innerHTML=metrics([['מחיר נוכחי · קרדיט',price],['ממוצע PIR · הטווח שנבחר',avg('valuation')],['ממוצע דקות · הטווח שנבחר',played.length?usage.minutes===null?null:usage.minutes/played.length:null],['ממוצע נקודות · הטווח שנבחר',avg('points')]].map(([label,value])=>[label,fmt(value)]));
   renderTrend(plot,pirTrend);
   renderTrend(freeThrowsPlot,freeThrowsTrend);
-  summary.innerHTML=`<div class="ef-metric-grid ef-usage-preview">${rate('Usage רגיל',usage.regular)}${rate('Usage כולל · עם אסיסטים',usage.combined)}${metric('עבירות שסחט למשחק',fmt(avg('foulsReceived')))}</div>${compactMarket?'':`<p class="ef-method muted">אומדנים מבוקס סקור ודקות; Usage כולל הוא מדד מותאם, לא אחוז פוזשנים ייחודיים.</p><h3 class="ef-last-title">המשחק האחרון</h3>${latest?gameCard(latest):'<p class="muted">אין משחקים זמינים בסינון שנבחר.</p>'}`}`;
-  panes.usage.innerHTML=`<h3>מעורבות בהתקפה</h3><div class="ef-metric-grid">${rate('Usage רגיל',usage.regular)}${rate('Usage כולל · עם אסיסטים',usage.combined)}${metric('זריקות מהשדה · סה״כ',fmt(usage.fga))}${metric('ניסיונות עונשין · סה״כ',fmt(usage.fta))}${metric('אסיסטים · סה״כ',fmt(usage.assists))}${metric('איבודים · סה״כ',fmt(usage.turnovers))}</div><p class="ef-method">Usage רגיל: זריקות מהשדה + 0.44 מניסיונות העונשין + איבודים, ביחס לאומדן אירועי הקבוצה בזמן דקות השחקן. Usage כולל מוסיף אסיסטים; הוא מדד מעורבות מותאם לאפליקציה. אין כאן מדידה של זמן החזקת כדור. כמה משחקים משוקללים לפי החשיפה, ולא בממוצע פשוט.</p>`;
-  panes.defense.innerHTML=`<h3>הגנה וריבאונד</h3><div class="ef-metric-grid">${rate('אחוז חטיפות משוער',df.stl)}${rate('אחוז חסימות משוער',df.blk)}${rate('אחוז ריבאונד משוער',df.reb)}${rate('אחוז ריבאונד הגנה משוער',df.drb)}${metric('חטיפות · סה״כ',fmt(df.steals))}${metric('חסימות · סה״כ',fmt(df.blocks))}${metric('ריבאונדים · סה״כ',fmt(df.rebounds))}${metric('ריבאונד התקפה · סה״כ',fmt(df.offensiveRebounds))}</div><p class="ef-method">אחוזים משוערים מנתוני הבוקס סקור ודקות המשחק. הם מתארים פעולות מסוימות ואינם ציון כולל לאיכות ההגנה. נתון חסר מוצג כ־—.</p>`;
+  summary.innerHTML=`${metrics([rate('Usage רגיל',usage.regular),rate('Usage כולל · עם אסיסטים',usage.combined),metric('עבירות שסחט למשחק',fmt(avg('foulsReceived')))],{panel:'ef-usage-preview'})}${compactMarket?'':`<p class="ef-method muted">אומדנים מבוקס סקור ודקות; Usage כולל הוא מדד מותאם, לא אחוז פוזשנים ייחודיים.</p><h3 class="ef-last-title">המשחק האחרון</h3>${latest?gameCard(latest):'<p class="muted">אין משחקים זמינים בסינון שנבחר.</p>'}`}`;
+  panes.usage.innerHTML=`<h3>מעורבות בהתקפה</h3>${metrics([rate('Usage רגיל',usage.regular),rate('Usage כולל · עם אסיסטים',usage.combined),metric('זריקות מהשדה · סה״כ',fmt(usage.fga)),metric('ניסיונות עונשין · סה״כ',fmt(usage.fta)),metric('אסיסטים · סה״כ',fmt(usage.assists)),['איבודים · סה״כ',fmt(usage.turnovers),'',usage.turnovers>0?'negative':'']])}<p class="ef-method">Usage רגיל: זריקות מהשדה + 0.44 מניסיונות העונשין + איבודים, ביחס לאומדן אירועי הקבוצה בזמן דקות השחקן. Usage כולל מוסיף אסיסטים; הוא מדד מעורבות מותאם לאפליקציה. אין כאן מדידה של זמן החזקת כדור. כמה משחקים משוקללים לפי החשיפה, ולא בממוצע פשוט.</p>`;
+  panes.defense.innerHTML=`<h3>הגנה וריבאונד</h3>${metrics([rate('אחוז חטיפות משוער',df.stl),rate('אחוז חסימות משוער',df.blk),rate('אחוז ריבאונד משוער',df.reb),rate('אחוז ריבאונד הגנה משוער',df.drb),metric('חטיפות · סה״כ',fmt(df.steals)),metric('חסימות · סה״כ',fmt(df.blocks)),metric('ריבאונדים · סה״כ',fmt(df.rebounds)),metric('ריבאונד התקפה · סה״כ',fmt(df.offensiveRebounds))])}<p class="ef-method">אחוזים משוערים מנתוני הבוקס סקור ודקות המשחק. הם מתארים פעולות מסוימות ואינם ציון כולל לאיכות ההגנה. נתון חסר מוצג כ־—.</p>`;
   gamesList.innerHTML='<h3>משחקים · מהחדש לישן</h3>'+(selected.length
    ?compactMarket
     ?`<div class="ef-history-grid ef-history-head" aria-hidden="true"><span>יריבה</span><span>PIR</span><span>נקודות</span><span>דקות</span></div>${selected.map(marketGameRow).join('')}`

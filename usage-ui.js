@@ -165,7 +165,7 @@ function render(updateRanking=true){
    stat:p.price===null?'':`<bdi class="pa-credit">${fmt(p.price)} CR</bdi>`,
    meta:[p.pos,stats.played+' הופעות',reason].filter(Boolean).map(esc).join(' · ')
   })}
-  ${window.PlayerAnalysis.metrics([[metricTitle(),pct(current.value)],...metrics.map(([label,n])=>[label,fmt(n)])],2)}
+  ${window.PlayerAnalysis.metrics([[metricTitle(),pct(current.value)],...metrics.map(([label,n])=>[label,fmt(n)])])}
  </article>`;
  $('usGames').innerHTML=games.map(gameCard).join('');
 }

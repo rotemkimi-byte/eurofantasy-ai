@@ -194,28 +194,6 @@ html[data-theme="light"] #playerDna{
 .dna-player-club .dna-portrait{width:24px;height:24px;border-radius:4px;font-size:9px}
 .dna-player-club .dna-portrait img{padding:0}
 .dna-player-profile .dna-player-card h3{font-size:clamp(22px,3.3vw,38px);line-height:1.08;margin:5px 0 12px}
-.dna-headline-stats{
- display:grid;
- grid-template-columns:repeat(4,minmax(0,1fr));
- gap:6px;
- margin:0;
-}
-.dna-headline-stats>div{
- display:flex;
- flex-direction:column-reverse;
- justify-content:center;
- align-items:center;
- min-width:0;
- padding:6px 3px;
- border:1px solid var(--line);
- border-radius:9px;
- background:var(--dna-surface);
- text-align:center;
-}
-.dna-headline-stats dt{font-size:11px;color:var(--dna-muted)}
-.dna-headline-stats dd{margin:0;font-size:clamp(15px,2.2vw,24px);font-weight:800;font-variant-numeric:tabular-nums}
-.dna-headline-stats .dna-stat-price{background:var(--dna-green);border-color:var(--dna-green);color:#fff}
-.dna-stat-price dt{color:#e4f3ee}
 .dna-player-traits{padding:9px 12px 11px;border-top:1px solid var(--line)}
 .dna-player-traits h4{margin:0 0 5px;font-size:12px;color:var(--dna-muted)}
 .dna-tags{display:flex;flex-wrap:wrap;gap:5px;margin:0;padding:0;list-style:none}
@@ -426,7 +404,6 @@ html.ef-redesign .dna-row summary{padding:12px}
 @media(max-width:560px){
  .dna-player-controls{grid-template-columns:1fr}
  .dna-player-style{grid-template-columns:minmax(0,1fr);grid-template-areas:"court" "metrics"}
- .dna-headline-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
  .dna-court{height:150px}
  .dna-player-metrics .dna-player-table th,.dna-player-metrics .dna-player-table td{padding-inline:3px}
  html.ef-redesign .dna-shell{padding:12px}

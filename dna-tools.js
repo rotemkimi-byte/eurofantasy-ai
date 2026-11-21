@@ -257,7 +257,7 @@ function playerProfile(record,games,tags=[]){
  const pirs=games.map(g=>g.stats?.valuation).filter(Number.isFinite);
  const avgPir=pirs.length?pirs.reduce((sum,pir)=>sum+pir,0)/pirs.length:null;
  const stats=[
-  ['מחיר',price(record)||'—','price'],['דקות למשחק',fmt(games.length?minutes/games.length:null)],
+  ['מחיר',price(record)||'—'],['דקות למשחק',fmt(games.length?minutes/games.length:null)],
   ['PIR ממוצע',fmt(avgPir)],['הופעות',fmt(games.length)]
  ];
  const position=positionLabels[record.position];
@@ -268,8 +268,7 @@ function playerProfile(record,games,tags=[]){
    <div class="dna-player-card">
     <div class="dna-player-club">${crest?portrait(record.team,crest,'club'):''}<span><bdi>${esc(record.team)}</bdi>${position?' · '+position:''}</span></div>
     <h3>${window.PlayerAnalysis.control(record,`<bdi>${esc(record.name)}</bdi>`)}</h3>
-    <dl class="dna-headline-stats">${stats.map(([label,value,kind])=>`<div${kind?' class="dna-stat-price"':''}>
-     <dt>${label}</dt><dd><bdi>${esc(value)}</bdi></dd></div>`).join('')}</dl>
+    ${window.PlayerAnalysis.metrics(stats,{panel:'dna-headline-stats'})}
    </div>
   </div>
   ${tags.length?`<div class="dna-player-traits"><h4>אפיוני משחק</h4><ul class="dna-tags">${tags.map(([,tag])=>'<li>'+tag+'</li>').join('')}</ul></div>`:''}
@@ -620,7 +619,7 @@ function metricValue(stat,rank,spec,{name,side='',advantage=0,subject='עמדה'
  const [meaning,tone]=interpretations[rankBand(rank,spec.direction)];
  return `<div class="dna-expanded-value ${side} ${advantage>0?'dna-ahead':advantage<0?'dna-behind':side?'dna-even':''}">
   ${name?`<small class="dna-value-person"><bdi>${esc(name)}</bdi></small>`:''}
-  <div class="dna-raw"><strong><bdi>${visible?fmt(stat.value):reason?'—':'אין מספיק נתונים'}</bdi></strong>
+  <div class="dna-raw"><strong${stat?.value<0?' data-tone="negative"':''}><bdi>${visible?fmt(stat.value):reason?'—':'אין מספיק נתונים'}</bdi></strong>
   ${visible&&spec.unit?`<span>${esc(spec.unit)}</span>`:''}</div>
   ${Number.isFinite(rank)?`<div class="dna-rank-line"><bdi>${rank} / 100</bdi><span>אחוזון ${subject}</span></div>
    ${!side||advantage?`<div class="dna-rank-track ${tone}" aria-hidden="true"><i style="--dna-width:${rank}%"></i></div>`:''}
@@ -634,7 +633,7 @@ function metricPair(spec,stat,rank,comparison,subject,reasons={}){
  const tied=gap!=null&&fmt(stat.value)===fmt(other.value);
  const advantage=gap==null||tied?0:Math.sign((spec.direction||1)*gap);
  const unit=spec.unit==='%'?'נק׳ אחוז':spec.unit;
- return `<div class="dna-expanded-cells${paired?' dna-two-cells':''}">
+ return `<div class="dna-expanded-cells pa-dark-metrics${paired?' dna-two-cells':''}">
   ${metricValue(stat,rank,spec,{name:ownName,side:paired?'dna-own':'',advantage,subject,reason:reasons.own})}
   ${paired?metricValue(other,otherRank,spec,{name,side:'dna-other',advantage:-advantage}):''}</div>
   ${paired&&gap!=null?`<small class="dna-metric-gap">${tied?'שוויון בערכים המוצגים':`פער <bdi>${fmt(Math.abs(gap))}</bdi> ${esc(unit)}${advantage?` · ${spec.direction?'יתרון ל־':'ערך גבוה יותר אצל '}<bdi>${esc(advantage>0?ownName:name)}</bdi>`:''}`}</small>`:''}`;

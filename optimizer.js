@@ -33,7 +33,7 @@
           output.innerHTML=`<p class="bad">${text}</p>`;finish();return;
         }
         const selected=r.selected.map(id=>({p:players[id],score:pool.find(p=>p.id===id).score})).sort((a,b)=>a.p.pos.localeCompare(b.p.pos)||b.score-a.score);
-        output.innerHTML=`<div class="notice" role="status"><b>עלות ${r.cost.toFixed(1)} קרדיט · PIR צפוי ${r.score.toFixed(1)}</b><br>נשארו ${(budget-r.cost).toFixed(1)} קרדיט מתקציב השחקנים שהזנת.</div><div class="grid2" style="margin-top:10px">${selected.map(({p,score})=>`<article class="pa-report">${window.PlayerAnalysis.profile(p,{stat:`<bdi class="pa-credit">${Number(p.price).toFixed(1)} CR</bdi>`,meta:escape(p.pos)})}${window.PlayerAnalysis.metrics([['PIR צפוי',score.toFixed(1)]],1)}</article>`).join('')}</div><p class="muted" style="margin-top:12px">הסגל ממקסם את סכום ה־PIR הצפוי תחת התקציב והעמדות. מאמן, מכפיל קפטן, חילופים ומגבלות נוספות אינם כלולים בחישוב.</p>`;
+        output.innerHTML=`<div class="notice" role="status"><b>עלות ${r.cost.toFixed(1)} קרדיט · PIR צפוי ${r.score.toFixed(1)}</b><br>נשארו ${(budget-r.cost).toFixed(1)} קרדיט מתקציב השחקנים שהזנת.</div><div class="grid2" style="margin-top:10px">${selected.map(({p,score})=>`<article class="pa-report">${window.PlayerAnalysis.profile(p,{stat:`<bdi class="pa-credit">${Number(p.price).toFixed(1)} CR</bdi>`,meta:escape(p.pos)})}${window.PlayerAnalysis.metrics([['PIR צפוי',score.toFixed(1)]])}</article>`).join('')}</div><p class="muted" style="margin-top:12px">הסגל ממקסם את סכום ה־PIR הצפוי תחת התקציב והעמדות. מאמן, מכפיל קפטן, חילופים ומגבלות נוספות אינם כלולים בחישוב.</p>`;
         finish();
       };
       worker.postMessage({pool,budget:Math.floor(budget*10+1e-6)});

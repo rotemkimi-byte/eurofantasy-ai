@@ -43,7 +43,7 @@ for(const [venue,home] of [['home',true],['away',false]]){
  await page.locator(`[data-player-venue="${venue}"]`).click();
  assert.equal(await page.locator('.ef-player-history .pirPoint').count(),played.length);
  assert.deepEqual(await pirLabels(),expectedLabels(games));
- assert.equal(await page.locator('.ef-player-stats b').nth(1).textContent(),(played.reduce((s,g)=>s+g.stats.valuation,0)/played.length).toFixed(1));
+ assert.equal(await page.locator('.ef-player-stats dd').nth(1).textContent(),(played.reduce((s,g)=>s+g.stats.valuation,0)/played.length).toFixed(1));
  await page.locator('[data-player-tab="games"]').click();
  assert.equal(await page.locator('#efPane-games .ef-game-card').count(),games.length);
  await page.locator('[data-player-tab="overview"]').click();
@@ -59,11 +59,11 @@ await page.locator('.ef-overview-data [data-game-index]').first().press('Enter')
 assert.notEqual(await gameDetail.locator('time').getAttribute('datetime'),latest);
 assert.match(await gameDetail.textContent(),/PIR/);
 assert(!(await page.evaluate(()=>document.getElementById('playerModal').scrollWidth>document.getElementById('playerModal').clientWidth+2)));
-// Mobile player view fills the viewport, keeps four metrics in one row, and closes accessibly.
+// Mobile player view fills the viewport, keeps four metrics in two balanced rows, and closes accessibly.
 for(const width of [320,390,650]){
  await page.setViewportSize({width,height:844});
- const layout=await page.evaluate(()=>{const modal=document.getElementById('playerModal'),r=modal.getBoundingClientRect(),stats=[...document.querySelectorAll('.ef-player-stats>div')].map(el=>el.getBoundingClientRect());return {x:r.x,y:r.y,width:r.width,height:r.height,overflow:modal.scrollWidth>modal.clientWidth+2,rows:stats.map(r=>r.y)};});
- assert.equal(layout.x,0);assert.equal(layout.y,0);assert.equal(layout.width,width);assert(Math.abs(layout.height-844)<1);assert.equal(layout.overflow,false);assert(layout.rows.every(y=>y===layout.rows[0]));
+ const layout=await page.evaluate(()=>{const modal=document.getElementById('playerModal'),r=modal.getBoundingClientRect(),stats=[...document.querySelectorAll('.ef-player-stats .pa-metrics > div')].map(el=>el.getBoundingClientRect());return {x:r.x,y:r.y,width:r.width,height:r.height,overflow:modal.scrollWidth>modal.clientWidth+2,rows:stats.map(r=>r.y)};});
+ assert.equal(layout.x,0);assert.equal(layout.y,0);assert.equal(layout.width,width);assert(Math.abs(layout.height-844)<1);assert.equal(layout.overflow,false);assert.equal(layout.rows.length,4);assert.equal(layout.rows[0],layout.rows[1]);assert.equal(layout.rows[2],layout.rows[3]);assert(layout.rows[2]>layout.rows[0]);
 }
 await page.setViewportSize({width:390,height:844});
 assert.match(await page.locator('#playerModal .close').textContent(),/חזרה/);
