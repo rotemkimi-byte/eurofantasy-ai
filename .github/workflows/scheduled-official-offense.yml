@@ -1,0 +1,23 @@
+name: EuroFantasy scheduled official-offense
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '19,49 * * * *'
+
+permissions: {}
+
+concurrency:
+  group: eurofantasy-official-offense
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    # Do not activate schedules on the staging repository or the old repository.
+    if: github.repository_id == '1466932960' && github.repository == 'rotemkimi-byte/eurofantasy-ai' && github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/private-scheduled-task.yml
+    with:
+      task: 'official-offense'
+      timeout: 12
+    secrets:
+      DEV_REPOSITORY_TOKEN: ${{ secrets.DEV_REPOSITORY_TOKEN }}

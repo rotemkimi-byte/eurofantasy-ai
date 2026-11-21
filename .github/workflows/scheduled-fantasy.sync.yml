@@ -1,0 +1,24 @@
+name: EuroFantasy scheduled fantasy.sync
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/30 * * * *'
+
+permissions: {}
+
+concurrency:
+  group: eurofantasy-fantasy-data-sync
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    # Do not activate schedules on the staging repository or the old repository.
+    if: github.repository_id == '1466932960' && github.repository == 'rotemkimi-byte/eurofantasy-ai' && github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/private-scheduled-task.yml
+    with:
+      task: 'fantasy.sync'
+      timeout: 30
+    secrets:
+      DEV_REPOSITORY_TOKEN: ${{ secrets.DEV_REPOSITORY_TOKEN }}
+      FANTASY_TOKEN: ${{ secrets.FANTASY_TOKEN }}
