@@ -2867,7 +2867,7 @@ function render(){
  const free=money(balance(draft)),vacancies=draft.slots.filter(s=>!s.current).length;
  const cost=money(draft.slots.reduce((sum,s)=>sum+(s.current?.price||0),0));
  root.innerHTML=`<div class="simToolbar"><button type="button" id="simReset">התחל מחדש מהסגל שלי</button></div>
- <p class="simNote">לחיצה על שחקן פותחת את רשימת המחליפים. לחיצה על ＋ מאשרת החלפה בטיוטה.</p>
+ <p class="simNote">לחיצה על שם או תמונה פותחת פרופיל. הכפתור ״החלף״ פותח את רשימת המחליפים, ו־＋ מאשר את ההחלפה בטיוטה.</p>
  ${draft.bank===null?'<p class="simBalanceNotice" role="status">יתרת הפנטזי טרם התקבלה בסנכרון. כרגע מוצג הקרדיט שהתפנה בהחלפות.</p>':'<p class="simNote">יתרה פנויה מהפנטזי: '+money(draft.bank)+' CR</p>'}
  <div class="simTotals">
   <div><b>${free}</b><small>${draft.bank===null?'קרדיט מהחלפות בלבד':'קרדיט פנוי עכשיו'}</small></div>
