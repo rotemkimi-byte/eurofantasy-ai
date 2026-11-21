@@ -11,7 +11,7 @@ permissions: {}
 jobs:
   browser:
     if: github.repository_id == '1466932960' && github.repository == 'rotemkimi-byte/eurofantasy-ai-demo-test' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - uses: actions/setup-python@v5
