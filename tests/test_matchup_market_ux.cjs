@@ -74,28 +74,30 @@ const server=http.createServer((req,res)=>{
   const current=await page.evaluate(()=>myTeam.filter(name=>players.some(p=>p.name===name)));
   assert(current.length>0);
   const cards=page.locator('#marketReferenceCards .marketRefItem');
-  for(const name of current){
-   const card=cards.filter({has:page.locator('[data-market-player="'+name+'"]')});
-   if(await card.count())assert.equal(await card.locator('[data-market-toggle]').count(),0);
-  }
-  const add=cards.locator('[data-market-toggle]').first();
-  const added=await add.getAttribute('data-market-toggle');
-  await add.click();
-  assert(await page.evaluate(name=>isSelected({name}),added));
-  assert.equal(await cards.locator('[data-market-toggle="'+added+'"]').count(),0);
+  await cards.first().waitFor();
+  assert.equal(await cards.locator('button:not([data-market-player])').count(),0);
+  assert.equal(await page.locator('#market .marketTable button').count(),0);
+  const profile=cards.locator('[data-market-player]').first();
+  const name=await profile.getAttribute('data-market-player');
+  await profile.click();
+  assert.match(await page.locator('#playerModal .ef-player-identity h2').textContent(),
+   new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'i'));
+  await page.locator('#playerModal .close').click();
+  assert.deepEqual(await page.evaluate(()=>myTeam.filter(name=>players.some(p=>p.name===name))),current);
   await open('team');
   const manage=page.locator('#teamCards .squadRosterTools');
   await manage.locator(':scope > summary').click();
-  const remove=manage.locator('[data-remove="'+added+'"]');
+  const remove=manage.locator('[data-remove]').first();
+  const removed=await remove.getAttribute('data-remove');
   await remove.locator('..').locator('summary').click();
   await remove.click();
-  assert(!(await page.evaluate(name=>isSelected({name}),added)));
-  assert.deepEqual(await page.evaluate(()=>myTeam.filter(name=>players.some(p=>p.name===name))),current);
+  assert(!(await page.evaluate(name=>isSelected({name}),removed)));
   const response=page.waitForResponse(r=>r.url().includes('/data/roster.json?'));
   await page.locator('#refreshSquad').click();
   assert((await response).ok());
+  await page.waitForFunction(name=>isSelected({name}),removed);
   assert.deepEqual(await page.evaluate(()=>myTeam.filter(name=>players.some(p=>p.name===name))),current);
   assert.deepEqual(errors,[]);
-  console.log('PASS: matchup navigation and official lineups, PIR comparison, 320px in both themes, market add, squad removal and live roster refresh.');
+  console.log('PASS: matchup navigation and official lineups, PIR comparison, 320px in both themes, market profile without roster controls, squad removal and live roster refresh.');
  }finally{await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;}).finally(()=>server.close());
