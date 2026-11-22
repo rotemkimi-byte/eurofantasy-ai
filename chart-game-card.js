@@ -14,6 +14,8 @@ function crest(team,url){
 }
 function card({game,heading,values=[]}){
  const timestamp=Date.parse(game?.date);
+ const hasScore=Number.isFinite(game?.score)&&Number.isFinite(game?.against);
+ const result=hasScore&&game.score!==game.against?(game.score>game.against?'win':'loss'):'';
  const venue=game?.home===true?'בית':game?.home===false?'חוץ':'';
  return `<div class="ef-chart-game-card">${heading?`<bdi class="ef-chart-game-heading">${esc(heading)}</bdi>`:''}
   ${game?`<div class="ef-chart-game-identity">
@@ -22,6 +24,10 @@ function card({game,heading,values=[]}){
     <small>${Number.isFinite(timestamp)?`<time dir="ltr" datetime="${esc(game.date)}">${date.format(timestamp)}</time>`:''}
     ${game.round?`<span>מחזור ${esc(game.round)}</span>`:''}
     ${venue?`<span class="pirGameVenue" data-home="${game.home}">${venue}</span>`:''}</small></div>
+   ${hasScore?`<div class="ef-game-result" data-result="${result}">
+    <strong><bdi dir="ltr">${game.score}–${game.against}</bdi></strong>
+    ${result?`<span>${result==='win'?'ניצחון':'הפסד'}</span>`:''}
+   </div>`:''}
   </div>`:''}
   ${window.PlayerAnalysis.metrics(values.map(([label,value])=>[label,value??'—']))}
  </div>`;

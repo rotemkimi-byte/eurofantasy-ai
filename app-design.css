@@ -258,8 +258,6 @@ html[data-theme="light"] .tab .player-picker-modes button[aria-pressed="true"]{b
 .player-picker-controls select{display:block;width:100%;min-width:0;min-height:44px;margin-top:5px;font-size:16px;background:var(--card);color:var(--text);border-color:var(--line)}
 .player-result-picker{display:block;position:sticky;top:0;z-index:4;background:var(--card);padding:calc(6px + env(safe-area-inset-top,0px)) 0 8px}
 .player-result-summary{scroll-margin:calc(90px + env(safe-area-inset-top,0px)) 0 calc(100px + env(safe-area-inset-bottom,0px))}
-#pirSummary .pirStats{margin:6px 0}
-#pirSelectedName{font-weight:750}
 #pirLatest{margin:6px 0 12px}
 #usage .player-picker-controls,#defense .player-picker-controls{grid-template-columns:minmax(0,1fr)}
 @media(max-width:600px){
@@ -538,16 +536,26 @@ html[data-theme="dark"] :is(.ef-chart-game-card,.pmHistoryScore,.pmHistoryPair) 
  --ef-game-positive:#7ef2ba;
  --ef-game-negative:#ff9aab;
 }
-.ef-chart-game-card{padding:10px;display:grid;gap:8px;width:100%;overflow-wrap:anywhere}
+.ef-chart-game-card{padding:8px;display:grid;gap:6px;width:100%;overflow-wrap:anywhere}
+.ef-chart-game-card .pa-stat-panel{margin:0}
+.ef-chart-game-card .pa-metrics>div{padding:6px 7px;gap:2px}
+.ef-chart-game-card .pa-metrics dd{font-size:clamp(14px,5cqi,19px)}
+.ef-chart-game-card .pa-metrics dt{font-size:11px}
 .ef-chart-game-heading{font-weight:800}
 .ef-chart-game-identity{display:flex;align-items:center;gap:8px;min-width:0}
 .ef-game-crest,.pmHistoryPhoto{position:relative;display:grid;place-items:center;overflow:hidden;background:var(--ef-game-tile);border-radius:9px;flex:none}
-.ef-game-crest{width:38px;height:38px;font-size:10px}
+.ef-game-crest{width:32px;height:32px;font-size:10px}
 .ef-game-crest img,.pmHistoryPhoto img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 .ef-game-crest img{padding:3px;background:#f2f5fa;box-sizing:border-box}
 .ef-game-crest img+b,.pmHistoryPhoto img+b{visibility:hidden}
 .ef-chart-game-identity strong{font-size:14px}
 .ef-chart-game-identity small{display:flex;align-items:center;gap:3px 8px;flex-wrap:wrap;color:var(--ef-game-muted);font-size:11px}
+.pirGameVenue{padding:0 4px;border:1px solid var(--ef-game-border);border-radius:4px}
+.ef-game-result{display:grid;flex:none;justify-items:center;align-self:center;margin-inline-start:auto;line-height:1.25}
+.ef-game-result strong{font-size:15px;font-variant-numeric:tabular-nums}
+.ef-game-result span{font-size:11px;font-weight:800}
+.ef-game-result[data-result="win"] span{color:var(--ef-game-positive)}
+.ef-game-result[data-result="loss"] span{color:var(--ef-game-negative)}
 .pmHistoryNumbers>span{background:var(--ef-game-tile);border-radius:8px;text-align:center;padding:5px;min-width:0}
 .pmHistoryNumbers small{display:block;color:var(--ef-game-muted);font-size:10px;line-height:1.25}
 .pmHistoryNumbers bdi{margin:1px 0 0;font-size:16px;font-weight:800;font-variant-numeric:tabular-nums}
