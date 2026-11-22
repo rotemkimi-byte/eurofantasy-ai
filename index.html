@@ -549,10 +549,11 @@ async function fillLastThreeGames(name,card){
     card.innerHTML='<h4>3 המשחקים האחרונים</h4>'+(rows.length?`<table class="lastThreeTable" aria-label="שלושת המשחקים האחרונים"><thead><tr><th>יריבה</th><th>PIR</th><th>דקות</th></tr></thead><tbody>${rows.join('')}</tbody></table>`:'<p class="muted">אין עדיין משחקים ששוחקו בעונת 2026/27.</p>');
   }catch(e){if(card.isConnected)card.innerHTML='<h4>3 המשחקים האחרונים</h4><p class="muted">נתוני המשחקים לא זמינים כרגע. פתח שוב כדי לנסות מחדש.</p>';}
 }
-window.showPlayer=function(target,compactMarket=false){
+window.showPlayer=function(target){
   const p=window.PlayerAnalysis.resolve(target);if(!p)return;
   const name=p.name;
-  playerModal.querySelector('.close').textContent=compactMarket&&!p.officialOnly
+  const fromMarket=document.getElementById('market').classList.contains('active');
+  playerModal.querySelector('.close').textContent=fromMarket&&!p.officialOnly
    ?'‹ חזרה לרשימת השחקנים':'‹ חזרה';
   if(p.officialOnly){
    const body=document.getElementById('modalBody');
@@ -562,7 +563,7 @@ window.showPlayer=function(target,compactMarket=false){
    playerModal.scrollTop=0;
    return;
   }
-  const x=model(p),m=x.match;
+  const x=model(p);
   const recent=x.recentForm;
   const hasCurrent=recent?.latestSeason==="E2026" && Number(recent.currentSeasonGames)>0;
   const actualMetric=(label,value,decimals=1)=>[label,value==null||!Number.isFinite(Number(value))?"—":Number(value).toFixed(decimals)];
@@ -578,24 +579,14 @@ window.showPlayer=function(target,compactMarket=false){
   ],{player:p.name})+`<div class="miniCard lastThreeCard"><h4>3 המשחקים האחרונים</h4><p class="muted">טוען משחקים…</p></div>`
   :'<p class="muted">אין עדיין נתוני משחק מאומתים לעונת 2026/27.</p>';
   const body=document.getElementById("modalBody");
-  body.classList.toggle("ef-market-player",compactMarket);
-  body.innerHTML=`<div class="ef-player-hero"><div class="ef-player-identity"><div class="ef-player-avatar" aria-hidden="true">${esc(p.name.split(/\s+/).filter(Boolean).slice(0,2).map(s=>s[0]).join(''))}</div><div><h2 dir="auto">${esc(p.name)}</h2><p><bdi>${esc(compactMarket?p.pos:p.team)}</bdi> • <bdi>${esc(compactMarket?p.team:p.pos)}</bdi> • ${esc(statusText(p.status))}</p></div></div><div class="ef-player-stats">${window.PlayerAnalysis.metrics([
+  body.classList.add("ef-market-player");
+  body.innerHTML=`<div class="ef-player-hero"><div class="ef-player-identity"><div class="ef-player-avatar" aria-hidden="true">${esc(p.name.split(/\s+/).filter(Boolean).slice(0,2).map(s=>s[0]).join(''))}</div><div><h2 dir="auto">${esc(p.name)}</h2><p><bdi>${esc(p.pos)}</bdi> • <bdi>${esc(p.team)}</bdi> • ${esc(statusText(p.status))}</p></div></div><div class="ef-player-stats">${window.PlayerAnalysis.metrics([
    ['מחיר נוכחי · קרדיט',n1(p.price)],
    ['PIR במשחק האחרון',hasCurrent&&recent.lastGame?.pir!=null?n1(recent.lastGame.pir):'—'],
    ['דקות במשחק האחרון',hasCurrent&&recent.lastGame?.minutes!=null?n1(recent.lastGame.minutes):'—'],
    ['ממוצע PIR · '+(hasCurrent?recent.last5?.games||0:0)+' אחרונים',hasCurrent&&recent.last5?.avgPir!=null?n1(recent.last5.avgPir):'—']
-  ])}</div></div><nav class="ef-player-jumps" aria-label="נתוני שחקן"><a href="#efPlayerActual">ביצועים בפועל</a>${compactMarket?'':'<a href="#efPlayerForecast">צפי למשחק הבא</a>'}</nav>
-  <section id="efPlayerActual" class="playerSection actual-results" aria-label="נתוני עבר"><h3 class="sectionTitle">בפועל · עונת 2026/27</h3><p class="muted sectionNote">תוצאות ממשחקים שכבר שוחקו</p>${actualCards}</section>
-  ${compactMarket?'':`<section id="efPlayerForecast" class="playerSection forecast-results" aria-label="תחזית למשחק הבא"><h3 class="sectionTitle">תחזית · המשחק הבא</h3><p class="muted sectionNote">הערכות המודל, לא תוצאות בפועל</p>
-  <div class="detailGrid">
-  <div class="miniCard"><b>${n1(x.expected)}</b><small>PIR צפוי</small></div><div class="miniCard"><b>${n1(x.minutes)}</b><small>דקות צפויות</small></div>
-  <div class="miniCard"><b>${n1(x.floor)}–${n1(x.ceiling)}</b><small>${x.rangeSample?"טווח שגיאות עבר*":"טווח נוסחתי*"}</small></div><div class="miniCard"><b>${x.matchPct>=0?"+":""}${x.matchPct.toFixed(1)}%</b><small>סביבת מאצ׳אפ</small></div>
-  </div>
-  <details class="secondaryDetails"><summary>עוד נתונים והסבר לתחזית</summary><div class="detailGrid">
-  ${x.personalPrior?.historicalGames?`<div class="miniCard"><b>${n1(x.personalPrior.avgPir)} PIR · ${n1(x.personalPrior.avgMinutes)} דק׳</b><small>בסיס אישי 2025/26 · ${x.personalPrior.historicalGames} משחקים</small></div><div class="miniCard"><b>${Math.round(x.personalPrior.currentSeasonWeight*100)}%</b><small>משקל העונה הנוכחית בביצועים לדקה</small></div><div class="miniCard"><b>${x.personalPrior.streaks.find(s=>s.threshold===30)?.longestRun??'—'}</b><small>הרצף הארוך של משחקי 30+ PIR · 2025/26</small></div><div class="miniCard"><b>${x.personalPrior.momentumEnabled?`+${n1(x.personalPrior.momentumPir)} PIR`:'לא פעיל'}</b><small>תיקון מומנטום · בדיקה היסטורית</small></div>`:''}
-  <div class="miniCard"><b>${dataQuality(p,x)}</b><small>איכות נתונים</small></div><div class="miniCard"><b>${esc(x.source)}</b><small>מקור בסיס התחזית</small></div>
-  <div class="miniCard"><b>${pct(m.winProb)}</b><small>סיכוי קבוצתי לניצחון</small></div><div class="miniCard"><b>${pct(m.p20)}</b><small>סיכוי קבוצתי לניצחון ב־20+ הפרש</small></div>
-  </div><p class="notice" style="margin-top:12px">בסיס PIR: ${n1(x.basePir)} • בסיס דקות: ${n1(x.baseMin)} • חוסרים בקבוצה: +${n1(x.injuryBoost)} דקות, +${n1(x.injuryUsagePct||0)}% נפח משחק${x.missingStars?.length?` (${x.missingStars.map(esc).join(", ")})`:""}. ${m.home?"בית":"חוץ"} • צפי נקודות קבוצה: ${n1(m.teamPoints)} • הגנת היריבה מול העמדה: ${Number(x.positionMatchPct||0)>=0?"+":""}${n1(x.positionMatchPct||0)}%. קו קבוצה: ${m.margin>=0?"+":""}${n1(m.margin)}; טוטאל: ${n1(m.total)}. *${x.rangeSample?`טווח המבוסס על ${x.rangeSample} שגיאות בעמדה במחזור אחד; אינו טווח ביטחון מאומת.`:"טווח נוסחתי שטרם אומת."}</p></details></section>`}`;
+  ])}</div></div><nav class="ef-player-jumps" aria-label="נתוני שחקן"><a href="#efPlayerActual">ביצועים בפועל</a></nav>
+  <section id="efPlayerActual" class="playerSection actual-results" aria-label="נתוני עבר"><h3 class="sectionTitle">בפועל · עונת 2026/27</h3><p class="muted sectionNote">תוצאות ממשחקים שכבר שוחקו</p>${actualCards}</section>`;
   const lastThreeCard=document.querySelector("#modalBody .lastThreeCard");
   if(lastThreeCard)void fillLastThreeGames(name,lastThreeCard);
   if(!playerModal.open)playerModal.showModal();
