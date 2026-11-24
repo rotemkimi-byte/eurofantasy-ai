@@ -1,20 +1,41 @@
-/* Negative fantasy surprises: observed results, never forecasts. */
+/* Negative fantasy surprises: pregame PIR forecasts compared with official results. */
 (function(root){
 'use strict';
 const num=v=>v===null||v===undefined||v===''||!Number.isFinite(Number(v))?null:Number(v);
-function players(report){return (report?.players||[]).filter(p=>['G','F','C'].includes(p.pos)&&p.played===true&&num(p.price)!==null&&num(p.pir)!==null&&Number(p.price)>=13&&Number(p.pir)<=10).slice().sort((a,b)=>a.pir-b.pir||b.price-a.price);}
-function sortPlayers(rows,sort='price'){
- const numeric=(a,b,key,ascending=false)=>{const av=num(a[key]),bv=num(b[key]);if(av===null&&bv!==null)return 1;if(bv===null&&av!==null)return -1;return ((av??0)-(bv??0))*(ascending?1:-1);};
- return rows.slice().sort((a,b)=>(sort==='pir'?numeric(a,b,'pir',true):sort==='miss'?numeric(a,b,'gap',true):numeric(a,b,'price'))||String(a.id??a.name).localeCompare(String(b.id??b.name)));
+function validSnapshot(snapshot,report){
+ return snapshot?.season==='E2026'&&Number(snapshot.round)===Number(report?.round)
+  &&Date.parse(snapshot.created_at)<Date.parse(report?.start)&&Boolean(snapshot.predictions?.length);
 }
-function withForecasts(rows,report,snapshot,identity){
- const valid=snapshot?.season==='E2026'&&Number(snapshot.round)===Number(report?.round)&&Date.parse(snapshot.created_at)<Date.parse(report?.start);
- const index=new Map();
- if(valid)for(const row of snapshot.predictions||[]){const key=identity?.resolve(row)?.key;if(key){const values=index.get(key)||[];values.push(row);index.set(key,values);}}
- return rows.map(p=>{const key=identity?.resolve(p)?.key,matches=key?index.get(key):null;
-  const forecast=matches?.length===1?num(matches[0].expectedPir):null;
-  return {...p,expectedPir:forecast,gap:forecast===null||num(p.pir)===null?null:Number(p.pir)-forecast};
- });
+function players(data,report,snapshot,identity){
+ if(data?.season!=='E2026'||!validSnapshot(snapshot,report)||!identity)return [];
+ const forecasts=new Map();
+ for(const row of snapshot.predictions){
+  const key=identity.resolve(row)?.key;
+  if(!key||!['G','F','C'].includes(row.pos)||num(row.expectedPir)===null)continue;
+  const matches=forecasts.get(key)||[];
+  matches.push(row);
+  forecasts.set(key,matches);
+ }
+ const rows=[];
+ for(const profile of Object.values(data.players||{})){
+  const person=identity.resolve(profile);
+  const predictions=forecasts.get(person?.key);
+  if(!predictions)continue;
+  const games=(profile.games||[]).filter(game=>Number(game.round)===Number(report.round)&&num(game.minutes)>0&&num(game.stats?.valuation)!==null);
+  for(const game of games){
+   const matches=predictions.filter(row=>row.gameCode!=null?Number(row.gameCode)===Number(game.gameCode):games.length===1||row.opponent===game.opponent);
+   if(matches.length!==1)continue;
+   const forecast=matches[0],pir=num(game.stats.valuation),expectedPir=num(forecast.expectedPir),gap=pir-expectedPir;
+   if(gap>=0)continue;
+   rows.push({id:person.key,name:person.displayName||forecast.name,playerCode:profile.playerCode,pos:forecast.pos,team:game.team,
+    gameCode:game.gameCode,opponent:game.opponent,home:game.home,pir,expectedPir,gap});
+  }
+ }
+ return rows;
+}
+function sortPlayers(rows,sort='miss'){
+ return rows.slice().sort((a,b)=>(sort==='pir'?a.pir-b.pir:sort==='forecast'?b.expectedPir-a.expectedPir:a.gap-b.gap)
+  ||a.gap-b.gap||a.name.localeCompare(b.name)||a.gameCode-b.gameCode);
 }
 // Bylaws Article 19. Unresolved ties share a rank; names never break ties.
 function standings(games,names){
@@ -70,25 +91,26 @@ function teams(data){
  }
  return {rows:out.reverse(),uncertain};
 }
-const api={players,teams,standings,sortPlayers,withForecasts};if(typeof module!=='undefined'&&module.exports)module.exports=api;root.NegativeSurprisesCore=api;
+const api={players,teams,standings,sortPlayers,validSnapshot};if(typeof module!=='undefined'&&module.exports)module.exports=api;root.NegativeSurprisesCore=api;
 if(typeof document==='undefined')return;
 const nav=document.querySelector('nav.tabs'),main=document.querySelector('main');if(!nav||!main)return;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=v=>num(v)===null?'—':Number(v).toFixed(1),$=id=>document.getElementById(id);
 nav.insertAdjacentHTML('beforeend','<button type="button" data-tab="negativeSurprises">הפתעות לרעה</button>');
-main.insertAdjacentHTML('beforeend',`<section id="negativeSurprises" class="tab"><div class="card"><div class="sectionHead"><h3>הפתעות לרעה</h3><button id="nsReload" class="secondary" type="button">רענן</button></div><div class="filters"><label>מחזור<select id="nsRound"></select></label><label>מיון שחקנים<select id="nsSort"><option value="price">קרדיט · מהגבוה לנמוך</option><option value="pir">PIR בפועל · מהנמוך לגבוה</option><option value="miss">החמצה · הפער השלילי הגדול ביותר</option></select></label></div><details class="ef-help"><summary>הסבר</summary><div class="ef-help-body">שחקנים: מחיר מתועד לפני המחזור של 13 קרדיט ומעלה ו־10 PIR ומטה בפועל, כולל PIR שלילי. שחקנים שלא שיחקו ומחירים חסרים אינם נכללים.<br>קבוצות: משחזרים את הטבלה בתחילת יום המשחק (שעון ישראל), לפני תוצאות אותו יום. הדירוג כולל ניצחונות, פחות משחקים ושוברי שוויון: הפרש סלים, נקודות זכות ויחס סלים; אחרי שני מפגשים בין כל הקבוצות השוות — תחילה המאזן וההפרש ביניהן. נקודות הארכה אינן נכללות בשוברי השוויון. מיקום משותף או נתוני שובר שוויון חסרים אינם מוכרעים באופן שרירותי. זהו דירוג משוחזר מתוצאות המשחקים; התאמות משמעת אינן כלולות. <a href="https://ftpserver.euroleague.net/general/2025_26_EuroLeague_Bylaws.pdf" target="_blank" rel="noopener">מקור הכללים: סעיף 19</a>. הנתונים מתייחסים לעונת 2026/27 בלבד. PIR צפוי נלקח מארכיון תחזיות המחזור שנשמר לפני תחילתו, ולא מהמודל הנוכחי. פער = PIR בפועל פחות התחזית. כשאין תחזית תקפה מוצג —.</div></details><p id="nsStatus" role="status" class="muted"></p><h4 class="nsTitle">שחקנים · 13+ CR / עד 10 PIR</h4><p id="nsPlayersStatus" class="muted" role="status"></p><div id="nsPlayers" class="nsGrid"></div><h4 class="nsTitle">קבוצות · הפסד ליריבה נמוכה בטבלה</h4><p id="nsTeamsStatus" class="muted" role="status"></p><div id="nsTeams" class="nsGrid"></div></div></section>`);
+main.insertAdjacentHTML('beforeend',`<section id="negativeSurprises" class="tab"><div class="card"><div class="sectionHead"><h3>הפתעות לרעה</h3><button id="nsReload" class="secondary" type="button">רענן</button></div><div class="filters"><label>מחזור<select id="nsRound"></select></label><label>מיון שחקנים<select id="nsSort"><option value="miss">הפער השלילי הגדול ביותר</option><option value="pir">PIR בפועל · מהנמוך לגבוה</option><option value="forecast">PIR צפוי · מהגבוה לנמוך</option></select></label></div><details class="ef-help"><summary>הסבר</summary><div class="ef-help-body">משווים תחזית PIR שנשמרה לפני פתיחת המחזור ל־PIR הרשמי בפועל. הרשימה מציגה שחקנים ששיחקו וסיימו מתחת לתחזית. הפער הוא ה־PIR בפועל פחות ה־PIR הצפוי.<br>קבוצות: משחזרים את הטבלה בתחילת יום המשחק (שעון ישראל), לפני תוצאות אותו יום. הדירוג כולל ניצחונות, פחות משחקים ושוברי שוויון: הפרש סלים, נקודות זכות ויחס סלים; אחרי שני מפגשים בין כל הקבוצות השוות — תחילה המאזן וההפרש ביניהן. נקודות הארכה אינן נכללות בשוברי השוויון. מיקום משותף או נתוני שובר שוויון חסרים אינם מוכרעים באופן שרירותי. זהו דירוג משוחזר מתוצאות המשחקים; התאמות משמעת אינן כלולות. <a href="https://ftpserver.euroleague.net/general/2025_26_EuroLeague_Bylaws.pdf" target="_blank" rel="noopener">מקור הכללים: סעיף 19</a>. הנתונים מתייחסים לעונת 2026/27 בלבד.</div></details><p id="nsStatus" role="status" class="muted"></p><h4 class="nsTitle">שחקנים · PIR צפוי מול PIR בפועל</h4><p id="nsPlayersStatus" class="muted" role="status"></p><div id="nsPlayers" class="nsGrid"></div><h4 class="nsTitle">קבוצות · הפסד ליריבה נמוכה בטבלה</h4><p id="nsTeamsStatus" class="muted" role="status"></p><div id="nsTeams" class="nsGrid"></div></div></section>`);
 const style=document.createElement('style');style.textContent=`.nsGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:12px}.nsCard{padding:15px;background:var(--card2);border:1px solid var(--line);border-inline-start:4px solid var(--bad);border-radius:14px;color:var(--text)}.nsCard h4{margin:0 0 8px;font-size:18px;line-height:1.5}.nsCard p{font-size:13px;line-height:1.6;margin:7px 0;color:var(--muted)}.nsMetrics{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:12px}.nsMetrics>div{background:var(--card);border:1px solid var(--line);border-radius:10px;text-align:center;padding:10px 3px}.nsMetrics b{display:block;font-size:24px;color:var(--text)}.nsMetrics small{font-size:11px}.nsMetrics>div:first-child b{color:var(--bad)}.nsTitle{margin:24px 0 12px;font-size:17px}.nsScore{font-size:25px;font-weight:800;direction:ltr;text-align:center;color:var(--text);padding:8px}.nsEmpty{font-size:14px;padding:15px;border:1px dashed var(--line);border-radius:12px}`;document.head.append(style);
 let lab=null,results=null,loading=false;
 const forecasts=new Map(),forecastPending=new Set();
-function emptyPlayersMessage(report){
- if(!report.players?.length&&report.unknownPrices)return 'מחירי הפנטזי לפני המחזור חסרים, ולכן אי אפשר לחשב את רשימת השחקנים.';
- return 'אין שחקנים שעומדים בתנאים במחזור הזה.';
-}
 function render(){
- const round=Number($('nsRound').value),r=lab?.rounds?.find(x=>Number(x.round)===round),ps=sortPlayers(withForecasts(players(r),r,forecasts.get(round),root.PlayerIdentity),$('nsSort').value);
- $('nsPlayersStatus').textContent=!lab?'נתוני השחקנים לא נטענו.':!r?'דוח השחקנים למחזור הזה עדיין לא זמין.':`${ps.length} שחקנים · ${r.complete?'מחזור סופי':'מחזור חלקי'} · ${r.playedGames}/${r.totalGames} משחקים${r.unknownPrices?' · '+r.unknownPrices+' משתתפים ללא מחיר מתועד':''}`;
- $('nsPlayers').innerHTML=ps.map((p,i)=>`<article class="fc-player">${root.FantasyCompactUI.header(p,i+1)}${root.FantasyCompactUI.metrics([['CR לפני המחזור',fmt(p.price)],['PIR צפוי',fmt(p.expectedPir)],['PIR בפועל',fmt(p.pir)],['פער מהתחזית',p.gap===null?'—':(p.gap>0?'+':'')+fmt(p.gap),p.gap<0?'fc-negative':'']])}<p class="fc-opponents">${(p.opponents||[]).map(o=>(o.home?'בית':'חוץ')+' מול '+esc(o.name)).join(' · ')}${p.expectedPir===null?' · '+(forecastPending.has(round)?'טוען תחזית שמורה…':'אין תחזית שמורה לפני המחזור'):''}</p></article>`).join('')||(r?`<p class="nsEmpty">${emptyPlayersMessage(r)}</p>`:'');
- if(r&&!forecasts.has(round)&&!forecastPending.has(round))void loadForecast(r);
+ const round=Number($('nsRound').value);
+ const report=lab?.rounds?.find(x=>Number(x.round)===round),snapshot=forecasts.get(round);
+ if(report&&!forecasts.has(round)&&!forecastPending.has(round))void loadForecast(report);
+ const ps=sortPlayers(players(results,report,snapshot,root.PlayerIdentity),$('nsSort').value);
+ const covered=snapshot?.coveredGames?.length;
+ const partial=covered&&covered<report?.totalGames?` · תחזיות נשמרו ל־${covered} מתוך ${report.totalGames} משחקים`:'';
+ $('nsPlayersStatus').textContent=!results?'תוצאות השחקנים לא נטענו.':!report?'מועד פתיחת המחזור עדיין לא זמין.':forecastPending.has(round)?'טוען תחזיות שנשמרו לפני המחזור…':snapshot?`${ps.length} שחקנים סיימו מתחת לתחזית${partial}`:'לא נמצאו תחזיות שנשמרו לפני פתיחת המחזור.';
+ $('nsPlayers').innerHTML=ps.map((p,i)=>`<article class="fc-player">${root.FantasyCompactUI.header(p,i+1)}${root.FantasyCompactUI.metrics([['PIR צפוי לפני המחזור',fmt(p.expectedPir)],['PIR בפועל',fmt(p.pir)],['פער מהתחזית',p.gap>-.05?'−<0.1':fmt(p.gap),'fc-negative']])}<p class="fc-opponents">${p.home?'בית':'חוץ'} מול ${esc(p.opponent)}</p></article>`).join('')
+  ||(results&&snapshot?'<p class="nsEmpty">לא נמצאו שחקנים ששיחקו וסיימו מתחת לתחזית במחזור הזה.</p>':'');
 
  const ts=teams(results).rows.filter(g=>Number(g.round)===round);
  $('nsTeamsStatus').textContent=results?`${ts.length} הפסדים בסינון · טבלה משוחזרת לתחילת יום המשחק`:'נתוני הקבוצות לא נטענו.';
@@ -96,8 +118,17 @@ function render(){
 }
 async function loadForecast(report){
  const round=Number(report.round);forecastPending.add(round);
- try{const response=await fetch(`./data/backtest/predictions-round-${String(round).padStart(2,'0')}.json`,{cache:'no-store',signal:AbortSignal.timeout(20000)});if(!response.ok)throw Error('snapshot');forecasts.set(round,await response.json());}
- catch{forecasts.set(round,null);}
+ try{
+  const suffix=`round-${String(round).padStart(2,'0')}.json`;
+  async function read(prefix){
+   try{
+    const response=await fetch(`./data/backtest/${prefix}-${suffix}`,{cache:'no-cache',signal:AbortSignal.timeout(20000)});
+    const snapshot=response.ok?await response.json():null;
+    return validSnapshot(snapshot,report)?snapshot:null;
+   }catch{return null;}
+  }
+  forecasts.set(round,await read('predictions')??await read('pre-round-predictions'));
+ }
  finally{forecastPending.delete(round);if(Number($('nsRound').value)===round)render();}
 }
 async function load(){if(loading)return;loading=true;$('nsReload').disabled=true;$('nsStatus').textContent='טוען תוצאות בפועל…';
