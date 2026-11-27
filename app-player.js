@@ -103,13 +103,27 @@ const metrics=(items,options)=>window.PlayerAnalysis.metrics(items,options);
 const metric=(label,value,note)=>[label,value,note];
 const rate=(label,r)=>metric(label,r.value===null?'—':fmt(r.value)+'%',`${r.covered} הופעות בחישוב${r.missing?' · '+r.missing+' חסרות':''}`);
 const pirTrend={label:'PIR',field:'valuation',scale:10};
+const minutesTrend={label:'דקות משחק',scale:40};
 const freeThrowsTrend={label:'עונשין',field:'freeThrowsMade',scale:2};
-const trendValue=(game,trend)=>game.minutes>0?U.num(game.stats?.[trend.field]):null;
+function trendValue(game,trend){
+ const minutes=U.num(game.minutes);
+ if(trend===minutesTrend)return minutes!==null&&minutes>=0?minutes:null;
+ return minutes>0?U.num(game.stats?.[trend.field]):null;
+}
+function duration(minutes){
+ if(minutes===null)return '—';
+ const seconds=Math.round(minutes*60);
+ return Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');
+}
 const freeThrowValue=game=>`${trendValue(game,freeThrowsTrend)??'—'}/${U.num(game.stats?.freeThrowsAttempted)??'—'}`;
-const trendDetail=(game,trend)=>trend===freeThrowsTrend?'עונשין · '+freeThrowValue(game):'PIR '+fmt(trendValue(game,pirTrend));
-function gameValues(game){
+function trendDetail(game,trend){
+ if(trend===freeThrowsTrend)return 'עונשין · '+freeThrowValue(game);
+ if(trend===minutesTrend)return 'דקות משחק · '+duration(trendValue(game,trend));
+ return 'PIR '+fmt(trendValue(game,trend));
+}
+function gameValues(game,minutesFormat=fmt){
  return game?[
-  ['PIR בפועל',fmt(trendValue(game,pirTrend))],['דקות בפועל',fmt(game.minutes)]
+  ['PIR בפועל',fmt(trendValue(game,pirTrend))],['דקות בפועל',minutesFormat(trendValue(game,minutesTrend))]
  ]:[];
 }
 function chart(games,trend){
@@ -118,7 +132,7 @@ function chart(games,trend){
  if(!valid.length)return `<p class="muted">אין נתוני ${trend.label} בטווח הזה.</p>`;
  const lo=Math.min(0,...valid),hi=Math.max(trend.scale,...valid),span=hi-lo;
  const freeThrows=trend===freeThrowsTrend;
- const width=Math.max(372,72+(rows.length-1)*(freeThrows?46:29)),left=42,right=width-30;
+ const width=Math.max(372,72+(rows.length-1)*(trend===pirTrend?29:46)),left=42,right=width-30;
  const x=i=>rows.length===1?(left+right)/2:left+i*(right-left)/(rows.length-1);
  const y=value=>160-(value-lo)/span*130;
  const paths=[];
@@ -135,7 +149,7 @@ function chart(games,trend){
  const lines=paths.map(path=>`<polygon points="${path[0].split(',')[0]},160 ${path.join(' ')} ${path.at(-1).split(',')[0]},160" fill="currentColor" opacity=".08"/><polyline points="${path.join(' ')}" fill="none" stroke="currentColor" stroke-width="2.5"/>`).join('');
  const points=rows.map((game,i)=>{
   const value=values[i],cx=x(i);
-  const label=freeThrows?freeThrowValue(game):value;
+  const label=freeThrows?freeThrowValue(game):trend===minutesTrend?duration(value):value;
   const point=value!==null?`<g class="ef-trend-point" data-game-index="${i}" tabindex="0" role="button" aria-pressed="false" aria-label="${esc(date(game.date)+' '+game.opponent+' · '+trendDetail(game,trend))}">
    <title>${esc(game.opponent)} · ${esc(trendDetail(game,trend))}</title>
    <circle cx="${cx}" cy="${y(value)}" r="16" fill="transparent"/>
@@ -225,10 +239,14 @@ window.showPlayer=function(target){
  const venueControls=overview.querySelector('[aria-label="בית וחוץ"]');
 
  const credits=document.createElement('section');credits.className='ef-market-credits';
+ const minutes=document.createElement('section');
+ minutes.className='playerSection ef-player-history ef-player-minutes';
+ minutes.innerHTML='<h3 class="sectionTitle">דקות משחק</h3><div class="ef-history-plot"></div>';
  const freeThrows=document.createElement('section');
  freeThrows.className='playerSection ef-player-history ef-player-free-throws';
  freeThrows.innerHTML='<h3 class="sectionTitle">עונשין</h3><p class="muted">קליעות מתוך ניסיונות בכל משחק</p><div class="ef-history-plot"></div>';
- overview.after(credits,freeThrows);
+ overview.after(minutes,freeThrows,credits);
+ const minutesPlot=minutes.querySelector('.ef-history-plot');
  const freeThrowsPlot=freeThrows.querySelector('.ef-history-plot');
  let creditPoints=[],activeCredit=null;
  function showCredit(point){
@@ -286,6 +304,7 @@ window.showPlayer=function(target){
   const stats=hero.querySelector('.ef-player-stats'),price=player.price;
   stats.innerHTML=metrics([['מחיר נוכחי · קרדיט',price],['ממוצע PIR · הטווח שנבחר',avg('valuation')],['ממוצע דקות · הטווח שנבחר',played.length?usage.minutes===null?null:usage.minutes/played.length:null],['ממוצע נקודות · הטווח שנבחר',avg('points')]].map(([label,value])=>[label,fmt(value)]));
   renderTrend(plot,pirTrend);
+  renderTrend(minutesPlot,minutesTrend);
   renderTrend(freeThrowsPlot,freeThrowsTrend);
   summary.innerHTML=`${metrics([rate('Usage רגיל',usage.regular),rate('Usage כולל · עם אסיסטים',usage.combined),metric('עבירות שסחט למשחק',fmt(avg('foulsReceived')))],{panel:'ef-usage-preview'})}${compactMarket?'':`<p class="ef-method muted">אומדנים מבוקס סקור ודקות; Usage כולל הוא מדד מותאם, לא אחוז פוזשנים ייחודיים.</p><h3 class="ef-last-title">המשחק האחרון</h3>${latest?gameCard(latest):'<p class="muted">אין משחקים זמינים בסינון שנבחר.</p>'}`}`;
   panes.usage.innerHTML=`<h3>מעורבות בהתקפה</h3>${metrics([rate('Usage רגיל',usage.regular),rate('Usage כולל · עם אסיסטים',usage.combined),metric('זריקות מהשדה · סה״כ',fmt(usage.fga)),metric('ניסיונות עונשין · סה״כ',fmt(usage.fta)),metric('אסיסטים · סה״כ',fmt(usage.assists)),['איבודים · סה״כ',fmt(usage.turnovers),'',usage.turnovers>0?'negative':'']])}<p class="ef-method">Usage רגיל: זריקות מהשדה + 0.44 מניסיונות העונשין + איבודים, ביחס לאומדן אירועי הקבוצה בזמן דקות השחקן. Usage כולל מוסיף אסיסטים; הוא מדד מעורבות מותאם לאפליקציה. אין כאן מדידה של זמן החזקת כדור. כמה משחקים משוקללים לפי החשיפה, ולא בממוצע פשוט.</p>`;
@@ -300,10 +319,10 @@ window.showPlayer=function(target){
   target.innerHTML=chart(selected,metric);
   const points=target.querySelectorAll('[data-game-index]');
   if(!points.length)return;
-  const marketPir=compactMarket&&metric===pirTrend;
-  const detail=marketPir?document.createElement('p'):compactMarket?null:document.createElement('div');
+  const marketSelection=compactMarket&&metric!==freeThrowsTrend;
+  const detail=marketSelection?document.createElement('p'):compactMarket?null:document.createElement('div');
   if(detail){
-   detail.className=marketPir?'ef-pir-selection':metric===freeThrowsTrend?'ef-ft-detail':'ef-chart-detail';
+   detail.className=marketSelection?'ef-pir-selection':metric===freeThrowsTrend?'ef-ft-detail':'ef-chart-detail';
    detail.setAttribute('aria-live','polite');
    target.append(detail);
   }
@@ -313,12 +332,13 @@ window.showPlayer=function(target){
    point.setAttribute('aria-pressed','true');
    if(!detail)return;
    const game=games[Number(point.dataset.gameIndex)];
-   if(marketPir){
+   if(marketSelection){
     const opponent=canonicalTeam(game.opponent)||'יריבה לא ידועה';
-    detail.textContent=`מול ${opponent} · ${gameVenue(game)} · ${date(game.date)}`;
+    const value=metric===minutesTrend?trendDetail(game,metric)+' · ':'';
+    detail.textContent=`${value}מול ${opponent} · ${gameVenue(game)} · ${date(game.date)}`;
     return;
    }
-   const values=gameValues(game);
+   const values=gameValues(game,metric===minutesTrend?duration:fmt);
    if(metric===freeThrowsTrend)values.push(['עונשין · קליעות/ניסיונות',freeThrowValue(game)]);
    detail.innerHTML=window.ChartGameCard.render({game,values});
   };
@@ -327,7 +347,7 @@ window.showPlayer=function(target){
    point.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show(point);}};
   }
   const latest=points[points.length-1];
-  if(marketPir)latest.setAttribute('aria-pressed','true');
+  if(marketSelection)latest.setAttribute('aria-pressed','true');
   else show(latest);
  }
  dataset().then(d=>{
