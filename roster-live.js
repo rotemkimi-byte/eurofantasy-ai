@@ -28,6 +28,7 @@
     preview: () => preview ? previous : null,
     coach: () => current?.coach,
     current: () => current,
+    refresh,
     resolveNames
   };
 
