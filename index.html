@@ -545,8 +545,10 @@ async function fillLastThreeGames(name,card){
     card.innerHTML='<h4>3 המשחקים האחרונים</h4>'+(rows.length?`<table class="lastThreeTable" aria-label="שלושת המשחקים האחרונים"><thead><tr><th>יריבה</th><th>PIR</th><th>דקות</th></tr></thead><tbody>${rows.join('')}</tbody></table>`:'<p class="muted">אין עדיין משחקים ששוחקו בעונת 2026/27.</p>');
   }catch(e){if(card.isConnected)card.innerHTML='<h4>3 המשחקים האחרונים</h4><p class="muted">נתוני המשחקים לא זמינים כרגע. פתח שוב כדי לנסות מחדש.</p>';}
 }
+let displayedPlayerProfile=null;
 window.showPlayer=function(target){
   const p=window.PlayerAnalysis.resolve(target);if(!p)return;
+  displayedPlayerProfile=p;
   const name=p.name;
   const fromMarket=document.getElementById('market').classList.contains('active');
   playerModal.querySelector('.close').textContent=fromMarket&&!p.officialOnly
@@ -2565,7 +2567,7 @@ for (const id of ['data', 'learning']) {
 <script src="./component-forecast.js?v=scouting-1"></script>
 <script src="./app-navigation.js?v=watchlist-1"></script>
 <script src="./watchlist.js?v=scouting-1"></script>
-<script src="./app-player.js?v=market-profile-4"></script>
+<script src="./app-player.js?v=market-profile-5"></script>
 <link rel="stylesheet" href="./home-dashboard.css?v=nav-pinned-2">
 <script src="./home-dashboard.js?v=reference-5"></script>
 <style id="market-reference-design">

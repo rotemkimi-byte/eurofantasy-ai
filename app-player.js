@@ -195,8 +195,11 @@ function marketGameRow(g){
 window.showPlayer=function(target){
  const player=window.PlayerAnalysis.resolve(target);if(!player)return;
  original.apply(this,arguments);
+ renderDashboard(player);
+};
+function renderDashboard(player){
  const name=player.name;
- const body=document.getElementById('modalBody'),hero=body?.querySelector('.ef-player-hero');if(!player||!hero)return;
+ const body=document.getElementById('modalBody'),hero=body?.querySelector('.ef-player-hero');if(!hero)return;
  const compactMarket=body.classList.contains('ef-market-player');
  body.classList.add('ef-dashboard');body.querySelector('.ef-player-jumps')?.remove();
  renderFixtures(hero,player.team);
@@ -358,6 +361,9 @@ window.showPlayer=function(target){
  media().then(d=>{if(!body.contains(hero)||d?.season!=='E2026')return;const m=window.PlayerIdentity.lookup(d.players,player);if(!m||canonicalTeam(m.club)!==canonicalTeam(player.team))return;photo(hero.querySelector('.ef-player-avatar'),m.photo,'תמונה של '+name);
  if(m.crest&&canonicalTeam(m.club)===canonicalTeam(player.team)){const crest=document.createElement('span');crest.className='ef-club-crest';hero.querySelector('.ef-player-identity p').prepend(crest);photo(crest,m.crest,m.club);}
  });
-};
+}
+if(document.getElementById('playerModal')?.open&&typeof displayedPlayerProfile!=='undefined'&&displayedPlayerProfile){
+ renderDashboard(displayedPlayerProfile);
+}
 function safeLink(url){try{const u=new URL(url);return u.protocol==='https:'&&u.hostname==='api-live.euroleague.net'?`<a href="${esc(url)}" target="_blank" rel="noopener">מקור רשמי ↗</a>`:'';}catch{return '';}}
 })();
