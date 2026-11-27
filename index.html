@@ -2628,7 +2628,7 @@ fetch('./data/player-media.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Err
 #teamView{flex-wrap:nowrap;overflow-x:auto;padding:10px 12px;gap:7px;direction:rtl}#teamView button{flex:0 0 auto;background:#e3eaf5!important;border:1px solid #8699b4!important;color:#20344f!important;box-shadow:0 2px 3px #142b4514;font-weight:850}#teamView button[aria-pressed="true"]{background:#087e60!important;color:#fff!important;border-color:#07654d!important}#teamView [data-team-view="review"]{order:99;margin-inline-start:auto}
 .tabs button:not(.active){color:#20344f!important;background:#e3eaf5!important;border-color:#94a5bd!important}.tabs button.active{background:#087e60!important;color:white!important;border-color:#087e60!important}
 #squadSimulation{padding:10px;margin:8px;background:linear-gradient(150deg,#102037,#152b35);color:#fff;border-radius:16px}
-.simToolbar button{background:#e7f0fb;color:#193450}
+#simReset,#simPicker .simPickerHead button{background:#e7eff8;color:#172741}
 .simNote,.simBalanceNotice{font-size:12px;line-height:1.55;color:#e2ebf3;margin:10px 0}
 .simBalanceNotice{color:#ffe3ae;border:1px solid #9e825b;border-radius:10px;padding:9px}
 .simTotals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:14px 0}
@@ -2675,9 +2675,10 @@ fetch('./data/player-media.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Err
 #simPicker[open]{display:grid;grid-template-rows:auto minmax(0,1fr)}
 #simPicker::backdrop{background:#080c18ba;backdrop-filter:blur(4px)}
 .simPickerHead{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#15263a;color:#fff}
-.simPickerHead button{flex:none;min-width:44px;height:44px;padding:0 8px;background:#e7eff8;color:#172741}
-#simClosePicker{font-size:25px}
-.simPickerHead h4{margin:0;font-size:16px;line-height:1.35}
+.simPickerHead button{flex:none;min-width:44px;min-height:44px;padding:0 8px}
+#simPicker .simPickerHead button:focus-visible{outline-color:#f4c478}
+#simClosePicker{width:44px;height:44px;font-size:25px;line-height:1}
+.simPickerHead h4{flex:1;min-width:0;margin:0;font-size:16px;line-height:1.35;overflow-wrap:anywhere}
 .simPickerBody{overflow:auto;overscroll-behavior:contain;padding:10px}
 .simFilters{display:flex;align-items:center;justify-content:space-between;gap:6px;margin:0 0 8px}
 .simFilters label{font-size:12px;color:#354a62}
@@ -2700,6 +2701,7 @@ fetch('./data/player-media.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Err
 .simMetrics>span:last-child{background:#e4f5ed;color:#125c4b}
 .simCandidateControls{display:grid;justify-items:center;gap:3px;width:49px;text-align:center}
 .simCandidateControls small{font-size:9px;line-height:1.2;color:#654451}
+#simPicker .simHistoryLink{background:#e7eff8;color:#172741;border:1px solid #a3b3c8;font-weight:800}
 #simPicker .simAdd{width:46px;height:46px;padding:0;display:grid;place-items:center;border-radius:11px;font-size:30px;line-height:1;background:#087356;color:white}
 #simPicker .simAdd:disabled{opacity:1;background:#e8edf3;color:#596a80;cursor:not-allowed}
 .simStatus{color:#79233a;font-size:12px;margin:0 0 7px}
@@ -2877,8 +2879,9 @@ function render(force=false){
  </div>${court()}
  ${!draft.slots.length?'<p class="simNote">הוסף שחקנים בשוק שחקנים ולחץ על ״התחל מחדש מהסגל שלי״.</p>':''}
  <dialog id="simPicker" aria-labelledby="simPoolTitle" dir="rtl">
-  <div class="simPickerHead"><button type="button" id="simClosePicker" aria-label="סגור חלון מחליפים">×</button>
-  <button type="button" id="simBack" hidden>חזרה לרשימה</button><h4 id="simPoolTitle"></h4></div>
+  <div class="simPickerHead"><h4 id="simPoolTitle"></h4>
+  <button type="button" id="simBack" hidden>חזרה לרשימה</button>
+  <button type="button" id="simClosePicker" aria-label="סגור חלון מחליפים" autofocus>×</button></div>
   <div class="simPickerBody"><p class="simStatus" id="simStatus" role="status"></p><div id="simScreen"></div></div>
  </dialog>`;
 }
