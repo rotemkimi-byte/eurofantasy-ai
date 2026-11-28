@@ -2,6 +2,9 @@ name: EuroFantasy scheduled official-offense
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/scheduled-official-offense.yml']
   schedule:
     - cron: '19,49 * * * *'
 
