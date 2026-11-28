@@ -113,7 +113,7 @@ function removePanel() {
   root.querySelector('[data-squad-panel][aria-expanded="true"]')?.setAttribute('aria-expanded','false');
 }
 
-function paint() {
+function paint(revealMatchup = false) {
   removePanel();
   if (!open) return;
   const card = playerCard(open.name);
@@ -122,10 +122,10 @@ function paint() {
   if (!button || !p) { open = null; return; }
   const title = open.kind === 'alternatives' ? 'חלופות מומלצות' : 'ניתוח יריב';
   const panel = document.createElement('section');
-  panel.className = 'squadExpansion';
+  const isMatchup = open.kind === 'matchup';
+  panel.className = isMatchup ? 'squadExpansion squadMatchupExpansion' : 'squadExpansion';
   panel.id = button.getAttribute('aria-controls');
   panel.setAttribute('aria-label', title + ' · ' + p.name);
-  const isMatchup = open.kind === 'matchup';
   const next = isMatchup ? nextGame(p) : null;
   const rival = isMatchup ? rivalFor(p,next)?.player : null;
   panel.innerHTML = `<div class="squadPanelHead"><h4>${title}${isMatchup?'':' · '+name(p.name)}</h4>
@@ -147,6 +147,15 @@ function paint() {
     void loadStats().catch(() => {
       const status = panel.querySelector('[role="status"]');
       if (status?.isConnected) status.textContent = 'נתוני היריב אינם זמינים כרגע. סגור ופתח שוב כדי לנסות מחדש.';
+    });
+  }
+  if (isMatchup && revealMatchup && matchMedia('(max-width: 760px)').matches) {
+    panel.querySelector('[data-squad-close]').focus({preventScroll:true});
+    const scroller = document.getElementById('efPageScroll') || document.scrollingElement;
+    const inset = parseFloat(getComputedStyle(panel).scrollMarginTop);
+    scroller.scrollTo({
+      top: scroller.scrollTop + panel.getBoundingClientRect().top - inset,
+      behavior: 'instant'
     });
   }
 }
@@ -214,14 +223,15 @@ root.addEventListener('click', event => {
     replace(action.dataset.squadSwap);
   } else if (action.hasAttribute('data-squad-close')) {
     const button = playerCard(open?.name)?.querySelector('[aria-expanded="true"]');
+    const wasMatchup = open?.kind === 'matchup';
     open = null;
     removePanel();
-    button?.focus({preventScroll:true});
+    button?.focus({preventScroll:!wasMatchup});
   } else {
     const value = action.closest('.squadPlayer').dataset.player;
     const kind = action.dataset.squadPanel;
     open = open?.name === value && open.kind === kind ? null : {name:value,kind};
-    paint();
+    paint(kind === 'matchup');
   }
 });
 

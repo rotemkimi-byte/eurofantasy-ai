@@ -192,9 +192,8 @@ function gameDetail(point, defense, mode) {
       (rival ? 'היריב בעמדה זוהה '+(point.overlap > 0 ? 'לפי מירב דקות החפיפה.':'לפי החמישייה ודקות הרוטציה.') : 'נתוני היריב בעמדה חסרים במשחק הזה.'))+'</p>';
 }
 
-function grid(points, reference, defense, upcoming, mode) {
+function grid(points, defense, upcoming, mode) {
   const bounds = [0,...points.map(p => p.value)];
-  if (reference !== null) bounds.push(reference);
   const lo = Math.min(...bounds), hi = Math.max(...bounds);
   const step = Math.max(1, Math.ceil((hi-lo || 4)/4));
   const min = Math.floor(lo/step)*step;
@@ -207,8 +206,7 @@ function grid(points, reference, defense, upcoming, mode) {
   return '<div class="sgh-chart'+(defense?' sgh-chart-defense':'')+'" dir="ltr"><div class="sgh-axis"><strong>'+axis+'</strong><div>'+
     lines.map(v => '<span style="--y:'+y(v)+'%">'+value(v)+'</span>').join('')+'</div></div>'+
     '<div class="sgh-scroll" tabindex="0" aria-label="גרף הניתן לגלילה אופקית"><div class="sgh-plot" style="--columns:'+points.length+'">'+
-    '<div class="sgh-grid" aria-hidden="true">'+lines.map(line).join('')+
-    (reference===null?'':'<i class="sgh-reference" style="--y:'+y(reference)+'%"></i>')+'</div>'+
+    '<div class="sgh-grid" aria-hidden="true">'+lines.map(line).join('')+'</div>'+
     points.map((p,i) => {
       const marker = p.delta===null?'אין בסיס להשוואה':p.tone==='near'?'סביב הממוצע':p.delta>0?'מעל הממוצע':'מתחת לממוצע';
       const highlight = !defense && upcoming && p.opponent===upcoming;
@@ -238,16 +236,15 @@ function renderChart(el, data, upcomingTeam, defense, settings, loading, refresh
     ['ממוצע PIR עונתי',value(stats.reference)],['מעל הממוצע',stats.above],
     ['מתחת לממוצע',stats.below],['משחקים במדגם',points.length]
   ];
-  const reference = stats.reference===null?'':'<span class="sgh-baseline"><i></i> '+(defense?'בסיס מתואם':'ממוצע עונתי')+' '+text(value(stats.reference))+'</span>';
   const optionsId = defense?'sgh-defense-options':'sgh-attack-options';
   const optionsLabel = defense?'סינון וסיכום הגנתיים':'סינון וסיכום התקפיים';
   const sliders = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14M7 3v4m6 1v4m-5 1v4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
   el.innerHTML = '<div class="sgh-heading"><h5>'+(defense?'הגנה · PIR מול היריב':'התקפה · PIR של היריב')+'</h5>'+
     '<button type="button" data-sgh-options aria-label="'+optionsLabel+'" aria-controls="'+optionsId+'" aria-expanded="'+Boolean(settings.options)+'">'+sliders+'</button></div>'+
-    (points.length?grid(points,stats.reference,defense,upcomingTeam,settings.mode):
+    (points.length?grid(points,defense,upcomingTeam,settings.mode):
     '<p class="sgh-empty">'+(data.season.length?'אין נתונים למדגם שנבחר.':'אין הופעות מתועדות בעונה זו.')+'</p>')+
     '<div class="sgh-options" id="'+optionsId+'"'+(settings.options?'':' hidden')+'>'+controls(settings)+
-    '<div class="sgh-legend">'+reference+'<span data-tone="good"><i></i> '+(defense?'פחות מהרגיל':'מעל הממוצע')+'</span>'+
+    '<div class="sgh-legend"><span data-tone="good"><i></i> '+(defense?'פחות מהרגיל':'מעל הממוצע')+'</span>'+
     '<span data-tone="near"><i></i> סביב הממוצע (עד 1)</span><span data-tone="bad"><i></i> '+(defense?'יותר מהרגיל':'מתחת לממוצע')+'</span></div>'+
     '<div class="sgh-summary">'+summary.map(([label,val]) => metric(label,val)).join('')+'</div>'+
     (defense?'<p class="sgh-source">'+(loading?'בודק דקות חפיפה מול דוחות המשחק…':'● חפיפה מאומתת · ◆ מאצ׳אפ משוער, משחק מלא')+

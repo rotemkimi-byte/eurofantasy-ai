@@ -13,6 +13,7 @@
 .sgh-rival strong { font-size: 14px; }
 .sgh-rival small { color: #40546e; font-size: 11px; }
 .sgh-root {
+  --height: 114px;
   min-width: 0;
   display: grid;
   gap: 7px;
@@ -73,7 +74,6 @@
 }
 .sgh-root .sgh-chart {
   --top: 36px;
-  --height: 114px;
   display: grid;
   grid-template-columns: 38px minmax(0,1fr);
   margin-block: 0 1px;
@@ -100,12 +100,11 @@
   background: #f7faff;
   pointer-events: none;
 }
-.sgh-root .sgh-gridline,.sgh-root .sgh-reference {
+.sgh-root .sgh-gridline {
   position: absolute;
   inset: var(--y) 0 auto;
   border-top: 1px solid #d9e3ef;
 }
-.sgh-root .sgh-reference { border-top: 1px dashed #487385; }
 .sgh-root .sgh-column {
   position: relative;
   min-width: 0;
@@ -163,7 +162,7 @@
   white-space: nowrap;
 }
 .sgh-root svg.squadJersey { display:block; width: 16px; height: 18px; margin: 0; filter: none; }
-.sgh-root .sgh-dot,.sgh-root .sgh-legend span:not(.sgh-baseline) i {
+.sgh-root .sgh-dot,.sgh-root .sgh-legend span i {
   display: inline-block;
   width: 8px;
   height: 8px;
@@ -185,7 +184,6 @@
 .sgh-root .sgh-legend { display: flex; flex-wrap: wrap; gap: 5px 12px; align-items: center; margin: 9px 0; font-size: 10px; }
 .sgh-root .sgh-legend span { color: #40546e; }
 .sgh-root .sgh-legend i { vertical-align: middle; }
-.sgh-root .sgh-baseline i { display: inline-block; width: 14px; border-top: 1px dashed #487385; }
 .sgh-root .sgh-summary,.sgh-root .sgh-detail-stats {
   display: grid;
   grid-template-columns: repeat(4,minmax(0,1fr));
@@ -228,4 +226,25 @@
 @media (max-width: 450px) {
   .sgh-root .sgh-chart { grid-template-columns: 31px minmax(0,1fr); }
   .sgh-root .sgh-controls select { min-height: 38px; font-size: 16px; }
+}
+
+@media (max-width: 760px) {
+  .squadExpansion.squadMatchupExpansion {
+    scroll-margin-top: calc(28px + env(safe-area-inset-top, 0px));
+  }
+  .squadBenchGrid > .squadMatchupExpansion { margin-inline: -11px; }
+  .sgh-root {
+    --height: clamp(48px, calc((100dvh - 470px) / 2), 114px);
+  }
+  .sgh-root:has(> .sgh-loading:only-child) {
+    min-height: calc(2 * var(--height) + 222px);
+    align-content: start;
+  }
+  .sgh-root .sgh-empty {
+    min-height: calc(var(--height) + 25px);
+  }
+}
+
+@media (max-width: 400px) {
+  .squadBenchGrid > .squadMatchupExpansion { margin-inline: -6px; }
 }
