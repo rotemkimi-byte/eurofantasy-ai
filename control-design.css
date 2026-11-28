@@ -10,6 +10,11 @@
   --control-inactive-text: #243247;
   --control-inactive-line: #6E7F94;
   --control-active-text: #FFFFFF;
+  --control-focus: #2155A2;
+}
+
+html[data-theme="dark"] {
+  --control-focus: #A9D0FF;
 }
 
 :is(button, select):where([data-control="tool"], nav.tabs [data-tab], [data-ef-tool],
@@ -113,8 +118,8 @@ button[data-pir-mode] {
     }
 
     &:focus-visible {
-      outline: 2px dashed currentColor !important;
-      outline-offset: -3px !important;
+      outline: 2px solid var(--control-focus) !important;
+      outline-offset: 2px !important;
     }
 
     &:is(select) option {
