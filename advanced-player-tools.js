@@ -187,12 +187,12 @@ for(const [id,title,kind] of tools){
   }
   rows.sort((a,b)=>sort==='price'?(b.price??-Infinity)-(a.price??-Infinity)||cmpName(a,b):sort==='minutes'?b.minutes-a.minutes||cmpName(a,b):sort==='pir'?(b.pir??-Infinity)-(a.pir??-Infinity)||cmpName(a,b):sort==='plus'&&kind==='plus'?(b.pm??-Infinity)-(a.pm??-Infinity)||cmpName(a,b):sort==='team'?a.p.team.localeCompare(b.p.team,'he')||cmpName(a,b):cmpName(a,b));
   const visible=rows.slice(0,shown);
-  const pickRows=visible.map(({p,price,games,minutes,pir,pm})=>`<div class="ap-player-row${kind==='plus'?'':' ap-no-plus'}${p.id===selected?' is-selected':''}">
+  const pickRows=visible.map(({p,price,games,minutes,pir,pm})=>`<div class="ap-player-row${kind==='lineups'?' ap-lineup-picker':kind==='plus'?'':' ap-no-plus'}${p.id===selected?' is-selected':''}">
    <span class="ap-row-name">${window.PlayerAnalysis.identity(p)}<small>${games} הופעות</small></span>
-   <bdi class="pa-credit">${fmt(price)} CR</bdi>
+   ${kind==='lineups'?`<button type="button" class="ap-lineup-open" data-pick="${esc(p.id)}" aria-label="הרכב קליעה של ${esc(p.name)}">הרכב קליעה</button>`:`<bdi class="pa-credit">${fmt(price)} CR</bdi>
    <span class="ap-row-stat"><b>${fmt(sort==='pir'?pir:minutes)}</b><small>${sort==='pir'?'PIR':'דקות'}</small></span>
    ${kind==='plus'?`<span class="ap-row-stat ap-plus-value"><b>${signed(pm)}</b><small>+/−</small></span>`:''}
-   <button type="button" class="ap-row-arrow" data-pick="${esc(p.id)}" aria-pressed="${p.id===selected}" aria-label="בחר ${esc(p.name)}">‹</button>
+   <button type="button" class="ap-row-arrow" data-pick="${esc(p.id)}" aria-pressed="${p.id===selected}" aria-label="בחר ${esc(p.name)}">‹</button>`}
   </div>`).join('');
   host.innerHTML='<div class="ap-browser-head"><div><h4>בחר שחקן</h4><p>'+rows.length+' שחקנים'+(team?' · '+esc(team):' מכל הקבוצות')+' · '+esc($('[data-sort]').selectedOptions[0].textContent)+'</p></div></div><div class="ap-player-list">'+(rows.length?pickRows:empty('לא נמצאו שחקנים. אפשר לשנות קבוצה או חיפוש.'))+'</div>'+(rows.length>shown?'<button type="button" class="ap-show-more" data-more>הצג עוד '+Math.min(36,rows.length-shown)+' שחקנים · '+visible.length+'/'+rows.length+'</button>':'');
  }

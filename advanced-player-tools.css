@@ -57,6 +57,18 @@ html[data-theme="dark"] .ap-screen{--ap-bg:#152237;--ap-soft:#20324a;--ap-ink:#f
 .ap-screen .ap-player-row.ap-no-plus{grid-template-columns:minmax(0,1fr) 78px 80px 16px}
 @media(max-width:430px){.ap-screen .ap-player-row.ap-no-plus{grid-template-columns:minmax(0,1fr) 58px 70px 12px}}
 
+#playerLineups .ap-lineup-picker{
+ grid-template-columns:minmax(0,1fr) min(45%,180px);
+ gap:10px;
+ cursor:default;
+}
+#playerLineups .ap-lineup-open{
+ width:100%;min-height:48px;padding:8px 5px;border-radius:10px;
+ background:#315e9f;border-color:#315e9f;color:#fff;
+ font-size:15px;font-weight:750;line-height:1.25;text-align:center;cursor:pointer;
+}
+#playerLineups .ap-lineup-open:hover{background:#254c85;border-color:#254c85}
+
 /* Keep the selected analysis compact; filters return with the roster. */
 .ap-screen.ap-detail-open:not(.performance-tool) .ap-controls label:has([data-team]),
 .ap-screen.ap-detail-open .ap-controls label:has([data-sort]){display:none}
