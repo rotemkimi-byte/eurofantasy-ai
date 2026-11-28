@@ -34,7 +34,8 @@ function scheduleGames(schedule, canonical, now = Date.now()) {
         !Number.isInteger(game.gameCode) || !home?.name || !away?.name) continue;
     games.set(game.gameCode, {code:game.gameCode, date, round:game.round,
       home:canonical(home.name), away:canonical(away.name), homeCode:home.code, awayCode:away.code,
-      homeAbbr:home.tvCode, awayAbbr:away.tvCode});
+      homeAbbr:home.tvCode, awayAbbr:away.tvCode,
+      homeScore:number(game.local.score), awayScore:number(game.road.score)});
   }
   return games;
 }

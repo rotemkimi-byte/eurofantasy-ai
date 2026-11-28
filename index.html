@@ -734,7 +734,7 @@ function renderTeam(){
  const missing=historical?historical.players.filter((n,i)=>!selected.some(p=>p.name===roster[i])&&!window.SquadRoster.resolveNames([n],COACHES).includes(coachName)):[];
  const coachSelect=`<select id="squadCoachSelect" aria-label="בחר מאמן"><option value="">בחר מאמן</option>${COACHES.map(c=>`<option value="${esc(c.name)}" ${coach?.name===c.name?'selected':''}>${esc(c.name)} · ${clubNumber(c.price)}</option>`).join('')}</select>`;
  const coachMatch=coach&&MATCHUPS[canonicalTeam(coach.team)];
- const coachHtml=`<div class="squadCoach squadOwnCard">
+ const coachHtml=`<div class="squadCoach squadOwnCard" data-coach="${esc(coach?.name||'')}">
   <label class="squadCoachControl" for="squadCoachSelect">
    ${squadJersey({...coach,pos:'מאמן'},true)}
    <span><small>${historical?'מאמן במחזור '+historical.matchday_number:coach?'החלף מאמן':'בחר מאמן'}</small>${coach?`<bdi>${esc(coach.name)}</bdi>`:''}</span>
@@ -743,7 +743,8 @@ function renderTeam(){
   ${coach?`<div class="squadInfo"><div class="squadTop"><b>${clubNumber(coach.price)}<small>קרדיט</small></b>
    <b>${clubNumber(coachExpected(coach.team))}<small>נק׳ צפויות</small></b></div>
    <span><bdi>${esc(coach.team)}</bdi> · מול <bdi>${esc(coachMatch?.opponent||'—')}</bdi></span>
-   <span>ניצחון ${coachMatch?pct(coachMatch.winProb):'—'}</span></div>`:''}</div>`;
+   <span>ניצחון ${coachMatch?pct(coachMatch.winProb):'—'}</span>
+   ${window.SquadOptimizer?.controls('squad-coach-matchup',false)||''}</div>`:''}</div>`;
  root.innerHTML=`<div class="squadCourt"><div class="squadCourtLines" aria-hidden="true"></div>
   <div class="squadCourtRow squadCenter">${card(slots[0],0)}</div>
   <div class="squadCourtRow">${card(slots[1],1)}${card(slots[2],2)}</div>
@@ -3202,5 +3203,5 @@ html.ef-redesign[data-theme=light] #playerMatchups .pmModes button[aria-pressed=
 .pmHistoryControls{grid-template-columns:minmax(0,1fr) minmax(0,2fr)}
 .pmHistoryControls label,.pmHistoryControls select{min-width:0}
 .pmHistoryControls select{width:100%}
-</style><script src="./player-matchup-history.js?v=statistics-1"></script><script src="./learning-model-version.js"></script><script src="./learning.js?v=scouting-1"></script><script src="./squad-matchup.js?v=position-defense-2"></script><link rel="stylesheet" href="./squad-history.css?v=rival-5"><script src="./squad-history-core.js?v=1"></script><script src="./squad-history.js?v=rival-5"></script><script src="./squad-optimizer.js?v=rival-5"></script><link rel="stylesheet" href="./fantasy-compact.css?v=statistics-1"><link rel="stylesheet" href="./control-design.css?v=range-selection-3"><link rel="stylesheet" href="./player-statistics.css?v=2"><script src="./learning-model-version.js"></script><script src="./learning.js"></script></body></html>
+</style><script src="./player-matchup-history.js?v=statistics-1"></script><script src="./learning-model-version.js"></script><script src="./learning.js?v=scouting-1"></script><script src="./squad-matchup.js?v=position-defense-2"></script><link rel="stylesheet" href="./squad-history.css?v=rival-5"><script src="./squad-history-core.js?v=coach-1"></script><script src="./squad-history.js?v=coach-1"></script><script src="./squad-optimizer.js?v=coach-1"></script><link rel="stylesheet" href="./fantasy-compact.css?v=statistics-1"><link rel="stylesheet" href="./control-design.css?v=range-selection-3"><link rel="stylesheet" href="./player-statistics.css?v=2"><script src="./learning-model-version.js"></script><script src="./learning.js"></script></body></html>
 

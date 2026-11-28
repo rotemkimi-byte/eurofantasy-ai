@@ -107,6 +107,12 @@ function playerCard(value) {
   return [...root.querySelectorAll('.squadPlayer[data-player]')].find(card => card.dataset.player === value);
 }
 
+function selectionCard(selection) {
+  if (!selection?.coach) return playerCard(selection?.name);
+  const card = root.querySelector('[data-coach]');
+  return card?.dataset.coach === selection.name ? card : null;
+}
+
 function removePanel() {
   const prior = root.querySelector('.squadExpansion');
   prior?.remove();
@@ -116,8 +122,9 @@ function removePanel() {
 function paint(revealMatchup = false) {
   removePanel();
   if (!open) return;
-  const card = playerCard(open.name);
-  const p = players.find(q => q.name === open.name);
+  const card = selectionCard(open);
+  const roster = open.coach ? COACHES : players;
+  const p = roster.find(q => q.name === open.name);
   const button = card?.querySelector(`[data-squad-panel="${open.kind}"]`);
   if (!button || !p) { open = null; return; }
   const title = open.kind === 'alternatives' ? 'חלופות מומלצות' : 'ניתוח יריב';
@@ -127,10 +134,15 @@ function paint(revealMatchup = false) {
   panel.id = button.getAttribute('aria-controls');
   panel.setAttribute('aria-label', title + ' · ' + p.name);
   const next = isMatchup ? nextGame(p) : null;
-  const rival = isMatchup ? rivalFor(p,next)?.player : null;
+  const rival = isMatchup && !open.coach ? rivalFor(p,next)?.player : null;
+  const coachMatchup = open.coach && next;
+  const body = coachMatchup
+    ? `<div class="sgh-rival">${squadJersey({team:next.team})}<div><strong>${name(next.team)}</strong>
+       <small>היריבה הבאה של ${name(p.team)} · מחזור ${esc(next.round)} · ${next.home?'בית':'חוץ'}</small></div></div><div class="sgh-root"></div>`
+    : isMatchup ? matchup(p,next,rival) : alternatives(p);
   panel.innerHTML = `<div class="squadPanelHead"><h4>${title}${isMatchup?'':' · '+name(p.name)}</h4>
    <button type="button" data-squad-close aria-label="סגור ${title}">⌃</button></div>
-   <div class="squadPanelBody">${isMatchup?matchup(p,next,rival):alternatives(p)}</div>`;
+   <div class="squadPanelBody">${body}</div>`;
   const row = card.closest('.squadCourtRow');
   // A bench panel occupies the grid row after the selected player's pair.
   if (row) row.after(panel);
@@ -140,7 +152,10 @@ function paint(revealMatchup = false) {
     lastInRow.after(panel);
   } else card.after(panel);
   button.setAttribute('aria-expanded','true');
-  if (rival) {
+  if (coachMatchup) {
+    open.historySettings ||= window.SquadHistory.settings();
+    window.SquadHistory.mountTeam(panel.querySelector('.sgh-root'),schedule,next.team,canonicalTeam(p.team),open.historySettings);
+  } else if (rival) {
     open.historySettings ||= window.SquadHistory.settings();
     window.SquadHistory.mount(panel.querySelector('.sgh-root'),rival,canonicalTeam(p.team),open.historySettings);
   } else if (next && !games) {
@@ -205,7 +220,7 @@ renderTeam = function () {
     const first = root.querySelector('.squadPlayer[data-player]');
     if (first) {
       autoOpen = false;
-      open = {name:first.dataset.player,kind:'alternatives'};
+      open = {name:first.dataset.player,kind:'alternatives',coach:false};
     }
   }
   paint();
@@ -222,15 +237,18 @@ root.addEventListener('click', event => {
   if (action.hasAttribute('data-squad-swap')) {
     replace(action.dataset.squadSwap);
   } else if (action.hasAttribute('data-squad-close')) {
-    const button = playerCard(open?.name)?.querySelector('[aria-expanded="true"]');
+    const button = selectionCard(open)?.querySelector('[data-squad-panel][aria-expanded="true"]');
     const wasMatchup = open?.kind === 'matchup';
     open = null;
     removePanel();
     button?.focus({preventScroll:!wasMatchup});
   } else {
-    const value = action.closest('.squadPlayer').dataset.player;
+    const card = action.closest('[data-player],[data-coach]');
+    if (!card) return;
+    const coach = card.hasAttribute('data-coach');
+    const value = coach ? card.dataset.coach : card.dataset.player;
     const kind = action.dataset.squadPanel;
-    open = open?.name === value && open.kind === kind ? null : {name:value,kind};
+    open = open?.name === value && open.kind === kind && open.coach === coach ? null : {name:value,kind,coach};
     paint(kind === 'matchup');
   }
 });
