@@ -224,7 +224,7 @@ function grid(points, reference, defense, upcoming, mode) {
     }).join('')+'</div></div></div>';
 }
 
-function renderChart(el, data, next, defense, settings, loading, refresh = false) {
+function renderChart(el, data, upcomingTeam, defense, settings, loading, refresh = false) {
   const priorScroll = refresh ? el.querySelector('.sgh-scroll')?.scrollLeft : null;
   const activePoint = refresh ? el.querySelector('[data-sgh-game][aria-expanded="true"]')?.dataset.sghGame : null;
   const selectedGames = new Set(C.select(data.attack,settings.range,settings.venue).map(row=>row.code));
@@ -242,9 +242,9 @@ function renderChart(el, data, next, defense, settings, loading, refresh = false
   const optionsId = defense?'sgh-defense-options':'sgh-attack-options';
   const optionsLabel = defense?'סינון וסיכום הגנתיים':'סינון וסיכום התקפיים';
   const sliders = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14M7 3v4m6 1v4m-5 1v4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
-  el.innerHTML = '<div class="sgh-heading"><h5>'+(defense?'הגנה · PIR של היריבים':'התקפה · PIR מול יריבות')+'</h5>'+
+  el.innerHTML = '<div class="sgh-heading"><h5>'+(defense?'הגנה · PIR מול היריב':'התקפה · PIR של היריב')+'</h5>'+
     '<button type="button" data-sgh-options aria-label="'+optionsLabel+'" aria-controls="'+optionsId+'" aria-expanded="'+Boolean(settings.options)+'">'+sliders+'</button></div>'+
-    (points.length?grid(points,stats.reference,defense,next?.team,settings.mode):
+    (points.length?grid(points,stats.reference,defense,upcomingTeam,settings.mode):
     '<p class="sgh-empty">'+(data.season.length?'אין נתונים למדגם שנבחר.':'אין הופעות מתועדות בעונה זו.')+'</p>')+
     '<div class="sgh-options" id="'+optionsId+'"'+(settings.options?'':' hidden')+'>'+controls(settings)+
     '<div class="sgh-legend">'+reference+'<span data-tone="good"><i></i> '+(defense?'פחות מהרגיל':'מעל הממוצע')+'</span>'+
@@ -261,7 +261,7 @@ function renderChart(el, data, next, defense, settings, loading, refresh = false
     const key = event.target.dataset.sghFilter;
     if (!key) return;
     settings[key] = event.target.value;
-    renderChart(el,data,next,defense,settings,loading);
+    renderChart(el,data,upcomingTeam,defense,settings,loading);
     el.querySelector('[data-sgh-filter="'+key+'"]').focus({preventScroll:true});
   };
   let selected = null;
@@ -302,19 +302,19 @@ function renderChart(el, data, next, defense, settings, loading, refresh = false
   };
 }
 
-function mount(root, player, next, settings) {
+function mount(root, player, upcomingTeam, settings) {
   root.innerHTML = '<p class="sgh-loading" role="status">טוען משחקים מעונת 2026/27…</p>';
   historyRequest(player,(data,loading) => {
     if (!root.isConnected) return;
     if (!data) {
       root.innerHTML = '<p class="sgh-loading" role="status">נתוני המשחקים אינם זמינים כרגע.</p><button type="button" class="sgh-retry">נסה שוב</button>';
-      root.querySelector('button').onclick = () => mount(root,player,next,settings);
+      root.querySelector('button').onclick = () => mount(root,player,upcomingTeam,settings);
       return;
     }
     if (!root.querySelector('section')) root.innerHTML = '<section class="sgh-card" aria-label="גרף התקפי"></section><section class="sgh-card" aria-label="גרף הגנתי"></section>';
     const [attack,defense] = root.querySelectorAll('section');
-    renderChart(attack,data,next,false,settings.attack,loading,attack.hasChildNodes());
-    renderChart(defense,data,next,true,settings.defense,loading,defense.hasChildNodes());
+    renderChart(attack,data,upcomingTeam,false,settings.attack,loading,attack.hasChildNodes());
+    renderChart(defense,data,upcomingTeam,true,settings.defense,loading,defense.hasChildNodes());
   });
 }
 

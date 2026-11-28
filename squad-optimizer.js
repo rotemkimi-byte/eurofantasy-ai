@@ -79,12 +79,18 @@ function alternatives(p) {
    </article>`).join('') || '<p class="squadPanelNote">אין חלופות זמינות בעמדה ובמחיר הזה.</p>'}`;
 }
 
-function matchup(p) {
-  const next = nextGame(p);
-  const fixture = next
-    ? `<div class="squadMatchHero"><strong>${name(next.team)}</strong><small>מחזור ${esc(next.round)} · ${next.home?'בית':'חוץ'} · עמדה ${esc(p.pos)}</small></div>`
-    : '<p class="squadPanelNote">היריבה במחזור הקרוב טרם אומתה.</p>';
-  return fixture + '<div class="sgh-root"></div>';
+function matchup(p, next, rival) {
+  if (!next) return '<p class="squadPanelNote">היריבה במחזור הקרוב טרם אומתה.</p>';
+  const fixture = `מחזור ${esc(next.round)} · ${next.home?'בית':'חוץ'}`;
+  if (!rival) {
+    const message = games ? 'אין יריב מזוהה בעמדה ' + esc(p.pos) : 'מאתר את היריב בעמדה…';
+    return `<div class="sgh-rival"><div><strong>${name(next.team)}</strong><small>${fixture}</small></div></div>
+      <p class="squadPanelNote" role="status">${message}</p>`;
+  }
+  return `<div class="sgh-rival">${squadJersey(rival)}<div>
+    <strong>${name(rival.name)}</strong>
+    <small>יריב משוער · ${name(next.team)} · ${fixture}</small>
+  </div></div><div class="sgh-root"></div>`;
 }
 
 function loadStats() {
@@ -119,9 +125,12 @@ function paint() {
   panel.className = 'squadExpansion';
   panel.id = button.getAttribute('aria-controls');
   panel.setAttribute('aria-label', title + ' · ' + p.name);
-  panel.innerHTML = `<div class="squadPanelHead"><h4>${title} · ${name(p.name)}</h4>
+  const isMatchup = open.kind === 'matchup';
+  const next = isMatchup ? nextGame(p) : null;
+  const rival = isMatchup ? rivalFor(p,next)?.player : null;
+  panel.innerHTML = `<div class="squadPanelHead"><h4>${title}${isMatchup?'':' · '+name(p.name)}</h4>
    <button type="button" data-squad-close aria-label="סגור ${title}">⌃</button></div>
-   <div class="squadPanelBody">${open.kind==='alternatives'?alternatives(p):matchup(p)}</div>`;
+   <div class="squadPanelBody">${isMatchup?matchup(p,next,rival):alternatives(p)}</div>`;
   const row = card.closest('.squadCourtRow');
   // A bench panel occupies the grid row after the selected player's pair.
   if (row) row.after(panel);
@@ -131,9 +140,14 @@ function paint() {
     lastInRow.after(panel);
   } else card.after(panel);
   button.setAttribute('aria-expanded','true');
-  if (open.kind === 'matchup') {
+  if (rival) {
     open.historySettings ||= window.SquadHistory.settings();
-    window.SquadHistory.mount(panel.querySelector('.sgh-root'),p,nextGame(p),open.historySettings);
+    window.SquadHistory.mount(panel.querySelector('.sgh-root'),rival,canonicalTeam(p.team),open.historySettings);
+  } else if (next && !games) {
+    void loadStats().catch(() => {
+      const status = panel.querySelector('[role="status"]');
+      if (status?.isConnected) status.textContent = 'נתוני היריב אינם זמינים כרגע. סגור ופתח שוב כדי לנסות מחדש.';
+    });
   }
 }
 
