@@ -98,19 +98,6 @@ function plus(games){
   metric('דקות במדגם',fmt(s.minutes),note(s.covered,games.length))
  ]);
 }
-const courtRows=[
- [[0,210,'#d58633'],[210,380,'#edaa53'],[590,170,'#ba6a25'],[760,200,'#de933e']],
- [[0,95,'#f4b65f'],[95,350,'#e09a4b'],[445,315,'#d18637'],[760,200,'#e8a54f']],
- [[0,310,'#e8a24a'],[310,200,'#c6762b'],[510,350,'#efb059'],[860,100,'#d68432']],
- [[0,180,'#ce7c2c'],[180,200,'#e39a44'],[380,320,'#f2b15a'],[700,260,'#d98d41']],
- [[0,370,'#eba449'],[370,200,'#db8d3c'],[570,235,'#d18032'],[805,155,'#f1b359']],
- [[0,135,'#e6a04a'],[135,285,'#c97429'],[420,340,'#eaa34b'],[760,200,'#e39b45']],
- [[0,260,'#d1883d'],[260,305,'#efaf56'],[565,340,'#df933d'],[905,55,'#d18437']]
-];
-const courtPlanks=courtRows.map((row,i)=>row.map(([x,width,color])=>
- `<rect x="${x}" y="${i*36}" width="${width}" height="36" fill="${color}"/><path d="M${x} ${i*36+36}h${width}v-36" fill="none" stroke="#733710" stroke-opacity=".22" stroke-width="2"/>`
-).join('')).join('');
-
 function shotCourt(coords){
  const long=coords.some(s=>s.y>1242.5);
  const height=long?2800:1400;
@@ -119,28 +106,31 @@ function shotCourt(coords){
  const marks=coords.map(s=>{
   const x=s.x+750,y=(s.y+157.5)*projection;
   const title=esc((s.made?'קליעה':'החטאה')+' · '+(s.type.startsWith('3')?'3':'2')+' נק׳');
-  const symbol=s.made?'<circle r="17" fill="#09864a" stroke="#fff" stroke-width="5"/>':
-   '<path d="M-18-11-11-18 0-7 11-18 18-11 7 0 18 11 11 18 0 7-11 18-18 11-7 0Z" fill="#d41825" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>';
-  return `<g class="ap-shot-marker ${s.made?'is-made':'is-missed'}" transform="translate(${x} ${y})"><title>${title}</title>${symbol}</g>`;
+  const shape=s.made?'#ap-shot-made':'#ap-shot-missed';
+  const color=s.made?'#007846':'#c9182b';
+  return `<g class="ap-shot-marker ${s.made?'is-made':'is-missed'}" transform="translate(${x} ${y})" stroke-linejoin="round">
+   <title>${title}</title>
+   <use href="${shape}" fill="none" stroke="#172433" stroke-width="13"/>
+   <use href="${shape}" fill="${color}" stroke="#fff" stroke-width="6"/>
+  </g>`;
  }).join('');
- return `<svg class="ap-court" viewBox="-28 -28 1556 ${displayHeight+56}" role="img" aria-label="מפת זריקות: עיגולים ירוקים קליעות, איקסים אדומים החטאות">
+ return `<svg class="ap-court" viewBox="-36 -36 1572 ${displayHeight+72}" role="img" aria-label="מפת זריקות: עיגולים ירוקים קליעות, איקסים אדומים החטאות">
   <defs>
-   <pattern id="ap-shot-wood" width="960" height="252" patternUnits="userSpaceOnUse">
-    ${courtPlanks}
-    <path d="M7 10h156m90 12h296m31-5h95m95 14h115M15 52h65m170-6h143m105 16h79m132-11h120M25 85h260m32 13h126m145-14h160m46 19h143M42 121h85m60 17h130m114-16h225m70 16h165M20 155h288m94 15h138m69-14h162m38 15h145M30 198h84m90-4h152m93 12h159m146-14h178M23 224h183m107 17h184m125-7h216" fill="none" stroke="#fff0c8" stroke-opacity=".15" stroke-width="2"/>
-   </pattern>
-   <pattern id="ap-shot-wood-edge" href="#ap-shot-wood" patternTransform="rotate(90)"/>
-   <radialGradient id="ap-shot-light">
-    <stop stop-color="#fff0a2" stop-opacity=".5"/><stop offset=".55" stop-color="#f29b31" stop-opacity=".14"/><stop offset="1" stop-color="#6b290e" stop-opacity=".62"/>
-   </radialGradient>
-   <linearGradient id="ap-shot-key" x2="0%" y2="100%">
-    <stop stop-color="#052b4d"/><stop offset="1" stop-color="#0969ab"/>
+   <circle id="ap-shot-made" r="26"/>
+   <path id="ap-shot-missed" d="M-25-16-16-25 0-9 16-25 25-16 9 0 25 16 16 25 0 9-16 25-25 16-9 0Z"/>
+   <linearGradient id="ap-shot-wood" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop stop-color="#f0cd9c"/><stop offset="1" stop-color="#e3b781"/>
    </linearGradient>
-   <path id="ap-shot-parquet-edge" d="M0 0H75V299A675 675 0 0 0 1425 299V0H1500V1400H0Z" fill="url(#ap-shot-wood-edge)"/>
+   <pattern id="ap-shot-plank-seams" width="480" height="144" patternUnits="userSpaceOnUse">
+    <path d="M0 0H480M0 48H480M0 96H480M95 0V48M293 48V96M178 96V144" fill="none" stroke="#754b24" stroke-opacity=".1" stroke-width="2"/>
+   </pattern>
+   <linearGradient id="ap-shot-key" x2="0%" y2="100%">
+    <stop stop-color="#0b2e54"/><stop offset="1" stop-color="#155785"/>
+   </linearGradient>
    <g id="ap-shot-half">
     <path d="M505 0H995V580H505Z" fill="url(#ap-shot-key)"/>
-    <path d="M505 0H995V580H505Z" fill="url(#ap-shot-wood)" opacity=".1" style="mix-blend-mode:soft-light"/>
-    <path d="M505 0V580H995V0 M75 0V299 A675 675 0 0 0 1425 299V0 M570 580A180 180 0 0 0 930 580" fill="none" stroke="#fff8e9" stroke-width="8"/>
+    <path d="M75 0V299 A675 675 0 0 0 1425 299V0 M570 580A180 180 0 0 0 930 580" fill="none" stroke="#64432c" stroke-width="7"/>
+    <path d="M505 0V580H995V0" fill="none" stroke="#fff8e9" stroke-width="8"/>
     <path d="M570 580A180 180 0 0 1 930 580" fill="none" stroke="#e9f7ff" stroke-width="7" stroke-dasharray="24 17"/>
     <g class="ap-hoop">
      <path d="M650 103H850" stroke="#16324c" stroke-width="20"/>
@@ -155,12 +145,10 @@ function shotCourt(coords){
   </defs>
   <g transform="scale(1 ${projection})">
    <rect width="1500" height="${height}" fill="url(#ap-shot-wood)"/>
-   <use href="#ap-shot-parquet-edge"/>
-   ${long?'<use href="#ap-shot-parquet-edge" transform="translate(1500 2800) rotate(180)"/>':''}
-   <rect width="1500" height="${height}" fill="url(#ap-shot-light)" pointer-events="none"/>
+   <rect width="1500" height="${height}" fill="url(#ap-shot-plank-seams)"/>
    <use href="#ap-shot-half"/>
    ${long?'<use href="#ap-shot-half" transform="translate(1500 2800) rotate(180)"/>':''}
-   ${long?'<path d="M0 1400H1500" stroke="#fff8e9" stroke-width="8"/><circle cx="750" cy="1400" r="180" fill="none" stroke="#fff8e9" stroke-width="8"/>':''}
+   ${long?'<g fill="none" stroke="#64432c" stroke-width="7"><path d="M0 1400H1500"/><circle cx="750" cy="1400" r="180"/></g>':''}
   </g>
   <rect class="ap-court-frame" width="1500" height="${displayHeight}" fill="none" stroke="#ecfaff" stroke-width="9"/>
   ${marks}
