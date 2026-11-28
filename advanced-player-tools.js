@@ -136,24 +136,30 @@ function shotCourt(coords){
    <linearGradient id="ap-shot-key" x2="0%" y2="100%">
     <stop stop-color="#052b4d"/><stop offset="1" stop-color="#0969ab"/>
    </linearGradient>
+   <path id="ap-shot-parquet-edge" d="M0 0H75V299A675 675 0 0 0 1425 299V0H1500V1400H0Z" fill="url(#ap-shot-wood-edge)"/>
    <g id="ap-shot-half">
-    <path d="M0 0H75V299A675 675 0 0 0 1425 299V0H1500V1400H0Z" fill="url(#ap-shot-wood-edge)"/>
     <path d="M505 0H995V580H505Z" fill="url(#ap-shot-key)"/>
+    <path d="M505 0H995V580H505Z" fill="url(#ap-shot-wood)" opacity=".1" style="mix-blend-mode:soft-light"/>
     <path d="M505 0V580H995V0 M75 0V299 A675 675 0 0 0 1425 299V0 M570 580A180 180 0 0 0 930 580" fill="none" stroke="#fff8e9" stroke-width="8"/>
     <path d="M570 580A180 180 0 0 1 930 580" fill="none" stroke="#e9f7ff" stroke-width="7" stroke-dasharray="24 17"/>
     <g class="ap-hoop">
      <path d="M650 103H850" stroke="#16324c" stroke-width="20"/>
      <path d="M650 98H850" stroke="#f2faff" stroke-width="12"/>
-     <path d="M750 104V124" stroke="#f97a27" stroke-width="8"/>
-     <path d="M719 156Q724 187 739 201Q750 208 761 201Q776 187 781 156 M723 164L760 202M733 169L747 205M745 173L739 201M757 173L729 186M770 168L745 204M779 159L759 203M726 180Q750 196 775 180M732 193Q750 205 768 193" fill="none" stroke="#eaf6ff" stroke-width="2.7"/>
-     <ellipse cx="750" cy="150" rx="32" ry="31" fill="none" stroke="#fd7928" stroke-width="7"/>
+     <path d="M750 104V128" stroke="#f97a27" stroke-width="8"/>
+     <g transform="translate(0 7.5)">
+      <path d="M719 156Q724 187 739 201Q750 208 761 201Q776 187 781 156 M723 164L760 202M733 169L747 205M745 173L739 201M757 173L729 186M770 168L745 204M779 159L759 203M726 180Q750 196 775 180M732 193Q750 205 768 193" fill="none" stroke="#eaf6ff" stroke-width="2.7"/>
+      <ellipse cx="750" cy="150" rx="32" ry="31" fill="none" stroke="#fd7928" stroke-width="7"/>
+     </g>
     </g>
    </g>
   </defs>
   <g transform="scale(1 ${projection})">
    <rect width="1500" height="${height}" fill="url(#ap-shot-wood)"/>
-   <g><use href="#ap-shot-half"/>${long?'<use href="#ap-shot-half" transform="translate(1500 2800) rotate(180)"/>':''}</g>
+   <use href="#ap-shot-parquet-edge"/>
+   ${long?'<use href="#ap-shot-parquet-edge" transform="translate(1500 2800) rotate(180)"/>':''}
    <rect width="1500" height="${height}" fill="url(#ap-shot-light)" pointer-events="none"/>
+   <use href="#ap-shot-half"/>
+   ${long?'<use href="#ap-shot-half" transform="translate(1500 2800) rotate(180)"/>':''}
    ${long?'<path d="M0 1400H1500" stroke="#fff8e9" stroke-width="8"/><circle cx="750" cy="1400" r="180" fill="none" stroke="#fff8e9" stroke-width="8"/>':''}
   </g>
   <rect class="ap-court-frame" width="1500" height="${displayHeight}" fill="none" stroke="#ecfaff" stroke-width="9"/>
