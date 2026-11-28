@@ -215,7 +215,7 @@ for(const [id,title,kind] of tools){
   picked.innerHTML=window.PlayerAnalysis.profile(p,{
    meta:games.length+' הופעות בטווח'+(meta?' · '+meta:''),
    action:'<div class="pa-profile-actions">'+(price!=null?'<bdi class="pa-credit">'+fmt(price)+' CR</bdi>':'')+
-    (alwaysPickPlayer?'':'<button type="button" data-back>חזרה לרשימה <span aria-hidden="true">←</span></button>')+'</div>'
+    (alwaysPickPlayer?'':'<button type="button" data-control="back" data-back>חזרה לרשימה <span aria-hidden="true">←</span></button>')+'</div>'
   });
   if(kind==='boxScore'){
    const range=$('[data-range]').value;

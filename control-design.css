@@ -126,6 +126,21 @@ button[data-pir-mode] {
       &:is(select) {min-height: var(--control-touch-height, 44px) !important}
     }
   }
+
+  button[data-control="back"] {
+    min-height: 48px !important;
+    padding-inline: 12px !important;
+    font-size: 14px !important;
+    font-weight: 750 !important;
+    line-height: 1.25;
+    background: #315E9F !important;
+    color: var(--control-active-text) !important;
+    border-color: #7299CD !important;
+  }
+
+  button[data-control="back"]:hover {
+    background: #254C85 !important;
+  }
 }
 
 /* Keep picker and range buttons aligned in the performance toolbar. */
