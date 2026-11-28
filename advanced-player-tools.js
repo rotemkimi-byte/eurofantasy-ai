@@ -98,15 +98,75 @@ function plus(games){
   metric('דקות במדגם',fmt(s.minutes),note(s.covered,games.length))
  ]);
 }
+const courtRows=[
+ [[0,210,'#d58633'],[210,380,'#edaa53'],[590,170,'#ba6a25'],[760,200,'#de933e']],
+ [[0,95,'#f4b65f'],[95,350,'#e09a4b'],[445,315,'#d18637'],[760,200,'#e8a54f']],
+ [[0,310,'#e8a24a'],[310,200,'#c6762b'],[510,350,'#efb059'],[860,100,'#d68432']],
+ [[0,180,'#ce7c2c'],[180,200,'#e39a44'],[380,320,'#f2b15a'],[700,260,'#d98d41']],
+ [[0,370,'#eba449'],[370,200,'#db8d3c'],[570,235,'#d18032'],[805,155,'#f1b359']],
+ [[0,135,'#e6a04a'],[135,285,'#c97429'],[420,340,'#eaa34b'],[760,200,'#e39b45']],
+ [[0,260,'#d1883d'],[260,305,'#efaf56'],[565,340,'#df933d'],[905,55,'#d18437']]
+];
+const courtPlanks=courtRows.map((row,i)=>row.map(([x,width,color])=>
+ `<rect x="${x}" y="${i*36}" width="${width}" height="36" fill="${color}"/><path d="M${x} ${i*36+36}h${width}v-36" fill="none" stroke="#733710" stroke-opacity=".22" stroke-width="2"/>`
+).join('')).join('');
+
+function shotCourt(coords){
+ const long=coords.some(s=>s.y>1242.5);
+ const height=long?2800:1400;
+ const projection=.72;
+ const displayHeight=height*projection;
+ const marks=coords.map(s=>{
+  const x=s.x+750,y=(s.y+157.5)*projection;
+  const title=esc((s.made?'קליעה':'החטאה')+' · '+(s.type.startsWith('3')?'3':'2')+' נק׳');
+  const symbol=s.made?'<circle r="17" fill="#09864a" stroke="#fff" stroke-width="5"/>':
+   '<path d="M-18-11-11-18 0-7 11-18 18-11 7 0 18 11 11 18 0 7-11 18-18 11-7 0Z" fill="#d41825" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>';
+  return `<g class="ap-shot-marker ${s.made?'is-made':'is-missed'}" transform="translate(${x} ${y})"><title>${title}</title>${symbol}</g>`;
+ }).join('');
+ return `<svg class="ap-court" viewBox="-28 -28 1556 ${displayHeight+56}" role="img" aria-label="מפת זריקות: עיגולים ירוקים קליעות, איקסים אדומים החטאות">
+  <defs>
+   <pattern id="ap-shot-wood" width="960" height="252" patternUnits="userSpaceOnUse">
+    ${courtPlanks}
+    <path d="M7 10h156m90 12h296m31-5h95m95 14h115M15 52h65m170-6h143m105 16h79m132-11h120M25 85h260m32 13h126m145-14h160m46 19h143M42 121h85m60 17h130m114-16h225m70 16h165M20 155h288m94 15h138m69-14h162m38 15h145M30 198h84m90-4h152m93 12h159m146-14h178M23 224h183m107 17h184m125-7h216" fill="none" stroke="#fff0c8" stroke-opacity=".15" stroke-width="2"/>
+   </pattern>
+   <pattern id="ap-shot-wood-edge" href="#ap-shot-wood" patternTransform="rotate(90)"/>
+   <radialGradient id="ap-shot-light">
+    <stop stop-color="#fff0a2" stop-opacity=".5"/><stop offset=".55" stop-color="#f29b31" stop-opacity=".14"/><stop offset="1" stop-color="#6b290e" stop-opacity=".62"/>
+   </radialGradient>
+   <linearGradient id="ap-shot-key" x2="0%" y2="100%">
+    <stop stop-color="#052b4d"/><stop offset="1" stop-color="#0969ab"/>
+   </linearGradient>
+   <g id="ap-shot-half">
+    <path d="M0 0H75V299A675 675 0 0 0 1425 299V0H1500V1400H0Z" fill="url(#ap-shot-wood-edge)"/>
+    <path d="M505 0H995V580H505Z" fill="url(#ap-shot-key)"/>
+    <path d="M505 0V580H995V0 M75 0V299 A675 675 0 0 0 1425 299V0 M570 580A180 180 0 0 0 930 580" fill="none" stroke="#fff8e9" stroke-width="8"/>
+    <path d="M570 580A180 180 0 0 1 930 580" fill="none" stroke="#e9f7ff" stroke-width="7" stroke-dasharray="24 17"/>
+    <g class="ap-hoop">
+     <path d="M650 103H850" stroke="#16324c" stroke-width="20"/>
+     <path d="M650 98H850" stroke="#f2faff" stroke-width="12"/>
+     <path d="M750 104V124" stroke="#f97a27" stroke-width="8"/>
+     <path d="M719 156Q724 187 739 201Q750 208 761 201Q776 187 781 156 M723 164L760 202M733 169L747 205M745 173L739 201M757 173L729 186M770 168L745 204M779 159L759 203M726 180Q750 196 775 180M732 193Q750 205 768 193" fill="none" stroke="#eaf6ff" stroke-width="2.7"/>
+     <ellipse cx="750" cy="150" rx="32" ry="31" fill="none" stroke="#fd7928" stroke-width="7"/>
+    </g>
+   </g>
+  </defs>
+  <g transform="scale(1 ${projection})">
+   <rect width="1500" height="${height}" fill="url(#ap-shot-wood)"/>
+   <g><use href="#ap-shot-half"/>${long?'<use href="#ap-shot-half" transform="translate(1500 2800) rotate(180)"/>':''}</g>
+   <rect width="1500" height="${height}" fill="url(#ap-shot-light)" pointer-events="none"/>
+   ${long?'<path d="M0 1400H1500" stroke="#fff8e9" stroke-width="8"/><circle cx="750" cy="1400" r="180" fill="none" stroke="#fff8e9" stroke-width="8"/>':''}
+  </g>
+  <rect class="ap-court-frame" width="1500" height="${displayHeight}" fill="none" stroke="#ecfaff" stroke-width="9"/>
+  ${marks}
+ </svg>`;
+}
+
 function shots(games,filter){
  const covered=games.filter(g=>g.shotCoverage),all=covered.flatMap(g=>g.shots).filter(s=>!s.type.startsWith('FT'));
  const shown=all.filter(s=>filter==='all'||(filter==='made'?s.made:!s.made)),coords=shown.filter(s=>s.x!==null&&s.y!==null);
  if(!covered.length)return empty('אין מפת זריקות מאומתת בטווח שנבחר. בחר משחק אחר או טווח רחב יותר.');
- const long=coords.some(s=>s.y>1242.5),height=long?2800:1400;
- const dots=coords.map(s=>{const x=s.x+750,y=s.y+157.5,title=esc((s.made?'קליעה':'החטאה')+' · '+(s.type.startsWith('3')?'3':'2')+' נק׳');return s.made?'<circle cx="'+x+'" cy="'+y+'" r="17" fill="#087748" stroke="#fff" stroke-width="5"><title>'+title+'</title></circle>':'<path d="M'+(x-14)+' '+(y-14)+'l28 28m0 -28l-28 28" stroke="#c32733" stroke-width="10"><title>'+title+'</title></path>';}).join('');
- const court='<svg class="ap-court" viewBox="0 0 1500 '+height+'" role="img" aria-label="מפת זריקות: עיגולים ירוקים קליעות, איקסים אדומים החטאות"><g fill="none" stroke="#806e4e" stroke-width="8"><path d="M0 0H1500V'+height+'H0Z M505 0V580H995V0 M660 120H840 M75 0V299 A675 675 0 0 0 1425 299V0"/><circle cx="750" cy="157.5" r="22.5"/><circle cx="750" cy="580" r="180"/><path d="M0 1400H1500"/></g>'+dots+'</svg>';
  const zones=[['סמוך לסל',s=>Math.hypot(s.x,s.y)<=200],['2 נק׳ מחוץ לאזור הסל',s=>s.type.startsWith('2')&&Math.hypot(s.x,s.y)>200],['3 נקודות',s=>s.type.startsWith('3')]];
- return '<p class="ap-status">'+note(covered.length,games.length)+' · '+coords.length+' מתוך '+shown.length+' זריקות בסינון עם מיקום</p><div class="ap-legend"><span>● קליעה</span><span>× החטאה</span></div>'+court+'<div class="ap-grid">'+zones.map(([label,pred])=>{const a=all.filter(s=>s.x!==null&&s.y!==null&&pred(s)),made=a.filter(s=>s.made).length;return '<article class="ap-record"><h4>'+label+'</h4>'+fmt(a.length?100*made/a.length:null)+'% · '+made+'/'+a.length+'</article>';}).join('')+'</div>';
+ return '<p class="ap-status">'+note(covered.length,games.length)+' · '+coords.length+' מתוך '+shown.length+' זריקות בסינון עם מיקום</p><div class="ap-legend"><span><b class="ap-legend-made" aria-hidden="true">●</b> קליעה</span><span><b class="ap-legend-missed" aria-hidden="true">×</b> החטאה</span></div>'+shotCourt(coords)+'<div class="ap-grid">'+zones.map(([label,pred])=>{const a=all.filter(s=>s.x!==null&&s.y!==null&&pred(s)),made=a.filter(s=>s.made).length;return '<article class="ap-record"><h4>'+label+'</h4>'+fmt(a.length?100*made/a.length:null)+'% · '+made+'/'+a.length+'</article>';}).join('')+'</div>';
 }
 function lineups(games){
  const covered=games.filter(g=>g.lineupCoverage),rows=C.lineups(games);

@@ -14,8 +14,22 @@ html[data-theme="dark"] .ap-screen{--ap-bg:#152237;--ap-soft:#20324a;--ap-ink:#f
 .ap-screen .ap-record h4{margin:0 0 8px;font-size:17px}.ap-screen .ap-record ol{padding-inline-start:22px;margin:10px 0}
 .ap-screen summary{cursor:pointer;min-height:44px;padding:12px 0;font-weight:700;color:var(--ap-ink)}
 .ap-screen .ap-empty{padding:18px;background:var(--ap-soft);border-radius:12px;line-height:1.6}
-.ap-screen .ap-court{width:100%;max-width:600px;display:block;margin:12px auto;background:#f7e7ca;border:2px solid #69583b;border-radius:8px;direction:ltr}
+.ap-screen .ap-court{
+ width:100%;max-width:800px;display:block;box-sizing:border-box;margin:12px auto;
+ padding:clamp(4px,1.8vw,19px);direction:ltr;border-radius:12px;
+ background:
+  linear-gradient(135deg,transparent 3%,#168fe1 3.45%,#64dfff 3.7%,#0c4d7c 4%,transparent 6%),
+  linear-gradient(315deg,transparent 3%,#168fe1 3.45%,#64dfff 3.7%,#0c4d7c 4%,transparent 6%),
+  radial-gradient(ellipse at center,#0d3558,#051a32 69%,#041224);
+}
+.ap-court .ap-court-frame{filter:drop-shadow(0 0 9px #42a8ed)}
+.ap-court .ap-shot-marker{filter:drop-shadow(0 7px 5px #121b26c4)}
+.ap-court .ap-hoop{filter:drop-shadow(0 9px 7px #041525b3)}
 .ap-screen .ap-legend{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.ap-screen .ap-legend-made{color:#087748}
+.ap-screen .ap-legend-missed{color:#c32733}
+html[data-theme="dark"] .ap-screen .ap-legend-made{color:#64e7a3}
+html[data-theme="dark"] .ap-screen .ap-legend-missed{color:#ff8090}
 .ap-screen .ap-link{color:var(--ap-accent);text-decoration:underline}
 
 /* Advanced player picker: one-tap roster browser, phone-first and theme-aware. */
