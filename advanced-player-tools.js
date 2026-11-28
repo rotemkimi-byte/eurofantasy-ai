@@ -244,6 +244,7 @@ for(const [id,title,kind] of tools){
  const syncRange=alwaysPickPlayer
   ?window.PerformanceControls.mount(section,$('[data-range]'),{specificGames:true}):null;
  if(alwaysPickPlayer)$('[data-player-label]').firstChild.textContent='בחר שחקן';
+ const pickAction=kind==='shots'?'מפת קליעה':kind==='lineups'?'הרכב קליעה':'';
  function renderBrowser(){
   const showPicker=browseOpen||alwaysPickPlayer;
   $('[data-team-label]').hidden=scope!=='team'||!showPicker;
@@ -268,9 +269,9 @@ for(const [id,title,kind] of tools){
   }
   rows.sort((a,b)=>sort==='price'?(b.price??-Infinity)-(a.price??-Infinity)||cmpName(a,b):sort==='minutes'?b.minutes-a.minutes||cmpName(a,b):sort==='pir'?(b.pir??-Infinity)-(a.pir??-Infinity)||cmpName(a,b):sort==='plus'&&kind==='plus'?(b.pm??-Infinity)-(a.pm??-Infinity)||cmpName(a,b):sort==='team'?a.p.team.localeCompare(b.p.team,'he')||cmpName(a,b):cmpName(a,b));
   const visible=rows.slice(0,shown);
-  const pickRows=visible.map(({p,price,games,minutes,pir,pm})=>`<div class="ap-player-row${kind==='lineups'?' ap-lineup-picker':kind==='plus'?'':' ap-no-plus'}${p.id===selected?' is-selected':''}">
+  const pickRows=visible.map(({p,price,games,minutes,pir,pm})=>`<div class="ap-player-row${pickAction?' ap-detail-picker':kind==='plus'?'':' ap-no-plus'}${p.id===selected?' is-selected':''}">
    <span class="ap-row-name">${window.PlayerAnalysis.identity(p)}<small>${games} הופעות</small></span>
-   ${kind==='lineups'?`<button type="button" class="ap-lineup-open" data-pick="${esc(p.id)}" aria-label="הרכב קליעה של ${esc(p.name)}">הרכב קליעה</button>`:`<bdi class="pa-credit">${fmt(price)} CR</bdi>
+   ${pickAction?`<button type="button" class="ap-detail-pick" data-pick="${esc(p.id)}" aria-label="${pickAction} של ${esc(p.name)}">${pickAction}</button>`:`<bdi class="pa-credit">${fmt(price)} CR</bdi>
    <span class="ap-row-stat"><b>${fmt(sort==='pir'?pir:minutes)}</b><small>${sort==='pir'?'PIR':'דקות'}</small></span>
    ${kind==='plus'?`<span class="ap-row-stat ap-plus-value"><b>${signed(pm)}</b><small>+/−</small></span>`:''}
    <button type="button" class="ap-row-arrow" data-pick="${esc(p.id)}" aria-pressed="${p.id===selected}" aria-label="בחר ${esc(p.name)}">‹</button>`}
