@@ -194,7 +194,7 @@ for(const [id,title,kind] of tools){
    ${kind==='plus'?`<span class="ap-row-stat ap-plus-value"><b>${signed(pm)}</b><small>+/−</small></span>`:''}
    <button type="button" class="ap-row-arrow" data-pick="${esc(p.id)}" aria-pressed="${p.id===selected}" aria-label="בחר ${esc(p.name)}">‹</button>`}
   </div>`).join('');
-  host.innerHTML='<div class="ap-browser-head"><div><h4>בחר שחקן</h4><p>'+rows.length+' שחקנים'+(team?' · '+esc(team):' מכל הקבוצות')+' · '+esc($('[data-sort]').selectedOptions[0].textContent)+'</p></div></div><div class="ap-player-list">'+(rows.length?pickRows:empty('לא נמצאו שחקנים. אפשר לשנות קבוצה או חיפוש.'))+'</div>'+(rows.length>shown?'<button type="button" class="ap-show-more" data-more>הצג עוד '+Math.min(36,rows.length-shown)+' שחקנים · '+visible.length+'/'+rows.length+'</button>':'');
+  host.innerHTML='<div class="ap-browser-head"><div><h4 tabindex="-1">בחר שחקן</h4><p>'+rows.length+' שחקנים'+(team?' · '+esc(team):' מכל הקבוצות')+' · '+esc($('[data-sort]').selectedOptions[0].textContent)+'</p></div></div><div class="ap-player-list">'+(rows.length?pickRows:empty('לא נמצאו שחקנים. אפשר לשנות קבוצה או חיפוש.'))+'</div>'+(rows.length>shown?'<button type="button" class="ap-show-more" data-more>הצג עוד '+Math.min(36,rows.length-shown)+' שחקנים · '+visible.length+'/'+rows.length+'</button>':'');
  }
  function controls(){renderBrowser();}
  function ranges(){
@@ -271,7 +271,7 @@ for(const [id,title,kind] of tools){
  section.addEventListener('click',e=>{
   const row=e.target.closest('[data-pick]');
   if(row){choose(row.dataset.pick);return;}
-  if(e.target.closest('[data-back]')){browseOpen=true;renderBrowser();render();$('[data-player]').focus();return;}
+  if(e.target.closest('[data-back]')){browseOpen=true;renderBrowser();render();$('[data-browser] h4').focus();return;}
   if(e.target.closest('[data-more]')){shown+=36;renderBrowser();}
  });
 }

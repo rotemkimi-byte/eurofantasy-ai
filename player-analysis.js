@@ -166,9 +166,10 @@ function create(host,{metrics,rows,team=()=>'',initial=Object.keys(metrics)[0],f
   else if(input.matches('[data-pa-cap]')){cap=input.value;limit=40;}
   else if(input.matches('[data-pa-add]')&&input.value&&picks.length<4&&!picks.includes(input.value)){picks.push(input.value);}
   else return;
-  const field=input.getAttributeNames().find(name=>name.startsWith('data-pa-'));
   render();
-  if(field)host.querySelector(`[${field}]`)?.focus({preventScroll:true});
+  const controls=host.querySelector('.pa-controls');
+  controls.tabIndex=-1;
+  controls.focus({preventScroll:true});
  });
  return {render,show(next){mode=next;render();}};
 }

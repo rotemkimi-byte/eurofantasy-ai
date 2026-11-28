@@ -198,8 +198,10 @@ $('usRanking').onclick=e=>{
  $('usPlayer').value=target.dataset.usPlayer;
  showView(metric);
  selectPlayer();
- $('usPlayer').focus({preventScroll:true});
- const result=$('usResult').getBoundingClientRect(),picker=$('usPlayer').closest('.us-view-picker').getBoundingClientRect();
+ const output=$('usResult');
+ output.tabIndex=-1;
+ output.focus({preventScroll:true});
+ const result=output.getBoundingClientRect(),picker=$('usPlayer').closest('.us-view-picker').getBoundingClientRect();
  if(result.top<picker.bottom||result.top>=window.innerHeight)scrollBy(0,result.top-picker.bottom-8);
 };
 const sortButtons=section.querySelectorAll('[data-us-sort]');
