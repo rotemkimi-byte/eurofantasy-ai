@@ -204,7 +204,7 @@ function grid(points, reference, defense, upcoming, mode) {
   const line = v => '<i class="sgh-gridline" style="--y:'+y(v)+'%"></i>';
   const axis = mode==='rate'?'PIR / 40':'PIR';
   const alt = (p, marker) => (defense?p.rival.name:p.opponent)+' · '+dateFormat.format(p.date)+' · '+axis+' '+value(p.value)+' · '+marker;
-  return '<div class="sgh-chart" dir="ltr"><div class="sgh-axis"><strong>'+axis+'</strong><div>'+
+  return '<div class="sgh-chart'+(defense?' sgh-chart-defense':'')+'" dir="ltr"><div class="sgh-axis"><strong>'+axis+'</strong><div>'+
     lines.map(v => '<span style="--y:'+y(v)+'%">'+value(v)+'</span>').join('')+'</div></div>'+
     '<div class="sgh-scroll" tabindex="0" aria-label="גרף הניתן לגלילה אופקית"><div class="sgh-plot" style="--columns:'+points.length+'">'+
     '<div class="sgh-grid" aria-hidden="true">'+lines.map(line).join('')+
@@ -212,21 +212,21 @@ function grid(points, reference, defense, upcoming, mode) {
     points.map((p,i) => {
       const marker = p.delta===null?'אין בסיס להשוואה':p.tone==='near'?'סביב הממוצע':p.delta>0?'מעל הממוצע':'מתחת לממוצע';
       const highlight = !defense && upcoming && p.opponent===upcoming;
-      const groupStart = defense || i===0 || points[i-1].opponent!==p.opponent;
+      const groupStart = i===0 || points[i-1].opponent!==p.opponent;
       return '<div class="sgh-column'+(highlight?' sgh-upcoming':'')+'"'+(highlight?' title="היריבה הבאה"':'')+'>'+
         '<div class="sgh-track"><button type="button" class="sgh-point" data-sgh-point="'+i+'" data-tone="'+p.tone+
         '" data-sgh-game="'+p.code+'" data-method="'+(defense ? (p.stint?'overlap':'full'):'offense')+'" style="--y:'+y(p.value)+
         '%" data-baseline="'+(p.delta===null?'missing':'available')+'" aria-label="'+esc(alt(p,marker))+'" aria-expanded="false">'+
         '<span class="sgh-point-id">'+kit(p,p.rival?.jerseyNumber)+'<bdi>'+esc(p.rival?.short ?? '—')+'</bdi></span>'+
         '<span class="sgh-dot"></span><strong>'+value(p.value)+'</strong></button></div>'+
-        '<span class="sgh-x" title="'+esc(defense?p.rival.name:p.opponent)+'">'+
-          (defense?esc(p.rival.short):groupStart?esc(p.abbr || p.opponent):'')+'</span></div>';
+        (defense?'':'<span class="sgh-x" title="'+esc(p.opponent)+'">'+
+          (groupStart?esc(p.abbr || p.opponent):'')+'</span>')+'</div>';
     }).join('')+'</div></div></div>';
 }
 
 function renderChart(el, data, next, defense, settings, loading, refresh = false) {
   const priorScroll = refresh ? el.querySelector('.sgh-scroll')?.scrollLeft : null;
-  const activePoint = refresh ? el.querySelector('[aria-expanded="true"]')?.dataset.sghGame : null;
+  const activePoint = refresh ? el.querySelector('[data-sgh-game][aria-expanded="true"]')?.dataset.sghGame : null;
   const selectedGames = new Set(C.select(data.attack,settings.range,settings.venue).map(row=>row.code));
   const rows = (defense?data.defense:data.attack).filter(row=>selectedGames.has(row.code));
   const stats = C.sample(rows,data.season,settings.mode,defense);
@@ -239,10 +239,14 @@ function renderChart(el, data, next, defense, settings, loading, refresh = false
     ['מתחת לממוצע',stats.below],['משחקים במדגם',points.length]
   ];
   const reference = stats.reference===null?'':'<span class="sgh-baseline"><i></i> '+(defense?'בסיס מתואם':'ממוצע עונתי')+' '+text(value(stats.reference))+'</span>';
-  el.innerHTML = '<h5>'+(defense?'PIR של השחקנים היריבים':'PIR מול יריבות')+'</h5>'+
-    '<p class="sgh-sub">'+(defense?'השוואה לשחקן היריב בעמדה לפי דקות חפיפה או רוטציה':'ביצועי השחקן בכל משחק בעונת 2026/27')+'</p>'+
-    controls(settings)+(points.length?grid(points,stats.reference,defense,next?.team,settings.mode):
+  const optionsId = defense?'sgh-defense-options':'sgh-attack-options';
+  const optionsLabel = defense?'סינון וסיכום הגנתיים':'סינון וסיכום התקפיים';
+  const sliders = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14M7 3v4m6 1v4m-5 1v4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+  el.innerHTML = '<div class="sgh-heading"><h5>'+(defense?'הגנה · PIR של היריבים':'התקפה · PIR מול יריבות')+'</h5>'+
+    '<button type="button" data-sgh-options aria-label="'+optionsLabel+'" aria-controls="'+optionsId+'" aria-expanded="'+Boolean(settings.options)+'">'+sliders+'</button></div>'+
+    (points.length?grid(points,stats.reference,defense,next?.team,settings.mode):
     '<p class="sgh-empty">'+(data.season.length?'אין נתונים למדגם שנבחר.':'אין הופעות מתועדות בעונה זו.')+'</p>')+
+    '<div class="sgh-options" id="'+optionsId+'"'+(settings.options?'':' hidden')+'>'+controls(settings)+
     '<div class="sgh-legend">'+reference+'<span data-tone="good"><i></i> '+(defense?'פחות מהרגיל':'מעל הממוצע')+'</span>'+
     '<span data-tone="near"><i></i> סביב הממוצע (עד 1)</span><span data-tone="bad"><i></i> '+(defense?'יותר מהרגיל':'מתחת לממוצע')+'</span></div>'+
     '<div class="sgh-summary">'+summary.map(([label,val]) => metric(label,val)).join('')+'</div>'+
@@ -250,7 +254,7 @@ function renderChart(el, data, next, defense, settings, loading, refresh = false
       (stats.comparable<points.length?' · בסיס להשוואה ל־'+stats.comparable+' מתוך '+points.length:'')+
       ' · חפיפה משקפת נוכחות משותפת על המגרש.</p>':
       (data.missing?'<p class="sgh-source">בוקס סקור חסר ל־'+data.missing+' משחקים.</p>':''))+
-    '<div class="sgh-detail" hidden dir="rtl"></div>';
+    '</div><div class="sgh-detail" hidden dir="rtl"></div>';
   const strip = el.querySelector('.sgh-scroll');
   if (strip) strip.scrollLeft = priorScroll ?? strip.scrollWidth;
   el.onchange = event => {
@@ -277,6 +281,13 @@ function renderChart(el, data, next, defense, settings, loading, refresh = false
     if (focus) detail.querySelector('[data-sgh-close]').focus({preventScroll:true});
   }
   el.onclick = event => {
+    const toggle = event.target.closest('[data-sgh-options]');
+    if (toggle) {
+      settings.options = !settings.options;
+      toggle.setAttribute('aria-expanded',String(settings.options));
+      el.querySelector('.sgh-options').hidden = !settings.options;
+      return;
+    }
     const button = event.target.closest('[data-sgh-point]');
     if (event.target.closest('[data-sgh-close]') || (button && button===selected)) return close(true);
     if (button) openDetail(button,true);

@@ -1,23 +1,43 @@
 .sgh-root {
   min-width: 0;
   display: grid;
-  gap: 12px;
-  margin-top: 8px;
+  gap: 7px;
+  margin-top: 6px;
   color: #edf6ff;
   font-size: 12px;
 }
 .sgh-root .sgh-card {
   min-width: 0;
   position: relative;
-  padding: 13px;
+  padding: 7px 9px 6px;
   border: 1px solid #314d63;
-  border-radius: 15px;
+  border-radius: 12px;
   background: linear-gradient(145deg,#10243a,#0b1726 65%);
   color: #edf6ff;
   color-scheme: dark;
 }
-.sgh-root .sgh-card h5 { margin: 0 0 4px; color: #f4faff; font-size: 17px; }
-.sgh-root .sgh-sub { margin: 0 0 10px; color: #bccee1; }
+.sgh-root .sgh-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+}
+.sgh-root .sgh-heading h5 { margin: 0; color: #f4faff; font-size: 15px; }
+.sgh-root .sgh-heading button {
+  display: grid;
+  place-items: center;
+  flex: 0 0 36px;
+  height: 36px;
+  border: 1px solid #3c536b;
+  border-radius: 7px;
+  background: #14263a;
+  color: #cfe6f8;
+  padding: 0;
+}
+.sgh-root .sgh-heading button[aria-expanded="true"] { border-color: #6cdbc8; color: #92e9d9; }
+.sgh-root .sgh-heading svg { width: 18px; height: 18px; }
+.sgh-root .sgh-options { margin-top: 8px; padding-top: 8px; border-top: 1px solid #314d63; }
+.sgh-root .sgh-options[hidden] { display: none; }
 .sgh-root .sgh-controls {
   display: grid;
   grid-template-columns: repeat(3,minmax(0,1fr));
@@ -35,15 +55,15 @@
   font-size: 12px;
 }
 .sgh-root .sgh-chart {
-  --top: 51px;
-  --height: 151px;
+  --top: 36px;
+  --height: 114px;
   display: grid;
   grid-template-columns: 38px minmax(0,1fr);
-  margin-block: 7px 1px;
+  margin-block: 0 1px;
   color: #d4e1ef;
 }
 .sgh-root .sgh-axis { position: relative; text-align: center; font-size: 10px; }
-.sgh-root .sgh-axis > strong { position: absolute; top: 13px; left: 0; right: 0; }
+.sgh-root .sgh-axis > strong { position: absolute; top: 7px; left: 0; right: 0; }
 .sgh-root .sgh-axis > div { position: relative; height: var(--height); top: var(--top); }
 .sgh-root .sgh-axis span { position: absolute; top: var(--y); right: 5px; transform: translateY(-50%); }
 .sgh-root .sgh-scroll { overflow-x: auto; overscroll-behavior-inline: contain; scrollbar-color: #4c657c #132338; }
@@ -55,6 +75,7 @@
   grid-template-columns: repeat(var(--columns),minmax(76px,1fr));
   padding: var(--top) 2px 0;
 }
+.sgh-root .sgh-chart-defense .sgh-plot { padding-bottom: 12px; }
 .sgh-root .sgh-grid {
   position: absolute;
   inset: var(--top) 0 auto;
@@ -87,7 +108,7 @@
   display: block;
   position: relative;
   text-align: center;
-  margin: 6px auto 0;
+  margin: 4px auto 0;
   max-width: 68px;
   font-size: 10px;
   font-weight: 700;
@@ -105,7 +126,7 @@
   top: var(--y);
   left: 50%;
   width: 74px;
-  height: 46px;
+  height: 40px;
   transform: translate(-50%,-50%);
   border: 0;
   padding: 0;
@@ -115,7 +136,7 @@
   -webkit-tap-highlight-color: transparent;
 }
 .sgh-root .sgh-point:hover,.sgh-root .sgh-point[aria-expanded="true"] { background: #a5d4ff22; }
-.sgh-root .sgh-point-id { position: absolute; inset: auto 0 28px; display: grid; justify-items: center; gap: 1px; }
+.sgh-root .sgh-point-id { position: absolute; inset: auto 0 23px; display: grid; justify-items: center; gap: 1px; }
 .sgh-root .sgh-point-id bdi {
   max-width: 71px;
   color: #dfedfa;
@@ -124,7 +145,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.sgh-root svg.squadJersey { display:block; width: 18px; height: 20px; margin: 0; filter: none; }
+.sgh-root svg.squadJersey { display:block; width: 16px; height: 18px; margin: 0; filter: none; }
 .sgh-root .sgh-dot,.sgh-root .sgh-legend span:not(.sgh-baseline) i {
   display: inline-block;
   width: 8px;
@@ -168,10 +189,11 @@
 .sgh-root .sgh-source { margin: 8px 0 0; color: #bccee1; font-size: 11px; }
 .sgh-root .sgh-empty { margin: 14px 0; color: #bccee1; }
 .sgh-root .sgh-loading { color: inherit; margin: 6px 0; }
+.sgh-root .sgh-card:has(.sgh-detail:not([hidden])) { z-index: 2; }
 .sgh-root .sgh-detail[hidden] { display: none; }
 .sgh-root .sgh-detail {
   position: absolute;
-  inset: 75px 7px auto;
+  inset: 46px 7px auto;
   z-index: 3;
   max-width: 420px;
   background: #111f31;
@@ -187,7 +209,6 @@
 .sgh-root .sgh-detail-head button { background: #243b52; color: #fff; min-width: 36px; min-height: 36px; padding: 0; }
 .sgh-root :is(button,select,.sgh-scroll):focus-visible { outline: 2px solid #81edcf; outline-offset: -2px; }
 @media (max-width: 450px) {
-  .sgh-root .sgh-card { padding: 9px; }
   .sgh-root .sgh-chart { grid-template-columns: 31px minmax(0,1fr); }
   .sgh-root .sgh-controls select { min-height: 38px; font-size: 16px; }
 }
