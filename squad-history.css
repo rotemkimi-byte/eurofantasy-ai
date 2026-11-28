@@ -225,7 +225,20 @@
 .sgh-root .sgh-detail-head { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 8px; margin-bottom: 6px; }
 .sgh-root .sgh-detail-head small { display: block; color: #40546e; }
 .sgh-root .sgh-detail-head svg.squadJersey { width: 27px; height: 30px; }
-.sgh-root .sgh-detail-head button { background: #edf3f9; color: #243b57; min-width: 36px; min-height: 36px; padding: 0; }
+.sgh-root .sgh-detail-head button[data-sgh-close] {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: #e5edf6;
+  color: #17243a;
+  border: 1px solid #b6c6d7;
+  border-radius: 9px;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1;
+}
 .sgh-root :is(button,select,.sgh-scroll):focus-visible { outline: 2px solid #147663; outline-offset: -2px; }
 @media (max-width: 450px) {
   .sgh-root .sgh-chart { grid-template-columns: 31px minmax(0,1fr); }
