@@ -98,59 +98,86 @@ function plus(games){
   metric('דקות במדגם',fmt(s.minutes),note(s.covered,games.length))
  ]);
 }
+const courtWidth=1500;
+const halfCourtHeight=962;
+
+function parquet(){
+ const colors=['#fff0cc','#fff5e1','#eaa455','#f5c482','#d9914c','#ffd598'];
+ const boards=[];
+ const grain=[];
+ for(let row=0;row<46;row++){
+  const y=row*21;
+  for(let x=-((row*113+43)%350),board=0;x<courtWidth;board++){
+   const width=135+((row*31+board*137)%273);
+   const color=colors[(row*13+board*5)%colors.length];
+   const opacity=.15+((row*17+board*37)%9)*.028;
+   boards.push(`<rect x="${x}" y="${y}" width="${width}" height="21" fill="${color}" opacity="${opacity}"/>`);
+   const offset=(row*11+board*7)%13;
+   grain.push(`M${x+8} ${y+3+offset}h${width-18}m-${width-30} 4h${width-42}`);
+   x+=width;
+  }
+ }
+ return boards.join('')+`<path d="${grain.join('')}" fill="none" stroke="#a65b26" stroke-width="1" opacity=".14"/>`;
+}
+const courtParquet=parquet();
+
+// Keep the foul line, three-point line and halfway line aligned with the drawing.
+function courtDepth(depth){
+ if(depth<=580)return depth*435/580;
+ if(depth<=832.5)return 435+(depth-580)*311/252.5;
+ return 746+(depth-832.5)*(halfCourtHeight-746)/567.5;
+}
+
 function shotCourt(coords){
- const long=coords.some(s=>s.y>1242.5);
- const height=long?2800:1400;
- const projection=.72;
- const displayHeight=height*projection;
+ const full=coords.some(s=>s.y>1242.5);
+ const height=full?2*halfCourtHeight:halfCourtHeight;
  const marks=coords.map(s=>{
-  const x=s.x+750,y=(s.y+157.5)*projection;
+  const x=s.x+courtWidth/2,depth=s.y+157.5;
+  const y=depth<=1400?courtDepth(depth):height-courtDepth(2800-depth);
   const title=esc((s.made?'קליעה':'החטאה')+' · '+(s.type.startsWith('3')?'3':'2')+' נק׳');
   const shape=s.made?'#ap-shot-made':'#ap-shot-missed';
-  const color=s.made?'#007846':'#c9182b';
-  return `<g class="ap-shot-marker ${s.made?'is-made':'is-missed'}" transform="translate(${x} ${y})" stroke-linejoin="round">
+  const color=s.made?'#0b9a45':'#db1621';
+  return `<g class="ap-shot-marker ${s.made?'is-made':'is-missed'}" transform="translate(${x} ${y})">
    <title>${title}</title>
-   <use href="${shape}" fill="none" stroke="#172433" stroke-width="13"/>
-   <use href="${shape}" fill="${color}" stroke="#fff" stroke-width="6"/>
+   <use href="${shape}" fill="${color}" stroke="#fff" stroke-width="6" stroke-linejoin="round"/>
   </g>`;
  }).join('');
- return `<svg class="ap-court" viewBox="-36 -36 1572 ${displayHeight+72}" role="img" aria-label="מפת זריקות: עיגולים ירוקים קליעות, איקסים אדומים החטאות">
+ return `<svg class="ap-court" viewBox="0 0 ${courtWidth} ${height}" role="img" aria-label="מפת זריקות: עיגולים ירוקים קליעות, איקסים אדומים החטאות">
   <defs>
-   <circle id="ap-shot-made" r="26"/>
+   <circle id="ap-shot-made" r="28"/>
    <path id="ap-shot-missed" d="M-25-16-16-25 0-9 16-25 25-16 9 0 25 16 16 25 0 9-16 25-25 16-9 0Z"/>
-   <linearGradient id="ap-shot-wood" x1="0%" y1="0%" x2="100%" y2="100%">
-    <stop stop-color="#f0cd9c"/><stop offset="1" stop-color="#e3b781"/>
+   <linearGradient id="ap-shot-wood" x2="18%" y2="100%">
+    <stop stop-color="#f7cd9b"/><stop offset=".5" stop-color="#ffd9aa"/><stop offset="1" stop-color="#f3c594"/>
    </linearGradient>
-   <pattern id="ap-shot-plank-seams" width="480" height="144" patternUnits="userSpaceOnUse">
-    <path d="M0 0H480M0 48H480M0 96H480M95 0V48M293 48V96M178 96V144" fill="none" stroke="#754b24" stroke-opacity=".1" stroke-width="2"/>
-   </pattern>
-   <linearGradient id="ap-shot-key" x2="0%" y2="100%">
-    <stop stop-color="#0b2e54"/><stop offset="1" stop-color="#155785"/>
+   <linearGradient id="ap-shot-key" x2="12%" y2="100%">
+    <stop stop-color="#062744"/><stop offset="1" stop-color="#084572"/>
    </linearGradient>
+   <g id="ap-shot-floor">
+    <rect width="${courtWidth}" height="${halfCourtHeight}" fill="url(#ap-shot-wood)"/>
+    ${courtParquet}
+   </g>
    <g id="ap-shot-half">
-    <path d="M505 0H995V580H505Z" fill="url(#ap-shot-key)"/>
-    <path d="M75 0V299 A675 675 0 0 0 1425 299V0 M570 580A180 180 0 0 0 930 580" fill="none" stroke="#64432c" stroke-width="7"/>
-    <path d="M505 0V580H995V0" fill="none" stroke="#fff8e9" stroke-width="8"/>
-    <path d="M570 580A180 180 0 0 1 930 580" fill="none" stroke="#e9f7ff" stroke-width="7" stroke-dasharray="24 17"/>
+    <path d="M512 0H988V435H512Z" fill="url(#ap-shot-key)"/>
+    <path d="M130 0V232C130 503 417 746 750 746S1370 503 1370 232V0 M575 435a175 158 0 0 0 350 0" fill="none" stroke="#082341" stroke-width="9"/>
+    <path d="M512 0V435H988V0 M512 186h-23m23 44h-23m23 69h-23m499-113h24m-24 44h24m-24 50h24m-24 19h24" fill="none" stroke="#fff8e9" stroke-width="8"/>
+    <path d="M575 435a175 158 0 0 1 350 0" fill="none" stroke="#fff8e9" stroke-width="7" stroke-dasharray="22 17"/>
     <g class="ap-hoop">
-     <path d="M650 103H850" stroke="#16324c" stroke-width="20"/>
-     <path d="M650 98H850" stroke="#f2faff" stroke-width="12"/>
-     <path d="M750 104V128" stroke="#f97a27" stroke-width="8"/>
-     <g transform="translate(0 7.5)">
-      <path d="M719 156Q724 187 739 201Q750 208 761 201Q776 187 781 156 M723 164L760 202M733 169L747 205M745 173L739 201M757 173L729 186M770 168L745 204M779 159L759 203M726 180Q750 196 775 180M732 193Q750 205 768 193" fill="none" stroke="#eaf6ff" stroke-width="2.7"/>
-      <ellipse cx="750" cy="150" rx="32" ry="31" fill="none" stroke="#fd7928" stroke-width="7"/>
-     </g>
+     <path d="M663 0H837L824 37H676Z" fill="#e9edf0"/>
+     <path d="M675 29H825L824 37H676Z" fill="#a0abb6"/>
+     <path d="M694 25H806L802 34H698Z" fill="#102b45"/>
+     <path d="M697 34H803L790 47H766L757 63H743L734 47H710Z" fill="#f68239"/>
+     <path d="M715 39H785M727 48L743 59M773 48L757 59M750 61v21" fill="none" stroke="#d25825" stroke-width="5"/>
+     <path d="M719 107Q724 135 739 146Q750 153 761 146Q776 135 781 107 M724 113L760 146M734 117L747 149M745 119L739 146M757 119L729 134M770 116L745 148M777 111L759 146M726 128Q750 140 775 128M732 140Q750 152 768 140" fill="none" stroke="#fff" stroke-width="2.2"/>
+     <ellipse cx="750" cy="107" rx="31" ry="25" fill="none" stroke="#f77d3c" stroke-width="6"/>
     </g>
    </g>
   </defs>
-  <g transform="scale(1 ${projection})">
-   <rect width="1500" height="${height}" fill="url(#ap-shot-wood)"/>
-   <rect width="1500" height="${height}" fill="url(#ap-shot-plank-seams)"/>
-   <use href="#ap-shot-half"/>
-   ${long?'<use href="#ap-shot-half" transform="translate(1500 2800) rotate(180)"/>':''}
-   ${long?'<g fill="none" stroke="#64432c" stroke-width="7"><path d="M0 1400H1500"/><circle cx="750" cy="1400" r="180"/></g>':''}
-  </g>
-  <rect class="ap-court-frame" width="1500" height="${displayHeight}" fill="none" stroke="#ecfaff" stroke-width="9"/>
+  <use href="#ap-shot-floor"/>
+  <use href="#ap-shot-half"/>
+  ${full?`<g transform="translate(${courtWidth} ${height}) rotate(180)">
+   <use href="#ap-shot-floor"/><use href="#ap-shot-half"/>
+  </g><g fill="none" stroke="#082341" stroke-width="9"><path d="M0 ${halfCourtHeight}H${courtWidth}"/><circle cx="750" cy="${halfCourtHeight}" r="175"/></g>`:''}
+  <rect x="4" y="4" width="${courtWidth-8}" height="${height-8}" rx="25" fill="none" stroke="#fff8e9" stroke-width="7"/>
   ${marks}
  </svg>`;
 }
