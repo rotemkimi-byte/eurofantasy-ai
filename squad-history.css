@@ -72,6 +72,10 @@
   padding: 4px;
   font-size: 12px;
 }
+.sgh-root .sgh-results { --height: 72px; }
+.sgh-root .sgh-results .sgh-axis > strong { top: 0; }
+.sgh-root .sgh-results .sgh-plot { grid-template-columns: repeat(var(--columns),minmax(56px,1fr)); }
+.sgh-root .sgh-results .sgh-point { width: 54px; }
 .sgh-root .sgh-chart {
   --top: 36px;
   display: grid;

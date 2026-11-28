@@ -158,6 +158,7 @@ const controls = (settings, team) => '<div class="sgh-controls">'+filters.filter
     '<option value="'+k+'"'+(settings[key]===k?' selected':'')+'>'+v+'</option>').join('')+
     '</select>').join('')+'</div>';
 const kit = (point, number = '') => squadJersey({team:point.opponent,jerseyNumber:number});
+const resultLabel = result => result === 'W' ? 'ניצחון' : 'הפסד';
 const metric = (label,val) => '<div><strong>'+text(val)+'</strong><small>'+label+'</small></div>';
 const set = (points, defense) => {
   if (defense) return points;
@@ -197,8 +198,8 @@ function teamGameDetail(point) {
   return '<div class="sgh-detail-head">'+kit(point)+'<div><b>'+text(point.opponent)+'</b>'+
     '<small>'+sub.map(text).join(' · ')+'</small></div>'+
     '<button type="button" data-sgh-close aria-label="סגור פירוט">×</button></div>'+
-    '<div class="sgh-detail-stats">'+metric('נק׳ שקלעה',point.scored)+metric('נק׳ שספגה',point.allowed)+
-    metric('הפרש',signed(point.scored-point.allowed))+'</div>';
+    '<div class="sgh-detail-stats">'+metric('תוצאה',point.result+' · '+resultLabel(point.result))+
+    metric('תוצאה סופית',point.scored+'–'+point.allowed)+'</div>';
 }
 
 function grid(points, defense, upcoming, mode, team) {
@@ -207,25 +208,28 @@ function grid(points, defense, upcoming, mode, team) {
   const step = Math.max(1, Math.ceil((hi-lo || 4)/4));
   const min = Math.floor(lo/step)*step;
   const max = Math.max(min+step*4, Math.ceil(hi/step)*step);
-  const y = v => (max-v)/(max-min)*100;
-  const lines = Array.from({length:Math.round((max-min)/step)+1},(_,i) => max-i*step);
+  const y = v => team ? (v ? 0 : 100) : (max-v)/(max-min)*100;
+  const lines = team ? [1,0] : Array.from({length:Math.round((max-min)/step)+1},(_,i) => max-i*step);
   const line = v => '<i class="sgh-gridline" style="--y:'+y(v)+'%"></i>';
-  const axis = team?'נק׳':mode==='rate'?'PIR / 40':'PIR';
-  const alt = (p, marker) => (defense && !team?p.rival.name:p.opponent)+' · '+dateFormat.format(p.date)+' · '+axis+' '+value(p.value)+(team?'':' · '+marker);
+  const axis = team?'תוצאה':mode==='rate'?'PIR / 40':'PIR';
+  const alt = (p, marker) => (defense?p.rival.name:p.opponent)+' · '+dateFormat.format(p.date)+' · '+
+    (team ? resultLabel(p.result) : axis+' '+value(p.value)+' · '+marker);
   return '<div class="sgh-chart'+(defense && !team?' sgh-chart-defense':'')+'" dir="ltr"><div class="sgh-axis"><strong>'+axis+'</strong><div>'+
-    lines.map(v => '<span style="--y:'+y(v)+'%">'+value(v)+'</span>').join('')+'</div></div>'+
+    lines.map(v => '<span style="--y:'+y(v)+'%">'+(team ? (v ? 'W' : 'L') : value(v))+'</span>').join('')+'</div></div>'+
     '<div class="sgh-scroll" tabindex="0" aria-label="גרף הניתן לגלילה אופקית"><div class="sgh-plot" style="--columns:'+points.length+'">'+
     '<div class="sgh-grid" aria-hidden="true">'+lines.map(line).join('')+'</div>'+
     points.map((p,i) => {
       const marker = p.delta===null?'אין בסיס להשוואה':p.tone==='near'?'סביב הממוצע':p.delta>0?'מעל הממוצע':'מתחת לממוצע';
       const highlight = (team || !defense) && upcoming && p.opponent===upcoming;
       const groupStart = team || i===0 || points[i-1].opponent!==p.opponent;
-      return '<div class="sgh-column'+(highlight?' sgh-upcoming':'')+'"'+(highlight?' title="היריבה הבאה"':'')+'>'+
+      const pointData = team ? '' : ' data-method="'+(defense ? (p.stint?'overlap':'full') : 'offense')+
+        '" data-baseline="'+(p.delta===null?'missing':'available')+'"';
+      return '<div class="sgh-column'+(highlight?' sgh-upcoming':'')+'"'+(highlight?' title="'+(team?'הקבוצה של המאמן שלך':'היריבה הבאה')+'"':'')+'>'+
         '<div class="sgh-track"><button type="button" class="sgh-point" data-sgh-point="'+i+'" data-tone="'+p.tone+
-        '" data-sgh-game="'+p.code+'" data-method="'+(defense && !team ? (p.stint?'overlap':'full'):'offense')+'" style="--y:'+y(p.value)+
-        '%" data-baseline="'+(p.delta===null?'missing':'available')+'" aria-label="'+esc(alt(p,marker))+'" aria-expanded="false">'+
+        '" data-sgh-game="'+p.code+'"'+pointData+' style="--y:'+y(p.value)+
+        '%" aria-label="'+esc(alt(p,marker))+'" aria-expanded="false">'+
         '<span class="sgh-point-id">'+kit(p,p.rival?.jerseyNumber)+(team?'':'<bdi>'+esc(p.rival?.short ?? '—')+'</bdi>')+'</span>'+
-        '<span class="sgh-dot"></span><strong>'+value(p.value)+'</strong></button></div>'+
+        '<span class="sgh-dot"></span><strong>'+(team?p.result:value(p.value))+'</strong></button></div>'+
         (defense && !team?'':'<span class="sgh-x" title="'+esc(p.opponent)+'">'+
           (groupStart?esc(p.abbr || p.opponent):'')+'</span>')+'</div>';
     }).join('')+'</div></div></div>';
@@ -234,14 +238,15 @@ function grid(points, defense, upcoming, mode, team) {
 function renderChart(el, data, upcomingTeam, defense, settings, loading, refresh = false) {
   const priorScroll = refresh ? el.querySelector('.sgh-scroll')?.scrollLeft : null;
   const activePoint = refresh ? el.querySelector('[data-sgh-game][aria-expanded="true"]')?.dataset.sghGame : null;
-  const selectedGames = new Set(C.select(data.attack,settings.range,settings.venue).map(row=>row.code));
-  const rows = (defense?data.defense:data.attack).filter(row=>selectedGames.has(row.code));
   const team = data.team;
+  const selectedRows = C.select(team ? data.season : data.attack,settings.range,settings.venue);
+  const selectedGames = new Set(selectedRows.map(row=>row.code));
+  const rows = defense ? data.defense.filter(row=>selectedGames.has(row.code)) : selectedRows;
   const stats = team ? null : C.sample(rows,data.season,settings.mode,defense);
   const points = team ? rows : set(stats.points,defense);
-  const mean = points.length ? points.reduce((sum,p) => sum+p.value,0)/points.length : null;
+  const wins = team ? points.filter(p=>p.result==='W').length : 0;
   const summary = team ? [
-    [defense?'ממוצע נק׳ שספגה':'ממוצע נק׳ שקלעה',value(mean)],['משחקים במדגם',points.length]
+    ['ניצחונות',wins],['הפסדים',points.length-wins]
   ] : defense ? [
     ['ממוצע PIR יריבים',value(stats.actual)],['ממוצע רגיל מתואם',value(stats.reference)],
     ['פער ממוצע',signed(stats.difference)],['מאצ׳אפים במדגם',points.length]
@@ -249,11 +254,11 @@ function renderChart(el, data, upcomingTeam, defense, settings, loading, refresh
     ['ממוצע PIR עונתי',value(stats.reference)],['מעל הממוצע',stats.above],
     ['מתחת לממוצע',stats.below],['משחקים במדגם',points.length]
   ];
-  const optionsId = defense?'sgh-defense-options':'sgh-attack-options';
-  const optionsLabel = defense?'סינון וסיכום הגנתיים':'סינון וסיכום התקפיים';
+  const optionsId = team?'sgh-results-options':defense?'sgh-defense-options':'sgh-attack-options';
+  const optionsLabel = team?'סינון וסיכום תוצאות':defense?'סינון וסיכום הגנתיים':'סינון וסיכום התקפיים';
   const sliders = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14M7 3v4m6 1v4m-5 1v4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
   const title = team
-    ? (defense?'הגנה · נק׳ שספגה היריבה':'התקפה · נק׳ שקלעה היריבה')
+    ? 'תוצאות היריבה'
     : (defense?'הגנה · PIR מול היריב':'התקפה · PIR של היריב');
   el.innerHTML = '<div class="sgh-heading"><h5>'+title+'</h5>'+
     '<button type="button" data-sgh-options aria-label="'+optionsLabel+'" aria-controls="'+optionsId+'" aria-expanded="'+Boolean(settings.options)+'">'+sliders+'</button></div>'+
@@ -338,18 +343,20 @@ function renderCharts(root,data,upcomingTeam,settings,loading = false) {
 
 function mountTeam(root,schedule,team,upcomingTeam,settings) {
   const season = [...C.scheduleGames(schedule,canonicalTeam).values()].flatMap(game => {
-    if (game.homeScore === null || game.awayScore === null || (game.home !== team && game.away !== team)) return [];
+    if (game.homeScore === null || game.awayScore === null || game.homeScore === game.awayScore ||
+        (game.home !== team && game.away !== team)) return [];
     const home = game.home === team;
+    const scored = home ? game.homeScore : game.awayScore;
+    const allowed = home ? game.awayScore : game.homeScore;
+    const won = scored > allowed;
     return [{
-      code:game.code, date:game.date, round:game.round, home, tone:'near',
+      code:game.code, date:game.date, round:game.round, home,
       opponent:home?game.away:game.home, abbr:home?game.awayAbbr:game.homeAbbr,
-      scored:home?game.homeScore:game.awayScore, allowed:home?game.awayScore:game.homeScore
+      scored, allowed, result:won?'W':'L', value:won?1:0, tone:won?'good':'bad'
     }];
   }).sort((a,b) => a.date-b.date || a.code-b.code);
-  renderCharts(root,{team,season,
-    attack:season.map(p => ({...p,value:p.scored})),
-    defense:season.map(p => ({...p,value:p.allowed}))
-  },upcomingTeam,settings);
+  root.innerHTML = '<section class="sgh-card sgh-results" aria-label="ניצחונות והפסדים של היריבה"></section>';
+  renderChart(root.firstElementChild,{team,season},upcomingTeam,false,settings.attack,false);
 }
 
 window.SquadHistory = {mount,mountTeam,settings:()=>({attack:{mode:'raw',range:'all',venue:'all'},defense:{mode:'raw',range:'all',venue:'all'}})};
